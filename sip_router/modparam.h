@@ -1,3 +1,8 @@
+/*
+ * $Id: modparam.h,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #ifndef modparam_h
 #define modparam_h
 

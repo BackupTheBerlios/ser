@@ -1,3 +1,9 @@
+/* 
+ * $Id: test.c,v 1.3 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
+
 #include "../../hash_func.h"
 #include "t_funcs.h"
 #include "../../dprint.h"

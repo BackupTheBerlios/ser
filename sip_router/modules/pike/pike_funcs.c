@@ -1,3 +1,7 @@
+/* 
+ * $Id: pike_funcs.c,v 1.12 2002/09/19 11:51:26 jku Exp $
+ *
+ */
 
 #include <stdio.h>
 #include <string.h>

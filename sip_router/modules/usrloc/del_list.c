@@ -1,3 +1,8 @@
+/* 
+ * $Id: del_list.c,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #include "del_list.h"
 #include "../../mem/mem.h"
 #include "../../dprint.h"

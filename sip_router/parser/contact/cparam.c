@@ -1,3 +1,8 @@
+/* 
+ * $Id: cparam.c,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #include "cparam.h"
 #include "../../mem/mem.h"
 #include <stdio.h>         /* printf */

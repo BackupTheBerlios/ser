@@ -1,3 +1,7 @@
+/*
+ * $Id: data_lump_rpl.c,v 1.4 2002/09/19 11:51:26 jku Exp $
+ *
+ */
 
 #include <string.h>
 #include "dprint.h"

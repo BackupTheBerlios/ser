@@ -1,7 +1,10 @@
-/* MD5C.C - RSA Data Security, Inc., MD5 message-digest algorithm
- */
+/* 
 
-/* Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All
+$Id: md5.c,v 1.3 2002/09/19 11:51:26 jku Exp $
+
+MD5C.C - RSA Data Security, Inc., MD5 message-digest algorithm
+
+Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All
 rights reserved.
 
 License to copy and use this software is granted provided that it

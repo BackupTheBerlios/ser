@@ -1,3 +1,8 @@
+/*
+ * $Id: modparam.c,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #include "modparam.h"
 #include "dprint.h"
 #include <string.h>

@@ -1,3 +1,8 @@
+/* 
+ * $Id: timer.h,v 1.6 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #ifndef _PIKE_TIMER_H
 #define _PIKE_TIMER_H
 

@@ -1,3 +1,8 @@
+/* 
+ * $Id: pike_funcs.h,v 1.9 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #ifndef _PIKE_FUNCS_H
 #define PIKE_FUNCS_H
 

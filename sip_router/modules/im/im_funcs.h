@@ -1,3 +1,8 @@
+/*
+ * $Id: im_funcs.h,v 1.5 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #ifndef _IM_FUNCS_H
 #define  _IM_FUNCS_H
 

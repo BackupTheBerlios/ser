@@ -1,3 +1,8 @@
+/* 
+ * $Id: del_list.h,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #ifndef DEL_LIST_H
 #define DEL_LIST_H
 

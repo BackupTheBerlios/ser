@@ -1,3 +1,7 @@
+/*
+ * $Id: memtest.c,v 1.4 2002/09/19 11:51:26 jku Exp $
+ */
+
 #ifdef DBG_QM_MALLOC
 
 #include <stdio.h>

@@ -1,3 +1,9 @@
+/* 
+ * $Id: ins_list.c,v 1.3 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
+
 #include "ins_list.h"
 #include "../../mem/mem.h"
 #include <string.h>

@@ -1,3 +1,8 @@
+/* 
+ * $Id: lock.c,v 1.4 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #include <errno.h>
 
 #include "lock.h"

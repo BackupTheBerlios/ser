@@ -1,3 +1,7 @@
+/* 
+ * $Id: lock.h,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
 
 #ifndef _SMART_LOCK_H_
 #define _SMART_LOCK_H_

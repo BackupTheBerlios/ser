@@ -1,3 +1,9 @@
+/* 
+ * $Id: ins_list.h,v 1.3 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
+
 #ifndef INS_LIST_H
 #define INS_LIST_H
 

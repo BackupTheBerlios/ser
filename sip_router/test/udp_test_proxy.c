@@ -1,4 +1,7 @@
-/* $Id */
+/* 
+ * $Id: udp_test_proxy.c,v 1.2 2002/09/19 11:51:26 jku Exp $
+ *
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,7 +17,7 @@
 
 
 
-static char *id="$Id: udp_test_proxy.c,v 1.1 2002/02/15 00:09:13 andrei Exp $";
+static char *id="$Id: udp_test_proxy.c,v 1.2 2002/09/19 11:51:26 jku Exp $";
 static char *version="udp_test_proxy 0.1";
 static char* help_msg="\
 Usage: udp_test_proxy  -l address -s port -d address -p port [-n no] [-v]\n\

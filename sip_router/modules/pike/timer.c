@@ -1,3 +1,8 @@
+/* 
+ * $Id: timer.c,v 1.5 2002/09/19 11:51:26 jku Exp $
+ *
+ */
+
 #include "timer.h"
 #include "../../dprint.h"
 
