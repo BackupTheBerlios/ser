@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.11 2004/06/16 14:20:13 janakj Exp $
+ * $Id: pdt.c,v 1.12 2004/08/04 14:25:09 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -325,7 +325,7 @@ static int mod_init(void)
 		
 
 		/* free up the space allocated for response */
-		if(pdt_dbf.free_query(db_con, db_res)<0)
+		if(pdt_dbf.free_result(db_con, db_res)<0)
 		{
 			LOG(L_ERR, "PDT: mod_init: error when freeing"
 				" up the response space\n");

@@ -1,5 +1,5 @@
 /* 
- * $Id: domain.c,v 1.15 2004/06/08 10:55:30 andrei Exp $
+ * $Id: domain.c,v 1.16 2004/08/04 14:25:07 janakj Exp $
  *
  * Domain table related functions
  *
@@ -133,12 +133,12 @@ int is_domain_local(str* _host)
 		if (RES_ROW_N(res) == 0) {
 			DBG("is_local(): Realm '%.*s' is not local\n", 
 			    _host->len, ZSW(_host->s));
-			domain_dbf.free_query(db_handle, res);
+			domain_dbf.free_result(db_handle, res);
 			return -1;
 		} else {
 			DBG("is_local(): Realm '%.*s' is local\n", 
 			    _host->len, ZSW(_host->s));
-			domain_dbf.free_query(db_handle, res);
+			domain_dbf.free_result(db_handle, res);
 			return 1;
 		}
 	} else {
@@ -238,16 +238,16 @@ int reload_domain_table ( void )
 
 			if (hash_table_install(new_hash_table, (char *)(VAL_STRING(val))) == -1) {
 				LOG(L_ERR, "domain_reload(): Hash table problem\n");
-				domain_dbf.free_query(db_handle, res);
+				domain_dbf.free_result(db_handle, res);
 				return -1;
 			}
 		} else {
 			LOG(L_ERR, "domain_reload(): Database problem\n");
-			domain_dbf.free_query(db_handle, res);
+			domain_dbf.free_result(db_handle, res);
 			return -1;
 		}
 	}
-	domain_dbf.free_query(db_handle, res);
+	domain_dbf.free_result(db_handle, res);
 
 	*hash_table = new_hash_table;
 	

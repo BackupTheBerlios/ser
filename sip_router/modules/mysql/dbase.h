@@ -1,5 +1,5 @@
 /*
- * $Id: dbase.h,v 1.10 2003/11/17 22:49:50 janakj Exp $
+ * $Id: dbase.h,v 1.11 2004/08/04 14:25:08 janakj Exp $
  *
  * MySQL module core functions
  *
@@ -52,15 +52,9 @@ void db_close(db_con_t* _h);
 
 
 /*
- * Return result of previous query
- */
-int get_result(db_con_t* _h, db_res_t** _r);
-
-
-/*
  * Free all memory allocated by get_result
  */
-int db_free_query(db_con_t* _h, db_res_t* _r);
+int db_free_result(db_con_t* _h, db_res_t* _r);
 
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: checks.c,v 1.3 2004/06/16 14:20:13 janakj Exp $
+ * $Id: checks.c,v 1.4 2004/08/04 14:25:10 janakj Exp $
  *
  * Various URI checks
  *
@@ -144,12 +144,12 @@ static inline int check_username(struct sip_msg* _m, str* _uri)
 		if (RES_ROW_N(res) == 0) {
 			DBG("check_username(): From/To user '%.*s' is spoofed\n", 
 			    puri.user.len, ZSW(puri.user.s));
-			uridb_dbf.free_query(db_handle, res);
+			uridb_dbf.free_result(db_handle, res);
 			return -9;
 		} else {
 			DBG("check_username(): From/To user '%.*s' and auth user match\n", 
 			    puri.user.len, ZSW(puri.user.s));
-			uridb_dbf.free_query(db_handle, res);
+			uridb_dbf.free_result(db_handle, res);
 			return 1;
 		}
 	} else {
@@ -244,11 +244,11 @@ int does_uri_exist(struct sip_msg* _msg, char* _s1, char* _s2)
 	
 	if (RES_ROW_N(res) == 0) {
 		DBG("does_uri_exit(): User in request uri does not exist\n");
-		uridb_dbf.free_query(db_handle, res);
+		uridb_dbf.free_result(db_handle, res);
 		return -5;
 	} else {
 		DBG("does_uri_exit(): User in request uri does exist\n");
-		uridb_dbf.free_query(db_handle, res);
+		uridb_dbf.free_result(db_handle, res);
 		return 1;
 	}
 }

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, location package handling
  *
- * $Id: location.c,v 1.5 2004/06/16 14:20:13 janakj Exp $
+ * $Id: location.c,v 1.6 2004/08/04 14:25:09 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -286,7 +286,7 @@ int pa_location_init(void)
 			row_vals[room_col].nul);
 	       }
 	  }
-	  pa_dbf.free_query(pa_db, res);
+	  pa_dbf.free_result(pa_db, res);
 	  if (use_bsearch)
 	       qsort(location_placeid_table, location_placeid_n_rows,
 		     sizeof(struct location_placeid_row),

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: vm.c,v 1.48 2004/06/16 14:20:14 janakj Exp $
+ * $Id: vm.c,v 1.49 2004/08/04 14:25:10 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -332,7 +332,7 @@ static int vm_get_user_info( str* user,   /*[in]*/
 	}
 
 	if(email_res)
-		vm_dbf.free_query(db_handle, email_res);
+		vm_dbf.free_result(db_handle, email_res);
 
 	return 0;
 error:

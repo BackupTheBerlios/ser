@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.15 2004/06/16 14:20:13 janakj Exp $
+ * $Id: watcher.c,v 1.16 2004/08/04 14:25:09 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -380,7 +380,7 @@ int new_watcher(presentity_t *_p, str* _uri, time_t _e, int event_package, docty
 	       }
 	  }
 	  if (res)
-	       pa_dbf.free_query(pa_db, res);
+	       pa_dbf.free_result(pa_db, res);
      }
 
      return 0;
@@ -491,7 +491,7 @@ int db_read_watcherinfo(presentity_t *_p)
 		    }
 	       }
 	  }
-	  pa_dbf.free_query(pa_db, res);
+	  pa_dbf.free_result(pa_db, res);
 	  LOG(L_ERR, "db_read_watcherinfo:  _p->uri='%s' done\n", _p->uri.s);
      }
      return 0;

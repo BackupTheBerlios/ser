@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.16 2004/06/16 14:20:13 janakj Exp $
+ * $Id: presentity.c,v 1.17 2004/08/04 14:25:09 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -201,7 +201,7 @@ int new_presentity(struct pdomain *pdomain, str* _uri, presentity_t** _p)
 			 return -1;
 		    }
 	       }
-	       pa_dbf.free_query(pa_db, res);
+	       pa_dbf.free_result(pa_db, res);
 	  }
      }
 
@@ -945,7 +945,7 @@ int pdomain_load_presentities(pdomain_t *pdomain)
 			 presentity->presid = presid;
 		    }
 	       }
-	       pa_dbf.free_query(pa_db, res);
+	       pa_dbf.free_result(pa_db, res);
 	  }
 	  
 	  { 
