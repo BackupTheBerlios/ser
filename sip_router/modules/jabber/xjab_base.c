@@ -1,5 +1,5 @@
 /*
- * $Id: xjab_base.c,v 1.5 2003/06/02 15:42:21 dcm Exp $
+ * $Id: xjab_base.c,v 1.6 2003/06/05 17:13:26 dcm Exp $
  *
  * eXtended JABber module - Jabber connections pool
  *
@@ -38,6 +38,7 @@
 
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
+#include "../../parser/parse_uri.h"
 
 #include "xjab_base.h"
 #include "mdefines.h"
@@ -152,4 +153,23 @@ void xj_sipmsg_free(xj_sipmsg jsmsg)
 		_M_SHM_FREE(jsmsg->msg.s);
 	_M_SHM_FREE(jsmsg);
 }
+
+int xj_extract_aor(str* u, int t)
+{
+	struct sip_uri puri;
+
+	if(!u)
+		return -1;
+	if (parse_uri(u->s, u->len, &puri) < 0)
+	{
+		LOG(L_ERR, "XJAB:extract_aor: Error while parsing URI\n");
+		return -1;
+	}
+	
+	if(t == 1)
+		u->s = puri.user.s;
+	u->len = puri.host.s + puri.host.len - u->s;
+	return 0;
+}
+
 
