@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.13 2002/05/12 16:16:18 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.14 2002/05/25 18:20:20 jku Exp $ 
  */
 
 #include "auth_mod.h"
@@ -46,7 +46,7 @@ int (*sl_reply)(struct sip_msg* _msg, char* _str1, char* _str2);
  * Module parameter variables
  */
 char* db_url       = "sql://janakj:heslo@localhost/ser";
-char* user_column  = "user";
+char* user_column  = "user_id";
 char* realm_column = "realm";
 char* pass_column  = "ha1";
 
