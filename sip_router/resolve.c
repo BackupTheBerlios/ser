@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.3 2002/08/19 08:58:42 jku Exp $*/
+/* $Id: resolve.c,v 1.4 2002/08/27 16:36:14 andrei Exp $*/
 
 /* #include <arpa/nameser.h> -- included from resolve.h*/
 #include <netinet/in.h>
@@ -237,7 +237,8 @@ struct rdata* get_record(char* name, int type)
 		p+=2;
 		/* check for type */
 		if (rtype!=type){
-			LOG(L_WARN, "WARNING: get_record: wrong type in answer\n");
+			LOG(L_ERR, "WARNING: get_record: wrong type in answer (%d!=%d)\n",
+					rtype, type);
 			p+=rdlength;
 			continue;
 		}

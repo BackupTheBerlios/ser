@@ -1,7 +1,12 @@
 /*
- * $Id: dns_query.c,v 1.1 2002/08/12 16:33:43 andrei Exp $
+ * $Id: dns_query.c,v 1.2 2002/08/27 16:36:14 andrei Exp $
  *
  * tests for ../resolver.c
+ *
+ * Compile with:
+ *  gcc -o dns_query2 dns_query.c ../resolve.o ../dprint.o ../mem/ *.o -lresolv
+ *  (and first compile ser with qm_malloc)
+ * 
  */
 
 #include <stdio.h>
@@ -11,15 +16,19 @@
 #include <unistd.h>
 
 #include "../resolve.h"
+#include "../mem/q_malloc.h"
 
 /* symbols needed by dprint */
 int log_stderr=1;
 int debug=0;
 int pids[1];
 int process_no=0;
+int shm_mem_size=0;
+char mem_pool[1024*1024];
+struct qm_block* mem_block;
 
 
-static char* id="$Id: dns_query.c,v 1.1 2002/08/12 16:33:43 andrei Exp $";
+static char* id="$Id: dns_query.c,v 1.2 2002/08/27 16:36:14 andrei Exp $";
 static char* version="dns_query 0.1";
 static char* help_msg="\
 Usage: dns_query  [-t type] [-hV] -n host\n\
@@ -106,6 +115,8 @@ int main(int argc, char** argv)
 			goto error;
 		}
 	}
+	/* init mallocs*/
+	mem_block=qm_malloc_init(mem_pool, 1024*1024);
 	printf("calling get_record...\n");
 	head=get_record(name, type);
 	if (head==0) printf("no answer\n");
