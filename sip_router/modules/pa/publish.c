@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.2 2003/12/10 14:38:20 jamey Exp $
+ * $Id: publish.c,v 1.3 2003/12/10 22:34:19 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -186,6 +186,7 @@ int handle_publish(struct sip_msg* _m, char* _domain, char* _s2)
 	lock_pdomain(d);
 	
 	if (find_presentity(d, &p_uri, &p) > 0) {
+		changed = 1;
 		if (create_presentity_only(_m, d, &p_uri, &p) < 0) {
 			LOG(L_ERR, "handle_publish(): Error while creating new presentity\n");
 			unlock_pdomain(d);
@@ -241,6 +242,7 @@ int fifo_pa_presence(FILE *fifo, char *response_file)
 	presentity_t *presentity = NULL;
 	str pdomain_name, p_uri, presence;
 	int origstate, newstate;
+	int allocated_presentity = 0;
 
 	if (!read_line(pdomain_s, MAX_PDOMAIN, fifo, &pdomain_name.len) || pdomain_name.len == 0) {
 		fifo_reply(response_file,
@@ -277,6 +279,7 @@ int fifo_pa_presence(FILE *fifo, char *response_file)
 	find_presentity(pdomain, &p_uri, &presentity);
 	if (!presentity) {
 		new_presentity(&p_uri, &presentity);
+		allocated_presentity = 1;
 	}
 	if (!presentity) {
 		fifo_reply(response_file, "400 could not find presentity %s\n", p_uri_s);
@@ -289,7 +292,7 @@ int fifo_pa_presence(FILE *fifo, char *response_file)
 	presentity->state = newstate =
 		(strcmp(presence_s, "online") == 0) ? PS_ONLINE : PS_OFFLINE;
 
-	if (origstate != newstate) {
+	if (origstate != newstate || allocated_presentity) {
 		notify_watchers(presentity);
 	}
 
@@ -357,6 +360,7 @@ int fifo_pa_location(FILE *fifo, char *response_file)
 	find_presentity(pdomain, &p_uri, &presentity);
 	if (!presentity) {
 		new_presentity(&p_uri, &presentity);
+		changed = 1;
 	}
 	if (!presentity) {
 		fifo_reply(response_file, "400 could not find presentity\n");
