@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.9 2002/08/30 22:10:50 jku Exp $
+ * $Id: fifo_server.c,v 1.10 2002/08/31 17:26:12 jku Exp $
  *
  * Fifo server is a very powerful tool used to access easily
  * ser's internals via textual interface, similarly to
@@ -49,7 +49,7 @@
 #include "sr_module.h"
 
 /* FIFO server vars */
-char *fifo=0; /* FIFO name */
+char *fifo="/tmp/ser_fifo"; /* FIFO name */
 int fifo_mode=S_IRUSR | S_IWUSR | S_IRGRP | 
 	S_IWGRP | S_IROTH | S_IWOTH;
 pid_t fifo_pid;
