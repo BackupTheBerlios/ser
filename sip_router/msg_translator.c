@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.11 2001/12/02 17:04:49 jku Exp $
+/* $Id: msg_translator.c,v 1.12 2001/12/02 18:28:24 jku Exp $
  *
  */
 
@@ -204,6 +204,7 @@ char * build_req_buf_from_sip_req(	struct sip_msg* msg,
 		memcpy(line_buf+via_len, CRLF, CRLF_LEN);
 		via_len+=CRLF_LEN;
 		line_buf[via_len]=0; /* null terminate the string*/
+		DBG("DEBUG: via branch building finished\n");
 	}else{
 		LOG(L_ERR, "build_req_buf_from_sip_req: ERROR: via too long (%d)\n",
 				via_len);
