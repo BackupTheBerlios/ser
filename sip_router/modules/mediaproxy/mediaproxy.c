@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.23 2004/10/28 22:58:00 danp Exp $
+/* $Id: mediaproxy.c,v 1.24 2005/01/26 13:55:56 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -1248,11 +1248,18 @@ isRTPAsymmetric(str userAgent)
 
 // NAT tests
 
-/* tests if address of signaling is different from address in Via field */
+/* tests if address of signaling is different from address in 1st Via field */
 static Bool
 testSourceAddress(struct sip_msg* msg)
 {
-    return (received_test(msg) ? True : False);
+    Bool diffIP, diffPort;
+    int via1Port;
+
+    diffIP   = received_test(msg);
+    via1Port = (msg->via1->port ? msg->via1->port : SIP_PORT);
+    diffPort = (msg->rcv.src_port != via1Port);
+
+    return (diffIP || diffPort);
 }
 
 /* tests if Contact field contains a private IP address as defined in RFC1918 */
