@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.51 2002/02/07 16:02:45 bogdan Exp $
+ * $Id: h_table.c,v 1.52 2002/02/11 12:00:21 bogdan Exp $
  */
 
 #include "hash_func.h"
@@ -150,10 +150,10 @@ struct cell*  build_cell( struct sip_msg* p_msg )
    /* filling with 0 */
    memset( new_cell, 0, sizeof( struct cell ) );
 
-	new_cell->outbound_response.retr_timer.tg=TG_RT;
-	new_cell->outbound_response.fr_timer.tg=TG_FR;
-	new_cell->wait_tl.tg=TG_WT;
-	new_cell->dele_tl.tg=TG_DEL;
+   new_cell->outbound_response.retr_timer.tg=TG_RT;
+   new_cell->outbound_response.fr_timer.tg=TG_FR;
+   new_cell->wait_tl.tg=TG_WT;
+   new_cell->dele_tl.tg=TG_DEL;
 
    /* hash index of the entry */
    /* new_cell->hash_index = hash( p_msg->callid->body , get_cseq(p_msg)->number ); */

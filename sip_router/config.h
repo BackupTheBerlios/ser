@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.16 2002/01/11 19:58:58 jku Exp $
+ *  $Id: config.h,v 1.17 2002/02/11 12:00:21 bogdan Exp $
  */
 
 
@@ -32,6 +32,9 @@
 
 #define MY_VIA "Via: SIP/2.0/UDP "
 #define MY_VIA_LEN 17
+
+#define CONTENT_LEN "Content-Length: 0"
+#define CONTENT_LEN_LEN 17
 
 #define MY_BRANCH ";branch=0"
 #define MY_BRANCH_LEN 9

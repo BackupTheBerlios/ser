@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.30 2002/01/31 20:38:18 bogdan Exp $
+/* $Id: msg_translator.c,v 1.31 2002/02/11 12:00:21 bogdan Exp $
  *
  */
 
@@ -570,6 +570,8 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 				hdr->type==HDR_CSEQ )
 			len += ((hdr->body.s+hdr->body.len ) - hdr->name.s ) + CRLF_LEN;
 #endif
+	/*content length header*/
+	len +=CONTENT_LEN_LEN + CRLF_LEN;
 	/* end of message */
 	len += CRLF_LEN; /*new line*/
 
@@ -625,6 +627,12 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 		}
 #endif
 
+	/* content length header*/
+	memcpy( p, CONTENT_LEN , CONTENT_LEN_LEN );
+	p+=CONTENT_LEN_LEN;
+	memcpy( p, CRLF, CRLF_LEN );
+	p+=CRLF_LEN;
+	/*end of message*/
 	memcpy( p, CRLF, CRLF_LEN );
 	p+=CRLF_LEN;
 	*(p++) = 0;
