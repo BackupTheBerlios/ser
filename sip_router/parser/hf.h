@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.14 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: hf.h,v 1.15 2004/12/03 13:37:57 jamey Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -73,7 +73,8 @@
 #define HDR_CONTENTDISPOSITION (1 << 27)  /* Content-Disposition hdr field */
 #define HDR_DIVERSION          (1 << 28)  /* Diversion header field */
 #define HDR_RPID               (1 << 29)  /* Remote-Party-ID header field */
-#define HDR_OTHER              (1 << 30)  /* Some other header field */
+#define HDR_SIPIFMATCH         (1 << 30)  /* SIP-If-Match header field */
+#define HDR_OTHER              (1 << 31)  /* Some other header field */
 
 
 /* returns true if the header links allocated memory on parse field */

@@ -1,5 +1,5 @@
 /* 
- * $Id: keys.h,v 1.9 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: keys.h,v 1.10 2004/12/03 13:37:57 jamey Exp $ 
  *
  * Fast 32-bit Header Field Name Parser -- keys
  *
@@ -47,6 +47,9 @@
 #define _oriz_ 0x7a69726f   /* "oriz" */
 #define _atio_ 0x6f697461   /* "atio" */
 #define _call_ 0x6c6c6163   /* "call" */
+#define _sip_  0x2d706973   /* "sip-" */
+#define _ifm_  0x6d2d6669   /* "if-m" */
+#define _atch_ 0x68637461   /* "atch" */
 #define __id2_ 0x2064692d   /* "-id " */
 #define __id1_ 0x3a64692d   /* "-id:" */
 #define _cont_ 0x746e6f63   /* "cont" */

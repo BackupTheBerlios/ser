@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.42 2004/11/12 16:27:41 andrei Exp $
+ * $Id: msg_parser.c,v 1.43 2004/12/03 13:37:57 jamey Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -204,6 +204,7 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 	        case HDR_ACCEPTDISPOSITION:
 	        case HDR_DIVERSION:
 	        case HDR_RPID:
+	        case HDR_SIPIFMATCH:
 		case HDR_OTHER:
 			/* just skip over it */
 			hdr->body.s=tmp;
@@ -364,7 +365,7 @@ int parse_headers(struct sip_msg* msg, int flags, int next)
 				msg->parsed_flag|=HDR_ALLOW;
 				break;
 			case HDR_EVENT:
-				if (msg->allow==0) msg->event = hf;
+				if (msg->event==0) msg->event = hf;
 				msg->parsed_flag|=HDR_EVENT;
 				break;
 		        case HDR_ACCEPT:
@@ -424,6 +425,12 @@ int parse_headers(struct sip_msg* msg, int flags, int next)
 					msg->parsed_flag|=HDR_VIA2;
 					DBG("parse_headers: this is the second via\n");
 				}
+				break;
+			case HDR_SIPIFMATCH:
+				if (msg->sipifmatch==0)
+					msg->sipifmatch=hf;
+
+				msg->parsed_flag|=HDR_SIPIFMATCH;
 				break;
 			default:
 				LOG(L_CRIT, "BUG: parse_headers: unknown header type %d\n",
