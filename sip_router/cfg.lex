@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.1 2001/09/18 04:56:43 andrei Exp $
+ * $Id: cfg.lex,v 1.2 2001/09/19 02:19:09 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -149,19 +149,19 @@ EAT_ABLE	[\ \t\b\r]
 						addstr(yytext, &str);
 						if (str){
 							printf("Found string1 <%s>\n", str);
-							yyleng=strlen(str)+1;
-							memcpy(yytext, str, yyleng);
-							free(str);
-							str=0;
 						}else{
 							printf("WARNING: empty string\n");
 						}
-						yylval.strval=yytext; return STRING;
+						yylval.strval=str; str=0;
+						return STRING;
 					}
 <STRING2>{TICK}  { count(); state=INITIAL_S; BEGIN(INITIAL); 
 						yytext[yyleng-1]=0; yyleng--;
 						printf("Found string1 <%s>\n", yytext);
-						yylval.strval=yytext; return STRING;
+						addstr(yytext, &str);
+						yylval.strval=str;
+						str=0;
+						return STRING;
 					}
 <STRING2>.|{EAT_ABLE}|{CR}	{ yymore(); }
 
