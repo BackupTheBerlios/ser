@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.7 2003/05/09 13:44:47 andrei Exp $
+/*$Id: nathelper.c,v 1.8 2003/05/09 20:43:24 calrissian Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -51,6 +51,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+MODULE_VERSION
 
 static int fix_nated_contact_f(struct sip_msg *, char *, char *);
 static int fix_nated_sdp_f(struct sip_msg *, char *, char *);
