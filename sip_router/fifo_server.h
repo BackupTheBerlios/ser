@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.11 2003/01/29 19:24:10 jiri Exp $
+ * $Id: fifo_server.h,v 1.12 2003/02/27 20:20:13 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -49,6 +49,8 @@
 #define FIFO_ARG "arg"
 /* print server's working directory */
 #define FIFO_PWD "pwd"
+/* kill the server */
+#define FIFO_KILL "kill"
 
 #define MAX_CTIME_LEN 128
 
