@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.57 2002/09/19 12:23:55 jku Exp $
+ * $Id: h_table.h,v 1.58 2002/09/24 03:45:57 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -238,7 +238,7 @@ typedef struct entry
 	unsigned int    next_label;
 	/* sync mutex */
 	ser_lock_t      mutex;
-	unsigned int	entries;
+	unsigned long entries;
 }entry_type;
 
 
@@ -265,6 +265,8 @@ void   insert_into_hash_table( struct cell * p_cell);
 void   insert_into_hash_table_unsafe( struct cell * p_cell );
 
 unsigned int transaction_count( void );
+
+int fifo_hash( FILE *stream, char *response_file );
 
 #endif
 

@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.59 2002/09/23 16:39:02 andrei Exp $
+ * $Id: tm.c,v 1.60 2002/09/24 03:45:57 jiri Rel $
  *
  * TM module
  *
@@ -287,6 +287,10 @@ static int mod_init(void)
 	}
 	if (register_fifo_cmd(fifo_uac_from, "t_uac_from", 0)<0) {
 		LOG(L_CRIT, "cannot register fifo uac\n");
+		return -1;
+	}
+	if (register_fifo_cmd(fifo_hash, "t_hash", 0)<0) {
+		LOG(L_CRIT, "cannot register hash\n");
 		return -1;
 	}
 	

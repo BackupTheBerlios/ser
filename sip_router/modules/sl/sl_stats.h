@@ -1,6 +1,6 @@
 /*
  *
- * $Id: sl_stats.h,v 1.2 2002/09/19 12:23:54 jku Exp $
+ * $Id: sl_stats.h,v 1.3 2002/09/24 03:45:52 jiri Rel $
  *
  *
  *
@@ -43,8 +43,8 @@ enum reply_type { RT_200, RT_202, RT_2xx,
 
 
 struct sl_stats {
-	unsigned int err[RT_END];
-	unsigned int failures;
+	unsigned long err[RT_END];
+	unsigned long failures;
 };
 
 int init_sl_stats(void);
