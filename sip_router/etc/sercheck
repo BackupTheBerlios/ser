@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sercheck,v 1.2 2002/04/12 06:52:12 jku Exp $
+# $Id: sercheck,v 1.3 2002/04/15 20:13:18 jku Exp $
 #
 # use to check whether all ser processes are running; if not, restart
 # and issue an alert; run from cron daemon for best results :-)
@@ -23,7 +23,7 @@ if [ $PROCCNT -ne $ALL ] ; then
 	cd $SERDIR
 	if [ -r $BIN -a -r $CORE ] ; then
 		echo "----------------------------------" >> $TMP
-		gdb $BIN $CORE -f test/bt.gdb -batch >> $TMP
+		gdb $BIN $CORE -x test/bt.gdb -batch >> $TMP
 	else
 		echo "no core found" >> $TMP
 	fi
