@@ -4,7 +4,7 @@
 #
 # $FreeBSD$
 #
-# $Id: Makefile,v 1.3 2002/11/12 16:10:41 andrei Exp $
+# $Id: Makefile,v 1.4 2003/06/01 20:30:14 andrei Exp $
 #
 
 
@@ -13,7 +13,7 @@ PORTVERSION= 0.8.10
 CATEGORIES= net
 MASTER_SITES= ftp://ftp.berlios.de/pub/ser/0.8.10/src/
 
-MAINTAINER= pelinescu-onciul@fokus.gmd.de
+MAINTAINER= pelinescu-onciul@fokus.fraunhofer.de
 
 MAN8=ser.8
 MAN5=ser.cfg.5
