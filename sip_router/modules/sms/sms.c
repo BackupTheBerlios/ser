@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.32 2003/04/06 20:25:52 janakj Exp $
+ * $Id: sms.c,v 1.33 2003/04/30 19:54:47 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -54,6 +54,8 @@
 #include "sms_report.h"
 #include "libsms_modem.h"
 
+
+MODULE_VERSION
 
 
 static int sms_init(void);
