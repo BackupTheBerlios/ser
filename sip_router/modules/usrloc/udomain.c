@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.15 2002/12/10 20:25:37 janakj Exp $ 
+ * $Id: udomain.c,v 1.16 2003/01/14 13:48:14 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,6 +34,7 @@
 #include "ul_mod.h"            /* usrloc module parameters */
 #include "del_list.h"
 #include "ins_list.h"
+#include "notify.h"
 
 
 /*
@@ -411,8 +412,7 @@ int delete_urecord(udomain_t* _d, str* _aor)
 		return 0;
 	}
 	
-	     /* Save record pointer, watchers will be notified from post-script callback */
-	notify_record = r;
+	notify_watchers(r);
 
 	switch(db_mode) {
 	case WRITE_THROUGH:

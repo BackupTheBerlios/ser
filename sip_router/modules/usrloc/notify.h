@@ -1,5 +1,5 @@
 /*
- * $Id: notify.h,v 1.1 2002/11/14 14:33:16 janakj Exp $
+ * $Id: notify.h,v 1.2 2003/01/14 13:48:14 janakj Exp $
  */
 
 #ifndef NOTIFY_H
@@ -15,8 +15,6 @@
  */
 
 struct urecord;
-
-extern struct urecord* notify_record;
 
 typedef enum pres_state {
 	PRES_OFFLINE = 0,

@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.13 2002/12/10 20:25:37 janakj Exp $
+ * $Id: ul_mod.c,v 1.14 2003/01/14 13:48:14 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -40,7 +40,6 @@
 #include "ucontact.h"        /* update_ucontact */
 #include "ul_fifo.h"
 #include "notify.h"
-#include "../../script_cb.h"
 
 
 static int mod_init(void);                          /* Module initialization function */
@@ -199,11 +198,6 @@ static int mod_init(void)
 		} else {
 			LOG(L_INFO, "mod_init(): Database connection opened successfuly\n");
 		}
-	}
-
-	if (register_script_cb(post_script, POST_SCRIPT_CB, 0) != 1) {
-		LOG(L_ERR, "mod_init(): Error while initializing post-script callback\n");
-		return -1;
 	}
 
 	return 0;

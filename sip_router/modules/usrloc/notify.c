@@ -1,14 +1,11 @@
 /*
- * $Id: notify.c,v 1.2 2002/12/08 00:04:43 janakj Exp $
+ * $Id: notify.c,v 1.3 2003/01/14 13:48:14 janakj Exp $
  */
 
 #include "notify.h"
 #include "../../mem/shm_mem.h"
 #include "dlist.h"
 #include "udomain.h"
-
-
-struct urecord* notify_record = 0;
 
 
 void notify_watchers(struct urecord* _r)
@@ -118,15 +115,3 @@ int unregister_watcher(str* _d, str* _a, notcb_t _c, void* _data)
 	return 0;
 }
 
-
-int post_script(struct sip_msg* _m, void* param)
-{
-	DBG("usrloc: Post-script callback called\n");
-
-	if (notify_record) {
-		notify_watchers(notify_record);
-		notify_record = 0;
-	}
-
-	return 0;
-}
