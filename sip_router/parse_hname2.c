@@ -1,11 +1,9 @@
 /*
- * $Id: parse_hname2.c,v 1.3 2002/02/28 22:37:36 janakj Exp $
+ * $Id: parse_hname2.c,v 1.4 2002/05/10 01:04:30 janakj Exp $
  */
 
 /* 
  * TODO: Optimize short variants of headers
- *       Test, Test, Test....
- *       Hardwire into ser core
  */
 
 #include <stdio.h>
