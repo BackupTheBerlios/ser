@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.107 2003/04/16 18:22:47 andrei Exp $
+# $Id: Makefile,v 1.108 2003/04/17 11:33:09 jiri Exp $
 #
 # sip_router makefile
 #
@@ -23,7 +23,7 @@ include Makefile.sources
 
 override exclude_modules:=CVS cpl cpl-c ext extcmd mangler nathelper pdt \
 								postgres snmp  \
-							jabber sms pa  msilo \
+							jabber sms pa  msilo im radius_acc radius_auth \
 							auth_radius group_radius uri_radius \
 							$(exclude_modules)
 
