@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.6 2003/03/03 17:52:32 janakj Exp $
+ * $Id: subscribe.c,v 1.7 2003/03/11 14:53:25 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -231,7 +231,7 @@ static inline int create_presentity(struct sip_msg* _m, struct pdomain* _d, str*
 
 	add_presentity(_d, *_p);
 
-	_d->reg(&(get_from(_m)->uri), _to, callback, *_p);
+	_d->reg(&(get_from(_m)->uri), _to, (void*)callback, *_p);
 
 	return 0;
 }

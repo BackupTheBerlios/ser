@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.h,v 1.2 2003/01/14 22:49:40 janakj Exp $
+ * $Id: pdomain.h,v 1.3 2003/03/11 14:53:25 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,6 +26,11 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+ /*
+  * History:
+  * --------
+  *  2003-03-11  converted to the new locking scheme: locking.h  (andrei)
+  */
 
 #ifndef PDOMAIN_H
 #define PDOMAIN_H
@@ -33,7 +38,7 @@
 
 #include "hslot.h"
 #include "presentity.h"
-#include "../../fastlock.h"
+#include "../../locking.h"
 #include "../../str.h"
 
 typedef int (*register_watcher_t)(str* _f, str* _t, void* _cb, void* _data);
@@ -46,7 +51,7 @@ typedef struct pdomain {
 	struct presentity* first;   /* First presentity in the domain */
 	struct presentity* last;    /* Last presentity in the domain */
 	struct hslot* table;        /* Hash table for fast lookup */
-	fl_lock_t lock;             /* Lock for the domain */
+	gen_lock_t lock;             /* Lock for the domain */
 	int users;                  /* Number of registered presentities */
 	int expired;                /* Number of expired presentities */
 	register_watcher_t reg;     /* Register watcher function */
