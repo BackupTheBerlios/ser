@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.h,v 1.20 2002/11/28 17:06:42 bogdan Exp $
+ * $Id: sms_funcs.h,v 1.21 2003/04/01 17:16:34 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -64,7 +64,6 @@
 
 struct network {
 	char name[MAX_CHAR_BUF+1];
-	char smsc[MAX_CHAR_BUF+1];
 	int  max_sms_per_call;
 	int  pipe_out;
 };
@@ -73,6 +72,7 @@ struct modem {
 	char name[MAX_CHAR_BUF+1];
 	char device[MAX_CHAR_BUF+1];
 	char pin[MAX_CHAR_BUF+1];
+	char smsc[MAX_CHAR_BUF+1];
 	int  net_list[MAX_NETWORKS];
 	struct termios oldtio;
 	int  mode;
