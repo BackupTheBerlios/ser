@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.33 2003/02/28 14:12:25 jiri Exp $
+ * $Id: fifo_server.c,v 1.34 2003/03/05 00:55:37 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -398,7 +398,7 @@ static void fifo_server(FILE *fifo_stream)
 			goto consume;
 		}
 		if (line_len==0) {
-			LOG(L_INFO, "INFO: fifo_server: command empty\n");
+			LOG(L_DBG, "INFO: fifo_server: command empty\n");
 			continue;
 		}
 		if (line_len<3) {
