@@ -1,5 +1,5 @@
 /* 
- * $Id: gsm_avp.c,v 1.1 2003/12/09 12:43:22 dcm Exp $
+ * $Id: gsm_avp.c,v 1.2 2004/09/17 10:38:58 dcm Exp $
  *
  * GSM Authentication - Radius support
  *
@@ -66,13 +66,16 @@ int gsm_authorize_rad(dig_cred_t* _cred, str* _user, str *_nonce)
 	 * Most devices tested only offer support for the simplest digest.
 	 */
 
-	if (!rc_avpair_add(&send, PW_USER_NAME, _cred->username.user.s,
-					_cred->username.user.len)) {
+	if (!rc_avpair_add(rh, &send, PW_USER_NAME, _cred->username.user.s,
+				_cred->username.user.len, 0))
+	{
 		rc_avpair_free(send);
 		return -2;
 	}
 	
-	if (!rc_avpair_add(&send, PW_USER_REALM,_cred->realm.s,_cred->realm.len)) {
+	if (!rc_avpair_add(rh, &send, PW_USER_REALM,_cred->realm.s,
+			_cred->realm.len, 0))
+	{
 		rc_avpair_free(send);
 		return -6;
 	}
@@ -80,13 +83,13 @@ int gsm_authorize_rad(dig_cred_t* _cred, str* _user, str *_nonce)
 	/* Add the response... What to calculate against... */
 	if(_cred->response.s)
 	{
-		if (!rc_avpair_add(&send, PW_CHAP_CHALLENGE, _cred->nonce.s,
-					_cred->nonce.len)) {
+		if (!rc_avpair_add(rh, &send, PW_CHAP_CHALLENGE, _cred->nonce.s,
+					_cred->nonce.len, 0)) {
 			rc_avpair_free(send);
 			return -7;
 		}
-		if (!rc_avpair_add(&send, PW_USER_PASSWORD, _cred->response.s,
-				_cred->response.len)) {
+		if (!rc_avpair_add(rh, &send, PW_USER_PASSWORD, _cred->response.s,
+				_cred->response.len, 0)) {
 			rc_avpair_free(send);
 			return -17;
 		}
@@ -94,13 +97,13 @@ int gsm_authorize_rad(dig_cred_t* _cred, str* _user, str *_nonce)
 
 	/* Indicate the service type, Authenticate only in our case */
 	service = service_type;
-	if (!rc_avpair_add(&send, PW_SERVICE_TYPE, &service, 0)) {
+	if (!rc_avpair_add(rh, &send, PW_SERVICE_TYPE, &service, 0, 0)) {
 		rc_avpair_free(send);
 	 	return -18;
 	}
 
 	/* Send request */
-	ret = rc_auth(SIP_PORT, send, &received, msg);
+	ret = rc_auth(rh, SIP_PORT, send, &received, msg);
 	rc_avpair_free(send);
 	if (ret == OK_RC) {
 		DBG("gsm_authorize_rad: Success ...\n");
@@ -111,7 +114,7 @@ int gsm_authorize_rad(dig_cred_t* _cred, str* _user, str *_nonce)
 		if(ret == BADRESP_RC)
 		{ /*there could be a challenge */
 		     /* Make a copy of nonce if available */
-			vp = rc_avpair_get(received, PW_CHAP_CHALLENGE);
+			vp = rc_avpair_get(received, PW_CHAP_CHALLENGE, 0);
 			if(vp) 
 			{
 				if(_nonce && _nonce->s)

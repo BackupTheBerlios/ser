@@ -1,5 +1,5 @@
 /*
- * $Id: auth_gsm.h,v 1.1 2003/12/09 12:43:22 dcm Exp $
+ * $Id: auth_gsm.h,v 1.2 2004/09/17 10:38:58 dcm Exp $
  *
  * GSM Authentication
  *
@@ -50,5 +50,6 @@ extern int service_type;    /* radius service type used for access request */
 /* Stateless reply function pointer */
 extern int (*sl_reply)(struct sip_msg* _m, char* _str1, char* _str2);
 
+extern void *rh;
 
 #endif /* _AUTH_GSM_H_ */

@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.1 2003/12/09 12:43:22 dcm Exp $
+ * $Id: challenge.c,v 1.2 2004/09/17 10:38:58 dcm Exp $
  *
  * Challenge related functions
  *
@@ -112,12 +112,14 @@ int gsm_get_realm(struct sip_msg* _m, int _hftype, struct sip_uri* _u)
 int gsm_send_resp(struct sip_msg* _m, int _code, char* _reason,
 		char* _hdr, int _hdr_len)
 {
-	struct lump_rpl* ptr;
-	
-	     /* Add new headers if there are any */
-	if ((_hdr) && (_hdr_len)) {
-		ptr = build_lump_rpl(_hdr, _hdr_len);
-		add_lump_rpl(_m, ptr);
+	/* Add new headers if there are any */
+	if ((_hdr) && (_hdr_len))
+	{
+		if (add_lump_rpl( _m, _hdr, _hdr_len, LUMP_RPL_HDR)==0)
+		{
+			LOG(L_ERR,"ERROR:gsm_send_resp: unable to append hdr\n");
+			return -1;
+		}
 	}
 	
 	return sl_reply(_m, (char*)_code, _reason);

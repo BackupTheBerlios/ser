@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_gsm.c,v 1.1 2003/12/09 12:43:22 dcm Exp $ 
+ * $Id: auth_gsm.c,v 1.2 2004/09/17 10:38:58 dcm Exp $ 
  *
  * GSM Authentication
  *
@@ -65,7 +65,7 @@ static int str_fixup(void** param, int param_no);
  */
 char* radius_config = "/usr/local/etc/radiusclient/radiusclient.conf";
 int service_type = PW_GSM_AUTH;
-
+void *rh;
 
 /*
  * Exported functions
@@ -109,12 +109,12 @@ static int mod_init(void)
 {
 	DBG("auth_gsm - Initializing\n");
 
-	if (rc_read_config(radius_config) != 0) {
+	if ((rh=rc_read_config(radius_config)) == NULL) {
 		LOG(L_ERR, "auth_gsm: Error opening radius configuration file \n");
 		return -1;
 	}
     
-	if (rc_read_dictionary(rc_conf_str("dictionary")) != 0) {
+	if (rc_read_dictionary(rh, rc_conf_str(rh, "dictionary")) != 0) {
 		LOG(L_ERR, "auth_gsm: Error opening radius dictionary file \n");
 		return -2;
 	}
