@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.7 2004/10/10 16:19:00 andrei Exp $
+/* $Id: socket_info.c,v 1.8 2004/10/10 20:14:32 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -692,13 +692,13 @@ int fix_all_socket_lists()
 		goto error;
 	}
 #ifdef USE_TCP
-	if (fix_socket_list(&tcp_listen)!=0){
+	if (!tcp_disable && (fix_socket_list(&tcp_listen)!=0)){
 		LOG(L_ERR, "ERROR: fix_all_socket_lists: fix_socket_list"
 				" tcp failed\n");
 		goto error;
 	}
 #ifdef USE_TLS
-	if (fix_socket_list(&tls_listen)!=0){
+	if (!tls_disable && (fix_socket_list(&tls_listen)!=0)){
 		LOG(L_ERR, "ERROR: fix_all_socket_lists: fix_socket_list"
 				" tls failed\n");
 		goto error;
