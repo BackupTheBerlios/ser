@@ -1,6 +1,6 @@
 /*
 
-   $Id: wx2000.c,v 1.2 2002/09/19 12:23:53 jku Exp $
+   $Id: wx2000.c,v 1.1 2002/09/23 18:55:10 jiri Rel $
 
    wx2000 -- Weather Data Logger Extration Program (ws2000 model)
 

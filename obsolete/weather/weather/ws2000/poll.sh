@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: poll.sh,v 1.2 2002/09/05 21:40:16 jku Exp $
+# $Id: poll.sh,v 1.1 2002/09/23 18:55:10 jiri Exp $
 #
 # demo app -- it polls local weatherstation using the
 # wx2000 utility http://wx2000.sourceforge.net/ 
