@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.35 2001/11/29 00:32:49 jku Exp $
+# $Id: Makefile,v 1.36 2001/11/29 19:30:45 andrei Exp $
 #
 # sip_router makefile
 #
@@ -39,8 +39,8 @@ DEFS=-DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM -DUSE_SHM_MEM #-DNO_DEBUG
 #-DNO_LOG
 
 PROFILE=  # -pg #set this if you want profiling
-mode = debug
-#mode = release
+#mode = debug
+mode = release
 
 # platform dependent settings
 

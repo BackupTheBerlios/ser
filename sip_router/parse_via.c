@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.5 2001/11/26 19:32:07 andrei Exp $ 
+ * $Id: parse_via.c,v 1.6 2001/11/29 19:30:45 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -756,7 +756,7 @@ endofvalue:
 	*pstate=state;
 	*psaved_state=saved_state;
 	DBG("Found param type %d, <%s> = <%s>; state=%d\n", param->type, 
-			param->name, param->value, state);
+			param->name.s, param->value.s, state);
 	return tmp;
 	
 end_via:
