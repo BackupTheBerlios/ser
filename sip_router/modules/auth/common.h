@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.7 2003/03/06 15:32:39 janakj Exp $
+ * $Id: common.h,v 1.8 2003/03/16 17:59:20 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -39,7 +39,7 @@
 /* 
  * Return parsed To or From, host part of the parsed uri is realm
  */
-int get_realm(struct sip_msg* _m, struct sip_uri* _u);
+int get_realm(struct sip_msg* _m, int _hftype, struct sip_uri* _u);
 
 
 /*
