@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.7 2002/09/04 22:37:30 jku Exp $
+ * $Id: fifo_server.h,v 1.8 2002/09/08 15:41:06 jku Exp $
  *
  */
 
@@ -14,6 +14,7 @@
 #define FIFO_PRINT "print"
 #define FIFO_UPTIME "uptime"
 #define FIFO_VERSION "version"
+#define FIFO_WHICH "which"
 
 #define MAX_CTIME_LEN 128
 
