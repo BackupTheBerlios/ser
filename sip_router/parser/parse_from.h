@@ -1,5 +1,5 @@
 /*
- * $Id: parse_from.h,v 1.5 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_from.h,v 1.6 2002/12/03 11:45:52 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,15 +26,14 @@
  */
 
 
-#ifndef PARSE_FROM
-#define PARSE_FROM
+#ifndef _PARSE_FROM_H
+#define _PARSE_FROM_H
 
-#include "../str.h"
-#include "parse_to.h"
-#include "hf.h"
+#include "msg_parser.h"
+
 /*
  * To header field parser
  */
-int parse_from_header(struct hdr_field* hdr);
+int parse_from_header( struct sip_msg *msg);
 
 #endif
