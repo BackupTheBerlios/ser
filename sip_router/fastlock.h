@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.5 2002/02/13 19:38:08 andrei Exp $
+ * $Id: fastlock.h,v 1.6 2002/02/14 00:28:22 andrei Exp $
  *
  * 
  */
@@ -65,7 +65,8 @@ inline static void release_lock(fl_lock_t* lock)
 	char val;
 	val=0;
 	asm volatile(
-		" xchg %b0, %1" : "=q" (val), "=m" (*lock) : "0" (val) : "memory"
+		" movb $0, (%0)" : /*no output*/ : "r"(lock): "memory"
+		/*" xchg %b0, %1" : "=q" (val), "=m" (*lock) : "0" (val) : "memory"*/
 	); /* hmm, maybe lock; movb $0, [%1] would be faster ???*/
 #elif defined __sparc
 	asm volatile(
