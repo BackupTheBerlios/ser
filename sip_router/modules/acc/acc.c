@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.27 2005/02/01 13:19:21 janakj Exp $
+ * $Id: acc.c,v 1.28 2005/03/07 20:01:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -50,7 +50,7 @@
 #include "acc.h"
 #include "dict.h"
 #ifdef RAD_ACC
-#include <radiusclient.h>
+#include <radiusclient-ng.h>
 #endif
 
 #ifdef DIAM_ACC

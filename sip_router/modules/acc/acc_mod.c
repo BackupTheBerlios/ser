@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.41 2005/02/23 17:16:01 andrei Exp $
+ * $Id: acc_mod.c,v 1.42 2005/03/07 20:01:29 janakj Exp $
  * 
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -60,7 +60,7 @@
 #include "../tm/tm_load.h"
 
 #ifdef RAD_ACC
-#include <radiusclient.h>
+#include <radiusclient-ng.h>
 #include "dict.h"
 #endif
 

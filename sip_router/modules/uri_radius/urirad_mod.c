@@ -1,5 +1,5 @@
 /* 
- * $Id: urirad_mod.c,v 1.7 2004/08/24 09:00:46 janakj Exp $ 
+ * $Id: urirad_mod.c,v 1.8 2005/03/07 20:01:30 janakj Exp $ 
  *
  * URI checks using Radius
  *
@@ -37,7 +37,7 @@
 #include "urirad_mod.h"
 #include "checks.h"
 #include "../../modules/acc/dict.h"
-#include <radiusclient.h>
+#include <radiusclient-ng.h>
 
 MODULE_VERSION
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: grouprad_mod.c,v 1.10 2004/12/16 17:39:47 andrei Exp $ 
+ * $Id: grouprad_mod.c,v 1.11 2005/03/07 20:01:30 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -35,7 +35,7 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <radiusclient.h>
+#include <radiusclient-ng.h>
 #include "../../error.h"
 #include "../../dprint.h"
 #include "../../sr_module.h"
