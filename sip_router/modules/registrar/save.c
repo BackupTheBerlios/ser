@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.3 2002/08/27 09:48:06 janakj Exp $
+ * $Id: save.c,v 1.4 2002/08/27 13:38:23 janakj Exp $
  *
  * Process REGISTER request and send reply
  */
@@ -142,8 +142,10 @@ static inline int insert(struct sip_msg* _m, contact_t* _c, udomain_t* _d, str* 
 	
 	if (r && !r->contacts) {
 		ul_delete_urecord(_d, _u);
+	} else {
+		build_contact(r->contacts);
 	}
-
+	
 	return 0;
 }
 
@@ -242,7 +244,7 @@ static inline int update(struct sip_msg* _m, urecord_t* _r, contact_t* _c)
 				}
 			}
 		}
-		_c = _c->next;
+		_c = get_next_contact(_c);
 	}
 
 	return 0;
