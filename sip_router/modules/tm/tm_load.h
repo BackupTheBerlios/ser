@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.20 2004/08/24 09:00:44 janakj Exp $
+ * $Id: tm_load.h,v 1.21 2005/02/14 12:17:33 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -44,6 +44,7 @@
 #include "t_fwd.h"
 #include "t_reply.h"
 #include "t_lookup.h"
+#include "t_reply.h"
 #include "dlg.h"
 
 /* export not usable from scripts */
@@ -97,6 +98,7 @@ struct tm_binds {
 	free_dlg_f         free_dlg;
 	print_dlg_f        print_dlg;
 	tgett_f            t_gett;
+	enum route_mode*   route_mode;
 };
 
 

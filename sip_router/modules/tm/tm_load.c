@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.20 2004/08/24 09:00:44 janakj Exp $
+ * $Id: tm_load.c,v 1.21 2005/02/14 12:17:33 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -140,5 +140,7 @@ int load_tm( struct tm_binds *tmb)
 		LOG( L_ERR, LOAD_ERROR "'" T_GETT "' not found\n");
 		return -1;
 	}
+
+	tmb->route_mode = &rmode;
 	return 1;
 }
