@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.6 2002/09/03 08:38:00 jku Exp $
+ * $Id: fifo_server.h,v 1.7 2002/09/04 22:37:30 jku Exp $
  *
  */
 
@@ -14,6 +14,8 @@
 #define FIFO_PRINT "print"
 #define FIFO_UPTIME "uptime"
 #define FIFO_VERSION "version"
+
+#define MAX_CTIME_LEN 128
 
 typedef int (fifo_cmd)( FILE *fifo_stream, char *response_file );
 
