@@ -1,10 +1,10 @@
-# $Id: Makefile,v 1.1 2001/09/04 20:55:41 andrei Exp $
+# $Id: Makefile,v 1.2 2001/09/04 20:59:28 andrei Exp $
 #
 # sip_router makefile
 #
 
 sources= $(wildcard *.c)
-objs= $((sources:.c=.o)
+objs= $(sources:.c=.o)
 depends= $(sources:.c=.d)
 
 NAME=sip_router
