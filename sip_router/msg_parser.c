@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.47 2002/03/02 02:20:00 andrei Exp $
+ * $Id: msg_parser.c,v 1.48 2002/03/12 23:58:26 jku Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -37,6 +37,8 @@ char* parse_first_line(char* buffer, unsigned int len, struct msg_start * fl)
 	/* int l; */
 	char* end;
 	char s1,s2,s3;
+	char *prn;
+	unsigned int t;
 
 	/* grammar:
 		request  =  method SP uri SP version CRLF
@@ -174,7 +176,16 @@ char* parse_first_line(char* buffer, unsigned int len, struct msg_start * fl)
 error:
 	LOG(L_INFO, "ERROR:parse_first_line: bad %s first line\n",
 		(fl->type==SIP_REPLY)?"reply(status)":"request");
-	LOG(L_INFO, "ERROR: at line 0 char %d\n", offset);
+
+	LOG(L_INFO, "ERROR: at line 0 char %d: \n", offset );
+	prn=pkg_malloc( offset );
+	if (prn) {
+		for (t=0; t<offset; t++)
+			if (*(buffer+t)) *(prn+t)=*(buffer+t);
+			else *(prn+t)='°';
+		LOG(L_INFO, "ERROR: parsed so far: %.*s\n", offset, prn );
+		pkg_free( prn );
+	};
 error1:
 	fl->type=SIP_INVALID;
 	LOG(L_INFO, "ERROR:parse_first_line: bad message\n");
