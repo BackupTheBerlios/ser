@@ -1,6 +1,6 @@
 #!/bin/sh   
 #
-# $Id: sc,v 1.73 2003/12/03 19:48:18 janakj Exp $
+# $Id: sc,v 1.74 2003/12/03 20:07:22 janakj Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -69,7 +69,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.73 $'
+VERSION='$Revision: 1.74 $'
 #### SQL names
 
 # Usr Loc Table
@@ -826,14 +826,15 @@ case $1 in
 		    loops=$2;
 		fi
 		clear
-		while [ $loops -gt $attempt ]; do
-			attempt=`expr $attempt + 1`
+		while [ $loops -ne $attempt ] ; do
+			attempt=$(($attempt + 1))
 			#clear
 			tput cup 0 0
 			print_stats $name $path $attempt
-			if [ $loops -gt $attempt ]; then
-			    sleep $WATCH_PERIOD
+			if [ $loops -ne $attempt ] ; then
+				sleep $WATCH_PERIOD
 			fi
+				
 		done
 		rm $path
 		exit 0
