@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.10 2004/01/15 15:28:44 bogdan Exp $
+ * $Id: t_hooks.c,v 1.11 2004/01/23 15:33:51 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -178,7 +178,7 @@ void run_trans_callbacks( int type , struct cell *trans,
 		if ( (cbp->types)&type ) {
 			DBG("DBG: trans=%p, callback type %d, id %d entered\n",
 				trans, type, cbp->id );
-			params.param = cbp->param;
+			params.param = &(cbp->param);
 			cbp->callback( trans, type, &params );
 		}
 	}
@@ -197,7 +197,7 @@ void run_reqin_callbacks( struct cell *trans, struct sip_msg *req, int code )
 	for (cbp=req_in_tmcb_hl->first; cbp; cbp=cbp->next)  {
 		DBG("DBG: trans=%p, callback type %d, id %d entered\n",
 			trans, cbp->types, cbp->id );
-		params.param = cbp->param;
+		params.param = &(cbp->param);
 		cbp->callback( trans, cbp->types, &params );
 	}
 }

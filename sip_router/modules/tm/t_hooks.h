@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.16 2004/01/15 15:28:44 bogdan Exp $
+ * $Id: t_hooks.h,v 1.17 2004/01/23 15:33:51 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -165,7 +165,7 @@ struct tmcb_params {
 	struct sip_msg* req;
 	struct sip_msg* rpl;
 	int code;
-	void *param;
+	void **param;
 };
 
 /* callback function prototype */
