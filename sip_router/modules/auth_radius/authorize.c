@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.6 2003/03/16 17:57:44 janakj Exp $
+ * $Id: authorize.c,v 1.7 2003/03/22 13:19:10 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -86,7 +86,6 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, int _hftype)
 
 	domain = *_realm;
 	ret = pre_auth_func(_msg, &domain, _hftype, &h);
-	cred = (auth_body_t*)h->parsed;
 	
 	switch(ret) {
 	case ERROR:            return 0;
@@ -94,6 +93,8 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, int _hftype)
 	case DO_AUTHORIZATION: break;
 	case AUTHORIZED:       return 1;
 	}
+
+	cred = (auth_body_t*)h->parsed;
 
 	if (get_uri(_msg, &uri) < 0) {
 		LOG(L_ERR, "authorize(): From/To URI not found\n");
