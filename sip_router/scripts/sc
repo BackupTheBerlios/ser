@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.59 2003/06/01 18:07:10 jiri Exp $
+# $Id: sc,v 1.60 2003/07/22 02:09:16 calrissian Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.59 $'
+VERSION='$Revision: 1.60 $'
 #### SQL names
 
 # Usr Loc Table
@@ -135,10 +135,10 @@ parameter usage:
 
            * control and diagnostics *
  moni ... show internal status      start .... start ser
- ps ..... show runnig processes 	stop ..... stop ser
+ ps ..... show runnig processes     stop ..... stop ser
  fifo ... send raw FIFO commands    restart .. restart ser
  ping <uri> .. ping a URI (OPTIONS)
- cisco_restart <uri> .. restart a Cisco phone (NOTIFY(
+ cisco_restart <uri> .. restart a Cisco phone (NOTIFY)
 
 
    Commands labeled with (*) will prompt for a MySQL password.
