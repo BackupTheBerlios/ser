@@ -1,5 +1,5 @@
 /*
- * $Id: crc.c,v 1.3 2002/05/26 17:53:21 jku Exp $
+ * $Id: crc.c,v 1.4 2002/09/09 12:41:37 jku Exp $
  *
  *  Crc - 32 + 16 BIT ANSI X3.66 + CCITT CRC checksum files
  */
@@ -216,6 +216,12 @@ void crcitt_string_array( char *dst, str src[], int size )
 	if (int2reverse_hex( &dst, &str_len, ccitt )==-1) {
 		/* bug ... printed ccitt value longer than CRC32_LEN */
 		LOG(L_CRIT, "ERROR: crcitt_string_array: string conversion incomplete\n");
+	}
+	/* padding */
+	while( str_len ) {
+		*dst='0';
+		dst++;
+		str_len--;
 	}
 }
 		
