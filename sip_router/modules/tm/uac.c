@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.5 2002/09/03 02:40:39 jku Exp $
+ * $Id: uac.c,v 1.6 2002/09/03 03:12:22 jku Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -184,6 +184,7 @@ int t_uac( str *msg_type, str *dst,
 		ser_error=ret=E_SEND;
 		goto error01;
 	}
+	new_cell->kr=REQ_FWDED;
 	start_retr( request );
 
 	/* success */
