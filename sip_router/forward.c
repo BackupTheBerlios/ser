@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.29 2001/11/29 12:20:18 bogdan Exp $
+ * $Id: forward.c,v 1.30 2001/11/29 19:51:32 andrei Exp $
  */
 
 
@@ -50,7 +50,6 @@ int forward_request( struct sip_msg* msg, struct proxy_l * p)
 		goto error;
 	}
 
-	to=0;
 	to=(struct sockaddr_in*)malloc(sizeof(struct sockaddr));
 	if (to==0){
 		LOG(L_ERR, "ERROR: forward_reply: out of memory\n");
