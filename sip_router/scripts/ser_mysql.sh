@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.37 2003/05/06 15:23:52 janakj Exp $
+# $Id: ser_mysql.sh,v 1.38 2003/05/24 19:32:41 calrissian Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -556,7 +556,9 @@ EOF
 
 
 export PW
-prompt_pw
+if [ "$#" -ne 0 ]; then 
+  prompt_pw
+fi
 
 case $1 in
 	reinstall)
