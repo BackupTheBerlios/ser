@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.h,v 1.9 2003/01/16 00:25:20 janakj Exp $
+ * $Id: auth_mod.h,v 1.10 2003/01/17 01:29:58 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -62,6 +62,12 @@ extern int calc_ha1;          /* if set to 1, ha1 is calculated by the server */
 extern int nonce_expire;      /* nonce expire interval */
 extern int retry_count;       /* How many time a client can retry */
 extern int grp_use_domain;    /* Use domain in is_user_in */
+
+extern char* uri_table;       /* Name of URI table */
+extern char* uri_user_col;    /* Name of user column in URI table */
+extern char* uri_domain_col;  /* Name of domain column in URI table */
+extern char* uri_uriuser_col; /* Name of uri_user column in URI table */
+extern int use_uri_table;     /* Should URI table be used ? */
 
 extern db_con_t* db_handle;   /* Database connection handle */
 
