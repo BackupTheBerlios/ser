@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.52 2002/09/19 12:23:53 jku Exp $
+ * $Id: udp_server.c,v 1.53 2002/09/20 09:29:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -322,8 +322,8 @@ int udp_rcv_loop()
 #endif
 #ifdef DBG_MSG_QA
 		if (!dbg_msg_qa(buf, len)) {
-			LOG(L_WARN, "WARNING: an incoming message didn't pass test, drop it: %.*s\n",
-				len, buf );
+			LOG(L_WARN, "WARNING: an incoming message didn't pass test,"
+						"  drop it: %.*s\n", len, buf );
 			continue;
 		}
 #endif
@@ -348,7 +348,8 @@ error:
 
 
 /* which socket to use? main socket or new one? */
-int udp_send(struct socket_info *source, char *buf, unsigned len, union sockaddr_union*  to)
+int udp_send(struct socket_info *source, char *buf, unsigned len,
+										union sockaddr_union*  to)
 {
 
 	int n;

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.20 2002/09/19 12:23:52 jku Exp $
+ * $Id: globals.h,v 1.21 2002/09/20 09:29:07 andrei Exp $
  *
  * global variables
  *
@@ -58,9 +58,11 @@ extern int names_len[];
 extern struct ip_addr addresses[];
 extern int addresses_no;
 */
-extern struct socket_info* bind_address; /* pointer to the crt. proc. listening address */
+extern struct socket_info* bind_address; /* pointer to the crt. proc.
+											listening address */
 extern int bind_idx; /* same as above but index in the bound[] array */
-extern struct socket_info* sendipv4; /* ipv4 socket to use when msg. comes from ipv6*/
+extern struct socket_info* sendipv4; /* ipv4 socket to use when msg.
+										comes from ipv6*/
 extern struct socket_info* sendipv6; /* same as above for ipv6 */
 
 extern unsigned int maxbuffer;

@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.17 2002/09/19 12:23:52 jku Exp $
+ * $Id: route_struct.c,v 1.18 2002/09/20 09:29:07 andrei Rel $
  *
  * route structures helping functions
  *
@@ -76,7 +76,8 @@ error:
 
 
 
-struct action* mk_action(int type, int p1_type, int p2_type, void* p1, void* p2)
+struct action* mk_action(int type, int p1_type, int p2_type,
+											void* p1, void* p2)
 {
 	struct action* a;
 	a=(struct action*)malloc(sizeof(struct action));
