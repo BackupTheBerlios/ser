@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.9 2001/09/27 13:01:22 andrei Exp $
+# $Id: Makefile,v 1.10 2001/09/27 13:03:06 andrei Exp $
 #
 # sip_router makefile
 #
@@ -34,7 +34,7 @@ ifeq  ($(ARCH), SunOS)
 
 MAKE=gmake
 CC=gcc
-CFLAGS=-O2 -Wcase-align
+CFLAGS=-O2 -Wcast-align
 LEX=flex
 YACC=yacc
 YACC_FLAGS=-d -b cfg
@@ -45,7 +45,7 @@ ifeq ($(ARCH), FreeBSD)
 
 MAKE=gmake
 CC=gcc
-CFLAGS=-O2 -Wcase-align
+CFLAGS=-O2 -Wcast-align
 LEX=flex
 YACC=yacc
 YACC_FLAGS=-d -b cfg
@@ -93,7 +93,4 @@ proper: clean
 	-rm $(depends)
 
 include $(depends)
-
-
-
 
