@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.4 2002/08/15 08:13:29 jku Exp $
+ * $Id: acc.c,v 1.5 2002/08/27 22:35:29 jku Exp $
  */
 
 #include <stdio.h>
@@ -10,6 +10,7 @@
 #include "../tm/t_funcs.h"
 #include "../../error.h"
 #include "acc_mod.h"
+#include "acc.h"
 
 
 int acc_request( struct sip_msg *rq, char * comment, char  *foo)

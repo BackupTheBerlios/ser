@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.5 2002/08/15 08:13:29 jku Exp $
+ * $Id: acc_mod.c,v 1.6 2002/08/27 22:35:29 jku Exp $
  */
 
 #include <stdio.h>
@@ -188,7 +188,7 @@ static void acc_onreply( struct cell* t, struct sip_msg *reply,
 	if (!failed_transactions && code >=300) return;
 
 	/* anything else, i.e., 2xx, always reported */
-	acc_reply_report(t, reply);
+	acc_reply_report(t, reply, code);
 }
 
 
