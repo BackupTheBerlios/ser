@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.26 2003/07/10 00:03:05 jiri Exp $
+ * $Id: acc_mod.c,v 1.27 2003/09/11 21:53:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -95,7 +95,7 @@ char *log_fmt=DEFAULT_LOG_FMT;
 char *radius_config = "/usr/local/etc/radiusclient/radiusclient.conf";
 int radius_flag = 0;
 int radius_missed_flag = 0;
-int service_type = PW_SIP;
+int service_type = PW_SIP_SESSION;
 #endif
 
 

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.17 2003/08/21 10:57:23 andrei Exp $
+ * $Id: acc.c,v 1.18 2003/09/11 21:53:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -59,7 +59,7 @@ static str na={NA, NA_LEN};
 #ifdef RAD_ACC
 /* caution: keep these aligned to RAD_ACC_FMT !! */
 static int rad_attr[] = { PW_CALLING_STATION_ID, PW_CALLED_STATION_ID,
-	PW_SIP_TRANSLATED_REQ_URI, PW_ACCT_SESSION_ID, PW_SIP_TO_TAG, 
+	PW_SIP_TRANSLATED_REQ_ID, PW_ACCT_SESSION_ID, PW_SIP_TO_TAG, 
 	PW_SIP_FROM_TAG, PW_SIP_CSEQ };
 #endif
 
