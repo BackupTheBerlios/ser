@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.10 2002/06/26 17:52:45 jku Exp $
+# $Id: sc,v 1.11 2002/07/15 10:59:50 jku Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -31,6 +31,7 @@ ACL_GROUPS="local ld int"
 # Usr Loc Table
 USRLOC=location
 USER_COLUMN=user
+CALLID_COLUMN=callid
 
 # subscriber table
 TABLE=subscriber
@@ -411,7 +412,7 @@ case $1 in
 			$TABLE.$SUBSCRIBER_COLUMN='$1'"
 		QUERY2="select $USRLOC.* from $USRLOC where \
 			$USRLOC.$USER_COLUMN='$1' order by expires desc"
-		QUERY3="select $USRLOC.$USER_COLUMN, $TABLE.$EMAIL_COLUMN \
+		QUERY3="select $USRLOC.$USER_COLUMN, $TABLE.$EMAIL_COLUMN, $USRLOC.$CALLID_COLUMN \
 			from $TABLE, $USRLOC where  \
 			$TABLE.$SUBSCRIBER_COLUMN=$USRLOC.$USER_COLUMN" 
 
