@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.35 2002/02/18 21:06:19 bogdan Exp $
+/* $Id: msg_translator.c,v 1.36 2002/02/19 22:38:36 jku Exp $
  *
  */
 
@@ -671,6 +671,7 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 	memcpy( p, CRLF, CRLF_LEN );
 	p+=CRLF_LEN;
 	*(p) = 0;
+	*returned_len = len;
 	return buf;
 error:
 	if (buf) free(buf);
