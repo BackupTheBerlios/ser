@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.137 2003/01/05 23:28:55 jiri Exp $
+ * $Id: main.c,v 1.138 2003/01/16 19:22:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -84,7 +84,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.137 2003/01/05 23:28:55 jiri Exp $";
+static char id[]="@(#) $Id: main.c,v 1.138 2003/01/16 19:22:09 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -140,6 +140,15 @@ static char flags[]=
 ", FAST_LOCK"
 #ifdef BUSY_WAIT
 "-BUSY_WAIT"
+#endif
+#ifdef USE_PTHREAD_MUTEX
+", USE_PTHREAD_MUTEX"
+#endif
+#ifdef USE_POSIX_SEM
+", USE_POSIX_SEM"
+#endif
+#ifdef USE_SYSV_SEM
+", USE_SYSV_SEM"
 #endif
 #ifdef ADAPTIVE_WAIT
 "-ADAPTIVE_WAIT"

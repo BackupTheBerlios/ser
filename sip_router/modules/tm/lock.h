@@ -1,5 +1,5 @@
 /*
- * $Id: lock.h,v 1.22 2002/09/19 12:23:55 jku Rel $
+ * $Id: lock.h,v 1.23 2003/01/16 19:22:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,8 +27,8 @@
 
 
 
-#ifndef _SEMAPHORE_H
-#define _SEMAPHORE_H
+#ifndef __lock_h
+#define __lock_h
 
 #include <sys/types.h>
 #include <sys/ipc.h>

@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.39 2002/10/24 15:03:41 andrei Exp $
+ * $Id: lock.c,v 1.40 2003/01/16 19:22:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -140,7 +140,7 @@ tryagain:
 			DBG("signal received in a semaphore\n");
 			goto tryagain;
 		} else {
-			LOG(L_CRIT, "ERROR: change_semaphore(%x, %x, 1) : %s\n",
+			LOG(L_CRIT, "ERROR: change_semaphore(%x, %p, 1) : %s\n",
 					s->semaphore_set, &pbuf,
 					strerror(errno));
 		}
@@ -252,7 +252,7 @@ again:
 		if (errno==EINVAL || errno==ENOSPC ) {
 			DBG("DEBUG:lock_initialize: reply semaphore initialization"
 				" failure: %s\n", strerror(errno));
-			probe_run==1;
+			probe_run=1;
 			i--;
 			goto again;
 		}else{
