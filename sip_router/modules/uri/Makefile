@@ -1,6 +1,6 @@
-# $Id: Makefile,v 1.1 2003/02/26 14:04:38 janakj Exp $
+# $Id: Makefile,v 1.2 2003/03/16 18:06:42 janakj Exp $
 #
-# uri
+# Various URI checks
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
@@ -10,3 +10,4 @@ NAME=uri.so
 LIBS=
 
 include ../../Makefile.modules
+
