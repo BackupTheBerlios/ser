@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.3 2002/08/21 20:09:02 janakj Exp $
+ * $Id: ul_mod.h,v 1.4 2002/08/27 09:47:03 janakj Exp $
  *
  * Usrlocation module interface
  */
@@ -15,6 +15,12 @@
  * Module parameters
  */
 
+
+#define NO_DB         0
+#define WRITE_THROUGH 1
+#define WRITE_BACK    2
+
+
 extern char* user_col;
 extern char* contact_col;
 extern char* expires_col;
@@ -24,8 +30,7 @@ extern char* cseq_col;
 extern char* method_col;
 extern char* db_url;
 extern int   timer_interval;
-extern int   write_through;
-extern int   use_db;
+extern int   db_mode;
 
 extern db_con_t* db;   /* Dabase connection handle */
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.h,v 1.3 2002/08/21 20:09:02 janakj Exp $ 
+ * $Id: udomain.h,v 1.4 2002/08/27 09:47:03 janakj Exp $ 
  *
  * Usrloc domain structure
  */
@@ -73,27 +73,46 @@ int timer_udomain(udomain_t* _d);
 /*
  * Insert record into domain
  */
-int insert_urecord(udomain_t* _d, struct urecord* _r);
-
-
-/*
- * Find record with specified AOR
- */
-int get_urecord(udomain_t* _d, str* _a, struct urecord** _r);
+int mem_insert_urecord(udomain_t* _d, str* _aor, struct urecord** _r);
 
 
 /*
  * Delete a record
  */
-int delete_urecord(udomain_t* _d, str* _a);
+void mem_delete_urecord(udomain_t* _d, struct urecord* _r);
 
 
 /*
- * Release a record structure previously obtained
- * using get_record
+ * Get lock
  */
-void release_urecord(struct urecord* _r);
+void lock_udomain(udomain_t* _d);
 
+
+/*
+ * Release lock
+ */
+void unlock_udomain(udomain_t* _d);
+
+
+/* ===== module interface ======= */
+
+
+/*
+ * Create and insert a new record
+ */
+int insert_urecord(udomain_t* _d, str* _aor, struct urecord** _r);
+
+
+/*
+ * Obtain a urecord pointer if the urecord exists in domain
+ */
+int get_urecord(udomain_t* _d, str* _aor, struct urecord** _r);
+
+
+/*
+ * Delete a urecord from domain
+ */
+int delete_urecord(udomain_t* _d, str* _aor);
 
 
 #endif /* UDOMAIN_H */

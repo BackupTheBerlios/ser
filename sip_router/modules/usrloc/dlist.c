@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.4 2002/08/25 22:29:50 janakj Exp $
+ * $Id: dlist.c,v 1.5 2002/08/27 09:47:03 janakj Exp $
  *
  * List of registered domains
  */
@@ -175,6 +175,7 @@ int timer_handler(void)
 		ptr = ptr->next;
 	}
 	
+	print_all_udomains();
 	return res;
 }
 

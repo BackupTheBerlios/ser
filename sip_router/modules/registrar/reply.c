@@ -1,10 +1,11 @@
 /*
- * $Id: reply.c,v 1.1 2002/08/21 20:18:12 janakj Exp $
+ * $Id: reply.c,v 1.2 2002/08/27 09:48:06 janakj Exp $
  *
  * Send a reply
  */
 
 #include "reply.h"
+#include <stdio.h>
 #include "../../parser/msg_parser.h"
 #include "../../data_lump_rpl.h"
 #include "rerrno.h"
@@ -28,8 +29,6 @@ static int l;
  */
 void build_contact(ucontact_t* _c)
 {
-	struct lump_rpl* ptr;
-	
 	l = 0;
 	while(_c) {
 		if (_c->expires > act_time) {

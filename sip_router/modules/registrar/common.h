@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.1 2002/08/21 20:18:12 janakj Exp $
+ * $Id: common.h,v 1.2 2002/08/27 09:48:05 janakj Exp $
  *
  * Common stuff
  */
@@ -13,13 +13,13 @@
 /*
  * Find a character occurence that is not quoted
  */
-char* find_not_quoted(str* _s, char _c);
+char* ul_fnq(str* _s, char _c);
 
 
 /*
  * Extract username part from URI
  */
-int get_user(str* _s);
+int ul_get_user(str* _s);
 
 
 /*
