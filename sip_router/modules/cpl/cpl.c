@@ -1,3 +1,7 @@
+/*
+ * $Id: cpl.c,v 1.6 2002/05/11 21:28:52 jku Exp $
+ */
+
 #include <stdio.h>
 #include <string.h>
 

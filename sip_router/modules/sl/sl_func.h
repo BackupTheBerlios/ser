@@ -1,3 +1,7 @@
+/*
+ * $Id: sl_func.h,v 1.2 2002/05/11 21:30:08 jku Exp $
+ */
+
 #ifndef _SL_FUNC_H
 #define SL_FUNC_H
 

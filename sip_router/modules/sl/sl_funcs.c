@@ -1,3 +1,6 @@
+/*
+ * $Id: sl_funcs.c,v 1.8 2002/05/11 21:30:08 jku Exp $
+ */
 
 #include <netinet/in.h>
 #include <netdb.h>

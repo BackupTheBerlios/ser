@@ -1,3 +1,7 @@
+/*
+ * $Id: jcpli.h,v 1.2 2002/05/11 21:28:52 jku Exp $
+ */
+
 #ifndef _JCPLI_H
 #define _JCPLI_H
 
