@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.h,v 1.4 2002/09/19 12:23:54 jku Rel $ 
+ * $Id: utils.h,v 1.5 2003/10/24 20:35:35 janakj Exp $ 
  *
  * MySQL module utilities
  *
@@ -31,6 +31,29 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <time.h>
+
+
 char* trim(char* _s);
+
+
+/*
+ * Convert time_t structure to format accepted by MySQL database
+ */
+int time2mysql(time_t _time, char* _result, int _res_len);
+
+
+/*
+ * Convert MySQL time representation to time_t structure
+ */
+time_t mysql2time(const char* _str);
+
+
+/*
+ * SQL URL parser
+ */
+int parse_sql_url(char* _url, char** _user, char** _pass, 
+		  char** _host, char** _port, char** _db);
+
 
 #endif /* UTILS_H */

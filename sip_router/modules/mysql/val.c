@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.c,v 1.14 2003/09/15 22:34:49 janakj Exp $ 
+ * $Id: val.c,v 1.1 2003/10/24 20:35:35 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,14 +25,14 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <dprint.h>
+#include <stdlib.h>
 #include <string.h>
-#include <mysql/mysql.h>
-#include "../../db/db_val.h"
-#include "../../dprint.h"
+#include <mysql.h>
+#include "utils.h"
 #include "defs.h"
-#include "db_utils.h"
+#include "val.h"
 
 
 /*
