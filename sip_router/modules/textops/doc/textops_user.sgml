@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/07/23 16:20:07 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/08/19 17:53:46 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -136,6 +136,33 @@ search_append("[Ss]er", " blabla");
 		<programlisting format="linespecific">
 ...
 replace("ser", "Sip Express Router");
+...
+</programlisting>
+	    </example>
+	</section>
+
+	<section>
+	    <title>
+		<function moreinfo="none">subst('/re/repl/flags')</function>
+	    </title>
+	    <para>
+		Replaces re with repl (sed or perl like).
+	    </para>
+	    <para>Meaning of the parameters is as follows:</para>
+	    <itemizedlist>
+		<listitem>
+		    <para><emphasis>'/re/repl/flags'</emphasis> - sed like regular 
+				expression. flags can be a combination of i (case insensitive),
+				g (global) or s (match newline don't treat it as end of line).
+		    </para>
+		</listitem>
+	    </itemizedlist>
+	    <example>
+		<title><function>subst</function> usage</title>
+		<programlisting format="linespecific">
+...
+# replace the uri in to: with the message uri (just an example)
+if ( subst('/^To:(.*)sip:[^@]*@[a-zA-Z0-9.]+(.*)$/t:\1\u\2/ig') ) {};
 ...
 </programlisting>
 	    </example>

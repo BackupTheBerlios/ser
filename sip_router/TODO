@@ -1,7 +1,8 @@
-$Id: TODO,v 1.59 2003/08/15 14:19:18 andrei Exp $
+$Id: TODO,v 1.60 2003/08/19 17:53:46 andrei Exp $
 
 ( - todo, x - done)
 
+- backport tcp conn id fix to stable
 - regex subst on uris?
 - port receive.c pre_script_cb fix from stable
 - extend alias to include port numbers :
