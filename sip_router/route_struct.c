@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.2 2001/09/19 21:45:25 andrei Exp $
+ * $Id: route_struct.c,v 1.3 2001/09/20 17:17:26 andrei Exp $
  *
  * route structures helping functions
  */
@@ -217,6 +217,12 @@ void print_action(struct action* a)
 			case ERROR_T:
 					printf("error(");
 					break;
+			case ROUTE_T:
+					printf("route(");
+					break;
+			case EXEC_T:
+					printf("exec(");
+					break;
 			default:
 					printf("UNKNOWN(");
 		}
@@ -226,6 +232,9 @@ void print_action(struct action* a)
 					break;
 			case NUMBER_ST:
 					printf("%d",t->p1.number);
+					break;
+			case IP_ST:
+					print_ip(t->p1.data);
 					break;
 			default:
 					printf("type<%d>", t->p1_type);

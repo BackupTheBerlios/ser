@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.2 2001/09/19 21:45:25 andrei Exp $
+ * $Id: route_struct.h,v 1.3 2001/09/20 17:17:26 andrei Exp $
  *
  */
 
@@ -9,10 +9,10 @@
 enum { EXP_T=1, ELEM_T };
 enum { AND_OP=1, OR_OP, NOT_OP };
 enum { EQUAL_OP=10, MATCH_OP };
-enum { METHOD_O=1, URI_O, SRCIP_O, DSTIP_O };
+enum { METHOD_O=1, URI_O, SRCIP_O, DSTIP_O, DEFAULT_O };
 
 enum { FORWARD_T=1, SEND_T, DROP_T, LOG_T, ERROR_T, ROUTE_T, EXEC_T};
-enum { NOSUBTYPE=0, STRING_ST, NET_ST, NUMBER_ST, IP_ST };
+enum { NOSUBTYPE=0, STRING_ST, NET_ST, NUMBER_ST, IP_ST, RE_ST, PROXY_ST };
 
 	
 struct expr{

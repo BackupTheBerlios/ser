@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2001/09/06 02:24:00 andrei Exp $
+# $Id: Makefile,v 1.4 2001/09/20 17:17:26 andrei Exp $
 #
 # sip_router makefile
 #
@@ -11,8 +11,12 @@ depends= $(sources:.c=.d)
 
 NAME=sip_router
 
+
 CC=gcc
 CFLAGS=-O2
+LEX=lex
+YACC=bison
+YACC_FLAGS=-d
 # on linux and freebsd keep it empty (e.g. LIBS= )
 # on solaris add -lxnet (e.g. LIBS= -lxnet)
 LIBS=
@@ -23,11 +27,19 @@ MKDEP=gcc -M
 
 #implicit rules
 
+
 %.o:%.c $(ALLDEP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 %.d: %.c
 	$(MKDEP) $< >$@
+
+# normal rules
+lex.yy.c: cfg.lex $(ALLDEP)
+	$(LEX) $<
+
+cfg.tab.c: cfg.y
+	$(YACC) $(YACC_FLAGS) $<
 
 $(NAME): $(objs)
 	$(CC) $(CFLAGS) $(LIBS) $(objs) -o $(NAME)

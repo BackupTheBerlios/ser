@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.2 2001/09/04 01:41:39 andrei Exp $
+ * $Id: msg_parser.h,v 1.3 2001/09/20 17:17:26 andrei Exp $
  */
 
 #ifndef msg_parser_h
@@ -64,6 +64,8 @@ struct sip_msg{
 	struct msg_start first_line;
 	struct via_body via1;
 	struct via_body via2;
+	unsigned int src_ip;
+	unsigned int dst_ip;
 };
 
 
