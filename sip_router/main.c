@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.58 2002/02/15 14:10:40 andrei Exp $
+ * $Id: main.c,v 1.59 2002/02/15 17:02:34 andrei Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.58 2002/02/15 14:10:40 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.59 2002/02/15 17:02:34 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -329,7 +329,8 @@ int main_loop()
 						pids[i+1]=pid; /*should be in shared mem.*/
 				}
 			}
-			close(udp_sock); /*parent*/
+			/*parent*/
+			/*close(udp_sock)*/; /*if it's closed=>sendto invalid fd errors?*/
 		}
 	}
 	/*this is the main process*/

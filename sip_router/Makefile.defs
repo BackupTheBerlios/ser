@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.48 2002/02/15 14:10:40 andrei Exp $
+# $Id: Makefile.defs,v 1.49 2002/02/15 17:02:34 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -9,7 +9,7 @@
 VERSION = 0
 PATCHLEVEL = 8
 SUBLEVEL = 6
-EXTRAVERSION = -3
+EXTRAVERSION = -4
 
 RELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 OS = $(shell uname -s)
@@ -101,7 +101,7 @@ ifeq ($(mode), release)
 			#-Wmissing-prototypes \
 	
 ifneq (,$(findstring 3.0, $(CC_VER)))
-	CFLAGS=-minline-all-stringops -malign-double \
+	CFLAGS+=-minline-all-stringops -malign-double \
 				-march=athlon \
 				#-mcpu=athlon
 endif
