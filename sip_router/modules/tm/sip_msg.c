@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.50 2002/08/15 08:13:29 jku Exp $
+ * $Id: sip_msg.c,v 1.51 2002/09/09 15:26:20 jku Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -164,6 +164,11 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg )
 					for(prm=via->param_lst;prm;prm=prm->next)
 						len+=ROUND4(sizeof(struct via_param ));
 				}
+				break;
+			case HDR_PROXYAUTH:
+				/* we frequently parse this HF but don't use it in TM --
+				   just keep silent about it
+				*/
 				break;
 			default:
 				if (hdr->parsed) {
