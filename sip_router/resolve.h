@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.16 2002/12/17 18:14:32 janakj Exp $
+ * $Id: resolve.h,v 1.17 2003/02/19 17:16:41 andrei Exp $
  *
  * resolver related functions
  *
@@ -260,7 +260,7 @@ error_char:
 
 
 
-struct hostent* sip_resolvehost(str* name, unsigned short* port);
+struct hostent* sip_resolvehost(str* name, unsigned short* port, int proto);
 
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.26 2003/01/29 19:24:10 jiri Exp $
+ * $Id: route.c,v 1.27 2003/02/19 17:16:41 andrei Exp $
  *
  * SIP routing engine
  *
@@ -169,7 +169,7 @@ static int fix_actions(struct action* a)
 						case STRING_ST:
 							s.s = t->p1.string;
 							s.len = strlen(s.s);
-							p=add_proxy(&s, t->p2.number);
+							p=add_proxy(&s, t->p2.number, 0); /* FIXME proto*/
 							if (p==0) return E_BAD_ADDRESS;
 							t->p1.data=p;
 							t->p1_type=PROXY_ST;

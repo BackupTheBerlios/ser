@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.40 2003/01/29 19:24:10 jiri Exp $
+ * $Id: action.c,v 1.41 2003/02/19 17:16:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -129,7 +129,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 							goto error_fwd_uri;
 				}
 				/* create a temporary proxy*/
-				p=mk_proxy(&u->host, port);
+				p=mk_proxy(&u->host, port, proto);
 				if (p==0){
 					LOG(L_ERR, "ERROR:  bad host name in uri,"
 							" dropping packet\n");

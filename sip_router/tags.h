@@ -1,5 +1,5 @@
 /*
- * $Id: tags.h,v 1.2 2002/10/21 21:24:43 jiri Exp $
+ * $Id: tags.h,v 1.3 2003/02/19 17:16:41 andrei Exp $
  *
  * - utility for generating to-tags
  *   in SER, to-tags consist of two parts: a fixed part
@@ -33,6 +33,12 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+/*
+ * History:
+ * --------
+ *  2003-02-18  changed TOTAG_LEN into TOTAG_VALUE_LEN, to solve
+ *               redefinition conflict with tm/t_msgbuilder.h (andrei)
+ */
 
 
 #ifndef _TAGS_H
@@ -42,7 +48,7 @@
 #include "crc.h"
 #include "str.h"
 
-#define TOTAG_LEN (MD5_LEN+CRC16_LEN+1)
+#define TOTAG_VALUE_LEN (MD5_LEN+CRC16_LEN+1)
 
 /* generate variable part of to-tag for a request;
  * it will have length of CRC16_LEN, sufficiently

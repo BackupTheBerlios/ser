@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.64 2003/01/21 13:53:48 jiri Exp $
+ * $Id: h_table.h,v 1.65 2003/02/19 17:16:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -82,9 +82,8 @@ typedef struct retr_buf
 
 	char *buffer;
 	int   buffer_len;
-
-	union sockaddr_union to;
-	struct socket_info* send_sock;
+	
+	struct dest_info dst;
 
 	/* a message can be linked just to retransmission and FR list */
 	struct timer_link retr_timer;

@@ -1,4 +1,4 @@
-$Id: TODO,v 1.32 2003/02/10 15:49:40 andrei Exp $
+$Id: TODO,v 1.33 2003/02/19 17:16:41 andrei Exp $
 
 ( - todo, x - done)
 
@@ -71,4 +71,11 @@ x generic locking lib
 - tcp disable nagle & other socket stuff (close()?)
 - force add rport (setflag(rport)???)
 - kill all the fprintf
+
+tm optimizations:
+
+- replace snprintfs int build_uac_request, *_dlg
+- fix the huge param no. in this functions (use structs if neccessary):
+  build_uac_request, build_uac_request_dlg, t_uac, t_uac_dlg
+  
 

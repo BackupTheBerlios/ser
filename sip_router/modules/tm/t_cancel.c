@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.4 2003/01/21 13:53:48 jiri Exp $
+ * $Id: t_cancel.c,v 1.5 2003/02/19 17:16:41 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -94,8 +94,7 @@ void cancel_branch( struct cell *t, int branch )
 	/* install cancel now */
 	crb->buffer=cancel;
 	crb->buffer_len=len;
-	crb->to=irb->to;
-	crb->send_sock=irb->send_sock;
+	crb->dst=irb->dst;
 	crb->branch=branch;
 #ifdef _OBSOLETED
 	crb->fr_timer.tg=TG_FR;
