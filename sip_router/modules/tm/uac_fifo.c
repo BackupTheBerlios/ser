@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.7 2004/02/11 06:44:51 jiri Exp $
+ * $Id: uac_fifo.c,v 1.8 2004/02/11 10:44:32 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -563,9 +563,9 @@ static void fifo_callback( struct cell *t, int type, struct tmcb_params *ps )
 
 		f = open_reply_pipe(filename);
 		if (!f) return;
-		fprintf(f, "%d %.*s\n", reply->first_line.u.reply.statuscode, text.len, text.s);
-		print_uris(f, reply);
-		fprintf(f, "%s\n", reply->headers->name.s);
+		fprintf(f, "%d %.*s\n", ps->rpl->first_line.u.reply.statuscode, text.len, text.s);
+		print_uris(f, ps->rpl);
+		fprintf(f, "%s\n", ps->rpl->headers->name.s);
 		fclose(f);
 	}
 	DBG("DEBUG: fifo_callback sucesssfuly completed\n");
