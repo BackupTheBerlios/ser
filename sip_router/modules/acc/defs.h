@@ -1,5 +1,5 @@
 /*
- * $Id: defs.h,v 1.2 2003/04/05 14:05:19 jiri Exp $
+ * $Id: defs.h,v 1.3 2003/04/05 16:02:45 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -43,8 +43,8 @@
 #define ALL_LOG_FMT_LEN (sizeof(ALL_LOG_FMT)-1)
 
 #ifdef SQL_ACC
-#	define SQL_ACC_FMT "FTmiofcts0"
-#	define SQL_MC_FMT "FTmiofctsp"
+#	define SQL_ACC_FMT "FTmiofcts0dr"
+#	define SQL_MC_FMT  "FTmiofctspdr"
 #endif
 
 /* caution: keep consistent with definition of rad_attr */

@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.18 2003/04/05 14:05:18 jiri Exp $
+ * $Id: acc_mod.c,v 1.19 2003/04/05 16:02:45 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -113,6 +113,8 @@ char* acc_sip_status_col    = "sip_status";
 char* acc_sip_method_col    = "sip_method";
 char* acc_i_uri_col         = "i_uri";
 char* acc_o_uri_col         = "o_uri";
+char* acc_totag_col			= "totag";
+char* acc_fromtag_col		= "fromtag";
 char* acc_from_uri			= "from_uri";
 char* acc_to_uri			= "to_uri";
 char* acc_sip_callid_col    = "sip_callid";
@@ -175,6 +177,8 @@ static param_export_t params[] = {
 	{"acc_time_column",       STR_PARAM, &acc_time_col      },
 	{"acc_from_uri_column",		STR_PARAM, &acc_from_uri },
 	{"acc_to_uri_column",		STR_PARAM, &acc_to_uri },
+	{"acc_totag_column",		STR_PARAM, &acc_totag_col },
+	{"acc_fromtag_column", 		STR_PARAM, &acc_fromtag_col },
 #endif
 	{0,0,0}
 };

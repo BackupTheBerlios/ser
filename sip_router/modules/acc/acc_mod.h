@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.6 2003/04/05 14:05:19 jiri Exp $
+ * $Id: acc_mod.h,v 1.7 2003/04/05 16:02:45 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -75,6 +75,9 @@ extern char* acc_user_col;
 extern char* acc_time_col;
 extern char* acc_from_uri;
 extern char* acc_to_uri;
+extern char* acc_totag_col;
+extern char* acc_fromtag_col;
+
 
 #endif /* SQL_ACC */
 
