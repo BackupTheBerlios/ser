@@ -1,11 +1,12 @@
 /*
- * $Id: sms_funcs.h,v 1.14 2002/07/24 11:50:51 jku Exp $
+ * $Id: sms_funcs.h,v 1.15 2002/09/18 10:34:32 bogdan Exp $
  */
 
 #ifndef _SMS_FUNCS_H
 #define  _SMS_FUNCS_H
 
 #include "../../parser/msg_parser.h"
+#include "../../str.h"
 #include <termios.h>
 
 
@@ -53,15 +54,10 @@ struct modem {
 };
 
 struct sms_msg {
-	char *text;
-	int  text_len;
-	char to[MAX_CHAR_BUF+1];
-	int  to_len;
-	char from[MAX_CHAR_BUF+1];
-	int  from_len;
-	int  is_binary;
-	int  udh;
-	int  cs_convert;
+	str  text;
+	str  to;
+	str  from;
+	int  ref;
 };
 
 struct incame_sms {
@@ -73,6 +69,7 @@ struct incame_sms {
 	char smsc[31];
 	int  userdatalength;
 	int  is_statusreport;
+	int  sms_id;
 };
 
 
@@ -85,6 +82,7 @@ extern int  max_sms_parts;
 extern str  domain;
 extern int  *queued_msgs;
 extern int  use_contact;
+extern int  use_sms_report;
 
 void modem_process(struct modem*);
 int  push_on_network(struct sip_msg*, int);
