@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.5 2005/02/23 17:16:04 andrei Exp $
+/* $Id: functions.h,v 1.6 2005/02/28 18:54:42 janakj Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -72,6 +72,8 @@ pingClients(unsigned int ticks, void *param)
             break;
         contact.s = (char*)ptr + sizeof(contact.len);
         ptr = contact.s + contact.len;
+	memcpy(&sock, ptr, sizeof(sock));
+	ptr += sizeof(sock);
         if (parse_uri(contact.s, contact.len, &uri) < 0) {
             LOG(L_ERR, "error: mediaproxy/pingClients(): can't parse contact uri\n");
             continue;
@@ -86,10 +88,13 @@ pingClients(unsigned int ticks, void *param)
             continue;
         }
         hostent2su(&to, hostent, 0, uri.port_no);
-        sock = get_send_socket(0, &to, PROTO_UDP);
-        if (sock == NULL) {
-            LOG(L_ERR, "error: mediaproxy/pingClients(): can't get sending socket\n");
-            continue;
+	if (sock==0) {
+ 		sock = get_send_socket(0, &to, PROTO_UDP);
+        	if (sock == NULL) {
+			LOG(L_ERR, "error: mediaproxy/pingClients(): can't get "
+			    "sending socket\n");
+			continue;
+		}
         }
         udp_send(sock, pingbuf, sizeof(pingbuf), &to);
     }
