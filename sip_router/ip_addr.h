@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.11 2002/09/25 19:20:26 andrei Rel $
+/* $Id: ip_addr.h,v 1.12 2002/10/14 16:42:31 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -201,6 +201,8 @@ static inline void su2ip_addr(struct ip_addr* ip, union sockaddr_union* su)
 }
 
 
+/* ip_addr2su -> the same as init_su*/
+#define ip_addr2su init_su
 
 /* inits a struct sockaddr_union from a struct ip_addr and a port no 
  * returns 0 if ok, -1 on error (unknown address family) */
