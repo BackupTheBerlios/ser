@@ -1,5 +1,5 @@
 /**
- * $Id: xlog.c,v 1.1 2003/06/06 14:54:13 ramona Exp $
+ * $Id: xlog.c,v 1.2 2003/06/06 17:04:46 ramona Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -144,9 +144,25 @@ static int child_init(int rank)
 static int xlog(struct sip_msg* msg, char* lev, char* frm)
 {
 	int l=0, f=0;
-	
-	if(lev && lev[0]>'0' && lev[0]<='9')
-		l = lev[0] - '0';
+
+	if(lev==NULL || strlen(lev)<3)
+	{
+		LOG(L_ERR, "XLOG:xlog: wrong log level\n");
+		return -1;
+	}
+	switch(lev[2])
+	{
+		case 'A': l = L_ALERT; break;
+        case 'C': l = L_CRIT; break;
+        case 'E': l = L_ERR; break;
+        case 'W': l = L_WARN; break;
+        case 'N': l = L_NOTICE; break;
+        case 'I': l = L_INFO; break;
+        case 'D': l = L_DBG; break;
+		default:
+			LOG(L_ERR, "XLOG:xlog: unknown log level\n");
+			return -1;
+	}
 	if(frm && frm[0]>'0' && frm[0]<='9')
 		f = frm[0] - '0';
 
