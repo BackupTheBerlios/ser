@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.8 2003/03/13 16:30:40 janakj Exp $
+ * $Id: ul_mod.h,v 1.9 2003/04/11 18:20:33 janakj Exp $
  *
  * Usrlocation module interface
  *
@@ -63,6 +63,7 @@ extern char* db_url;
 extern int   timer_interval;
 extern int   db_mode;
 extern int   use_domain;
+extern int   desc_time_order;
 
 extern db_con_t* db;   /* Dabase connection handle */
 

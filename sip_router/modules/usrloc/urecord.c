@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.22 2003/04/05 22:17:05 calrissian Exp $ 
+ * $Id: urecord.c,v 1.23 2003/04/11 18:20:33 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -129,10 +129,13 @@ int mem_insert_ucontact(urecord_t* _r, str* _c, time_t _e, float _q,
 	}
 	
 	ptr = _r->contacts;
-	while(ptr) {
-		if (ptr->q < _q) break;
-		prev = ptr;
-		ptr = ptr->next;
+
+	if (!desc_time_order) {
+		while(ptr) {
+			if (ptr->q < _q) break;
+			prev = ptr;
+			ptr = ptr->next;
+		}
 	}
 
 	if (ptr) {
