@@ -1,5 +1,5 @@
 <html>
-<!-- $Id: send_im.php,v 1.1 2002/08/26 18:43:09 jku Exp $ -->
+<!-- $Id: send_im.php,v 1.2 2002/08/27 10:09:01 jku Rel $ -->
 <header>
 <title>
 Send IM Status
@@ -55,7 +55,7 @@ if (readfile( $mypath )==-1) {
 	exit("Sorry -- fifo reading error");
 }
 unlink($mypath);
-echo "Thank you for using IM<p>";
+echo "<p>Thank you for using IM<p>";
 
 ?>
 
