@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.3 2004/09/09 20:49:54 jiri Exp $
+/*$Id: gflags.c,v 1.4 2004/09/09 21:00:45 jiri Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour 
@@ -69,7 +69,7 @@ static int fixup_str2int( void** param, int param_no);
 
 static int mod_init(void);
 
-static int initial;
+static int initial=0;
 static int *gflags; 
 
 static cmd_export_t cmds[]={
@@ -240,6 +240,7 @@ static int mod_init(void)
 		LOG(L_ERR, "Error: gflags/mod_init: no shmem\n");
 		return -1;
 	}
+	*gflags=initial;
 	if (register_fifo_cmd(fifo_set_gflag, FIFO_SET_GFLAG, 0) < 0) {
 		LOG(L_CRIT, "Cannot register FIFO_SET_GFLAG\n");
 		return -1;
