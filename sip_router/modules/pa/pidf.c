@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.c,v 1.13 2004/08/24 22:11:43 jamey Exp $
+ * $Id: pidf.c,v 1.14 2005/04/01 17:38:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -70,7 +70,7 @@
 #define PRESENCE_ETAG "</presence>"
 #define PRESENCE_ETAG_L (sizeof(PRESENCE_ETAG) - 1)
 
-#define TUPLE_START "<tuple id=\"9r28r49\">"
+#define TUPLE_START "<tuple id=\""
 #define TUPLE_START_L (sizeof(TUPLE_START) - 1)
 
 #define TUPLE_END "\">"
