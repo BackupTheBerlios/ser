@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: mangler.c,v 1.11 2003/09/10 22:49:37 jiri Exp $
+ * $Id: mangler.c,v 1.12 2003/09/25 09:14:23 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -50,9 +50,6 @@
 #include "utils.h"
 #include "common.h"
 
-MODULE_VERSION
-
-
 #ifdef DEMO
 
 #include "../tm/t_hooks.h"
@@ -64,7 +61,6 @@ struct tm_binds tmb;
 
 
 MODULE_VERSION
-
 
 
 /*
