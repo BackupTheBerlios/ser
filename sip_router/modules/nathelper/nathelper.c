@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.21 2003/10/20 17:10:13 andrei Exp $
+/*$Id: nathelper.c,v 1.22 2003/11/05 19:53:45 bogdan Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -328,6 +328,7 @@ static int contact_1918(struct sip_msg* msg)
 		return 0;
 	}
 	backup=msg->contact->body.s[msg->contact->body.len];
+	msg->contact->body.s[msg->contact->body.len] = 0;
 	fnd=regexec( key_m1918, msg->contact->body.s, 1, &pmatch, 0)==0;
 	msg->contact->body.s[msg->contact->body.len]=backup;
 	return fnd;
