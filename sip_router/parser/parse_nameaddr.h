@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_nameaddr.h,v 1.1 2003/03/24 16:42:21 janakj Exp $
+ * $Id: parse_nameaddr.h,v 1.2 2003/03/31 10:27:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -40,6 +40,7 @@
 typedef struct name_addr {
 	str name;   /* Display name part */
 	str uri;    /* Uri part without surrounding <> */
+	int len;    /* Total lenght of the field */
 } name_addr_t;
 
 
