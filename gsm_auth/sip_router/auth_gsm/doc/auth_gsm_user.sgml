@@ -1,0 +1,290 @@
+<!-- Module User's Guide -->
+
+<chapter>
+    <chapterinfo>
+	<revhistory>
+	    <revision>
+		<revnumber>$Revision: 1.1 $</revnumber>
+		<date>$Date: 2003/12/09 12:47:57 $</date>
+	    </revision>
+	</revhistory>
+    </chapterinfo>
+    <title>User's Guide</title>
+    
+    <section>
+	<title>Overview</title>
+	<para>The module offers methods to authenticate SIP UAs using GSM
+	authentication mechanism adapted to fit in SIP specifications.</para>
+	<para>GSM authentication schema is presented in next picture.</para>
+    <example>
+	<title>GSM Authentication Schema</title>
+<programlisting format="linespecific">
+...
+
+SIP Client                                       SIP Server (SER)
+  |                                                     |
+  |  REGISTER (schema, realm, no other credentials)     |
+  |----------------------1-----------------------------&gt;|
+  |                                                     |
+  |       401/407 (challenge with schema and realm)     |
+  |&lt;---------------------2---------------------------|
+  |                                                     |
+  |   REGISTER (schema, IMSI as username + realm)       |
+  |----------------------3-----------------------------&gt;|
+  |                                                     |
+  |   401/407 (schema, realm and challenge number)      |
+  |&lt;---------------------4---------------------------|
+  |                                                     |
+  | REGISTER(schema,IMSI,realm,challenge,GSM response)  |
+  |----------------------5-----------------------------&gt;|
+  |                                                     |
+  |    200 if OK or 403 if not                          |
+  |&lt;---------------------6---------------------------|
+  |                                                     |
+  
+
+Mapping GSM attributes over WWW-Digest attributes:
+- authentication schema: GSM
+- realm: realm for authentication
+- username: IMSI
+- nonce: challenge number
+- response: GSM authentiaction response
+
+No special headers were defined - the challenge and the response are
+carried by the same headers used for WWW-Digest authentication.
+* WWW-Authenticate header: carries the challenge attributes for WWW-GSM
+authentication within SIP <quote>401 Unauthorized</quote> reply.
+* Authorization header: carries WWW-GSM response within SIP requests
+* Proxy-Authenticate header: carries the challenge attributes for 
+Proxy-GSM authentication within SIP <quote>407 Proxy Authentication Required</quote>
+reply
+* Proxy-Authorization header: carries Proxy-GSM response within SIP
+requests
+
+...
+</programlisting>
+	</example>
+	<para>
+	SER passes all authentication attributes (for SIP requests #3 and #4) to
+	a RADIUS server (tested with FreeRADIUS 
+	(<ulink url='http://www.freeradius.org'>http://www.freeradius.org</ulink>
+	to whom I have developed a GSM authentication module) than can verify the
+	valadity of GSM authentication attributes.
+	</para>
+	<para>
+	If there is no GSM response (SIP request #3) RADIUS server
+	generate a challenge that will be sent back to SIP client within a
+	<quote>401 Unauthorized / 407 Proxy Authentication Required</quote> SIP reply.
+	When all credentials are present, RADIUS server ckecks if the challenge is
+	valid and if the response matches the value computed by it. If all
+	credentials maches then it returns success and the SIP server will send back
+	<quote>200 OK</quote> reply. Otherwise, it returns failure and the SIP
+	client will receive <quote>403 Forbidden</quote>.
+	When somthing is wrong (unable to perform a step of GSM authentication
+	process either in SIP server side or RADIUS server side) a
+	<quote>500 Internal Server Error</quote> reply is sent to SIP client.
+	</para>
+	</section>
+    <section>
+	<title>Dependencies</title>
+	<section>
+	    <title>&ser; Modules</title>
+	    <para>
+		The following modules must be loaded before this module:
+	    	<itemizedlist>
+		    <listitem>
+			<para>
+			    <emphasis>auth</emphasis> - used for basic authentication
+				functions.
+			</para>
+		    </listitem>
+	    	</itemizedlist>
+	    </para>
+	</section>
+	<section>
+	    <title>External Libraries or Applications</title>
+	    <para>
+		The following libraries or applications must be installed before running
+		&ser; with this module loaded:
+	    	<itemizedlist>
+		    <listitem>
+			<para>
+			    <emphasis>radiusclient</emphasis>- client library for RADIUS
+				protocol
+				(<ulink url='http://www.mcs.de/~lf/radius/'
+				>http://www.mcs.de/~lf/radius/</ulink>).
+			</para>
+		    </listitem>
+	    	</itemizedlist>
+	    </para>
+	</section>
+    </section>
+    <section>
+	<title>Exported Parameters</title>
+	<section>
+	    <title><varname>service_tip</varname> (int)</title>
+	    <para>
+		This is the value of the Service-Type radius attribute to be
+		used. It must have same value as <quote>service_type</quote>
+		configuration option of <quote>rlm_gsm</quote> module of 
+		<quote>FreeRADIUS</quote> server. If you need to change it you must do
+		it for both servers.
+	    </para>
+	    <para>
+		<emphasis>
+		    Default value is <quote>23 (PW_GSM_AUTH)</quote>.
+		</emphasis>
+	    </para>
+	    <example>
+		<title>Set <varname>param_name</varname> parameter</title>
+		<programlisting format="linespecific">
+...
+modparam("auth_gsm", "service_type", 20)
+...
+</programlisting>
+	    </example>
+	</section>
+	<section>
+	    <title><varname>radius_config</varname> (string)</title>
+	    <para>
+		This is the location of the configuration file of radius
+		client library.
+	    </para>
+	    <para>
+		<emphasis>
+		    Default value is 
+			<quote>/usr/local/etc/radiusclient/radiusclient.conf</quote>.
+		</emphasis>
+	    </para>
+	    <example>
+		<title>Set <varname>radius_config</varname> parameter</title>
+		<programlisting format="linespecific">
+...
+modparam("auth_gsm", "radius_config", "/etc/radiusclient.conf")
+...
+</programlisting>
+	    </example>
+	</section>
+    </section>
+    <section>
+	<title>Exported Functions</title>
+	<section>
+	    <title>
+		<function moreinfo="none">gsm_www_authorize(realm)</function>
+	    </title>
+	    <para>
+		This function performs sanity checks over the received credentials
+		and then pass them along to the RADIUS server which will verify the
+		credentials and return whether they are valid or not.
+	    </para>
+	    <para>
+		If the SIP message has no credentials the function generate a challenge
+		specifying the authentication schema (GSM) without sending any request
+		to RADIUS server.
+	    </para>
+	    <para>Meaning of the parameters is as follows:</para>
+	    <itemizedlist>
+		<listitem>
+		    <para><emphasis>realm</emphasis> - Realm is a opaque string
+			that the user agent should present to the user so he can decide
+			what username and password to use. Usualy this is domain of the
+			host the server is running on.
+			If an empty string "" is used then the server will generate it
+			from the request. In case of REGISTER requests To header field
+			domain will be used (because this header field represents a user
+			being registered), for all other messages From header field domain
+			will be used.
+		    </para>
+		</listitem>
+	    </itemizedlist>
+	    <example>
+		<title><function>gsm_www_authorize</function> usage</title>
+		<programlisting format="linespecific">
+...
+if (!gsm_www_authorize("iptel.org")) {
+    break;
+};
+...
+</programlisting>
+	    </example>
+	</section>
+	<section>
+	    <title>
+		<function moreinfo="none">gsm_proxy_authorize(realm)</function>
+	    </title>
+	    <para>
+		The function performs similar operations to 
+		<quote>gsm_www_authorize</quote> but for proxy authentication as defined
+		in SIP RFC (3261).
+	    </para>
+	    <para>Meaning of the parameters is as follows:</para>
+	    <itemizedlist>
+		<listitem>
+		    <para><emphasis>realm</emphasis> - same meaning as for 
+			<quote>gsm_www_authorize</quote> method.
+		    </para>
+		</listitem>
+	    </itemizedlist>
+	    <example>
+		<title><function>gsm_proxy_authorize</function> usage</title>
+<programlisting format="linespecific">
+...
+if (!gsm_proxy_authorize("iptel.org")) {
+    break;
+};
+...
+</programlisting>
+	    </example>
+	</section>
+    </section>
+    <section>
+	<title>Installation & Running</title>
+    <section>
+	<title>Radius client setup</title>
+	<para>You must set proper value for RADIUS server in 
+	<emphasis>radiusclient.conf</emphasis> --
+	default is localhost. More inforamtion you will find out in comments inside
+	<emphasis>radiusclient.conf</emphasis>.
+	</para>
+	<para>
+	In <emphasis>dictionary</emphasis> file of your radius client be sure
+	you have next lines:
+	</para>
+<programlisting format="linespecific">
+
+ATTRIBUTE   User-Name       1	string
+ATTRIBUTE   Password        2	string
+ATTRIBUTE   CHAP-Password   3	string
+ATTRIBUTE   CHAP-Challenge  60	string
+ATTRIBUTE   User-Realm      223	string
+
+</programlisting>
+	<para>
+	In <emphasis>servers</emphasis> file of your radius client be sure you
+	set the address of RADIUS server and the secret key for that server.
+	The same secret key must be in one of <emphasis>clients</emphasis> or
+	<emphasis>clients.conf</emphasis> config files of the RADIUS server.
+	</para>
+    </section>
+    <section>
+        <title>&ser; config file</title>
+        <para>
+        Next picture displays a sample usage of auth_gsm module.
+        </para>
+        <example>
+        <title>&ser; config script - sample auth_gsm usage</title>
+<programlisting format="linespecific">
+...
+&authgsmcfg;
+...
+</programlisting>
+        </example>
+    </section>
+    </section>
+</chapter>
+
+<!-- Keep this element at the end of the file
+Local Variables:
+sgml-parent-document: ("module.sgml" "Book" "chapter")
+End:
+-->
