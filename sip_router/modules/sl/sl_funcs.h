@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.h,v 1.11 2002/10/03 20:06:10 jiri Exp $
+ * $Id: sl_funcs.h,v 1.12 2002/10/21 20:30:15 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,11 +31,9 @@
 
 #include "../../parser/msg_parser.h"
 
-#define TOTAG_SEPARATOR		'.'
-
 #define SL_RPL_WAIT_TIME  2  // in sec
 
-#define TOTAG_LEN MD5_LEN+CRC16_LEN+1
+#define SL_TOTAG_SEPARATOR '.'
 
 int sl_startup();
 int sl_shutdown();
