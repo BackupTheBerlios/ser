@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.12 2002/11/28 17:05:16 janakj Exp $ 
+ * $Id: db_mod.c,v 1.13 2002/12/02 09:17:45 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -27,9 +27,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
-#include "../../sr_module.h"
 #include <stdio.h>
+#include "../../sr_module.h"
 #include "dbase.h"
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: nonce.c,v 1.4 2002/09/19 12:23:53 jku Rel $
+ * $Id: nonce.c,v 1.5 2002/12/02 09:17:22 janakj Exp $
  *
  * Nonce related functions
  *
@@ -28,12 +28,12 @@
  */
 
 
-#include "nonce.h"
-#include "rfc2617.h"
 #include <time.h>
+#include <string.h>
 #include "../../md5global.h"
 #include "../../md5.h"
-#include <string.h>
+#include "nonce.h"
+#include "rfc2617.h"
 
 
 /*

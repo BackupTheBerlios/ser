@@ -1,5 +1,5 @@
 /* 
- * $Id: trim.h,v 1.4 2002/09/19 14:51:51 janakj Rel $
+ * $Id: trim.h,v 1.5 2002/12/02 09:16:58 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,7 +35,8 @@
 /*
  * This switch-case statement is used in
  * trim_leading and trim_trailing. You can
- * define char that should be skipped here.
+ * define characters that should be skipped 
+ * here.
  */
 #define TRIM_SWITCH(c) switch(c) {     \
                        case ' ':       \

@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.6 2002/09/19 12:23:54 jku Rel $
+ * $Id: lookup.c,v 1.7 2002/12/02 09:18:05 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -90,10 +90,10 @@ int lookup(struct sip_msg* _m, char* _t, char* _s)
 		return -2;
 	}
 	
-	if (_m->new_uri.s) str_copy(&user, &_m->new_uri);
-	else str_copy(&user, &_m->first_line.u.request.uri);
+	if (_m->new_uri.s) user = _m->new_uri;
+	else user = _m->first_line.u.request.uri;
 	
-	if ((ul_get_user(&user) < 0) || !user.len) {
+	if ((get_username(&user) < 0) || !user.len) {
 		LOG(L_ERR, "lookup(): Error while extracting username\n");
 		return -3;
 	}

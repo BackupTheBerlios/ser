@@ -1,5 +1,5 @@
 /*
- * $Id: uri.c,v 1.3 2002/09/19 12:23:54 jku Rel $
+ * $Id: uri.c,v 1.4 2002/12/02 09:18:05 janakj Exp $
  *
  * URI related functions
  *
@@ -48,7 +48,7 @@ void get_raw_uri(str* _s)
 	char* aq;
 	
 	if (_s->s[_s->len - 1] == '>') {
-		aq = ul_fnq(_s, '<');
+		aq = find_not_quoted(_s, '<');
 		_s->len -= aq - _s->s + 2;
 		_s->s = aq + 1;
 	}

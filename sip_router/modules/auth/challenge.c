@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.3 2002/09/19 12:23:53 jku Rel $
+ * $Id: challenge.c,v 1.4 2002/12/02 09:17:22 janakj Exp $
  *
  * Challenge related functions
  *
@@ -28,13 +28,13 @@
  */
 
 
-#include "challenge.h"
 #include <time.h>
 #include <stdio.h>
 #include "../../dprint.h"
+#include "../../parser/digest/digest.h" /* cred_body_t get_authorized_cred*/
+#include "challenge.h"
 #include "nonce.h"                      /* calc_nonce */
 #include "common.h"                     /* send_resp */
-#include "../../parser/digest/digest.h" /* cred_body_t get_authorized_cred*/
 #include "auth_mod.h"                   /* Module parameters */
 #include "defs.h"                       /* PRINT_MD5 */
 

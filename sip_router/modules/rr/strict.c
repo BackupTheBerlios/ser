@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, strict routing support
  *
- * $Id: strict.c,v 1.1 2002/11/14 14:01:41 janakj Exp $
+ * $Id: strict.c,v 1.2 2002/12/02 09:18:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,6 +31,7 @@
 #include "strict.h"
 #include "common.h"
 #include "../../dprint.h"
+
 
 /*
  * Do strict routing as defined in RFC2584

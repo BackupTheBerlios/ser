@@ -1,5 +1,5 @@
 /* 
- * $Id: db_utils.c,v 1.7 2002/09/19 12:23:54 jku Rel $ 
+ * $Id: db_utils.c,v 1.8 2002/12/02 09:17:45 janakj Exp $ 
  *
  * MySQL module useful functions
  *
@@ -30,12 +30,12 @@
 
 #define _GNU_SOURCE /* To avoid strptime warning */
 
-#include "db_utils.h"
 #include <string.h>
+#include <time.h>
+#include "db_utils.h"
 #include "utils.h"
 #include "defs.h"
 
-#include <time.h>
 
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.h,v 1.2 2002/09/19 12:23:54 jku Rel $
+ * $Id: lookup.h,v 1.3 2002/12/02 09:18:05 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -34,6 +34,9 @@
 #include "../../parser/msg_parser.h"
 
 
+/*
+ * Lookup a contact in usrloc and rewrite R-URI if found
+ */
 int lookup(struct sip_msg* _m, char* _t, char* _s);
 
 

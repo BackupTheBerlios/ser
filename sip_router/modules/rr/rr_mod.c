@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.11 2002/11/14 14:01:41 janakj Exp $
+ * $Id: rr_mod.c,v 1.12 2002/12/02 09:18:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,10 +28,10 @@
  */
 
 
-#include "../../sr_module.h"
 #include <stdio.h>
-#include "../../ut.h"
 #include <stdlib.h>
+#include "../../sr_module.h"
+#include "../../ut.h"
 #include "../../error.h"
 #include "strict.h"
 #include "loose.h"

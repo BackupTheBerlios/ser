@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.3 2002/09/19 12:23:53 jku Rel $
+ * $Id: common.h,v 1.4 2002/12/02 09:17:22 janakj Exp $
  *
  * Common function needed by authorize
  * and challenge related functions
@@ -45,7 +45,7 @@ int send_resp(struct sip_msg* _m, int _code, char* _reason, char* _hdr, int _hdr
 /*
  * Cut username part of a URL
  */
-int auth_get_username(str* _s);
+int get_username(str* _s);
 
 
 #endif /* COMMON_H */

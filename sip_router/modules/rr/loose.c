@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.1 2002/11/14 14:01:41 janakj Exp $
+ * $Id: loose.c,v 1.2 2002/12/02 09:18:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,18 +29,18 @@
 
 
 #include "loose.h"
-#include "../../str.h"
-#include "utils.h"
-#include "../../md5utils.h"
 #include <string.h>
+#include <stdlib.h>
+#include "../../str.h"
+#include "../../md5utils.h"
 #include "../../dprint.h"
 #include "../../parser/hf.h"
-#include "common.h"
 #include "../../data_lump.h"
 #include "../../mem/mem.h"
 #include "../../parser/parse_uri.h"
-#include <stdlib.h>
 #include "../../globals.h"
+#include "utils.h"
+#include "common.h"
 
 
 static inline int cmp_fast(str* _uri)

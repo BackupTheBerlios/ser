@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.c,v 1.5 2002/09/19 12:23:54 jku Rel $ 
+ * $Id: utils.c,v 1.6 2002/12/02 09:17:45 janakj Exp $ 
  *
  * MySQL module utilities
  *
@@ -27,11 +27,12 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
-#include "utils.h"
 #include <string.h>
+#include "utils.h"
 #include "defs.h"
 
+
+/* FIXME: to be removed */
 
 /*
  * Remove any tabs and spaces from the begining and the end of
