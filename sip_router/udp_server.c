@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.34 2002/05/26 13:50:48 andrei Exp $
+ * $Id: udp_server.c,v 1.35 2002/05/26 14:02:06 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -119,7 +119,7 @@ int udp_init(struct ip_addr* ip, unsigned short port)
 		goto error;
 	}
 	
-	if (init_su(addr, ip, htons(port)<0){
+	if (init_su(addr, ip, htons(port))<0){
 		LOG(L_ERR, "ERROR: udp_init: could not init sockaddr_union\n");
 		goto error;
 	}
