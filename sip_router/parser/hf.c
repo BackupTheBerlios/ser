@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.16 2003/10/13 21:26:58 janakj Exp $ 
+ * $Id: hf.c,v 1.17 2004/01/18 16:15:33 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -148,6 +148,14 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_CONTENTDISPOSITION:
 			free_disposition( ((struct disposition**)(&hf->parsed)) );
+			break;
+
+		case HDR_DIVERSION:
+			free_to(hf->parsed);
+			break;
+
+		case HDR_RPID:
+			free_to(hf->parsed);
 			break;
 
 		default:

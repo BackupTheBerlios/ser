@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.41 2003/11/08 04:59:39 jiri Exp $
+ * $Id: msg_parser.h,v 1.42 2004/01/18 16:15:33 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,6 +35,7 @@
  *  2003-04-04  structure for parsed inbound uri added (jiri)
  *  2003-04-11  updated the  sip_uri structure (lots of fields added) (andrei)
  *  2003-04-12  added msg_flags to sip_msg (andrei)
+ *  2003-11-02  added diversion header field to sip_msg (jh)
  */
 
 
@@ -187,6 +188,8 @@ struct sip_msg {
 	struct hdr_field* user_agent;
 	struct hdr_field* content_disposition;
 	struct hdr_field* accept_disposition;
+	struct hdr_field* diversion;
+	struct hdr_field* rpid;
 
 	char* eoh;        /* pointer to the end of header (if found) or null */
 	char* unparsed;   /* here we stopped parsing*/
