@@ -1,5 +1,5 @@
 /*
- * $Id: snmp_handler.c,v 1.1 2002/08/28 19:02:59 ric Exp $
+ * $Id: snmp_handler.c,v 1.2 2002/08/29 19:30:02 ric Exp $
  *
  * SNMP Module: The dynamic handler
  */
@@ -62,6 +62,8 @@ static reg_handler** sip_server_h;
 static reg_handler* application_h;
 
 /***** the info for building the tables *****/
+/* if you look at the OIDs for the tables we implement, this may make more sense.
+ * 
 #define APPLICATION_IDX	2
 #define SIPCOMMON_IDX1	10
 static int sip_common_idx2[] = {
@@ -118,7 +120,6 @@ static int application_handler_init()
 	}
 	/* the handler tables are defined on their corresponding file */
 	init_table(application_h[1], applTable_h, "application");
-//	init_table(application_h[1], applTable_h, "application");
 
 	return 0;
 }
