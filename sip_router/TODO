@@ -1,4 +1,4 @@
-$Id: TODO,v 1.34 2003/03/27 13:26:06 andrei Exp $
+$Id: TODO,v 1.35 2003/03/31 12:28:09 andrei Exp $
 
 ( - todo, x - done)
 
@@ -14,6 +14,8 @@ x better Via parsing (handle ' ' in uri, eg: foo.bar : 1234 ; received=) and
 x (different way) add request header bitmap field for the modules
 - introduce variables & function in the script language (cfg. file)
 - ? variable number of params functions in script (no longer limited to 2)?
+- kill bind_idx
+- fix bind_address for tcp (in some  way)
 
 
 High priority:
