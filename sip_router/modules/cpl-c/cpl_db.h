@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.h,v 1.5 2003/08/21 10:50:44 bogdan Exp $
+ * $Id: cpl_db.h,v 1.6 2003/09/12 15:38:56 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -43,7 +43,7 @@ int write_to_db(db_con_t *db_con, char *usr, str *xml, str *bin);
  * Returns:  1 - success
  *          -1 - error
  */
-int get_user_script( db_con_t *db_hdl, str *user, str *script);
+int get_user_script( db_con_t *db_hdl, str *user, str *script, char *key);
 
 
 /* delete from database the entiry record for a given user - if a user has no

@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.c,v 1.8 2003/08/21 11:43:21 bogdan Exp $
+ * $Id: cpl_db.c,v 1.9 2003/09/12 15:38:56 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,10 +38,10 @@
  * Returns:  1 - success
  *          -1 - error
  */
-int get_user_script( db_con_t *db_hdl, str *user, str *script)
+int get_user_script( db_con_t *db_hdl, str *user, str *script, char* key)
 {
 	db_key_t   keys_cmp[] = {"user"};
-	db_key_t   keys_ret[] = {"cpl_bin"};
+	db_key_t   keys_ret[] = { key };
 	db_val_t   vals[1];
 	db_res_t   *res = 0 ;
 	char       tmp;
