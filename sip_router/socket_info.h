@@ -1,4 +1,4 @@
-/* $Id: socket_info.h,v 1.5 2004/11/09 15:15:11 andrei Exp $
+/* $Id: socket_info.h,v 1.6 2005/02/25 18:32:01 bogdan Exp $
  *
  * find & manage listen addresses 
  *
@@ -40,6 +40,7 @@
 
 #include "ip_addr.h" 
 #include "dprint.h"
+#include "globals.h"
 /* struct socket_info is defined in ip_addr.h */
 
 struct socket_info* udp_listen;
