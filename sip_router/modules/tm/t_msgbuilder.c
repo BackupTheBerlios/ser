@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.3 2002/06/10 22:00:22 jku Exp $
+ * $Id: t_msgbuilder.c,v 1.4 2002/08/08 21:14:56 janakj Exp $
  *
  * message printing
  */
@@ -166,7 +166,7 @@ char *build_ack(struct sip_msg* rpl,struct cell *trans,int branch,int *ret_len)
 	p_msg = trans->uas.request;
 	r_msg = rpl;
 
-	if ( parse_headers(rpl,HDR_TO)==-1 || !rpl->to )
+	if ( parse_headers(rpl,HDR_TO, 0)==-1 || !rpl->to )
 	{
 		LOG(L_ERR, "ERROR: t_build_ACK: "
 			"cannot generate a HBH ACK if key HFs in reply missing\n");

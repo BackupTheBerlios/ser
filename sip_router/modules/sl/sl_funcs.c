@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.22 2002/07/08 13:53:56 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.23 2002/08/08 21:14:56 janakj Exp $
  */
 
 #include <netinet/in.h>
@@ -106,7 +106,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 		goto error;
 	}
 	/* To header is needed (tag param in particular)*/
-	if (msg->to==0 && (parse_headers(msg,HDR_TO)==-1 || msg->to==0) )
+	if (msg->to==0 && (parse_headers(msg,HDR_TO, 0)==-1 || msg->to==0) )
 	{
 		LOG(L_ERR, "ERROR: sl_send_reply: cannot find/parse To\n");
 		goto error;
@@ -184,7 +184,7 @@ int sl_filter_ACK(struct sip_msg *msg )
 	}
 
 	/*force to parse to header -> we need it for tag param*/
-	if (parse_headers( msg, HDR_TO )==-1)
+	if (parse_headers( msg, HDR_TO, 0 )==-1)
 	{
 		LOG(L_ERR,"ERROR : SL_FILTER_ACK: unable to parse To header\n");
 		return -1;

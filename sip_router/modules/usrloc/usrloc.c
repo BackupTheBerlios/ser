@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.23 2002/08/06 10:39:23 jku Exp $
+/* $Id: usrloc.c,v 1.24 2002/08/08 21:14:56 janakj Exp $
  *
  * User location support module
  *
@@ -659,7 +659,7 @@ static int lookup_contact(struct sip_msg* _msg, char* _table, char* _str2)
 	contact_t* ptr;
 	
 	if (!_msg->to) {
-		if (parse_headers(_msg, HDR_TO) == -1) {
+		if (parse_headers(_msg, HDR_TO, 0) == -1) {
 			ERR("Error while parsing headers");
 			return -1;
 		}

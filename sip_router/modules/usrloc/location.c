@@ -1,5 +1,5 @@
 /* 
- * $Id: location.c,v 1.19 2002/08/08 18:17:58 janakj Exp $ 
+ * $Id: location.c,v 1.20 2002/08/08 21:14:56 janakj Exp $ 
  */
 
 #include <stdio.h>
@@ -61,7 +61,7 @@ static inline int parse_all_headers(struct sip_msg* _msg)
 		return FALSE;
 	}
 #endif
-	if (parse_headers(_msg, HDR_EOH) == -1) {
+	if (parse_headers(_msg, HDR_EOH, 0) == -1) {
 		ERR("Error while parsing headers");
 		return FALSE;
 	}

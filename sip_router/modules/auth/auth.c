@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.31 2002/08/08 18:17:08 janakj Exp $
+ * $Id: auth.c,v 1.32 2002/08/08 21:14:56 janakj Exp $
  */
 
 #include "auth.h"
@@ -269,7 +269,7 @@ static inline int authorize(struct sip_msg* _msg, char* _realm, char* _table, in
 	}
 #endif
 
-	if (parse_headers(_msg, HDR_EOH) == -1) {
+	if (parse_headers(_msg, HDR_EOH, 0) == -1) {
 		LOG(L_ERR, "authorize(): Error while parsing message header\n");
 		return -1;
 	}
