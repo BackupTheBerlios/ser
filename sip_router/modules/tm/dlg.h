@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.h,v 1.4 2003/04/30 18:50:58 janakj Exp $
+ * $Id: dlg.h,v 1.5 2003/07/08 16:38:51 dcm Exp $
  * Copyright (C) 2001-2003 Fhg Fokus
  *
  * This file is part of ser, a free SIP server.
@@ -159,5 +159,10 @@ int calculate_routeset_length(dlg_t* _d);
  */
 char* print_routeset(char* buf, dlg_t* _d);
 
+/*
+ * wrapper to calculate_hooks
+ * added by dcm
+ */
+int w_calculate_hooks(dlg_t* _d);
 
 #endif /* DLG_H */

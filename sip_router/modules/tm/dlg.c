@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.11 2003/07/07 15:06:23 andrei Exp $
+ * $Id: dlg.c,v 1.12 2003/07/08 16:38:51 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * -------
  * 2003-03-29 Created by janakj
+ * 2003-07-08 added wrapper to calculate_hooks, needed by b2bua (dcm)
  */
 
 
@@ -153,6 +154,14 @@ static inline int calculate_hooks(dlg_t* _d)
 	return 0;
 }
 
+/*
+ * wrapper to calculate_hooks
+ * added by dcm
+ */
+int w_calculate_hooks(dlg_t* _d)
+{
+	return calculate_hooks(_d);
+}
 
 /*
  * Create a new dialog
