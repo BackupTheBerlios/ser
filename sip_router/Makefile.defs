@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.204 2003/04/22 11:56:13 andrei Exp $
+# $Id: Makefile.defs,v 1.205 2003/04/22 11:59:13 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -36,7 +36,7 @@ ARCH = $(shell uname -m |sed -e s/i.86/i386/ -e s/sun4u/sparc64/  \
 CC_EXTRA_OPTS ?=
  # install location
 DESTDIR ?= /usr/local
-PREFIX = $(DESTDIR) 
+PREFIX ?= $(DESTDIR)
 LOCALBASE ?= /usr/local
 prefix = $(PREFIX)
 # install path is $(basedir) $(prefix) 
