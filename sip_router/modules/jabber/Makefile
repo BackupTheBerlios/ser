@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2002/09/30 20:02:12 andrei Exp $
+# $Id: Makefile,v 1.3 2002/10/16 14:17:13 dcm Exp $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=jabber.so
-LIBS=
+LIBS=-lexpat
 
 include ../../Makefile.modules
