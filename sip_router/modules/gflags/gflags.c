@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.2 2004/09/09 18:02:36 jiri Exp $
+/*$Id: gflags.c,v 1.3 2004/09/09 20:49:54 jiri Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour 
@@ -47,9 +47,9 @@
 /* flag buffer size for FIFO protocool */
 #define MAX_FLAG_LEN 12
 /* FIFO action protocol names */
-#define FIFO_SET_GFLAG "SET_GFLAG"
-#define FIFO_IS_GFLAG "RESET_GFLAG"
-#define FIFO_RESET_GFLAG "IS_GFLAG"
+#define FIFO_SET_GFLAG "set_gflag"
+#define FIFO_IS_GFLAG "is_gflag"
+#define FIFO_RESET_GFLAG "reset_gflag"
 
 #include "../../sr_module.h"
 #include "../../error.h"
