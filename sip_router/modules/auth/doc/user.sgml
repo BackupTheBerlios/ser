@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/05/02 18:28:27 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/05/02 21:05:29 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -173,7 +173,7 @@ if (www_authorize("iptel.org", "subscriber")) {
 		</listitem>
 	    </itemizedlist>
 	    <example>
-		<title>proxy_authorize usage</title>
+		<title>proxy_challenge usage</title>
 		<programlisting format="linespecific">
 ...
 if (!proxy_authorize("", "subscriber)) {
