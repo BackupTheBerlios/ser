@@ -1,7 +1,7 @@
 /*
  * Presence Agent, LPDIF document support
  *
- * $Id: lpidf.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: lpidf.h,v 1.2 2003/10/16 19:02:02 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,12 +42,12 @@ typedef enum lpidf_status {
 /*
  * Add a presentity information
  */
-int lpidf_add_presentity(str* _b, int _l, str* _uri);
+int lpidf_add_presentity(str* _b, int* _l, str* _uri);
 
 /*
  * Add a contact address with given status
  */
-int lpidf_add_address(str* _b, int _l, str* _addr, lpidf_status_t _st);
+int lpidf_add_address(str* _b, int* _l, str* _addr, lpidf_status_t _st);
 
 
 #endif /* LPIDF_H */
