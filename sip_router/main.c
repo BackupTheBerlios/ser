@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.73 2002/05/13 01:15:40 jku Exp $
+ * $Id: main.c,v 1.74 2002/05/26 12:10:13 jku Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.73 2002/05/13 01:15:40 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.74 2002/05/26 12:10:13 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -165,8 +165,9 @@ void print_ct_constants()
 #endif
 */
 	printf("MAX_RECV_BUFFER_SIZE %d, MAX_LISTEN %d,"
-			" MAX_URI_SIZE %d, MAX_PROCESSES %d\n",
-		MAX_RECV_BUFFER_SIZE, MAX_LISTEN, MAX_URI_SIZE, MAX_PROCESSES );
+			" MAX_URI_SIZE %d, MAX_PROCESSES %d, BUF_SIZE %d\n",
+		MAX_RECV_BUFFER_SIZE, MAX_LISTEN, MAX_URI_SIZE, MAX_PROCESSES,
+		BUF_SIZE );
 }
 
 /* debuging function */

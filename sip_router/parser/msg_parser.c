@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.2 2002/05/22 12:24:24 bogdan Exp $
+ * $Id: msg_parser.c,v 1.3 2002/05/26 12:10:13 jku Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -296,10 +296,11 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 				if (match){
 					match++;
 				}else {
-					tmp=end;
 					LOG(L_ERR,
 							"ERROR: get_hdr_field: bad body for <%s>(%d)\n",
 							hdr->name.s, hdr->type);
+					/* abort(); */
+					tmp=end;
 					goto error;
 				}
 				tmp=match;

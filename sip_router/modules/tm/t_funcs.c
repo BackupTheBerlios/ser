@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.138 2002/05/17 10:34:30 bogdan Exp $
+ * $Id: t_funcs.c,v 1.139 2002/05/26 12:10:13 jku Exp $
  *
  */
 
@@ -406,7 +406,7 @@ int t_build_and_send_CANCEL(struct cell *Trans,unsigned int branch)
 			req_line(p_msg).method.s);
 	}
 	/* changhing method name*/
-	memcpy(cancel_buf,"CANCEL",6);
+	memcpy(cancel_buf, CANCEL , CANCEL_LEN );
 	append_mem_block(p,CRLF,CRLF_LEN);
 	/* insert our via */
 	append_mem_block(p,via,via_len);
@@ -423,7 +423,7 @@ int t_build_and_send_CANCEL(struct cell *Trans,unsigned int branch)
 		{
 			append_mem_block(p,hdr->name.s,
 				((((struct cseq_body*)hdr->parsed)->method.s)-hdr->name.s));
-			append_mem_block(p,"CANCEL" CRLF, 6+CRLF_LEN );
+			append_mem_block(p, CANCEL CRLF, CANCEL_LEN +CRLF_LEN );
 		}
 }
 

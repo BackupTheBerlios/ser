@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.52 2002/05/13 01:15:41 jku Exp $
+ * $Id: h_table.h,v 1.53 2002/05/26 12:10:13 jku Exp $
  */
 
 
@@ -13,6 +13,7 @@
 
 #include "../../parser/msg_parser.h"
 #include "../../types.h"
+#include "../../md5utils.h"
 #include "config.h"
 /*#include "t_flags.h"*/
 
@@ -146,7 +147,7 @@ typedef struct cell
 	struct sockaddr_in ack_to;
 #ifndef	USE_SYNONIM
 	/* MD5checksum */
-	char md5[32];
+	char md5[MD5_LEN];
 #endif
 
 #ifdef	EXTRA_DEBUG

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.42 2002/05/13 01:15:41 jku Exp $
+ * $Id: t_funcs.h,v 1.43 2002/05/26 12:10:13 jku Exp $
  */
 
 
@@ -18,9 +18,12 @@
 #include "../../forward.h"
 #include "../../mem/mem.h"
 
+#include "../../md5utils.h"
+
 #include "config.h"
 #include "lock.h"
 #include "timer.h"
+
 
 struct s_table;
 struct timer;
@@ -57,11 +60,6 @@ extern unsigned int     nr_forks;
 #define LOCK_WAIT(_t) lock(&(_t)->wait_mutex )
 #define UNLOCK_WAIT(_t) unlock(&(_t)->wait_mutex )
 
-
-/* convenience short-cut macros */
-#define REQ_METHOD first_line.u.request.method_value
-#define REPLY_STATUS first_line.u.reply.statuscode
-#define REPLY_CLASS(_reply) ((_reply)->REPLY_STATUS/100)
 
 /* send a private buffer: utilize a retransmission structure
    but take a separate buffer not refered by it; healthy

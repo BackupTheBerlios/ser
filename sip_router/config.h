@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.22 2002/03/15 21:47:17 bogdan Exp $
+ *  $Id: config.h,v 1.23 2002/05/26 12:10:13 jku Exp $
  */
 
 
@@ -80,7 +80,7 @@
    avoid terror of excessively huge messages; they are
    useless anyway
 */
-#define BUF_SIZE (MAX_FIXED_BLOCK-32)
+#define BUF_SIZE 3040
 
 /* forwarding  -- Via buffer dimensioning */
 #define MAX_VIA_LINE_SIZE	240
