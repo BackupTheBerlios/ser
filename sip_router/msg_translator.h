@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.24 2003/10/03 07:19:41 andrei Exp $
+/*$Id: msg_translator.h,v 1.25 2003/10/08 20:02:14 jiri Exp $
  * 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,6 +30,7 @@
  *             ACK/200 tag matching
  *
  * 2003-03-01 VOICE_MAIL defs removed (jiri)
+ * 2003-10-08 receive_test function-alized (jiri)
  */
 
 
@@ -113,5 +114,7 @@ int branch_builder( unsigned int hash_index,
 	/* output value: string and actual length */
 	char *branch_str, int *len );
 
+/* check if IP address in Via != source IP address of signaling */
+int received_test( struct sip_msg *msg );
 
 #endif
