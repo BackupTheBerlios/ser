@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.3 2001/11/30 17:59:26 andrei Exp $
+/* $Id: sr_module.c,v 1.4 2001/12/04 19:00:49 andrei Exp $
  */
 
 #include "sr_module.h"
@@ -107,4 +107,14 @@ struct sr_module* find_module(void* f, int *i)
 			}
 	}
 	return 0;
+}
+
+
+
+void destroy_modules()
+{
+	struct sr_module* t;
+
+	for(t=modules;t;t=t->next)
+		if  ((t->exports)&&(t->exports->destroy_f)) t->exports->destroy_f();
 }

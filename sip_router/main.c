@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.33 2001/11/30 01:03:02 andrei Exp $
+ * $Id: main.c,v 1.34 2001/12/04 19:00:49 andrei Exp $
  */
 
 #include <stdio.h>
@@ -27,6 +27,7 @@
 #ifdef SHM_MEM
 #include "shm_mem.h"
 #endif
+#include "sr_module.h"
 
 
 #include <signal.h>
@@ -40,7 +41,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.33 2001/11/30 01:03:02 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.34 2001/12/04 19:00:49 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -296,19 +297,20 @@ static void sig_usr(int signo)
 			else
 				printf("statistics dump to %s failed\n", stat_file );
 #endif
+		DPrint("INT received, program terminates\n");
+		DPrint("Thank you for flying ser\n");
+		/* WARNING: very dangerous, might be unsafe*/
+		destroy_modules();
 #ifdef PKG_MALLOC
 		pkg_status();
 #endif
 #ifdef SHM_MEM
 		shm_status();
 #endif
-		DPrint("INT received, program terminates\n");
-		DPrint("Thank you for flying ser\n");
-		/* WARNING: very dangerous, might be unsafe*/
 #ifdef SHM_MEM
 		shm_mem_destroy();
-		exit(0);
 #endif
+		exit(0);
 	} else if (signo==SIGUSR1) { /* statistic */
 #ifdef STATS
 		dump_all_statistic();

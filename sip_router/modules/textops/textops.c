@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.1 2001/10/26 00:39:42 andrei Exp $
+/*$Id: textops.c,v 1.2 2001/12/04 19:00:50 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -33,7 +33,8 @@ static struct module_exports my_exports= {	"textops",
 	(int[])			 { 1,        2,               2},
 	(fixup_function[]){fixup_regex, fixup_regex,  fixup_regex},
 	3,
-	0
+	0, /* response function */
+	0  /* destroy function */
 };
 
 
