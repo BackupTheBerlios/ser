@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.3 2002/08/12 16:33:43 andrei Exp $
+ * $Id: resolve.h,v 1.4 2002/08/12 18:22:17 andrei Exp $
  *
  * resolver related functions
  */
@@ -82,6 +82,7 @@ static inline struct hostent* resolvehost(const char* name)
 	return he;
 }
 
+struct hostent* sip_resolvehost(char* name, unsigned short* port);
 
 
 

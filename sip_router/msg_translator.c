@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.62 2002/08/08 21:14:56 janakj Exp $
+/* $Id: msg_translator.c,v 1.63 2002/08/12 18:22:17 andrei Exp $
  *
  */
 
@@ -26,8 +26,8 @@
 #define MAX_RECEIVED_SIZE  57
 
 /* mallocs for local stuff (not needed to be shared mem?)*/
-#define local_malloc pkg_malloc
-#define local_free   pkg_free
+#define local_malloc(s) pkg_malloc((s))
+#define local_free(s)   pkg_free((s))
 
 
 #define append_str(_dest,_src,_len,_msg) \

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.5 2002/07/11 12:47:51 andrei Exp $ 
+ * $Id: parse_via.c,v 1.6 2002/08/12 18:22:17 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1655,6 +1655,8 @@ parse_again:
 						vb->last_param=param;
 						if (param->type==PARAM_BRANCH)
 							vb->branch=param;
+						else if (param->type==PARAM_RECEIVED)
+							vb->received=param;
 						break;
 					case P_PARAM:
 						break;

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.h,v 1.3 2002/08/12 12:18:50 janakj Exp $
+ * $Id: parse_via.h,v 1.4 2002/08/12 18:22:17 andrei Exp $
  */
 
 #ifndef PARSE_VIA_H
@@ -44,6 +44,7 @@ struct via_body {
 
 	     /* shortcuts to "important" params*/
 	struct via_param* branch;
+	struct via_param* received;
 	
 	struct via_body* next; /* pointer to next via body string if
 				  compact via or null */
