@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.25 2004/08/24 08:58:23 janakj Exp $
+ * $Id: acc.c,v 1.26 2004/09/14 11:44:59 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -444,6 +444,12 @@ int acc_db_bind(char* db_url)
 	acc_db_url=db_url;
 	if (bind_dbmod(acc_db_url, &acc_dbf)<0){
 		LOG(L_ERR, "ERROR: acc_db_init: bind_db failed\n");
+		return -1;
+	}
+
+	     /* Check database capabilities */
+	if (!DB_CAPABILITY(acc_dbf, DB_CAP_INSERT)) {
+		LOG(L_ERR, "ERROR: acc_db_init: Database module does not implement insert function\n");
 		return -1;
 	}
 	
