@@ -1,10 +1,11 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr.c,v 1.12 2002/04/30 23:22:49 janakj Exp $
+ * $Id: rr.c,v 1.13 2002/05/26 18:43:36 jku Exp $
  */
 
 #include "rr.h"
+#include "../../globals.h"
 #include "../../dprint.h"
 #include "utils.h"
 #include "../../route_struct.h"
