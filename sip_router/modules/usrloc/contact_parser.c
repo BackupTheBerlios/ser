@@ -1,5 +1,5 @@
 /* 
- * $Id: contact_parser.c,v 1.6 2002/04/12 00:36:01 janakj Exp $ 
+ * $Id: contact_parser.c,v 1.7 2002/07/18 17:57:52 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -95,8 +95,10 @@ static inline void parse_params(char* _b, time_t* _exp, float* _q)
 
 	if (!_b) return;
 
-	p = trim(find_next_param(_b));
-	if (!p) return;
+	p = find_next_param(_b);
+	if (!p) p = _b;
+	p = trim(p);
+
 	do {
 		if (p) end = find_next_param(p);
 		if (end) *(end - 1) = '\0';
