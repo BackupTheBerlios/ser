@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.71 2002/05/11 18:02:16 noh Exp $
+ * $Id: main.c,v 1.72 2002/05/12 11:42:07 janakj Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.71 2002/05/11 18:02:16 noh Exp $";
+static char id[]="@(#) $Id: main.c,v 1.72 2002/05/12 11:42:07 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -489,7 +489,7 @@ static void sig_usr(int signo)
 #ifdef STATS
 			dump_all_statistic();
 #endif
-			if (pif_file) unlink(pid_file);
+			if (pid_file) unlink(pid_file);
 		}
 		exit(0);
 	} else if (signo==SIGUSR1) { /* statistic */
