@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.192 2003/04/07 11:57:09 andrei Exp $
+# $Id: Makefile.defs,v 1.193 2003/04/07 16:44:06 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -79,6 +79,8 @@ INSTALL ?= install
 TAR ?= tar
 endif
 
+INSTALL-TOUCH = touch          # used to create the file first (good to 
+                               #  make solaris install work)
 # INSTALL-CFG = $(INSTALL) -m 644
 INSTALL-BIN = $(INSTALL) -m 755
 INSTALL-MODULES = $(INSTALL) -m 755
