@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.2 2001/12/04 19:00:50 andrei Exp $
+/*$Id: textops.c,v 1.3 2001/12/08 22:06:27 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -16,6 +16,7 @@
 #include "../../data_lump.h"
 #include "../../error.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h> /* for regex */
 #include <regex.h>

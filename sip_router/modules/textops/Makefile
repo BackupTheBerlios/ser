@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2001/12/06 20:54:54 andrei Exp $
+# $Id: Makefile,v 1.4 2001/12/08 22:06:27 andrei Rel $
 #
 # print example module makefile
 #
@@ -6,46 +6,8 @@
 # WARNING: do not run this directly, it should be run by the master Makefile
 
 auto_gen=
-sources= $(filter-out $(auto_gen), $(wildcard *.c)) $(auto_gen) 
-objs= $(sources:.c=.o)
-depends= $(sources:.c=.d)
-
 NAME=textops.so
-
-LDFLAGS=-O2 -shared
 LIBS=
-CFLAGS+= -fPIC -DPIC
 
-ALLDEP=Makefile ../../Makefile
+include ../../Makefile.modules
 
-ifeq ($(ARCH), SunOS)
-LDFLAGS=-O2 -G
-endif
-
-#implicit rules
-%.o:%.c $(ALLDEP)
-	$(CC) $(CFLAGS) $(DEFS) -c $< -o $@
-
-%.d: %.c
-	$(MKDEP) $< >$@
-
-
-$(NAME): $(objs)
-	$(LD) $(LDFLAGS) $(objs) $(LIBS) -o $(NAME)
-
-
-.PHONY: all
-all: $(NAME)
-
-.PHONY: dep
-dep: $(depends)
-
-.PHONY: clean
-clean:
-	-rm $(objs) $(NAME)
-
-.PHONY: proper
-proper: clean
-	-rm $(depends)
-
-include $(depends)
