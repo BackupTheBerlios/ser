@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.25 2002/01/22 19:23:12 bogdan Exp $
+ * $Id: sip_msg.c,v 1.26 2002/01/23 13:23:21 bogdan Exp $
  */
 
 
@@ -174,8 +174,8 @@ struct sip_msg* sip_msg_cloner_1( struct sip_msg *org_msg )
 	    case HDR_CONTACT :
 		new_msg->contact = new_hdr;
 		break;
-	    case HDR_MAXFORWARD :
-		new_msg->maxforward = new_hdr;
+	    case HDR_MAXFORWARDS :
+		new_msg->maxforwards = new_hdr;
 		break;
 	    case HDR_ROUTE :
 		new_msg->route = new_hdr;
