@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.h,v 1.3 2004/03/02 18:26:40 janakj Exp $
+ * $Id: t_fifo.h,v 1.4 2004/03/03 16:03:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,8 @@
 
 #include "../../parser/msg_parser.h"
 
+extern int unix_send_timeout;
+
 int init_twrite_lines();
 
 int init_twrite_sock(void);
@@ -45,4 +47,3 @@ int t_write_req(struct sip_msg* msg, char* vm_fifo, char* action);
 int t_write_unix(struct sip_msg* msg, char* sock_name, char* action);
 
 #endif
-
