@@ -1,5 +1,5 @@
 /* 
- * $Id: res.h,v 1.1 2003/10/24 20:35:35 janakj Exp $ 
+ * $Id: res.h,v 1.2 2003/11/17 22:49:50 janakj Exp $ 
  *
  * MySQL module result related functions
  *
@@ -30,8 +30,8 @@
 #ifndef RES_H
 #define RES_H
 
-#include <db_res.h>
-#include <db_con.h>
+#include "../../db/db_res.h"
+#include "../../db/db_con.h"
 
 
 /*

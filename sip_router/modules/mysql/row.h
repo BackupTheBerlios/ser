@@ -1,5 +1,5 @@
 /* 
- * $Id: row.h,v 1.1 2003/10/24 20:35:35 janakj Exp $ 
+ * $Id: row.h,v 1.2 2003/11/17 22:49:50 janakj Exp $ 
  *
  * MySQL module row related functions
  *
@@ -30,9 +30,9 @@
 #ifndef ROW_H
 #define ROW_H
 
-#include <db_con.h>
-#include <db_res.h>
-#include <db_row.h>
+#include "../../db/db_con.h"
+#include "../../db/db_res.h"
+#include "../../db/db_row.h"
 
 
 /*

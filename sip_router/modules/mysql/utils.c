@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.c,v 1.8 2003/11/17 21:41:56 janakj Exp $ 
+ * $Id: utils.c,v 1.9 2003/11/17 22:49:50 janakj Exp $ 
  *
  * MySQL module utilities
  *
@@ -36,7 +36,6 @@
 
 #include <strings.h>
 #include <string.h>
-#include "defs.h"
 #include "utils.h"
 
 

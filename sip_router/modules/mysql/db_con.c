@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.12 2003/10/24 20:35:35 janakj Exp $ 
+ * $Id: db_con.c,v 1.13 2003/11/17 22:49:50 janakj Exp $ 
  *
  * Database connection related functions
  *
@@ -32,7 +32,6 @@
 #include "../../db/db.h"
 #include "../../dprint.h"
 #include "../../mem/mem.h"
-#include "defs.h"
 
 
 /*
@@ -43,12 +42,12 @@ int use_table(db_con_t* _h, const char* _t)
 {
 	char* ptr;
 	int l;
-#ifdef PARANOID
+
 	if ((!_h) || (!_t)) {
 		LOG(L_ERR, "use_table(): Invalid parameter value\n");
 		return -1;
 	}
-#endif
+
 	l = strlen(_t) + 1;
 	ptr = (char*)pkg_malloc(l);
 	if (!ptr) {

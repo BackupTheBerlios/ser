@@ -1,5 +1,5 @@
 /* 
- * $Id: val.h,v 1.1 2003/10/24 20:35:35 janakj Exp $ 
+ * $Id: val.h,v 1.2 2003/11/17 22:49:50 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,7 +28,7 @@
 #ifndef VAL_H
 #define VAL_H
 
-#include <db_val.h>
+#include "../../db/db_val.h"
 
 
 /*
