@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.11 2003/01/14 15:00:01 janakj Exp $
+ * $Id: uac.h,v 1.12 2003/01/14 22:45:10 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -60,7 +60,7 @@ typedef int (*tuac_f)(str *msg_type, str *dst, str *headers,str *body,
 	struct dialog *dlg );
 
 typedef int (*tuacdlg_f)(str* msg_type, str* dst, str* ruri, str* to,
-			 str* from, str* totag, str* fromtag, int cseq,
+			 str* from, str* totag, str* fromtag, int* cseq,
 			 str* callid, str* headers, str* body,
 			 transaction_cb completion_cb, void* cbp
 			 );
