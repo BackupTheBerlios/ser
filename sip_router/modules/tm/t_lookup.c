@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.89 2004/10/10 21:25:01 jiri Exp $
+ * $Id: t_lookup.c,v 1.90 2004/10/10 23:01:25 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -76,6 +76,7 @@
  *             (bogdan)
  * 2004-02-11  FIFO/CANCEL + alignments (hash=f(callid,cseq)) (uli+jiri)
  * 2004-02-13: t->is_invite and t->local replaced with flags (bogdan)
+ * 2004-10-10: use of mhomed disabled for replies (jiri)
  */
 
 #include "defs.h"

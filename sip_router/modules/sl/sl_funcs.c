@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.48 2004/10/10 21:25:01 jiri Exp $
+ * $Id: sl_funcs.c,v 1.49 2004/10/10 23:01:25 jiri Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -38,6 +38,7 @@
   * 2003-09-11: sl_tag converted to str to fit to the new
   *               build_res_buf_from_sip_req() interface (bogdan)
   * 2003-11-11: build_lump_rpl() removed, add_lump_rpl() has flags (bogdan)
+  * 2004-10-10: use of mhomed disabled for replies (jiri)
   */
 
 
