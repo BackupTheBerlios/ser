@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.17 2003/04/28 22:03:15 janakj Exp $
+ * $Id: challenge.c,v 1.18 2003/05/26 15:24:45 andrei Exp $
  *
  * Challenge related functions
  *
@@ -186,7 +186,8 @@ static inline int challenge(struct sip_msg* _msg, str* _realm, int _qop,
  */
 int www_challenge(struct sip_msg* _msg, char* _realm, char* _qop)
 {
-	return challenge(_msg, (str*)_realm, (int)_qop, 401, MESSAGE_401, WWW_AUTH_CHALLENGE);
+	return challenge(_msg, (str*)_realm, (int)(long)_qop, 401, MESSAGE_401,
+						WWW_AUTH_CHALLENGE);
 }
 
 
@@ -195,7 +196,8 @@ int www_challenge(struct sip_msg* _msg, char* _realm, char* _qop)
  */
 int proxy_challenge(struct sip_msg* _msg, char* _realm, char* _qop)
 {
-	return challenge(_msg, (str*)_realm, (int)_qop, 407, MESSAGE_407, PROXY_AUTH_CHALLENGE);
+	return challenge(_msg, (str*)_realm, (int)(long)_qop, 407, MESSAGE_407, 
+						PROXY_AUTH_CHALLENGE);
 }
 
 

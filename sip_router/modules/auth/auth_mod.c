@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.38 2003/04/28 22:03:15 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.39 2003/05/26 15:24:45 andrei Exp $ 
  *
  * Digest Authentication Module
  *
@@ -206,7 +206,7 @@ static void destroy(void)
 
 static int challenge_fixup(void** param, int param_no)
 {
-	unsigned int qop;
+	unsigned long qop;
 	int err;
 	
 	if (param_no == 1) {

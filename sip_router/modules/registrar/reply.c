@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.13 2003/05/20 17:30:39 andrei Exp $
+ * $Id: reply.c,v 1.14 2003/05/26 15:24:45 andrei Exp $
  *
  * Send a reply
  *
@@ -206,7 +206,7 @@ int codes[] = {
  */
 int send_reply(struct sip_msg* _m)
 {
-	int code;
+	long code;
 	char* msg = MSG_200; /* makes gcc shut up */
 
 	struct lump_rpl* p, *ei;
@@ -230,7 +230,7 @@ int send_reply(struct sip_msg* _m)
 	}
 
 	if (sl_reply(_m, (char*)code, msg) == -1) {
-		LOG(L_ERR, "send_reply(): Error while sending %d %s\n", code, msg);
+		LOG(L_ERR, "send_reply(): Error while sending %ld %s\n", code, msg);
 		return -1;
 	} else return 0;	
 }

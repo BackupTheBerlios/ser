@@ -1,5 +1,5 @@
 /*
- * $Id: nhelpr_funcs.c,v 1.2 2003/05/09 13:44:47 andrei Exp $
+ * $Id: nhelpr_funcs.c,v 1.3 2003/05/26 15:24:45 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -160,7 +160,7 @@ int check_content_type(struct sip_msg *msg)
 
 	if (*p==';'||*p==' '||*p=='\t'||*p=='\n'||*p=='\r'||*p==0) {
 		DBG("DEBUG:check_content_type: type <%.*s> found valid\n",
-			p-str_type.s,str_type.s);
+			(int)(p-str_type.s), str_type.s);
 		return 1;
 	} else {
 		LOG(L_ERR,"ERROR:check_content_type: bad end for type!\n");
