@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.10 2002/12/10 11:10:04 janakj Exp $
+ * $Id: save.c,v 1.11 2003/01/14 23:32:52 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -332,7 +332,7 @@ int save(struct sip_msg* _m, char* _t, char* _s)
 	get_act_time();
 	c = get_first_contact(_m);
 
-	if (extract_aor(_m, &aor) < 0) {
+	if (extract_aor(&get_to(_m)->uri, &aor) < 0) {
 		LOG(L_ERR, "save(): Error while extracting Address Of Record\n");
 		goto error;
 	}

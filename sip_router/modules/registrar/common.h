@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.5 2002/12/10 11:10:04 janakj Exp $
+ * $Id: common.h,v 1.6 2003/01/14 23:32:52 janakj Exp $
  *
  * Common stuff
  *
@@ -50,7 +50,7 @@ int get_username(str* _s);
 /*
  * Extract Address Of Record
  */
-int extract_aor(struct sip_msg* _m, str* _a);
+int extract_aor(str* _uri, str* _a);
 
 
 #endif /* COMMON_H */
