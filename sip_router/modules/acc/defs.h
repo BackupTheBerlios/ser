@@ -1,5 +1,5 @@
 /*
- * $Id: defs.h,v 1.3 2003/04/05 16:02:45 jiri Exp $
+ * $Id: defs.h,v 1.4 2003/05/02 12:22:16 jih Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -49,7 +49,7 @@
 
 /* caution: keep consistent with definition of rad_attr */
 #ifdef RAD_ACC
-#	define RAD_ACC_FMT "UFTocdrn"
+#	define RAD_ACC_FMT "FTocdrn"
 #endif
 
 

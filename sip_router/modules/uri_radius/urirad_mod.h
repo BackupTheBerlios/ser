@@ -1,5 +1,5 @@
 /*
- * $Id: urirad_mod.h,v 1.1 2003/03/16 18:00:29 janakj Exp $
+ * $Id: urirad_mod.h,v 1.2 2003/05/02 12:20:59 jih Exp $
  *
  * URI checks using Radius
  *
@@ -38,5 +38,6 @@
  * Module parameter variables
  */
 extern char* radius_config;   /* radiusclient configuration file */
+extern int service_type;      /* radius service type for uri check */
 
 #endif /* URIRAD_MOD_H */

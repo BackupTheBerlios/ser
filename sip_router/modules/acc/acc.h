@@ -1,5 +1,5 @@
 /*
- * $Id: acc.h,v 1.8 2003/04/29 21:02:59 jiri Exp $
+ * $Id: acc.h,v 1.9 2003/05/02 12:22:16 jih Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -83,6 +83,8 @@
 #define A_UP_IURI_LEN (sizeof(A_UP_IURI)-1)
 #define A_CODE "code"
 #define A_CODE_LEN (sizeof(A_CODE)-1)
+#define A_REALM "realm"
+#define A_REALM_LEN (sizeof(A_REALM)-1)
 
 #define A_SEPARATOR ", " /* must be shorter than ACC! */
 #define A_SEPARATOR_LEN (sizeof(A_SEPARATOR)-1)

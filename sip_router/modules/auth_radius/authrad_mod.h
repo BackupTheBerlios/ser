@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.h,v 1.2 2003/03/09 23:14:45 janakj Exp $
+ * $Id: authrad_mod.h,v 1.3 2003/05/02 12:21:54 jih Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -45,5 +45,6 @@ extern post_auth_f post_auth_func;
  * Module parameter variables
  */
 extern char* radius_config; /* radiusclient configuration file */
+extern int service_type;    /* radius service type used for access request */
  
 #endif /* AUTHRAD_MOD_H */

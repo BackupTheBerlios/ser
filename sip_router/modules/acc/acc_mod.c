@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.23 2003/04/29 21:02:59 jiri Exp $
+ * $Id: acc_mod.c,v 1.24 2003/05/02 12:22:16 jih Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,6 +56,7 @@
 
 #ifdef RAD_ACC
 #include <radiusclient.h>
+#include "dict.h"
 #endif
 
 MODULE_VERSION
@@ -94,6 +95,7 @@ char *log_fmt=DEFAULT_LOG_FMT;
 char *radius_config = "/usr/local/etc/radiusclient/radiusclient.conf";
 int radius_flag = 1;
 int radius_missed_flag = 2;
+int service_type = PW_SIP;
 #endif
 
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.3 2003/04/28 22:04:33 janakj Exp $
+ * $Id: sterman.c,v 1.4 2003/05/02 12:21:54 jih Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -33,11 +33,12 @@
 
 
 #include <string.h>
-#include <radiusclient.h>
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 #include "ser_radius.h"
 #include "sterman.h"
+#include "authrad_mod.h"
+#include <radiusclient.h>
 
 
 /*
@@ -195,7 +196,7 @@ int radius_authorize_sterman(dig_cred_t* _cred, str* _method, str* _user, str* _
 	}
 
 	/* Indicate the service type, Authenticate only in our case */
-	service = PW_AUTHENTICATE_ONLY;
+	service = service_type;
 	if (!rc_avpair_add(&send, PW_SERVICE_TYPE, &service, 0)) {
 		rc_avpair_free(send);
 	 	return -18;

@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.5 2003/04/05 14:05:18 jiri Exp $
+# $Id: README,v 1.6 2003/05/02 12:25:43 jih Exp $
 #
 
 About acc Module
@@ -145,6 +145,11 @@ Desc:	path to radius client configuration file; set the referred config
 		secret (should equal that in /usr/local/etc/raddb/clients for
 		freeRadius servers) and dictionary; see etc for an example of
 		config file and dictionary
+
+Name:    service_type
+Type:    int
+Default: 15 (SIP)
+Desc:    Radius service type used for accounting
 
 Name:	radius_missed_flag, radius_flag -- analogous to syslog flags
 

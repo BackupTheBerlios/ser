@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2003/04/29 21:02:59 jiri Exp $
+# $Id: Makefile,v 1.9 2003/05/02 12:22:16 jih Exp $
 #
 # acc module makefile
 #
@@ -13,7 +13,7 @@ LIBS=
 DEFS+=-DSQL_ACC
 
 # uncomment the next two lines if you wish to enable RADIUS accounting
-#DEFS+=-DRAD_ACC
-#LIBS=-L$(LOCALBASE)/lib -lradiusclient
+DEFS+=-DRAD_ACC
+LIBS=-L$(LOCALBASE)/lib -lradiusclient
 
 include ../../Makefile.modules
