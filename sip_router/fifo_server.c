@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.35 2003/03/19 18:41:58 andrei Exp $
+ * $Id: fifo_server.c,v 1.36 2003/03/29 02:30:35 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -53,8 +53,9 @@
  *
  * History:
  * --------
- *  2003-01-29  new built-in fifo commands: arg and pwd (jiri)
+ *  2003-03-29  destroy pkg mem introduced (jiri)
  *  2003-03-19  replaced all mallocs/frees w/ pkg_malloc/pkg_free (andrei)
+ *  2003-01-29  new built-in fifo commands: arg and pwd (jiri)
  */
 
 
@@ -133,6 +134,19 @@ int register_fifo_cmd(fifo_cmd f, char *cmd_name, void *param)
 	DBG("DEBUG: register_fifo_cmd: new command (%s) registered\n", cmd_name );
 
 	return 1;
+}
+
+void destroy_fifo()
+{
+	struct fifo_command *c, *foo;
+
+	c=cmd_list;
+
+	while(c) {
+		foo=c->next;
+		pkg_free(c);
+		c=foo;
+	}
 }
 
 

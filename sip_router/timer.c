@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.9 2003/03/19 18:41:58 andrei Exp $
+ * $Id: timer.c,v 1.10 2003/03/29 02:30:35 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
 /* History:
  * --------
  *  2003-03-19  replaced all the mallocs/frees w/ pkg_malloc/pkg_free (andrei)
+ *  2003-03-29  cleaning pkg_mallocs introduced (jiri)
  */
 
 
@@ -72,12 +73,21 @@ int init_timer()
 
 void destroy_timer()
 {
+	struct sr_timer* t, *foo;
+
 	if (jiffies){
 #ifdef SHM_MEM
 		shm_free(jiffies); jiffies=0;
 #else
 		pkg_free(jiffies); jiffies=0;
 #endif
+	}
+
+	t=timer_list;
+	while(t) {
+		foo=t->next;
+		pkg_free(t);
+		t=foo;
 	}
 }
 

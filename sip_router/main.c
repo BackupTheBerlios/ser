@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.148 2003/03/27 13:26:06 andrei Exp $
+ * $Id: main.c,v 1.149 2003/03/29 02:30:35 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,7 @@
  * 2002-01-29  argc/argv globalized via my_{argc|argv} (jiri)
  * 2003-01-23  mhomed added (jiri)
  * 2003-03-19  replaced all malloc/frees w/ pkg_malloc/pkg_free (andrei)
+ * 2003-03-29  pkg cleaners for fifo and script callbacks introduced (jiri)
  *
  */
 
@@ -80,6 +81,7 @@
 #include "name_alias.h"
 #include "hash_func.h"
 #include "pt.h"
+#include "script_cb.h"
 #ifdef USE_TCP
 #include "tcp_init.h"
 #endif
@@ -91,7 +93,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.148 2003/03/27 13:26:06 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.149 2003/03/29 02:30:35 jiri Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -355,6 +357,8 @@ void cleanup(show_status)
 	destroy_tcp();
 #endif
 	destroy_timer();
+	destroy_fifo();
+	destroy_script_cb();
 #ifdef PKG_MALLOC
 	if (show_status){
 		LOG(memlog, "Memory status (pkg):\n");

@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.12 2003/02/27 20:20:13 jiri Exp $
+ * $Id: fifo_server.h,v 1.13 2003/03/29 02:30:35 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -84,5 +84,7 @@ FILE *open_reply_pipe( char *pipe_name );
 /* tell FIFO client an error occured via reply pipe */
 void fifo_reply( char *reply_fifo, char *reply_fmt, ... );
 
+/* memory deallocation */
+void destroy_fifo();
 
 #endif
