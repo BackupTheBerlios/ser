@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.16 2002/09/26 12:16:17 andrei Exp $
+$Id: INSTALL,v 1.17 2002/09/26 16:34:29 andrei Rel $
 
 
 Installation Notes
@@ -223,9 +223,9 @@ your box.
 
 1) Download the package containing the ser mysql module from: 
     http://www.iptel.org/ser/
-    (rpm and deb provided, the binary tar.gz distribution and the solaris
-    package do not include it, if you use them you'll have to rebuild from the
-    source).
+    (rpm and deb provided, most of the binary tar.gz distributions and the 
+     solaris package include it; if it is not present you'll have to rebuild
+     from the source).
 2) install the package
     rpm -i <package_name>
     or
