@@ -1,5 +1,5 @@
-/* $Id: trim.h,v 1.3 2002/09/19 12:23:53 jku Exp $ */
-/*
+/* 
+ * $Id: trim.h,v 1.4 2002/09/19 14:51:51 janakj Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
