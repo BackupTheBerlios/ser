@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.98 2004/12/03 19:09:33 andrei Exp $
+ * $Id: t_reply.c,v 1.99 2005/02/01 14:18:21 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1319,6 +1319,7 @@ int reply_received( struct sip_msg  *p_msg )
 				DBG("reply_received: FR_INV_TIMER = %d\n", timer);
 				set_timer( & uac->request.fr_timer,
 					   FR_INV_TIMER_LIST, &timer );
+				t->flags |= T_NOISY_CTIMER_FLAG;
 			} else {
 				set_timer( & uac->request.fr_timer,
 					   FR_INV_TIMER_LIST, 0 );
