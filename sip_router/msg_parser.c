@@ -1,11 +1,12 @@
 /*
- * $Id: msg_parser.c,v 1.5 2001/09/07 01:24:32 andrei Exp $
+ * $Id: msg_parser.c,v 1.6 2001/09/21 20:24:13 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
  */
 
 #include <string.h>
+#include <stdlib.h>
 
 #include "msg_parser.h"
 #include "parser_f.h"
@@ -351,7 +352,6 @@ int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 	struct hdr_field hf;
 	struct via_body vb1, vb2;
 	int offset;
-	int r;
 
 	
 	/* eat crlf from the beginning */

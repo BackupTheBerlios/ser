@@ -1,9 +1,11 @@
 /*
- * $Id: main.c,v 1.7 2001/09/09 23:29:18 andrei Exp $
+ * $Id: main.c,v 1.8 2001/09/21 20:24:13 andrei Exp $
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
+#include <ctype.h>
 #include <string.h>
 #include <netdb.h>
 #include <unistd.h>
@@ -19,8 +21,8 @@
 #include "globals.h"
 
 
-static char id[]="@(#) $Id: main.c,v 1.7 2001/09/09 23:29:18 andrei Exp $";
-static char version[]="sip_router 0.3";
+static char id[]="@(#) $Id: main.c,v 1.8 2001/09/21 20:24:13 andrei Exp $";
+static char version[]="sip_router 0.5";
 static char help_msg[]= "\
 Usage: sip_router -l address [-l address] [options]\n\
 Options:\n\
@@ -89,6 +91,12 @@ int process_no = 0;
 
 #define MAX_FD 32 /* maximum number of inherited open file descriptors,
 		    (normally it shouldn't  be bigger  than 3) */
+
+
+extern FILE* yyin;
+extern int yyparse();
+
+
 
 /* daemon init, return 0 on success, -1 on error */
 int daemonize(char*  name)
@@ -226,8 +234,8 @@ int main(int argc, char** argv)
 					}
 					break;
 			case 'n':
-					children_no=strtol(optarg, tmp, 10);
-					if (tmp &&(*tmp)){
+					children_no=strtol(optarg, &tmp, 10);
+					if ((tmp==0) ||(*tmp)){
 						fprintf(stderr, "bad process number: -n %s\n", optarg);
 						goto error;
 					}
@@ -251,6 +259,7 @@ int main(int argc, char** argv)
 					break;
 			case 'V':
 					printf("version: %s\n", version);
+					printf("%s\n",id);
 					exit(0);
 					break;
 			case 'h':
@@ -319,13 +328,14 @@ int main(int argc, char** argv)
 				strerror(errno));
 		goto error;
 	}
-
-	if (cfg_parse_stream(cfg_stream)!=0){
+	
+	yyin=cfg_stream;
+	if (yyparse()!=0){
 		fprintf(stderr, "ERROR: config parser failure\n");
 		goto error;
 	}
 	
-		
+	
 	print_rl();
 
 

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2001/09/20 17:17:26 andrei Exp $
+# $Id: Makefile,v 1.5 2001/09/21 20:24:13 andrei Exp $
 #
 # sip_router makefile
 #
@@ -13,13 +13,13 @@ NAME=sip_router
 
 
 CC=gcc
-CFLAGS=-O2
+CFLAGS=-O2 -Wcast-align  #-Wmissing-prototypes  -Wall
 LEX=lex
 YACC=bison
 YACC_FLAGS=-d
 # on linux and freebsd keep it empty (e.g. LIBS= )
 # on solaris add -lxnet (e.g. LIBS= -lxnet)
-LIBS=
+LIBS=-lfl
 ALLDEP=Makefile
 
 MKDEP=gcc -M
@@ -35,14 +35,15 @@ MKDEP=gcc -M
 	$(MKDEP) $< >$@
 
 # normal rules
+$(NAME): $(objs)
+	$(CC) $(CFLAGS) $(objs) -o $(NAME) $(LIBS)
+
 lex.yy.c: cfg.lex $(ALLDEP)
 	$(LEX) $<
 
 cfg.tab.c: cfg.y
 	$(YACC) $(YACC_FLAGS) $<
 
-$(NAME): $(objs)
-	$(CC) $(CFLAGS) $(LIBS) $(objs) -o $(NAME)
 
 .PHONY: all
 all: $(NAME)

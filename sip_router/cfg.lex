@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.3 2001/09/19 21:45:25 andrei Exp $
+ * $Id: cfg.lex,v 1.4 2001/09/21 20:24:13 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -214,7 +214,7 @@ EAT_ABLE	[\ \t\b\r]
 static char* addstr(char * src, char ** dest)
 {
 	char *tmp;
-	int len1, len2;
+	unsigned len1, len2;
 	
 	if (*dest==0){
 		*dest=strdup(src);
