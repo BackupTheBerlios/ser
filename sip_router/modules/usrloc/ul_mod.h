@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.12 2004/06/08 10:55:31 andrei Exp $
+ * $Id: ul_mod.h,v 1.13 2004/07/21 07:57:21 sobomax Exp $
  *
  * Usrlocation module interface
  *
@@ -62,6 +62,7 @@ extern str method_col;
 extern str replicate_col;
 extern str flags_col;
 extern str state_col;
+extern str user_agent_col;
 extern str db_url;
 extern int timer_interval;
 extern int db_mode;

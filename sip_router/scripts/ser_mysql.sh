@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.56 2004/07/05 17:36:47 dcm Exp $
+# $Id: ser_mysql.sh,v 1.57 2004/07/21 07:57:21 sobomax Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -320,6 +320,7 @@ CREATE TABLE aliases (
   replicate int(10) unsigned NOT NULL default '0',
   state tinyint(1) unsigned NOT NULL default '0',
   flags int(11) NOT NULL default '0',
+  user_agent varchar(50) NOT NULL default '',
   PRIMARY KEY($USERCOL, domain, contact),
   INDEX aliases_contact (contact)
 ) $TABLE_TYPE;
@@ -375,6 +376,7 @@ CREATE TABLE location (
   replicate int(10) unsigned NOT NULL default '0',
   state tinyint(1) unsigned NOT NULL default '0',
   flags int(11) NOT NULL default '0',
+  user_agent varchar(50) NOT NULL default '',
   PRIMARY KEY($USERCOL, domain, contact)
 ) $TABLE_TYPE;
 
