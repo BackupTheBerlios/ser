@@ -1,11 +1,12 @@
 /* 
- * $Id: utils.h,v 1.3 2002/02/26 00:11:02 janakj Exp $ 
+ * $Id: utils.h,v 1.4 2002/05/10 00:54:56 janakj Exp $ 
  */
 
 #ifndef UTILS_H
 #define UTILS_H
 
 #include "../../msg_parser.h"
+#include "../../str.h"
 
 #define PARANOID
 
@@ -68,5 +69,14 @@ char* find_not_quoted(char* _b, char c);
  */
 char* eat_name(char* _b);
 
+/*
+ * Convert a string to its hex representation
+ */
+void to_hex(char* _dst, char *_src, int _src_len);
+
+/*
+ * Unquote a string
+ */
+void unquote(str* _s);
 
 #endif
