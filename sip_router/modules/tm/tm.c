@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.35 2002/03/02 04:51:55 bogdan Exp $
+ * $Id: tm.c,v 1.36 2002/03/02 06:47:27 andrei Exp $
  *
  * TM module
  *
@@ -126,7 +126,7 @@ static int fixup_t_forward(void** param, int param_no)
 		name=*param;
 #ifdef DNS_IP_HACK
 		len=strlen(name);
-		ip=str2ip(name, len, &err);
+		ip=str2ip((unsigned char*)name, len, &err);
 		if (err==0){
 			goto copy;
 		}

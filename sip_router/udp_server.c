@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.30 2002/03/02 02:20:00 andrei Exp $
+ * $Id: udp_server.c,v 1.31 2002/03/02 06:47:27 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -53,7 +53,8 @@ int probe_max_receive_buffer( int udp_sock )
 		if (phase==0) optval <<= 1; else optval+=BUFFER_INCREMENT;
 		if (optval > maxbuffer){
 			if (phase==1) break; 
-		} else { phase=1; optval >>=1; continue; }
+			else { phase=1; optval >>=1; continue; }
+		}
 		LOG(L_DBG, "DEBUG: udp_init: trying SO_RCVBUF: %d\n", optval );
 		if (setsockopt( udp_sock, SOL_SOCKET, SO_RCVBUF,
 			(void*)&optval, sizeof(optval)) ==-1){

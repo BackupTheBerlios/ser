@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.8 2002/03/02 04:51:55 bogdan Exp $
+ * $Id: t_fwd.c,v 1.9 2002/03/02 06:47:27 andrei Exp $
  *
  */
 
@@ -164,7 +164,7 @@ int t_forward_ack( struct sip_msg* p_msg , unsigned int dest_ip_param ,
 										unsigned int dest_port_param )
 {
 	int branch;
-	int len;
+	unsigned int len;
 	char *buf;
 	struct retrans_buff *srb;
 #ifdef _DONT_USE
