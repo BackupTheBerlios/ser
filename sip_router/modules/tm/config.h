@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.16 2002/09/19 21:26:12 jiri Rel $
+ * $Id: config.h,v 1.17 2002/10/21 03:08:20 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus

@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.73 2002/09/29 10:13:36 jiri Exp $
+ * $Id: msg_translator.c,v 1.74 2002/10/21 03:08:20 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -655,7 +655,7 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text,
 		/*server header*/
 		len += SERVER_HDR_LEN + CRLF_LEN;
 		/*content length header*/
-		len +=CONTENT_LEN_LEN + CRLF_LEN;
+		len +=CONTENT_LENGTH_LEN+1 + CRLF_LEN;
 	}
 	if (sip_warning) {
 		warning = warning_builder(msg,&warning_len);
@@ -743,8 +743,8 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text,
 		memcpy( p, CRLF, CRLF_LEN );
 		p+=CRLF_LEN;
 		/* content length header*/
-		memcpy( p, CONTENT_LEN , CONTENT_LEN_LEN );
-		p+=CONTENT_LEN_LEN;
+		memcpy( p, CONTENT_LENGTH "0" , CONTENT_LENGTH_LEN+1 );
+		p+=CONTENT_LENGTH_LEN+1;
 		memcpy( p, CRLF, CRLF_LEN );
 		p+=CRLF_LEN;
 	}

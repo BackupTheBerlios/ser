@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.h,v 1.5 2002/09/25 20:23:42 jiri Rel $
+ * $Id: t_stats.h,v 1.6 2002/10/21 03:08:20 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -35,19 +35,20 @@
 
 
 extern struct t_stats *tm_stats;
+typedef unsigned long stat_counter;
 
 struct t_stats {
 	/* number of transactions in wait state */
-	unsigned long *s_waiting;
+	stat_counter *s_waiting;
 	/* number of server transactions */
-	unsigned long *s_transactions;
+	stat_counter *s_transactions;
 	/* number of UAC transactions (part of transactions) */
-	unsigned long *s_client_transactions;
+	stat_counter *s_client_transactions;
 	/* number of transactions which completed with this status */
-	unsigned long completed_3xx, completed_4xx, completed_5xx, 
+	stat_counter completed_3xx, completed_4xx, completed_5xx, 
 		completed_6xx, completed_2xx;
-	unsigned long replied_localy;
-	unsigned long deleted;
+	stat_counter replied_localy;
+	stat_counter deleted;
 };
 
 inline void static t_stats_new(int local)

@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.35 2002/10/17 10:22:06 jiri Exp $
+ *  $Id: config.h,v 1.36 2002/10/21 03:08:20 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -58,8 +58,8 @@
 #define MY_VIA "Via: SIP/2.0/UDP "
 #define MY_VIA_LEN 17
 
-#define CONTENT_LEN "Content-Length: 0"
-#define CONTENT_LEN_LEN 17
+#define CONTENT_LENGTH "Content-Length: "
+#define CONTENT_LENGTH_LEN (sizeof(CONTENT_LENGTH)-1)
 
 #define USER_AGENT "User-Agent: Sip EXpress router"\
 		"(" VERSION " (" ARCH "/" OS"))"

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.11 2002/09/25 20:23:42 jiri Rel $
+ * $Id: t_stats.c,v 1.12 2002/10/21 03:08:20 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -114,7 +114,7 @@ int init_tm_stats(void)
 	}
 	memset(tm_stats, 0, sizeof(struct t_stats) );
 
-	size=sizeof(int)*process_count();
+	size=sizeof(stat_counter)*process_count();
 	tm_stats->s_waiting=shm_malloc(size);
 	if (tm_stats->s_waiting==0) {
 		LOG(L_ERR, "ERROR: init_stats: no mem for stats\n");
