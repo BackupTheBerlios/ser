@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.h,v 1.4 2002/09/19 12:23:52 jku Rel $
+ * $Id: data_lump_rpl.h,v 1.5 2003/09/11 19:54:43 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -33,16 +33,22 @@
 #include "parser/msg_parser.h"
 
 
+#define LUMP_RPL_HDR   1
+#define LUMP_RPL_BODY  2
+
 struct lump_rpl
 {
 	str text;
+	int type;
 	struct lump_rpl* next;
 };
 
-struct lump_rpl* build_lump_rpl( char* , int );
+struct lump_rpl* build_lump_rpl( char* , int , int );
 
-void add_lump_rpl(struct sip_msg * , struct lump_rpl* );
+int add_lump_rpl(struct sip_msg * , struct lump_rpl* );
 
 void free_lump_rpl(struct lump_rpl* );
+
+void unlink_lump_rpl(struct sip_msg *, struct lump_rpl* );
 
 #endif
