@@ -1,5 +1,5 @@
 /*
- * $Id: dbase.h,v 1.12 2004/08/24 08:58:31 janakj Exp $
+ * $Id: dbase.h,v 1.13 2005/02/28 18:52:51 janakj Exp $
  *
  * MySQL module core functions
  *
@@ -87,6 +87,12 @@ int db_delete(db_con_t* _h, db_key_t* _k, db_op_t* _o, db_val_t* _v, int _n);
  */
 int db_update(db_con_t* _h, db_key_t* _k, db_op_t* _o, db_val_t* _v,
 	      db_key_t* _uk, db_val_t* _uv, int _n, int _un);
+
+
+/*
+ * Just like insert, but replace the row if it exists
+ */
+int db_replace(db_con_t* handle, db_key_t* keys, db_val_t* vals, int n);
 
 
 /*

@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.26 2005/02/01 15:13:04 janakj Exp $ 
+ * $Id: db_mod.c,v 1.27 2005/02/28 18:52:51 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -60,6 +60,7 @@ static cmd_export_t cmds[] = {
 	{"db_insert",      (cmd_function)db_insert,      2, 0, 0},
 	{"db_delete",      (cmd_function)db_delete,      2, 0, 0},
 	{"db_update",      (cmd_function)db_update,      2, 0, 0},
+	{"db_replace",     (cmd_function)db_replace,     2, 0, 0},
 	{0, 0, 0, 0, 0}
 };
 
