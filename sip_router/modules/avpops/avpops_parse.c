@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_parse.c,v 1.7 2004/11/17 23:26:03 andrei Exp $
+ * $Id: avpops_parse.c,v 1.8 2004/12/01 19:04:36 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -372,7 +372,6 @@ struct fis_param* parse_check_value(char *s)
 	{
 		if (*(++p)==0 || (--len)==0)
 			goto parse_error;
-		flags |= AVPOPS_VAL_NONE;
 		/* struct for value */
 		vp = (struct fis_param*)pkg_malloc(sizeof(struct fis_param));
 		if (vp==0) {
