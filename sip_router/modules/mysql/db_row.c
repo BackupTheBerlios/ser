@@ -1,5 +1,5 @@
 /* 
- * $Id: db_row.c,v 1.8 2002/08/08 17:26:34 janakj Exp $ 
+ * $Id: db_row.c,v 1.9 2002/08/12 11:33:17 janakj Exp $ 
  *
  * MySQL module row related functions
  */
@@ -9,7 +9,7 @@
 #include <mysql/mysql.h>
 #include "../../dprint.h"
 #include "../../mem/mem.h"
-
+#include "con_mysql.h"
 
 int convert_row(db_con_t* _h, db_res_t* _res, db_row_t* _r)
 {

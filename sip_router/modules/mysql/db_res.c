@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.c,v 1.8 2002/08/08 17:26:34 janakj Exp $ 
+ * $Id: db_res.c,v 1.9 2002/08/12 11:33:17 janakj Exp $ 
  *
  * MySQL module result related functions
  */
@@ -10,6 +10,7 @@
 #include "../../dprint.h"
 #include "../../mem/mem.h"
 #include <mysql/mysql.h>
+#include "con_mysql.h"
 
 
 static inline int get_columns(db_con_t* _h, db_res_t* _r)

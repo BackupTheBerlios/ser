@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.7 2002/08/08 17:26:34 janakj Exp $ 
+ * $Id: db_con.c,v 1.8 2002/08/12 11:33:17 janakj Exp $ 
  *
  * Database connection related functions
  */
@@ -18,7 +18,7 @@ int use_table(db_con_t* _h, const char* _t)
 #ifdef PARANOID
 	if ((!_h) || (!_t)) {
 		LOG(L_ERR, "use_table(): Invalid parameter value\n");
-		return -1;
+
 	}
 #endif
 	l = strlen(_t) + 1;

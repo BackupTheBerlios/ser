@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.8 2002/08/08 17:26:34 janakj Exp $ 
+ * $Id: db_mod.c,v 1.9 2002/08/12 11:33:17 janakj Exp $ 
  *
  * MySQL module interface
  */
@@ -19,14 +19,14 @@ static int mod_init(void);
 struct module_exports exports = {	
 	"mysql",
 	(char*[]) {
-		"db_use_table",
-		"db_init",
-		"db_close",
-		"db_query",
-		"db_free_query",
-		"db_insert",
-		"db_delete",
-		"db_update"
+		"~db_use_table",
+		"~db_init",
+		"~db_close",
+		"~db_query",
+		"~db_free_query",
+		"~db_insert",
+		"~db_delete",
+		"~db_update"
 	},
 	(cmd_function[]) {
 		(cmd_function)use_table,

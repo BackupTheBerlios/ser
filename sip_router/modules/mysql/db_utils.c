@@ -1,15 +1,16 @@
 /* 
- * $Id: db_utils.c,v 1.5 2002/08/08 17:26:34 janakj Exp $ 
+ * $Id: db_utils.c,v 1.6 2002/08/12 11:33:17 janakj Exp $ 
  *
  * MySQL module useful functions
  */
+
+#define _GNU_SOURCE /* To avoid strptime warning */
 
 #include "db_utils.h"
 #include <string.h>
 #include "utils.h"
 #include "defs.h"
 
-#define _XOPEN_SOURCE
 #include <time.h>
 
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.10 2002/08/09 15:02:48 janakj Exp $ 
+ * $Id: dbase.c,v 1.11 2002/08/12 11:33:17 janakj Exp $ 
  *
  * MySQL module core functions
  */
@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "dbase.h"
+#include "con_mysql.h"
 
 
 static char sql_buf[SQL_BUF_LEN];
@@ -238,12 +239,12 @@ db_con_t* db_init(const char* _sqlurl)
 	}
 #endif
 
-	res = pkg_malloc(sizeof(db_con_t));
+	res = pkg_malloc(sizeof(db_con_t) + sizeof(struct con_mysql));
 	if (!res) {
 		LOG(L_ERR, "db_init(): No memory left\n");
 		return NULL;
 	} else {
-		memset(res, 0, sizeof(db_con_t));
+		memset(res, 0, sizeof(db_con_t) + sizeof(struct con_mysql));
 	}
 
 	if (connect_db(res, _sqlurl) < 0) {
