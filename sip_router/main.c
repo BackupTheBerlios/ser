@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.190 2004/08/24 08:45:10 janakj Exp $
+ * $Id: main.c,v 1.191 2004/09/02 13:42:28 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -119,7 +119,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.190 2004/08/24 08:45:10 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.191 2004/09/02 13:42:28 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1287,19 +1287,19 @@ int main(int argc, char** argv)
 	}
 
 	/* seed the prng */
-	/* try to use /dev/random if possible */
+	/* try to use /dev/urandom if possible */
 	seed=0;
-	if ((rfd=open("/dev/random", O_RDONLY))!=-1){
+	if ((rfd=open("/dev/urandom", O_RDONLY))!=-1){
 try_again:
 		if (read(rfd, (void*)&seed, sizeof(seed))==-1){
 			if (errno==EINTR) goto try_again; /* interrupted by signal */
-			LOG(L_WARN, "WARNING: could not read from /dev/random (%d)\n",
+			LOG(L_WARN, "WARNING: could not read from /dev/urandom (%d)\n",
 						errno);
 		}
-		DBG("read %u from /dev/random\n", seed);
+		DBG("read %u from /dev/urandom\n", seed);
 			close(rfd);
 	}else{
-		LOG(L_WARN, "WARNING: could not open /dev/random (%d)\n", errno);
+		LOG(L_WARN, "WARNING: could not open /dev/urandom (%d)\n", errno);
 	}
 	seed+=getpid()+time(0);
 	DBG("seeding PRNG with %u\n", seed);

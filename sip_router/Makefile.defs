@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.267 2004/08/31 16:50:34 andrei Exp $
+# $Id: Makefile.defs,v 1.268 2004/09/02 13:42:28 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -118,7 +118,9 @@ endif
 ut-prefix = bin/
 # target dirs for various stuff
 cfg-target = $(prefix)/$(cfg-dir)
+bin-target = $(prefix)/$(bin-dir)
 modules-target = $(prefix)/$(modules-dir)
+doc-target = $(prefix)/$(doc-dir)
 
 
 ifeq ($(OS), solaris)
