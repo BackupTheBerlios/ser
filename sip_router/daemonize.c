@@ -1,5 +1,5 @@
 /*
- * $Id: daemonize.c,v 1.8 2004/08/24 08:45:10 janakj Exp $
+ * $Id: daemonize.c,v 1.9 2004/08/25 17:37:03 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -34,8 +34,12 @@
  *  2004-05-03  applied pgid patch from janakj
  */
 
-#define _XOPEN_SOURCE
-#define _XOPEN_SOURCE_EXTENDED
+#define _XOPEN_SOURCE   /* needed on linux for the  getpgid prototype */
+#define _XOPEN_SOURCE_EXTENDED /* same as above */
+#define __EXTENSIONS__ /* needed on solaris: if XOPEN_SOURCE is defined
+                          struct timeval defintion from <sys/time.h> won't
+                          be included => workarround define _EXTENSIONS_
+                           -andrei */
 
 #include <sys/types.h>
 #include <unistd.h>
