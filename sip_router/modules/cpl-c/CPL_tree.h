@@ -1,5 +1,5 @@
 /*
- * $Id: CPL_tree.h,v 1.4 2003/06/25 13:35:18 bogdan Exp $
+ * $Id: CPL_tree.h,v 1.5 2003/06/27 15:08:13 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -164,10 +164,25 @@
 /* attributs and values for REJECT node */
 #define  STATUS_ATTR                 0
 #define  REASON_ATTR                 1
+#define  BUSY_VAL                    486
+#define  BUSY_STR                    "busy"
+#define  BUSY_STR_LEN                (sizeof(BUSY_STR)-1)
+#define  NOTFOUND_VAL                404
+#define  NOTFOUND_STR                "notfound"
+#define  NOTFOUND_STR_LEN            (sizeof(NOTFOUND_STR)-1)
+#define  REJECT_VAL                  603
+#define  REJECT_STR                  "reject"
+#define  REJECT_STR_LEN              (sizeof(REJECT_STR)-1)
+#define  ERROR_VAL                   500
+#define  ERROR_STR                   "error"
+#define  ERROR_STR_LEN               (sizeof(ERROR_STR)-1)
 
 /* attributs and values for LOG node */
 #define  NAME_ATTR                   0
 #define  COMMENT_ATTR                1
+
+/* attributs and values for SUB node */
+#define  REF_ATTR                    0
 
 
 
