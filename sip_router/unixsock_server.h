@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.h,v 1.2 2004/03/03 15:36:55 janakj Exp $
+ * $Id: unixsock_server.h,v 1.3 2004/03/03 20:41:52 janakj Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -96,6 +96,12 @@ ssize_t unixsock_reply_send(void);
 
 
 /*
+ * Send the reply to the given destination
+ */
+ssize_t unixsock_reply_sendto(struct sockaddr_un* to);
+
+
+/*
  * Read a line, the result will be stored in line
  * parameter, the data is not copied, it's just
  * a pointer to an existing buffer
@@ -118,6 +124,12 @@ int unixsock_read_body(str* body, str* source);
  * the size of the buffer
  */
 int unixsock_read_lineset(str* lineset, str* source);
+
+
+/*
+ * Return the address of the sender
+ */
+struct sockaddr_un* unixsock_sender_address(void);
 
 
 #endif /* _UNIXSOCK_SERVER_H */
