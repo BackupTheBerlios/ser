@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.80 2002/09/04 11:45:48 jku Exp $
+# $Id: Makefile,v 1.81 2002/09/04 16:36:29 janakj Exp $
 #
 # sip_router makefile
 #
@@ -91,6 +91,11 @@ tar: mantainer-clean
 install: all mk-install-dirs install-cfg install-bin install-modules \
 	install-doc install-man
 
+.PHONY: dbinstall
+dbinstall:
+	-@echo "Initializing ser database"
+	scripts/ser_mysql.sh create
+	-@echo "Done"
 
 mk-install-dirs: $(cfg-prefix)/$(cfg-dir) $(bin-prefix)/$(bin-dir) \
 			$(modules-prefix)/$(modules-dir) $(doc-prefix)/$(doc-dir) \
