@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.164 2002/12/12 23:59:26 andrei Exp $
+# $Id: Makefile.defs,v 1.165 2003/01/16 16:46:01 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -286,6 +286,10 @@ endif
 endif
 
 ifeq ($(ARCH), arm)
+	DEFS+= -DFAST_LOCK
+endif
+
+ifeq ($(ARCH), ppc)
 	DEFS+= -DFAST_LOCK
 endif
 
