@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.8 2001/09/21 20:24:13 andrei Exp $
+ * $Id: main.c,v 1.9 2001/09/21 23:47:10 andrei Exp $
  */
 
 #include <stdio.h>
@@ -21,7 +21,7 @@
 #include "globals.h"
 
 
-static char id[]="@(#) $Id: main.c,v 1.8 2001/09/21 20:24:13 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.9 2001/09/21 23:47:10 andrei Exp $";
 static char version[]="sip_router 0.5";
 static char help_msg[]= "\
 Usage: sip_router -l address [-l address] [options]\n\
@@ -87,6 +87,8 @@ int process_no = 0;
 #ifdef ROUTE_SRV
 #endif
 
+/* cfg parsing */
+int cfg_errors=0;
 
 
 #define MAX_FD 32 /* maximum number of inherited open file descriptors,
@@ -330,8 +332,8 @@ int main(int argc, char** argv)
 	}
 	
 	yyin=cfg_stream;
-	if (yyparse()!=0){
-		fprintf(stderr, "ERROR: config parser failure\n");
+	if ((yyparse()!=0)||(cfg_errors)){
+		fprintf(stderr, "ERROR: bad config file (%d errors)\n", cfg_errors);
 		goto error;
 	}
 	

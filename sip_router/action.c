@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.3 2001/09/21 20:35:51 andrei Exp $
+ * $Id: action.c,v 1.4 2001/09/21 23:47:10 andrei Exp $
  */
 
 
@@ -17,6 +17,9 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <stdlib.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 
 /* ret= 0 if action -> end of lis t(e.g DROP), >0
    and >0 on error */

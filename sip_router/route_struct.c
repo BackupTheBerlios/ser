@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.5 2001/09/21 20:24:13 andrei Exp $
+ * $Id: route_struct.c,v 1.6 2001/09/21 23:47:10 andrei Exp $
  *
  * route structures helping functions
  */
@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <netinet/in.h>
 
 struct expr* mk_exp(int op, struct expr* left, struct expr* right)
