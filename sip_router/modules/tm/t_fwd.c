@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.20 2002/05/31 01:59:06 jku Exp $
+ * $Id: t_fwd.c,v 1.21 2002/06/10 19:12:17 jku Exp $
  *
  */
 
@@ -320,13 +320,13 @@ int t_forward_ack( struct sip_msg* p_msg  )
 	}
 #endif
 
-	/* check for bizzar race condition if two processes receive
-	   two ACKs concurrently; use shmem semaphore for protection
-	   -- we have to enter it here anyway (the trick with inACKed
-	   inside the protection region) */
+	/* we relay an ACK for second time, hmmm -- noticable; anyway,
+	   keep relaying; it may be for example spiraled ACK mistakenly
+	   matching the first transaction in second cycle (there is
+	   no way to distinguish) */
 	if  (T->uas.isACKed ) {
 		LOG(L_WARN,"Warning: ACK received when there's one; check upstream\n");
-		return 1;
+		/* return 1; */
 	}
 	ack = shm_malloc( len );
 	memcpy(ack , buf , len);
@@ -372,7 +372,7 @@ int forward_serial_branch(struct cell* Trans,int branch)
 			shm_free_lump(b);
 		}
 
-	DBG("DEBUG: t_forward_serial_branch: building req for branch"
+	LOG(L_ERR,"DEBUG: t_forward_serial_branch: building req for branch"
 		"%d; uri=|%.*s|.\n", branch, Trans->uac[branch].uri.len,
 		Trans->uac[branch].uri.s);
 	/* updates the new uri*/
