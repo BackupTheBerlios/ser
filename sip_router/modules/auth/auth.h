@@ -1,5 +1,5 @@
 /*
- * $Id: auth.h,v 1.4 2002/02/26 00:11:28 janakj Exp $
+ * $Id: auth.h,v 1.5 2002/02/26 17:36:26 janakj Exp $
  */
 
 #ifndef AUTH_H
@@ -9,7 +9,7 @@
 
 
 /*
- * Function prototypes
+ * Initialize authentication module
  */
 void auth_init(void);
 
@@ -25,5 +25,6 @@ int challenge(struct sip_msg* _msg, char* _realm, char* _str2);
  * is realm
  */
 int authorize(struct sip_msg* _msg, char* _realm, char* _str2);
+
 
 #endif

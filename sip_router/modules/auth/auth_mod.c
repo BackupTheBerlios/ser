@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.1 2002/02/26 00:11:02 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.2 2002/02/26 17:36:26 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -12,6 +12,7 @@
 
 
 void destroy(void);
+
 
 static struct module_exports auth_exports = {"auth", 
 					     (char*[]) { 
@@ -39,7 +40,7 @@ db_con_t* db_handle;
 
 struct module_exports* mod_register()
 {
-	LOG(L_ERR, "%auth module - registering\n");
+	LOG(L_ERR, "auth module - registering\n");
 	auth_init();
 	
 	     /* Find a database module */

@@ -1,5 +1,5 @@
 /*
- * $Id: calc.h,v 1.1 2002/02/26 00:11:02 janakj Exp $
+ * $Id: calc.h,v 1.2 2002/02/26 17:36:26 janakj Exp $
  */
 
 #ifndef CALC_H
@@ -13,6 +13,8 @@ typedef char HASH[HASHLEN];
 #define HASHHEXLEN 32
 typedef char HASHHEX[HASHHEXLEN+1];
 
+
+void CvtHex(HASH Bin, HASHHEX Hex);
 
 /* 
  * calculate H(A1) as per HTTP Digest spec 

@@ -1,5 +1,5 @@
 /*
- * $Id: calc.c,v 1.1 2002/02/26 00:11:02 janakj Exp $
+ * $Id: calc.c,v 1.2 2002/02/26 17:36:26 janakj Exp $
  */
 
 #include <sys/types.h>
@@ -7,7 +7,7 @@
 #include <string.h>
 
 #include "calc.h"
-#include "../../global.h"
+#include "../../md5global.h"
 #include "../../md5.h"
 
 
