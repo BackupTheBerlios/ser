@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.143 2002/08/28 21:24:28 jku Exp $
+ * $Id: t_funcs.c,v 1.144 2002/09/10 13:49:23 andrei Exp $
  *
  * transaction maintenance functions
  */
@@ -23,8 +23,7 @@ int send_pr_buffer( struct retr_buf *rb,
 	void *buf, int len, char *function, int line )
 {
 	if (buf && len && rb )
-		return udp_send( rb->send_sock, buf,
-			len, &rb->to,  sizeof(union sockaddr_union) ) ;
+		return udp_send( rb->send_sock, buf, len, &rb->to) ;
 	else {
 		LOG(L_CRIT, "ERROR: sending an empty buffer from %s (%d)\n",
 			function, line );

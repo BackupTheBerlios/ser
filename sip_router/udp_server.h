@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.h,v 1.7 2002/05/26 21:38:02 andrei Exp $
+ * $Id: udp_server.h,v 1.8 2002/09/10 13:49:23 andrei Exp $
  */
 
 #ifndef udp_server_h
@@ -15,7 +15,7 @@
 
 int udp_init(struct socket_info* si);
 int udp_send(struct socket_info* source,char *buf, unsigned len,
-				union sockaddr_union*  to, unsigned tolen);
+				union sockaddr_union*  to);
 int udp_rcv_loop();
 
 
