@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.25 2002/12/12 21:46:37 andrei Exp $
+ * $Id: globals.h,v 1.26 2003/01/23 12:27:50 jiri Exp $
  *
  * global variables
  *
@@ -112,5 +112,8 @@ extern int is_main;
 
 /* debugging level for dumping memory status */
 extern int memlog;
+
+/* looking up outbound interface ? */
+extern int mhomed;
 
 #endif

@@ -1,5 +1,5 @@
 <html>
-<!-- $Id: send_im.php,v 1.2 2002/08/27 10:09:01 jku Rel $ -->
+<!-- $Id: send_im.php,v 1.3 2003/01/23 12:27:50 jiri Exp $ -->
 <header>
 <title>
 Send IM Status
@@ -31,12 +31,14 @@ if (!$fifo_handle) {
 }
 
 /* construct FIFO command */
-$fifo_cmd=":t_uac:".$myfilename."\n".
-    "MESSAGE\n".$sip_address."\n".
+$fifo_cmd=":t_uac_dlg:".$myfilename."\n".
+    "MESSAGE\n".$sip_address."\n.\n".
+	"From: sip:sender@foo.bar\n".
+	"To: ".$sip_address."\n".
     "p-version: ".$signature."\n".
     "Contact: ".$web_contact."\n".
-    "Content-Type: text/plain; charset=UTF-8\n\n".
-    $instant_message."\n.\n\n";
+    "Content-Type: text/plain; charset=UTF-8\n.\n".
+    $instant_message."\n.\n";
 
 /* create fifo for replies */
 system("mkfifo -m 666 ".$mypath );
