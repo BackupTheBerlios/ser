@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.38 2003/04/30 18:50:58 janakj Exp $
+ * $Id: uac.c,v 1.39 2003/05/08 01:07:03 janakj Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -292,6 +292,7 @@ int request(str* m, str* ruri, str* to, str* from, str* h, str* b, transaction_c
 	}
 
 	res = t_uac(m, h, b, dialog, c, cp);
+	dialog->rem_target.s = 0;
 	free_dlg(dialog);
 	return res;
 
