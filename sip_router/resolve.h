@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.11 2002/09/23 16:39:02 andrei Exp $
+ * $Id: resolve.h,v 1.12 2002/09/25 20:53:14 andrei Rel $
  *
  * resolver related functions
  *
@@ -256,7 +256,7 @@ static inline struct hostent* resolvehost(const char* name)
 #endif
 		){
 		/* we are lucky, this is an ip address */
-		return ip_addr2he((unsigned char*)name, len, ip);
+		return ip_addr2he(( char*)name, len, ip);
 	}
 	
 #endif
