@@ -1,5 +1,5 @@
 /*
- * $Id: notify.h,v 1.2 2003/01/14 13:48:14 janakj Exp $
+ * $Id: notify.h,v 1.3 2003/01/14 22:46:15 janakj Exp $
  */
 
 #ifndef NOTIFY_H
@@ -31,7 +31,7 @@ typedef struct notify_cb {
 } notify_cb_t;
 
 
-void notify_watchers(struct urecord* _r);
+void notify_watchers(struct urecord* _r, int state);
 
 int add_watcher(struct urecord* _r, notcb_t _c, void* _d);
 

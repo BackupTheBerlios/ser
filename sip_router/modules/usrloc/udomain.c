@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.16 2003/01/14 13:48:14 janakj Exp $ 
+ * $Id: udomain.c,v 1.17 2003/01/14 22:46:15 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -307,6 +307,7 @@ void mem_delete_urecord(udomain_t* _d, struct urecord* _r)
 		free_urecord(_r);
 		_d->users--; /* FIXME */
 	}
+		
 }
 
 
@@ -411,34 +412,16 @@ int delete_urecord(udomain_t* _d, str* _aor)
 	if (get_urecord(_d, _aor, &r) > 0) {
 		return 0;
 	}
-	
-	notify_watchers(r);
-
-	switch(db_mode) {
-	case WRITE_THROUGH:
-		if (db_delete_urecord(r) < 0) {
-			LOG(L_ERR, "delete_urecord(): Error while deleting record from database\n");
+		
+	c = r->contacts;
+	while(c) {
+		t = c;
+		c = c->next;
+		if (delete_ucontact(r, t) < 0) {
+			LOG(L_ERR, "delete_urecord(): Error while deleting contact\n");
+			return -1;
 		}
-		mem_delete_urecord(_d, r);
-		return 0;
-
-	case WRITE_BACK:
-		c = r->contacts;
-		while(c) {
-			t = c;
-			c = c->next;
-			if (delete_ucontact(r, t) < 0) {
-				LOG(L_ERR, "delete_urecord(): Error while deleting contact\n");
-				return -1;
-			}
-		}
-		release_urecord(r);
-		return 0;
-
-	case NO_DB:
-		mem_delete_urecord(_d, r);
-		return 0;
 	}
-
+	release_urecord(r);
 	return 0;
 }
