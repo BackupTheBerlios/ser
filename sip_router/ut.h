@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.4 2002/01/28 20:31:50 bogdan Exp $
+ *$Id: ut.h,v 1.5 2002/01/29 17:28:40 bogdan Exp $
  *
  * - various general purpose functions
  */
@@ -27,6 +27,12 @@
 		while( ((_mystr).len) && ((_c=(_mystr).s[(_mystr).len-1]))==0 || _c=='\r' || _c=='\n') \
 			(_mystr).len--; \
 	})
+
+
+#define  translate_pointer( _new_buf , _org_buf , _p) \
+	( (_p)?(_new_buf + (_p-_org_buf)):(0) )
+
+
 
 /* converts a str to an u. short, returns the u. short and sets *err on
  * error and if err!=null

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.97 2002/01/28 23:30:56 jku Exp $
+ * $Id: t_funcs.c,v 1.98 2002/01/29 17:28:40 bogdan Exp $
  *
  */
 
@@ -626,10 +626,8 @@ int t_retransmit_reply( struct sip_msg* p_msg   )
 
 int t_unref( /* struct sip_msg* p_msg */ )
 {
-/*
 	if (T==T_UNDEFINED || T==T_NULL)
 		return -1;
-*/
 	T_UNREF( T );
 	T=T_UNDEFINED;
 	return 1;

@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.30 2002/01/28 20:31:50 bogdan Exp $
+ * $Id: sip_msg.c,v 1.31 2002/01/29 17:28:40 bogdan Exp $
  */
 
 
@@ -7,6 +7,7 @@
 #include "../../dprint.h"
 #include "../../mem/mem.h"
 #include "../../data_lump.h"
+#include "../../ut.h"
 
 
 #define ROUND4(s) ((s)%4)?((s)+4)/4*4:(s)
