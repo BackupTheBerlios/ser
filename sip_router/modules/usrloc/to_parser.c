@@ -1,5 +1,5 @@
 /*
- * $Id: to_parser.c,v 1.3 2002/03/05 14:36:03 janakj Exp $
+ * $Id: to_parser.c,v 1.4 2002/03/05 18:18:49 janakj Exp $
  */
 
 #include "utils.h"
@@ -26,7 +26,7 @@ void get_to_username(str* _s)
 	at = strchr(_s->s, '@');
 	if (at) {
 			_s->len = at - dcolon - 1;
-			_s->s[_s->len] = '\0';
+			/*	_s->s[_s->len] = '\0'; */
 	} else {
 		_s->len = 0;
 	} 

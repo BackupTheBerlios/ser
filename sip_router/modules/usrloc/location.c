@@ -1,5 +1,5 @@
 /* 
- * $Id: location.c,v 1.6 2002/03/05 14:36:03 janakj Exp $ 
+ * $Id: location.c,v 1.7 2002/03/05 18:18:49 janakj Exp $ 
  */
 
 #include <stdio.h>
@@ -287,7 +287,8 @@ int create_location(location_t** _loc, str* _user)
 		return FALSE;
 	}
 
-	memcpy((*_loc)->user.s, _user->s, _user->len + 1);
+	memcpy((*_loc)->user.s, _user->s, _user->len);
+	(*_loc)->user.s[_user->len] = '\0';
 
 	     /* We are case insensitive */
 	strlower((*_loc)->user.s, _user->len);
