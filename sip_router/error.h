@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.5 2002/08/16 13:26:15 jku Exp $
+ * $Id: error.h,v 1.6 2002/08/18 20:56:28 jku Exp $
  */
 
 #ifndef error_h
@@ -22,6 +22,7 @@
 #define E_EXEC			-11
 /* too many branches demanded */
 #define E_TOO_MANY_BRANCHES -12
+#define E_BAD_TO	-13
 
 #define E_SEND		  -477
 /* unresolveable next-hop address */

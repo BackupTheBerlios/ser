@@ -1,5 +1,5 @@
 /*
- * $Id: error.c,v 1.4 2002/08/16 13:26:15 jku Exp $
+ * $Id: error.c,v 1.5 2002/08/18 20:56:28 jku Exp $
  *
  */
 
@@ -48,6 +48,10 @@ int err2reason_phrase(
 			break;
 		case E_BAD_TUPEL:
 			error_txt="Transaction tupel incomplete";
+			*sip_error=-E_BAD_REQ;
+			break;
+		case E_BAD_TO:
+			error_txt="Bad To";
 			*sip_error=-E_BAD_REQ;
 			break;
 		case E_EXEC:
