@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.19 2003/01/16 19:22:09 andrei Exp $
+/* $Id: shm_mem.c,v 1.20 2003/01/17 16:24:51 andrei Exp $
  *
  * Shared memory functions
  *
@@ -264,8 +264,10 @@ void shm_mem_destroy()
 		shm_shmid=-1;
 	}
 #endif
-	if (mem_lock) lock_destroy(mem_lock); /* we don't need to dealloc it*/
-	
+	if (mem_lock){
+		DBG("destroying the shared memory lock\n");
+		lock_destroy(mem_lock); /* we don't need to dealloc it*/
+	}
 }
 
 

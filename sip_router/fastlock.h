@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.19 2003/01/16 16:46:01 andrei Exp $
+ * $Id: fastlock.h,v 1.20 2003/01/17 16:24:51 andrei Exp $
  *
  * 
  *
@@ -28,8 +28,13 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-
-
+/*
+ *
+ *
+ *  2003-01-16  added PPC locking code contributed by Dinos Dorkofikis
+ *               <kdor@intranet.gr>
+ *
+ */
 
 
 #ifndef fastlock_h

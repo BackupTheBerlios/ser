@@ -1,4 +1,4 @@
-/* $Id: locking.h,v 1.2 2003/01/16 19:22:09 andrei Exp $ */
+/* $Id: locking.h,v 1.3 2003/01/17 16:24:51 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -26,9 +26,11 @@
  */
 
 /*
-    ser locking library
-    - created 16.12.2003 (andrei)
-
+ *   ser locking library
+ *
+ *  2002-12-16 created by andrei
+ *
+ *
 Implements:
 
 	lock_t* lock_alloc();                    - allocates a lock in shared mem.
@@ -100,7 +102,7 @@ typedef sem_t lock_t;
 
 inline static lock_t* lock_init(lock_t* lock)
 {
-	if (sem_init(lock, 0, 1)<0) return 0;
+	if (sem_init(lock, 1, 1)<0) return 0;
 	return lock;
 }
 
