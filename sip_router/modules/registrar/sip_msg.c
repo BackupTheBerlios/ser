@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.6 2003/03/30 20:29:17 janakj Exp $
+ * $Id: sip_msg.c,v 1.7 2003/03/31 09:37:23 janakj Exp $
  *
  * SIP message related functions
  *
@@ -221,7 +221,7 @@ contact_t* get_next_contact(contact_t* _c)
  */
 int calc_contact_expires(struct sip_msg* _m, param_t* _ep, int* _e)
 {
-	if (!_ep || (_ep->body.len == 0)) {
+	if (!_ep || !_ep->body.len) {
 		*_e = get_expires_hf(_m);
 	} else {
 		if (str2int(&_ep->body, _e) < 0) {
