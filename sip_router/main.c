@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.145 2003/02/20 18:13:22 andrei Exp $
+ * $Id: main.c,v 1.146 2003/02/25 16:58:57 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -90,7 +90,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.145 2003/02/20 18:13:22 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.146 2003/02/25 16:58:57 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -105,6 +105,9 @@ static char flags[]=
 #endif
 #ifdef USE_TCP
 ", USE_TCP"
+#endif
+#ifdef DISABLE_NAGLE
+", DISABLE_NAGLE"
 #endif
 #ifdef NO_DEBUG
 ", NO_DEBUG"
