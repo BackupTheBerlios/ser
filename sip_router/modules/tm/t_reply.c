@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.68 2003/11/24 17:39:51 andrei Exp $
+ * $Id: t_reply.c,v 1.69 2003/11/27 15:52:12 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -620,7 +620,7 @@ static enum rps t_should_relay_response( struct cell *Trans , int new_code,
 		/* if all_final return lowest */
 		picked_branch=pick_branch(branch,new_code, Trans, &picked_code);
 		if (picked_branch==-2) { /* branches open yet */
-			*should_store=1;	
+			*should_store=1;
 			*should_relay=-1;
 			return RPS_STORE;
 		}
