@@ -1,5 +1,5 @@
 /* 
- * $Id: lock.c,v 1.1 2002/11/29 17:23:03 dcm Exp $
+ * $Id: lock.c,v 1.2 2003/02/06 15:23:36 dcm Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -115,7 +115,7 @@ smart_lock* create_semaphores(int nr)
 
 	lock_set = (smart_lock*)shm_malloc(nr*sizeof(smart_lock));
 	if (lock_set==0){
-		LOG(L_CRIT, "ERROR: pike_create_semaphores: out of pkg mem\n");
+		LOG(L_CRIT, "ERROR: create_semaphores: out of pkg mem\n");
 		goto error;
 	}
 #ifdef FAST_LOCK
@@ -123,7 +123,7 @@ smart_lock* create_semaphores(int nr)
 		init_lock(lock_set[i]);
 #else
 	if ((sem_set=init_semaphore_set(nr))<0) {
-		LOG(L_CRIT, "ERROR: pike_create_semaphores: semaphores "
+		LOG(L_CRIT, "ERROR: create_semaphores: semaphores "
 			"initialization failure: %s\n",strerror(errno));
 		goto error;
 	}
