@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.44 2003/02/24 19:23:23 janakj Exp $
+# $Id: sc,v 1.45 2003/02/24 22:15:32 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -55,7 +55,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.44 $'
+VERSION='$Revision: 1.45 $'
 #### SQL names
 
 # Usr Loc Table
@@ -494,7 +494,6 @@ case $1 in
 	start)
 		DIR=`dirname $0`
 		echo
-		echo "DIR is $DIR"
 		echo -n "Starting SER : "
 		if [ -r $PID_FILE ] ; then
 			echo "PID file exists! ($PID_FILE) already running?"
