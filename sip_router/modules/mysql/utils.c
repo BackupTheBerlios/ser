@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.c,v 1.10 2004/08/24 08:58:31 janakj Exp $ 
+ * $Id: utils.c,v 1.11 2004/12/01 16:51:17 andrei Exp $ 
  *
  * MySQL module utilities
  *
@@ -32,10 +32,11 @@
  *            guess daylight saving (janakj)
  */
 
-#define _XOPEN_SOURCE
+#define _XOPEN_SOURCE 4
 
 #include <strings.h>
 #include <string.h>
+#include <time.h>  /*strptime, XOPEN issue must be >=4 */
 #include "utils.h"
 
 

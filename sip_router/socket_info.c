@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.11 2004/11/30 16:28:23 andrei Exp $
+/* $Id: socket_info.c,v 1.12 2004/12/01 16:51:17 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -112,6 +112,7 @@ static inline struct socket_info* new_sock_info(	char* name,
 	si=(struct socket_info*) pkg_malloc(sizeof(struct socket_info));
 	if (si==0) goto error;
 	memset(si, 0, sizeof(struct socket_info));
+	si->socket=-1;
 	si->name.len=strlen(name);
 	si->name.s=(char*)pkg_malloc(si->name.len+1); /* include \0 */
 	if (si->name.s==0) goto error;
