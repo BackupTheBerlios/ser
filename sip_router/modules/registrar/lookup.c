@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.18 2003/11/06 19:13:42 janakj Exp $
+ * $Id: lookup.c,v 1.19 2003/11/08 15:22:50 andrei Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -59,7 +59,7 @@ static inline int rewrite(struct sip_msg* _m, str* _s)
 	}
 
 	memcpy(buf, _s->s, _s->len);
-	_s->s[_s->len] = '\0';
+	buf[_s->len] = '\0';
 
 	_m->parsed_uri_ok = 0;
 	if (_m->new_uri.s) {
