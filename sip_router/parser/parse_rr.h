@@ -1,5 +1,5 @@
 /*
- * $Id: parse_rr.h,v 1.5 2003/04/04 14:04:00 janakj Exp $
+ * $Id: parse_rr.h,v 1.6 2003/04/07 11:48:26 janakj Exp $
  *
  * Route & Record-Route Parser
  *
@@ -63,6 +63,13 @@ void free_rr(rr_t** _r);
 
 
 /*
+ * Free list of rr
+ * _c is head of the list
+ */
+void shm_free_rr(rr_t** _r);
+
+
+/*
  * Print list of rrs, just for debugging
  */
 void print_rr(rr_t* _r);
@@ -72,6 +79,12 @@ void print_rr(rr_t* _r);
  * Duplicate a single rr_t structure using pkg_malloc
  */
 int duplicate_rr(struct sip_msg* _m, rr_t** _new, rr_t* _r);
+
+
+/*
+ * Duplicate a single rr_t structure using pkg_malloc
+ */
+int shm_duplicate_rr(struct sip_msg* _m, rr_t** _new, rr_t* _r);
 
 
 #endif /* PARSE_RR_H */
