@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.24 2003/04/11 18:20:33 janakj Exp $
+ * $Id: ul_mod.c,v 1.25 2003/04/20 15:24:13 jiri Exp $
  *
  * Usrloc module interface
  *
@@ -123,7 +123,11 @@ static param_export_t params[] = {
 };
 
 
+#ifdef STATIC_USRLOC
+struct module_exports usrloc_exports = {
+#else
 struct module_exports exports = {
+#endif
 	"usrloc",
 	cmds,       /* Exported functions */
 	params,     /* Export parameters */
