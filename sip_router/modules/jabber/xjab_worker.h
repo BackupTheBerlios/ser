@@ -1,5 +1,5 @@
 /*
- * $Id: xjab_worker.h,v 1.16 2004/06/08 10:55:30 andrei Exp $
+ * $Id: xjab_worker.h,v 1.17 2004/07/27 13:45:25 andrei Exp $
  *
  * eXtended JABber module
  *
@@ -31,6 +31,8 @@
  * History:
  * --------
  *  2003-03-11  major locking changes - uses locking.h (andrei)
+ *  2004-07-28  s/lock_set_t/gen_lock_set_t/ because of a type conflict
+ *              on darwin (andrei)
  */
 
 
@@ -72,7 +74,7 @@ typedef struct _xj_wlist
 	int cachet;
 	int delayt;
 	int sleept;
-	lock_set_t	 *sems;	 // semaphores
+	gen_lock_set_t	 *sems;	 // semaphores
 	xj_jalias	aliases; // addess aliases
 	xj_worker	workers; // the list of workers
 } t_xj_wlist, *xj_wlist;

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#$Id: ccver.sh,v 1.1 2002/11/07 15:26:11 andrei Exp $
+#$Id: ccver.sh,v 1.2 2004/07/27 13:45:25 andrei Exp $
 #
 # finds CC version and prints it in the following format:
 # compiler_name version major_version
@@ -48,18 +48,18 @@ then
 	if echo "$FULLVER"|grep gcc >/dev/null
 	then
 		NAME=gcc
-		VER=`$CC --version|head -1| \
-				sed -e 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/'\
-				    -e 's/.*[^.0-9]\([0-9][0-9]*\.[0-9][0-9]*\).*/\1/'`
+		VER=`$CC --version|head -n 1| \
+				sed -e 's/^[^0-9]*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/'\
+				    -e 's/^[^.0-9]*\([0-9][0-9]*\.[0-9][0-9]*\).*/\1/'`
 	elif echo "$FULLVER"|grep Sun >/dev/null
 	then
 		NAME=suncc
-		VER=`echo "$FULLVER"|head -1| \
+		VER=`echo "$FULLVER"|head -n 1| \
 				sed -e 's/.*\([0-9][0-9]*\.[0-9][0-9]*\).*/\1/'`
 	elif echo "$FULLVER"|grep "Intel(R) C++ Compiler" >/dev/null
 	then
 		NAME=icc
-		VER=`echo "$FULLVER"|head -1| \
+		VER=`echo "$FULLVER"|head -n 1| \
 				sed -e 's/.*Version \([0-9]\.[0-9]\.[0-9]*\).*/\1/' ` 
 	fi
 	

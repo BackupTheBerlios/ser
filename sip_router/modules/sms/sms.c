@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.35 2003/10/24 20:23:58 andrei Exp $
+ * $Id: sms.c,v 1.36 2004/07/27 13:45:26 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -654,7 +654,7 @@ static int sms_init(void)
 
 static int sms_exit(void)
 {
-	if (!domain_str)
+	if ((!domain_str) && (domain.s))
 		pkg_free(domain.s);
 
 	if (queued_msgs)

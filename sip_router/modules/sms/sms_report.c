@@ -1,5 +1,5 @@
 /*
- * $Id: sms_report.c,v 1.7 2002/11/27 17:38:20 bogdan Exp $
+ * $Id: sms_report.c,v 1.8 2004/07/27 13:45:26 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -147,12 +147,13 @@ void destroy_report_queue()
 {
 	int i;
 
-	for(i=0;i<NR_CELLS;i++)
-		if (report_queue[i].sms)
-			free_report_cell(&(report_queue[i]));
-	if (report_queue)
+	if (report_queue){
+		for(i=0;i<NR_CELLS;i++)
+			if (report_queue[i].sms)
+				free_report_cell(&(report_queue[i]));
 		shm_free(report_queue);
-	report_queue = 0;
+		report_queue = 0;
+	}
 }
 
 

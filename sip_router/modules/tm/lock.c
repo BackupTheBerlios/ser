@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.45 2003/05/09 13:44:47 andrei Exp $
+ * $Id: lock.c,v 1.46 2004/07/27 13:45:26 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,8 @@
  * History:
  * --------
  *  2003-03-17  converted to locking.h (andrei)
+ *  2004-07-28  s/lock_set_t/gen_lock_set_t/ because of a type conflict
+ *              on darwin (andrei)
  */
 
 
@@ -70,9 +72,9 @@
 
 /* and the maximum number of semaphores in the entry_semaphore set */
 static int sem_nr;
-lock_set_t* timer_semaphore=0;
-lock_set_t* entry_semaphore=0;
-lock_set_t* reply_semaphore=0;
+gen_lock_set_t* timer_semaphore=0;
+gen_lock_set_t* entry_semaphore=0;
+gen_lock_set_t* reply_semaphore=0;
 #endif
 
 /* timer group locks */

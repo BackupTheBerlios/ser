@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.77 2004/07/05 15:19:14 andrei Exp $
+ * $Id: cfg.y,v 1.78 2004/07/27 13:45:25 andrei Exp $
  *
  *  cfg grammar
  *
@@ -106,7 +106,7 @@ struct id_list{
 };
 
 extern int yylex();
-void yyerror(char* s);
+static void yyerror(char* s);
 static char* tmp;
 static int i_tmp;
 static void* f_tmp;
@@ -116,7 +116,7 @@ static str* str_tmp;
 static str s_tmp;
 static struct ip_addr* ip_tmp;
 
-void warn(char* s);
+static void warn(char* s);
 static struct id_list* mk_listen_id(char*, int, int);
  
 
@@ -1697,14 +1697,14 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 extern int line;
 extern int column;
 extern int startcolumn;
-void warn(char* s)
+static void warn(char* s)
 {
 	LOG(L_WARN, "cfg. warning: (%d,%d-%d): %s\n", line, startcolumn, 
 			column, s);
 	cfg_errors++;
 }
 
-void yyerror(char* s)
+static void yyerror(char* s)
 {
 	LOG(L_CRIT, "parse error (%d,%d-%d): %s\n", line, startcolumn, 
 			column, s);
