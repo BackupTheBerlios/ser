@@ -1,5 +1,5 @@
 /*
- * $Id: parse_rr.h,v 1.1 2003/03/26 13:50:44 janakj Exp $
+ * $Id: parse_rr.h,v 1.2 2003/03/26 16:45:32 janakj Exp $
  *
  * Route & Record-Route Parser
  *
@@ -31,9 +31,10 @@
 #ifndef PARSE_RR_H
 #define PARSE_RR_H
 
-#include "../../str.h"
-#include "../parse_nameaddr.h"
-#include "../parse_param.h"
+
+#include "parse_nameaddr.h"
+#include "parse_param.h"
+#include "hf.h"
 
 
 /*
@@ -51,14 +52,14 @@ typedef struct rr {
 /*
  * Parse Route & Record-Route header fields
  */
-int parse_rr(str* _s, rr_t** _r);
+int parse_rr(struct hdr_field* _r);
 
 
 /*
  * Free list of rr
  * _c is head of the list
  */
-void free_rr(rr_t* _r);
+void free_rr(rr_t** _r);
 
 
 /*

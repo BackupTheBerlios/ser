@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.2 2003/03/25 22:39:26 janakj Exp $
+ * $Id: parse_param.c,v 1.3 2003/03/26 16:45:32 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -395,7 +395,7 @@ static inline void print_param(param_t* _p)
 	printf("name: \'%.*s\'\n", _p->name.len, _p->name.s);
 	printf("body: \'%.*s\'\n", _p->body.len, _p->body.s);
 	
-	printf("---/cparam---\n");
+	printf("---/param---\n");
 }
 
 
