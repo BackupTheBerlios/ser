@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.h,v 1.7 2003/01/21 13:53:48 jiri Exp $
+ * $Id: t_stats.h,v 1.8 2003/05/20 16:53:16 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -73,7 +73,7 @@ inline void static t_stats_deleted( int local )
 	tm_stats->deleted++;
 }
 
-static void update_reply_stats( int code ) {
+inline static void update_reply_stats( int code ) {
 	if (code>=600) {
 		tm_stats->completed_6xx++;
 	} else if (code>=500) {

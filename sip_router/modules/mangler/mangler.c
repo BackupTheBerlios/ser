@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: mangler.c,v 1.8 2003/04/30 09:38:15 jiri Exp $
+ * $Id: mangler.c,v 1.9 2003/05/20 16:53:16 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -72,11 +72,6 @@ struct tm_binds tmb;
 static void destroy (void);
 
 
-/*
- * Module child-init function prototype
- */
-static int child_init (int rank);
-
 
 /*
  * Module initialization function prototype
@@ -130,11 +125,6 @@ struct module_exports exports = {
 	0			/* child initialization function */
 };
 
-static int
-child_init (int rank)
-{
-	return 0;
-}
 
 #ifdef DEMO
 /* MANGLING EXAMPLE */
