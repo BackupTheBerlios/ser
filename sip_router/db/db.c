@@ -1,5 +1,5 @@
 /*
- * $Id: db.c,v 1.6 2002/09/19 12:23:53 jku Rel $
+ * $Id: db.c,v 1.7 2002/11/28 16:53:03 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,6 +45,9 @@ int bind_dbmod(void)
 
 	db_query = (db_query_f)find_export("~db_query", 2);
 	if (db_query == 0) return -1;
+
+	db_raw_query = (db_raw_query_f)find_export("~db_raw_query", 2);
+	if (db_raw_query == 0) return -1;
 
 	db_free_query = (db_free_query_f)find_export("~db_free_query", 2);
 	if (db_free_query == 0) return -1;

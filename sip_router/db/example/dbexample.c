@@ -1,5 +1,5 @@
 /*
- * $Id: dbexample.c,v 1.6 2002/09/19 12:23:53 jku Rel $
+ * $Id: dbexample.c,v 1.7 2002/11/28 16:53:03 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -203,7 +203,7 @@ struct module_exports* mod_register()
 	     /* If you do not specify any keys and values to be
 	      * matched, all rows will be deleted
 	      */
-	if (db_delete(h, NULL, NULL, 0) < 0) {
+	if (db_delete(h, NULL, NULL, NULL, 0) < 0) {
 		fprintf(stderr, "Error while flushing table\n");
 		return &dbex_exports;
 	}
@@ -227,7 +227,7 @@ struct module_exports* mod_register()
 	      * Let's delete middle line with
 	      * user = foo2@bar2.com and q = 1.3
 	      */
-	if (db_delete(h, keys2, vals4, 2) < 0) {
+	if (db_delete(h, keys2, NULL, vals4, 2) < 0) {
 		fprintf(stderr, "Error while deleting line\n");
 		return &dbex_exports;
 	}
@@ -235,7 +235,7 @@ struct module_exports* mod_register()
 	     /*
 	      * Modify last line
 	      */
-	if (db_update(h, keys3, vals5, keys4, vals6, 2, 2) < 0) {
+	if (db_update(h, keys3, NULL, vals5, keys4, vals6, 2, 2) < 0) {
 		fprintf(stderr, "Error while modifying table\n");
 		return &dbex_exports;
 	}
@@ -244,7 +244,7 @@ struct module_exports* mod_register()
 	      * Last but not least, dump the result of db_query
 	      */
 
-	if (db_query(h, NULL, NULL, NULL, 0, 0, NULL, &res) < 0) {
+	if (db_query(h, NULL, NULL, NULL, NULL, 0, 0, NULL, &res) < 0) {
 		fprintf(stderr, "Error while querying table\n");
 		return &dbex_exports;
 	}
