@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.96 2002/08/27 19:36:42 jku Exp $
+ * $Id: main.c,v 1.97 2002/08/27 20:07:53 jku Exp $
  */
 
 #include <stdio.h>
@@ -46,7 +46,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.96 2002/08/27 19:36:42 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.97 2002/08/27 20:07:53 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -498,6 +498,12 @@ int main_loop()
 		pids[0]=getpid();
 		process_bit = 1;
 		process_no=0; /*main process number*/
+
+		/* if configured to do so, start a server for accepting FIFO commands */
+		if (open_fifo_server()<0) {
+			LOG(L_ERR, "opening fifo server failed\n");
+			goto error;
+		}
 		
 		     /* We will call child_init even if we
 		      * do not fork
@@ -508,11 +514,6 @@ int main_loop()
 			goto error;
 		}
 
-		/* if configured to do so, start a server for accepting FIFO commands */
-		if (open_fifo_server()<0) {
-			LOG(L_ERR, "opening fifo server failed\n");
-			goto error;
-		}
 		is_main=1; /* hack 42: call init_child with is_main=0 in case
 					 some modules wants to fork a child */
 		
