@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.4 2004/08/24 08:45:10 janakj Exp $
+ * $Id: usr_avp.h,v 1.5 2004/10/09 12:16:14 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -68,9 +68,11 @@ void destroy_avp( struct usr_avp *avp);
 void destroy_avp_list( struct usr_avp **list );
 void destroy_avp_list_unsafe( struct usr_avp **list );
 
-/* get val func */
+/* get func */
 void get_avp_val(struct usr_avp *avp, int_str *val );
+str* get_avp_name(struct usr_avp *avp);
 struct usr_avp** set_avp_list( struct usr_avp **list );
+struct usr_avp** get_avp_list( );
 
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.9 2004/08/24 08:45:10 janakj Exp $
+ * $Id: usr_avp.c,v 1.10 2004/10/09 12:16:14 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * ---------
  *  2004-07-21  created (bogdan)
+ *  2004-10-09  interface more flexibil - more function available (bogdan)
  */
 
 
@@ -141,7 +142,9 @@ error:
 }
 
 
-inline static str* get_avp_name(struct usr_avp *avp)
+/* get value functions */
+
+inline str* get_avp_name(struct usr_avp *avp)
 {
 	switch ( avp->flags&(AVP_NAME_STR|AVP_VAL_STR) )
 	{
@@ -163,8 +166,6 @@ inline static str* get_avp_name(struct usr_avp *avp)
 	return 0;
 }
 
-
-/* get value functions */
 
 inline void get_avp_val(struct usr_avp *avp, int_str *val)
 {
@@ -189,6 +190,13 @@ inline void get_avp_val(struct usr_avp *avp, int_str *val)
 			val->s = &(((struct str_str_data*)(&avp->data))->val);
 			break;
 	}
+}
+
+
+struct usr_avp** get_avp_list( )
+{
+	assert( crt_avps!=0 );
+	return crt_avps;
 }
 
 
