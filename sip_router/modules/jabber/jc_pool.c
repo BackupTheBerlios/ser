@@ -1,5 +1,5 @@
 /*
- * $Id: jc_pool.c,v 1.2 2002/07/17 14:03:58 daniel Exp $
+ * $Id: jc_pool.c,v 1.3 2002/07/24 10:08:12 daniel Exp $
  *
  * JABBER module - Jabber connections pool
  *
@@ -33,7 +33,11 @@
 int k_cmp(void *a, void *b)
 {
 	int n;
-	DBG("JABBER: k_kmp: comparing <%.*s> / <%.*s>\n", ((str *)a)->len, ((str *)a)->s, ((str *)b)->len, ((str *)b)->s);
+	if(a == NULL)
+	    return -1;
+	if(a == NULL)
+	    return 1;
+	// DBG("JABBER: k_kmp: comparing <%.*s> / <%.*s>\n", ((str *)a)->len, ((str *)a)->s, ((str *)b)->len, ((str *)b)->s);
 	if(((str *)a)->len != ((str *)b)->len)
 		return -1;
 	n = strncmp(((str *)a)->s, ((str *)b)->s, ((str *)a)->len);
