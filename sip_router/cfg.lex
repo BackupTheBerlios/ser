@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.54 2004/04/29 15:39:39 andrei Exp $
+ * $Id: cfg.lex,v 1.55 2004/05/03 11:32:19 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -210,6 +210,8 @@ ADVERTISED_ADDRESS	"advertised_address"
 ADVERTISED_PORT		"advertised_port"
 DISABLE_CORE		"disable_core_dump"
 OPEN_FD_LIMIT		"open_files_limit"
+MCAST_LOOPBACK		"mcast_loopback"
+MCAST_TTL			"mcast_ttl"
 
 LOADMODULE	loadmodule
 MODPARAM        modparam
@@ -392,6 +394,10 @@ EAT_ABLE	[\ \t\b\r]
 									return DISABLE_CORE; }
 <INITIAL>{OPEN_FD_LIMIT}		{	count(); yylval.strval=yytext;
 									return OPEN_FD_LIMIT; }
+<INITIAL>{MCAST_LOOPBACK}		{	count(); yylval.strval=yytext;
+									return MCAST_LOOPBACK; }
+<INITIAL>{MCAST_TTL}		{	count(); yylval.strval=yytext;
+									return MCAST_TTL; }
 <INITIAL>{LOADMODULE}	{ count(); yylval.strval=yytext; return LOADMODULE; }
 <INITIAL>{MODPARAM}     { count(); yylval.strval=yytext; return MODPARAM; }
 

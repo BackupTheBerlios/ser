@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.74 2004/04/29 15:39:39 andrei Exp $
+ * $Id: cfg.y,v 1.75 2004/05/03 11:32:19 andrei Exp $
  *
  *  cfg grammar
  *
@@ -242,7 +242,7 @@ static struct id_list* mk_listen_id(char*, int, int);
 %token ADVERTISED_PORT
 %token DISABLE_CORE
 %token OPEN_FD_LIMIT
-
+%token MCAST_LOOPBACK
 
 
 
@@ -658,6 +658,15 @@ assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
 										open_files_limit=$3;
 									}
 		| OPEN_FD_LIMIT EQUAL error { yyerror("number expected"); }
+		| MCAST_LOOPBACK EQUAL NUMBER {
+								#ifdef USE_MCAST
+										mcast_loopback=$3;
+								#else
+									warn("no multicast support compiled in");
+								#endif
+		  }
+                | MCAST_LOOPBACK EQUAL error { yyerror("boolean value expected"); }
+
 		| error EQUAL { yyerror("unknown config variable"); }
 	;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: ip_addr.c,v 1.5 2003/07/06 18:43:16 andrei Exp $
+ * $Id: ip_addr.c,v 1.6 2004/05/03 11:32:19 andrei Exp $
  *
  *
  * ip address & address family related functions
@@ -160,3 +160,28 @@ void print_net(struct net* net)
 	}
 	print_ip("", &net->ip, "/"); print_ip("", &net->mask, "");
 }
+
+
+#ifdef USE_MCAST
+
+/* Returns 1 if the given address is a multicast address */
+int is_mcast(struct ip_addr* ip)
+{
+	if (!ip){
+		LOG(L_ERR, "ERROR: is_mcast: Invalid parameter value\n");
+		return -1;
+	}
+
+	if (ip->af==AF_INET){
+		return IN_MULTICAST(htonl(ip->u.addr32[0]));
+#ifdef USE_IPV6
+	} else if (ip->af==AF_INET6){
+		return IN6_IS_ADDR_MULTICAST(ip->u.addr);
+#endif /* USE_IPV6 */
+	} else {
+		LOG(L_ERR, "ERROR: is_mcast: Unsupported protocol family\n");
+		return -1;
+	}
+}
+
+#endif /* USE_MCAST */

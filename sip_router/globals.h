@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.48 2004/05/03 10:29:57 andrei Exp $
+ * $Id: globals.h,v 1.49 2004/05/03 11:32:19 andrei Exp $
  *
  * global variables
  *
@@ -101,6 +101,10 @@ extern int sock_gid;
 extern int sock_mode;
 extern char* chroot_dir;
 extern char* working_dir;
+
+#ifdef USE_MCAST
+extern int mcast_loopback;
+#endif /* USE_MCAST */
 
 /*
  * debug & log_stderr moved to dprint.h*/

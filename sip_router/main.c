@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.186 2004/05/03 10:29:57 andrei Exp $
+ * $Id: main.c,v 1.187 2004/05/03 11:32:19 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -121,7 +121,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.186 2004/05/03 10:29:57 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.187 2004/05/03 11:32:19 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -345,6 +345,10 @@ int open_files_limit=-1; /* don't touch it by default */
    to IP advertised in Via or IP from which a request came
 */
 int reply_to_via=0;
+
+#ifdef USE_MCAST
+int mcast_loopback = 0;
+#endif /* USE_MCAST */
 
 #if 0
 char* names[MAX_LISTEN];              /* our names */
