@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.15 2002/05/22 20:47:14 jku Exp $
+ * $Id: sipsak.c,v 1.16 2002/05/25 11:33:56 jku Exp $
  */
 
 /* sipsak written by nils ohlmeier (ohlmeier@fokus.gmd.de).
@@ -42,7 +42,7 @@ bouquets and brickbats to farhan@hotfoon.com
 
 #define SIPSAK_VERSION "v0.1"
 #define RESIZE		1024
-#define BUFSIZE		1500
+#define BUFSIZE		4096
 #define FQDN_SIZE   200
 #define REQ_INV 1
 #define REQ_REG 2
