@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.22 2002/02/21 22:15:03 andrei Exp $
+ * $Id: timer.c,v 1.23 2002/02/25 18:17:52 andrei Exp $
  */
 
 
@@ -134,7 +134,6 @@ void timer_routine(unsigned int ticks , void * attr)
 	struct timer_link  *tl, *tmp_tl;
 	int                           id;
 
-	DBG("%d\n", ticks);
 
 	for( id=0 ; id<NR_OF_TIMER_LISTS ; id++ )
 	{
