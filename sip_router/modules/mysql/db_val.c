@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.c,v 1.5 2002/03/05 14:38:46 janakj Exp $ 
+ * $Id: db_val.c,v 1.6 2002/05/10 01:00:09 janakj Exp $ 
  */
 
 #include "db_val.h"
@@ -135,7 +135,7 @@ int val2str(db_val_t* _v, char* _s, int* _len)
 		break;
 
 	default:
-		printf("val2str(): Unknow data type\n");
+		DBG("val2str(): Unknow data type\n");
 		return FALSE;
 	}
 	return FALSE;
