@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.59 2002/02/15 17:02:34 andrei Exp $
+ * $Id: main.c,v 1.60 2002/02/19 17:11:54 andrei Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.59 2002/02/15 17:02:34 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.60 2002/02/19 17:11:54 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -495,7 +495,7 @@ int main(int argc, char** argv)
                                         }
                                         break;
 			case 'l':
-					/* add a new addr. to out address list */
+					/* add a new addr. to our address list */
 					if (addresses_no < MAX_LISTEN){
 						names[addresses_no]=(char*)malloc(strlen(optarg)+1);
 						if (names[addresses_no]==0){
