@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.4 2004/01/14 14:02:56 jamey Exp $
+ * $Id: pa_mod.h,v 1.5 2004/01/21 18:16:03 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -41,9 +41,14 @@ extern struct tm_binds tmb;
 
 /* PA database */
 extern int use_db;
+extern int use_place_table;
 extern str db_url;
+extern str pa_domain;
 extern char *presentity_table;
 extern char *watcherinfo_table;
-
+extern char *place_table;
+extern int use_bsearch;
+extern int use_location_package;
+extern int new_watcher_pending;
 
 #endif /* PA_MOD_H */
