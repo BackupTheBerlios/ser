@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.37 2003/03/11 15:35:14 janakj Exp $
+ * $Id: jabber.c,v 1.38 2003/03/12 12:53:24 andrei Exp $
  *
  * XJAB module
  *
@@ -341,7 +341,6 @@ static int child_init(int rank)
 				sleep(check_time);
 				xjab_check_workers(mpid);
 			}
-			exit(0);
 		}
 	}
 	
