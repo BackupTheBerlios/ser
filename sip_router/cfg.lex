@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.13 2001/11/20 06:26:49 jku Exp $
+ * $Id: cfg.lex,v 1.14 2001/11/29 12:49:49 jku Exp $
  *
  * scanner for cfg files
  */
@@ -85,6 +85,7 @@ STAT	statistics
 MAXBUFFER maxbuffer
 CHILDREN children
 CHECK_VIA	check_via
+LOOP_CHECKS	loop_checks
 
 LOADMODULE	loadmodule
 
@@ -159,6 +160,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{MAXBUFFER}	{ count(); yylval.strval=yytext; return MAXBUFFER; }
 <INITIAL>{CHILDREN}	{ count(); yylval.strval=yytext; return CHILDREN; }
 <INITIAL>{CHECK_VIA}	{ count(); yylval.strval=yytext; return CHECK_VIA; }
+<INITIAL>{LOOP_CHECKS}	{ count(); yylval.strval=yytext; return LOOP_CHECKS; }
 <INITIAL>{LOADMODULE}	{ count(); yylval.strval=yytext; return LOADMODULE; }
 
 <INITIAL>{EQUAL}	{ count(); return EQUAL; }

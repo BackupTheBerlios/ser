@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.15 2001/11/26 19:32:07 andrei Exp $
+ * $Id: msg_parser.h,v 1.16 2001/11/29 12:49:49 jku Exp $
  */
 
 #ifndef msg_parser_h
@@ -167,6 +167,8 @@ struct sip_msg{
 
 	struct lump* add_rm;      /* used for all the forwarded messages */
 	struct lump* repl_add_rm; /* only for localy generated replies !!!*/
+
+	str add_to_branch; /* whatever whoever want to append to branch comes here */
 	
 };
 
