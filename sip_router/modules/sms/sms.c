@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.1 2002/05/22 14:05:15 bogdan Exp $
+ * $Id: sms.c,v 1.2 2002/05/22 18:35:26 bogdan Exp $
  *
  * MAXFWD module
  *
@@ -11,8 +11,8 @@
 
 #include "../../sr_module.h"
 #include "../../error.h"
-#include "../../ut.h"
-#include "sms_funcs.h"
+#include "../../dprint.h"
+#include "../im/im_funcs.h"
 
 
 
@@ -63,7 +63,7 @@ static int sms_send_message(struct sip_msg *msg, char* foo1, char * foo2)
 {
 	str body;
 
-	if ( !sms_extract_body(msg,&body) )
+	if ( !im_extract_body(msg,&body) )
 	{
 		LOG(L_ERR,"ERROR: sms_send_message:cannot extract body from msg!\n");
 		goto error;
