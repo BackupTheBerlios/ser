@@ -1,5 +1,5 @@
 /*
- * $Id: rpid.c,v 1.9 2005/01/13 09:12:19 sobomax Exp $
+ * $Id: rpid.c,v 1.10 2005/01/14 10:24:03 sobomax Exp $
  *
  * Remote-Party-ID related functions
  *
@@ -247,7 +247,6 @@ int is_rpid_user_e164(struct sip_msg* _m, char* _s1, char* _s2)
  */
 void save_rpid(str* _rpid)
 {
-	rpid.s = 0;
 	rpid.len = rpid_is_e164 = 0;
 
 	if (!_rpid) {
