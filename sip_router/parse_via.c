@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.15 2002/03/02 02:20:00 andrei Exp $ 
+ * $Id: parse_via.c,v 1.16 2002/03/13 18:20:14 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1729,7 +1729,15 @@ nextvia:
 	goto parse_again;
 
 error:
-	LOG(L_ERR, "via parse error\n");
+	if (end>buffer){
+		LOG(L_ERR, "ERROR: parse_via on: <%.*s>\n", end-buffer, buffer);
+	}
+	if ((tmp>buffer)&&(tmp<end)){
+		LOG(L_ERR, "ERROR: parse_via parse error, parsed so far:<%.*s>\n",
+				tmp-buffer, buffer );
+	}else{
+		LOG(L_ERR, "ERROR: parse_via: via parse error\n");
+	}
 	vb->error=VIA_PARSE_ERROR;
 	return tmp;
 }
