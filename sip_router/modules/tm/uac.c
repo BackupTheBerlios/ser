@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.14 2002/10/22 20:37:29 andrei Exp $
+ * $Id: uac.c,v 1.15 2002/10/28 15:44:41 bogdan Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -216,7 +216,9 @@ int t_uac( str *msg_type, str *dst,
 	callid[rand_len]=CID_SEP;
 	callid_s.s=callid;
 	callid_s.len=rand_len+callid_suffix_len;
-	DBG("DEBUG: NEW CALLID:%*s\n", callid_s.len, callid_s.s );
+	DBG("DEBUG: sufix_len = %d\n",callid_suffix_len);
+	DBG("DEBUG: NEW CALLID:%.*s[%d]:\n", callid_s.len, callid_s.s 
+		, callid_s.len);
 
 	new_cell = build_cell( NULL ) ; 
 	if (!new_cell) {
