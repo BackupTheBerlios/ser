@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.32 2002/07/26 21:29:42 noh Exp $
+ * $Id: sipsak.c,v 1.33 2002/08/07 18:23:33 noh Exp $
  *
  * Copyright (C) 2002-2003 Fhg Fokus
  *
@@ -38,6 +38,7 @@ bouquets and brickbats to farhan@hotfoon.com
 */
 
 /* TO-DO:
+   - improve dontsend
    - filter out retransmissions
    - support for short notation
    - support for IPv6
@@ -491,6 +492,7 @@ void shoot(char *buff)
 	struct pollfd sockerr;
 	int ssock, redirected, retryAfter, nretries;
 	int sock, i, len, ret, usrlocstep, randretrys;
+	int dontsend;
 	char *contact, *crlf, *foo, *bar;
 	char reply[BUFSIZE];
 	fd_set	fd;
@@ -501,7 +503,7 @@ void shoot(char *buff)
 	redirected = 1;
 	nretries = 5;
 	retryAfter = 5000;
-	usrlocstep = 0;
+	usrlocstep=dontsend = 0;
 
 	/* create a sending socket */
 	sock = (int)socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -650,12 +652,14 @@ void shoot(char *buff)
 				printf("** request **\n%s\n", buff);
 			}
 
-			/* lets fire the request to the server and store when we did */
-			ret = send(sock, buff, strlen(buff), 0);
-			(void)gettimeofday(&sendtime, &tz);
-			if (ret==-1) {
-				perror("send failure");
-				exit( 1 );
+			if (! dontsend) {
+				/* lets fire the request to the server and store when we did */
+				ret = send(sock, buff, strlen(buff), 0);
+				(void)gettimeofday(&sendtime, &tz);
+				if (ret==-1) {
+					perror("send failure");
+					exit( 1 );
+				}
 			}
 
 			/* in flood we are only interested in sending so skip the rest */
@@ -851,6 +855,8 @@ void shoot(char *buff)
 							printf("(%.3f ms) %s\n", 
 								deltaT(&sendtime, &recvtime), reply);
 #endif
+							dontsend=1;
+							i--;
 							continue;
 						}
 						else {
