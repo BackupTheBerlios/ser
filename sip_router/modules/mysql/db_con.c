@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.14 2004/01/26 13:10:35 janakj Exp $ 
+ * $Id: db_con.c,v 1.15 2004/03/05 18:27:37 janakj Exp $ 
  *
  * Database connection related functions
  *
@@ -40,9 +40,6 @@
  */
 int use_table(db_con_t* _h, const char* _t)
 {
-	char* ptr;
-	int l;
-
 	if ((!_h) || (!_t)) {
 		LOG(L_ERR, "use_table(): Invalid parameter value\n");
 		return -1;

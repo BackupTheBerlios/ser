@@ -1,5 +1,5 @@
 /* 
- * $Id: val.h,v 1.2 2003/11/17 22:49:50 janakj Exp $ 
+ * $Id: val.h,v 1.3 2004/03/05 18:27:37 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
 #ifndef VAL_H
 #define VAL_H
 
+#include <mysql/mysql.h>
 #include "../../db/db_val.h"
 
 
@@ -40,7 +41,7 @@ int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l);
 /*
  * Used when converting result from a query
  */
-int val2str(db_val_t* _v, char* _s, int* _len);
+int val2str(MYSQL* _c, db_val_t* _v, char* _s, int* _len);
 
 
 #endif /* VAL_H */
