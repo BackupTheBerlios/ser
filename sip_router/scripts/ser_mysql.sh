@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.15 2002/12/08 12:56:50 janakj Exp $
+# $Id: ser_mysql.sh,v 1.16 2002/12/10 11:03:52 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -180,7 +180,7 @@ CREATE TABLE aliases (
   callid varchar(255) default NULL,
   cseq int(11) default NULL,
   last_modified timestamp(14) NOT NULL,
-  KEY user (user,contact)
+  KEY user (user, contact)
 ) $TABLE_TYPE;
 
 
@@ -232,7 +232,7 @@ CREATE TABLE location (
   callid varchar(255) default NULL,
   cseq int(11) default NULL,
   last_modified timestamp(14) NOT NULL,
-  KEY user (user,contact)
+  KEY user (user, contact)
 ) $TABLE_TYPE;
 
 
