@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.36 2004/06/08 10:55:29 andrei Exp $
+ * $Id: acc_mod.c,v 1.37 2004/07/18 23:32:00 jiri Exp $
  * 
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -217,6 +217,7 @@ static param_export_t params[] = {
 	{"db_table_acc",          STR_PARAM, &db_table_acc         }, 
 	{"db_table_missed_calls", STR_PARAM, &db_table_mc },
 	{"db_url",                STR_PARAM, &db_url               },
+	{"db_local_time", 	      INT_PARAM, &db_local_time},
 	{"acc_sip_from_column",   STR_PARAM, &acc_sip_from_col  },
 	{"acc_sip_to_column",     STR_PARAM, &acc_sip_status_col},
 	{"acc_sip_status_column", STR_PARAM, &acc_sip_status_col},
