@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.28 2002/03/01 23:21:25 andrei Exp $
+ * $Id: udp_server.c,v 1.29 2002/03/02 00:23:13 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -26,9 +26,12 @@ int udp_sock;
 int probe_max_receive_buffer( int udp_sock )
 {
 	int optval, optvallen;
-	int ioptval, ioptvallen;
-	int foptval, foptvallen;
-	int voptval, voptvallen;
+	int ioptval;
+	unsigned int ioptvallen;
+	int foptval;
+	unsigned int foptvallen;
+	int voptval;
+	unsigned int voptvallen;
 	int i;
 	int phase=0;
 
@@ -158,7 +161,7 @@ int udp_rcv_loop()
 #endif
 
 	struct sockaddr_in* from;
-	int fromlen;
+	unsigned int fromlen;
 
 
 	from=(struct sockaddr_in*) malloc(sizeof(struct sockaddr_in));
