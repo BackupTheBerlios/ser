@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.98 2002/08/27 20:35:36 jku Exp $
+ * $Id: main.c,v 1.99 2002/08/28 13:48:50 jku Exp $
  */
 
 #include <stdio.h>
@@ -38,6 +38,8 @@
 #include "parser/digest/digest_parser.h"
 #include "fifo_server.h"
 #include "name_alias.h"
+#include "hash_func.h"
+#include "hash_func.h"
 
 
 #include "stats.h"
@@ -46,7 +48,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.98 2002/08/27 20:35:36 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.99 2002/08/28 13:48:50 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -872,6 +874,12 @@ int main(int argc, char** argv)
 
         init_hfname_parser();
 	init_digest_parser();
+
+	/* init hash fucntion */
+	if (init_hash()<0) {
+		LOG(L_ERR, "ERROR: init_hash failed\n");
+		goto error;
+	}
 
 	/*init mallocs (before parsing cfg !)*/
 	if (init_mallocs()==-1)
