@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.25 2004/10/28 23:36:14 danp Exp $ 
+ * $Id: db_mod.c,v 1.26 2005/02/01 15:13:04 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -37,8 +37,12 @@
 #include "dbase.h"
 #include "db_mod.h"
 
+#include <mysql.h>
+
 int ping_interval = 5 * 60; /* Default is 5 minutes */
 int auto_reconnect = 1;     /* Default is enabled */
+
+static int mysql_mod_init(void);
 
 MODULE_VERSION
 
@@ -73,10 +77,17 @@ static param_export_t params[] = {
 struct module_exports exports = {	
 	"mysql",
 	cmds,
-	params, /*  module parameters */
-	0,      /* module initialization function */
-	0,      /* response function*/
-	0,      /* destroy function */
-	0,      /* oncancel function */
-	0       /* per-child init function */
+	params,          /*  module parameters */
+	mysql_mod_init,  /* module initialization function */
+	0,               /* response function*/
+	0,               /* destroy function */
+	0,               /* oncancel function */
+	0                /* per-child init function */
 };
+
+
+static int mysql_mod_init(void)
+{
+	DBG("mysql: MySQL client version is %s\n", mysql_get_client_info());
+	return 0;
+}
