@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.13 2002/11/14 14:33:16 janakj Exp $ 
+ * $Id: urecord.c,v 1.14 2002/11/28 16:55:38 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -353,7 +353,7 @@ int db_delete_urecord(urecord_t* _r)
 	b[_r->domain->len] = '\0';
 	db_use_table(db, b);
 
-	if (db_delete(db, keys, vals, 1) < 0) {
+	if (db_delete(db, keys, 0, vals, 1) < 0) {
 		LOG(L_ERR, "db_delete_urecord(): Error while deleting from database\n");
 		return -1;
 	}

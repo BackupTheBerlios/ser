@@ -1,5 +1,5 @@
 /* 
- * $Id: del_list.c,v 1.3 2002/09/19 12:23:55 jku Rel $
+ * $Id: del_list.c,v 1.4 2002/11/28 16:55:38 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -87,7 +87,7 @@ int process_del_list(str* _d)
 		VAL_STR(vals + 1).len = p->cont_len;
 		VAL_STR(vals + 1).s = p->tail + p->user_len;
 
-		if (db_delete(db, keys, vals, 2) < 0) {
+		if (db_delete(db, keys, 0, vals, 2) < 0) {
 			LOG(L_ERR, "process_del_list(): Error while deleting from database\n");
 			return -1;
 		}
