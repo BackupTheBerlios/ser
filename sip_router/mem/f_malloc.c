@@ -1,4 +1,4 @@
-/* $Id: f_malloc.c,v 1.3 2002/02/15 17:02:34 andrei Exp $
+/* $Id: f_malloc.c,v 1.4 2002/02/20 21:07:31 andrei Exp $
  *
  */
 
@@ -16,8 +16,15 @@
 #define FRAG_OVERHEAD	(sizeof(struct fm_frag))
 
 
-#define ROUNDUP(s)		(((s)%ROUNDTO)?((s)+ROUNDTO)/ROUNDTO*ROUNDTO:(s))
-#define ROUNDDOWN(s)	(((s)%ROUNDTO)?((s)-ROUNDTO)/ROUNDTO*ROUNDTO:(s))
+/* ROUNDTO= 2^k so the following works */
+#define ROUNDTO_MASK	(~((unsigned long)ROUNDTO-1))
+#define ROUNDUP(s)		(((s)+(ROUNDTO-1))&ROUNDTO_MASK)
+#define ROUNDDOWN(s)	((s)&ROUNDTO_MASK)
+
+/*
+ #define ROUNDUP(s)		(((s)%ROUNDTO)?((s)+ROUNDTO)/ROUNDTO*ROUNDTO:(s))
+ #define ROUNDDOWN(s)	(((s)%ROUNDTO)?((s)-ROUNDTO)/ROUNDTO*ROUNDTO:(s))
+*/
 
 
 

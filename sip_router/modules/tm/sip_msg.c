@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.42 2002/02/18 13:06:38 bogdan Exp $
+ * $Id: sip_msg.c,v 1.43 2002/02/20 21:07:31 andrei Exp $
  */
 
 
@@ -11,7 +11,10 @@
 #include "../../ut.h"
 
 
-#define ROUND4(s) (((s)%4)?((s)+4)/4*4:(s))
+/*#define ROUND4(s) (((s)%4)?((s)+4)/4*4:(s))*/
+
+#define ROUND4(s)		(((s)+3)&(~(3UL)))
+
 
 #define  lump_len( _lump)  (ROUND4(sizeof(struct lump)) + \
                ROUND4( ((_lump)->op==LUMP_ADD)?(_lump)->len:0 ))

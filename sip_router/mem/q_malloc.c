@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.4 2002/02/15 14:10:40 andrei Exp $
+/* $Id: q_malloc.c,v 1.5 2002/02/20 21:07:31 andrei Exp $
  *
  */
 
@@ -30,8 +30,14 @@
 #define FRAG_OVERHEAD	(sizeof(struct qm_frag)+sizeof(struct qm_frag_end))
 
 
+#define ROUNDTO_MASK	(~((unsigned long)ROUNDTO-1))
+#define ROUNDUP(s)		(((s)+(ROUNDTO-1))&ROUNDTO_MASK)
+#define ROUNDDOWN(s)	((s)&ROUNDTO_MASK)
+
+/*
 #define ROUNDUP(s)		(((s)%ROUNDTO)?((s)+ROUNDTO)/ROUNDTO*ROUNDTO:(s))
 #define ROUNDDOWN(s)	(((s)%ROUNDTO)?((s)-ROUNDTO)/ROUNDTO*ROUNDTO:(s))
+*/
 
 
 
