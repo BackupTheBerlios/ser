@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.7 2003/03/19 22:39:37 janakj Exp $ 
+ * $Id: authdb_mod.c,v 1.8 2003/04/05 14:06:10 jiri Exp $ 
  *
  * Digest Authentication Module
  *
@@ -32,6 +32,7 @@
  * 2003-03-11: New module interface (janakj)
  * 2003-03-16: flags export parameter added (janakj)
  * 2003-03-19  all mallocs/frees replaced w/ pkg_malloc/pkg_free (andrei)
+ * 2003-04-05: default_uri #define used (jiri)
  */
 
 #include <stdio.h>
@@ -77,7 +78,7 @@ int (*sl_reply)(struct sip_msg* _msg, char* _str1, char* _str2);
 /*
  * Module parameter variables
  */
-char* db_url           = "sql://serro:47serro11@localhost/ser";
+char* db_url           = DEFAULT_RODB_URL;
 char* user_column      = "username";
 char* domain_column    = "domain";
 char* pass_column      = "ha1";

@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.8 2003/04/01 17:51:54 jih Exp $
+ * $Id: domain_mod.c,v 1.9 2003/04/05 14:06:10 jiri Exp $
  *
  * Domain module
  *
@@ -30,6 +30,7 @@
  * -------
  * 2003-03-11: New module interface (janakj)
  * 2003-03-16: flags export parameter added (janakj)
+ * 2003-04-05: default_uri #define used (jiri)
  */
 
 
@@ -51,7 +52,7 @@ static int child_init(int rank);
 /*
  * Module parameter variables
  */
-char* db_url = "sql://serro:47serro11@localhost/ser";
+char* db_url = DEFAULT_RODB_URL;
 int db_mode = 0;			/* Database usage mode: 0 = no cache, 1 = cache */
 char* domain_table = "domain";          /* Name of domain table */
 char* domain_col = "domain";            /* Name of domain column */
