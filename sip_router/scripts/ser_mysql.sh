@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.66 2005/02/18 16:00:55 janakj Exp $
+# $Id: ser_mysql.sh,v 1.67 2005/03/11 09:39:03 kozlik Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -254,7 +254,7 @@ INSERT INTO version VALUES ( 'server_monitoring', '1');
 INSERT INTO version VALUES ( 'server_monitoring_agg', '1');
 INSERT INTO version VALUES ( 'trusted', '1');
 INSERT INTO version VALUES ( 'usr_preferences', '1');
-INSERT INTO version VALUES ( 'preferences_types', '1');
+INSERT INTO version VALUES ( 'usr_preferences_types', '1');
 INSERT INTO version VALUES ( 'admin_privileges', '1');
 INSERT INTO version VALUES ( 'calls_forwarding', '1');
 INSERT INTO version VALUES ( 'speed_dial', '1');
@@ -601,11 +601,11 @@ CREATE TABLE usr_preferences (
 
 
 #
-# Table structure for table 'preferences_types' -- types of atributes in preferences
+# Table structure for table 'usr_preferences_types' -- types of atributes in preferences
 #
 
-CREATE TABLE preferences_types (
-  att_name varchar(50) NOT NULL default '',
+CREATE TABLE usr_preferences_types (
+  att_name varchar(32) NOT NULL default '',
   att_rich_type varchar(32) NOT NULL default 'string',
   att_raw_type int(11) unsigned NOT NULL default '2',
   att_type_spec text,
