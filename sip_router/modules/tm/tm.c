@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.27 2002/01/28 23:30:56 jku Exp $
+ * $Id: tm.c,v 1.28 2002/01/29 01:32:03 jku Exp $
  *
  * TM module
  *
@@ -441,7 +441,9 @@ static int t_relay_to( struct sip_msg  *p_msg , char *str_ip , char *str_port)
 			LOG(L_CRIT, "ERROR: unexpected addifnew return value: %d\n", ret);
 			abort();
 	};
-	T_UNREF( T );
+	if (T) {
+		T_UNREF( T );
+	}
 	return ret;
 }
 
