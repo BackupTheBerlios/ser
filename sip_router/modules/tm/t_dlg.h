@@ -1,5 +1,5 @@
 /*
- * $Id: t_dlg.h,v 1.1 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_dlg.h,v 1.2 2002/08/26 19:03:25 jku Exp $
  *
  */
 
@@ -12,7 +12,9 @@ struct dialog {
 	int place_holder;
 };
 
+typedef struct dialog *dlg_t;
+
 int t_newdlg( struct sip_msg *msg );
-struct dialog *t_getdlg() ;
+dlg_t t_getdlg() ;
 
 #endif
