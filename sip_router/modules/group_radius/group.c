@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.6 2003/12/17 15:43:11 sobomax Exp $
+ * $Id: group.c,v 1.7 2004/01/17 19:11:14 sobomax Exp $
  *
  * Group membership checking over Radius
  *
@@ -206,7 +206,7 @@ int radius_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 	}
 
 	service = vals[V_GROUP_CHECK].v;
-	if (!rc_avpair_add(rh, &send, attrs[A_SERVICE_TYPE].v, &service, 0, 0)) {
+	if (!rc_avpair_add(rh, &send, attrs[A_SERVICE_TYPE].v, &service, -1, 0)) {
 		LOG(L_ERR, "radius_is_user_in(): Error adding Service-Type attribute\n");
 		rc_avpair_free(send);
 	 	return -9;  	

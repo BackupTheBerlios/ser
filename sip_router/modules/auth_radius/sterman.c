@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.8 2003/12/17 15:43:11 sobomax Exp $
+ * $Id: sterman.c,v 1.9 2004/01/17 19:11:14 sobomax Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -180,7 +180,7 @@ int radius_authorize_sterman(struct sip_msg* _msg, dig_cred_t* _cred, str* _meth
 
 	/* Indicate the service type, Authenticate only in our case */
 	service = vals[V_SIP_SESSION].v;
-	if (!rc_avpair_add(rh, &send, attrs[A_SERVICE_TYPE].v, &service, 0, 0)) {
+	if (!rc_avpair_add(rh, &send, attrs[A_SERVICE_TYPE].v, &service, -1, 0)) {
 		LOG(L_ERR, "sterman(): Unable to add Service-Type attribute\n");
 		rc_avpair_free(send);
 	 	return -18;
