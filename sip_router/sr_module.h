@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.18 2003/04/27 18:17:23 jiri Exp $
+/* $Id: sr_module.h,v 1.19 2003/10/24 21:03:14 janakj Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -125,6 +125,7 @@ int register_builtin_modules();
 int register_module(struct module_exports*, char*,  void*);
 int load_module(char* path);
 cmd_function find_export(char* name, int param_no, int flags);
+cmd_function find_mod_export(char* mod, char* name, int param_no, int flags);
 struct sr_module* find_module(void *f, cmd_export_t** cmd);
 void destroy_modules();
 int init_child(int rank);
