@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.133 2002/09/19 17:50:17 andrei Exp $
+# $Id: Makefile.defs,v 1.134 2002/09/19 18:30:59 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -443,7 +443,7 @@ ifeq  ($(OS), SunOS)
 	YACC=yacc
 
 ifeq ($(CC_NAME), suncc)
-	LIBS=-lfast
+	LIBS=-lfast -lresolv
 endif
 	LIBS+=-ldl -L/usr/local/lib -L/usr/lib/mysql -lfl -lxnet -lrt -lnsl
 	# -lrt needed for sched_yield

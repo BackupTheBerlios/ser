@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.112 2002/09/19 12:23:52 jku Exp $
+ * $Id: main.c,v 1.113 2002/09/19 18:30:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -46,7 +46,7 @@
 
 #include <sys/ioctl.h>
 #include <net/if.h>
-#ifdef __sun__
+#ifdef __sun
 #include <sys/sockio.h>
 #endif
 
@@ -78,7 +78,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.112 2002/09/19 12:23:52 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.113 2002/09/19 18:30:59 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
