@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.12 2004/11/17 23:26:03 andrei Exp $
+/* $Id: f_malloc.h,v 1.13 2004/12/08 19:06:12 andrei Exp $
  *
  * simple, very fast, malloc library
  *
@@ -81,8 +81,8 @@ struct fm_frag{
 		long reserved;
 	}u;
 #ifdef DBG_F_MALLOC
-	char* file;
-	char* func;
+	const char* file;
+	const char* func;
 	unsigned long line;
 	unsigned long check;
 #endif
@@ -113,13 +113,13 @@ struct fm_block* fm_malloc_init(char* address, unsigned long size);
 
 #ifdef DBG_F_MALLOC
 void* fm_malloc(struct fm_block*, unsigned long size,
-					char* file, char* func, unsigned int line);
+					const char* file, const char* func, unsigned int line);
 #else
 void* fm_malloc(struct fm_block*, unsigned long size);
 #endif
 
 #ifdef DBG_F_MALLOC
-void  fm_free(struct fm_block*, void* p, char* file, char* func, 
+void  fm_free(struct fm_block*, void* p, const char* file, const char* func, 
 				unsigned int line);
 #else
 void  fm_free(struct fm_block*, void* p);
@@ -127,7 +127,7 @@ void  fm_free(struct fm_block*, void* p);
 
 #ifdef DBG_F_MALLOC
 void*  fm_realloc(struct fm_block*, void* p, unsigned long size, 
-					char* file, char* func, unsigned int line);
+					const char* file, const char* func, unsigned int line);
 #else
 void*  fm_realloc(struct fm_block*, void* p, unsigned long size);
 #endif

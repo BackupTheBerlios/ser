@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.17 2004/11/17 23:26:03 andrei Exp $
+/* $Id: q_malloc.h,v 1.18 2004/12/08 19:06:12 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -83,8 +83,8 @@ struct qm_frag{
 		long is_free;
 	}u;
 #ifdef DBG_QM_MALLOC
-	char* file;
-	char* func;
+	const char* file;
+	const char* func;
 	unsigned long line;
 	unsigned long check;
 #endif
@@ -128,21 +128,21 @@ struct qm_block{
 struct qm_block* qm_malloc_init(char* address, unsigned long size);
 
 #ifdef DBG_QM_MALLOC
-void* qm_malloc(struct qm_block*, unsigned long size, char* file, char* func, 
-					unsigned int line);
+void* qm_malloc(struct qm_block*, unsigned long size, const char* file,
+					const char* func, unsigned int line);
 #else
 void* qm_malloc(struct qm_block*, unsigned long size);
 #endif
 
 #ifdef DBG_QM_MALLOC
-void  qm_free(struct qm_block*, void* p, char* file, char* func, 
+void  qm_free(struct qm_block*, void* p, const char* file, const char* func, 
 				unsigned int line);
 #else
 void  qm_free(struct qm_block*, void* p);
 #endif
 #ifdef DBG_QM_MALLOC
 void* qm_realloc(struct qm_block*, void* p, unsigned long size,
-				char* file, char* func, unsigned int line);
+					const char* file, const char* func, unsigned int line);
 #else
 void* qm_realloc(struct qm_block*, void* p, unsigned long size);
 #endif

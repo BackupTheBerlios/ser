@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.135 2004/11/22 11:59:39 andrei Exp $
+# $Id: Makefile,v 1.136 2004/12/08 19:06:12 andrei Exp $
 #
 # sip_router makefile
 #
@@ -45,12 +45,12 @@ skip_cfg_install?=
 skip_modules?=
 
 # if not set on the cmd. line or the env, exclude this modules:
-exclude_modules?= 			cpl ext extcmd avp_radius \
+exclude_modules?= 			cpl ext extcmd \
 							postgres snmp \
 							im \
 							jabber mysql \
 							cpl-c \
-							auth_radius group_radius uri_radius \
+							auth_radius group_radius uri_radius avp_radius \
 							pa
 # always exclude the CVS dir
 override exclude_modules+= CVS $(skip_modules)

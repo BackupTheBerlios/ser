@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.30 2004/11/10 21:51:24 andrei Exp $
+/* $Id: shm_mem.c,v 1.31 2004/12/08 19:06:12 andrei Exp $
  *
  * Shared memory functions
  *
@@ -91,7 +91,8 @@ inline static void* sh_realloc(void* p, unsigned int size)
 */
 
 #ifdef DBG_QM_MALLOC
-void* _shm_resize( void* p, unsigned int s, char* file, char* func, int line)
+void* _shm_resize( void* p, unsigned int s, const char* file, const char* func,
+							int line)
 #else
 void* _shm_resize( void* p , unsigned int s)
 #endif
