@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.h,v 1.3 2002/09/19 12:23:54 jku Exp $
+ * $Id: ip_tree.h,v 1.4 2002/09/20 12:33:51 bogdan Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -54,7 +54,7 @@ struct ip_node
 
 
 struct ip_node* init_ip_tree(int);
-struct ip_node* add_node(struct ip_node *root, char *ip,int ip_len,
+struct ip_node* add_node(struct ip_node *root, unsigned char *ip,int ip_len,
 										struct ip_node **father,char *flag);
 void            remove_node(struct ip_node* root, struct ip_node *node);
 void            destroy_ip_tree(struct ip_node *root);

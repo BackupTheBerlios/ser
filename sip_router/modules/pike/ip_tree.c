@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.c,v 1.3 2002/09/19 12:23:54 jku Exp $
+ * $Id: ip_tree.c,v 1.4 2002/09/20 12:33:51 bogdan Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -57,7 +57,7 @@ struct ip_node* init_ip_tree(int maximum_hits)
 
 
 
-struct ip_node *split_node(struct ip_node* dad, char byte)
+struct ip_node *split_node(struct ip_node* dad, unsigned char byte)
 {
 	struct ip_node *new_node;
 	struct ip_node *foo;
@@ -91,7 +91,7 @@ struct ip_node *split_node(struct ip_node* dad, char byte)
 
 
 
-struct ip_node* add_node(struct ip_node *root,char *ip,int ip_len,
+struct ip_node* add_node(struct ip_node *root,unsigned char *ip,int ip_len,
 										struct ip_node **father,char *flag)
 {
 	struct ip_node *node;
