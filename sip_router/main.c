@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.69 2002/04/03 21:55:31 janakj Exp $
+ * $Id: main.c,v 1.70 2002/04/04 22:11:02 jku Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.69 2002/04/03 21:55:31 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.70 2002/04/04 22:11:02 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -86,6 +86,21 @@ static char flags[]=
 #endif
 #ifdef DEBUG_DMALLOC
 ", DEBUG_DMALLOC"
+#endif
+#ifdef SILENT_FR
+", SILENT_FR"
+#endif
+#ifdef USE_SYNONIM
+", USE_SYNONIM"
+#endif
+#ifdef NOISY_REPLIES
+", NOISY_REPLIES"
+#endif
+#ifdef VERY_NOISY_REPLIES
+", VERY_NOISY_REPLIES"
+#endif
+#ifdef NEW_HNAME
+", NEW_HNAME"
 #endif
 #ifdef FAST_LOCK
 ", FAST_LOCK"
