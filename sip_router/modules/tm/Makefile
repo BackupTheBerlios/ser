@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.11 2001/12/02 18:33:25 bogdan Exp $
+# $Id: Makefile,v 1.12 2001/12/04 00:29:18 andrei Exp $
 #
 # print example module makefile
 #
@@ -14,6 +14,8 @@ NAME=tm.so
 
 SHLIB_LD_FLAGS= -shared
 LIBS= -lpthread
+
+ALLDEP=Makefile ../../Makefile
 
 ifeq ($(ARCH), SunOS)
 LDFLAGS=-O2 -G

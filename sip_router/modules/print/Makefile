@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2001/10/24 21:58:38 andrei Exp $
+# $Id: Makefile,v 1.3 2001/12/04 00:29:18 andrei Exp $
 #
 # print example module makefile
 #
@@ -14,6 +14,8 @@ NAME=print.so
 
 LDFLAGS=-O2 -shared
 LIBS=
+
+ALLDEP=Makefile ../../Makefile
 
 ifeq ($(ARCH), SunOS)
 LDFLAGS=-O2 -G

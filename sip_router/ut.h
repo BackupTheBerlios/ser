@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.1 2001/11/19 12:44:51 andrei Exp $
+ *$Id: ut.h,v 1.2 2001/12/04 00:29:18 andrei Exp $
  *
  * - various general purpose functions
  */
@@ -86,7 +86,7 @@ error_dots:
 	if (err) *err=1;
 	return 0;
 error_char:
-	DBG("str2ip: ERROR: unexpected char %c in %s\n", *str, init);
+	DBG("str2ip: WARNING: unexpected char %c in %s\n", *str, init);
 	if (err) *err=1;
 	return 0;
 }
