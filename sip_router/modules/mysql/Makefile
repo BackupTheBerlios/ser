@@ -1,9 +1,12 @@
-# $Id: Makefile,v 1.9 2002/08/21 20:19:17 janakj Rel $
+# $Id: Makefile,v 1.10 2002/10/07 16:14:10 andrei Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
 auto_gen=
 NAME=mysql.so
-LIBS=-lmysqlclient #-L/usr/lib/mysql
+DEFS +=-I/usr/local/mysql/include
+# libmysqlclient locations on RH/Suse and Solaris
+# (Debian does the right thing and puts it in /usr/lib)
+LIBS=-L/usr/lib/mysql -L/usr/local/mysql/lib/mysql/ -lmysqlclient 
 
 include ../../Makefile.modules
