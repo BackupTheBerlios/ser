@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.14 2003/12/15 19:15:48 janakj Exp $
+ * $Id: dlg.c,v 1.15 2004/04/25 20:37:48 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -640,7 +640,7 @@ static inline int get_dlg_uri(struct hdr_field* _h, str* _s)
 		}
 		
 		if (ptr->next) {
-			tag_len = ptr->next->name.s - tag;
+			tag_len = ptr->value.s + ptr->value.len - tag;
 		} else {
 			tag_len = _h->body.s + _h->body.len - tag;
 		}
