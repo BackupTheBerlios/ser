@@ -1,4 +1,4 @@
-<!-- $Id: serdev.sgml,v 1.12 2002/09/29 10:33:51 janakj Exp $ -->
+<!-- $Id: serdev.sgml,v 1.13 2003/01/25 14:59:15 janakj Exp $ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN">
 
 <book label="serdev" id="serdev" lang="EN">
@@ -5066,7 +5066,7 @@ int n = RES_ROW_N(res);
 			    Type: <type>string</type>
 			</para>
 			<para>
-			    Default: <quote>user_id</quote>
+			    Default: <quote>user</quote>
 			</para>
 		    </listitem>
 
