@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.23 2004/08/24 08:58:31 janakj Exp $ 
+ * $Id: db_mod.c,v 1.24 2004/09/15 12:38:26 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -63,7 +63,7 @@ static cmd_export_t cmds[] = {
  * Exported parameters
  */
 static param_export_t params[] = {
-	{"ping_interval", INT_PARAM },
+	{"ping_interval", INT_PARAM, &ping_interval},
 	{0, 0, 0}
 };
 
