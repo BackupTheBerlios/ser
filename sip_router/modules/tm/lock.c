@@ -1,3 +1,8 @@
+/*
+ * $Header: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/tm/lock.c,v 1.15 2001/12/05 22:10:19 jku Exp $
+ */
+
+
 #include <errno.h>
 
 #include "lock.h"
