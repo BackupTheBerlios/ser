@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.19 2003/03/13 16:30:40 janakj Exp $ 
+ * $Id: udomain.c,v 1.20 2003/03/16 18:07:32 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,14 +26,9 @@
  *
  * History:
  * ---------
+ * 2003-03-11 changed to the new locking scheme: locking.h (andrei)
  * 2003-03-12 added replication mark and zombie state (nils)
  */
-/*
- * History:
- * --------
- *  2003-03-11  changed to the new locking scheme: locking.h (andrei)
- */
-
 
 #include "udomain.h"
 #include <string.h>
