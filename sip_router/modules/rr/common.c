@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: common.c,v 1.5 2003/01/22 00:31:26 janakj Exp $
+ * $Id: common.c,v 1.6 2003/01/23 21:40:54 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -374,6 +374,7 @@ int insert_RR(struct sip_msg* _m, str* _l)
 	}
 	
 	if (insert_new_lump_before(anchor, _l->s, _l->len, 0) == 0) {
+		
 		LOG(L_ERR, "insert_RR(): Can't insert Record-Route\n");
 		return -2;
 	}

@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.4 2002/12/17 18:09:28 janakj Exp $
+ * $Id: loose.c,v 1.5 2003/01/23 21:40:54 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -279,6 +279,7 @@ static inline int save_ruri(struct sip_msg* _m)
 
 	     /* Insert it */
 	if (insert_new_lump_before(anchor, s, 8 + _m->first_line.u.request.uri.len + 3, 0) == 0) {
+		pkg_free(s);
 		LOG(L_ERR, "save_ruri(): Can't insert lump\n");
 		return -4;
 	}
