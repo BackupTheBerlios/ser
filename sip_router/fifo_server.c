@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.7 2002/08/28 18:03:39 jku Exp $
+ * $Id: fifo_server.c,v 1.8 2002/08/29 16:08:56 jku Exp $
  *
  * Fifo server is a very powerful tool used to access easily
  * ser's internals via textual interface, similarly to
@@ -393,7 +393,7 @@ int open_fifo_server()
 		/* call per-child module initialization too -- some
 		   FIFO commands may need it
 		*/
-		if (init_child(0) < 0 ) {
+		if (init_child(process_no) < 0 ) {
 			LOG(L_ERR, "ERROR: open_uac_fifo: init_child failed\n");
 			return -1;
 		}
