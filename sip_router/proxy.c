@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.22 2003/03/20 16:47:16 janakj Exp $
+ * $Id: proxy.c,v 1.23 2003/03/20 17:10:24 andrei Exp $
  *
  * proxy list & assoc. functions
  *
@@ -172,7 +172,6 @@ void free_hostent(struct hostent *dst)
 		for (r=0; dst->h_addr_list[r];r++) { 
 			pkg_free(dst->h_addr_list[r]);
 		}
-		pkg_free(dst->h_addr_list[r]);
 		pkg_free(dst->h_addr_list);
 	}
 }
