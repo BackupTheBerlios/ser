@@ -1,5 +1,5 @@
 /* 
- * $Id: location.c,v 1.14 2002/04/12 11:36:55 janakj Exp $ 
+ * $Id: location.c,v 1.15 2002/05/13 01:15:41 jku Exp $ 
  */
 
 #include <stdio.h>
@@ -9,7 +9,7 @@
 #include "../../str.h"
 #include "utils.h"
 #include "log.h"
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 #include "const.h"
 #include "to_parser.h"
 #include "../../dprint.h"

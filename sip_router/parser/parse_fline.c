@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.c,v 1.4 2002/03/01 23:21:25 andrei Exp $
+ * $Id: parse_fline.c,v 1.1 2002/05/13 01:15:41 jku Exp $
  * 
  * sip first line parsing automaton
  * 
@@ -7,7 +7,7 @@
 
 
 
-#include "dprint.h"
+#include "../dprint.h"
 #include "msg_parser.h"
 
 

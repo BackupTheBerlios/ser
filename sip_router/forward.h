@@ -1,12 +1,12 @@
 /*
- *  $Id: forward.h,v 1.6 2001/12/03 13:07:13 jku Exp $
+ *  $Id: forward.h,v 1.7 2002/05/13 01:15:40 jku Exp $
  */
 
 
 #ifndef forward_h
 #define forward_h
 
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 #include "route.h"
 #include "proxy.h"
 

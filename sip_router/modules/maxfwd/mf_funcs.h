@@ -1,12 +1,12 @@
 /*
- * $Id: mf_funcs.h,v 1.5 2002/05/11 21:28:06 jku Exp $
+ * $Id: mf_funcs.h,v 1.6 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef _MF_FUNCS_H
 #define _MF_FUNCS_H
 
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 #include "../../dprint.h"
 #include "../../config.h"
 

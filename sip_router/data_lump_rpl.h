@@ -1,12 +1,12 @@
 /*
- * $Id: data_lump_rpl.h,v 1.2 2002/03/02 02:20:00 andrei Exp $
+ * $Id: data_lump_rpl.h,v 1.3 2002/05/13 01:15:40 jku Exp $
  *
  */
 
 #ifndef data_lump_rpl_h
 #define data_lump_rpl_h
 
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 
 
 struct lump_rpl

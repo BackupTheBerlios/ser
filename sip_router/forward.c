@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.39 2002/03/02 02:20:00 andrei Exp $
+ * $Id: forward.c,v 1.40 2002/05/13 01:15:40 jku Exp $
  */
 
 
@@ -14,7 +14,7 @@
 
 #include "forward.h"
 #include "config.h"
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 #include "route.h"
 #include "dprint.h"
 #include "udp_server.h"

@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.26 2002/03/02 04:51:55 bogdan Exp $
+ * $Id: timer.h,v 1.27 2002/05/13 01:15:41 jku Exp $
  */
 
 #ifndef _TIMER_H
@@ -25,7 +25,10 @@ enum lists
 
 
 #define is_in_timer_list2(_tl) ( (_tl)->timer_list )
+
 extern int timer_group[NR_OF_TIMER_LISTS];
+extern unsigned int timer_id2timeout[NR_OF_TIMER_LISTS];
+
 struct timer;
 
 #include "lock.h"

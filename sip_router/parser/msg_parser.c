@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.51 2002/04/30 16:58:45 andrei Exp $
+ * $Id: msg_parser.c,v 1.1 2002/05/13 01:15:41 jku Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -10,11 +10,11 @@
 
 #include "msg_parser.h"
 #include "parser_f.h"
-#include "ut.h"
-#include "error.h"
-#include "dprint.h"
-#include "data_lump_rpl.h"
-#include "mem/mem.h"
+#include "../ut.h"
+#include "../error.h"
+#include "../dprint.h"
+#include "../data_lump_rpl.h"
+#include "../mem/mem.h"
 
 #ifdef DEBUG_DMALLOC
 #include <mem/dmalloc.h>

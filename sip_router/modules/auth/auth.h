@@ -1,11 +1,11 @@
 /*
- * $Id: auth.h,v 1.8 2002/05/10 00:54:56 janakj Exp $
+ * $Id: auth.h,v 1.9 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef AUTH_H
 #define AUTH_H
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 #include "cred.h"
 
 

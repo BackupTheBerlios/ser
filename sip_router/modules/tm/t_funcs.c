@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.134 2002/04/22 08:59:59 bogdan Exp $
+ * $Id: t_funcs.c,v 1.135 2002/05/13 01:15:41 jku Exp $
  *
  */
 
@@ -7,7 +7,7 @@
 #include "t_funcs.h"
 #include "../../dprint.h"
 #include "../../config.h"
-#include "../../parser_f.h"
+#include "../../parser/parser_f.h"
 #include "../../ut.h"
 //#include "../../timer.h"
 

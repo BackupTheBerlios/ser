@@ -1,11 +1,11 @@
 /*
- * $Id: group.h,v 1.2 2002/05/11 21:27:30 jku Exp $
+ * $Id: group.h,v 1.3 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef GROUP_H
 #define GROUP_H
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 
 
 int is_user(struct sip_msg* _msg, char* _user, char* _str2);

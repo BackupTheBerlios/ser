@@ -1,11 +1,11 @@
 /*
- * $Id: sl_funcs.h,v 1.2 2002/05/11 21:30:08 jku Exp $
+ * $Id: sl_funcs.h,v 1.3 2002/05/13 01:15:41 jku Exp $
  */
 
 #ifndef _SL_FUNCS_H
 #define SL_FUNCS_H
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 
 #define SL_RPL_WAIT_TIME  2  // in sec
 

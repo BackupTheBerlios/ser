@@ -1,12 +1,12 @@
 /*
- * $Id: parser_f.c,v 1.6 2001/12/05 23:00:09 jku Exp $
+ * $Id: parser_f.c,v 1.1 2002/05/13 01:15:41 jku Exp $
  *
  * parser helper  functions
  *
  */
 
 #include  "parser_f.h"
-#include "ut.h"
+#include "../ut.h"
 
 /* returns pointer to next line or after the end of buffer */
 char* eat_line(char* buffer, unsigned int len)

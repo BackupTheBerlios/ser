@@ -1,11 +1,11 @@
 /*
- * $Id: checks.h,v 1.2 2002/05/11 21:27:30 jku Exp $
+ * $Id: checks.h,v 1.3 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef CHECKS_H
 #define CHECKS_H
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 #include "../../str.h"
 
 

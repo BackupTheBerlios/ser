@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.29 2002/03/08 02:26:58 andrei Exp $
+ *$Id: receive.c,v 1.30 2002/05/13 01:15:40 jku Exp $
  */
 
 #include <string.h>
@@ -9,7 +9,7 @@
 #include "receive.h"
 #include "dprint.h"
 #include "route.h"
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 #include "forward.h"
 #include "action.h"
 #include "mem/mem.h"

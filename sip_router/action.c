@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.24 2002/03/02 02:20:00 andrei Exp $
+ * $Id: action.c,v 1.25 2002/05/13 01:15:40 jku Exp $
  */
 
 
@@ -12,7 +12,7 @@
 #include "forward.h"
 #include "udp_server.h"
 #include "route.h"
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 #include "ut.h"
 #include "sr_module.h"
 #include "mem/mem.h"
@@ -167,6 +167,54 @@ int do_action(struct action* a, struct sip_msg* msg)
 			LOG(a->p1.number, a->p2.string);
 			ret=1;
 			break;
+
+		/* jku - begin : flag processing */
+
+		case SETFLAG_T:
+			if (a->p1_type!=NUMBER_ST) {
+				LOG(L_CRIT, "BUG: do_action: bad setflag() type %d\n",
+					a->p1_type );
+				ret=E_BUG;
+				break;
+			}
+			if (!flag_in_range( a->p1.number )) {
+				ret=E_CFG;
+				break;
+			}
+			setflag( msg, a->p1.number );
+			ret=1;
+			break;
+
+		case RESETFLAG_T:
+			if (a->p1_type!=NUMBER_ST) {
+				LOG(L_CRIT, "BUG: do_action: bad resetflag() type %d\n",
+					a->p1_type );
+				ret=E_BUG;
+				break;
+			}
+			if (!flag_in_range( a->p1.number )) {
+				ret=E_CFG;
+				break;
+			}
+			resetflag( msg, a->p1.number );
+			ret=1;
+			break;
+			
+		case ISFLAGSET_T:
+			if (a->p1_type!=NUMBER_ST) {
+				LOG(L_CRIT, "BUG: do_action: bad isflagset() type %d\n",
+					a->p1_type );
+				ret=E_BUG;
+				break;
+			}
+			if (!flag_in_range( a->p1.number )) {
+				ret=E_CFG;
+				break;
+			}
+			ret=isflagset( msg, a->p1.number );
+			break;
+		/* jku - end : flag processing */
+
 		case ERROR_T:
 			if ((a->p1_type!=STRING_ST)|(a->p2_type!=STRING_ST)){
 				LOG(L_CRIT, "BUG: do_action: bad error() types %d, %d\n",

@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.9 2002/04/03 21:56:04 janakj Exp $
+/* $Id: sr_module.h,v 1.10 2002/05/13 01:15:40 jku Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -7,7 +7,7 @@
 #ifndef sr_module_h
 #define sr_module_h
 
-#include "msg_parser.h" /* for sip_msg */
+#include "parser/msg_parser.h" /* for sip_msg */
 
 typedef  struct module_exports* (*module_register)();
 typedef  int (*cmd_function)(struct sip_msg*, char*, char*);

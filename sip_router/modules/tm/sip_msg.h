@@ -1,12 +1,12 @@
 /*
- * $Id: sip_msg.h,v 1.10 2002/02/07 16:02:45 bogdan Exp $
+ * $Id: sip_msg.h,v 1.11 2002/05/13 01:15:41 jku Exp $
  */
 
 
 #ifndef _SIP_MSG_H
 #define _SIP_MSG_H
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 
 #include "sh_malloc.h"
 

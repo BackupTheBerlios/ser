@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.15 2002/04/03 21:55:09 janakj Exp $
+ * $Id: cfg.lex,v 1.16 2002/05/13 01:15:40 jku Exp $
  *
  * scanner for cfg files
  */
@@ -46,6 +46,9 @@ LOG		log
 ERROR	error
 ROUTE	route
 EXEC	exec
+SETFLAG		setflag
+RESETFLAG	resetflag
+ISFLAGSET	isflagset
 SET_HOST		"rewritehost"|"sethost"|"seth"
 SET_HOSTPORT	"rewritehostport"|"sethostport"|"sethp"
 SET_USER		"rewriteuser"|"setuser"|"setu"
@@ -131,6 +134,9 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{SEND}	{ count(); yylval.strval=yytext; return SEND; }
 <INITIAL>{LOG}	{ count(); yylval.strval=yytext; return LOG_TOK; }
 <INITIAL>{ERROR}	{ count(); yylval.strval=yytext; return ERROR; }
+<INITIAL>{SETFLAG}	{ count(); yylval.strval=yytext; return SETFLAG; }
+<INITIAL>{RESETFLAG}	{ count(); yylval.strval=yytext; return RESETFLAG; }
+<INITIAL>{ISFLAGSET}	{ count(); yylval.strval=yytext; return ISFLAGSET; }
 <INITIAL>{ROUTE}	{ count(); yylval.strval=yytext; return ROUTE; }
 <INITIAL>{EXEC}	{ count(); yylval.strval=yytext; return EXEC; }
 <INITIAL>{SET_HOST}	{ count(); yylval.strval=yytext; return SET_HOST; }

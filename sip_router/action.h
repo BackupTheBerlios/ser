@@ -1,12 +1,12 @@
 /*
- * $Id: action.h,v 1.1 2001/09/21 15:24:24 andrei Exp $
+ * $Id: action.h,v 1.2 2002/05/13 01:15:40 jku Exp $
  *
  */
 
 #ifndef action_h
 #define action_h
 
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 #include "route_struct.h"
 
 int do_action(struct action* a, struct sip_msg* msg);

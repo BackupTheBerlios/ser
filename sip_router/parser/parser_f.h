@@ -1,5 +1,5 @@
 /* 
- * $Id: parser_f.h,v 1.7 2002/03/01 23:21:25 andrei Exp $
+ * $Id: parser_f.h,v 1.1 2002/05/13 01:15:41 jku Exp $
  */
 
 #ifndef parser_f_h

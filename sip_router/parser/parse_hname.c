@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname.c,v 1.7 2002/03/02 02:20:00 andrei Exp $
+ * $Id: parse_hname.c,v 1.1 2002/05/13 01:15:41 jku Exp $
  *
  * header name parsing automaton:
 
@@ -17,7 +17,7 @@
 
 
 #include "msg_parser.h"
-#include "dprint.h"
+#include "../dprint.h"
 
 enum { INITIAL=0,
 		VIA1, VIA2,

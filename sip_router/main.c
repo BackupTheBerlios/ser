@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.72 2002/05/12 11:42:07 janakj Exp $
+ * $Id: main.c,v 1.73 2002/05/13 01:15:40 jku Exp $
  */
 
 #include <stdio.h>
@@ -30,7 +30,7 @@
 #endif
 #include "sr_module.h"
 #include "timer.h"
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 
 
 #include <signal.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.72 2002/05/12 11:42:07 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.73 2002/05/13 01:15:40 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=

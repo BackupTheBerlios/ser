@@ -1,11 +1,11 @@
 /* 
- * $Id: utils.h,v 1.4 2002/03/25 11:08:50 janakj Exp $ 
+ * $Id: utils.h,v 1.5 2002/05/13 01:15:41 jku Exp $ 
  */
 
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 
 #define PARANOID
 

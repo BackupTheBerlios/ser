@@ -1,13 +1,13 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr.h,v 1.4 2002/03/05 14:36:38 janakj Exp $
+ * $Id: rr.h,v 1.5 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef __RR_H__
 #define __RR_H__
 
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 #include "../../str.h"
 
 /*

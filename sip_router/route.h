@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.4 2001/10/11 23:03:42 andrei Exp $
+ * $Id: route.h,v 1.5 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef route_h
@@ -12,7 +12,7 @@
 #include "config.h"
 #include "error.h"
 #include "route_struct.h"
-#include "msg_parser.h"
+#include "parser/msg_parser.h"
 
 /*#include "cfg_parser.h" */
 

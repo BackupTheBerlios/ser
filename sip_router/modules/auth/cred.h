@@ -1,16 +1,16 @@
 /*
- * $Id: cred.h,v 1.3 2002/05/11 21:27:30 jku Exp $
+ * $Id: cred.h,v 1.4 2002/05/13 01:15:40 jku Exp $
  */
 
 #ifndef CRED_H
 #define CRED_H
 
 /*
- * $Id: cred.h,v 1.3 2002/05/11 21:27:30 jku Exp $
+ * $Id: cred.h,v 1.4 2002/05/13 01:15:40 jku Exp $
  */
 
 #include "../../str.h"
-#include "../../msg_parser.h"
+#include "../../parser/msg_parser.h"
 
 
 /*
