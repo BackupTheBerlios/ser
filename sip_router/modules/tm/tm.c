@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.44 2002/04/04 17:15:37 bogdan Exp $
+ * $Id: tm.c,v 1.45 2002/04/05 18:27:42 bogdan Exp $
  *
  * TM module
  *
@@ -103,12 +103,10 @@ struct module_exports exports= {
 				0						/* t_clear_forks */
 		},
 	13,
-
 	NULL,   /* Module parameter names */
 	NULL,   /* Module parameter types */
 	NULL,   /* Module parameter variable pointers */
 	0,      /* Number of module paramers */
-
 	mod_init, /* module initialization function */
 	(response_function) t_on_reply,
 	(destroy_function) tm_shutdown,
