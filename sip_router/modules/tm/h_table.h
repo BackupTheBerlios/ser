@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.49 2002/04/04 17:15:37 bogdan Exp $
+ * $Id: h_table.h,v 1.50 2002/04/11 20:30:38 bogdan Exp $
  */
 
 
@@ -124,7 +124,7 @@ typedef struct cell
 	/* UA Server */
 	struct ua_server  uas;
 	/* UA Clients */
-	struct ua_client  uac[ MAX_FORK ];
+	struct ua_client  uac[ NR_OF_CLIENTS ];
 
 	/* protection against concurrent reply processing */
 	ser_lock_t   reply_mutex;
