@@ -1,5 +1,5 @@
 /* 
- * $Id: defs.h,v 1.13 2003/01/16 00:25:20 janakj Exp $ 
+ * $Id: defs.h,v 1.14 2003/02/26 14:27:22 janakj Exp $ 
  *
  * Common definitions
  *
@@ -36,13 +36,6 @@
 /*
  * Helper definitions
  */
-
-/*
- * the module will accept and authorize also username
- * of form user@domain which some broken clients send
- */
-#define USER_DOMAIN_HACK
-
 
 /*
  * If the method is ACK, it is always authorized
