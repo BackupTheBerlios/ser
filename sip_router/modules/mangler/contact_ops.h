@@ -1,7 +1,7 @@
 /*
- * Sdp mangler module
+ *  mangler module
  *
- * $Id: contact_ops.h,v 1.2 2003/04/07 18:39:33 gabriel Exp $
+ * $Id: contact_ops.h,v 1.3 2003/04/08 12:26:31 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,10 +36,13 @@
 #ifndef CONTACT_OPS_H
 #define CONTACT_OPS_H
 
-#define DEFAULT_SEPARATOR '*'
+#define DEFAULT_SEPARATOR "*"
 
 
 #include "../../parser/msg_parser.h"	/* struct sip_msg */
+
+char *contact_flds_separator;
+
 
 struct uri_format
 {
@@ -52,8 +55,11 @@ struct uri_format
 	int second;
 };
 
+typedef struct uri_format contact_fields_t;
+
+
 int encode_contact (struct sip_msg *msg, char *encoding_prefix,char *public_ip);
-int decode_contact (struct sip_msg *msg, char *separator,char *unused);
+int decode_contact (struct sip_msg *msg, char *unused1,char *unused2);
 
 
 int free_uri_format (struct uri_format *format);
