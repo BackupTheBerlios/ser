@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.53 2003/05/26 15:39:07 jiri Exp $
+# $Id: sc,v 1.54 2003/05/28 08:56:45 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.53 $'
+VERSION='$Revision: 1.54 $'
 #### SQL names
 
 # Usr Loc Table
@@ -216,7 +216,7 @@ fifo_cmd()
 	done
 	CMD="${CMD}\n"
 
-	trap "rm -f $path; exit 1" 2
+	trap "rm -f $path; kill 0" 2
 
 	# start reader now so that it is ready for replies
 	# immediately after a request was sent out
