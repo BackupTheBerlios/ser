@@ -1,4 +1,4 @@
-<!-- $Id: seruser.sgml,v 1.29 2003/02/27 20:29:25 jiri Exp $ -->
+<!-- $Id: seruser.sgml,v 1.30 2003/02/27 21:26:30 jiri Exp $ -->
 <!-- DOCTYPE Book SYSTEM "/usr/share/sgml/docbook/dtd-4.2/docbook.dtd" [ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN" [ 
 
@@ -23,6 +23,7 @@
 <!ENTITY releasenotes SYSTEM "../../NEWS">
 <!ENTITY install SYSTEM "../../INSTALL">
 <!ENTITY voicemail SYSTEM "voicemail.sgml">
+<!ENTITY voicemailcfg SYSTEM "../../modules/vm/etc/ser.cfg">
 
 
 
@@ -100,7 +101,7 @@
 	    This documentation is continuously updated. For the latest  
 	    version visit our site at 
 	    <ulink url="http://www.iptel.org/ser/">http://www.iptel.org/ser</ulink>.
-	    $Revision: 1.29 $.
+	    $Revision: 1.30 $.
 	</releaseinfo>
     </bookinfo>
 
