@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.12 2003/04/10 12:38:18 janakj Exp $
+ * $Id: parse_param.c,v 1.13 2003/04/15 21:46:14 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -469,7 +469,7 @@ static inline int do_duplicate_params(param_t** _n, param_t* _p, int _shm)
 {
 	param_t* last, *ptr, *t;
 
-	if (!_n || !_p) {
+	if (!_n) {
 		LOG(L_ERR, "duplicate_params(): Invalid parameter value\n");
 		return -1;
 	}
@@ -496,10 +496,11 @@ static inline int do_duplicate_params(param_t** _n, param_t* _p, int _shm)
 
 		ptr = ptr->next;
 	}
+	return 0;
 
  err:
 	do_free_params(*_n, _shm);
-	return 0;
+	return -2;
 }
 
 
