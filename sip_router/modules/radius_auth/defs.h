@@ -1,5 +1,5 @@
 /* 
- * $Id: defs.h,v 1.2 2002/09/19 12:23:54 jku Rel $ 
+ * $Id: defs.h,v 1.3 2003/03/04 14:53:53 janakj Exp $ 
  *
  * Common definitions
  *
@@ -50,10 +50,7 @@
 #define ACK_CANCEL_HACK
 
 
-/* 
- * Send algorithm=MD5 in challenge
- */
-#define PRINT_MD5
+#define REALM_HACK
 
 
 #endif /* DEFS_H */

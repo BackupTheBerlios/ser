@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.h,v 1.2 2002/09/19 12:23:54 jku Rel $
+ * $Id: authorize.h,v 1.3 2003/03/04 14:53:53 janakj Exp $
  *
  * Authorize related functions
  *
@@ -38,19 +38,18 @@
 /*
  * Authorize using Proxy-Authorization header field
  */
-int radius_proxy_authorize(struct sip_msg* _msg, char* _realm, char* _table);
+int radius_proxy_authorize(struct sip_msg* _msg, char* _realm, char* _s2);
 
 
 /*
  * Authorize using WWW-Authorization header field
  */
-int radius_www_authorize(struct sip_msg* _msg, char* _realm, char* _table);
+int radius_www_authorize(struct sip_msg* _msg, char* _realm, char* _s2);
 
 
 /*
  * Remove used credentials
  */
 int consume_credentials(struct sip_msg* _msg, char* _s1, char* _s2);
-
 
 #endif /* AUTHORIZE_H */

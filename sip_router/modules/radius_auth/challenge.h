@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.h,v 1.2 2002/09/19 12:23:54 jku Rel $
+ * $Id: challenge.h,v 1.3 2003/03/04 14:53:53 janakj Exp $
  *
  * Challenge related functions
  *
@@ -37,13 +37,13 @@
 /* 
  * Challenge a user agent using WWW-Authenticate header field
  */
-int radius_www_challenge(struct sip_msg* _msg, char* _realm, char* _str2);
+int www_challenge(struct sip_msg* _msg, char* _realm, char* _str2);
 
 
 /*
  * Challenge a user agent using Proxy-Authenticate header field
  */
-int radius_proxy_challenge(struct sip_msg* _msg, char* _realm, char* _str2);
+int proxy_challenge(struct sip_msg* _msg, char* _realm, char* _str2);
 
 
 #endif /* CHALLENGE_H */
