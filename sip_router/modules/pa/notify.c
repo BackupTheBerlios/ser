@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.17 2004/06/04 15:30:24 jamey Exp $
+ * $Id: notify.c,v 1.18 2004/08/05 12:28:19 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -422,7 +422,7 @@ static int send_pidf_notify(struct presentity* _p, struct watcher* _w)
 	}
 
 	while (tuple) {
-		if (start_pidf_tuple(&body, BUF_LEN - body.len) < 0) {
+		if (start_pidf_tuple(&body, &tuple->id, BUF_LEN - body.len) < 0) {
 			LOG(L_ERR, "send_pidf_notify(): start_pidf_tuple failed\n");
 			return -4;
 		}
