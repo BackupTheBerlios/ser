@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.18 2004/08/24 09:00:43 janakj Exp $
+ * $Id: t_reply.h,v 1.19 2004/10/01 17:19:19 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -34,6 +34,9 @@
 #include "../../tags.h"
 
 #include "h_table.h"
+
+
+extern int restart_fr_on_each_reply;
 
 /* reply processing status */
 enum rps {
