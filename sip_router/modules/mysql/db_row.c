@@ -1,5 +1,5 @@
 /* 
- * $Id: db_row.c,v 1.12 2002/12/02 09:17:45 janakj Exp $ 
+ * $Id: db_row.c,v 1.13 2003/05/26 13:05:57 bogdan Exp $ 
  *
  * MySQL module row related functions
  *
@@ -49,7 +49,7 @@ int convert_row(db_con_t* _h, db_res_t* _res, db_row_t* _r)
 	}
 #endif
 
-        ROW_VALUES(_r) = (db_val_t*)pkg_malloc(sizeof(db_val_t) * RES_COL_N(_res));
+	ROW_VALUES(_r) = (db_val_t*)pkg_malloc(sizeof(db_val_t) * RES_COL_N(_res));
 	ROW_N(_r) = RES_COL_N(_res);
 	if (!ROW_VALUES(_r)) {
 		LOG(L_ERR, "convert_row(): No memory left\n");

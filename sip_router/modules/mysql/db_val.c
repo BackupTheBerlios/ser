@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.c,v 1.12 2003/03/12 12:54:00 andrei Exp $ 
+ * $Id: db_val.c,v 1.13 2003/05/26 13:05:57 bogdan Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -151,6 +151,7 @@ int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l)
 		VAL_NULL(_v) = 1;
 		return 0;
 	}
+	VAL_NULL(_v) = 0;
 
 	switch(_t) {
 	case DB_INT:

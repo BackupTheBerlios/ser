@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.c,v 1.12 2002/12/02 09:17:45 janakj Exp $ 
+ * $Id: db_res.c,v 1.13 2003/05/26 13:05:57 bogdan Exp $ 
  *
  * MySQL module result related functions
  *
@@ -90,7 +90,14 @@ static inline int get_columns(db_con_t* _h, db_res_t* _r)
 		case FIELD_TYPE_DATETIME:
 			RES_TYPES(_r)[i] = DB_DATETIME;
 			break;
-			
+
+		case FIELD_TYPE_BLOB:
+		case FIELD_TYPE_TINY_BLOB:
+		case FIELD_TYPE_MEDIUM_BLOB:
+		case FIELD_TYPE_LONG_BLOB:
+			RES_TYPES(_r)[i] = DB_BLOB;
+			break;
+
 		default:
 			RES_TYPES(_r)[i] = DB_STRING;
 			break;
