@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.60 2003/09/11 19:47:06 bogdan Exp $
+ * $Id: sms_funcs.c,v 1.61 2004/07/02 16:39:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -208,7 +208,7 @@ int push_on_network(struct sip_msg *msg, int net)
 		msg->first_line.u.request.uri.len ,&uri)||!uri.user.len )
 		{
 			DBG("DEBUG:sms_push_on_net: tring to get user from To\n");
-			if ( ((!msg->to&&parse_headers(msg,HDR_TO,0)==-1) || !msg->to ) ||
+			if ( (!msg->to&&((parse_headers(msg,HDR_TO,0)==-1) || !msg->to)) ||
 			parse_uri( get_to(msg)->uri.s, get_to(msg)->uri.len, &uri)==-1
 			|| !uri.user.len)
 			{

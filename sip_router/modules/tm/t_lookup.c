@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.85 2004/03/30 16:20:06 janakj Exp $
+ * $Id: t_lookup.c,v 1.86 2004/07/02 16:39:01 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -166,6 +166,11 @@ static inline int parse_dlg( struct sip_msg *msg )
 		LOG(L_ERR, "ERROR: parse_dlg: From or Cseq or To invalid\n");
 		return 0;
 	}
+	if ((msg->from==0)||(msg->cseq==0)||(msg->to==0)) {
+		LOG(L_ERR, "ERROR: parse_dlg: missing From or Cseq or To\n");
+		return 0;
+	}
+
 	if (parse_from_header(msg)==-1) {
 		LOG(L_ERR, "ERROR: parse_dlg: From broken\n");
 		return 0;

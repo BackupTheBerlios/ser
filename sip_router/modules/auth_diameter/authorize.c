@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.3 2003/11/11 19:37:16 bogdan Exp $
+ * $Id: authorize.c,v 1.4 2004/07/02 16:38:58 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -74,7 +74,7 @@ int get_uri(struct sip_msg* m, str** uri)
 					(memcmp(REQ_LINE(m).method.s, "REGISTER", 8) == 0)) 
 	{	
 		/* REGISTER */
-		if (!m->to && (parse_headers(m, HDR_TO, 0) == -1)) 
+		if (!m->to && ((parse_headers(m, HDR_TO, 0) == -1)|| (!m->to))) 
 		{
 			LOG(L_ERR, M_NAME":get_uri(): To header field not found or "
 				"malformed\n");
@@ -112,7 +112,7 @@ int get_realm(struct sip_msg* m, int hftype, struct sip_uri* u)
 					&& (hftype == HDR_AUTHORIZATION) ) 
 	{ 
 		/* REGISTER */
-		if (!m->to && (parse_headers(m, HDR_TO, 0) == -1) ) 
+		if (!m->to && ((parse_headers(m, HDR_TO, 0) == -1) || (!m->to))) 
 		{
 			LOG(L_ERR, M_NAME":get_realm(): Error while parsing TO header\n");
 			/* signal the errror */

@@ -1,5 +1,5 @@
 /*
- * $Id: diam_tcp.c,v 1.1 2003/11/24 18:56:18 ramona Exp $
+ * $Id: diam_tcp.c,v 1.2 2004/07/02 16:38:58 andrei Exp $
  * Accounting module
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -299,7 +299,7 @@ int get_uri(struct sip_msg* m, str** uri)
 	if ((REQ_LINE(m).method.len == 8) && 
 					(memcmp(REQ_LINE(m).method.s, "REGISTER", 8) == 0)) 
 	{/* REGISTER */
-		if (!m->to && (parse_headers(m, HDR_TO, 0) == -1)/* || !m->to*/) 
+		if (!m->to && ((parse_headers(m, HDR_TO, 0) == -1) || !m->to )) 
 		{
 			LOG(L_ERR, M_NAME": To header field not found or malformed\n");
 			return -1;

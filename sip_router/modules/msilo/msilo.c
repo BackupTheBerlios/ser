@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.34 2004/06/16 14:20:13 janakj Exp $
+ * $Id: msilo.c,v 1.35 2004/07/02 16:39:00 andrei Exp $
  *
  * MSILO module
  *
@@ -251,7 +251,7 @@ static int child_init(int rank)
 	else
 	{
 		if (msilo_dbf.use_table(db_con, db_table) < 0) {
-			LOG(L_ERR, "MSILO: child %d: Error in use_table\n");
+			LOG(L_ERR, "MSILO: child %d: Error in use_table\n", rank);
 			return -1;
 		}
 		

@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: contact_ops.c,v 1.11 2003/08/28 11:24:32 gabriel Exp $
+ * $Id: contact_ops.c,v 1.12 2004/07/02 16:38:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -73,7 +73,8 @@ encode_contact (struct sip_msg *msg, char *encoding_prefix,char *public_ip)
         fprintf (stdout,"%.*s\n",50,msg->buf);
 #endif
 	
-	if ((msg->contact == NULL)&&((parse_headers(msg,HDR_CONTACT,0) == -1)))
+	if ((msg->contact == NULL)&&((parse_headers(msg,HDR_CONTACT,0) == -1) ||
+				(msg->contact == NULL) ))
 		{
 		LOG(L_ERR,"ERROR: encode_contact: no Contact header present\n");
 		return -1;
@@ -239,7 +240,8 @@ decode_contact_header (struct sip_msg *msg,char *unused1,char *unused2)
 	fprintf (stdout,"---START--------DECODE CONTACT HEADER-----------------\n");
 #endif
 
-	if ((msg->contact == NULL)&&((parse_headers(msg,HDR_CONTACT,0) == -1)))
+	if ((msg->contact == NULL)&&((parse_headers(msg,HDR_CONTACT,0) == -1) || 
+				(msg->contact== NULL) ))
 		{
 		LOG(L_ERR,"ERROR: decode_contact_header: no Contact header present\n");
 		return -1;
