@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.25 2002/07/15 15:08:01 andrei Exp $
+ *  $Id: config.h,v 1.26 2002/08/12 16:33:43 andrei Exp $
  */
 
 
@@ -54,8 +54,11 @@
 #define CRLF "\r\n"
 #define CRLF_LEN 2
 
-#define RECEIVED ";received="
+#define RECEIVED   ";received="
 #define RECEIVED_LEN 10
+
+#define SRV_PREFIX "_sip._udp."
+#define SRV_PREFIX_LEN 10
 
 /*used only if PKG_MALLOC is defined*/
 #define PKG_MEM_POOL_SIZE 1024*1024

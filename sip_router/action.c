@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.29 2002/05/31 01:59:06 jku Exp $
+ * $Id: action.c,v 1.30 2002/08/12 16:33:43 andrei Exp $
  */
 
 
@@ -91,7 +91,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 											ret=E_BAD_URI;
 											goto error_fwd_uri;
 										}
-									}else port=SIP_PORT;
+									}else port=0;
 									break;
 					case NUMBER_ST:
 									port=a->p2.number;

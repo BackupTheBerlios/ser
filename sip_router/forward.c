@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.55 2002/07/11 12:47:51 andrei Exp $
+ * $Id: forward.c,v 1.56 2002/08/12 16:33:43 andrei Exp $
  */
 
 
@@ -161,7 +161,8 @@ int update_sock_struct_from_via( union sockaddr_union* to,
 		if (via->host.s[via->host.len]){
 			host_copy=pkg_malloc( via->host.len+1 );
 			if (!host_copy) {
-				LOG(L_NOTICE, "ERROR: update_sock_struct_from_via: not enough memory\n");
+				LOG(L_NOTICE, "ERROR: update_sock_struct_from_via:"
+								" not enough memory\n");
 				return -1;
 			}
 			memcpy(host_copy, via->host.s, via->host.len );
