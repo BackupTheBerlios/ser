@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.15 2003/09/10 12:07:43 bogdan Exp $ 
+ * $Id: hf.c,v 1.16 2003/10/13 21:26:58 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -97,6 +97,7 @@ void clean_hdr_field(struct hdr_field* hf)
 			break;
 
 		case HDR_AUTHORIZATION:
+			free_credentials((auth_body_t**)(&(hf->parsed)));
 			break;
 
 		case HDR_EXPIRES:
