@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.4 2002/08/30 22:10:50 jku Exp $
+ * $Id: fifo_server.h,v 1.5 2002/09/03 02:10:39 jku Exp $
  *
  */
 
@@ -41,5 +41,9 @@ int open_fifo_server();
 int register_core_fifo();
 
 FILE *open_reply_pipe( char *pipe_name );
+
+/* tell FIFO client an error occured via reply pipe */
+void fifo_reply( char *reply_fifo, char *reply_txt);
+
 
 #endif

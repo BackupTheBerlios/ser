@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.33 2002/08/28 21:24:28 jku Exp $
+ * $Id: timer.c,v 1.34 2002/09/03 02:10:39 jku Exp $
  *
  */
 
@@ -194,7 +194,7 @@ static void delete_cell( struct cell *p_cell, int unlock )
 
 
 
-inline void retransmission_handler( void *attr)
+inline static void retransmission_handler( void *attr)
 {
 	struct retr_buf* r_buf ;
 	enum lists id;
@@ -234,7 +234,7 @@ inline void retransmission_handler( void *attr)
 
 
 
-inline void final_response_handler( void *attr)
+inline static void final_response_handler( void *attr)
 {
 	int silent;
 	struct retr_buf* r_buf;
@@ -358,7 +358,7 @@ void cleanup_localcancel_timers( struct cell *t )
 }
 
 
-inline void wait_handler( void *attr)
+inline static void wait_handler( void *attr)
 {
 	struct cell *p_cell = (struct cell*)attr;
 
@@ -391,7 +391,7 @@ inline void wait_handler( void *attr)
 
 
 
-inline void delete_handler( void *attr)
+inline static void delete_handler( void *attr)
 {
 	struct cell *p_cell = (struct cell*)attr;
 
