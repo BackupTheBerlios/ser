@@ -1,11 +1,12 @@
-# $Id: Makefile.defs,v 1.201 2003/04/16 16:17:09 andrei Exp $
+# $Id: Makefile.defs,v 1.202 2003/04/17 12:52:13 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
 # Environment variables:
 #   PREFIX, LOCALBASE, BASEDIR
 #   INSTALL, TAR , CC, LEX, YACC,
-#   CPU, CC_EXTRA_OPTS
+#   CPU, CC_EXTRA_OPTS,
+#   exclude_modules, skip_modules, include_modules
 #
 # History:
 # --------
