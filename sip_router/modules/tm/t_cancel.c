@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.11 2004/03/03 18:11:04 janakj Exp $
+ * $Id: t_cancel.c,v 1.12 2004/03/04 22:36:54 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -205,7 +205,7 @@ int unixsock_uac_cancel(str* msg)
 	}
 
 	     /* second param cseq read */
-	if (unixsock_read_line(&callid, msg) != 0) {
+	if (unixsock_read_line(&cseq, msg) != 0) {
 		unixsock_reply_asciiz("400 CSeq Expected\n");
 		unixsock_reply_send();
 		return -1;
