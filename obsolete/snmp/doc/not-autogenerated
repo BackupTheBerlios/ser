@@ -16,4 +16,4 @@ sipCommonStatusCode
 	separately (here they're in one file. If you split them up, add
 	appropiate #include's to snmp_mod.h and split the 
 	init_branch(sipCommonStatusCode)
-	call in agent.c accordingly
+	call in agent.c accordingly)
