@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.6 2003/04/30 18:50:58 janakj Exp $
+ * $Id: dlg.c,v 1.7 2003/05/01 00:40:23 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -171,7 +171,8 @@ int new_dlg_uac(str* _cid, str* _ltag, unsigned int _lseq, str* _luri, str* _rur
 		LOG(L_ERR, "new_dlg_uac(): No memory left\n");
 		return -2;
 	}
-	     /* Clear everything */
+
+	     /* Clear everything */	
 	memset(res, 0, sizeof(dlg_t));
 	
 	     /* Make a copy of Call-ID */
@@ -194,7 +195,7 @@ int new_dlg_uac(str* _cid, str* _ltag, unsigned int _lseq, str* _luri, str* _rur
 		shm_free(res);
 		return -2;
 	}
-
+	
 	return 0;
 }
 
