@@ -1,5 +1,5 @@
 /*
- * $Id: db_fifo.c,v 1.10 2004/06/16 14:20:12 janakj Exp $
+ * $Id: db_fifo.c,v 1.11 2004/08/04 14:26:24 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -692,7 +692,7 @@ int db_fifo( FILE *fifo, char *response_file )
 			/* get all response and write them into reply fifo */
 			print_res( select_res, rpl);
 			/* free the query response */
-			fifo_dbf.free_query( fifo_db_con, select_res);
+			fifo_dbf.free_result( fifo_db_con, select_res);
 		}
 		/* done with success */
 		goto done;
@@ -730,7 +730,7 @@ int db_fifo( FILE *fifo, char *response_file )
 			/* get all response and write them into reply fifo */
 			print_res( select_res, rpl);
 			/* free the query response */
-			fifo_dbf.free_query( fifo_db_con, select_res);
+			fifo_dbf.free_result( fifo_db_con, select_res);
 			break;
 		case UPDATE_CMD:
 			if (nr1==0) {

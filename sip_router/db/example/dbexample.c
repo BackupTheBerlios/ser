@@ -1,5 +1,5 @@
 /*
- * $Id: dbexample.c,v 1.10 2003/11/03 13:03:56 janakj Exp $
+ * $Id: dbexample.c,v 1.11 2004/08/04 14:26:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -263,7 +263,7 @@ struct module_exports* mod_register()
 	      * Free the result because we don't need it
 	      * anymore
 	      */
-	if (db_free_query(h, res) < 0) {
+	if (db_free_result(h, res) < 0) {
 		fprintf(stderr, "Error while freeing result of query\n");
 		return &dbex_exports;
 	}

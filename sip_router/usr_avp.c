@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.6 2004/06/16 14:20:12 janakj Exp $
+ * $Id: usr_avp.c,v 1.7 2004/08/04 14:26:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -293,7 +293,7 @@ int load_avp( struct sip_msg *msg, int uri_type, char *attr, int use_dom)
 		DBG("DEBUG:load_avp: no avp found for %.*s@%.*s <%s>\n",
 			uri.user.len,uri.user.s,(use_dom!=0)*uri.host.len,uri.host.s,
 			attr?attr:"NULL");
-		avp_dbf.free_query( avp_db_con, res);
+		avp_dbf.free_result( avp_db_con, res);
 		/*no avp found*/
 		return 1;
 	}
@@ -336,7 +336,7 @@ int load_avp( struct sip_msg *msg, int uri_type, char *attr, int use_dom)
 		users_avps = avp;
 	}
 
-	avp_dbf.free_query( avp_db_con, res);
+	avp_dbf.free_result( avp_db_con, res);
 	return 0;
 error:
 	return -1;
