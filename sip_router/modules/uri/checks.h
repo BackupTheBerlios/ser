@@ -1,5 +1,5 @@
 /*
- * $Id: checks.h,v 1.3 2004/02/20 00:28:38 jiri Exp $
+ * $Id: checks.h,v 1.4 2004/04/14 12:33:39 janakj Exp $
  *
  * Various URI checks
  *
@@ -62,6 +62,7 @@ int check_from(struct sip_msg* _msg, char* _str1, char* _str2);
  * Check if uri belongs to a local user, contributed by Juha Heinanen
  */
 int does_uri_exist(struct sip_msg* _msg, char* _table, char* _s2);
+
 
 /*
  * Check if message includes a to-tag
