@@ -1,5 +1,5 @@
 /*
- * $Id: contact.h,v 1.4 2003/04/10 12:38:18 janakj Exp $
+ * $Id: contact.h,v 1.5 2003/07/02 12:08:23 janakj Exp $
  *
  * Contact datatype
  *
@@ -44,6 +44,7 @@
  * Structure representing a Contac HF body
  */
 typedef struct contact {
+	str name;               /* Name part */
 	str uri;                /* contact uri */
 	param_t* q;             /* q parameter hook */
 	param_t* expires;       /* expires parameter hook */
