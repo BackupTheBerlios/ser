@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.8 2001/09/25 23:06:39 andrei Exp $
+ * $Id: cfg.y,v 1.9 2001/09/25 23:19:04 andrei Exp $
  *
  *  cfg grammar
  */
@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
