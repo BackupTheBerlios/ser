@@ -1,4 +1,5 @@
-/* fifo.c v 0.2 2003/1/19
+/*
+ * $Id: fifo.c,v 1.7 2003/03/16 18:01:21 janakj Exp $
  *
  * Domain fifo functions
  *

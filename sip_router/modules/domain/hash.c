@@ -1,4 +1,5 @@
-/* hash.c v 0.2 2003/1/19
+/*
+ * $Id: hash.c,v 1.3 2003/03/16 18:01:21 janakj Exp $
  *
  * Hash functions for cached domain table
  *

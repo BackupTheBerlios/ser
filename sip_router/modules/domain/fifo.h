@@ -1,4 +1,5 @@
-/* fifo.h v 0.1 2002/12/28
+/*
+ * $Id: fifo.h,v 1.2 2003/03/16 18:01:21 janakj Exp $
  *
  * Header file for domain fifo functions
  *

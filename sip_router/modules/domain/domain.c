@@ -1,4 +1,5 @@
-/* domain.c v 0.2 2002/12/27
+/* 
+ * $Id: domain.c,v 1.8 2003/03/16 18:01:21 janakj Exp $
  *
  * Domain table related functions
  *

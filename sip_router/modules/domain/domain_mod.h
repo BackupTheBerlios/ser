@@ -1,4 +1,5 @@
-/* domain_mod.h v 0.2 2003/1/19
+/*
+ * $Id: domain_mod.h,v 1.4 2003/03/16 18:01:21 janakj Exp $
  *
  * Domain module headers
  *

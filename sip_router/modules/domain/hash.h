@@ -1,4 +1,5 @@
-/* hash.h v 0.1 2002/12/28
+/*
+ * $Id: hash.h,v 1.2 2003/03/16 18:01:21 janakj Exp $
  *
  * Header file for hash table functions
  *
