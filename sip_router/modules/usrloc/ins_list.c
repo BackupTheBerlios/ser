@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.c,v 1.5 2003/02/02 04:34:55 calrissian Exp $
+ * $Id: ins_list.c,v 1.6 2003/03/06 21:06:26 calrissian Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -112,7 +112,7 @@ int process_ins_list(str* _d)
 		VAL_INT(vals + 5) = p->cseq;
 
 		if (db_insert(db, keys, vals, 6) < 0) {
-			LOG(L_ERR, "process_ins_list(): Error while deleting from database\n");
+			LOG(L_ERR, "process_ins_list(): Error while inserting into database\n");
 			return -1;
 		}
 
