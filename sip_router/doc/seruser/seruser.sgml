@@ -1,5 +1,6 @@
-<!-- $Id: seruser.sgml,v 1.3 2002/09/26 14:58:30 jiri Exp $ -->
+<!-- $Id: seruser.sgml,v 1.4 2002/09/26 14:59:19 jiri Exp $ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN">
+<!-- local: DOCTYPE Book SYSTEM "/usr/share/sgml/docbook/dtd-4.2/docbook.dtd" -->
 
 
 <book label="seruser" id="seruser" lang="EN">
