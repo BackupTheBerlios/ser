@@ -1,5 +1,5 @@
 /*
- * $Id: rerrno.h,v 1.2 2002/09/19 12:23:54 jku Rel $
+ * $Id: rerrno.h,v 1.3 2002/11/11 23:11:52 janakj Exp $
  *
  * Registrar errno
  *
@@ -33,7 +33,7 @@
 
 
 typedef enum rerr {
-	R_OK = 0,     /* Everything went OK */
+	R_FINE = 0,   /* Everything went OK */
 	R_UL_DEL_R,   /* Usrloc record delete failed */
 	R_UL_GET_R,   /* Usrloc record get failed */
 	R_UL_NEW_R,   /* Usrloc new record failed */
