@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.45 2003/10/23 10:24:23 janakj Exp $
+# $Id: ser_mysql.sh,v 1.46 2003/10/28 12:10:33 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -39,6 +39,14 @@ TABLE_TYPE="TYPE=MyISAM"
 USERCOL="username"
 
 GENHA1='gen_ha1'
+
+FOREVER="2020-05-28 21:32:15"
+
+DEFAULT_ALIASES_EXPIRES=$FOREVER
+DEFAULT_Q="1.0"
+DEFAULT_CALLID="Default-Call-ID"
+DEFAULT_CSEQ="42"
+DEFAULT_LOCATION_EXPIRES=$FOREVER
 
 #################################################################
 
@@ -216,10 +224,10 @@ INSERT INTO version VALUES ( 'reserved', '1');
 INSERT INTO version VALUES ( 'phonebook', '1');
 INSERT INTO version VALUES ( 'pending', '3');
 INSERT INTO version VALUES ( 'missed_calls', '2');
-INSERT INTO version VALUES ( 'location', '3');
+INSERT INTO version VALUES ( 'location', '4');
 INSERT INTO version VALUES ( 'grp', '2');
 INSERT INTO version VALUES ( 'event', '1');
-INSERT INTO version VALUES ( 'aliases', '3');
+INSERT INTO version VALUES ( 'aliases', '4');
 INSERT INTO version VALUES ( 'active_sessions', '1');
 INSERT INTO version VALUES ( 'acc', '2');
 INSERT INTO version VALUES ( 'config', '1');
@@ -282,13 +290,13 @@ CREATE TABLE aliases (
   $USERCOL varchar(64) NOT NULL default '',
   domain varchar(128) NOT NULL default '',
   contact varchar(255) NOT NULL default '',
-  expires datetime default NULL,
-  q float(10,2) default NULL,
-  callid varchar(255) default NULL,
-  cseq int(11) default NULL,
+  expires datetime NOT NULL default '$DEFAULT_ALIASES_EXPIRES',
+  q float(10,2) NOT NULL default '$DEFAULT_Q',
+  callid varchar(255) NOT NULL default '$DEFAULT_CALLID',
+  cseq int(11) NOT NULL default '$DEFAULT_CSEQ',
   last_modified timestamp(14) NOT NULL,
-  replicate int(10) unsigned default NULL,
-  state tinyint(1) unsigned default NULL,
+  replicate int(10) unsigned NOT NULL default '0',
+  state tinyint(1) unsigned NOT NULL default '0',
   flags int(11) NOT NULL default '0',
   PRIMARY KEY($USERCOL, domain, contact)
 ) $TABLE_TYPE;
@@ -336,13 +344,13 @@ CREATE TABLE location (
   $USERCOL varchar(64) NOT NULL default '',
   domain varchar(128) NOT NULL default '',
   contact varchar(255) NOT NULL default '',
-  expires datetime default NULL,
-  q float(10,2) default NULL,
-  callid varchar(255) default NULL,
-  cseq int(11) default NULL,
+  expires datetime NOT NULL default '$DEFAULT_LOCATION_EXPIRES',
+  q float(10,2) NOT NULL default '$DEFAULT_Q',
+  callid varchar(255) NOT NULL default '$DEFAULT_CALLID',
+  cseq int(11) NOT NULL default '$DEFAULT_CSEQ',
   last_modified timestamp(14) NOT NULL,
-  replicate int(10) unsigned default NULL,
-  state tinyint(1) unsigned default NULL,
+  replicate int(10) unsigned NOT NULL default '0',
+  state tinyint(1) unsigned NOT NULL default '0',
   flags int(11) NOT NULL default '0',
   PRIMARY KEY($USERCOL, domain, contact)
 ) $TABLE_TYPE;
