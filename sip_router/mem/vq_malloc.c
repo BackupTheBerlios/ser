@@ -1,4 +1,4 @@
-/* $Id: vq_malloc.c,v 1.8 2002/09/20 09:29:07 andrei Rel $
+/* $Id: vq_malloc.c,v 1.9 2002/11/25 20:29:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *

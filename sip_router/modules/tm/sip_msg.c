@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.54 2002/11/08 16:16:09 andrei Exp $
+ * $Id: sip_msg.c,v 1.55 2002/11/25 20:29:45 andrei Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -46,9 +46,11 @@
 #include "../../ut.h"
 
 
-
+/* rounds to the first 4 byte multiple on 32 bit archs 
+ * and to the first 8 byte mutlipe on 64 bit archs */
 #define ROUND4(s) \
-	(((s)+3)&(~(3UL)))
+	(((s)+(sizeof(char*)-1))&(~(sizeof(char*)-1)))
+
 #define lump_len( _lump) \
 	(ROUND4(sizeof(struct lump)) +\
 	ROUND4(((_lump)->op==LUMP_ADD)?(_lump)->len:0))

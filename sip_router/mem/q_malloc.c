@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.8 2002/09/19 12:23:53 jku Rel $
+/* $Id: q_malloc.c,v 1.9 2002/11/25 20:29:44 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -149,11 +149,11 @@ struct qm_block* qm_malloc_init(char* address, unsigned int size)
 	char* start;
 	char* end;
 	struct qm_block* qm;
-	unsigned int init_overhead;
+	unsigned long init_overhead;
 	int h;
 	
 	/* make address and size multiple of 8*/
-	start=(char*)ROUNDUP((unsigned int) address);
+	start=(char*)ROUNDUP((unsigned long) address);
 	DBG("qm_malloc_init: QM_OPTIMIZE=%d, /ROUNDTO=%d\n",
 			QM_MALLOC_OPTIMIZE, QM_MALLOC_OPTIMIZE/ROUNDTO);
 	DBG("qm_malloc_init: QM_HASH_SIZE=%d, qm_block size=%d\n",

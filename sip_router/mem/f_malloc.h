@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.4 2002/11/08 16:16:09 andrei Exp $
+/* $Id: f_malloc.h,v 1.5 2002/11/25 20:29:44 andrei Exp $
  *
  * simple, very fast, malloc library
  *
@@ -55,26 +55,26 @@
  * +1 .... end -  size = 2^k, big buckets */
 
 struct fm_frag{
-	unsigned int size;
+	unsigned long size;
 	union{
 		struct fm_frag* nxt_free;
-		int reserved;
+		long reserved;
 	}u;
 #ifdef DBG_F_MALLOC
 	char* file;
 	char* func;
-	unsigned int line;
-	unsigned int check;
+	unsigned long line;
+	unsigned long check;
 #endif
 };
 
 
 struct fm_block{
-	unsigned int size; /* total size */
+	unsigned long size; /* total size */
 #ifdef DBG_F_MALLOC
-	unsigned int used; /* alloc'ed size*/
-	unsigned int real_used; /* used+malloc overhead*/
-	unsigned int max_real_used;
+	unsigned long used; /* alloc'ed size*/
+	unsigned long real_used; /* used+malloc overhead*/
+	unsigned long max_real_used;
 #endif
 	
 	struct fm_frag* first_frag;
