@@ -1,5 +1,5 @@
 /**
- * $Id: xlog.c,v 1.3 2003/06/23 09:30:58 ramona Exp $
+ * $Id: xlog.c,v 1.4 2003/08/27 16:10:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -124,7 +124,7 @@ static int xlog(struct sip_msg* msg, char* lev, char* frm)
 		return -1;
 
 	log_buf[log_len] = '\0';
-	LOG((int)lev, log_buf);
+	LOG((int)(long)lev, log_buf);
 
 	return 1;
 }
@@ -158,7 +158,7 @@ void destroy(void)
 
 static int xlog_fixup(void** param, int param_no)
 {
-	int level;
+	long level;
 	
 	if(param_no==1)
 	{

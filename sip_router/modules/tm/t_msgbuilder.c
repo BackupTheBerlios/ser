@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.32 2003/07/07 15:06:23 andrei Exp $
+ * $Id: t_msgbuilder.c,v 1.33 2003/08/27 16:10:24 andrei Exp $
  *
  * message printing
  *
@@ -209,12 +209,12 @@ static inline int print_content_length(str* dest, str* body)
  */
 static inline int print_cseq_num(str* _s, dlg_t* _d)
 {
-	static char cseq[10];
+	static char cseq[INT2STR_MAX_LEN];
 	char* tmp;
 	int len;
 
 	tmp = int2str(_d->loc_seq.value, &len);
-	if (len >= sizeof(cseq)) {
+	if (len > sizeof(cseq)) {
 		LOG(L_ERR, "print_cseq_num: cseq too big\n");
 		return -1;
 	}

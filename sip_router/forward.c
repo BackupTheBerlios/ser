@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.89 2003/08/21 15:50:41 andrei Exp $
+ * $Id: forward.c,v 1.90 2003/08/27 16:10:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -106,7 +106,7 @@ struct socket_info* get_out_socket(union sockaddr_union* to, int proto)
 				strerror(errno));
 		goto error;
 	}
-	len=sockaddru_len(from);
+	len=sizeof(from);
 	if (getsockname(temp_sock, &from.s, &len)==-1) {
 		LOG(L_ERR, "ERROR: get_out_socket: getsockname failed: %s\n",
 				strerror(errno));
