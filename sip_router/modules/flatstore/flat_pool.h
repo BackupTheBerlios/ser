@@ -1,5 +1,5 @@
 /* 
- * $Id: flat_pool.h,v 1.1 2004/10/08 19:18:35 janakj Exp $
+ * $Id: flat_pool.h,v 1.2 2004/10/09 14:30:27 janakj Exp $
  *
  * Flatstore module connection pool
  *
@@ -45,6 +45,18 @@ struct flat_con* flat_get_connection(char* dir, char* table);
  * will be delete completely
  */
 void flat_release_connection(struct flat_con* con);
+
+
+/*
+ * Close and reopen all opened connections
+ */
+int flat_rotate_logs(void);
+
+
+/*
+ * Reopen a connection
+ */
+int flat_reopen_connection(struct flat_con* con);
 
 
 #endif /* _FLAT_POOL_H */

@@ -1,5 +1,5 @@
 /* 
- * $Id: flatstore_mod.h,v 1.1 2004/10/08 19:18:35 janakj Exp $ 
+ * $Id: flatstore_mod.h,v 1.2 2004/10/09 14:30:27 janakj Exp $ 
  *
  * Flatstore module interface
  *
@@ -36,6 +36,7 @@
 #ifndef FLATSTORE_MOD_H
 #define FLATSTORE_MOD_H
 
+#include <time.h>
 
 /*
  * Process number used in filenames
@@ -53,6 +54,20 @@ extern int flat_flush;
  * Delmiter delimiting columns
  */
 extern char* flat_delimiter;
+
+
+/*
+ * The timestamp of log rotation request from
+ * the FIFO interface
+ */
+extern time_t* flat_rotate;
+
+
+/*
+ * Local timestamp marking the time of the
+ * last log rotation in the process
+ */
+extern time_t local_timestamp;
 
 
 #endif /* FLATSTORE_MOD_H */
