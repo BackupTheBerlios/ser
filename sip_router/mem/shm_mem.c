@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.23 2003/03/12 15:55:12 andrei Exp $
+/* $Id: shm_mem.c,v 1.24 2003/03/12 17:34:45 andrei Exp $
  *
  * Shared memory functions
  *
@@ -126,7 +126,7 @@ int shm_mem_init()
 #ifdef SHM_MMAP
 	if (shm_mempool && (shm_mempool!=(void*)-1)){
 #else
-	if ((shm_shmid!=-1)||(shm_semid!=-1)||(shm_mempool!=(void*)-1)){
+	if ((shm_shmid!=-1)||(shm_mempool!=(void*)-1)){
 #endif
 		LOG(L_CRIT, "BUG: shm_mem_init: shm already initialized\n");
 		return -1;
