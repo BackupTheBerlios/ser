@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.45 2002/05/31 01:59:06 jku Exp $
+ * $Id: forward.c,v 1.46 2002/06/04 12:12:33 bogdan Exp $
  */
 
 
@@ -131,7 +131,7 @@ error:
 }
 
 
-int update_sock_struct_from_via( union sockaddr_union* to,  
+int update_sock_struct_from_via( union sockaddr_union* to,
 								 struct via_body* via )
 {
 	int err;

@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.16 2002/05/31 01:59:06 jku Exp $
+ * $Id: sl_funcs.c,v 1.17 2002/06/04 12:12:33 bogdan Exp $
  */
 
 #include <netinet/in.h>
@@ -126,7 +126,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	send_sock=get_send_socket(&to);
 	if (send_sock!=0)
 	{
-		udp_send(/* v6; -bogdan (struct socket_info*) */ send_sock,
+		udp_send( send_sock,
 			buf, len,
 			/* v6; -jiri (struct sockaddr*) */ &(to),
 			sizeof(struct sockaddr_in));
