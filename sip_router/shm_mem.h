@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.4 2001/12/04 18:10:50 andrei Exp $*
+/* $Id: shm_mem.h,v 1.5 2001/12/11 02:14:00 andrei Exp $*
  *
  * shared mem stuff
  */
@@ -12,7 +12,13 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
+
+#ifndef SHM_MMAP
+
 #include <sys/shm.h>
+
+#endif
+
 #include <sys/sem.h>
 #include <string.h>
 #include <errno.h>

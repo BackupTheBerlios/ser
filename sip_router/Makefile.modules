@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.modules,v 1.1 2001/12/08 22:06:27 andrei Exp $
+# $Id: Makefile.modules,v 1.2 2001/12/11 02:14:00 andrei Exp $
 #
 # module Makefile
 #(to be included from each module)
@@ -19,7 +19,7 @@ ALLDEP+=../../Makefile.defs
 else
 # called by the main Makefile
 
-ALLDEP+=../../Makefile
+ALLDEP+=../../Makefile ../../Makefile.defs
 
 endif
 

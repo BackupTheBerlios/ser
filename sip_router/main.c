@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.43 2001/12/10 16:11:42 andrei Exp $
+ * $Id: main.c,v 1.44 2001/12/11 02:14:00 andrei Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.43 2001/12/10 16:11:42 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.44 2001/12/11 02:14:00 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -65,6 +65,9 @@ static char flags[]=
 #endif
 #ifdef SHM_MEM
 ", SHM_MEM"
+#endif
+#ifdef SHM_MMAP
+", SHM_MMAP"
 #endif
 #ifdef PKG_MALLOC
 ", PKG_MALLOC"
@@ -342,7 +345,8 @@ static void sig_usr(int signo)
 		if (is_main)
 			shm_mem_destroy();
 #endif
-		goto bye;
+		DPrint("Thank you for flying " NAME "\n");
+		exit(0);
 	} else if (signo==SIGUSR1) { /* statistic */
 #ifdef STATS
 		dump_all_statistic();
@@ -356,9 +360,6 @@ static void sig_usr(int signo)
 		shm_status();
 #endif
 	}
-bye:
-	DPrint("Thank you for flying " NAME "\n");
-	exit(0);
 }
 
 
