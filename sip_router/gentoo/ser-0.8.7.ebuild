@@ -1,6 +1,6 @@
 # Copyright 1999-2002 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/gentoo/Attic/ser-0.8.7.ebuild,v 1.1 2002/09/05 20:22:39 noh Exp $
+# $Header: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/gentoo/Attic/ser-0.8.7.ebuild,v 1.2 2002/09/06 02:25:16 noh Rel $
 
 DESCRIPTION="SIP Express Router"
 
@@ -23,6 +23,8 @@ src_compile() {
 		sed -e "s/-DUSE_IPV6//g" Makefile.defs.orig > Makefile.defs;
 	fi
 	make CFLAGS="${CFLAGS}" all || die
+	cd utils/gen_ha1
+	make || die
 }
 
 src_install () {
@@ -39,4 +41,10 @@ src_install () {
 		doc-dir=${P} || die
 	exeinto /etc/init.d
 	newexe gentoo/ser.init ser
+	exeinto /usr/bin
+	newexe utils/gen_ha1/gen_ha1 gen_ha1
+	exeinto /usr/sbin
+	newexe scripts/harv_ser.sh harv_ser.sh
+	newexe scripts/sc serctl
+	newexe scripts/ser_mysql.sh ser_mysql.sh
 }

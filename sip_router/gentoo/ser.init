@@ -1,7 +1,7 @@
 #!/sbin/runscript
-# Copyright 1999-2002 Gentoo Technologies, Inc.
+# Copyright 2002 Frauenhofer Gesellschaft FOKUS, Germany.
 # Distributed under the terms of the GNU General Public License, v2 or later
-# $Header: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/gentoo/Attic/ser.init,v 1.1 2002/09/05 20:22:39 noh Exp $
+# $Header: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/gentoo/Attic/ser.init,v 1.2 2002/09/06 02:25:16 noh Rel $
 
 depend() {
 	need net
