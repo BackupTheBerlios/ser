@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.20 2003/09/04 14:37:18 bogdan Exp $
+ * $Id: cpl_run.c,v 1.21 2003/09/05 12:37:34 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -297,7 +297,7 @@ static inline char *run_location( struct cpl_interpreter *intr )
 
 	if (clear)
 		empty_location_set( &(intr->loc_set) );
-	if (add_location( &(intr->loc_set), url.s, url.len, prio )==-1) {
+	if (add_location( &(intr->loc_set), &url, prio, 0/*no dup*/ )==-1) {
 		LOG(L_ERR,"ERROR:run_location: unable to add location to set :-(\n");
 		goto runtime_error;
 	}
