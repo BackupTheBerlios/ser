@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.124 2002/11/02 01:35:08 andrei Exp $
+ * $Id: main.c,v 1.125 2002/11/04 17:05:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -48,7 +48,7 @@
 
 #include <sys/ioctl.h>
 #include <net/if.h>
-#ifdef __sun
+#ifdef HAVE_SYS_SOCKIO_H
 #include <sys/sockio.h>
 #endif
 
@@ -80,9 +80,9 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.124 2002/11/02 01:35:08 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.125 2002/11/04 17:05:32 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
-static char compiled[]= __TIME__ " " __DATE__ ;
+static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
 "STATS:"
 #ifdef STATS
@@ -389,7 +389,7 @@ int daemonize(char*  name)
 	}
 	
 	if (log_stderr==0)
-		openlog(name, LOG_PID|LOG_CONS, LOG_LOCAL1 /*LOG_DAEMON*/);
+		openlog(name, LOG_PID|LOG_CONS, LOG_DAEMON);
 		/* LOG_CONS, LOG_PERRROR ? */
 	return  0;
 
@@ -757,7 +757,7 @@ int add_interfaces(char* if_name, int family, unsigned short port)
 	struct ip_addr addr;
 	int ret;
 
-#ifdef __FreeBSD__
+#ifdef HAVE_SOCKADDR_SA_LEN
 	#define MAX(a,b) ( ((a)>(b))?(a):(b))
 #endif
 	/* ipv4 or ipv6 only*/
@@ -787,7 +787,7 @@ int add_interfaces(char* if_name, int family, unsigned short port)
 	last=(char*)ifc.ifc_req+ifc.ifc_len;
 	for(ifr=ifc.ifc_req; (char*)ifr<last;
 			ifr=(struct ifreq*)((char*)ifr+sizeof(ifr->ifr_name)+
-			#ifdef  __FreeBSD__
+			#ifdef  HAVE_SOCKADDR_SA_LEN
 				MAX(ifr->ifr_addr.sa_len, sizeof(struct sockaddr))
 			#else
 				( (ifr->ifr_addr.sa_family==AF_INET)?

@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.20 2002/10/03 20:06:10 jiri Exp $
+/* $Id: sr_module.c,v 1.21 2002/11/04 17:05:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -166,6 +166,9 @@ int load_module(char* path)
 	struct module_exports* exp;
 	struct sr_module* t;
 	
+#ifndef RTLD_NOW
+#define RTLD_NOW DL_LAZY
+#endif
 	handle=dlopen(path, RTLD_NOW); /* resolve all symbols now */
 	if (handle==0){
 		LOG(L_ERR, "ERROR: load_module: could not open module <%s>: %s\n",

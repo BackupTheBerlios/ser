@@ -1,10 +1,10 @@
-$Id: INSTALL,v 1.22 2002/11/02 01:35:08 andrei Exp $
+$Id: INSTALL,v 1.23 2002/11/04 17:05:32 andrei Exp $
 
 
 Installation Notes
 
 Supported arhitectures: Linux/i386, Linux/armv4l, FreeBSD/i386,
-Solaris/sparc64, Win*/i386 (CYGWIN) - only the core
+Solaris/sparc64 
 (for other arhitectures the Makefile must be edited)
 
 There are various configuration options defined in the Makefile.
