@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.6 2002/08/15 08:13:30 jku Exp $ 
+ * $Id: hf.c,v 1.7 2002/08/15 11:56:25 janakj Exp $ 
  */
 
 #include "hf.h"
@@ -12,6 +12,7 @@
 #include "digest/digest.h" /* free_credentials */
 #include "parse_event.h"
 #include "parse_expires.h"
+#include "contact/parse_contact.h"
 
 
 /* 
@@ -49,6 +50,10 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_EXPIRES:
 			free_expires((exp_body_t**)(&(hf->parsed)));
+			break;
+
+		case HDR_CONTACT:
+			free_contact((contact_body_t**)(&(hf->parsed)));
 			break;
 
 		default:

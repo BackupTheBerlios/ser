@@ -1,5 +1,5 @@
 /*
- * $Id: parse_expires.c,v 1.1 2002/08/12 12:04:50 janakj Exp $
+ * $Id: parse_expires.c,v 1.2 2002/08/15 11:54:43 janakj Exp $
  *
  * Expires header field body parser
  */
@@ -100,7 +100,7 @@ void free_expires(exp_body_t** _e)
 void print_expires(exp_body_t* _e)
 {
 	printf("===Expires===\n");
-	printf("text: %.*s\n", _e->text.len, _e->text.s);
+	printf("text: \'%.*s\'\n", _e->text.len, _e->text.s);
 	printf("val : %d\n", _e->val);
 	printf("===/Expires===\n");
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.16 2002/08/15 08:13:30 jku Exp $
+ * $Id: msg_parser.c,v 1.17 2002/08/15 11:56:25 janakj Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -18,8 +18,6 @@
 #include "../error.h"
 #include "../globals.h"
 #include "parse_hname2.h"
-
-
 
 #ifdef DEBUG_DMALLOC
 #include <mem/dmalloc.h>

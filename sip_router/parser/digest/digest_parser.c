@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.c,v 1.1 2002/08/09 11:11:53 janakj Exp $
+ * $Id: digest_parser.c,v 1.2 2002/08/15 11:54:43 janakj Exp $
  *
  * Digest credentials parser
  */
@@ -20,14 +20,6 @@
 
 #define ALG_MD5_STR "MD5"
 #define ALG_MD5SESS_STR "MD5-sess"
-
-
-static inline int parse_quoted(str* _s, str* _r);
-static inline int parse_token(str* _s, str* _r);
-static inline int parse_digest_param(str* _s, dig_cred_t* _c);
-static inline int parse_digest_params(str* _s, dig_cred_t* _c);
-static int parse_qop(struct qp* _q);
-static int parse_algorithm(struct algorithm* _a);
 
 
 /*
@@ -120,6 +112,11 @@ static inline int parse_token(str* _s, str* _r)
 		}
 	}
  out:
+	     /* Empty token is error */
+	if (i == 0) {
+	        return -2;
+	}
+
 	     /* Save length of the token */
         _r->len = i;
 
@@ -129,7 +126,7 @@ static inline int parse_token(str* _s, str* _r)
 	_s->s = _s->s + i;
 	_s->len -= i;
 
-	     /* Everyting went OK */
+	     /* Everything went OK */
 	return 0;
 }
 
@@ -179,7 +176,7 @@ static inline int parse_digest_param(str* _s, dig_cred_t* _c)
 	     /* If the first character is qoute, it is
 	      * a quoted string, otherwise it is a token
 	      */
-	if (*(_s->s) == '\"') {
+	if (_s->s[0] == '\"') {
 		if (parse_quoted(_s, ptr) < 0) {
 			return -3;
 		}
@@ -192,6 +189,39 @@ static inline int parse_digest_param(str* _s, dig_cred_t* _c)
 	return 0;
 }
 
+
+/*
+ * Parse qop parameter body
+ */
+static inline int parse_qop(struct qp* _q)
+{
+	if (!strncasecmp(_q->qop_str.s, QOP_AUTH_STR, _q->qop_str.len)) {
+		_q->qop_parsed = QOP_AUTH;
+	} else if (!strncasecmp(_q->qop_str.s, QOP_AUTHINT_STR, _q->qop_str.len)) {
+		_q->qop_parsed = QOP_AUTHINT;
+	} else {
+		_q->qop_parsed = QOP_OTHER;
+	}
+	
+	return 0;
+}
+
+
+/*
+ * Parse algorithm parameter body
+ */
+static inline int parse_algorithm(struct algorithm* _a)
+{
+	if (!strncasecmp(_a->alg_str.s, ALG_MD5_STR, _a->alg_str.len)) {
+		_a->alg_parsed = ALG_MD5;
+	} else if (!strncasecmp(_a->alg_str.s, ALG_MD5SESS_STR, _a->alg_str.len)) {
+		_a->alg_parsed = ALG_MD5SESS;
+	} else {
+		_a->alg_parsed = ALG_OTHER;
+	}
+
+	return 0;
+}
 
 
 /*
@@ -240,40 +270,6 @@ static inline int parse_digest_params(str* _s, dig_cred_t* _c)
 
 
 /*
- * Parse qop parameter body
- */
-static int parse_qop(struct qp* _q)
-{
-	if (!strncasecmp(_q->qop_str.s, QOP_AUTH_STR, _q->qop_str.len)) {
-		_q->qop_parsed = QOP_AUTH;
-	} else if (!strncasecmp(_q->qop_str.s, QOP_AUTHINT_STR, _q->qop_str.len)) {
-		_q->qop_parsed = QOP_AUTHINT;
-	} else {
-		_q->qop_parsed = QOP_OTHER;
-	}
-	
-	return 0;
-}
-
-
-/*
- * Parse algorithm parameter body
- */
-static int parse_algorithm(struct algorithm* _a)
-{
-	if (!strncasecmp(_a->alg_str.s, ALG_MD5_STR, _a->alg_str.len)) {
-		_a->alg_parsed = ALG_MD5;
-	} else if (!strncasecmp(_a->alg_str.s, ALG_MD5SESS_STR, _a->alg_str.len)) {
-		_a->alg_parsed = ALG_MD5SESS;
-	} else {
-		_a->alg_parsed = ALG_OTHER;
-	}
-
-	return 0;
-}
-
-
-/*
  * We support Digest authentication only
  *
  * Returns:
@@ -286,7 +282,7 @@ int parse_digest_cred(str* _s, dig_cred_t* _c)
 	str tmp;
 
 	     /* Make a temporary copy, we are
-	      * gonna to modify it 
+	      * going to modify it 
 	      */
 	tmp.s = _s->s;
 	tmp.len = _s->len;

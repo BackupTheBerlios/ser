@@ -1,5 +1,5 @@
 /*
- * $Id: digest.c,v 1.2 2002/08/12 12:20:08 janakj Exp $
+ * $Id: digest.c,v 1.3 2002/08/15 11:54:43 janakj Exp $
  *
  * Digest credentials parser interface
  */
@@ -10,6 +10,9 @@
 #include <stdio.h>          /* printf */
 
 
+/*
+ * Create and initialize a new credentials structure
+ */
 static inline int new_credentials(struct hdr_field* _h)
 {
 	auth_body_t* b;
@@ -31,6 +34,9 @@ static inline int new_credentials(struct hdr_field* _h)
 }
 
 
+/*
+ * Parse digest credentials
+ */
 int parse_credentials(struct hdr_field* _h)
 {
 	int res;
@@ -54,6 +60,9 @@ int parse_credentials(struct hdr_field* _h)
 }
 
 
+/*
+ * Free all memory
+ */
 void free_credentials(auth_body_t** _b)
 {
 	pkg_free(*_b);
