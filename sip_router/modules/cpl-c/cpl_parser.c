@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.c,v 1.21 2003/09/04 13:02:46 bogdan Exp $
+ * $Id: cpl_parser.c,v 1.22 2003/09/04 13:48:15 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,10 +33,6 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
-//#include <gnome-xml/xmlmemory.h>
-//#include <gnome-xml/parser.h>
-
-
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 

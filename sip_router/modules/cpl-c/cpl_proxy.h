@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_proxy.h,v 1.6 2003/09/01 17:44:12 bogdan Exp $
+ * $Id: cpl_proxy.h,v 1.7 2003/09/04 13:48:15 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -175,12 +175,12 @@ static void final_reply( struct cell* t, struct sip_msg* msg, int code,
 
 
 
-inline unsigned char *run_proxy( struct cpl_interpreter *intr )
+static inline char *run_proxy( struct cpl_interpreter *intr )
 {
 	unsigned short attr_name;
 	unsigned short n;
-	unsigned char *kid;
-	unsigned char *p;
+	char *kid;
+	char *p;
 	int i;
 	str *s;
 	struct location *loc;
