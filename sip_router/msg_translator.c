@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.53 2002/06/21 16:53:35 bogdan Exp $
+/* $Id: msg_translator.c,v 1.54 2002/06/25 11:15:48 bogdan Exp $
  *
  */
 
@@ -654,6 +654,7 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text,
 			case HDR_FROM:
 			case HDR_CALLID:
 			case HDR_CSEQ:
+			case HDR_RECORDROUTE:
 				len += ((hdr->body.s+hdr->body.len )-hdr->name.s )+CRLF_LEN;
 		}
 	/*lumps length*/
@@ -730,6 +731,7 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text,
 			case HDR_FROM:
 			case HDR_CALLID:
 			case HDR_CSEQ:
+			case HDR_RECORDROUTE:
 				append_str_trans( p, hdr->name.s ,
 					((hdr->body.s+hdr->body.len )-hdr->name.s ),msg);
 				append_str( p, CRLF,CRLF_LEN,msg);
