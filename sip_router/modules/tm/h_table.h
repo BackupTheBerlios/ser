@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.36 2001/12/10 21:30:00 bogdan Exp $
+ * $Id: h_table.h,v 1.37 2001/12/13 19:26:04 bogdan Exp $
  */
 
 
@@ -144,10 +144,5 @@ struct cell*  build_cell( struct sip_msg* p_msg );
 
 void remove_from_hash_table( struct s_table *hash_table,  struct cell * p_cell );
 void    insert_into_hash_table( struct s_table *hash_table,  struct cell * p_cell );
-
-void      ref_cell( struct cell* p_cell);
-void unref_cell( struct cell* p_cell);
-
-
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.19 2001/12/13 03:21:09 andrei Exp $
+ * $Id: tm.c,v 1.20 2001/12/13 19:26:04 bogdan Exp $
  *
  * TM module
  *
@@ -22,6 +22,7 @@
 
 
 /*static int test_f(struct sip_msg*, char*,char*);*/
+static int w_t_check(struct sip_msg* msg, char* str, char* str2);
 static int w_t_send_reply(struct sip_msg* msg, char* str, char* str2);
 static int w_t_forward(struct sip_msg* msg, char* str, char* str2);
 static int w_t_forward_def(struct sip_msg* msg, char* str, char* str2);
@@ -32,7 +33,7 @@ static int fixup_t_send_reply(void** param, int param_no);
 
 static struct module_exports nm_exports= {
 	"tm_module",
-	(char*[]){	"t_add_transaction",
+	(char*[]){			"t_add_transaction",
 				"t_lookup_request",
 				"t_forward",
 				"t_forward_def",
@@ -43,7 +44,7 @@ static struct module_exports nm_exports= {
 			},
 	(cmd_function[]){
 					t_add_transaction,
-					t_lookup_request,
+					t_check,
 					w_t_forward,
 					w_t_forward_def,
 					t_forward_uri,
@@ -202,6 +203,11 @@ static int fixup_t_send_reply(void** param, int param_no)
 }
 
 
+
+static int w_t_check(struct sip_msg* msg, char* str, char* str2)
+{
+	return t_check( msg , 0 );
+}
 
 static int w_t_forward(struct sip_msg* msg, char* str, char* str2)
 {
