@@ -1,5 +1,5 @@
 /**
- * $Id: xlog.c,v 1.7 2004/10/27 09:23:17 ramona Exp $
+ * $Id: xlog.c,v 1.8 2004/10/27 10:12:39 ramona Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -125,7 +125,7 @@ static int xlog(struct sip_msg* msg, char* lev, char* frm)
 	if(xl_print_log(msg, (xl_elog_t*)frm, log_buf, &log_len)<0)
 		return -1;
 
-	log_buf[log_len] = '\0';
+	/* log_buf[log_len] = '\0'; */
 	LOG((int)(long)lev, "%.*s", log_len, log_buf);
 
 	return 1;
@@ -142,7 +142,7 @@ static int xdbg(struct sip_msg* msg, char* frm, char* str2)
 	if(xl_print_log(msg, (xl_elog_t*)frm, log_buf, &log_len)<0)
 		return -1;
 
-	log_buf[log_len] = '\0';
+	/* log_buf[log_len] = '\0'; */
 	DBG("%.*s", log_len, log_buf);
 
 	return 1;
