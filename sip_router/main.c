@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.159 2003/04/18 13:58:15 andrei Exp $
+ * $Id: main.c,v 1.160 2003/05/09 16:21:14 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,6 +35,7 @@
  *  2003-04-08  init_mallocs split into init_{pkg,shm}_mallocs and 
  *               init_shm_mallocs called after cmd. line parsing (andrei)
  *  2003-04-15  added tcp_disable support (andrei)
+ *  2003-05-09  closelog() before openlog to force opening a new fd (needed on solaris) (andrei)
  *
  */
 
@@ -98,7 +99,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.159 2003/04/18 13:58:15 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.160 2003/05/09 16:21:14 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -488,6 +489,7 @@ int daemonize(char*  name)
 	};
 	
 	/* close any open file descriptors */
+	closelog();
 	for (r=3;r<MAX_FD; r++){
 			close(r);
 	}
