@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.23 2002/02/11 17:56:22 andrei Exp $
+ * $Id: udp_server.c,v 1.24 2002/02/15 00:09:13 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -123,7 +123,7 @@ int udp_init(unsigned long ip, unsigned short port)
 	}
 	/* set sock opts? */
 	optval=1;
-	if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEADDR,
+	if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEADDR ,
 					(void*)&optval, sizeof(optval)) ==-1)
 	{
 		LOG(L_ERR, "ERROR: udp_init: setsockopt: %s\n", strerror(errno));
