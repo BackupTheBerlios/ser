@@ -1,5 +1,5 @@
 /*
- * $Id: hash.h,v 1.2 2003/03/16 18:01:21 janakj Exp $
+ * $Id: hash.h,v 1.3 2003/04/01 17:51:54 jih Exp $
  *
  * Header file for hash table functions
  *
@@ -34,7 +34,7 @@
 #include <stdio.h>
 
 extern int hash_table_install (struct domain_list **hash_table, char *domain);
-int hash_table_lookup (char *domain, int len);
+int hash_table_lookup (str *domain);
 extern void hash_table_print (struct domain_list **hash_table, FILE *reply_file);
 extern void hash_table_free (struct domain_list **hash_table);
 

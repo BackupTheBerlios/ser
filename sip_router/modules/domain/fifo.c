@@ -1,5 +1,5 @@
 /*
- * $Id: fifo.c,v 1.8 2003/04/01 14:26:59 janakj Exp $
+ * $Id: fifo.c,v 1.9 2003/04/01 17:51:54 jih Exp $
  *
  * Domain fifo functions
  *
