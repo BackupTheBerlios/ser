@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.h,v 1.2 2004/03/02 16:39:38 janakj Exp $
+ * $Id: t_fifo.h,v 1.3 2004/03/02 18:26:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,16 +38,11 @@
 
 int init_twrite_lines();
 
+int init_twrite_sock(void);
+
 int t_write_req(struct sip_msg* msg, char* vm_fifo, char* action);
 
 int t_write_unix(struct sip_msg* msg, char* sock_name, char* action);
 
-/* 
- * Convert Unix domain socket name into socket, 
- * connect the socket and switch it over to non-blocking
- * mode
- */
-int unixsock_fixup(void** param, int param_no);
-		 
 #endif
 
