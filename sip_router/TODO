@@ -1,8 +1,10 @@
-$Id: TODO,v 1.47 2003/05/13 17:21:35 andrei Exp $
+$Id: TODO,v 1.48 2003/05/23 15:03:38 andrei Exp $
 
 ( - todo, x - done)
 
 release:
+- fix modules makefiles (so that cd modules/foo; make will also link the proper
+   libs)
 - fix -march=..., or compile w/ i386 for the release
 x resolver should resolve [ipv6]
 - remove parse_uri debugging info
