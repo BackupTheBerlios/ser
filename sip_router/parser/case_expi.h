@@ -1,5 +1,5 @@
 /*
- * $Id: case_expi.h,v 1.1 2002/07/25 12:28:26 janakj Exp $
+ * $Id: case_expi.h,v 1.2 2002/08/12 12:04:50 janakj Exp $
  *
  * Expires header field parser macros
  */
@@ -33,4 +33,4 @@
         goto other;
 
 
-#endif
+#endif /* CASE_EXPI_H */

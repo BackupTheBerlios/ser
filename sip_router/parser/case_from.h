@@ -1,5 +1,5 @@
 /*
- * $Id: case_from.h,v 1.1 2002/07/25 12:28:26 janakj Exp $
+ * $Id: case_from.h,v 1.2 2002/08/12 12:04:50 janakj Exp $
  *
  * From header field parser macros
  */
@@ -14,4 +14,4 @@
         goto dc_end
 
 
-#endif
+#endif /* CASE_FROM_H */

@@ -1,5 +1,5 @@
 /*
- * $Id: case_to.h,v 1.1 2002/07/25 12:28:26 janakj Exp $
+ * $Id: case_to.h,v 1.2 2002/08/12 12:04:50 janakj Exp $
  *
  * To header field parser macros
  */
@@ -15,4 +15,4 @@
         return (p + 4);
 
 
-#endif
+#endif /* CASE_TO_H */

@@ -1,5 +1,5 @@
 /*
- * $Id: case_cont.h,v 1.1 2002/07/25 12:28:26 janakj Exp $
+ * $Id: case_cont.h,v 1.2 2002/08/12 12:04:50 janakj Exp $
  *
  * Contact, Content-Type, Content-Length header field parser macros
  */
@@ -76,4 +76,4 @@
      goto other;
 
 
-#endif
+#endif /* CASE_CONT_H */

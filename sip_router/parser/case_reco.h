@@ -1,11 +1,11 @@
 /*
- * $Id: case_reco.h,v 1.1 2002/07/25 12:28:26 janakj Exp $
+ * $Id: case_reco.h,v 1.2 2002/08/12 12:04:50 janakj Exp $
  *
  * Record-Route header field parser macros
  */
 
-#ifndef RECO_CASE_H
-#define RECO_CASE_H
+#ifndef CASE_RECO_H
+#define CASE_RECO_H
 
 
 #define OUTE_CASE                            \
@@ -39,5 +39,5 @@
         goto other;
 
 
-#endif
+#endif /* CASE_RECO_H */
 
