@@ -1,5 +1,5 @@
 /*
- * $Id: vm.h,v 1.4 2003/07/15 09:00:43 rco Exp $
+ * $Id: vm.h,v 1.5 2003/10/16 04:17:54 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
