@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.24 2002/05/26 21:38:02 andrei Exp $
+ *  $Id: config.h,v 1.25 2002/07/15 15:08:01 andrei Exp $
  */
 
 
@@ -12,7 +12,7 @@
 /* default sip port if none specified */
 #define SIP_PORT 5060
 
-#define CFG_FILE "./ser.cfg"
+#define CFG_FILE "/etc/ser/ser.cfg"
 
 
 /* maximum number of addresses on which we will listen */
