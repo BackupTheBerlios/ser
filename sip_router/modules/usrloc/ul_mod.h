@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.16 2004/09/01 11:22:27 janakj Exp $
+ * $Id: ul_mod.h,v 1.17 2005/03/29 13:48:45 janakj Exp $
  *
  * User location module interface
  *
@@ -59,9 +59,7 @@ extern str q_col;
 extern str callid_col;
 extern str cseq_col;
 extern str method_col;
-extern str replicate_col;
 extern str flags_col;
-extern str state_col;
 extern str user_agent_col;
 extern str received_col;
 extern str db_url;
