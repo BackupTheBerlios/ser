@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.29 2003/03/16 01:01:22 jiri Exp $
+$Id: INSTALL,v 1.30 2003/04/07 11:57:09 andrei Exp $
 
 
      ===========================================
@@ -55,7 +55,7 @@ Requirements:
 - bison or yacc (Berkley yacc)
 - flex
 - GNU make (on Linux this is the standard "make", on FreeBSD and Solaris is
- called "gmake")
+ called "gmake") version >= 3.79.
 - sed and tr (used in the makefiles)
 - GNU tar ("gtar" on Solaris) and gzip if you want "make tar" to work
 - GNU install or BSD install (on Solaris "ginstall") if you want "make
