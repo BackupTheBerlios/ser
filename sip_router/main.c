@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.151 2003/04/02 15:51:03 andrei Exp $
+ * $Id: main.c,v 1.152 2003/04/06 00:21:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -94,7 +94,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.151 2003/04/02 15:51:03 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.152 2003/04/06 00:21:13 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -755,8 +755,9 @@ int main_loop()
 	}
 
 	/*this is the main process*/
-	bind_address=&sock_info[0]; /* main proc -> it shoudln't send anything, */
-	bind_idx=0;					/* if it does it will use the first address */
+	bind_address=0;				/* main proc -> it shouldn't send anything, */
+	bind_idx=0;					/* if it does get_send_sock should return
+	                               a good socket */
 	
 	/* if configured to do so, start a server for accepting FIFO commands */
 	if (open_fifo_server()<0) {

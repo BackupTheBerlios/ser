@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.7 2003/03/31 15:49:15 janakj Exp $
+ * $Id: parse_param.c,v 1.8 2003/04/06 00:21:14 andrei Exp $
  *
  * Generic Parameter Parser
  *
@@ -245,6 +245,9 @@ static inline void parse_param_name(str* _s, pclass_t _c, param_hooks_t* _h, par
 	default: break;
 	}
 }
+
+
+
 
 
 /*

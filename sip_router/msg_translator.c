@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.107 2003/04/02 16:39:06 andrei Exp $
+ * $Id: msg_translator.c,v 1.108 2003/04/06 00:21:13 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -204,7 +204,7 @@ static char * warning_builder( struct sip_msg *msg, unsigned int *returned_len)
 		str_int_print("pid=", my_pid());
 		/* req_src_ip= */
 		str_ipaddr_print(" req_src_ip=", &msg->rcv.src_ip);
-		str_int_print(" req_src_port=", ntohs(msg->rcv.src_port));
+		str_int_print(" req_src_port=", msg->rcv.src_port);
 		str_pair_print(" in_uri=", msg->first_line.u.request.uri.s,
 									msg->first_line.u.request.uri.len);
 		str_pair_print(" out_uri=", foo->s, foo->len);
@@ -272,7 +272,7 @@ char* rport_builder(struct sip_msg *msg, unsigned int *rport_len)
 	int len;
 	
 	tmp_len=0;
-	tmp=int2str(ntohs(msg->rcv.src_port), &tmp_len);
+	tmp=int2str(msg->rcv.src_port, &tmp_len);
 	len=RPORT_LEN+tmp_len;
 	buf=pkg_malloc(sizeof(char)*(len+1));/* space for null term */
 	if (buf==0){

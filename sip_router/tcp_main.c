@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.19 2003/03/31 19:51:10 andrei Exp $
+ * $Id: tcp_main.c,v 1.20 2003/04/06 00:21:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -283,7 +283,7 @@ struct tcp_connection* _tcpconn_find(int id, struct ip_addr* ip, int port)
 		for (c=tcpconn_id_hash[hash]; c; c=c->id_next){
 			DBG("c=%p, c->id=%d, ip=",c, c->id);
 			print_ip(&c->rcv.src_ip);
-			DBG(" port=%d\n", ntohs(c->rcv.src_port));
+			DBG(" port=%d\n", c->rcv.src_port);
 			if ((id==c->id)&&(!c->bad)) return c;
 		}
 	}else if (ip){
@@ -291,7 +291,7 @@ struct tcp_connection* _tcpconn_find(int id, struct ip_addr* ip, int port)
 		for (c=tcpconn_addr_hash[hash]; c; c=c->next){
 			DBG("c=%p, c->id=%d, ip=",c, c->id);
 			print_ip(&c->rcv.src_ip);
-			DBG(" port=%d\n", ntohs(c->rcv.src_port));
+			DBG(" port=%d\n", c->rcv.src_port);
 			if ( (!c->bad) && (port==c->rcv.src_port) &&
 					(ip_addr_cmp(ip, &c->rcv.src_ip)) )
 				return c;
