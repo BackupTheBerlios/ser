@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.17 2003/11/29 00:57:22 janakj Exp $
+ * $Id: domain_mod.c,v 1.18 2004/03/05 19:27:23 janakj Exp $
  *
  * Domain module
  *
@@ -41,6 +41,7 @@
 #include "../../sr_module.h"
 #include "domain.h"
 #include "fifo.h"
+#include "unixsock.h"
 
 /*
  * Module management function prototypes
@@ -156,6 +157,12 @@ static int mod_init(void)
 
 		/* Initialize fifo interface */
 		(void)init_domain_fifo();
+
+		if (init_domain_unixsock() < 0) {
+			LOG(L_ERR, "domain:mod_init(): Error while initializing unix socket interface\n");
+			db_close(db_handle);
+			return -1;
+		}
 
 		/* Initializing hash tables and hash table variable */
 		hash_table_1 = (struct domain_list **)shm_malloc(sizeof(struct domain_list *) * HASH_SIZE);
