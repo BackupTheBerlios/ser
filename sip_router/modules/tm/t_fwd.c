@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.35 2003/02/19 17:16:41 andrei Exp $
+ * $Id: t_fwd.c,v 1.36 2003/02/24 16:48:50 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,8 @@
  * History:
  * -------
  *  2003-02-13  proto support added (andrei)
+ *  2003-02-24  s/T_NULL/T_NULL_CELL/ to avoid redefinition conflict w/
+ *              nameser_compat.h (andrei)
  */
 
 #include "defs.h"
@@ -367,7 +369,7 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 
 	if (p_msg->REQ_METHOD==METHOD_CANCEL) {
 		t_invite=t_lookupOriginalT(  p_msg );
-		if (t_invite!=T_NULL) {
+		if (t_invite!=T_NULL_CELL) {
 			e2e_cancel( p_msg, t, t_invite );
 			UNREF(t_invite);
 			return 1;
