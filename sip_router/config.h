@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.29 2002/08/16 21:04:58 jku Exp $
+ *  $Id: config.h,v 1.30 2002/08/27 11:56:19 jku Exp $
  */
 
 
@@ -105,4 +105,11 @@
 
 /* maximum length of Contact heder field in redirection replies */
 #define MAX_REDIRECTION_LEN 512
+
+/* used by FIFO statistics in module to terminate line;
+   extra whitespaces are used to overwrite remainders of
+   previous line if longer than current one
+*/
+#define CLEANUP_EOL "      \n"
+
 #endif
