@@ -1,5 +1,5 @@
 /*
- * $Id: nhelpr_funcs.c,v 1.4 2003/11/06 15:03:34 andrei Exp $
+ * $Id: nhelpr_funcs.c,v 1.5 2003/11/27 10:39:27 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -165,6 +165,10 @@ int extract_body(struct sip_msg *msg, str *body )
 		goto error;
 	}
 	body->len = msg->len -(int)(body->s-msg->buf);
+	if (body->len==0) {
+		LOG(L_ERR, "ERROR: extract_body: message body has lenght zero\n");
+		goto error;
+	}
 	
 	/* no need for parse_headers(msg, EOH), get_body will 
 	 * parse everything */

@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.25 2003/11/20 20:54:56 andrei Exp $
+/*$Id: nathelper.c,v 1.26 2003/11/27 10:39:27 bogdan Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -368,7 +368,7 @@ fix_nated_sdp_f(struct sip_msg* msg, char* str1, char* str2)
 
 	level = (int)(long)str1;
 
-	if (extract_body(msg, &body) == -1 || body.len == 0) {
+	if (extract_body(msg, &body) == -1 ) {
 		LOG(L_ERR,"ERROR: fix_nated_sdp: cannot extract body from msg!\n");
 		return -1;
 	}
@@ -685,10 +685,14 @@ force_rtp_proxy_f(struct sip_msg* msg, char* str1, char* str2)
 		LOG(L_ERR, "ERROR: force_rtp_proxy: no Call-Id field\n");
 		return -1;
 	}
-	if (extract_body(msg, &body) == -1 || body.len == 0)
+	if (extract_body(msg, &body) == -1 ) {
+		LOG(L_ERR, "ERROR: force_rtp_proxy: can't extract body "
+			"from the message\n");
 		return -1;
+	}
 	if (extract_mediaip(&body, &oldip) == -1) {
-		LOG(L_ERR, "ERROR: force_rtp_proxy: can't extract media IP from the message\n");
+		LOG(L_ERR, "ERROR: force_rtp_proxy: can't extract media IP "
+			"from the message\n");
 		return -1;
 	}
 	body1.s = oldip.s + oldip.len;
