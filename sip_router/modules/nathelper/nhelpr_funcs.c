@@ -1,5 +1,5 @@
 /*
- * $Id: nhelpr_funcs.c,v 1.5 2003/11/27 10:39:27 bogdan Exp $
+ * $Id: nhelpr_funcs.c,v 1.6 2003/12/01 19:40:18 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -155,7 +155,9 @@ other:
 }
 
 
-
+/*
+ * Get message body and check Content-Type header field
+ */
 int extract_body(struct sip_msg *msg, str *body )
 {
 	

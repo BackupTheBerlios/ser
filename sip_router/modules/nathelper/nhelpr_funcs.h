@@ -1,5 +1,5 @@
 /*
- * $Id: nhelpr_funcs.h,v 1.1 2003/04/07 06:33:18 jiri Exp $
+ * $Id: nhelpr_funcs.h,v 1.2 2003/12/01 19:40:18 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -35,6 +35,5 @@
 
 int extract_body(struct sip_msg * , str *);
 int check_content_type(struct sip_msg * );
-int get_body_len( struct sip_msg* );
 
 #endif

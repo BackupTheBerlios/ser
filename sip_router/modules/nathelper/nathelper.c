@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.28 2003/12/01 13:03:25 sobomax Exp $
+/*$Id: nathelper.c,v 1.29 2003/12/01 19:40:18 janakj Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -214,7 +214,7 @@ ser_memmem(const void *b1, const void *b2, size_t len1, size_t len2)
 
 /*
  * Replaces ip:port pair in the Contact: field with the source address
- * of the packet and/or adds direction=active option to the SDP.
+ * of the packet.
  */
 static int
 fix_nated_contact_f(struct sip_msg* msg, char* str1, char* str2)
@@ -301,13 +301,13 @@ fixup_str2int( void** param, int param_no)
 #define	FIX_MEDIAIP	0x02
 
 #define ADIRECTION	"a=direction:active\r\n"
-#define	ADIRECTION_LEN	20
+#define	ADIRECTION_LEN	(sizeof(ADIRECTION) - 1)
 
 #define AOLDMEDIAIP	"a=oldmediaip:"
-#define AOLDMEDIAIP_LEN	13
+#define AOLDMEDIAIP_LEN	(sizeof(AOLDMEDIAIP) - 1)
 
 #define AOLDMEDIPRT	"a=oldmediaport:"
-#define AOLDMEDIPRT_LEN	15
+#define AOLDMEDIPRT_LEN	(sizeof(AOLDMEDIPRT) - 1)
 
 #define CLEN_LEN	10
 
@@ -347,7 +347,7 @@ nat_uac_test_f(struct sip_msg* msg, char* str1, char* str2)
 
 	/* return true if any of the NAT-UAC tests holds */
 	
-	/* test if source address of signaling different from
+	/* test if source address of signaling is different from
 	 * address advertised in Via */
 	if ((tests & NAT_UAC_TEST_RCVD) && received_test(msg)) 
 		return 1;
