@@ -1,5 +1,5 @@
 /*
- * $Id: daemonize.c,v 1.6 2004/05/03 12:18:10 andrei Exp $
+ * $Id: daemonize.c,v 1.7 2004/06/28 15:39:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -68,7 +68,12 @@ int daemonize(char*  name)
 
 	p=-1;
 
-
+	/* flush std file descriptors to avoid flushes after fork
+	 *  (same message appearing multiple times)
+	 *  and switch to unbuffered
+	 */
+	setbuf(stdout, 0);
+	setbuf(stderr, 0);
 	if (chroot_dir&&(chroot(chroot_dir)<0)){
 		LOG(L_CRIT, "Cannot chroot to %s: %s\n", chroot_dir, strerror(errno));
 		goto error;
