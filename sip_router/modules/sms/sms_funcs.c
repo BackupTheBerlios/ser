@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.32 2002/07/24 11:50:51 jku Exp $
+ * $Id: sms_funcs.c,v 1.33 2002/08/19 19:43:47 jku Exp $
  */
 
 #include <unistd.h>
@@ -10,6 +10,7 @@
 #include "../../globals.h"
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
+#include "../../parser/parse_uri.h"
 #include "../../data_lump_rpl.h"
 #include "../im/im_funcs.h"
 #include "sms_funcs.h"
