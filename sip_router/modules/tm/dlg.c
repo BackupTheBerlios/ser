@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.7 2003/05/01 00:40:23 janakj Exp $
+ * $Id: dlg.c,v 1.8 2003/05/08 01:11:42 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -192,6 +192,7 @@ int new_dlg_uac(str* _cid, str* _ltag, unsigned int _lseq, str* _luri, str* _rur
 
 	if (calculate_hooks(*_d) < 0) {
 		LOG(L_ERR, "new_dlg_uac(): Error while calculating hooks\n");
+		/* FIXME: free everything here */
 		shm_free(res);
 		return -2;
 	}
@@ -210,7 +211,7 @@ static inline int get_contact_uri(struct sip_msg* _m, str* _uri)
 
 	_uri->len = 0;
 
-	if (!_m->contact) return 0;
+	if (!_m->contact) return 1;
 
 	if (parse_contact(_m->contact) < 0) {
 		LOG(L_ERR, "get_contact_uri(): Error while parsing Contact body\n");
