@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.119 2002/09/25 19:20:26 andrei Rel $
+ * $Id: main.c,v 1.120 2002/09/30 18:38:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,7 +80,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.119 2002/09/25 19:20:26 andrei Rel $";
+static char id[]="@(#) $Id: main.c,v 1.120 2002/09/30 18:38:37 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -387,11 +387,10 @@ int daemonize(char*  name)
 	}
 	
 	/* close any open file descriptors */
-	if (log_stderr==0)
-		for (r=0;r<MAX_FD; r++){
+	for (r=0;r<MAX_FD; r++){
 			if ((r==3) && log_stderr)  continue;
 			close(r);
-		}
+	}
 	return  0;
 
 error:
