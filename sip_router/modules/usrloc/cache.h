@@ -1,5 +1,5 @@
 /* 
- * $Id: cache.h,v 1.5 2002/03/05 14:36:03 janakj Exp $ 
+ * $Id: cache.h,v 1.6 2002/03/06 00:10:36 janakj Exp $ 
  */
 
 #ifndef CACHE_H
@@ -80,7 +80,7 @@ struct c_elem* cache_get(cache_t* _c, str* _aor);
 /*
  * Update cache element
  */
-int cache_update(cache_t* _c, db_con_t* _con, struct c_elem* _el, location_t* _loc);
+int cache_update(cache_t* _c, db_con_t* _con, struct c_elem** _el, location_t* _loc);
 
 
 /*
