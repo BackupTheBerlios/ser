@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.85 2002/07/11 14:39:30 andrei Exp $
+ * $Id: main.c,v 1.86 2002/07/12 16:13:58 andrei Exp $
  */
 
 #include <stdio.h>
@@ -43,7 +43,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.85 2002/07/11 14:39:30 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.86 2002/07/12 16:13:58 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -484,7 +484,6 @@ int main_loop()
 				}
 		}
 		/* main process, receive loop */
-		is_main=1;
 		pids[0]=getpid();
 		process_bit = 1;
 		process_no=0; /*main process number*/
@@ -497,6 +496,8 @@ int main_loop()
 			LOG(L_ERR, "init_child failed\n");
 			goto error;
 		}
+		is_main=1; /* hack 42: call init_child with is_main=0 in case
+					 some modules wants to fork a child */
 		
 		return udp_rcv_loop();
 	}else{
@@ -593,7 +594,7 @@ static void sig_usr(int signo)
 		else /*  previous sig. not processed yet, ignoring? */
 			return; ;
 		if (dont_fork) 
-				/* only one proc, dooing everything from the sig handler,
+				/* only one proc, doing everything from the sig handler,
 				unsafe, but this is only for debugging mode*/
 			handle_sigs();
 	}else{
@@ -611,6 +612,8 @@ static void sig_usr(int signo)
 			case SIGUSR2:
 			case SIGHUP:
 					break;
+			case SIGCHLD:
+					exit(0); /* terminate if one child died */
 		}
 	}
 }
