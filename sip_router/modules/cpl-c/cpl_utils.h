@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_utils.h,v 1.1 2003/06/24 18:52:48 bogdan Exp $
+ * $Id: cpl_utils.h,v 1.2 2003/09/03 17:42:10 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,7 +45,7 @@ static inline char *strcasestr_str(str *s1, str *s2)
 	for(i=0;i<s1->len-s2->len;i++) {
 		for(j=0;j<s2->len;j++) {
 			if ( !((s1->s[i+j]==s2->s[j]) ||
-			( isalpha(s1->s[i+j]) && ((s1->s[i+j])^(s2->s[j]))==0x20 )) )
+			( isalpha((int)s1->s[i+j]) && ((s1->s[i+j])^(s2->s[j]))==0x20 )) )
 				break;
 		}
 		if (j==s2->len)
