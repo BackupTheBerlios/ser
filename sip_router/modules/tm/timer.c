@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.46 2003/06/25 14:24:49 jiri Exp $
+ * $Id: timer.c,v 1.47 2003/06/30 15:48:44 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -92,6 +92,11 @@
 	a REPLY_LOCK.
 
 */
+/*
+ * History:
+ * --------
+ *  2003-06-27  timers are not unlinked if timerlist is 0 (andrei)
+ */
 
 #include "defs.h"
 
@@ -114,7 +119,7 @@
 #include "t_cancel.h"
 
 
-static struct timer_table *timertable;
+static struct timer_table *timertable=0;
 
 int noisy_ctimer=0;
 
@@ -463,6 +468,7 @@ void unlink_timer_lists()
 	struct timer_link  *tl, *end, *tmp;
 	enum lists i;
 
+	if (timertable==0) return; /* nothing to do */
 	/* remember the DELETE LIST */
 	tl = timertable->timers[DELETE_LIST].first_tl.next_tl;
 	end = & timertable->timers[DELETE_LIST].last_tl;

@@ -10,7 +10,7 @@
 # Version:	@(#)skeleton  1.8  03-Mar-1998  miquels@cistron.nl
 #
 #  adapted for ser by Andrei Pelinescu-Onciul <pelinescu-onciul@fokus.gmd.de>
-# $Id: init.d,v 1.1 2002/09/25 19:20:26 andrei Rel $
+# $Id: ser.init,v 1.2 2003/06/30 15:48:44 andrei Exp $
 
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
@@ -56,7 +56,7 @@ case "$1" in
 	#	just the same as "restart".
 	#
 	echo -n "Restarting $DESC: $NAME"
-	start-stop-daemon --stop --quiet --pidfile \
+	start-stop-daemon --oknodo --stop --quiet --pidfile \
 		$PIDFILE --exec $DAEMON
 	sleep 1
 	start-stop-daemon --start --quiet --pidfile \
