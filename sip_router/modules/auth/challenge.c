@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.1 2002/08/09 11:17:14 janakj Exp $
+ * $Id: challenge.c,v 1.2 2002/08/14 18:42:28 janakj Exp $
  *
  * Challenge related functions
  */
@@ -77,6 +77,7 @@ static inline int challenge(struct sip_msg* _msg, char* _realm, int _qop,
 			DBG("challenge(): Retry count exceeded, sending Forbidden\n");
 			_code = 403;
 			_message = MESSAGE_403;
+			auth_hf_len = 0;
 		} else {
 			if (cred->stale == 0) {
 				cred->nonce_retries++;

@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.1 2002/08/09 11:17:14 janakj Exp $
+ * $Id: common.c,v 1.2 2002/08/14 18:42:28 janakj Exp $
  *
  * Common functions needed by authorize
  * and challenge functions
@@ -19,7 +19,7 @@ int send_resp(struct sip_msg* _m, int _code, char* _reason, char* _hdr, int _hdr
 	struct lump_rpl* ptr;
 	
 	     /* Add new headers if there are any */
-	if (_hdr) {
+	if ((_hdr) && (_hdr_len)) {
 		ptr = build_lump_rpl(_hdr, _hdr_len);
 		add_lump_rpl(_m, ptr);
 	}
