@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: mangler.c,v 1.7 2003/04/16 10:42:29 gabriel Exp $
+ * $Id: mangler.c,v 1.8 2003/04/30 09:38:15 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -83,10 +83,12 @@ static int child_init (int rank);
  */
 static int mod_init (void);
 
+#if 0 /* not used -- Wall complains */
 /* Header field fixup */
 static int fixup_char2str(void** param, int param_no);
 static int fixup_char2int (void **param, int param_no);
 static int fixup_char2uint (void **param, int param_no);
+#endif
 
 
 char *contact_flds_separator = DEFAULT_SEPARATOR;
@@ -228,6 +230,7 @@ destroy (void)
 	return;
 }
 
+#ifdef O
 static int fixup_char2int (void **param, int param_no)
 {
 	int offset,res;
@@ -300,3 +303,4 @@ static int fixup_char2str(void** param, int param_no)
 	
 	return 0;
 }
+#endif
