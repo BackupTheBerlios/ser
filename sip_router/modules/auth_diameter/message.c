@@ -1,5 +1,5 @@
 /*
- * $Id: message.c,v 1.2 2003/11/20 20:53:21 andrei Exp $
+ * $Id: message.c,v 1.3 2003/11/21 23:49:15 andrei Exp $
  *
  * 2003-04-07 created by bogdan
  *
@@ -25,7 +25,9 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
 #include <netinet/in.h>
+
 
 #include "../../mem/shm_mem.h"
 #include "../../dprint.h"
