@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.3 2001/11/08 05:16:56 andrei Exp $
+ * $Id: dprint.h,v 1.4 2002/02/12 17:48:04 andrei Exp $
  */
 
 
@@ -32,7 +32,6 @@ void dprint (char* format, ...);
 #ifdef NO_DEBUG
 	#define DPrint(fmt, args...)
 #else
-	//#define DPrint(fmt,args...) dprint(fmt, ## args)
 	#define DPrint(fmt,args...) \
 		do{ \
 			if (debug>=DPRINT_LEV){ \
