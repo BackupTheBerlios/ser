@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.38 2003/10/14 00:13:34 janakj Exp $
+ * $Id: msg_parser.h,v 1.39 2003/10/15 08:47:57 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -212,7 +212,6 @@ struct sip_msg {
 	struct sip_uri parsed_orig_ruri;
 	
 	struct lump* add_rm;       /* used for all the forwarded requests/replies */
-	struct lump* body_lumps;   /* Lumps that modify message body (they update Contact-Length) */
 	struct lump_rpl *reply_lump; /* only for localy generated replies !!!*/
 
 	/* str add_to_branch; 

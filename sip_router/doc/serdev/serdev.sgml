@@ -1,4 +1,4 @@
-<!-- $Id: serdev.sgml,v 1.15 2003/10/14 00:13:34 janakj Exp $ -->
+<!-- $Id: serdev.sgml,v 1.16 2003/10/15 08:47:56 janakj Exp $ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN">
 
 <book label="serdev" id="serdev" lang="EN">
@@ -1454,8 +1454,6 @@ struct sip_msg {
 		
     struct lump* add_rm;         /* used for all the forwarded 
                                   * requests */
-    struct lump* body_lumps;     /* Lumps that modify message body
-                                  * (update Content-Length */
     struct lump* repl_add_rm;    /* used for all the forwarded replies */
     struct lump_rpl *reply_lump; /* only for locally generated replies !!!*/
 
