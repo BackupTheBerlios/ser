@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.8 2002/09/04 22:12:09 janakj Exp $
+# $Id: ser_mysql.sh,v 1.9 2002/09/04 22:22:10 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -92,7 +92,9 @@ use $1;
 
 # Users: ser is the regular user, serro only for reading
 GRANT ALL PRIVILEGES ON $1.* TO $USERNAME IDENTIFIED  BY '$DEFAULT_PW';
+GRANT ALL PRIVILEGES ON $1.* TO ${USERNAME}@$DBHOST IDENTIFIED BY '$DEFAULT_PW';
 GRANT SELECT ON $1.* TO $ROUSER IDENTIFIED BY '$RO_PW';
+GRANT SELECT ON $1.* TO ${ROUSER}@$DBHOST IDENTIFIED BY '$RO_PW';
 
 
 #
