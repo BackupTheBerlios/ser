@@ -1,5 +1,5 @@
 /*
- * $Id: sip2jabber.h,v 1.1 2002/06/04 11:35:23 bogdan Exp $
+ * $Id: sip2jabber.h,v 1.2 2002/07/04 11:14:18 daniel Exp $
  *
  * JABBER module - headers for functions used for SIP 2 JABBER communication
  *
@@ -12,15 +12,18 @@
 
 typedef struct _jbconnection
 {
-	int sock;
-	int port;
-	int seq_nr;
-	char *hostname;
-	char *stream_id;
+	int sock;        // communication socket
+	int port;        // port of the server
+	int juid;        // internal id of the Jabber user
+	int seq_nr;      // sequence number
+	char *hostname;  // hosname of the Jabber server
+	char *stream_id; // stream id of the session
 
+	/****
 	char *username;
 	char *passwd;
-	char *resource;
+	*/
+	char *resource;  // resource ID
 } tjbconnection, *jbconnection;
 
 /** --- **/
@@ -29,6 +32,9 @@ int jb_free_jbconnection(jbconnection);
 
 int jb_connect_to_server(jbconnection);
 int jb_disconnect(jbconnection);
+
+void jb_set_juid(jbconnection, int);
+int  jb_get_juid(jbconnection);
 
 int jb_get_roster(jbconnection);
 
