@@ -1,5 +1,5 @@
 /*
- * $Id: db_utils.c,v 1.2 2004/08/24 09:00:35 janakj Exp $
+ * $Id: db_utils.c,v 1.3 2004/12/06 13:02:10 sobomax Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -77,7 +77,9 @@ int parse_sql_url(char* _url, char** _user, char** _pass,
 
 	at = strchr(slash, '@');
 
-	db_slash = strchr(slash, '/');
+	db_slash = strrchr(slash, '/');
+	if (db_slash <= at)
+		db_slash = NULL;
 	if (db_slash) {
 		*db_slash++ = '\0';
 		*_db = trim(db_slash);
