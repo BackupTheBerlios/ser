@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.12 2002/09/20 22:22:48 jiri Exp $
+# $Id: ser_mysql.sh,v 1.13 2002/09/23 21:16:32 jiri Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -124,6 +124,7 @@ INSERT INTO version VALUES ( 'aliases', '1');
 INSERT INTO version VALUES ( 'active_sessions', '1');
 INSERT INTO version VALUES ( 'acc', '1');
 INSERT INTO version VALUES ( 'config', '1');
+INSERT INTO version VALUES ( 'silo', '1');
 
 
 
@@ -363,6 +364,21 @@ CREATE TABLE config (
    user varchar(100) NOT NULL default '',
    modified timestamp(14)
 ) $TABLE_TYPE;
+
+# "instant" message silo
+
+CREATE TABLE silo(
+    mid INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    iuri VARCHAR(128),
+    ouri VARCHAR(128) NOT NULL,
+    to_h VARCHAR(128),
+    from_h VARCHAR(128),
+    inc_time INTEGER NOT NULL DEFAULT 0,
+    exp_time INTEGER NOT NULL,
+    ctype VARCHAR(32) NOT NULL DEFAULT "text/plain",
+    body BLOB NOT NULL
+) $TABLE_TYPE ;
+
 
 # add an admin user "admin" with password==heslo, 
 # so that one can try it out on quick start
