@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.31 2001/12/05 22:14:30 jku Exp $
+ * $Id: h_table.h,v 1.32 2001/12/06 11:25:26 bogdan Exp $
  */
 
 
@@ -87,6 +87,7 @@ typedef struct cell
 
    /*the transaction that is canceled (usefull only for CANCEL req)*/
    struct cell *T_canceled;
+   struct cell *T_canceler;
 
    /* usefull data */
    /* UA Server */
@@ -125,6 +126,8 @@ struct s_table
    struct timer   timers[ NR_OF_TIMER_LISTS ];
    /* current time */
    unsigned int   time;
+   /* timer process pid*/
+   unsigned int   timer_pid;
 };
 
 
