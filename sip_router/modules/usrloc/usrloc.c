@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.2 2001/12/18 00:29:18 janakj Exp $
+/* $Id: usrloc.c,v 1.3 2002/01/11 19:58:59 jku Exp $
  *
  * User location support
  *
@@ -35,7 +35,8 @@ static struct module_exports print_exports= {	"usrloc",
 						(fixup_function[]){0, 0},
 						2,
 						0,
-						destroy
+						destroy,
+						0 /* oncancel function */
 };
 
 

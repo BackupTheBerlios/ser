@@ -1,5 +1,5 @@
 /* 
- * $Id: auth.c,v 1.2 2002/01/07 04:39:50 jku Exp $ 
+ * $Id: auth.c,v 1.3 2002/01/11 19:58:58 jku Exp $ 
  */
 
 
@@ -50,7 +50,8 @@ static struct module_exports auth_exports = {"auth",
 					     },
 					     3,
 					     0,       /* response function */
-					     destroy  /* destroy function */
+					     destroy , /* destroy function */
+						0 /* oncancel function */
 };
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.19 2002/01/11 03:32:18 jku Exp $
+ * $Id: action.c,v 1.20 2002/01/11 19:58:58 jku Exp $
  */
 
 
@@ -385,6 +385,7 @@ int run_actions(struct action* a, struct sip_msg* msg)
 	struct action* t;
 	int ret;
 	static int rec_lev=0;
+	struct sr_module *mod;
 
 	rec_lev++;
 	if (rec_lev>ROUTE_MAX_REC_LEV){
@@ -408,6 +409,13 @@ int run_actions(struct action* a, struct sip_msg* msg)
 	}
 	
 	rec_lev--;
+	/* process module onbreak handlers if present */
+	if (rec_lev==0 && ret==0) 
+		for (mod=modules;mod;mod=mod->next) 
+			if (mod->exports && mod->exports->onbreak_f) {
+				mod->exports->onbreak_f( msg );
+				DBG("DEBUG: %s onbreak handler called\n", mod->exports->name);
+			}
 	return ret;
 	
 

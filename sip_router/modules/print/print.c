@@ -1,4 +1,4 @@
-/*$Id: print.c,v 1.4 2001/12/04 19:00:50 andrei Exp $
+/*$Id: print.c,v 1.5 2002/01/11 19:58:58 jku Exp $
  *
  * Example ser module, it will just print its string parameter to stdout
  *
@@ -18,7 +18,8 @@ static struct module_exports print_exports= {	"print_stdout",
 												(fixup_function[]){0},
 												1, /* number of fucntions*/
 												0, /* response function*/
-												0  /* destroy function */
+												0,  /* destroy function */
+												0   /* oncancel function */
 											};
 
 

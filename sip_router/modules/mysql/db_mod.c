@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.3 2002/01/07 04:39:51 jku Exp $ 
+ * $Id: db_mod.c,v 1.4 2002/01/11 19:58:58 jku Exp $ 
  */
 
 #include "../../sr_module.h"
@@ -40,7 +40,8 @@ static struct module_exports mysql_exports = {
 	},
 	8, /* number of functions*/
 	0, /* response function*/
-	0  /* destroy function */
+	0,  /* destroy function */
+	0	/* oncancel function */
 };
 
 
