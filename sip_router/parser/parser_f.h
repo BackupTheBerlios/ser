@@ -1,5 +1,5 @@
 /* 
- * $Id: parser_f.h,v 1.5 2003/02/28 14:12:26 jiri Exp $
+ * $Id: parser_f.h,v 1.6 2003/03/24 16:42:21 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,6 +34,7 @@
 #define parser_f_h
 
 #include "../comp_defs.h"
+#include "../str.h"
 
 char* eat_line(char* buffer, unsigned int len);
 
@@ -82,5 +83,23 @@ inline static int is_empty_end(char* p, char* pend )
 	return ((p<(pend )) && (*p=='\r' || *p=='\n'));
 }
 
+
+/*
+ * Find a character occurence that is not quoted
+ */
+inline static char* find_not_quoted(str* _s, char _c)
+{
+	int quoted = 0, i;
+	
+	for(i = 0; i < _s->len; i++) {
+		if (!quoted) {
+			if (_s->s[i] == '\"') quoted = 1;
+			else if (_s->s[i] == _c) return _s->s + i;
+		} else {
+			if ((_s->s[i] == '\"') && (_s->s[i - 1] != '\\')) quoted = 0;
+		}
+	}
+	return 0;
+}
 
 #endif /* parser_f_h */
