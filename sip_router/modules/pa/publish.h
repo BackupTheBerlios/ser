@@ -1,7 +1,7 @@
 /*
- * Presence Agent, subscribe handling
+ * Presence Agent, publish handling
  *
- * $Id: subscribe.h,v 1.5 2003/12/10 02:25:38 jamey Exp $
+ * $Id: publish.h,v 1.1 2003/12/10 02:25:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,41 +25,30 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
  */
 
-#ifndef SUBSCRIBE_H
-#define SUBSCRIBE_H
+#ifndef PUBLISH_H
+#define PUBLISH_H
 
 #include "../../parser/msg_parser.h"
 
+/*
+ * Handle a publish Request
+ */
+int handle_publish(struct sip_msg* _m, char* _domain, char* _s2);
 
 /*
- * Handle a subscribe Request
+ * FIFO function for publishing events
  */
-int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2);
-
-
+int fifo_pa_publish(FILE *stream, char *response_file);
 /*
- * Return 1 if the subscription exists and 0 if not
+ * FIFO function for publishing presence
  */
-int existing_subscription(struct sip_msg* _m, char* _domain, char* _s2);
-
-
+int fifo_pa_presence(FILE *stream, char *response_file);
 /*
- * Returns 1 if possibly a user agent can handle SUBSCRIBE
- * itself, 0 if it cannot for sure
+ * FIFO function for publishing location
  */
-int pua_exists(struct sip_msg* _m, char* _domain, char* _s2);
+int fifo_pa_location(FILE *stream, char *response_file);
 
-enum doctype;
-/*
- * Get presentity URI, which is stored in R-URI
- */
-int get_pres_uri(struct sip_msg* _m, str* _puri);
-
-/*
- * Parse Accept header field body
- */
-int parse_accept(struct hdr_field* _h, enum doctype* _a);
-
-#endif /* SUBSCRIBE_H */
+#endif /* PUBLISH_H */

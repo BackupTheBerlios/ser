@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.11 2003/11/10 15:56:06 janakj Exp $
+ * $Id: pa_mod.c,v 1.12 2003/12/10 02:25:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,9 +32,11 @@
  */
 
 
+#include "../../fifo_server.h"
 #include "../../sr_module.h"
 #include "../../error.h"
 #include "subscribe.h"
+#include "publish.h"
 #include "dlist.h"
 #include "pa_mod.h"
 
@@ -59,6 +61,7 @@ struct tm_binds tmb;
  */
 static cmd_export_t cmds[]={
 	{"handle_subscription",   handle_subscription,   1, subscribe_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
+	{"handle_publish",        handle_publish,        1, subscribe_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{"existing_subscription", existing_subscription, 1, subscribe_fixup, REQUEST_ROUTE                },
 	{"pua_exists",            pua_exists,            1, subscribe_fixup, REQUEST_ROUTE                },
 	{0, 0, 0, 0, 0}
@@ -103,6 +106,21 @@ static int mod_init(void)
 		return -1;
 	}
 	
+	if (register_fifo_cmd(fifo_pa_publish, "pa_publish", 0) < 0) {
+		LOG(L_CRIT, "cannot register fifo pa_publish\n");
+		return -1;
+	}
+
+	if (register_fifo_cmd(fifo_pa_presence, "pa_presence", 0) < 0) {
+		LOG(L_CRIT, "cannot register fifo pa_presence\n");
+		return -1;
+	}
+
+	if (register_fifo_cmd(fifo_pa_location, "pa_location", 0) < 0) {
+		LOG(L_CRIT, "cannot register fifo pa_location\n");
+		return -1;
+	}
+
 	     /* Register cache timer */
 	register_timer(timer, 0, timer_interval);
 
@@ -117,7 +135,7 @@ static void destroy(void)
 
 
 /*
- * Convert char* parameter to udomain_t* pointer
+ * Convert char* parameter to pdomain_t* pointer
  */
 static int subscribe_fixup(void** param, int param_no)
 {

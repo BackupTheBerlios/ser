@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.5 2003/11/10 15:56:06 janakj Exp $
+ * $Id: watcher.h,v 1.6 2003/12/10 02:25:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,7 +38,8 @@
 
 typedef enum doctype {
 	DOC_XPIDF = 0,
-	DOC_LPIDF
+	DOC_LPIDF,
+	DOC_PIDF
 } doctype_t;
 
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.4 2003/05/02 08:37:53 janakj Exp $
+ * $Id: presentity.h,v 1.5 2003/12/10 02:25:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,7 +30,6 @@
 #ifndef PRESENTITY_H
 #define PRESENTITY_H
 
-
 #include "../../str.h"
 #include "../tm/dlg.h"
 #include "watcher.h"
@@ -41,6 +40,7 @@
 typedef struct presentity {
 	str uri;                 /* URI of presentity */
 	pstate_t state;          /* State of presentity */
+	str      location;       /* Physical location of presentity */
 	watcher_t* watchers;     /* List of watchers */
 	struct presentity* next; /* Next presentity */
 	struct presentity* prev; /* Previous presentity in list */

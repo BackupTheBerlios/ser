@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.6 2003/11/10 15:56:06 janakj Exp $
+ * $Id: pdomain.c,v 1.7 2003/12/10 02:25:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -231,6 +231,8 @@ int find_presentity(pdomain_t* _d, str* _uri, struct presentity** _p)
 void add_presentity(pdomain_t* _d, struct presentity* _p)
 {
 	int sl;
+
+	LOG(L_WARN, "add_presentity p_uri=%.*s\n", _p->uri.len, _p->uri.s);
 
 	sl = hash_func(_d, _p->uri.s, _p->uri.len);
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.11 2003/11/10 15:56:06 janakj Exp $
+ * $Id: subscribe.c,v 1.12 2003/12/10 02:25:38 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -83,7 +83,6 @@ void callback(str* _user, int state, void* data)
 	}
 }
 
-
 /*
  * Extract plain uri -- return URI without parameters
  * The uri will be in form username@domain
@@ -108,7 +107,7 @@ static int extract_plain_uri(str* _uri)
 /*
  * Get presentity URI, which is stored in R-URI
  */
-static int get_pres_uri(struct sip_msg* _m, str* _puri)
+int get_pres_uri(struct sip_msg* _m, str* _puri)
 {
 	if (_m->new_uri.s) {
 		_puri->s = _m->new_uri.s;
@@ -145,7 +144,7 @@ static int get_watch_uri(struct sip_msg* _m, str* _wuri)
  * Parse Accept header field body
  * FIXME: This is ugly parser, write something more clean
  */
-static int parse_accept(struct hdr_field* _h, doctype_t* _a)
+int parse_accept(struct hdr_field* _h, doctype_t* _a)
 {
 	char* buffer;
 
@@ -165,7 +164,9 @@ static int parse_accept(struct hdr_field* _h, doctype_t* _a)
 	memcpy(buffer, _h->body.s, _h->body.len);
 	buffer[_h->body.len] = '\0';
 	
-	if (strstr(buffer, "text/lpidf")) {
+	if (strstr(buffer, "application/pidf+xml")) {
+		*_a = DOC_PIDF;
+	} else if (strstr(buffer, "text/lpidf")) {
 		*_a = DOC_LPIDF;
 	} else {
 		*_a = DOC_XPIDF;
@@ -500,3 +501,6 @@ int pua_exists(struct sip_msg* _m, char* _domain, char* _s2)
 
 	return 0;
 }
+
+
+
