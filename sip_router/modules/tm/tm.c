@@ -1,4 +1,4 @@
-/*$Id: tm.c,v 1.5 2001/11/23 03:06:59 andrei Exp $
+/*$Id: tm.c,v 1.6 2001/11/26 21:21:09 bogdan Exp $
  *
  * Example ser module, it will just print its string parameter to stdout
  *
@@ -8,7 +8,7 @@
 
 #include "../../sr_module.h"
 #include "../../dprint.h"
-#include "msg_cloner.h"
+#include "sip_msg.h"
 #include <stdio.h>
 
 static int test_f(struct sip_msg*, char*,char*);
