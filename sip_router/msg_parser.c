@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.19 2001/11/23 10:02:56 andrei Exp $
+ * $Id: msg_parser.c,v 1.20 2001/11/23 18:06:20 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -20,8 +20,6 @@
 #endif
 
 
-
-#define DEBUG
 
 
 
@@ -789,6 +787,9 @@ int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 	offset=tmp-buf;
 	fl=&(msg->first_line);
 	rest=parse_first_line(tmp, len-offset, fl);
+#if 0
+	rest=parse_fline(tmp, buf+len, fl);
+#endif
 	offset+=rest-tmp;
 	tmp=rest;
 	switch(fl->type){

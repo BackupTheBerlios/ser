@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.2 2001/11/23 09:29:00 andrei Exp $ 
+ * $Id: parse_via.c,v 1.3 2001/11/23 18:06:20 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -10,7 +10,7 @@
 
 /* 
  * still TODO/test:
- *  - parse next via
+ *  x parse next via
  *  - return a list of header structs
  *  - return list of params
  */

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.12 2001/11/23 09:15:13 andrei Exp $
+ * $Id: msg_parser.h,v 1.13 2001/11/23 18:06:20 andrei Exp $
  */
 
 #ifndef msg_parser_h
@@ -154,7 +154,7 @@ struct sip_uri{
 };
 
 
-
+char* parse_fline(char* buffer, char* end, struct msg_start* fl);
 char* parse_first_line(char* buffer, unsigned int len, struct msg_start * fl);
 #ifdef OLD_PARSER 
 char* get_hdr_field(char *buffer, unsigned int len, struct hdr_field*  hdr_f);
