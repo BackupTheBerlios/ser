@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.43 2003/04/03 18:06:53 andrei Exp $
+ * $Id: sl_funcs.c,v 1.44 2003/04/04 15:38:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,11 +27,13 @@
  /*
   * History:
   * -------
-  * 2003-03-06  aligned to request2response use of tag bookmarks (jiri)
   * 2003-02-11  modified sl_send_reply to use the transport independend
   *              msg_send  (andrei)
   * 2003-02-18  replaced TOTAG_LEN w/ TOTAG_VALUE_LEN (it was defined twice
   *              w/ different values!)  (andrei)
+  * 2003-03-06  aligned to request2response use of tag bookmarks (jiri)
+  * 2003-04-04  modified sl_send_reply to use src_port if rport is present
+  *              in the topmost via (andrei)
   */
 
 
@@ -130,8 +132,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	to.sin_family = AF_INET; */
 
 	if (reply_to_via) {
-		/* FIXME */
-		if (update_sock_struct_from_via(  &(to),  msg->via1 )==-1)
+		if (update_sock_struct_from_via(  &(to), msg, msg->via1 )==-1)
 		{
 			LOG(L_ERR, "ERROR: sl_send_reply: "
 				"cannot lookup reply dst: %s\n",
