@@ -1,10 +1,10 @@
 /*
- * $Id: snmp_handler.c,v 1.2 2002/08/29 19:30:02 ric Exp $
+ * $Id: snmp_handler.c,v 1.3 2002/08/29 19:36:02 ric Exp $
  *
  * SNMP Module: The dynamic handler
  */
 /*
- * The Idea: (applies directly to sipServer. For application is slightly
+ * The Idea: (applies directly to sipCommon and sipServer. For application is slightly
  * different, see below)
  * All of sipCommon's objects, have the prefix:
  * .1.3.6.1.2.1.9990.1
@@ -56,14 +56,16 @@ const u_char ser_types[] = {
 	ASN_OBJECT_ID	/* SER_OBJID */
 };
 
-/* the big global handler tables. Indexed from 1. Stored in shared memory */
+/* the big global handler tables. Indexed from 1.*/
 static reg_handler** sip_common_h;
 static reg_handler** sip_server_h;
 static reg_handler* application_h;
 
 /***** the info for building the tables *****/
-/* if you look at the OIDs for the tables we implement, this may make more sense.
- * 
+/* Look at comments at the top for an explanation of what we do.
+ * This constants here just hold the info for the current state
+ * of the MIB. IDX1 defines the number of rows, and idx2 the
+ * numer of columns per row */
 #define APPLICATION_IDX	2
 #define SIPCOMMON_IDX1	10
 static int sip_common_idx2[] = {
