@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.2 2002/09/19 12:23:52 jku Exp $
+ * $Id: pt.h,v 1.3 2002/09/25 19:17:41 jiri Rel $
  *
  * Process Table
  *
@@ -31,6 +31,7 @@
 
 
 #ifndef _PT_H
+#define _PT_H
 
 #include <sys/types.h>
 #include <unistd.h>
