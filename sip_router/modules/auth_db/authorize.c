@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.12 2003/11/05 03:49:32 janakj Exp $
+ * $Id: authorize.c,v 1.13 2003/11/29 00:35:51 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -60,10 +60,10 @@ static inline int get_ha1(struct username* _username, str* _domain, char* _table
 	str result;
 	int n, nc;
 
-	keys[0] = user_column;
-	keys[1] = domain_column;
-	col[0] = (_username->domain.len && !calc_ha1) ? (pass_column_2) : (pass_column);	
-	col[1] = rpid_column;
+	keys[0] = user_column.s;
+	keys[1] = domain_column.s;
+	col[0] = (_username->domain.len && !calc_ha1) ? (pass_column_2.s) : (pass_column.s);	
+	col[1] = rpid_column.s;
 
 	VAL_TYPE(vals) = VAL_TYPE(vals + 1) = DB_STR;
 	VAL_NULL(vals) = VAL_NULL(vals + 1) = 0;
