@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.30 2002/08/27 11:56:19 jku Exp $
+ *  $Id: config.h,v 1.31 2002/09/03 08:38:00 jku Exp $
  */
 
 
@@ -111,5 +111,11 @@
    previous line if longer than current one
 */
 #define CLEANUP_EOL "      \n"
+
+/* how patient is ser with FIFO clients not awaiting a reply? 
+	4 x 80ms = 0.32 sec
+*/
+#define FIFO_REPLY_RETRIES	4
+#define FIFO_REPLY_WAIT		80000
 
 #endif

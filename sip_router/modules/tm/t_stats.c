@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.5 2002/08/27 11:56:20 jku Exp $
+ * $Id: t_stats.c,v 1.6 2002/09/03 08:38:00 jku Exp $
  *
  */
 
@@ -61,7 +61,7 @@ int static fifo_stats( FILE *pipe, char *response_file )
 		return -1;
 	}
 
-	file=fopen(response_file, "w" );
+	file=open_reply_pipe(response_file );
 	if (file==NULL) {
 		LOG(L_ERR, "ERROR: fifo_stats: file %s bad: %s\n",
 			response_file, strerror(errno) );
