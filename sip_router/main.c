@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.67 2002/03/02 02:20:00 andrei Exp $
+ * $Id: main.c,v 1.68 2002/03/08 02:26:58 andrei Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.67 2002/03/02 02:20:00 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.68 2002/03/08 02:26:58 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -194,10 +194,11 @@ char* chroot_dir = 0;
 int uid = 0;
 int gid = 0;
 
-char* names[MAX_LISTEN];               /* our names */
-int names_len[MAX_LISTEN];    /* lengths of the names*/
-unsigned long addresses[MAX_LISTEN];   /* our ips */
-int addresses_no=0;                    /* number of names/ips */
+char* names[MAX_LISTEN];              /* our names */
+int names_len[MAX_LISTEN];            /* lengths of the names*/
+unsigned int addresses[MAX_LISTEN];   /* our ips */
+int addresses_no=0;                   /* number of names/ips */
+unsigned int bind_address=0;          /* listen address of the crt. process */
 
 /* ipc related globals */
 int process_no = 0;

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.11 2002/02/26 00:04:05 jku Exp $
+ * $Id: globals.h,v 1.12 2002/03/08 02:26:58 andrei Exp $
  *
  * global variables
  *
@@ -24,8 +24,9 @@ extern int port_no_str_len;
 extern unsigned int maxbuffer;
 extern char * names[];
 extern int names_len[];
-extern unsigned long addresses[];
+extern unsigned int addresses[];
 extern int addresses_no;
+extern unsigned int bind_address;
 extern int children_no;
 extern int debug;
 extern int dont_fork;
