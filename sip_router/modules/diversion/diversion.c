@@ -1,5 +1,5 @@
 /* 
- * $Id: diversion.c,v 1.2 2004/11/15 14:19:43 janakj Exp $
+ * $Id: diversion.c,v 1.3 2004/11/16 13:09:16 janakj Exp $
  *
  * Diversion Header Field Support
  *
@@ -42,7 +42,7 @@ MODULE_VERSION
 #define DIVERSION_HF "Diversion"
 #define DIVERSION_HF_LEN (sizeof(DIVERSION_HF) - 1)
 
-#define DIVERSION_PREFIX     DIVERSION_HF ": >"
+#define DIVERSION_PREFIX     DIVERSION_HF ": <"
 #define DIVERSION_PREFIX_LEN (sizeof(DIVERSION_PREFIX) - 1)
 
 #define DIVERSION_SUFFIX     ">;reason="
