@@ -1,4 +1,6 @@
 /**
+ * $Id: pdt.c,v 1.5 2003/06/06 15:03:05 ramona Exp $
+ *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
  * This file is part of ser, a free SIP server.
@@ -49,6 +51,9 @@
 #include "../../parser/msg_parser.h"
 
 #include "domains.h"
+
+MODULE_VERSION
+
 
 #define NR_KEYS			2
 #define DB_KEY_NAME		"domain"
