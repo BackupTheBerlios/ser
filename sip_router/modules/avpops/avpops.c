@@ -1,5 +1,5 @@
 /*
- * $Id: avpops.c,v 1.6 2004/12/03 19:09:32 andrei Exp $
+ * $Id: avpops.c,v 1.7 2005/01/20 10:03:57 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -295,7 +295,7 @@ static int fixup_db_avp(void** param, int param_no, int allow_scheme)
 				sp->flags = flags|AVPOPS_VAL_NONE;
 			} else {
 				/* can be only an AVP alias */
-				alias .s = s+1;
+				alias .s = s;
 				alias.len = strlen(alias.s);
 				if ( p || lookup_avp_galias( &alias, &flags, &sp->val)==-1 )
 				{
