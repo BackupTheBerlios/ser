@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.12 2004/09/27 03:16:55 jiri Exp $
+ * $Id: dset.c,v 1.13 2004/09/27 03:32:15 jiri Exp $
  *
  * destination set
  *
@@ -333,6 +333,6 @@ int rewrite_uri(struct sip_msg* _m, str* _s)
 
         DBG("TOI: rewrite_uri: Rewriting Request-URI with '%.*s'\n", _s->len, 
 																		   buf);
-        return 0;
+        return 1;
 }
 
