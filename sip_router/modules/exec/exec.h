@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.h,v 1.2 2002/09/19 12:23:53 jku Rel $
+ * $Id: exec.h,v 1.3 2002/12/14 22:09:23 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -27,6 +27,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
+#ifndef _EXEC_H
+#define _EXEC_H
 int exec_str(struct sip_msg *msg, char *cmd, char *param);
 int exec_msg(struct sip_msg *msg, char *cmd );
+#endif

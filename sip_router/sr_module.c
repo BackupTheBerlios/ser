@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.23 2002/11/15 22:54:34 jiri Exp $
+/* $Id: sr_module.c,v 1.24 2002/12/14 22:09:23 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -76,7 +76,7 @@ int register_builtin_modules()
 	if (ret<0) return ret;
 #endif
 
-#ifdef EXEC_TM
+#ifdef STATIC_EXEC
 	ret=register_module(exec_exports,"built-in", 0); 
 	if (ret<0) return ret;
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.2 2002/09/19 12:23:53 jku Rel $
+ * $Id: config.h,v 1.3 2002/12/14 22:09:23 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,6 +30,5 @@
 #ifndef _EXEC_CONFIG_H
 #define _EXEC_CONFIG_H
 
-#define SRCIP "SRCIP"
 
 #endif
