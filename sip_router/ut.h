@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.23 2003/01/29 19:24:10 jiri Exp $
+ *$Id: ut.h,v 1.24 2003/02/13 21:01:23 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -28,6 +28,7 @@
  *
  * History
  * ------
+ * 2003-02-13 strlower added (janakj)
  * 2003-01-29 pathmax added (jiri)
  * 2003-01-28 scratchpad removed (jiri)
  * 2003-01-18 un_escape function introduced for convenience of code needing
@@ -44,6 +45,7 @@
 #include <sys/time.h>
 #include <limits.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #include "config.h"
 #include "dprint.h"
@@ -356,5 +358,19 @@ error:
 	new_user->len = j;
 	return -1;
 } 
+
+
+/*
+ * Convert a string to lower case
+ */
+static inline void strlower(str* _s)
+{
+	int i;
+
+	for(i = 0; i < _s->len; i++) {
+		_s->s[i] = tolower(_s->s[i]);
+	}
+}
+
 
 #endif
