@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.5 2001/09/25 23:06:39 andrei Exp $
+ * $Id: action.c,v 1.6 2001/09/26 17:18:02 andrei Exp $
  */
 
 
@@ -20,6 +20,10 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 
 /* ret= 0! if action -> end of list(e.g DROP), 

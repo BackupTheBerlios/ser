@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.3 2001/09/21 20:24:13 andrei Exp $
+ * $Id: proxy.c,v 1.4 2001/09/26 17:18:02 andrei Exp $
  *
  * proxy list & assoc. functions
  *
@@ -13,6 +13,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 struct proxy_l* proxies=0;
 

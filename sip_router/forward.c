@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.13 2001/09/25 23:06:39 andrei Exp $
+ * $Id: forward.c,v 1.14 2001/09/26 17:18:02 andrei Exp $
  */
 
 
@@ -19,6 +19,10 @@
 #include "dprint.h"
 #include "udp_server.h"
 #include "globals.h"
+
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 #define MAX_VIA_LINE_SIZE      240
 #define MAX_RECEIVED_SIZE  57

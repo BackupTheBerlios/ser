@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.9 2001/09/25 23:19:04 andrei Exp $
+ * $Id: cfg.y,v 1.10 2001/09/26 17:18:02 andrei Exp $
  *
  *  cfg grammar
  */
@@ -16,6 +16,10 @@
 #include "globals.h"
 #include "route.h"
 #include "dprint.h"
+
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 void yyerror(char* s);
 char* tmp;

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.10 2001/09/25 23:06:39 andrei Exp $
+ * $Id: main.c,v 1.11 2001/09/26 17:18:02 andrei Exp $
  */
 
 #include <stdio.h>
@@ -21,7 +21,12 @@
 #include "globals.h"
 
 
-static char id[]="@(#) $Id: main.c,v 1.10 2001/09/25 23:06:39 andrei Exp $";
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
+
+
+static char id[]="@(#) $Id: main.c,v 1.11 2001/09/26 17:18:02 andrei Exp $";
 static char version[]="sip_router 0.6";
 static char help_msg[]= "\
 Usage: sip_router -l address [-l address] [options]\n\

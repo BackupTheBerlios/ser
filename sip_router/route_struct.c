@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.7 2001/09/25 23:06:39 andrei Exp $
+ * $Id: route_struct.c,v 1.8 2001/09/26 17:18:02 andrei Exp $
  *
  * route structures helping functions
  */
@@ -13,6 +13,10 @@
 #include <netinet/in.h>
 
 #include "dprint.h"
+
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 struct expr* mk_exp(int op, struct expr* left, struct expr* right)
 {

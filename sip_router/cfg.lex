@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.6 2001/09/25 23:06:39 andrei Exp $
+ * $Id: cfg.lex,v 1.7 2001/09/26 17:18:02 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -9,6 +9,11 @@
 	#include "cfg.tab.h"
 	#include "dprint.h"
 	#include <string.h>
+	#include <stdlib.h>
+
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 	/* states */
 	#define INITIAL_S		0

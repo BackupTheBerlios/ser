@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.8 2001/09/21 20:24:13 andrei Exp $
+ * $Id: udp_server.c,v 1.9 2001/09/26 17:18:02 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -15,6 +15,9 @@
 #include "dprint.h"
 #include "receive.h"
 
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 int udp_sock;
 

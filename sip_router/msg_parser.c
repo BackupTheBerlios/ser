@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.8 2001/09/25 23:06:39 andrei Exp $
+ * $Id: msg_parser.c,v 1.9 2001/09/26 17:18:02 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -12,6 +12,10 @@
 #include "parser_f.h"
 #include "error.h"
 #include "dprint.h"
+
+#ifdef DEBUG_DMALLOC
+#include <dmalloc.h>
+#endif
 
 
 
