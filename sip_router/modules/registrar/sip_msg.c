@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.9 2003/11/05 11:49:25 janakj Exp $
+ * $Id: sip_msg.c,v 1.10 2003/11/06 19:13:42 janakj Exp $
  *
  * SIP message related functions
  *
@@ -29,10 +29,10 @@
 
 
 
-#include <parser/hf.h>
+#include "../../parser/hf.h"
 #include <dprint.h>
-#include <parser/parse_expires.h>  
-#include <ut.h>
+#include "../../parser/parse_expires.h"  
+#include "../../ut.h"
 #include "reg_mod.h"                     /* Module parameters */
 #include "regtime.h"                     /* act_time */
 #include "rerrno.h"

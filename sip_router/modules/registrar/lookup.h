@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.h,v 1.4 2003/11/05 11:49:25 janakj Exp $
+ * $Id: lookup.h,v 1.5 2003/11/06 19:13:42 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -31,7 +31,7 @@
 #ifndef LOOKUP_H
 #define LOOKUP_H
 
-#include <parser/msg_parser.h>
+#include "../../parser/msg_parser.h"
 
 
 /*

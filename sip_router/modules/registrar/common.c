@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.14 2003/11/05 11:49:25 janakj Exp $
+ * $Id: common.c,v 1.15 2003/11/06 19:13:42 janakj Exp $
  *
  * Common stuff
  *
@@ -34,9 +34,9 @@
 */
 
 #include <string.h> 
-#include <dprint.h>
-#include <ut.h>      /* q_memchr */
-#include <parser/parse_uri.h>
+#include "../../dprint.h"
+#include "../../ut.h"      /* q_memchr */
+#include "../../parser/parse_uri.h"
 #include "rerrno.h"
 #include "reg_mod.h"
 #include "common.h"

@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.23 2003/11/05 11:49:25 janakj Exp $
+ * $Id: save.c,v 1.24 2003/11/06 19:13:42 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -34,13 +34,13 @@
  */
 
 
-#include <comp_defs.h>
-#include <str.h>
-#include <parser/parse_to.h>
-#include <dprint.h>
-#include <trim.h>
-#include <ut.h>
-#include <usrloc.h>
+#include "../../comp_defs.h"
+#include "../../str.h"
+#include "../../parser/parse_to.h"
+#include "../../dprint.h"
+#include "../../trim.h"
+#include "../../ut.h"
+#include "../usrloc/usrloc.h"
 #include "common.h"
 #include "sip_msg.h"
 #include "rerrno.h"

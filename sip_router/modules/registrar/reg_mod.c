@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.c,v 1.15 2003/11/05 11:49:25 janakj Exp $
+ * $Id: reg_mod.c,v 1.16 2003/11/06 19:13:42 janakj Exp $
  *
  * Registrar module interface
  *
@@ -35,10 +35,10 @@
  */
 
 #include <stdio.h>
-#include <sr_module.h>
-#include <timer.h>
-#include <dprint.h>
-#include <error.h>
+#include "../../sr_module.h"
+#include "../../timer.h"
+#include "../../dprint.h"
+#include "../../error.h"
 #include "save.h"
 #include "lookup.h"
 #include "reg_mod.h"

@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.17 2003/11/05 11:49:25 janakj Exp $
+ * $Id: lookup.c,v 1.18 2003/11/06 19:13:42 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -33,12 +33,12 @@
 
 
 #include <string.h>
-#include <ut.h>
-#include <dset.h>
-#include <str.h>
-#include <config.h>
-#include <action.h>
-#include <usrloc.h>
+#include "../../ut.h"
+#include "../../dset.h"
+#include "../../str.h"
+#include "../../config.h"
+#include "../../action.h"
+#include "../usrloc/usrloc.h"
 #include "common.h"
 #include "regtime.h"
 #include "reg_mod.h"

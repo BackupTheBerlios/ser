@@ -1,5 +1,5 @@
 /*
- * $Id: save.h,v 1.4 2003/11/05 11:49:25 janakj Exp $
+ * $Id: save.h,v 1.5 2003/11/06 19:13:42 janakj Exp $
  *
  * Functions that process REGISTER message 
  * and store data in usrloc
@@ -37,7 +37,7 @@
 #define SAVE_H
 
 
-#include <parser/msg_parser.h>
+#include "../../parser/msg_parser.h"
 
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.20 2003/11/05 11:53:17 janakj Exp $
+ * $Id: reply.c,v 1.21 2003/11/06 19:13:42 janakj Exp $
  *
  * Send a reply
  *
@@ -34,10 +34,10 @@
  */
 
 #include <stdio.h>
-#include <ut.h>
-#include <parser/msg_parser.h>
-#include <data_lump_rpl.h>
-#include <usrloc.h>
+#include "../../ut.h"
+#include "../../parser/msg_parser.h"
+#include "../../data_lump_rpl.h"
+#include "../usrloc/usrloc.h"
 #include "rerrno.h"
 #include "reg_mod.h"
 #include "regtime.h"
