@@ -1,4 +1,4 @@
-/* $Id: locking_test.c,v 1.5 2002/03/01 15:49:53 andrei Exp $ */
+/* $Id: locking_test.c,v 1.6 2002/03/08 09:40:23 andrei Exp $ */
 
 
 #include <stdio.h>
@@ -102,7 +102,7 @@ static int semid=-1;
 
 
 
-static char *id="$Id: locking_test.c,v 1.5 2002/03/01 15:49:53 andrei Exp $";
+static char *id="$Id: locking_test.c,v 1.6 2002/03/08 09:40:23 andrei Exp $";
 static char *version="locking_test 0.1-"
 #ifdef NO_LOCK
  "nolock"
@@ -132,7 +132,7 @@ Options:\n\
 
 int main (int argc, char** argv)
 {
-	char c;
+	int c;
 	int r;
 	char *tmp;
 	
