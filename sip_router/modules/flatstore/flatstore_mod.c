@@ -1,5 +1,5 @@
 /* 
- * $Id: flatstore_mod.c,v 1.2 2004/10/09 14:30:27 janakj Exp $ 
+ * $Id: flatstore_mod.c,v 1.3 2004/10/09 14:45:03 janakj Exp $ 
  *
  * Flatstore module interface
  *
@@ -115,7 +115,7 @@ static int mod_init(void)
 
 	     /* Initialize fifo interface */
 	if (init_flat_fifo() < 0) {
-		LOG(L_ERR, "usrloc/fifo initialization failed\n");
+		LOG(L_ERR, "flatstore: FIFO initialization failed\n");
 		return -1;
 	}
 
