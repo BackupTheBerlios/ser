@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.19 2004/12/16 17:39:47 andrei Exp $
+/* $Id: q_malloc.h,v 1.20 2005/03/02 11:45:14 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -39,7 +39,7 @@
 #if !defined(q_malloc_h) && !defined(VQ_MALLOC) && !defined(F_MALLOC)
 #define q_malloc_h
 
-
+#include "meminfo.h"
 
 /* defs*/
 #ifdef DBG_QM_MALLOC
@@ -148,6 +148,7 @@ void* qm_realloc(struct qm_block*, void* p, unsigned long size);
 #endif
 
 void  qm_status(struct qm_block*);
+void  qm_info(struct qm_block*, struct meminfo*);
 
 
 #endif

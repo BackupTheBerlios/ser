@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.14 2004/12/16 17:39:47 andrei Exp $
+/* $Id: f_malloc.h,v 1.15 2005/03/02 11:45:14 andrei Exp $
  *
  * simple, very fast, malloc library
  *
@@ -39,7 +39,11 @@
 #if !defined(f_malloc_h) && !defined(VQ_MALLOC) 
 #define f_malloc_h
 
+#ifdef DBG_QM_MALLOC
+#define DBG_F_MALLOC
+#endif
 
+#include "meminfo.h"
 
 /* defs*/
 
@@ -95,7 +99,7 @@ struct fm_frag_lnk{
 
 struct fm_block{
 	unsigned long size; /* total size */
-#ifdef DBG_F_MALLOC
+#if defined(DBG_F_MALLOC) || defined(MALLOC_STATS)
 	unsigned long used; /* alloc'ed size*/
 	unsigned long real_used; /* used+malloc overhead*/
 	unsigned long max_real_used;
@@ -133,6 +137,7 @@ void*  fm_realloc(struct fm_block*, void* p, unsigned long size);
 #endif
 
 void  fm_status(struct fm_block*);
+void  fm_info(struct fm_block*, struct meminfo*);
 
 
 #endif
