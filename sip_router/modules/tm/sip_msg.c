@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.37 2002/02/14 16:37:24 bogdan Exp $
+ * $Id: sip_msg.c,v 1.38 2002/02/14 16:53:20 bogdan Exp $
  */
 
 
@@ -307,7 +307,7 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg )
        (*rpl_lump_anchor)->next=0;
        rpl_lump_anchor = &((*rpl_lump_anchor)->next);
    }
-
+    DBG("DEBUG:cloner --------<%d>---------<%d>-------------\n",len,p-foo);
    return new_msg;
 }
 
