@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.34 2002/09/25 19:20:26 andrei Rel $
+ * $Id: cfg.y,v 1.35 2002/10/23 15:12:20 andrei Exp $
  *
  *  cfg grammar
  */
@@ -315,8 +315,8 @@ assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
 		| LISTEN EQUAL  error { yyerror("ip address or hostname"
 						"expected"); }
 		| ALIAS EQUAL  id_lst { 
-								for(lst_tmp=$3; lst_tmp; lst_tmp=lst_tmp->next)
-									add_alias(lst_tmp->s, strlen(lst_tmp->s));
+							for(lst_tmp=$3; lst_tmp; lst_tmp=lst_tmp->next)
+								add_alias(lst_tmp->s, strlen(lst_tmp->s), 0);
 							  }
 		| ALIAS  EQUAL error  { yyerror(" hostname expected"); }
 		| error EQUAL { yyerror("unknown config variable"); }

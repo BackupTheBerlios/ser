@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.16 2002/10/21 19:21:50 jiri Exp $
+ * $Id: msg_parser.h,v 1.17 2002/10/23 15:12:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -72,6 +72,7 @@ struct sip_uri {
 	str port;     /* Port number */
 	str params;   /* Parameters */
 	str headers;  
+	unsigned short port_no;
 };
 
 

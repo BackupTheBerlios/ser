@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.c,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_uri.c,v 1.5 2002/10/23 15:12:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,6 +42,7 @@ int parse_uri(char *buf, int len, struct sip_uri* uri)
 	char* next, *end;
 	char *user, *passwd, *host, *port, *params, *headers, *ipv6;
 	int host_len, port_len, params_len, headers_len;
+	int err;
 	int ret;
 	
 	
@@ -208,7 +209,15 @@ int parse_uri(char *buf, int len, struct sip_uri* uri)
 		uri->headers.len=headers_len;
 		uri->headers.s[headers_len]=0;
 	}else uri->headers.s=0;
-	
+
+	err=0;
+	if (uri->port.s) uri->port_no=str2s(uri->port.s, uri->port.len, &err);
+	if (err){
+		LOG(L_DBG, "ERROR: parse_uri: bad port number in sip uri: %s\n",
+				uri->port.s);
+		ser_error=ret=E_BAD_URI;
+		goto error;
+	}
 	return ret;
 error:
 	free_uri(uri);
