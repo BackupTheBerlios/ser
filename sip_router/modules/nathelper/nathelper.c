@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.51 2004/03/24 18:30:41 andrei Exp $
+/* $Id: nathelper.c,v 1.52 2004/06/22 17:43:18 andrei Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -1038,7 +1038,7 @@ rtpp_test(int isdisabled, int force)
 	if (force == 0) {
 		if (isdisabled == 0)
 			return 0;
-		if (recheck_ticks < get_ticks())
+		if (recheck_ticks > get_ticks())
 			return 1;
 	}
 	cp = send_rtpp_command(v, 2);
