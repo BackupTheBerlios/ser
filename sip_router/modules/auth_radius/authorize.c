@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.10 2003/11/05 03:49:43 janakj Exp $
+ * $Id: authorize.c,v 1.11 2003/12/17 15:43:11 sobomax Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -128,7 +128,7 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, int _hftype)
 	     /* Clear the rpid buffer from previous value */
 	rpid.len = 0;
 
-	res = radius_authorize_sterman(&cred->digest, &_msg->first_line.u.request.method, &user, &rpid);
+	res = radius_authorize_sterman(_msg, &cred->digest, &_msg->first_line.u.request.method, &user, &rpid);
 	pkg_free(user.s);
 
 	if (res == 1) {

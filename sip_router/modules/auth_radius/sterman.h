@@ -1,5 +1,5 @@
 /*
- * $Id: sterman.h,v 1.3 2003/04/28 22:04:33 janakj Exp $
+ * $Id: sterman.h,v 1.4 2003/12/17 15:43:11 sobomax Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -45,6 +45,6 @@
  * which can be be used as a check item in the request.  Service type of
  * the request is Authenticate-Only.
  */
-int radius_authorize_sterman(dig_cred_t* _cred, str* _method, str* _user, str* _rpid); 
+int radius_authorize_sterman(struct sip_msg* _msg, dig_cred_t* _cred, str* _method, str* _user, str* _rpid); 
 
 #endif /* STERMAN_H */

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2003/05/23 15:43:42 andrei Exp $
+# $Id: Makefile,v 1.5 2003/12/17 15:43:11 sobomax Exp $
 #
 # Digest Authentication - Radius support
 #
@@ -8,6 +8,7 @@
 include ../../Makefile.defs
 auto_gen=
 NAME=auth_radius.so
+DEFS+=-I$(LOCALBASE)/include
 LIBS=-L$(LOCALBASE)/lib -L/usr/pkg/lib -lradiusclient
 
 include ../../Makefile.modules

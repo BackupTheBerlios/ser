@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.h,v 1.3 2003/05/02 12:21:54 jih Exp $
+ * $Id: authrad_mod.h,v 1.4 2003/12/17 15:43:11 sobomax Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -37,14 +37,12 @@
 
 #include "../auth/api.h"
 
+extern struct attr attrs[];
+extern struct val vals[];
+extern void *rh;
+extern int ciscopec;
 
 extern pre_auth_f pre_auth_func;
 extern post_auth_f post_auth_func;
 
-/*
- * Module parameter variables
- */
-extern char* radius_config; /* radiusclient configuration file */
-extern int service_type;    /* radius service type used for access request */
- 
 #endif /* AUTHRAD_MOD_H */

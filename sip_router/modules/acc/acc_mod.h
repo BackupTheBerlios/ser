@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.11 2003/11/24 19:18:21 ramona Exp $
+ * $Id: acc_mod.h,v 1.12 2003/12/17 15:43:11 sobomax Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -53,7 +53,7 @@ extern int log_missed_flag;
 #ifdef RAD_ACC
 extern int radius_flag;
 extern int radius_missed_flag;
-extern int service_type;
+extern void *rh;
 #endif
 
 #ifdef DIAM_ACC

@@ -1,5 +1,5 @@
 /*
- * $Id: grouprad_mod.h,v 1.3 2003/03/12 21:47:49 janakj Exp $
+ * $Id: grouprad_mod.h,v 1.4 2003/12/17 15:43:12 sobomax Exp $
  *
  * Group membership checking over Radius
  *
@@ -34,10 +34,13 @@
 #ifndef GROUPRAD_MOD_H
 #define GROUPRAD_MOD_H
 
+extern struct attr attrs[];
+extern struct val vals[];
+extern void *rh;
+
 /*
  * Module parameter variables
  */
-extern char* radius_config;   /* radiusclient configuration file */
 extern int use_domain;        /* Should we use also domain ? */
 
 #endif /* GROUPRAD_MOD_H */

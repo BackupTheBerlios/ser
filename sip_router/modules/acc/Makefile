@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.17 2003/12/05 14:30:23 bogdan Exp $
+# $Id: Makefile,v 1.18 2003/12/17 15:43:11 sobomax Exp $
 #
 # acc module makefile
 #
@@ -14,7 +14,7 @@ LIBS=
 #DEFS+=-DSQL_ACC
 
 # uncomment the next two lines if you wish to enable RADIUS accounting
-#DEFS+=-DRAD_ACC
+#DEFS+=-DRAD_ACC -I$(LOCALBASE)/include
 
 # uncomment the next two lines if you wish to enable DIAMETER accounting
 #DEFS+=-DDIAM_ACC
