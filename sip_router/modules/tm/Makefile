@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.14 2001/12/06 20:54:54 andrei Exp $
+# $Id: Makefile,v 1.15 2001/12/06 21:38:14 andrei Exp $
 #
 # print example module makefile
 #
@@ -13,7 +13,7 @@ depends= $(sources:.c=.d)
 NAME=tm.so
 
 SHLIB_LD_FLAGS= -shared
-LIBS= -lpthread
+LIBS= #-lpthread
 CFLAGS+= -fPIC -DPIC
 
 ALLDEP=Makefile ../../Makefile

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.38 2001/12/06 21:10:29 andrei Exp $
+ * $Id: main.c,v 1.39 2001/12/06 21:38:14 andrei Exp $
  */
 
 #include <stdio.h>
@@ -42,7 +42,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.38 2001/12/06 21:10:29 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.39 2001/12/06 21:38:14 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]=
 "STATS:"
@@ -57,11 +57,26 @@ static char flags[]=
 #ifdef NO_LOG
 ", NO_LOG"
 #endif
-#ifdef DEBUG
-", DEBUG"
+#ifdef EXTRA_DEBUG
+", EXTRA_DEBUG"
 #endif
 #ifdef DNS_IP_HACK
 ", DNS_IP_HACK"
+#endif
+#ifdef SHM_MEM
+", SHM_MEM"
+#endif
+#ifdef PKG_MALLOC
+", PKG_MALLOC"
+#endif
+#ifdef USE_SHM_MEM
+", USE_SHM_MEM"
+#endif
+#ifdef DBG_QM_MALLOC
+", DBG_QM_MALLOC"
+#endif
+#ifdef DEBUG_DMALLOC
+", DEBUG_DMALLOC"
 #endif
 ;
 
