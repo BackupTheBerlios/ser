@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.4 2003/01/27 21:19:48 jiri Exp $
+ * $Id: subscribe.c,v 1.5 2003/02/28 14:12:26 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
  *
  * History:
  * ---------
+ * 2003-02-29 scratchpad compatibility abandoned
  * 2003-01-27 next baby-step to removing ZT - PRESERVE_ZT (jiri)
  */
 
@@ -83,11 +84,7 @@ static inline void parse_accept(struct sip_msg* _m, doctype_t* _a)
 			if (!strncasecmp("Accept", ptr->name.s, 6)) {
 				b.s = ptr->body.s;
 				b.len = ptr->body.len;
-#ifdef PRESERVE_ZT
-				trim(&b);
-#else
 				trim_trailing(&b);
-#endif
 
 				memcpy(buffer, b.s, b.len);
 				buffer[b.len] = '\0';
@@ -224,13 +221,8 @@ static inline int create_presentity(struct sip_msg* _m, struct pdomain* _d, str*
 
 	cid = _m->callid->body;
 	to = _m->to->body;
-#ifdef PRESERVE_ZT
-	trim(&to);
-	trim(&cid);
-#else
 	trim_trailing(&to);
 	trim_trailing(&cid);
-#endif
 	
 	if (add_watcher(*_p, &(get_from(_m)->uri), c, e, acc, &cid, &(get_from(_m)->tag_value), &to, _w) < 0) {
 		LOG(L_ERR, "create_presentity(): Error while creating presentity\n");

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_unsu.h,v 1.5 2003/01/27 21:19:48 jiri Exp $ 
+ * $Id: case_unsu.h,v 1.6 2003/02/28 14:12:26 jiri Exp $ 
  *
  * Unsupported Header Field Name Parsing Macros
  *
@@ -27,6 +27,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * History:
+ * --------
+ * 2003-02-28 scratchpad compatibility abandoned (jiri)
  * 2003-01-27 next baby-step to removing ZT - PRESERVE_ZT (jiri)
  */
 
@@ -41,7 +43,6 @@
         case _ted1_:                         \
                 hdr->type = HDR_UNSUPPORTED; \
                 hdr->name.len = 11;          \
-                SET_ZT(*(p + 3));            \
 	        return (p + 4);              \
                                              \
         case _ted2_:                         \

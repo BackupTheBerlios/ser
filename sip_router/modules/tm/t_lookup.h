@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.8 2003/02/24 16:48:50 andrei Exp $
+ * $Id: t_lookup.h,v 1.9 2003/02/28 14:12:26 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -44,10 +44,6 @@
 
 #define T_UNDEFINED  ( (struct cell*) -1 )
 #define T_NULL_CELL       ( (struct cell*) 0 )
-
-#ifdef _OBSOLETED
-extern struct cell      *T;
-#endif
 
 extern unsigned int     global_msg_id;
 extern int ruri_matching;

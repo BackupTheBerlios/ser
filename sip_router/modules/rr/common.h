@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: common.h,v 1.2 2003/01/19 22:00:30 jiri Exp $
+ * $Id: common.h,v 1.3 2003/02/28 14:12:26 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -90,16 +90,6 @@ int rewrite_RURI(struct sip_msg* _m, str* _s);
  * be stored in _uri parameter
  */
 int remove_TMRoute(struct sip_msg* _m, struct hdr_field* _route, str* _uri);
-
-
-#ifdef _OBSOL /* static now */
-/*
- * Builds Record-Route line
- * Returns 0 on success, negative number on a failure
- * if _lr is set to 1, ;lr parameter will be used
- */
-int build_RR(struct sip_msg* _m, str* _l, int _lr);
-#endif
 
 
 /*

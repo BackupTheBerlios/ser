@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.32 2003/02/27 20:20:13 jiri Exp $
+ * $Id: fifo_server.c,v 1.33 2003/02/28 14:12:25 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -185,18 +185,6 @@ static void consume_request( FILE *stream )
 
 	while(!read_line(buffer, MAX_CONSUME_BUFFER, stream, &len));
 
-#ifdef _OBSOLETED
-	int eol_count;
-
-	eol_count=0;
-
-	/* each request must be terminated by two EoLs */
-	while(eol_count!=2) {
-		/* read until EoL is encountered */
-		while(!read_line(buffer, MAX_CONSUME_BUFFER, stream, &len));
-		eol_count=len==0?eol_count+1:1;
-	}
-#endif
 }
 
 int read_eol( FILE *stream )

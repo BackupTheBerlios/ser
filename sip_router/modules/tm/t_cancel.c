@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.5 2003/02/19 17:16:41 andrei Exp $
+ * $Id: t_cancel.c,v 1.6 2003/02/28 14:12:26 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -96,11 +96,6 @@ void cancel_branch( struct cell *t, int branch )
 	crb->buffer_len=len;
 	crb->dst=irb->dst;
 	crb->branch=branch;
-#ifdef _OBSOLETED
-	crb->fr_timer.tg=TG_FR;
-	crb->retr_timer.tg=TG_RT;
-	crb->my_T=t;
-#endif
 	crb->retr_timer.payload=crb->fr_timer.payload=crb;
 	/* label it as cancel so that FR timer can better now how to
 	   deal with it */

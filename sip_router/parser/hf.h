@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.6 2003/01/27 21:19:48 jiri Exp $ 
+ * $Id: hf.h,v 1.7 2003/02/28 14:12:26 jiri Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,6 +26,7 @@
  *
  * History:
  * ---------
+ * 2003-02-28 scratchpad compatibility abandoned (jiri)
  * 2003-01-27 next baby-step to removing ZT - PRESERVE_ZT (jiri)
  */
 
@@ -73,9 +74,7 @@ struct hdr_field {
 	int type;                /* Header field type */
 	str name;                /* Header field name */
 	str body;                /* Header field body */
-#ifndef PRESERVE_ZT
 	int len;				 /* length from body until EoHF (incl. CRLF) */
-#endif
 	void* parsed;            /* Parsed data structures */
 	struct hdr_field* next;  /* Next header field in the list */
 };

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.65 2003/02/19 17:16:41 andrei Exp $
+ * $Id: h_table.h,v 1.66 2003/02/28 14:12:26 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -249,10 +249,6 @@ struct s_table
 {
 	/* table of hash entries; each of them is a list of synonyms  */
 	struct entry   entrys[ TABLE_ENTRIES ];
-#ifdef _OBSOLETED
-	/* table of timer lists */
-	struct timer   timers[ NR_OF_TIMER_LISTS ];
-#endif
 };
 
 

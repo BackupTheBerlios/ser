@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.8 2003/01/31 13:54:59 rco Exp $
+ * $Id: t_reply.h,v 1.9 2003/02/28 14:12:26 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -109,10 +109,6 @@ int t_reply( struct cell *t, struct sip_msg * , unsigned int , char * );
 */
 int t_reply_unsafe( struct cell *t, struct sip_msg * , unsigned int , char * );
 
-#ifdef _OBSOLETED
-void cleanup_after_final( struct s_table *h_table, struct cell *t,
-	unsigned int status );
-#endif
 
 enum rps relay_reply( struct cell *t, struct sip_msg *p_msg, int branch, 
 	unsigned int msg_status, branch_bm_t *cancel_bitmap );

@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.10 2003/01/25 15:15:40 janakj Exp $
+ * $Id: challenge.c,v 1.11 2003/02/28 14:12:25 jiri Exp $
  *
  * Challenge related functions
  *
@@ -55,11 +55,6 @@
 
 #define WWW_AUTH_CHALLENGE   "WWW-Authenticate"
 #define PROXY_AUTH_CHALLENGE "Proxy-Authenticate"
-
-#ifdef _OBSO
-#define AUTH_HF_LEN 512
-static char auth_hf[AUTH_HF_LEN];
-#endif
 
 #define QOP_PARAM	  ", qop=\"auth\""
 #define QOP_PARAM_LEN	  (sizeof(QOP_PARAM)-1)

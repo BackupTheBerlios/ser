@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.11 2002/10/21 00:55:48 jiri Exp $
+ * $Id: sl.c,v 1.12 2003/02/28 14:12:26 jiri Exp $
  *
  * sl module
  *
@@ -62,9 +62,6 @@
 #include "sl_funcs.h"
 
 
-#ifdef _OBSOLETED
-static int w_sl_filter_ACK(struct sip_msg* msg, char* str, char* str2);
-#endif
 static int w_sl_send_reply(struct sip_msg* msg, char* str, char* str2);
 static int w_sl_reply_error(struct sip_msg* msg, char* str, char* str2);
 static int fixup_sl_send_reply(void** param, int param_no);
@@ -79,30 +76,18 @@ struct module_exports exports= {
 	"sl_module",
 	(char*[]){
 				"sl_send_reply",
-#ifdef _OBSOLETED
-				"sl_filter_ACK",
-#endif
 				"sl_reply_error"
 			},
 	(cmd_function[]){
 					w_sl_send_reply,
-#ifdef _OBSOLETED
-					w_sl_filter_ACK,
-#endif
 					w_sl_reply_error
 					},
 	(int[]){
 				2,
-#ifdef _OBSOLETED
-				0,
-#endif
 				0
 			},
 	(fixup_function[]){
 				fixup_sl_send_reply,
-#ifdef _OBSOLETED
-				0, /* sl_filter_ACK */
-#endif
 				0 /* sl_reply_error */
 		},
 	/* 3, */ 2,
@@ -170,13 +155,6 @@ static int fixup_sl_send_reply(void** param, int param_no)
 
 
 
-
-#ifdef _OBSOLETED
-static int w_sl_filter_ACK(struct sip_msg* msg, char* str, char* str2)
-{
-	return sl_filter_ACK(msg);
-}
-#endif
 
 
 

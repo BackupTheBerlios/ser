@@ -1,5 +1,5 @@
 /*
- * $Id: defs.h,v 1.2 2003/01/27 21:19:48 jiri Exp $
+ * $Id: defs.h,v 1.3 2003/02/28 14:12:26 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -34,6 +34,5 @@
 #ifndef _TM_DEFS_H
 #define _TM_DEFS_H
 
-#define DEPRECATE_OLD_STUFF
 
 #endif

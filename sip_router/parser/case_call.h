@@ -1,5 +1,5 @@
 /* 
- * $Id: case_call.h,v 1.5 2003/01/27 21:19:48 jiri Exp $ 
+ * $Id: case_call.h,v 1.6 2003/02/28 14:12:26 jiri Exp $ 
  *
  * Call-ID Header Name Parsing Macros
  *
@@ -28,6 +28,7 @@
  *
  * History:
  * ----------
+ * 2003-02-28 scratchpad compatibility abandoned (jiri)
  * 2003-01-27 next baby-step to removing ZT - PRESERVE_ZT (jiri)
  */
 
@@ -42,7 +43,6 @@
      case __id1_:                    \
 	     hdr->type = HDR_CALLID; \
 	     hdr->name.len = 7;      \
-	     SET_ZT(*(p + 3));        \
 	     return (p + 4);         \
 	                             \
      case __id2_:                    \

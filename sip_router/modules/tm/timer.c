@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.40 2003/01/21 13:53:48 jiri Exp $
+ * $Id: timer.c,v 1.41 2003/02/28 14:12:26 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -683,14 +683,6 @@ void reset_timer( struct timer_link* tl )
 	tl->time_out = TIMER_DELETED;
 #ifdef EXTRA_DEBUG
 	DBG("DEBUG: reset_timer (group %d, tl=%p)\n", tl->tg, tl );
-#endif
-#ifdef _OBSOLETED
-	/* lock(timer_group_lock[ tl->tg ]); */
-	/* hack to work arround this timer group thing*/
-	lock(hash__XX_table->timers[timer_group[tl->tg]].mutex);
-	remove_timer_unsafe( tl );
-	unlock(hash_XX_table->timers[timer_group[tl->tg]].mutex);
-	/*unlock(timer_group_lock[ tl->tg ]);*/
 #endif
 }
 

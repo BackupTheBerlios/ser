@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.10 2003/01/23 14:14:10 jiri Exp $
+ * $Id: t_msgbuilder.h,v 1.11 2003/02/28 14:12:26 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -48,13 +48,6 @@
 #define TOTAG ";tag="
 #define TOTAG_LEN (sizeof(TOTAG)-1)
 
-#ifdef _OBSOLETED
-#define UAC_CSEQNR "1"
-#define UAC_CSEQNR_LEN 1
-#define CONTENT_LENGTH "Content-Length: "
-#define CONTENT_LENGTH_LEN (sizeof(CONTENT_LENGTH)-1)
-#endif
-
 
 /* convenience macros */
 #define memapp(_d,_s,_len) \
@@ -68,14 +61,6 @@
 		memcpy((_d),(_s),(_len));\
 		(_d) += (_len);\
 	}while(0);
-
-#ifdef _OBSO
-#define append_str(_p,_str) \
-	do{ \
-		memcpy((_p), (_str).s, (_str).len); \
-		(_p)+=(_str).len); \
-	} while(0);
-#endif
 
 char *build_local(struct cell *Trans, unsigned int branch,
 	unsigned int *len, char *method, int method_len, str *to);

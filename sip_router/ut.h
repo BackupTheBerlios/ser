@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.24 2003/02/13 21:01:23 janakj Exp $
+ *$Id: ut.h,v 1.25 2003/02/28 14:12:25 jiri Exp $
  *
  * - various general purpose functions
  *
@@ -28,6 +28,7 @@
  *
  * History
  * ------
+ * 2003-02-28 scratchpad compatibility abandoned (jiri)
  * 2003-02-13 strlower added (janakj)
  * 2003-01-29 pathmax added (jiri)
  * 2003-01-28 scratchpad removed (jiri)
@@ -83,11 +84,6 @@ struct sip_msg;
 #define via_len(_via) \
 	((_via)->bsize-((_via)->name.s-\
 		((_via)->hdr.s+(_via)->hdr.len)))
-
-#ifdef SCRATCH
-#define via_s(_via,_p_msg) \
-	translate_pointer((_p_msg)->orig,(_p_msg)->buf,(_via)->name.s)
-#endif
 
 
 /* char to hex conversion table */
