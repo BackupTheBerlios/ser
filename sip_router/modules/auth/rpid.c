@@ -1,5 +1,5 @@
 /*
- * $Id: rpid.c,v 1.4 2003/10/20 17:10:13 andrei Exp $
+ * $Id: rpid.c,v 1.5 2003/11/07 16:44:08 janakj Exp $
  *
  * Remote-Party-ID related functions
  *
@@ -198,7 +198,7 @@ int append_rpid_hf_p(struct sip_msg* _m, char* _prefix, char* _suffix)
  */
 int is_rpid_user_e164(struct sip_msg* _m, char* _s1, char* _s2)
 {
-	struct to_body parsed;
+	struct to_body* parsed;
 	struct sip_uri uri;
 
 	if (rpid_is_e164) return rpid_is_e164;
@@ -209,22 +209,30 @@ int is_rpid_user_e164(struct sip_msg* _m, char* _s1, char* _s2)
 		return -1;
 	}
 
-	memset(&parsed, 0, sizeof(struct to_body));
-	parse_to(rpid.s, rpid.s + rpid.len + 1, &parsed);
-	
-	if (parsed.error == PARSE_ERROR) {
-		LOG(L_ERR, "is_rpid_user_e164(): Bad RPID header\n");
-		rpid_is_e164 = -1;
-		return -1;
-	}
-	
-	if (parse_uri(parsed.uri.s, parsed.uri.len, &uri) < 0) {
-		LOG(L_ERR, "is_rpid_user_e164(): Error while parsing RPID URI\n");
-		rpid_is_e164 = -1;
+	parsed = (struct to_body*)pkg_malloc(sizeof(struct to_body));
+	if (parsed == 0) {
+		LOG(L_ERR, "is_rpid_user_e164(): No memory left\n");
 		return -1;
 	}
 
+	memset(parsed, 0, sizeof(struct to_body));
+	parse_to(rpid.s, rpid.s + rpid.len, parsed);
+	
+	if (parsed->error == PARSE_ERROR) {
+		LOG(L_ERR, "is_rpid_user_e164(): Bad RPID header\n");
+		rpid_is_e164 = -1;
+		goto error;
+	}
+	
+	if (parse_uri(parsed->uri.s, parsed->uri.len, &uri) < 0) {
+		LOG(L_ERR, "is_rpid_user_e164(): Error while parsing RPID URI\n");
+		rpid_is_e164 = -1;
+		goto error;
+	}
+
 	rpid_is_e164 = (is_e164(&uri.user) ? 1 : -1);
+ error:
+	free_to(parsed);
 	return rpid_is_e164;
 }
 
