@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hostport.c,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_hostport.c,v 1.3 2003/01/29 19:24:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,6 +25,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifdef _OBSOLETED
 
 #include "parse_hostport.h"
 #include <string.h>    /* strlen */
@@ -54,3 +55,5 @@ char* parse_hostport(char* buf, str* host, short int* port)
 
 	return host->s;
 }
+
+#endif

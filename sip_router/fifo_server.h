@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.10 2002/09/19 12:23:52 jku Rel $
+ * $Id: fifo_server.h,v 1.11 2003/01/29 19:24:10 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -45,6 +45,10 @@
 #define FIFO_WHICH "which"
 /* print server's process table */
 #define FIFO_PS "ps"
+/* print server's command line arguments */
+#define FIFO_ARG "arg"
+/* print server's working directory */
+#define FIFO_PWD "pwd"
 
 #define MAX_CTIME_LEN 128
 

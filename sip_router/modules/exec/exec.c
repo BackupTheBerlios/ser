@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.5 2002/12/17 18:03:55 janakj Exp $
+ * $Id: exec.c,v 1.6 2003/01/29 19:24:10 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -25,8 +25,14 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History
+ * --------
+ * 2003-01-28 scratchpad removed
  */
 
+
+#include "../../comp_defs.h"
 
 #include <stdio.h>
 #include <strings.h>
@@ -83,7 +89,11 @@ int exec_msg(struct sip_msg *msg, char *cmd )
 		return -1;
 	}
 
+#ifdef SCRATCH
 	if (fwrite(msg->orig, 1, msg->len, pipe)!=msg->len) {
+#else
+	if (fwrite(msg->buf, 1, msg->len, pipe)!=msg->len) {
+#endif
 		LOG(L_ERR, "ERROR: exec_msg: error writing to pipe\n");
 		ser_error=E_EXEC;
 		goto error01;

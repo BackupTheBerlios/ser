@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.26 2003/01/23 12:27:50 jiri Exp $
+ * $Id: globals.h,v 1.27 2003/01/29 19:24:10 jiri Exp $
  *
  * global variables
  *
@@ -115,5 +115,9 @@ extern int memlog;
 
 /* looking up outbound interface ? */
 extern int mhomed;
+
+/* command-line arguments */
+extern int my_argc;
+extern char **my_argv;
 
 #endif

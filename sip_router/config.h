@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.43 2003/01/24 17:56:42 andrei Exp $
+ *  $Id: config.h,v 1.44 2003/01/29 19:24:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -157,6 +157,10 @@
 #define MCOOKIE_LEN (sizeof(MCOOKIE)-1)
 /* Maximum length of values appended to Via-branch parameter */
 #define MAX_BRANCH_PARAM_LEN  (MCOOKIE_LEN+48)
+
+
+/* maximum path length */
+#define PATH_MAX_GUESS	1024
 
 
 #endif

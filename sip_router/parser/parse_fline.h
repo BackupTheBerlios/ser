@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.h,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_fline.h,v 1.5 2003/01/29 19:24:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,6 +55,7 @@
 
 struct msg_start {
 	int type;                         /* Type of the Message - Request/Response */
+	int len; 						/* length including delimiter */
 	union {
 		struct {
 			str method;       /* Method string */

@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.55 2002/12/12 21:46:38 andrei Exp $
+ * $Id: udp_server.c,v 1.56 2003/01/29 19:24:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -23,6 +23,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History
+ * --------
+ * 2003-01-28 packet zero-termination moved to receive_msg (jiri)
  */
 
 
@@ -314,7 +318,7 @@ int udp_rcv_loop()
 			else goto error;
 		}
 		/*debugging, make print* msg work */
-		buf[len+1]=0;
+		/* buf[len+1]=0; */ /* zero-termination moved to receive_msg */
 
 #ifndef NO_ZERO_CHECKS
 		if (len==0) {
