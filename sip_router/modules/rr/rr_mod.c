@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.7 2002/04/03 21:54:16 janakj Exp $
+ * $Id: rr_mod.c,v 1.8 2002/04/03 23:35:01 janakj Exp $
  */
 
 #include "../../sr_module.h"
@@ -80,7 +80,6 @@ static int rewriteFromRoute(struct sip_msg* _m, char* _s1, char* _s2)
 		return -2;
 	}
 #endif
-
 	if (findRouteHF(_m) != FALSE) {
 		if (parseRouteHF(_m, &first_uri, &next_uri) == FALSE) {
 			LOG(L_ERR, "rewriteFromRoute(): Error while parsing Route HF\n");

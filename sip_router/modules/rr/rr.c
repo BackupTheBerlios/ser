@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr.c,v 1.10 2002/03/08 13:06:06 janakj Exp $
+ * $Id: rr.c,v 1.11 2002/04/03 23:35:01 janakj Exp $
  */
 
 #include "rr.h"
@@ -181,6 +181,7 @@ int remFirstRoute(struct sip_msg* _m, char* _next)
 		DBG("remFirstRoute(): No next URI in Route found\n");
 		offset = _m->route->name.s - _m->buf;
 		len = _m->route->name.len + _m->route->body.len + 2;
+		if (_m->route->body.s[_m->route->body.len] != '\0') len++;
 	}
 
 	if (del_lump(&_m->add_rm, offset, len, 0) == 0) {
