@@ -14,7 +14,6 @@
 #include <net-snmp/agent/net-snmp-agent-includes.h>
 
 #include "../../dprint.h"
-#include "../../mem/mem.h"
 #include <errno.h>
 
 /* stuff for dynamic handler registration */ 
