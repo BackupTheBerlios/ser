@@ -1,4 +1,4 @@
-$Id: TODO,v 1.15 2002/01/22 22:33:42 andrei Exp $
+$Id: TODO,v 1.16 2002/01/22 22:35:29 andrei Exp $
 
 ( - todo, x - done)
 
@@ -24,6 +24,7 @@ x plugin interface
 Low priority:
 - add support for -u user and -g group (not only -u uid, -g uid)
 - change uid/gid after opening the sockets
+- add -t, -w, -u -g equivalents to the config file
 - exec improvments (add format strings to it)
 - command line switch for checking the config file syntax
 - config file version (a la sendmail)
