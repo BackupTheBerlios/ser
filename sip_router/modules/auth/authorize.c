@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.5 2002/09/19 12:23:53 jku Rel $
+ * $Id: authorize.c,v 1.6 2002/11/09 11:54:11 janakj Exp $
  *
  * Authorize related functions
  *
@@ -211,7 +211,8 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, char* _table, int
 	     /* ACK must be always authorized, there is
 	      * no way how to challenge ACK
 	      */
-	if (_msg->REQ_METHOD == METHOD_ACK) {
+	if ((_msg->REQ_METHOD == METHOD_ACK) || 
+	    (_msg->REQ_METHOD == METHOD_CANCEL)) {
 	        return 1;
 	}
 #endif
