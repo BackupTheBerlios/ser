@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.181 2004/03/08 20:51:57 janakj Exp $
+ * $Id: main.c,v 1.182 2004/03/09 11:10:59 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -117,7 +117,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.181 2004/03/08 20:51:57 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.182 2004/03/09 11:10:59 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -717,7 +717,11 @@ int main_loop()
 		}
 
 		     /* Initialize Unix domain socket server */
-		if (init_unixsock_server()<0) {
+		if (init_unixsock_socket()<0) {
+			LOG(L_ERR, "ERror while creating unix domain sockets\n");
+			goto error;
+		}
+		if (init_unixsock_children()<0) {
 			LOG(L_ERR, "Error while initializing Unix domain socket server\n");
 			goto error;
 		}
@@ -798,15 +802,22 @@ int main_loop()
 		}
 #endif /* USE_TLS */
 #endif /* USE_TCP */
+
+		     /* Create the unix domain sockets */
+		if (init_unixsock_socket()<0) {
+			LOG(L_ERR, "ERROR: Could not create unix domain sockets\n");
+			goto error;
+		}
+
 			/* all procs should have access to all the sockets (for sending)
 			 * so we open all first*/
 		if (do_suid()==-1) goto error; /* try to drop priviledges */
 
-		     /* Initialize Unix domain socket server before forking so that all
-		      * children inherit opened socket for sending and receiving
+		     /* Spawn children listening on unix domain socket if and only if
+		      * the unix domain socket server has not been disabled (i == 0)
 		      */
-		if (init_unixsock_server()<0) {
-			LOG(L_ERR, "Error while initializing Unix domain socket server\n");
+		if (init_unixsock_children()<0) {
+			LOG(L_ERR, "ERROR: Could not initialize unix domain socket server\n");
 			goto error;
 		}
 
