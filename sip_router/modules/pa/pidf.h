@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.h,v 1.4 2003/12/29 16:04:08 jamey Exp $
+ * $Id: pidf.h,v 1.5 2004/01/14 14:04:26 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -76,7 +76,7 @@ int end_pidf_tuple(str* _b, int _l);
  */
 int end_pidf_doc(str* _b, int _l);
 
-void parse_pidf(char *pidf_body, str *basic_str, str *location_str,
+void parse_pidf(char *pidf_body, str *contact_str, str *basic_str, str *location_str,
 		str *site_str, str *floor_str, str *room_str,
 		double *xp, double *yp, double *radiusp);
 
