@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.38 2003/03/12 12:53:24 andrei Exp $
+ * $Id: jabber.c,v 1.39 2003/03/12 17:19:06 dcm Exp $
  *
  * XJAB module
  *
@@ -930,6 +930,7 @@ int xjab_connections(ih_req_p _irp, void *_p, char *_bb, int *_bl,
 	
 	*_hl = 0;
 	*_hb = 0;
+	idx = -1;
 	strcpy(_bb, "<h4>Active XMPP connections</h4>");
 	
 	if(_irp->params)
@@ -1002,7 +1003,7 @@ int xjab_connections(ih_req_p _irp, void *_p, char *_bb, int *_bl,
 			strcat(_bb, int2str(jwl->workers[idx].nr, NULL));
 			if(!jwl->workers[idx].sip_ids)
 				continue;
-			s_lock_at(jwl->sems, idx);
+			lock_set_get(jwl->sems, idx);
 			maxcount = count234(jwl->workers[idx].sip_ids);
 			for (i = 0; i < maxcount; i++) 
 			{
@@ -1024,7 +1025,7 @@ int xjab_connections(ih_req_p _irp, void *_p, char *_bb, int *_bl,
 				strcat(_bb, "&nbsp;&nbsp;&nbsp;");
 				strncat(_bb, p->id->s, p->id->len);
 			}
-			s_unlock_at(jwl->sems, idx);
+			lock_set_release(jwl->sems, idx);
 		}
 	}
 	
