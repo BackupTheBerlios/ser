@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.14 2002/05/22 20:39:57 noh Exp $
+ * $Id: sipsak.c,v 1.15 2002/05/22 20:47:14 jku Exp $
  */
 
 /* sipsak written by nils ohlmeier (ohlmeier@fokus.gmd.de).
@@ -79,7 +79,7 @@ bouquets and brickbats to farhan@hotfoon.com
 #define SIPSAK_MES_STR_LEN 41
 #define EXP_STR "Expires: "
 #define EXP_STR_LEN 9
-#define USRLOC_EXP_DEF 16
+#define USRLOC_EXP_DEF 120
 
 int verbose, nameend, namebeg;
 char *username, *domainname;
