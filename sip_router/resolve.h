@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.14 2002/11/04 17:05:32 andrei Exp $
+ * $Id: resolve.h,v 1.15 2002/12/09 18:26:13 andrei Exp $
  *
  * resolver related functions
  *
@@ -44,6 +44,7 @@
 #define ANS_SIZE       8192
 #define DNS_HDR_SIZE     12
 #define MAX_DNS_NAME 256
+#define MAX_DNS_STRING 255
 
 
 
@@ -71,6 +72,20 @@ struct srv_rdata {
 	unsigned short port;
 	unsigned int name_len;
 	char name[MAX_DNS_NAME];
+};
+
+/* naptr rec. struct*/
+struct naptr_rdata {
+	unsigned short order;
+	unsigned short pref;
+	unsigned int flags_len;
+	char flags[MAX_DNS_STRING];
+	unsigned int services_len;
+	char services[MAX_DNS_STRING];
+	unsigned int regexp_len;
+	char regexp[MAX_DNS_STRING];
+	unsigned int repl_len; /* not currently used */
+	char repl[MAX_DNS_NAME];
 };
 
 
