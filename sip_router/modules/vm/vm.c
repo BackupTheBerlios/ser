@@ -1,5 +1,5 @@
 /*
- * $Id: vm.c,v 1.22 2003/05/27 08:52:49 rco Exp $
+ * $Id: vm.c,v 1.23 2003/05/27 09:41:05 rco Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -394,6 +394,7 @@ static int vm_action(struct sip_msg* msg, char* vm_fifo, char* action)
 	    
 	    DBG("record_route->nameaddr.uri: %.*s\n",record_route->nameaddr.uri.len,record_route->nameaddr.uri.s);
 	    if(fproxy_lr){
+		DBG("vm: first proxy has loose routing.\n");
 		copy_route(s,route.len,record_route->nameaddr.uri.s,record_route->nameaddr.uri.len);
 	    }
 	}
