@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.11 2003/04/07 06:36:56 jiri Exp $
+ * $Id: t_reply.h,v 1.12 2003/04/29 16:33:56 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,7 +31,7 @@
 #define _T_REPLY_H
 
 #include "defs.h"
-
+#include "../../tags.h"
 
 #include "h_table.h"
 
@@ -50,6 +50,8 @@ enum rps {
 	/* provisional reply not affecting transaction state */
 	RPS_PROVISIONAL
 };
+
+extern char tm_tags[TOTAG_VALUE_LEN];
 
 enum route_mode { MODE_REQUEST=1, MODE_ONREPLY, MODE_ONFAILURE };
 extern enum route_mode rmode;
