@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.94 2002/08/20 09:34:12 andrei Exp $
+ * $Id: main.c,v 1.95 2002/08/26 19:58:06 jku Exp $
  */
 
 #include <stdio.h>
@@ -46,7 +46,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.94 2002/08/20 09:34:12 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.95 2002/08/26 19:58:06 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -700,6 +700,10 @@ int main(int argc, char** argv)
 		DPrint("ERROR: no SIGUSR2 signal handler can be installed\n");
 		goto error;
 	}
+#ifdef DBG_MSG_QA
+	fprintf(stderr, "WARNING: ser startup: "
+		"DBG_MSG_QA enabled, ser may exit abruptly\n");
+#endif
 
 
 
