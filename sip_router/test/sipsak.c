@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.11 2002/05/22 19:01:07 noh Exp $
+ * $Id: sipsak.c,v 1.12 2002/05/22 19:15:09 noh Exp $
  */
 
 /* sipsak written by nils ohlmeier (ohlmeier@fokus.gmd.de).
@@ -424,19 +424,20 @@ void shoot(char *buff, long address, int lport, int rport, int maxforw, int trac
 		nretries=3*(nameend-namebeg)+3;
 		create_msg(buff, REQ_REG, lport);
 		retryAfter = 5000;
-	}
-	if (trace){
+	}else if (trace){
 		if (maxforw)
 			nretries=maxforw;
 		else
 			nretries=255;
 		namebeg=1;
 		create_msg(buff, REQ_OPT, lport);
-	}
-	if(maxforw!=-1)
-		set_maxforw(buff, maxforw);
-	if(vbool)
 		add_via(buff, lport);
+	} else {
+		if(maxforw!=-1)
+			set_maxforw(buff, maxforw);
+		if(vbool)
+			add_via(buff, lport);
+	}
 
 	/* if we got a redirect this loop ensures sending to the 
 	   redirected server*/
@@ -606,6 +607,7 @@ void shoot(char *buff, long address, int lport, int rport, int maxforw, int trac
 #endif
 						namebeg++;
 						create_msg(buff, REQ_OPT, lport);
+						add_via(buff, lport);
 						continue;
 					}
 					else {
