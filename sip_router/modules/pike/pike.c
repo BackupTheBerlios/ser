@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.17 2003/04/27 18:17:24 jiri Exp $
+ * $Id: pike.c,v 1.18 2003/05/01 00:22:30 janakj Exp $
  *
  * PIKE module
  *
@@ -61,9 +61,9 @@ static int pike_exit(void);
 
 
 /* parameters */
-static int time_unit = 2;
-static int max_reqs  = 30;
-static int timeout   = 120;
+int time_unit = 2;
+int max_reqs  = 30;
+int timeout   = 120;
 
 /* global variables */
 struct ip_node          *tree;
