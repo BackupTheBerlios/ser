@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.54 2004/04/25 21:00:29 janakj Exp $
+# $Id: ser_mysql.sh,v 1.55 2004/04/30 11:03:54 kozlik Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -720,15 +720,32 @@ case $1 in
 
 		# Recreate perms column here so that subsequent
 		# restore succeeds
-		
+
+    sql_query $DBNAME << EOF
+    ALTER TABLE subscriber ADD perms VARCHAR(32)  AFTER ha1b;
+    ALTER TABLE pending ADD perms VARCHAR(32)  AFTER ha1b;
+EOF
+
+
 		ser_restore $DBNAME ${tmp_file}.2
 		if [ "$?" -ne 0 ] ; then
 			echo "reinstall: restoring table failed"
 			rm $tmp_file*
 			exit 1
 		fi
-		
+
+
+    sql_query $DBNAME << EOF
+
+    # Move perms from subscriber to admin_privileges
+    INSERT INTO admin_privileges ($USERCOL, domain, priv_name, priv_value) SELECT $USERCOL, domain, 'is_admin', '1' FROM subscriber WHERE perms='admin';
+
 		# Drop perms column here
+    ALTER TABLE subscriber DROP perms;
+    ALTER TABLE pending DROP perms;
+
+EOF
+
 #XX
 #		rm $tmp_file*
 		exit 0
