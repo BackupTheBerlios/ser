@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.96 2004/11/09 15:15:12 andrei Exp $
+ * $Id: t_reply.c,v 1.97 2004/11/17 23:26:03 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -228,7 +228,7 @@ inline static int update_totag_set(struct cell *t, struct sip_msg *ok)
 	}
 	tag=&get_to(ok)->tag_value;
 	if (!tag->s) {
-		LOG(L_ERR, "ERROR: update_totag_set: no tag in to\n");
+		DBG("ERROR: update_totag_set: no tag in to\n");
 		return 0;
 	}
 

@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_parse.c,v 1.6 2004/11/17 19:29:32 ramona Exp $
+ * $Id: avpops_parse.c,v 1.7 2004/11/17 23:26:03 andrei Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -581,7 +581,7 @@ int parse_avp_db_scheme( char *s, struct db_scheme *scheme)
 	return 0;
 parse_error:
 	LOG(L_ERR,"ERROR:avpops:parse_avp_sb_scheme: parse error in <%s> "
-		"around %d\n",s,p-s);
+		"around %ld\n", s, (long)(p-s));
 error:
 	return -1;
 }

@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.16 2004/11/10 21:51:24 andrei Exp $
+/* $Id: q_malloc.h,v 1.17 2004/11/17 23:26:03 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -62,7 +62,7 @@
 
 
 
-#define QM_MALLOC_OPTIMIZE_FACTOR 11UL /*used below */
+#define QM_MALLOC_OPTIMIZE_FACTOR 14UL /*used below */
 #define QM_MALLOC_OPTIMIZE  ((unsigned long)(1UL<<QM_MALLOC_OPTIMIZE_FACTOR))
 								/* size to optimize for,
 									(most allocs <= this size),
