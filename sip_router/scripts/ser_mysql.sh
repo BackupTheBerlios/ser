@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.5 2002/08/30 01:49:44 jku Exp $
+# $Id: ser_mysql.sh,v 1.6 2002/09/04 13:51:08 jku Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -14,7 +14,7 @@
 # config vars
 #################################################################
 DBNAME=ser
-DBHOST=dbhost
+DBHOST=localhost
 USERNAME=ser
 DEFAULT_PW=heslo
 ROUSER=serro
