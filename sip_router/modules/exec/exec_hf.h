@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec_hf.h,v 1.1 2002/12/14 22:09:23 jiri Exp $
+ * $Id: exec_hf.h,v 1.2 2002/12/15 00:05:14 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -41,6 +41,7 @@
 #define EV_RURI SIP "RURI"
 #define EV_ORURI SIP "ORUI"
 #define EV_USER SIP "USER"
+#define EV_OUSER SIP "OUSER"
 #define EV_TID SIP "TID"
 #define EV_DID SIP "DID"
 /* env var assignment operator */
