@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.9 2001/10/24 12:43:39 andrei Exp $
+ * $Id: cfg.lex,v 1.10 2001/10/26 00:39:42 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -196,6 +196,10 @@ EAT_ABLE	[\ \t\b\r]
 <STRING2>.|{EAT_ABLE}|{CR}	{ yymore(); }
 
 <STRING1>\\n		{ count(); yytext[yyleng-2]='\n';yytext[yyleng-1]=0; 
+						yyleng--; addstr(yytext, &str); }
+<STRING1>\\r		{ count(); yytext[yyleng-2]='\r';yytext[yyleng-1]=0; 
+						yyleng--; addstr(yytext, &str); }
+<STRING1>\\g		{ count(); yytext[yyleng-2]='\g';yytext[yyleng-1]=0; 
 						yyleng--; addstr(yytext, &str); }
 <STRING1>\\t		{ count(); yytext[yyleng-2]='\t';yytext[yyleng-1]=0; 
 						yyleng--; addstr(yytext, &str); }

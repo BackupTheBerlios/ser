@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.17 2001/10/24 22:02:56 andrei Exp $
+# $Id: Makefile,v 1.18 2001/10/26 00:39:42 andrei Exp $
 #
 # sip_router makefile
 #
@@ -6,10 +6,12 @@
 #  Arch supported: Linux, FreeBSD, SunOS (tested on Solaris 6), WinNT
 
 auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
+exclude_modules=CVS
 sources=$(filter-out $(auto_gen), $(wildcard *.c)) $(auto_gen) 
 objs=$(sources:.c=.o)
 depends=$(sources:.c=.d)
-modules=$(wildcard modules/*)
+modules=$(filter-out $(addprefix modules/, $(exclude_modules)), \
+						$(wildcard modules/*))
 
 NAME=ser
 

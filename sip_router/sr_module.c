@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.1 2001/10/24 12:43:39 andrei Exp $
+/* $Id: sr_module.c,v 1.2 2001/10/26 00:39:42 andrei Exp $
  */
 
 #include "sr_module.h"
@@ -72,14 +72,15 @@ skip:
 
 /* searches the module list and returns a pointer to the "name" function or
  * 0 if not found */
-cmd_function find_export(char* name)
+cmd_function find_export(char* name, int param_no)
 {
 	struct sr_module* t;
 	int r;
 
 	for(t=modules;t;t=t->next){
 		for(r=0;r<t->exports->cmd_no;r++){
-			if(strcmp(name, t->exports->cmd_names[r])==0){
+			if((strcmp(name, t->exports->cmd_names[r])==0)&&
+				(t->exports->param_no[r]==param_no) ){
 				DBG("find_export: found <%s> in module %s [%s]\n",
 						name, t->exports->name, t->path);
 				return t->exports->cmd_pointers[r];
@@ -90,4 +91,20 @@ cmd_function find_export(char* name)
 	return 0;
 }
 
-	
+
+
+/* finds a module, given a pointer to a module function *
+ * returns pointer to module, & if i i!=0, *i=the function index */
+struct sr_module* find_module(void* f, int *i)
+{
+	struct sr_module* t;
+	int r;
+	for (t=modules;t;t=t->next){
+		for(r=0;r<t->exports->cmd_no;r++) 
+			if (f==t->exports->cmd_pointers[r]) {
+				if (i) *i=r;
+				return t;
+			}
+	}
+	return 0;
+}
