@@ -1,5 +1,5 @@
 /* 
- * $Id: case_prox.h,v 1.5 2003/01/27 21:19:48 jiri Exp $ 
+ * $Id: case_prox.h,v 1.6 2003/01/28 16:48:56 andrei Exp $ 
  *
  * Proxy-Require, Proxy-Authorization Header Field Name Parsing Macros
  *
@@ -50,9 +50,6 @@
                 p += 4;                    \
 	        goto dc_end;               \
         }
-
-#define IZAT_CASE                  \
-        switch(LOWER_DWORD(val)) { \
 
 
 #define IZAT_CASE                  \
