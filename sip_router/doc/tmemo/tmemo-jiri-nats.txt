@@ -1,4 +1,4 @@
-$Id: tmemo-jiri-nats.txt,v 1.1 2003/02/18 20:04:07 jiri Exp $
+$Id: tmemo-jiri-nats.txt,v 1.2 2003/02/24 18:00:14 jiri Exp $
 
 Deployment Experience with NAT Traversal
 ========================================
@@ -132,9 +132,8 @@ comments:     jh: i like this one.  cisco ios nat that is built in every
                 version though.
               jdr (in a private chat): it requires too much application
                 awareness from router vendors
-              jku: when I use intertex, my ssh connections freeze after   
-                some time on-line, not all Ethernet devices work with it;
-                sometimes turning it off and on is needed
+              jku: not all Ethernet devices work with it; sometimes turning 
+                it off and on is needed
 
 ----------------------------------------------------------------
 technique:    STUN
