@@ -1,4 +1,4 @@
-$Id: TODO,v 1.85 2004/04/29 15:39:39 andrei Exp $
+$Id: TODO,v 1.86 2004/06/08 10:47:24 andrei Exp $
 
 ( - todo, x - done)
 - [core] parse_uri support for new uri params
@@ -146,6 +146,8 @@ x command line switch for checking the config file syntax
 0 loop detection
 - cfg. file reload
 - flags for using names or ip adresses in Via ?
+- escape char injection/printing fix (verify all log/printed messages
+ for terminal escapes and remove them)
 
 x handle SIGCHLD, SIGHUP
 - use a  standard lex compatible .lex format (instead of flex)
