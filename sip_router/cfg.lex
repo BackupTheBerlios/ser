@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.20 2002/08/15 08:13:29 jku Exp $
+ * $Id: cfg.lex,v 1.21 2002/08/19 11:51:31 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -77,6 +77,7 @@ METHOD	method
 URI		uri
 SRCIP	src_ip
 DSTIP	dst_ip
+MYSELF	myself
 /* operators */
 EQUAL	=
 EQUAL_T	==
@@ -180,6 +181,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{URI}	{ count(); yylval.strval=yytext; return URI; }
 <INITIAL>{SRCIP}	{ count(); yylval.strval=yytext; return SRCIP; }
 <INITIAL>{DSTIP}	{ count(); yylval.strval=yytext; return DSTIP; }
+<INITIAL>{MYSELF}	{ count(); yylval.strval=yytext; return MYSELF; }
 
 <INITIAL>{DEBUG}	{ count(); yylval.strval=yytext; return DEBUG; }
 <INITIAL>{FORK}		{ count(); yylval.strval=yytext; return FORK; }

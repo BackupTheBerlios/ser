@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.3 2002/05/28 19:01:38 andrei Exp $
+/* $Id: ip_addr.h,v 1.4 2002/08/19 11:51:31 andrei Exp $
  *
  * ip address family realted structures
  */
@@ -53,6 +53,7 @@ struct socket_info{
 	str address_str;        /* ip address converted to string -- optimization*/
 	unsigned short port_no;  /* port number */
 	str port_no_str; /* port number converted to string -- optimization*/
+	int is_ip; /* 1 if name is an ip address, 0 if not  -- optimization*/
 };
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.h,v 1.2 2002/08/12 12:18:21 janakj Exp $
+ * $Id: parse_uri.h,v 1.3 2002/08/19 11:51:31 andrei Exp $
  */
 
 #ifndef PARSE_URI_H
@@ -11,15 +11,8 @@
 
 
 #include "../str.h"
+#include "../parser/msg_parser.h"
 
-struct sip_uri {
-	str user;     /* Username */
-	str passwd;   /* Password */
-	str host;     /* Host name */
-	str port;     /* Port number */
-	str params;   /* Parameters */
-	str headers;  
-};
 
 
 /* buf= pointer to begining of uri (sip:x@foo.bar:5060;a=b?h=i)
@@ -27,6 +20,7 @@ struct sip_uri {
  * returns: fills uri & returns <0 on error or 0 if ok 
  */
 int parse_uri(char *buf, int len, struct sip_uri* uri);
+int parse_sip_msg_uri(struct sip_msg* msg);
 
 void free_uri(struct sip_uri* u);
 
