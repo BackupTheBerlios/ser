@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.1 2002/02/05 01:29:27 andrei Exp $
+ * $Id: fastlock.h,v 1.2 2002/02/11 17:56:22 andrei Exp $
  *
  * 
  */
@@ -15,7 +15,7 @@
 #include <sched.h>
 
 
-#ifdef i386
+#ifdef __i386
 
 
 typedef  volatile int lock_t;

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.sources,v 1.3 2002/01/07 04:39:49 jku Exp $
+# $Id: Makefile.sources,v 1.4 2002/02/11 17:56:22 andrei Exp $
 #
 # common Makefile variables 
 # (source files, objs, etc)
@@ -16,3 +16,5 @@ objs=$(sources:.c=.o)
 extra_objs=
 depends=$(sources:.c=.d)
 modules=
+static_modules=
+static_modules_path=

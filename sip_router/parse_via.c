@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.12 2002/02/07 16:02:45 bogdan Exp $ 
+ * $Id: parse_via.c,v 1.13 2002/02/11 17:56:22 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -68,7 +68,7 @@ enum{	L_VALUE=200,   F_VALUE, P_VALUE, P_STRING,
  * state=F_{LF,CR,CRLF}!
  * output state = L_PARAM or F_PARAM or END_OF_HEADER
  * (and saved_state= last state); everything else => error */
-__inline char* parse_via_param(	char* p, char* end, int* pstate,
+char* parse_via_param(	char* p, char* end, int* pstate, 
 								int* psaved_state, struct via_param* param)
 {
 	char* tmp;

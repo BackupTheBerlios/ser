@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.4 2002/02/05 01:29:28 andrei Exp $*
+/* $Id: shm_mem.h,v 1.5 2002/02/11 17:56:22 andrei Exp $*
  *
  * shared mem stuff
  */
@@ -33,6 +33,12 @@
 #	define MY_MALLOC vqm_malloc
 #	define MY_FREE vqm_free
 #	define MY_STATUS vqm_status
+#elif defined F_MALLOC
+#	include "f_malloc.h"
+	extern struct fm_block* shm_block;
+#	define MY_MALLOC fm_malloc
+#	define MY_FREE fm_free
+#	define MY_STATUS fm_status
 #else
 #	include "q_malloc.h"
 	extern struct qm_block* shm_block;

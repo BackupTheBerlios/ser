@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.c,v 1.2 2002/01/07 04:39:49 jku Exp $
+ * $Id: parse_fline.c,v 1.3 2002/02/11 17:56:22 andrei Exp $
  * 
  * sip first line parsing automaton
  * 
@@ -991,8 +991,8 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						state=F_CR;
 						break;
 					default:
-						LOG(L_ERR, "ERROR: parse_first_line: invalid
-								message\n");
+						LOG(L_ERR, "ERROR: parse_first_line: invalid" 
+								"message\n");
 						goto error;
 				}
 				break;
@@ -1015,8 +1015,8 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						state=F_LF;
 						goto skip;
 					default:
-						LOG(L_ERR, "ERROR: parse_first_line: invalid
-								message\n");
+						LOG(L_ERR, "ERROR: parse_first_line: invalid"
+								" message\n");
 						goto error;
 				}
 				break;
