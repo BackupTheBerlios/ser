@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.125 2004/03/31 09:29:55 andrei Exp $
+# $Id: Makefile,v 1.126 2004/07/21 13:24:45 sobomax Exp $
 #
 # sip_router makefile
 #
@@ -45,7 +45,7 @@ skip_modules?=
 # if not set on the cmd. line or the env, exclude this modules:
 exclude_modules?= 			cpl ext extcmd \
 							postgres snmp \
-							im radius_acc radius_auth \
+							im \
 							jabber \
 							cpl-c pa \
 							auth_radius group_radius uri_radius 
