@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2002/08/29 20:13:52 ric Rel $
+# $Id: Makefile,v 1.4 2003/02/24 16:46:11 andrei Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
@@ -13,5 +13,5 @@ include ../../Makefile.modules
 # The way it should be:
 # CFLAGS += `net-snmp-config --cflags`
 #
-CFLAGS += -I/usr/local/include
+CFLAGS += -I$(LOCALBASE)/include
 LIBS+=`net-snmp-config --agent-libs`

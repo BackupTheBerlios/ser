@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2002/09/03 14:08:41 ssi Rel $
+# $Id: Makefile,v 1.2 2003/02/24 16:46:11 andrei Exp $
 #
 # print example module makefile
 #
@@ -7,6 +7,7 @@
 
 auto_gen=
 NAME=radius_auth.so
-LIBS=-L/usr/local/lib -lradiusclient
+DEFS += -I$(LOCALBASE)/include
+LIBS=-L$(LOCALBASE)/lib -lradiusclient
 
 include ../../Makefile.modules

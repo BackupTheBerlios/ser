@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.6 2003/02/13 13:06:26 dcm Exp $
+# $Id: Makefile,v 1.7 2003/02/24 16:46:11 andrei Exp $
 #
 # example module makefile
 #
@@ -12,8 +12,7 @@ NAME=jabber.so
 DEFS+=-DXJ_EXTRA_DEBUG
 
 # expat.h location
-DEFS+=-I/usr/local/include -I/usr/pkg/include
-
-LIBS=-L/usr/local/lib -L/usr/pkg/lib -lexpat
+DEFS+=-I$(LOCALBASE)/include -I/usr/pkg/include
+LIBS=-L$(LOCALBASE)/lib -L/usr/pkg/lib -lexpat
 
 include ../../Makefile.modules
