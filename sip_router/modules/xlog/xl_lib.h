@@ -1,5 +1,5 @@
 /*
- * $Id: xl_lib.h,v 1.3 2004/08/24 09:00:49 janakj Exp $
+ * $Id: xl_lib.h,v 1.4 2004/10/27 09:23:17 ramona Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -30,11 +30,13 @@
 
 #include "../../parser/msg_parser.h"
 
-typedef int (*item_func_t) (struct sip_msg*, str*);
+typedef int (*item_func_t) (struct sip_msg*, str*, str*, int);
 
 typedef struct _xl_elog
 {
 	str text;
+	str hparam;
+	int hindex;
 	item_func_t itf;
 	struct _xl_elog *next;
 } xl_elog_t, *xl_elog_p;
