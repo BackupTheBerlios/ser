@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.23 2003/11/05 22:19:32 jiri Exp $
+/*$Id: nathelper.c,v 1.24 2003/11/08 04:59:39 jiri Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -374,6 +374,7 @@ fix_nated_sdp_f(struct sip_msg* msg, char* str1, char* str2)
 	}
 
 	if (level & ADD_ADIRECTION) {
+		msg->msg_flags |= FL_FORCE_ACTIVE;
 		anchor = anchor_lump(msg, body.s + body.len - msg->buf, 0, 0);
 		if (anchor == NULL) {
 			LOG(L_ERR, "ERROR: fix_nated_sdp: anchor_lump failed\n");
