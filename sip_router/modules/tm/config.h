@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.3 2002/01/12 02:33:31 jku Exp $
+ * $Id: config.h,v 1.4 2002/01/28 23:30:56 jku Exp $
  *
  */
 
@@ -7,7 +7,7 @@
 #define _TM_CONFIG_H
 
 /* always use a power of 2 for hash table size */
-#define T_TABLE_POWER		10
+#define T_TABLE_POWER		12
 #define TABLE_ENTRIES  		(2 << (T_TABLE_POWER-1))
 
 /* maximum number of forks per transaction */

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.20 2002/01/25 02:50:01 bogdan Exp $
+# $Id: Makefile.defs,v 1.21 2002/01/28 23:30:56 jku Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -53,7 +53,7 @@ ARCH = $(shell uname -s)
 
 DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 -DDNS_IP_HACK  -DPKG_MALLOC -DSHM_MEM  -DSHM_MMAP \
-	 -DVQ_MALLOC 
+	-DVQ_MALLOC -DBRUT_HACK #-DEXTRA_DEBUG #-DSTATIC_TM #-DEXTRA_DEBUG
 	#-DEXTRA_DEBUG -DBRUT_HACK \
 	#-DVQ_MALLOC  -DDBG_LOCK  #-DSTATS
 	  #-DDBG_QM_MALLOC #-DVQ_MALLOC #-DNO_DEBUG

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.31 2002/01/28 18:45:42 janakj Exp $
+ * $Id: msg_parser.h,v 1.32 2002/01/28 23:30:56 jku Exp $
  */
 
 #ifndef msg_parser_h
@@ -182,6 +182,9 @@ struct sip_msg{
 	/* str add_to_branch; */ /* whatever whoever want to append to branch comes here */
 	char add_to_branch_s[MAX_BRANCH_PARAM_LEN];
 	int add_to_branch_len;
+
+	/* index to TM hash table; stored in core to avoid unnecessary calcs */
+	unsigned int  hash_index;
 
 	
 };
