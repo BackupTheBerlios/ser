@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.35 2002/10/23 15:12:20 andrei Exp $
+ * $Id: cfg.y,v 1.36 2002/11/02 01:35:08 andrei Exp $
  *
  *  cfg grammar
  */
@@ -29,6 +29,9 @@
 #include <dmalloc.h>
 #endif
 
+/* hack to avoid alloca usage in the generated C file (needed for compiler
+ with no built in alloca, like icc*/
+#undef _ALLOCA_H
 
 struct id_list{
 	char* s;

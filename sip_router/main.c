@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.123 2002/10/23 15:12:20 andrei Exp $
+ * $Id: main.c,v 1.124 2002/11/02 01:35:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,9 +80,9 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.123 2002/10/23 15:12:20 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.124 2002/11/02 01:35:08 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
-static char compiled[]= __TIME__ __DATE__ ;
+static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
 "STATS:"
 #ifdef STATS

@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.149 2002/10/24 15:03:41 andrei Exp $
+# $Id: Makefile.defs,v 1.150 2002/11/02 01:35:08 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -459,7 +459,6 @@ ifeq ($(YACC),)
 	YACC=bison
 endif
 YACC_FLAGS=-d -b cfg
-# on linux and freebsd keep it empty (e.g. LIBS= )
 # on solaris add -lxnet (e.g. LIBS= -lxnet)
 LIBS= -lfl -ldl -lresolv
 
@@ -484,7 +483,7 @@ ifeq  ($(OS), solaris)
 ifeq ($(CC_NAME), suncc)
 	LIBS= -lfast -ldl -lresolv
 endif
-	LIBS+= -L/usr/local/lib -lfl -L/usr/lib/mysql -lxnet -lrt -lnsl 
+	LIBS+= -L/usr/local/lib -lfl -lxnet -lrt -lnsl 
 	# -lrt needed for sched_yield
 endif
 
