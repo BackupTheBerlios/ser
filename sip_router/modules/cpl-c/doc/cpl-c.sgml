@@ -12,41 +12,41 @@
 ]>
 
 <book>
-    <bookinfo>
+	<bookinfo>
 	<title>cpl-c Module</title>
 	<productname class="trade">&sername;</productname>
 	<authorgroup>
-	    <author>
-		<firstname>Bogdan</firstname>
-		<surname>Iancu</surname>
-		<affiliation><orgname>&fhg;</orgname></affiliation>
-		<address>
-		    <email>iancu@fokus.fraunhofer.de</email>
-		</address>
-	    </author>
-	    <editor>
-		<firstname>Bogdan</firstname>
-		<surname>Iancu</surname>
-		<address>
-		    <email>iancu@fokus.fraunhofer.de</email>
-		</address>
-	    </editor>
+		<author>
+			<firstname>Bogdan-Andrei</firstname>
+			<surname>Iancu</surname>
+			<affiliation><orgname>&fhg;</orgname></affiliation>
+			<address>
+				<email>iancu@fokus.fraunhofer.de</email>
+			</address>
+		</author>
+		<editor>
+			<firstname>Bogdan-Andrei</firstname>
+			<surname>Iancu</surname>
+			<address>
+				<email>iancu@fokus.fraunhofer.de</email>
+			</address>
+		</editor>
 	</authorgroup>
 	<copyright>
-	    <year>2003</year>
-	    <holder>Fill in here</holder>
+		<year>2003</year>
+		<holder>&fhg;</holder>
 	</copyright>
 	<revhistory>
-	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/07/24 16:52:14 $</date>
-	    </revision>
+		<revision>
+			<revnumber>$Revision: 1.2 $</revnumber>
+			<date>$Date: 2003/09/15 15:16:59 $</date>
+		</revision>
 	</revhistory>
-    </bookinfo>
-    <toc></toc>
-    
-    &user;
-    &devel;
-    &faq;
-    
+	</bookinfo>
+	<toc></toc>
+
+	&user;
+	&devel;
+	&faq;
+
 </book>
