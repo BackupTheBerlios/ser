@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.h,v 1.5 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_via.h,v 1.6 2002/10/21 15:46:27 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -68,6 +68,7 @@ struct via_body {
 
 	     /* shortcuts to "important" params*/
 	struct via_param* branch;
+	str tid; /* transaction id, part of branch */
 	struct via_param* received;
 	
 	struct via_body* next; /* pointer to next via body string if

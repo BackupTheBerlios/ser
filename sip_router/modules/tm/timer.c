@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.38 2002/09/25 20:23:42 jiri Rel $
+ * $Id: timer.c,v 1.39 2002/10/21 15:46:27 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -397,7 +397,7 @@ inline static void wait_handler( void *attr)
 			" called from WAIT timer\n",p_cell);
 		abort();
 	}	
-	DBG("DEBUG: ---------- WAIT timer hit ------- \n");
+	DBG("DEBUG: WAIT timer hit\n");
 #endif
 
 	/* stop cancel timers if any running */

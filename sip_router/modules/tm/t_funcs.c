@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.146 2002/09/25 20:23:42 jiri Rel $
+ * $Id: t_funcs.c,v 1.147 2002/10/21 15:46:27 jiri Exp $
  *
  * transaction maintenance functions
  *
@@ -121,7 +121,7 @@ void put_on_wait(  struct cell  *Trans  )
 	}
 #endif
 #ifdef EXTRA_DEBUG
-	DBG("DEBUG: --- out on WAIT --- \n");
+	DBG("DEBUG: put on WAIT \n");
 #endif
 
 

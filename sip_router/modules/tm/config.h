@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.17 2002/10/21 03:08:20 jiri Exp $
+ * $Id: config.h,v 1.18 2002/10/21 15:46:27 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -93,5 +93,9 @@
    this hack has not been tested yet
 */
 #undef ACK_FORKING_HACK
+
+/* magic cookie for transaction matching as defined in RFC3261 */
+#define MCOOKIE "z9hG4bK"
+#define MCOOKIE_LEN (sizeof(MCOOKIE)-1)
 
 #endif

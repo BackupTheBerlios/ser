@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.52 2002/09/19 12:23:55 jku Rel $
+ * $Id: sip_msg.c,v 1.53 2002/10/21 15:46:27 jiri Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -100,6 +100,9 @@ inline struct via_body* via_body_cloner( char* new_buf,
 			translate_pointer(new_buf,org_buf,org_via->port_str.s);
 		/* params (str type) */
 		new_via->params.s=translate_pointer(new_buf,org_buf,org_via->params.s);
+		/* transaction id */
+		new_via->tid.s=
+			translate_pointer(new_buf, org_buf, org_via->tid.s);
 		/* comment (str type) */
 		new_via->comment.s=
 			translate_pointer(new_buf,org_buf,org_via->comment.s);

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.14 2002/09/25 10:03:20 andrei Rel $
+ * $Id: msg_parser.h,v 1.15 2002/10/21 15:46:27 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,7 +56,9 @@
 #define REPLY_STATUS first_line.u.reply.statuscode
 #define REPLY_CLASS(_reply) ((_reply)->REPLY_STATUS/100)
 
-enum { METHOD_OTHER, METHOD_INVITE, METHOD_CANCEL, METHOD_ACK, METHOD_BYE };
+/* number methods as power of two to allow bitmap matching */
+enum request_method { METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_ACK=4, 
+	METHOD_BYE=8, METHOD_OTHER=16 };
 
 #define IFISMETHOD(methodname,firstchar)                                  \
 if (  (*tmp==(firstchar) || *tmp==((firstchar) | 32)) &&                  \
