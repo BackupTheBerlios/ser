@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.h,v 1.11 2003/03/12 12:50:02 andrei Exp $
+ * $Id: pike_funcs.h,v 1.12 2004/05/12 12:28:48 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -28,22 +28,15 @@
 
 
 #ifndef _PIKE_FUNCS_H
-#define PIKE_FUNCS_H
+#define _PIKE_FUNCS_H
 
 #include "../../parser/msg_parser.h"
-#include "ip_tree.h"
 #include "../../locking.h"
-#include "timer.h"
-#include "ip_tree.h"
 
 
-extern int                     time_unit;
-extern int                     max_value;
-extern int                     timeout;
-extern struct ip_node          *tree;
-extern gen_lock_t              *timer_lock;
-extern gen_lock_t              *tree_lock;
-extern struct pike_timer_head  *timer;
+//extern int                     time_unit;
+//extern int                     max_value;
+//extern gen_lock_t              *timer_lock;
 
 
 int  pike_check_req(struct sip_msg *msg, char *foo, char *bar);
