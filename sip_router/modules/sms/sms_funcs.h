@@ -1,3 +1,7 @@
+/*
+ * $Id: sms_funcs.h,v 1.14 2002/07/24 11:50:51 jku Exp $
+ */
+
 #ifndef _SMS_FUNCS_H
 #define  _SMS_FUNCS_H
 

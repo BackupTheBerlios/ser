@@ -1,3 +1,7 @@
+/*
+ * $Id: sms_funcs.c,v 1.32 2002/07/24 11:50:51 jku Exp $
+ */
+
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
