@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.56 2003/11/28 23:49:41 janakj Exp $
+ *  $Id: config.h,v 1.57 2004/01/18 04:23:12 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,7 +55,7 @@
 /* default number of child processes started */
 #define CHILD_NO    8
 
-#define RT_NO 10 /* routing tables number */
+#define RT_NO 20 /* routing tables number */
 #define FAILURE_RT_NO RT_NO /* on_failure routing tables number */
 #define ONREPLY_RT_NO RT_NO /* on_reply routing tables number */
 #define DEFAULT_RT 0 /* default routing table */
