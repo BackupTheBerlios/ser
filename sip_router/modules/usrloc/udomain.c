@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.29 2004/04/27 14:53:23 janakj Exp $ 
+ * $Id: udomain.c,v 1.30 2004/05/19 12:37:16 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -364,8 +364,8 @@ int timer_udomain(udomain_t* _d)
 	}
 	
 	unlock_udomain(_d);
-	process_del_list(_d->name);
-	process_ins_list(_d->name);
+/*	process_del_list(_d->name); */
+/*	process_ins_list(_d->name); */
 	return 0;
 }
 
