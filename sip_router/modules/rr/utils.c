@@ -1,5 +1,5 @@
-/* 
- * $Id: utils.c,v 1.2 2002/01/16 14:52:51 janakj Exp $ 
+/*
+ * $Id: utils.c,v 1.3 2002/01/23 21:56:58 bogdan Exp $ 
  */
 
 #include <ctype.h>

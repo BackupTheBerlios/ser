@@ -1,5 +1,5 @@
-/* 
- * $Id: utils.h,v 1.1 2002/01/16 10:53:12 janakj Exp $ 
+/*
+ * $Id: utils.h,v 1.2 2002/01/23 21:56:58 bogdan Exp $ 
  */
 
 #ifndef __UTILS_H__
