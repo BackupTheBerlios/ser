@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.7 2002/03/08 01:09:35 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.8 2002/03/12 22:14:50 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -33,7 +33,7 @@ static struct module_exports auth_exports = {"auth",
 						     check_to,
 						     check_from
 					     },
-					     (int[]) {1, 1, 1, 1, 0, 0},
+					     (int[]) {1, 2, 1, 1, 0, 0},
 					     (fixup_function[]) {
 						     NULL, 
 						     NULL,
