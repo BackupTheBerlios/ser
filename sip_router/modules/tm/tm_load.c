@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.4 2003/01/14 15:00:01 janakj Exp $
+ * $Id: tm_load.c,v 1.5 2003/01/14 22:44:28 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -59,10 +59,12 @@ int load_tm( struct tm_binds *tmb)
 		LOG( L_ERR, LOAD_ERROR "'t_reply' not found\n");
 		return -1;
 	}
+#ifdef _OBSO
 	if (!(tmb->t_reply_unsafe=(treply_f)find_export(T_REPLY_UNSAFE, 2)) ) {
 		LOG( L_ERR, LOAD_ERROR "'t_reply_unsafe' not found\n");
 		return -1;
 	}
+#endif
 	if (!(tmb->t_forward_nonack=(tfwd_f)find_export(T_FORWARD_NONACK , 2)) ) {
 		LOG( L_ERR, LOAD_ERROR "'t_forward_nonack' not found\n");
 		return -1;
