@@ -1,41 +1,77 @@
-Quick instructions to install net-snmp and configure it so you can
-play with ser's snmp module:
+Quick and dirty instructions to install net-snmp and configure it so you can
+play with ser's snmp module
 
-- You need net-snmp >= 5.0.0 (don't use 5.0.3, it has a bug traversing
+[comments/flames/bugs: Ricardo Baratto - ricardo at cs.columbia.edu]
+
+Requirements and Comments
+=========================
+You need net-snmp >= 5.0.0 (don't use 5.0.3, it has a bug traversing
 tables). The latest the better. You can get it from http://www.net-snmp.org
 We don't need any special compilation flags.
 
-Most basic configuration, uses SNMPv1 (for v3 some instructions are below
-but you should definitely read the instructions that come with the
-net-snmp distribution, at time of writing they're in README.snmpv3). 
+The most basic configuration uses SNMPv1 (for v3 some instructions are below
+but you should definitely read the instructions that can be found at:
+http://www.net-snmp.org/README.snmpv3.txt
+and
+http://www.net-snmp.org/tutorial-5/commands/snmpv3.html
+). 
 You may or may not run a snmp agent on the system (like the snmpd daemon 
-that comes from net-snmp).
-Steps:
-1. Create a $prefix/share/snmp/snmpd.conf with the following:
+that comes from net-snmp). Our agent we'll figure out was going on
+based on trial and error and configuration directives.
+
+Step 1
+=======
+Create a $prefix/share/snmp/snmpd.conf with the following:
 rwcommunity ser	127.0.0.0/8
 master agentx
 
 This allows rw access only to localhost. Change ser for your preferred
 community name.
 
-2. If you don't want to run ser as root, create a $prefix/share/snmp/snmp.conf
-file with:
+Step 2
+======
+The default configuration requires ser to run as root, or at least
+start the agent as root. However if you don't want to run ser as root, 
+there are 2 ways out.
+
+2.1. Run ser as a standalone agent on a non-priviledged port:
+
+For this create/edit $prefix/share/snmp/snmp.conf with:
 defaultPort 9999
 
-[change 9999 with your preferred port number]. However, note that this is
-only when you run our agent as a standalone agent. If you want to have
-it as a subagent, running ser as non-root becomes more complicated. 
-Since these are simple instructions, then you'll need to see
-below for details of what needs to be done [TODO]
+2.2. Run snmpd listening for agentx connections on a non-priviledged socket.
+By default, snmpd listens for connections on the local socket 
+/var/agentx/master, which only root can access.
+To allow a non-root agent to connect with your agentx master add the
+following line to 
+$prefix/share/snmp/snmpd.conf and $prefix/share/snmp/ser_snmp.conf
+agentxsocket <local or network socket>
 
-3. Copy all the .my files from ser's distribution under modules/snmp/doc
+* local sockets are specified as a normal path, e.g. /var/agentx/hola
+* network sockets can get more complicated but a simple example will probably
+suffice for most cases:
+tcp:20001
+makes what you already know it does :) (and yes, this implies that the
+master agent may be in another computer across an IP network.. cool, huh?). 
+For more details on the theory behind address specification for net-snmp, 
+look at snmpcmd(5) in the section AGENT SPECIFICATION.
+
+!!IMPORTANT!!
+AgentX is currently a standard protocol. Therefore, it is possible
+to use ser's agent with any other SNMP agent, just by specifying in
+ser_snmp.conf the path to where this agent is listening for connections.
+
+Step 3
+======
+Copy all the .my files from ser's distribution under modules/snmp/doc
 to $prefix/share/snmp/mibs.
 You can also copy them to ~/.snmp/mibs. However, in this case, you need
 to copy it for: 
 	-> the user that runs ser
 	-> the user that will query the agent (run snmpget/walk/set/etc)
 
-In addition, you need to do for the user which runs ser:
+In addition, you need to do the following for both the user that runs
+ser and the one that queries it:
 export MIBS=ALL or
 setenv MIBS ALL
 This tells the snmp library that it should look at all the MIB files
@@ -45,3 +81,63 @@ everybody's life easier we use object names instead of explicit
 OIDs.
 If ser fails complaining that it couldn't register SNMP objects, this
 environment variable is the most probable cause.
+For more details on this check:
+http://www.net-snmp.org/tutorial-5/commands/mib-options.html
+
+Step 4 [This is a BONUS!!]
+======
+There's an additional option that you can use to make our agent more
+robust. By setting
+agentxPingInterval <seconds>
+in $prefix/share/snmp/ser_snmp.conf, you tell ser's subagent to check
+every <seconds> to see if the master agent is alive. If the master
+dissapears, we'll keep pinging it until it appears again at which point
+re-registration is done, and things should continue as if nothing
+happened.
+
+Ok, that should do it. Important man pages to read:
+snmpcmd(1)
+snmp.conf(5)
+snmpd.conf(5)
+snmpd(1)
+
+Configuring for SNMPv3
+======================
+This is only for the net-snmp snmpd agent. Remember, read
+http://www.net-snmp.org/README.snmpv3.txt and
+http://www.net-snmp.org/tutorial-5/commands/snmpv3.html
+for all the details.
+
+The easiest way to create an SNMPv3 user is by running
+(the following is an excerpt from README.snmpv3):
+
+$ net-snmp-config --create-snmpv3-user -a "my_password" ser_user
+
+WARNING: SNMPv3 pass phrases must be at least 8 characters long!
+
+The above line creates the user "ser_user" with a password of
+"my_password" (and uses MD5 and DES for protection). This will also 
+add a line to your snmpd.conf file to let that user have read/write 
+access to your agent.
+
+To test it (you may need to restart the agent):
+$ snmpget -v 3 -u ser_user -l authNoPriv -a MD5 -A my_password localhost 
+sysUpTime.0
+
+Now, if you get tired of typing all those commands, create a
+~/.snmp/snmp.conf file like this:
+  defSecurityName ser_user
+  defContext ""
+  defAuthType MD5
+  defSecurityLevel authNoPriv
+  defAuthPassphrase my_password
+  defVersion 3
+
+this should be readable only by you!!
+
+Now test it:
+$ snmpget localhost sysUpTime.0
+
+If you want to use v1, then, then using the community you created in 
+snmpd.conf (in Step 1) is as simple as:
+snmpget -v 1 -c ser localhost sypUpTime.0
