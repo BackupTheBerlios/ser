@@ -1,5 +1,5 @@
 /*
- * $Id: mf_funcs.c,v 1.13 2002/05/22 18:35:26 bogdan Exp $
+ * $Id: mf_funcs.c,v 1.14 2002/05/31 01:59:06 jku Exp $
  */
 
 #include <stdlib.h>
@@ -16,7 +16,8 @@
 int is_maxfwd_present( struct sip_msg* msg , str *foo)
 {
 	int x, err;
-	char c;
+	/* hey man, run -Wall before committing ... -jiri
+	char c; */
 
 	/* lookup into the message for MAX FORWARDS header*/
 	if ( !msg->maxforwards ) {

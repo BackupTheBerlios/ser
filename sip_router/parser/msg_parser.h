@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.4 2002/05/26 13:50:48 andrei Exp $
+ * $Id: msg_parser.h,v 1.5 2002/05/31 01:59:07 jku Exp $
  */
 
 #ifndef msg_parser_h
@@ -75,6 +75,7 @@ enum{
 #define INVITE "INVITE"
 
 /* convenience short-cut macros */
+#define REQ_LINE(_msg) ((_msg)->first_line.u.request)
 #define REQ_METHOD first_line.u.request.method_value
 #define REPLY_STATUS first_line.u.reply.statuscode
 #define REPLY_CLASS(_reply) ((_reply)->REPLY_STATUS/100)

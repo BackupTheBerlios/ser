@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.61 2002/05/26 12:10:13 jku Exp $
+ * $Id: h_table.c,v 1.62 2002/05/31 01:59:06 jku Exp $
  */
 
 #include "hash_func.h"
@@ -9,6 +9,8 @@
 #include "../../md5utils.h"
 /* bogdan test */
 #include "../../ut.h"
+#include "../../globals.h"
+#include "../../error.h"
 
 
 
@@ -75,8 +77,10 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 
 	/* allocs a new cell */
 	new_cell = (struct cell*)sh_malloc( sizeof( struct cell ) );
-	if  ( !new_cell )
+	if  ( !new_cell ) {
+		ser_error=E_OUT_OF_MEM;
 		return NULL;
+	}
 
 	/* filling with 0 */
 	memset( new_cell, 0, sizeof( struct cell ) );

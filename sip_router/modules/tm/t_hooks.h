@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.1 2002/05/13 01:15:41 jku Exp $
+ * $Id: t_hooks.h,v 1.2 2002/05/31 01:59:06 jku Exp $
  */
 
 #ifndef _HOOKS_H
@@ -8,7 +8,7 @@
 #include "h_table.h"
 #include "t_funcs.h"
 
-typedef enum { TMCB_REPLY,  TMCB_E2EACK, TMCB_END } tmcb_type;
+typedef enum { TMCB_REPLY,  TMCB_E2EACK, TMCB_REPLY_IN, TMCB_REQUEST_OUT, TMCB_END } tmcb_type;
 
 typedef void (transaction_cb) ( struct cell* t, struct sip_msg* msg );
 

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.53 2002/05/26 12:10:13 jku Exp $
+ * $Id: h_table.h,v 1.54 2002/05/31 01:59:06 jku Exp $
  */
 
 
@@ -54,7 +54,11 @@ typedef struct retr_buf
 	char *cancel;
 	int   cancel_len;
 
-	struct sockaddr_in to;
+	/* v6 changes; -jiri
+	struct sockaddr_in to; */
+	union sockaddr_union to;
+	struct socket_info* send_sock;
+
 	size_t tolen;
 
 	/* a message can be linked just to retransmission and FR list */
@@ -144,7 +148,9 @@ typedef struct cell
 
 	/* this is where destination is stored for picked branch;
 	good if a need to forward ACK later on */
-	struct sockaddr_in ack_to;
+	/* v6 changes; -jiri
+	struct sockaddr_in ack_to; */
+	union sockaddr_union ack_to;
 #ifndef	USE_SYNONIM
 	/* MD5checksum */
 	char md5[MD5_LEN];
