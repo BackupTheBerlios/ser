@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.11 2002/08/05 10:59:20 bogdan Exp $
+ * $Id: pike.c,v 1.12 2002/09/18 16:15:15 bogdan Exp $
  *
  * PIKE module
  *
@@ -127,7 +127,7 @@ error1:
 static int pike_exit(void)
 {
 	/* lock the timer list */
-	lock( timer->sem );
+	lock( &locks[TIMER_LOCK] );
 	/* free the tmer list head */
 	shm_free(timer);
 	/* destroy the IP tree */
