@@ -1,5 +1,5 @@
 /*
- * $Id: snmp_mod.c,v 1.4 2003/03/16 20:27:25 janakj Exp $
+ * $Id: snmp_mod.c,v 1.5 2003/04/24 18:45:13 jiri Exp $
  *
  * SNMP Module
  *
@@ -97,8 +97,8 @@ static cmd_export_t cmds[]={
 	{"snmp_free_handler",      (cmd_function)snmp_free_handler,     1, 0, 0},
 	{"snmp_new_obj",           (cmd_function)snmp_new_obj,          1, 0, 0},
 	{"snmp_free_obj",          (cmd_function)snmp_free_obj,         1, 0, 0},
-	{"snmp_start",             (cmd_function)snmp_start,            0, 0, 0},
-	{"snmp_stop",              (cmd_function)snmp_stop,             0, 0, 0},
+	{"snmp_start",             (cmd_function)ser_snmp_start,            0, 0, 0},
+	{"snmp_stop",              (cmd_function)ser_snmp_stop,             0, 0, 0},
 	{0,0,0,0,0}
 };
 
