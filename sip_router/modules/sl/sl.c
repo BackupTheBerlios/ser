@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.13 2003/03/11 15:49:58 andrei Exp $
+ * $Id: sl.c,v 1.14 2003/03/16 20:27:24 janakj Exp $
  *
  * sl module
  *
@@ -51,6 +51,7 @@
  * History:
  * --------
  *  2003-03-11  updated to the new module exports interface (andrei)
+ *  2003-03-16  flags export parameter added (janakj)
  */
 
 
@@ -75,9 +76,9 @@ static void mod_destroy();
 
 
 static cmd_export_t cmds[]={
-	{"sl_send_reply",  w_sl_send_reply,  2, fixup_sl_send_reply},
-	{"sl_reply_error", w_sl_reply_error, 0, 0},
-	{0,0,0,0}
+	{"sl_send_reply",  w_sl_send_reply,  2, fixup_sl_send_reply, REQUEST_ROUTE},
+	{"sl_reply_error", w_sl_reply_error, 0, 0,                   REQUEST_ROUTE},
+	{0,0,0,0,0}
 };
 
 

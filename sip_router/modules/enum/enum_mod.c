@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.c,v 1.3 2003/03/16 18:05:06 janakj Exp $
+ * $Id: enum_mod.c,v 1.4 2003/03/16 20:27:23 janakj Exp $
  *
  * Enum module
  *
@@ -29,6 +29,7 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-16: flags export parameter added (janakj)
  */
 
 
@@ -46,9 +47,9 @@ static int mod_init(void);
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"enum_query",        enum_query,        0, 0},
-	{"is_from_user_e164", is_from_user_e164, 0, 0},
-	{0, 0, 0, 0}
+	{"enum_query",        enum_query,        0, 0, REQUEST_ROUTE},
+	{"is_from_user_e164", is_from_user_e164, 0, 0, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 

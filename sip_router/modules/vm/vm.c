@@ -1,5 +1,5 @@
 /*
- * $Id: vm.c,v 1.10 2003/03/12 12:54:00 andrei Exp $
+ * $Id: vm.c,v 1.11 2003/03/16 20:27:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * -------
  * 2003-03-11 New module interface (janakj)
+ * 2003-03-16 flags export parameter added (janakj)
  */
 
 #include "../../fifo_server.h"
@@ -81,9 +82,9 @@ db_con_t* db_handle = 0;
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"vm_start", vm_start, 1, 0},
-	{"vm_stop",  vm_stop,  1, 0},
-	{0, 0, 0, 0}
+	{"vm_start", vm_start, 1, 0, REQUEST_ROUTE},
+	{"vm_stop",  vm_stop,  1, 0, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 

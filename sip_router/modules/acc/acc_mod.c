@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.13 2003/03/11 12:17:50 janakj Exp $
+ * $Id: acc_mod.c,v 1.14 2003/03/16 20:27:23 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,7 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-16: flags export parameter added (janakj)
  */
 
 
@@ -128,8 +129,8 @@ static void on_missed(struct cell *t, struct sip_msg *reply,
 
 
 static cmd_export_t cmds[] = {
-	{"acc_request", acc_request, 1, 0},
-	{0, 0, 0, 0}
+	{"acc_request", acc_request, 1, 0, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 static param_export_t params[] = {

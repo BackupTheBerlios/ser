@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.15 2003/03/12 12:50:02 andrei Exp $
+ * $Id: pike.c,v 1.16 2003/03/16 20:27:24 janakj Exp $
  *
  * PIKE module
  *
@@ -32,6 +32,7 @@
  *  2003-03-11  updated to the new module exports interface (andrei)
  *  2003-03-11  converted to the new locking interface: locking.h --
  *               major changes (andrei)
+ *  2003-03-16  flags export parameter added (janakj)
  */
 
 
@@ -70,8 +71,8 @@ struct pike_timer_head  *timer;
 
 
 static cmd_export_t cmds[]={
-	{"pike_check_req",  pike_check_req,  0,  0},
-	{0,0,0,0}
+	{"pike_check_req",  pike_check_req,  0,  0, REQUEST_ROUTE},
+	{0,0,0,0,0}
 };
 
 static param_export_t params[]={

@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.4 2003/03/12 12:54:00 andrei Exp $
+ * $Id: cpl.c,v 1.5 2003/03/16 20:27:23 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-16: flags export parameter added (janakj)
  */
 
 
@@ -69,12 +70,12 @@ static int mod_init(void);
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"cpl_run_script",           cpl_run_script,           0, 0},
-	{"cpl_is_response_accept",   cpl_is_response_accept,   0, 0},
-	{"cpl_is_response_reject",   cpl_is_response_reject,   0, 0},
-	{"cpl_is_response_redirect", cpl_is_response_redirect, 0, 0},
-	{"cpl_update_contact",       cpl_update_contact,       0, 0},
-	{0, 0, 0, 0}
+	{"cpl_run_script",           cpl_run_script,           0, 0, REQUEST_ROUTE},
+	{"cpl_is_response_accept",   cpl_is_response_accept,   0, 0, REQUEST_ROUTE},
+	{"cpl_is_response_reject",   cpl_is_response_reject,   0, 0, REQUEST_ROUTE},
+	{"cpl_is_response_redirect", cpl_is_response_redirect, 0, 0, REQUEST_ROUTE},
+	{"cpl_update_contact",       cpl_update_contact,       0, 0, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: snmp_mod.c,v 1.3 2003/03/11 16:09:49 andrei Exp $
+ * $Id: snmp_mod.c,v 1.4 2003/03/16 20:27:25 janakj Exp $
  *
  * SNMP Module
  *
@@ -56,6 +56,7 @@
  * History:
  * --------
  *  2003-03-11  updated to the new module exports interface (andrei)
+ *  2003-03-16  flags export parameter added (janakj)
  */
 
 /* ser stuff */
@@ -89,16 +90,16 @@ static void mod_destroy(void);
 
 
 static cmd_export_t cmds[]={
-	{"snmp_register_handler",  (cmd_function)snmp_register_handler, 2, 0},
-	{"snmp_register_row",      (cmd_function)snmp_register_row,     2, 0},
-	{"snmp_register_table",    (cmd_function)snmp_register_table,   2, 0},
-	{"snmp_new_handler",       (cmd_function)snmp_new_handler,      1, 0},
-	{"snmp_free_handler",      (cmd_function)snmp_free_handler,     1, 0},
-	{"snmp_new_obj",           (cmd_function)snmp_new_obj,          1, 0},
-	{"snmp_free_obj",          (cmd_function)snmp_free_obj,         1, 0},
-	{"snmp_start",             (cmd_function)snmp_start,            0, 0},
-	{"snmp_stop",              (cmd_function)snmp_stop,             0, 0},
-	{0,0,0,0}
+	{"snmp_register_handler",  (cmd_function)snmp_register_handler, 2, 0, 0},
+	{"snmp_register_row",      (cmd_function)snmp_register_row,     2, 0, 0},
+	{"snmp_register_table",    (cmd_function)snmp_register_table,   2, 0, 0},
+	{"snmp_new_handler",       (cmd_function)snmp_new_handler,      1, 0, 0},
+	{"snmp_free_handler",      (cmd_function)snmp_free_handler,     1, 0, 0},
+	{"snmp_new_obj",           (cmd_function)snmp_new_obj,          1, 0, 0},
+	{"snmp_free_obj",          (cmd_function)snmp_free_obj,         1, 0, 0},
+	{"snmp_start",             (cmd_function)snmp_start,            0, 0, 0},
+	{"snmp_stop",              (cmd_function)snmp_stop,             0, 0, 0},
+	{0,0,0,0,0}
 };
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd.c,v 1.4 2003/03/11 15:06:07 janakj Exp $
+ * $Id: extcmd.c,v 1.5 2003/03/16 20:27:23 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -28,6 +28,7 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-16: flags export parameter added (janakj)
  */
 
 
@@ -81,8 +82,8 @@ int    req_pipe[2];
  */
 
 static cmd_export_t cmds[] = {
-	{"extcmd_dump_req", dump_request, 0, 0},
-	{0, 0, 0, 0}
+	{"extcmd_dump_req", dump_request, 0, 0, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 

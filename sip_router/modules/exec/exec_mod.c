@@ -1,7 +1,7 @@
 /*
  * execution module
  *
- * $Id: exec_mod.c,v 1.7 2003/03/11 13:12:44 janakj Exp $
+ * $Id: exec_mod.c,v 1.8 2003/03/16 20:27:23 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,7 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-16: flags export parameter added (janakj)
  */
 
 
@@ -57,9 +58,9 @@ inline static void exec_shutdown();
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"exec_dset", w_exec_dset, 1, 0},
-	{"exec_msg",  w_exec_msg,  1, 0},
-	{0, 0, 0, 0}
+	{"exec_dset", w_exec_dset, 1, 0, REQUEST_ROUTE},
+	{"exec_msg",  w_exec_msg,  1, 0, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 

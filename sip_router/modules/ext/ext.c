@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.9 2003/03/12 12:54:00 andrei Exp $
+ * $Id: ext.c,v 1.10 2003/03/16 20:27:23 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -28,6 +28,7 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-16: flags export parameter added (janakj)
  */
 
 #include <stdio.h>
@@ -62,9 +63,9 @@ static int fixup_ext_rewrite(void** param, int param_no);
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"ext_rewriteuser", ext_rewriteuser, 1, fixup_ext_rewrite},
-	{"ext_rewriteuri",  ext_rewriteuri,  1, fixup_ext_rewrite},
-	{0, 0, 0, 0}
+	{"ext_rewriteuser", ext_rewriteuser, 1, fixup_ext_rewrite, REQUEST_ROUTE},
+	{"ext_rewriteuri",  ext_rewriteuri,  1, fixup_ext_rewrite, REQUEST_ROUTE},
+	{0, 0, 0, 0, 0}
 };
 
 
