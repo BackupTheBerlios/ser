@@ -1,5 +1,5 @@
 /*
- * $Id: loc_set.h,v 1.7 2003/11/30 11:21:47 bogdan Exp $
+ * $Id: loc_set.h,v 1.8 2003/12/01 13:02:49 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -40,7 +40,7 @@
 
 
 #define CPL_LOC_DUPL    (1<<0)
-#define CPL_LOC_NATED   (1<<0)
+#define CPL_LOC_NATED   (1<<1)
 
 
 struct location {

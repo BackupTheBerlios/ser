@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.30 2003/11/30 11:21:47 bogdan Exp $
+ * $Id: cpl_run.c,v 1.31 2003/12/01 13:02:49 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -891,7 +891,7 @@ static inline int run_default( struct cpl_interpreter *intr )
 				 * Proxy the call to the address in the location set.
 				 * With other words, let ser to continue processing the
 				 * request as nothing happened */
-				return SCRIPT_END;
+				return SCRIPT_DEFAULT;
 			}
 		} else {
 			/* case 3 : location modifications performed, no signalling 
