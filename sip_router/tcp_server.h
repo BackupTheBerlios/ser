@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_server.h,v 1.1 2002/12/11 21:30:45 andrei Exp $
+ * $Id: tcp_server.h,v 1.2 2003/02/07 17:02:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,7 +34,8 @@
 
 /* "public" functions*/
 
-struct tcp_connection* tcpconn_get(int id, struct ip_addr* ip, int port);
+struct tcp_connection* tcpconn_get(int id, struct ip_addr* ip, int port, 
+									int timeout);
 void tcpconn_put(struct tcp_connection* c);
 int tcp_send(char* buf, unsigned len, union sockaddr_union* to, int id);
 

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.143 2003/01/29 19:24:10 jiri Exp $
+ * $Id: main.c,v 1.144 2003/02/07 17:02:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -90,7 +90,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.143 2003/01/29 19:24:10 jiri Exp $";
+static char id[]="@(#) $Id: main.c,v 1.144 2003/02/07 17:02:15 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -880,8 +880,10 @@ static void sig_usr(int signo)
 	}else{
 		/* process the important signals */
 		switch(signo){
-			case SIGINT:
 			case SIGPIPE:
+					LOG(L_INFO, "INFO: signal %d received\n", signo);
+				break;
+			case SIGINT:
 			case SIGTERM:
 					LOG(L_INFO, "INFO: signal %d received\n", signo);
 					/* print memory stats for non-main too */
@@ -1280,11 +1282,6 @@ try_again:
 	DBG("test random number %u\n", rand());
 	
 	
-	/* init hash fucntion */
-	if (init_hash()<0) {
-		LOG(L_ERR, "ERROR: init_hash failed\n");
-		goto error;
-	}
 
 	/*init mallocs (before parsing cfg !)*/
 	if (init_mallocs()==-1)

@@ -1,5 +1,5 @@
 /*
- * $Id: hash_func.h,v 1.5 2002/10/22 20:40:29 andrei Exp $
+ * $Id: hash_func.h,v 1.6 2003/02/07 17:02:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -39,7 +39,6 @@
 int new_hash( str  call_id, str cseq_nr );
 int new_hash2( str  call_id, str cseq_nr );
 
-int init_hash();
 
 #define hash( cid, cseq) new_hash2( cid, cseq )
 

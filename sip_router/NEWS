@@ -6,7 +6,7 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.4 2003/01/28 16:27:23 andrei Exp $
+$Id: NEWS,v 1.5 2003/02/07 17:02:15 andrei Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
@@ -38,6 +38,7 @@ New features
 - powerpc fast locking support
 - netbsd support
 - 64 bits arch. support (e.g. netbsd/sparc64).
+- tcp2udp and udp2tcp stateless forwarding (see forward_udp & forward_tcp)
 
 Changes to use of ser scripts
 =============================

@@ -1,4 +1,4 @@
-/* $Id: data_lump.c,v 1.11 2003/01/19 01:37:45 jiri Exp $
+/* $Id: data_lump.c,v 1.12 2003/02/07 17:02:15 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -43,7 +43,7 @@
 #include <dmalloc.h>
 #endif
 
-/* WARNING: all lump add/insert operations excpect a pkg_malloc'ed char* 
+/* WARNING: all lump add/insert operations expect a pkg_malloc'ed char* 
  * pointer the will be DEALLOCATED when the sip_msg is destroyed! */
 
 enum lump_dir { LD_NEXT, LD_BEFORE, LD_AFTER };
