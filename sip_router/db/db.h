@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.7 2003/10/24 20:33:45 janakj Exp $
+ * $Id: db.h,v 1.8 2003/11/28 23:47:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -162,6 +162,12 @@ extern db_func_t dbf;
 
 
 int bind_dbmod(char* mod);
- 
+
+
+/*
+ * Get version of a table
+ */
+int table_version(db_con_t* con, const str* table);
+
 
 #endif /* DB_H */
