@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.25 2002/12/03 15:31:57 dcm Exp $
+ * $Id: jabber.c,v 1.26 2002/12/17 18:04:24 janakj Exp $
  *
  * JABBER module
  *
@@ -505,7 +505,6 @@ int xjab_manage_sipmsg(struct sip_msg *msg, int type)
 			dst.s = msg->first_line.u.request.uri.s;
 			dst.len = msg->first_line.u.request.uri.len;
 		}
-		free_uri(&_uri);
 	}
 	if(dst.len == 0 && msg->to != NULL)
 	{

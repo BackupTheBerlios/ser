@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.6 2002/09/19 12:23:53 jku Rel $
+ * $Id: ext.c,v 1.7 2002/12/17 18:04:11 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -41,6 +41,7 @@
 #include "../../ut.h"
 #include "../../globals.h"
 #include "../../parser/msg_parser.h"
+#include "../../parser/parse_uri.h"
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
 #include "my_exec.h"
@@ -296,10 +297,8 @@ static int ext_rewriteuser(struct sip_msg *msg, char *cmd, char *foo_str )
 	}
 
 done:
-	free_uri(&parsed_uri);
 	return 1;
 error:
-	free_uri(&parsed_uri);
 	return -1;
 }
 
