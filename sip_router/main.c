@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.22 2001/11/13 21:06:35 andrei Exp $
+ * $Id: main.c,v 1.23 2001/11/14 05:49:51 jku Exp $
  */
 
 #include <stdio.h>
@@ -33,7 +33,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.22 2001/11/13 21:06:35 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.23 2001/11/14 05:49:51 jku Exp $";
 static char version[]="ser 0.8.3.2";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -43,6 +43,12 @@ static char flags[]="NOCR:"
 #endif
 ", MACROEATER:"
 #ifdef MACROEATER
+"On"
+#else
+"Off"
+#endif
+", STATS:"
+#ifdef STATS
 "On"
 #else
 "Off"
@@ -76,6 +82,12 @@ Options:\n\
                  auto-probing procedure even if  OS allows\n\
 ";
 
+/* print compile-time constants */
+void print_ct_constants()
+{
+	printf("MAX_RECV_BUFFER_SIZE %d, MAX_LISTEN %d, MAX_URI_SIZE %d\n",
+		MAX_RECV_BUFFER_SIZE, MAX_LISTEN, MAX_URI_SIZE );
+}
 
 /* debuging function */
 /*
@@ -332,6 +344,7 @@ int main(int argc, char** argv)
 			case 'V':
 					printf("version: %s\n", version);
 					printf("flags: %s\n", flags );
+					print_ct_constants();
 					printf("%s\n",id);
 					exit(0);
 					break;
