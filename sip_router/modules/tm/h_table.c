@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.43 2002/01/07 04:39:53 jku Exp $
+ * $Id: h_table.c,v 1.44 2002/01/07 17:52:26 jku Exp $
  */
 
 #include "hash_func.h"
@@ -147,10 +147,6 @@ struct cell*  build_cell( struct sip_msg* p_msg )
    new_cell->wait_tl.payload = new_cell;
    new_cell->dele_tl.payload = new_cell;
 
-   /* inbound request */
-   /* force parsing all the needed headers*/
-   if (parse_headers(p_msg, HDR_EOH )==-1)
-	goto error;
    new_cell->inbound_request =  sip_msg_cloner(p_msg) ;
    DBG("DEBUG: build_cell : clone done\n");
    if (!new_cell->inbound_request)
