@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.h,v 1.7 2002/09/19 12:23:55 jku Rel $
+ * $Id: dlist.h,v 1.8 2002/11/14 14:33:16 janakj Exp $
  *
  * List of registered domains
  *
@@ -79,6 +79,12 @@ int synchronize_all_udomains(void);
  * Preload content of all domains from database
  */
 int preload_all_udomains(void);
+
+
+/*
+ * Find a particular domain
+ */
+int find_domain(str* _d, udomain_t** _p);
 
 
 #endif /* UDLIST_H */

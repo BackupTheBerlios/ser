@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.h,v 1.7 2002/09/19 12:23:55 jku Rel $ 
+ * $Id: urecord.h,v 1.8 2002/11/14 14:33:16 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -37,6 +37,7 @@
 #include "hslot.h"
 #include "../../str.h"
 #include "ucontact.h"
+#include "notify.h"
 
 
 struct hslot;
@@ -59,6 +60,8 @@ typedef struct urecord {
 		struct urecord* prev;  /* Previous item in the list */
 		struct urecord* next;  /* Next item in the list */
 	} s_ll;
+
+	struct notify_cb* watchers;         /* List of watchers */
 } urecord_t;
 
 

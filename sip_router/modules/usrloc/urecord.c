@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.12 2002/09/19 12:23:55 jku Rel $ 
+ * $Id: urecord.c,v 1.13 2002/11/14 14:33:16 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -38,6 +38,7 @@
 #include "utime.h"
 #include "del_list.h"
 #include "ins_list.h"
+#include "notify.h"
 
 
 /*
@@ -123,6 +124,7 @@ int mem_insert_ucontact(urecord_t* _r, str* _c, time_t _e, float _q,
 		return -1;
 	}
 	
+	notify_record = _r;
 	
 	ptr = _r->contacts;
 	while(ptr) {
@@ -400,6 +402,8 @@ int insert_ucontact(urecord_t* _r, str* _c, time_t _e, float _q, str* _cid, int 
  */
 int delete_ucontact(urecord_t* _r, struct ucontact* _c)
 {
+	notify_record = _r;
+
 	switch(db_mode) {
 	case NO_DB:
 		mem_delete_ucontact(_r, _c);

@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.10 2002/09/19 12:23:55 jku Rel $
+ * $Id: dlist.c,v 1.11 2002/11/14 14:33:16 janakj Exp $
  *
  * List of registered domains
  *
@@ -231,4 +231,20 @@ int preload_all_udomains(void)
 	}
 
 	return res;
+}
+
+
+/*
+ * Find a particular domain
+ */
+int find_domain(str* _d, udomain_t** _p)
+{
+	dlist_t* d;
+
+	if (find_dlist(_d, &d) == 0) {
+	        *_p = d->d;
+		return 0;
+	}
+
+	return 1;
 }
