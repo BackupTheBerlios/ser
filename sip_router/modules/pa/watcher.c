@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.2 2003/01/14 22:49:40 janakj Exp $
+ * $Id: watcher.c,v 1.3 2003/01/15 23:16:24 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -84,10 +84,6 @@ int new_watcher(str* _from, str* _c, time_t _e, doctype_t _a, watcher_t** _w, st
 	(*_w)->dialog.to.len = to->len;
 
 	(*_w)->dialog.cseq = 1;
-
-	trim(&(*_w)->dialog.callid);
-	trim(&(*_w)->dialog.from_tag);
-	trim(&(*_w)->dialog.to);
 
 	return 0;
 }
