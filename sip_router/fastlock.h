@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.9 2002/02/22 16:13:08 andrei Exp $
+ * $Id: fastlock.h,v 1.10 2002/02/28 18:40:43 andrei Exp $
  *
  * 
  */
@@ -35,9 +35,9 @@ inline static int tsl(fl_lock_t* lock)
 #ifdef NOSMP
 	val=0;
 	asm volatile(
-		"  btsl $0, %1 \n\t"
+		" btsl $0, %1 \n\t"
 		" adcl $0, %0 \n\t"
-		: "=q" (val), "=m" (*lock) : "0"(val) : "memory"
+		: "=q" (val), "=m" (*lock) : "0"(val) : "memory" /* "cc" */
 	);
 #else
 	val=1;
