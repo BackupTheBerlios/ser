@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.3 2001/09/04 20:55:41 andrei Exp $
+ * $Id: main.c,v 1.4 2001/09/05 21:21:02 andrei Exp $
  */
 
 #include <stdio.h>
@@ -31,7 +31,7 @@ void receive_stdin_loop()
 }
 */
 
-#define NAME "dorian.fokus.gmd.de"
+#define NAME "0.0.0.0"
 
 
 int main(int argc, char** argv)

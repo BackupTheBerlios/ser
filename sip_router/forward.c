@@ -1,9 +1,11 @@
 /*
- * $Id: forward.c,v 1.2 2001/09/04 20:55:41 andrei Exp $
+ * $Id: forward.c,v 1.3 2001/09/05 21:21:02 andrei Exp $
  */
 
 
 #include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <netdb.h>
 #include <netinet/in.h>
 

@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.1 2001/09/04 20:55:41 andrei Exp $
+ * $Id: udp_server.c,v 1.2 2001/09/05 21:21:02 andrei Exp $
  */
 
 #include <sys/types.h>
@@ -24,6 +24,7 @@ unsigned short our_port;
 int udp_init(unsigned long ip, unsigned short port)
 {
 	struct sockaddr_in addr;
+	int optval;
 
 	addr.sin_family=AF_INET;
 	addr.sin_port=htons(port);
@@ -34,13 +35,20 @@ int udp_init(unsigned long ip, unsigned short port)
 		DPrint("ERROR: udp_init: socket: %s\n", strerror());
 		goto error;
 	}
-
-	if (bind(udp_sock, (struct sockaddr*) &addr, sizeof(addr))==-1){
-		DPrint("ERROR: udp_init: socket: %s\n", strerror());
+	/* set sock opts? */
+	optval=1;
+	if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEPORT,
+					&optval, sizeof(optval)) ==-1)
+	{
+		DPrint("ERROR: udp_init: setsockopt: %s\n", strerror());
 		goto error;
 	}
 
-	/* set sock opts? */
+	if (bind(udp_sock, (struct sockaddr*) &addr, sizeof(addr))==-1){
+		DPrint("ERROR: udp_init: bind: %s\n", strerror());
+		goto error;
+	}
+
 
 	return 0;
 
