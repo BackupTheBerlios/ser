@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.81 2005/02/26 13:41:03 janakj Exp $
+/* $Id: nathelper.c,v 1.82 2005/02/28 18:55:06 janakj Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -136,6 +136,8 @@
  *		which if absent is assumed to be 1, for example:
  *
  *		rtpproxy_sock="unix:/foo/bar=4 udp:1.2.3.4:3456=3 udp:5.6.7.8:5432=1"
+ *
+ * 2005-02-25	Force for pinging the socket returned by USRLOC (bogdan)
  *
  */
 
@@ -1814,6 +1816,8 @@ timer(unsigned int ticks, void *param)
 			break;
 		c.s = (char*)cp + sizeof(c.len);
 		cp =  (char*)cp + sizeof(c.len) + c.len;
+		memcpy(&send_sock, cp, sizeof(send_sock));
+		cp += sizeof(send_sock);
 		if (parse_uri(c.s, c.len, &curi) < 0) {
 			LOG(L_ERR, "ERROR: nathelper::timer: can't parse contact uri\n");
 			continue;
@@ -1828,8 +1832,10 @@ timer(unsigned int ticks, void *param)
 			continue;
 		}
 		hostent2su(&to, he, 0, curi.port_no);
-		send_sock=force_socket ? force_socket : 
-					get_send_socket(0, &to, PROTO_UDP);
+		if (send_sock == 0) {
+			send_sock = force_socket ? force_socket :
+				get_send_socket(0, &to, PROTO_UDP);
+		}
 		if (send_sock == NULL) {
 			LOG(L_ERR, "ERROR: nathelper::timer: can't get sending socket\n");
 			continue;
