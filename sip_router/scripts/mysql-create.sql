@@ -1,17 +1,15 @@
 # phpMyAdmin MySQL-Dump
 # http://phpwizard.net/phpMyAdmin/
 #
-# $Id: mysql-create.sql,v 1.8 2002/07/01 14:42:15 jku Exp $
+# $Id: mysql-create.sql,v 1.9 2002/07/01 14:44:17 jku Exp $
 #
 
-create database ser2;
-use ser2;
+create database ser;
+use ser;
 
 # Users: ser is the regular user, serro only for reading
-GRANT ALL PRIVILEGES ON ser2.* TO ser IDENTIFIED  BY 'heslo';
-GRANT SELECT ON ser2.* TO serro IDENTIFIED BY '47serro11';
-
-
+GRANT ALL PRIVILEGES ON ser.* TO ser IDENTIFIED  BY 'heslo';
+GRANT SELECT ON ser.* TO serro IDENTIFIED BY '47serro11';
 
 # --------------------------------------------------------
 #
