@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.56 2002/07/08 16:52:40 andrei Exp $
+/* $Id: msg_translator.c,v 1.57 2002/07/09 11:20:55 bogdan Exp $
  *
  */
 
@@ -321,7 +321,6 @@ char * build_req_buf_from_sip_req( struct sip_msg* msg,
 	/* check if received needs to be added */
 	backup = msg->via1->host.s[msg->via1->host.len];
 	msg->via1->host.s[msg->via1->host.len] = 0;
-	DBG("!!!!!!!!-> len=%d backup=%d[%c]\n",msg->via1->host.len,backup,backup);
 	if (check_address(&msg->src_ip, msg->via1->host.s, received_dns)!=0){
 		if ((received_buf=received_builder(msg,&received_len))==0)
 			goto error;
