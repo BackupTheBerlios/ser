@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.13 2002/09/19 12:23:54 jku Rel $
+ * $Id: pike_funcs.c,v 1.14 2002/11/12 11:46:49 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -65,7 +65,7 @@ int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 	node = add_node( tree, msg->src_ip.u.addr,msg->src_ip.len,&father,&flag);
 
 	DBG("DEBUG:pike_check_req: src IP [%.*s]; hit node = [%d][%d] flags=%d\n",
-		msg->src_ip.len,msg->src_ip.u.addr,
+		(int)msg->src_ip.len,msg->src_ip.u.addr,
 		node->hits,node->leaf_hits,flag);
 
 	/* do all the job with the timer */
