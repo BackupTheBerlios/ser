@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.c,v 1.8 2003/09/04 11:22:48 bogdan Exp $
+ * $Id: parse_content.c,v 1.9 2003/09/10 18:12:51 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -97,7 +97,11 @@ static type_node_t subtype_tree[] = {
 			{'p',SUBTYPE_UNKNOWN,2,-1},
 				{'i',SUBTYPE_UNKNOWN,1,9},
 					{'m',SUBTYPE_CPIM,0,-1},
-				{'l',SUBTYPE_CPL,0,-1},
+				{'l',SUBTYPE_UNKNOWN,1,-1},
+					{'+',TYPE_UNKNOWN,1,-1},
+						{'x',TYPE_UNKNOWN,1,-1},
+							{'m',TYPE_UNKNOWN,1,-1},
+								{'l',SUBTYPE_CPLXML,0,-1},
 		{'s',SUBTYPE_UNKNOWN,1,-1},
 			{'d',SUBTYPE_UNKNOWN,1,-1},
 				{'p',SUBTYPE_SDP,0,-1},

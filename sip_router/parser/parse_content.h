@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.h,v 1.5 2003/08/05 11:13:01 bogdan Exp $
+ * $Id: parse_content.h,v 1.6 2003/09/10 18:12:51 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -51,7 +51,7 @@ struct mime_type {
 #define SUBTYPE_PLAIN        1
 #define SUBTYPE_CPIM         2
 #define SUBTYPE_SDP          3
-#define SUBTYPE_CPL          4
+#define SUBTYPE_CPLXML       4
 #define SUBTYPE_ALL          0xfe
 #define SUBTYPE_UNKNOWN      0xff
 
