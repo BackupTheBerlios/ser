@@ -1,5 +1,5 @@
 /*
- * $Id: rfc2617.c,v 1.1 2002/08/09 11:17:14 janakj Exp $
+ * $Id: rfc2617.c,v 1.2 2002/08/22 12:53:52 jku Exp $
  *
  * Digest response calculation as per RFC2617
  */
@@ -110,7 +110,7 @@ void calc_response(HASHHEX _ha1,      /* H(A1) */
 	MD5Update(&Md5Ctx, _nonce->s, _nonce->len);
 	MD5Update(&Md5Ctx, ":", 1);
 
-	if (*(_qop->s)) {
+	if (_qop->len) {
 		MD5Update(&Md5Ctx, _nc->s, _nc->len);
 		MD5Update(&Md5Ctx, ":", 1);
 		MD5Update(&Md5Ctx, _cnonce->s, _cnonce->len);

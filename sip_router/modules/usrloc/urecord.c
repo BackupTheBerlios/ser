@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.3 2002/08/21 20:09:02 janakj Exp $ 
+ * $Id: urecord.c,v 1.4 2002/08/22 12:53:52 jku Exp $ 
  *
  * Usrloc record structure
  */
@@ -209,6 +209,8 @@ int timer_urecord(urecord_t* _r)
 
 			delete_ucontact(_r, t);
 		} else {
+			LOG(L_NOTICE, "Binding \'%.*s\',\'%.*s\' is fresh: %d\n", ptr->aor->len, ptr->aor->s,
+				ptr->c.len, ptr->c.s, ptr->expires - act_time);
 			ptr = ptr->next;
 		}
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.3 2002/08/21 20:09:02 janakj Exp $
+ * $Id: ul_mod.c,v 1.4 2002/08/22 12:53:52 jku Exp $
  *
  * Usrloc module interface
  */
@@ -202,8 +202,9 @@ static void destroy(void)
  */
 static void timer(unsigned int ticks, void* param)
 {
-	DBG("Running timer\n");
+	LOG(L_ERR, "Running timer\n");
 	if (timer_handler() != 0) {
 		LOG(L_ERR, "timer(): Error while running timer\n");
 	}
+	LOG(L_ERR, "Timer done\n");
 }
