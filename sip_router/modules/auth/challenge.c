@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.18 2003/05/26 15:24:45 andrei Exp $
+ * $Id: challenge.c,v 1.19 2003/10/20 17:10:13 andrei Exp $
  *
  * Challenge related functions
  *
@@ -224,7 +224,7 @@ int consume_credentials(struct sip_msg* _m, char* _s1, char* _s2)
 
 	len=h->len;
 
-	if (del_lump(&_m->add_rm, h->name.s - _m->buf, len, 0) == 0) {
+	if (del_lump(_m, h->name.s - _m->buf, len, 0) == 0) {
 		LOG(L_ERR, "consume_credentials(): Can't remove credentials\n");
 		return -1;
 	}

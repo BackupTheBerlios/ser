@@ -1,5 +1,5 @@
 /*
- * $Id: rpid.c,v 1.3 2003/10/01 21:07:40 janakj Exp $
+ * $Id: rpid.c,v 1.4 2003/10/20 17:10:13 andrei Exp $
  *
  * Remote-Party-ID related functions
  *
@@ -84,7 +84,7 @@ static inline int append_rpid_helper(struct sip_msg* _m, str *_s)
 		return -1;
 	}
 	
-	anchor = anchor_lump(&_m->add_rm, _m->unparsed - _m->buf, 0, 0);
+	anchor = anchor_lump(_m, _m->unparsed - _m->buf, 0, 0);
 	if (!anchor) {
 		LOG(L_ERR, "append_rpid(): Can't get anchor\n");
 		return -2;

@@ -1,5 +1,5 @@
 /*
- * $Id: record.c,v 1.7 2003/07/13 12:59:06 janakj Exp $
+ * $Id: record.c,v 1.8 2003/10/20 17:10:13 andrei Exp $
  *
  * Route & Record-Route module
  *
@@ -207,8 +207,8 @@ static inline int insert_RR(struct sip_msg* _m, int _lr)
 	}
 
 	if (enable_double_rr) {
-		l = anchor_lump(&_m->add_rm, _m->headers->name.s - _m->buf, 0, 0);
-		l2 = anchor_lump(&_m->add_rm, _m->headers->name.s - _m->buf, 0, 0);
+		l = anchor_lump(_m, _m->headers->name.s - _m->buf, 0, 0);
+		l2 = anchor_lump(_m, _m->headers->name.s - _m->buf, 0, 0);
 		if (!l || !l2) {
 			LOG(L_ERR, "insert_RR(): Error while creating an anchor\n");
 			return -5;
@@ -225,8 +225,8 @@ static inline int insert_RR(struct sip_msg* _m, int _lr)
 		}
 	}
 	
-	l = anchor_lump(&_m->add_rm, _m->headers->name.s - _m->buf, 0, 0);
-	l2 = anchor_lump(&_m->add_rm, _m->headers->name.s - _m->buf, 0, 0);
+	l = anchor_lump(_m, _m->headers->name.s - _m->buf, 0, 0);
+	l2 = anchor_lump(_m, _m->headers->name.s - _m->buf, 0, 0);
 	if (!l || !l2) {
 		LOG(L_ERR, "insert_RR(): Error while creating an anchor\n");
 		return -3;
@@ -300,7 +300,7 @@ int record_route_preset(struct sip_msg* _m, char* _data, char* _s2)
 		from = (struct to_body*)_m->from->parsed;
 	}
 	
-	l = anchor_lump(&_m->add_rm, _m->headers->name.s - _m->buf, 0, 0);
+	l = anchor_lump(_m, _m->headers->name.s - _m->buf, 0, 0);
 	if (!l) {
 		LOG(L_ERR, "record_route_preset(): Error while creating an anchor\n");
 		return -3;

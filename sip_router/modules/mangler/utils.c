@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: utils.c,v 1.3 2003/05/20 17:30:39 andrei Exp $
+ * $Id: utils.c,v 1.4 2003/10/20 17:10:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,7 +55,7 @@ patch (struct sip_msg *msg, char *oldstr, unsigned int oldlen, char *newstr,
 	off = oldstr - msg->buf;
 	if (off < 0)
 		return -3;
-	if ((anchor = del_lump (&msg->add_rm, off, oldlen, 0)) == 0)
+	if ((anchor = del_lump (msg, off, oldlen, 0)) == 0)
 	{
 		LOG (L_ERR, "ERROR: patch: error lumping with del_lump\n");
 		return -4;
