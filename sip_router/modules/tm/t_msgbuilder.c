@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.30 2003/05/09 13:44:47 andrei Exp $
+ * $Id: t_msgbuilder.c,v 1.31 2003/06/29 22:28:03 jiri Exp $
  *
  * message printing
  *
@@ -245,7 +245,9 @@ static inline int assemble_via(str* dest, struct cell* t, struct socket_info* so
 	branch_str.s = branch_buf;
 	branch_str.len = len;
 
+#ifdef XL_DEBUG
 	printf("!!!proto: %d\n", sock->proto);
+#endif
 
 	via = via_builder(&via_len, sock, &branch_str, 0, sock->proto);
 	if (!via) {
