@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.h,v 1.5 2003/10/24 20:35:35 janakj Exp $ 
+ * $Id: utils.h,v 1.6 2003/11/17 21:41:56 janakj Exp $ 
  *
  * MySQL module utilities
  *
@@ -34,9 +34,6 @@
 #include <time.h>
 
 
-char* trim(char* _s);
-
-
 /*
  * Convert time_t structure to format accepted by MySQL database
  */
@@ -50,10 +47,13 @@ time_t mysql2time(const char* _str);
 
 
 /*
- * SQL URL parser
+ * Parse a mysql database URL of form 
+ * mysql://[username[:password]@]hostname[:port]/database
+ *
+ * Returns 0 if parsing was sucessful and -1 otherwise
  */
-int parse_sql_url(char* _url, char** _user, char** _pass, 
-		  char** _host, char** _port, char** _db);
+int parse_mysql_url(char* _url, char** _user, char** _pass,
+		    char** _host, char** _port, char** _db);
 
 
 #endif /* UTILS_H */
