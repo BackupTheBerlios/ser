@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.42 2004/01/18 16:15:33 janakj Exp $
+ * $Id: msg_parser.h,v 1.43 2004/05/03 16:35:14 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -248,6 +248,8 @@ extern int via_cnt;
 int parse_msg(char* buf, unsigned int len, struct sip_msg* msg);
 
 int parse_headers(struct sip_msg* msg, int flags, int next);
+
+char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr);
 
 void free_sip_msg(struct sip_msg* msg);
 
