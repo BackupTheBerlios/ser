@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.34 2001/12/06 20:32:32 bogdan Exp $
+ * $Id: h_table.c,v 1.35 2001/12/06 23:00:24 jku Exp $
  */
 
 
@@ -128,19 +128,18 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 
     /* do we have the source for the build process? */
    if (!p_msg)
-      return 0;
+      return NULL;
 
    /* allocs a new cell */
    new_cell = (struct cell*)sh_malloc( sizeof( struct cell ) );
    if  ( !new_cell )
-      return 0;
+      return NULL;
 
    /* filling with 0 */
    memset( new_cell, 0, sizeof( struct cell ) );
    /* hash index of the entry */
    new_cell->hash_index = hash( p_msg->callid->body , get_cseq(p_msg)->number );
    /* mutex */
-   init_cell_lock(  new_cell );
    /* ref counter is 0 */
    /* all pointers from timers list tl are NULL */
    new_cell->wait_tl.payload = new_cell;
@@ -148,8 +147,11 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 
    /* inbound request */
    /* force parsing all the needed headers*/
-   parse_headers(p_msg, HDR_EOH );
+   if (parse_headers(p_msg, HDR_EOH )==-1)
+	goto error;
    new_cell->inbound_request =  sip_msg_cloner(p_msg) ;
+   if (!new_cell->inbound_request)
+	goto error;
    /* inbound response is NULL*/
    /* status is 0 */
    /* tag pointer is NULL */
@@ -162,7 +164,13 @@ struct cell*  build_cell( struct sip_msg* p_msg )
    new_cell->T_canceled  = T_UNDEFINED;
    new_cell->T_canceler  = T_UNDEFINED;
 
+   init_cell_lock(  new_cell );
+
    return new_cell;
+
+error:
+	sh_free(new_cell);
+	return NULL;
 }
 
 
