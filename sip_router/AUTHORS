@@ -1,4 +1,4 @@
-# $Id: AUTHORS,v 1.9 2003/03/17 10:57:06 dcm Exp $
+# $Id: AUTHORS,v 1.10 2003/08/27 16:18:07 calrissian Exp $
 # The format of this file was inspired by the Linux kernel CREDITS file.
 # 
 # Authors and contributors are listed alphabetically (first name).
@@ -42,7 +42,7 @@ D:
 
 N: Nils Ohlmeier
 C: calrissian, noh
-E: nils@ohlmeier.de
+E: nils@iptel.org
 W: http://www.ohlmeier.org
 P: BAD6CA40   B5E7 4FB0 800F 0A2C E3E9  4073 C7C3 F275 BAD6 CA40
 D:
