@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.19 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_param.c,v 1.20 2004/09/01 11:56:58 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -77,6 +77,15 @@ static inline void parse_contact_class(param_hooks_t* _h, param_t* _p)
 		if ((_p->name.len == 6) &&
 		    (!strncasecmp(_p->name.s + 1, "ethod", 5))) {
 			_p->type = P_METHOD;
+			_h->contact.method = _p;
+		}
+		break;
+		
+	case 'r':
+	case 'R':
+		if ((_p->name.len == 8) &&
+		    (!strncasecmp(_p->name.s + 1, "eceived", 7))) {
+			_p->type = P_RECEIVED;
 			_h->contact.method = _p;
 		}
 		break;
@@ -465,6 +474,7 @@ static inline void print_param(FILE* _o, param_t* _p)
 	case P_R2:        type = "P_R2";        break;
 	case P_MADDR:     type = "P_MADDR";     break;
 	case P_TTL:       type = "P_TTL";       break;
+	case P_RECEIVED:  type = "P_RECEIVED";  break;
 	default:          type = "UNKNOWN";     break;
 	}
 	
