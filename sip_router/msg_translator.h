@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.7 2001/12/07 00:09:42 bogdan Exp $
+/*$Id: msg_translator.h,v 1.8 2001/12/07 02:12:23 jku Exp $
  * 
  */
 
@@ -24,6 +24,7 @@ char* via_builder( struct sip_msg *msg ,
 									unsigned int *len );
 
 
+char* via_builder( struct sip_msg *msg , unsigned int *len );
 
 
 #endif
