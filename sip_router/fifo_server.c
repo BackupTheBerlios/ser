@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.10 2002/08/31 17:26:12 jku Exp $
+ * $Id: fifo_server.c,v 1.11 2002/09/02 22:19:12 jku Exp $
  *
  * Fifo server is a very powerful tool used to access easily
  * ser's internals via textual interface, similarly to
@@ -370,6 +370,10 @@ int open_fifo_server()
 	if (fifo==NULL) {
 		DBG("TM: open_uac_fifo: no fifo will be opened\n");
 		/* everything is ok, we just do not want to start */
+		return 1;
+	}
+	if (strlen(fifo)==0) {
+		DBG("TM: open_uac_fifo: fifo disabled\n");
 		return 1;
 	}
 	DBG("TM: open_uac_fifo: opening fifo...\n");
