@@ -1,5 +1,5 @@
 <html>
-<!-- $Id: click_to_dial.php,v 1.1 2002/08/27 10:10:12 jku Exp $ -->
+<!-- $Id: click_to_dial.php,v 1.2 2002/08/27 23:32:42 jku Rel $ -->
 <header>
 <title>
 Click-To-Dial
@@ -35,7 +35,7 @@ $fifo_cmd=":t_uac:".$myfilename."\n".
     "REFER\n".$caller."\n".
     "p-version: ".$signature."\n".
     "Contact: ".$web_contact."\n".
-    "Refered-By: ".$web_contact."\n".
+    "Referred-By: ".$web_contact."\n".
 	"Refer-To: ".$callee."\n".
     "\n". /* EoHeader */
     ".\n\n"; /* EoFifoRequest */
