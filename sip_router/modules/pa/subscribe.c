@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.5 2003/02/28 14:12:26 jiri Exp $
+ * $Id: subscribe.c,v 1.6 2003/03/03 17:52:32 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -308,7 +308,6 @@ static inline int update_presentity(struct sip_msg* _m, struct pdomain* _d, stru
 			return 0;
 		}
 	}
-
 
 	return 0;
 }
