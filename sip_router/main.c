@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.178 2004/03/02 15:19:47 janakj Exp $
+ * $Id: main.c,v 1.179 2004/03/03 09:25:26 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -116,7 +116,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.178 2004/03/02 15:19:47 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.179 2004/03/03 09:25:26 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1146,7 +1146,7 @@ int main(int argc, char** argv)
 #ifdef STATS
 	"s:"
 #endif
-	"f:cp:m:b:l:n:N:rRvdDETVhw:t:u:g:P:i:x";
+	"f:cp:m:b:l:n:N:rRvdDETVhw:t:u:g:P:i:x:";
 	
 	while((c=getopt(argc,argv,options))!=-1){
 		switch(c){
@@ -1272,8 +1272,8 @@ int main(int argc, char** argv)
 			case 'i':
 					fifo=optarg;
 					break;
-		        case 'x':
-				        unixsock_name=optarg;
+			case 'x':
+					unixsock_name=optarg;
 					break;
 			case '?':
 					if (isprint(optopt))
