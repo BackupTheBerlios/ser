@@ -1,5 +1,5 @@
 /* 
- * $Id: timer.h,v 1.7 2002/09/19 12:23:54 jku Rel $
+ * $Id: timer.h,v 1.8 2003/03/12 12:50:02 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,7 +30,6 @@
 #ifndef _PIKE_TIMER_H
 #define _PIKE_TIMER_H
 
-#include "lock.h"
 
 
 struct pike_timer_link {
@@ -42,7 +41,6 @@ struct pike_timer_link {
 struct pike_timer_head {
 	struct pike_timer_link *first;
 	struct pike_timer_link *last;
-	pike_lock              *sem;
 };
 
 void append_to_timer(struct pike_timer_head*, struct pike_timer_link* );

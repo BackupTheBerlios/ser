@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.c,v 1.5 2002/11/20 18:59:57 bogdan Exp $
+ * $Id: ip_tree.c,v 1.6 2003/03/12 12:50:02 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -143,7 +143,6 @@ struct ip_node* add_node(struct ip_node *root,unsigned char *ip,int ip_len,
 			return node;
 		}
 	}
-	return 0;
 }
 
 
