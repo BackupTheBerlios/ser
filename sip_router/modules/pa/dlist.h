@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: dlist.h,v 1.2 2003/11/10 16:00:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -72,7 +72,7 @@ void print_all_pdomains(FILE* _f);
 /*
  * Called from timer
  */
-int timer_all_udomains(void);
+int timer_all_pdomains(void);
 
 
 #endif /* DLIST_H */

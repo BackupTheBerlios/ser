@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.7 2003/11/10 15:56:06 janakj Exp $
+ * $Id: reply.c,v 1.8 2003/11/10 16:00:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -117,7 +117,7 @@ int send_reply(struct sip_msg* _m)
 	}
 	
 	if (code != 200) {
-		ei = build_lump_rpl(error_info[paerrno].s, error_info[paerrno].len, 0);
+		ei = build_lump_rpl(error_info[paerrno].s, error_info[paerrno].len, LUMP_RPL_HDR);
 		add_lump_rpl(_m, ei);
 	}
 
