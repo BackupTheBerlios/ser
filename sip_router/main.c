@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.173 2003/10/29 15:56:15 andrei Exp $
+ * $Id: main.c,v 1.174 2003/11/26 23:43:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -113,7 +113,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.173 2003/10/29 15:56:15 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.174 2003/11/26 23:43:59 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1359,7 +1359,7 @@ try_again:
 		}
 	}
 	if (group){
-		gid=strtol(user, &tmp, 10);
+		gid=strtol(group, &tmp, 10);
 		if ((tmp==0) ||(*tmp)){
 			/* maybe it's a string */
 			gr_entry=getgrnam(group);

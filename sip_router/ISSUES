@@ -1,5 +1,5 @@
 #
-# $Id: ISSUES,v 1.24 2003/11/18 19:34:44 andrei Exp $
+# $Id: ISSUES,v 1.25 2003/11/26 23:43:59 andrei Exp $
 #
 
 This is a collection of issues which have shown up
@@ -7,6 +7,13 @@ since the version 0.8.8 was released. The issues are
 ordered by numbers of ser versions to which they relate,
 beginning with the newest release. Issues related to
 operating systems are summarized in the bottom.
+--------------------------------------------------------------
+Desc: ser crashes on startup if a group is specified (-g or group=)
+Ser version:  <=0.8.12
+Reason:  bad copy & paste :-)
+Patch: http://www.mobile-ip.de/~andrei/ser/main_group.patch
+Workaround: update from cvs or  apply the corresponding patch
+CVS status: fixed
 --------------------------------------------------------------
 Desc: textops search REs like "^From" fails to match on RH8
 Ser version: all
