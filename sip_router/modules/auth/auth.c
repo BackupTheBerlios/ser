@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.7 2002/02/26 17:36:26 janakj Exp $
+ * $Id: auth.c,v 1.8 2002/02/27 10:09:16 janakj Exp $
  */
 
 #include "auth.h"
@@ -233,6 +233,9 @@ static int get_ha1(str* _user, char* _realm, char* _ha1)
 		return -1;
 	}
 
+	if (RES_ROW_N(res) == 0) {
+		return -1;
+	}
         ha1 = ROW_VALUES(RES_ROWS(res))[0].val.string_val;
 	memcpy(_ha1, ha1, strlen(ha1) + 1);
 
