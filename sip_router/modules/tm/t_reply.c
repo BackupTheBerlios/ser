@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.77 2004/02/17 18:49:40 bogdan Exp $
+ * $Id: t_reply.c,v 1.78 2004/02/18 16:24:31 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -59,6 +59,7 @@
  *              to transaction context (jiri)
  *  2003-11-11: build_lump_rpl() removed, add_lump_rpl() has flags (bogdan)
  *  2004-02-13: t->is_invite and t->local replaced with flags (bogdan)
+ *  2004-02-18  fifo_t_reply imported from vm module (bogdan)
  */
 
 

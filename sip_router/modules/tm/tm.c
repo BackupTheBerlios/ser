@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.96 2004/02/17 18:49:40 bogdan Exp $
+ * $Id: tm.c,v 1.97 2004/02/18 16:24:31 bogdan Exp $
  *
  * TM module
  *
@@ -70,6 +70,7 @@
  *  2003-09-26  added t_forward_nonack_uri() - same as t_forward_nonack() but
  *              takes no parameters -> forwards to uri (bogdan)
  *  2004-02-11  FIFO/CANCEL + alignments (hash=f(callid,cseq)) (uli+jiri)
+ *  2004-02-18  t_reply exported via FIFO - imported from VM (bogdan)
  */
 
 
