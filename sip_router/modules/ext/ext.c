@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.8 2003/03/11 13:17:32 janakj Exp $
+ * $Id: ext.c,v 1.9 2003/03/12 12:54:00 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -118,7 +118,7 @@ static int fixup_ext_rewrite(void** param, int param_no)
 
 
 
-inline char *run_ext_prog(char *cmd, char *in, int in_len, int *out_len)
+static  char *run_ext_prog(char *cmd, char *in, int in_len, int *out_len)
 {
 	static char buf[MAX_PIPE_BUFFER_LEN];
 	int len;

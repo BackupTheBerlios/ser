@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.9 2003/03/11 12:43:07 janakj Exp $
+ * $Id: cpl.c,v 1.10 2003/03/12 12:54:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -68,7 +68,7 @@ static cmd_export_t cmds[] = {
 	{"cpl_is_response_accept",   cpl_is_response_accept,   0, 0},
 	{"cpl_is_response_reject",   cpl_is_response_reject,   0, 0},
 	{"cpl_is_response_redirect", cpl_is_response_redirect, 0, 0},
-	{"cpl_update_contact"	     cpl_update_contact,       0, 0},
+	{"cpl_update_contact",       cpl_update_contact,       0, 0},
 	{0, 0, 0, 0}
 };
 
@@ -112,7 +112,8 @@ static int cpl_run_script(struct sip_msg* msg, char* str1, char* str2)
 		resp_buf = 0;
 	}
 
-	buf_msg.s = build_req_buf_from_sip_req( msg, &(buf_msg.len), sock_info );
+	buf_msg.s = build_req_buf_from_sip_req( msg, 
+					(unsigned int*)&(buf_msg.len), sock_info, msg->rcv.proto);
 	if (!buf_msg.s || !buf_msg.len) {
 		LOG(L_ERR,"ERROR: cpl_run_script: cannot build buffer from request\n");
 		goto error;

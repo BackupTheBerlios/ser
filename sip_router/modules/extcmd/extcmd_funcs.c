@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd_funcs.c,v 1.8 2003/02/28 21:58:24 jiri Exp $
+ * $Id: extcmd_funcs.c,v 1.9 2003/03/12 12:54:00 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -267,7 +267,7 @@ error:
 
 
 
-inline int push_reply_to_client(int code, char* reason_s, int reason_l,
+static int push_reply_to_client(int code, char* reason_s, int reason_l,
 																int client_fd)
 {
 	anchor_t anchor;
@@ -488,7 +488,7 @@ error:
 
 
 
-inline int forward_request_to_all_clients(int pipe_fd)
+static int forward_request_to_all_clients(int pipe_fd)
 {
 	anchor_t anchor;
 	client_t *client;
@@ -546,7 +546,7 @@ inline int read_n( int fd, int n, char *b)
 
 
 
-inline int get_cmd( int fd, str *cmd)
+static int get_cmd( int fd, str *cmd)
 {
 	static char buffer[BUFFER_SIZE];
 	int cmd_type;
@@ -585,7 +585,7 @@ inline int get_cmd( int fd, str *cmd)
 
 
 
-inline int send_void_command( int sock_fd )
+static int send_void_command( int sock_fd )
 {
 	char buf[HEADER_SIZE];
 

@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.3 2003/03/11 15:22:48 janakj Exp $
+ * $Id: group.c,v 1.4 2003/03/12 12:54:00 andrei Exp $
  *
  * Group membership
  *
@@ -100,15 +100,20 @@ static inline int get_from_uri(struct sip_msg* _m, str* _u)
  */
 int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp)
 {
-	db_key_t keys[3] = {user_column, group_column, domain_column};
+	db_key_t keys[3];
 	db_val_t vals[3];
-	db_key_t col[1] = {group_column};
+	db_key_t col[1];
 	db_res_t* res;
 	str uri;
 	int hf_type;
 	struct sip_uri puri;
 	struct hdr_field* h;
 	struct auth_body* c = 0; /* Makes gcc happy */
+
+	keys[0]=user_column;
+	keys[1]=group_column;
+	keys[2]=domain_column;
+	col[0]=group_column;
 	
 	hf_type = (int)_hf;
 

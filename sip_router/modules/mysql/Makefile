@@ -1,9 +1,11 @@
-# $Id: Makefile,v 1.17 2003/02/24 16:46:11 andrei Exp $
+# $Id: Makefile,v 1.18 2003/03/12 12:54:00 andrei Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
 auto_gen=
 NAME=mysql.so
+
+
 # mysql.h locations (freebsd,openbsd  solaris)
 DEFS +=-I$(LOCALBASE)/include -I$(LOCALBASE)/include/mysql \
 		-I$(LOCALBASE)/mysql/include -I/usr/pkg/include

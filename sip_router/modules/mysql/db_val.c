@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.c,v 1.11 2002/12/02 09:17:45 janakj Exp $ 
+ * $Id: db_val.c,v 1.12 2003/03/12 12:54:00 andrei Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -301,5 +301,5 @@ int val2str(db_val_t* _v, char* _s, int* _len)
 		DBG("val2str(): Unknow data type\n");
 		return -7;
 	}
-	return -8;
+	/*return -8; --not reached*/
 }

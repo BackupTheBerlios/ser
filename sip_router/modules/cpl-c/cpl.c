@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.3 2003/03/11 12:49:04 janakj Exp $
+ * $Id: cpl.c,v 1.4 2003/03/12 12:54:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -73,7 +73,7 @@ static cmd_export_t cmds[] = {
 	{"cpl_is_response_accept",   cpl_is_response_accept,   0, 0},
 	{"cpl_is_response_reject",   cpl_is_response_reject,   0, 0},
 	{"cpl_is_response_redirect", cpl_is_response_redirect, 0, 0},
-	{"cpl_update_contact"	     cpl_update_contact,       0, 0},
+	{"cpl_update_contact",       cpl_update_contact,       0, 0},
 	{0, 0, 0, 0}
 };
 
@@ -81,12 +81,12 @@ static cmd_export_t cmds[] = {
 /*
  * Exported parameters
  */
-static param_export_t cmds[] = {
+static param_export_t params[] = {
 	{"cpl_db",        STR_PARAM, &DB_URL       },
 	{"cpl_table",     STR_PARAM, &DB_TABLE     },
 	{"cache_timeout", INT_PARAM, &cache_timeout},
 	{0, 0, 0}
-}
+};
 
 
 struct module_exports exports = {
