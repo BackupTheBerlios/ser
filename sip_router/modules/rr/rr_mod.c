@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.26 2003/04/03 16:39:30 janakj Exp $
+ * $Id: rr_mod.c,v 1.27 2003/04/04 12:42:24 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -41,7 +41,6 @@
 #include "../../ut.h"
 #include "../../error.h"
 #include "../../mem/mem.h"
-#include "strict.h"
 #include "loose.h"
 #include "record.h"
 
@@ -66,7 +65,6 @@ static cmd_export_t cmds[] = {
 	{"loose_route",          loose_route,         0, 0,         REQUEST_ROUTE},
 	{"record_route",         record_route,        0, 0,         REQUEST_ROUTE},
 	{"record_route_preset",  record_route_preset, 1, str_fixup, REQUEST_ROUTE},
-	{"strict_route",         strict_route,        0, 0,         0            },
 	{"record_route_strict" , record_route_strict, 0, 0,         0            },
 	{0, 0, 0, 0, 0}
 };
