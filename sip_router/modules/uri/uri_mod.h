@@ -1,5 +1,5 @@
 /*
- * $Id: uri_mod.h,v 1.3 2003/02/28 12:18:48 janakj Exp $
+ * $Id: uri_mod.h,v 1.4 2003/03/03 17:52:58 janakj Exp $
  *
  * Various URI related functions
  *
@@ -53,6 +53,8 @@ extern char* uri_uriuser_column;        /* Name of uri_user column in URI table 
 extern char* subscriber_table;          /* Name of subscriber table */
 extern char* subscriber_user_column;    /* Name of user column in subscriber table */
 extern char* subscriber_domain_column;  /* Name of domain column in subscriber table */
+
+extern int use_uri_table ;              /* Whether or not should be uri table used */
 
 extern db_con_t* db_handle;   /* Database connection handle */
 
