@@ -1,3 +1,7 @@
+/*
+ * $Id: mf_funcs.h,v 1.5 2002/05/11 21:28:06 jku Exp $
+ */
+
 #ifndef _MF_FUNCS_H
 #define _MF_FUNCS_H
 

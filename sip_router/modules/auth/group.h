@@ -1,3 +1,7 @@
+/*
+ * $Id: group.h,v 1.2 2002/05/11 21:27:30 jku Exp $
+ */
+
 #ifndef GROUP_H
 #define GROUP_H
 

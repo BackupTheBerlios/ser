@@ -1,8 +1,12 @@
+/*
+ * $Id: cred.h,v 1.3 2002/05/11 21:27:30 jku Exp $
+ */
+
 #ifndef CRED_H
 #define CRED_H
 
 /*
- * $Id: cred.h,v 1.2 2002/02/26 17:36:26 janakj Exp $
+ * $Id: cred.h,v 1.3 2002/05/11 21:27:30 jku Exp $
  */
 
 #include "../../str.h"

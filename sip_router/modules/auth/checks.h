@@ -1,3 +1,7 @@
+/*
+ * $Id: checks.h,v 1.2 2002/05/11 21:27:30 jku Exp $
+ */
+
 #ifndef CHECKS_H
 #define CHECKS_H
 

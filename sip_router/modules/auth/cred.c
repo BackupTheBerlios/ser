@@ -1,3 +1,7 @@
+/*
+ * $Id: cred.c,v 1.9 2002/05/11 21:27:30 jku Exp $
+ */
+
 #include "cred.h"
 #include "defs.h"
 #include "../../dprint.h"

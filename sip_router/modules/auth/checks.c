@@ -1,3 +1,7 @@
+/*
+ * $Id: checks.c,v 1.2 2002/05/11 21:27:30 jku Exp $
+ */
+
 #include "checks.h"
 #include "../../str.h"
 #include "../../dprint.h"

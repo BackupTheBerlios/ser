@@ -1,3 +1,7 @@
+/*
+ * $Id: auth_mod.h,v 1.3 2002/05/11 21:27:30 jku Exp $
+ */
+
 #ifndef auth_mod_h
 #define auth_mod_h
 

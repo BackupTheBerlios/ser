@@ -1,3 +1,7 @@
+/*
+ * $Id: mf_funcs.c,v 1.10 2002/05/11 21:28:06 jku Exp $
+ */
+
 #include <stdlib.h>
 #include <string.h>
 
