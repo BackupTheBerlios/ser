@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.53 2003/08/23 21:17:39 jiri Exp $
+ *  $Id: config.h,v 1.54 2003/10/14 14:49:42 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -151,8 +151,7 @@
 /* buffer dimensions for FIFO server */
 #define MAX_CONSUME_BUFFER 1024
 /* where reply pipes may be opened */
-#define FIFO_DIR "/tmp/"
-#define FIFO_DIR_LEN 5
+#define DEFAULT_FIFO_DIR "/tmp/"
 /* max length of the text of fifo 'print' command */
 #define MAX_PRINT_TEXT 256
 

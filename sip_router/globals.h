@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.36 2003/10/12 15:09:08 andrei Exp $
+ * $Id: globals.h,v 1.37 2003/10/14 14:49:42 andrei Exp $
  *
  * global variables
  *
@@ -110,6 +110,7 @@ extern unsigned int shm_mem_size;
 /* FIFO server config */
 char extern *fifo; /* FIFO name */
 extern int fifo_mode;
+char extern *fifo_dir; /* dir. where  reply fifos are allowed */
 
 /* moved to pt.h
 extern int *pids;
