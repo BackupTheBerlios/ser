@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.42 2003/04/06 20:25:51 janakj Exp $
+ * $Id: jabber.c,v 1.43 2003/04/30 18:56:58 janakj Exp $
  *
  * XJAB module
  *
@@ -72,6 +72,8 @@
 #include "xjab_worker.h"
 #include "xjab_util.h"
 
+
+MODULE_VERSION
 
 /** TM bind */
 struct tm_binds tmb;
