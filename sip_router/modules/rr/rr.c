@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr.c,v 1.11 2002/04/03 23:35:01 janakj Exp $
+ * $Id: rr.c,v 1.12 2002/04/30 23:22:49 janakj Exp $
  */
 
 #include "rr.h"
@@ -45,7 +45,7 @@ int findRouteHF(struct sip_msg* _m)
 		if (_m->route) {
 			return TRUE;
 		} else {
-			LOG(L_ERR, "findRouteHF(): msg->route = NULL\n");
+			DBG("findRouteHF(): msg->route = NULL\n");
 			return FALSE;
 		}
 	}
