@@ -1,5 +1,5 @@
 /*
- * $Id: db_cap.h,v 1.3 2004/09/14 12:49:29 janakj Exp $
+ * $Id: db_cap.h,v 1.4 2005/02/28 18:52:32 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -37,12 +37,13 @@ typedef enum db_cap {
 	DB_CAP_RAW_QUERY = 1 << 1,  /* Database driver can perform raw queries */
 	DB_CAP_INSERT =    1 << 2,  /* Database driver can insert data into database */
 	DB_CAP_DELETE =    1 << 3,  /* Database driver can delete data from database */
-	DB_CAP_UPDATE =    1 << 4   /* Database driver can update data in the database */
+	DB_CAP_UPDATE =    1 << 4,  /* Database driver can update data in the database */
+	DB_CAP_REPLACE =   1 << 5,  /* Replace (also known as INSERT OR UPDATE) support */
 } db_cap_t;
 
 
 /*
- * All database capabilities except raw_query which should be checked
+ * All database capabilities except raw_query and replace which should be checked
  * separately when needed
  */
 #define DB_CAP_ALL (DB_CAP_QUERY | DB_CAP_INSERT | DB_CAP_DELETE | DB_CAP_UPDATE)
