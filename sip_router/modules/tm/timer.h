@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.31 2003/01/21 13:53:48 jiri Exp $
+ * $Id: timer.h,v 1.32 2003/03/31 14:41:55 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,7 +32,6 @@
 #include "defs.h"
 
 #include "lock.h"
-#include "t_funcs.h"
 
 /* timer timestamp value indicating a timer has been 
    deactived and shall not be executed
