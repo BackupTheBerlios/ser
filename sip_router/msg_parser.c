@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.23 2001/11/30 01:03:02 andrei Exp $
+ * $Id: msg_parser.c,v 1.24 2001/12/01 00:40:04 jku Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -673,8 +673,11 @@ error:
 /* note: it continues where it previously stopped and goes ahead until
    end is encountered or desired HFs are found; if you call it twice
    for the same HF which is present only once, it will fail the second
-   time; if you want to use a dumbie convenience function which will
-   give you the header you are interested in, look at check_transaction_quadruple
+   time; if you call it twice and the HF is found on second time too,
+   it's not replaced in the well-known HF pointer but just added to
+   header list; if you want to use a dumbie convenience function which will
+   give you the first occurance of a header you are interested in, 
+   look at check_transaction_quadruple
 */
 int parse_headers(struct sip_msg* msg, int flags)
 {

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.18 2001/11/30 01:03:02 andrei Exp $
+ * $Id: msg_parser.h,v 1.19 2001/12/01 00:40:04 jku Exp $
  */
 
 #ifndef msg_parser_h
@@ -149,6 +149,7 @@ struct sip_msg{
 	struct hdr_field* last_header; /* pointer to the last parsed header*/
 	int parsed_flag;
 	/* via, to, cseq, call-id, from, end of header*/
+	/* first occurance of it; subsequent occurances saved in 'headers' */
 	struct hdr_field* h_via1;
 	struct hdr_field* h_via2;
 	struct hdr_field* callid;
