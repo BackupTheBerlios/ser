@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.29 2003/03/31 19:51:10 andrei Exp $
+ * $Id: msg_parser.c,v 1.30 2003/04/12 20:49:47 jiri Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -486,7 +486,7 @@ int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 			msg->via1->name.s, 
 			msg->via1->version.len,
 			msg->via1->version.s,
-			msg->via1->transport.len 
+			msg->via1->transport.len,
 			msg->via1->transport.s, 
 			msg->via1->host.len,
 			msg->via1->host.s,
