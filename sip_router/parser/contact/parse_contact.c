@@ -1,5 +1,5 @@
 /*
- * $Id: parse_contact.c,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_contact.c,v 1.3 2003/03/25 22:33:56 janakj Exp $
  *
  * Contact header field body parser
  *
@@ -25,16 +25,20 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History:
+ * -------
+ *  2003-03-25 Adapted to use new parameter parser (janakj)
  */
 
-
-#include "parse_contact.h"
+#include <stdio.h>           /* printf */
+#include <string.h>          /* memset */
 #include "../hf.h"     
 #include "../../mem/mem.h"   /* pkg_malloc, pkg_free */
 #include "../../dprint.h"
-#include <stdio.h>           /* printf */
 #include "../../trim.h"      /* trim_leading */
-#include <string.h>          /* memset */
+#include "parse_contact.h"
+
 
 
 static inline int contact_parser(char* _s, int _l, contact_body_t* _c)
