@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.38 2002/06/10 16:42:24 bogdan Exp $
+ * $Id: udp_server.c,v 1.39 2002/08/26 19:41:42 jku Exp $
  */
 
 #include <stdlib.h>
@@ -234,6 +234,30 @@ int udp_send(struct socket_info *source, char *buf, unsigned len,
 {
 
 	int n;
+
+#ifdef DBG_MSG_QA
+	char *space;
+	int my_len;
+
+	if (memchr(buf, 0, len)) {
+		LOG(L_CRIT, "BUG: message being sent with 0 in it\n");
+		abort();
+	}
+	my_len=len;
+	space=buf;
+	while((space=memchr(space, ' ', my_len ))) {
+		/* how much we have after the space */
+		my_len=len-(space-buf)+1;
+		/* EoM -- stop checks */
+		if (my_len<3) break;
+		if (memcmp(space+1, "   ", 3)==0) {
+			LOG(L_CRIT, "BUG(probably): "
+				"message with four spaces in it\n");
+			abort();
+		}
+		space+=3;my_len-=3;
+	}
+#endif
 
 again:
 	n=sendto(source->socket, buf, len, 0, &to->s, tolen);
