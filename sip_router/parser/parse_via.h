@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.h,v 1.8 2003/01/23 18:58:13 andrei Exp $
+ * $Id: parse_via.h,v 1.9 2003/01/27 14:22:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,6 +30,7 @@
  *               Maxim Sobolev  <sobomax@FreeBSD.org>
  *  2003-01-21  added extra via param parsing code (i=...), used
  *               by tcp to identify the sending socket, by andrei
+ *  2003-01-27  added a new member (start) to via_param, by andrei
  */
 
 
@@ -54,7 +55,10 @@ struct via_param {
 	int type;               /* Type of the parameter */
 	str name;               /* Name of the parameter */
 	str value;              /* Value of the parameter */
-	int size;               /* total size*/
+	char* start;            /* Pointer to param start, just after ';',
+							 * (it can be diff. from name.s!) */
+	int size;               /* total size, including preceding and trailing
+							 * white space */
 	struct via_param* next; /* Next parameter in the list */
 };
 
