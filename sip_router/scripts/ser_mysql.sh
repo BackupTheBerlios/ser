@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.6 2002/09/04 13:51:08 jku Exp $
+# $Id: ser_mysql.sh,v 1.7 2002/09/04 19:43:21 jku Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -344,6 +344,19 @@ CREATE TABLE subscriber (
   UNIQUE KEY USER_ID (USER_ID),
   KEY USER_ID_2 (USER_ID)
 ) $TABLE_TYPE;
+
+# add a testing user "tester" with password "tester" so that
+# one can try it out on quick start
+
+INSERT INTO subscriber (USER_ID, PASSWORD, FIRST_NAME, LAST_NAME, PHONE, 
+	EMAIL_ADDRESS, DATETIME_CREATED, DATETIME_MODIFIED, confirmation, 
+	flag, SendNotification, Greeting, HA1, REALM, ha1b, phplib_id) 
+	VALUES ( 'tester', 'tester', 'tester', 'tester', '123', 
+	'jiri@iptel.org', '2002-09-04 19:37:45', '0000-00-00 00:00:00', 
+	'57DaSIPuCm52UNe54LF545750cfdL48OMZfroM53', 'o', '', '', 
+	'5ade512a57ba752c7570eab69da0a330', 'iptel.org', 
+	'506f9b16dbdf420032aeb1e0ad03a108', 'MZfroM53');
+
 
 EOF
 
