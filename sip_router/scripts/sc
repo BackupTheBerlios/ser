@@ -1,6 +1,6 @@
-#!/bin/sh 
+#!/bin/sh
 #
-# $Id: sc,v 1.51 2003/04/30 11:07:21 jiri Exp $
+# $Id: sc,v 1.52 2003/05/26 15:32:01 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.51 $'
+VERSION='$Revision: 1.52 $'
 #### SQL names
 
 # Usr Loc Table
@@ -724,11 +724,15 @@ case $1 in
             exit 1
         fi
 
+		# begin with remove all user's privileges
+		$0 acl revoke $1  > /dev/null 2>&1
+
+		# destroy the user now
         QUERY="delete from $TABLE where $TABLE.$SUBSCRIBER_COLUMN='$1'"
 		sql_query "$QUERY"
 
-		$0 acl revoke $1 > /dev/null 2>&1
-		$0 dul $1   > /dev/null 2>&1
+		# and also all his contacts
+		$0 ul rm $1   > /dev/null 2>&1
         ;;
 			
 	ps)
