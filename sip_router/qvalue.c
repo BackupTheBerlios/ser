@@ -1,5 +1,5 @@
 /*
- * $Id: qvalue.c,v 1.1 2004/04/26 17:11:55 janakj Exp $
+ * $Id: qvalue.c,v 1.2 2005/02/18 18:16:48 janakj Exp $
  *
  * Handling of the q value
  *
@@ -40,7 +40,7 @@
  */
 int str2q(qvalue_t* q, char* s, int len)
 {
-	int i, digits;
+	int i, digits, order;
 
 	     /* States and equivalent regular expressions of input */
 	enum {
@@ -58,6 +58,7 @@ int str2q(qvalue_t* q, char* s, int len)
 	}
 
 	digits = 1;
+	order = 100;
 	for(i = 0; i < len; i++) {
 		switch(state) {
 		case ST_START:
@@ -123,7 +124,8 @@ int str2q(qvalue_t* q, char* s, int len)
 
 		case ST_0_PT:
 			if (s[i] >= '0' && s[i] <= '9') {
-				*q =  s[i] - '0';
+				*q =  (s[i] - '0') * order;
+				order /= 10;
 				state = ST_0_PT_N;
 			} else {
 				return E_Q_INV_CHAR;
@@ -156,8 +158,9 @@ int str2q(qvalue_t* q, char* s, int len)
 
 		case ST_0_PT_N:
 			if (s[i] >= '0' && s[i] <= '9') {
-				if (digits < 3) {
-					*q = *q * 10 + s[i] - '0';
+				if (digits <= 3) {
+					*q += (s[i] - '0') * order;
+					order /= 10;
 					digits++;
 				}
 			} else {
