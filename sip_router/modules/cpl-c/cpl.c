@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.43 2004/01/22 14:45:47 bogdan Exp $
+ * $Id: cpl.c,v 1.44 2004/05/24 10:50:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -471,7 +471,7 @@ static inline int build_userhost(struct sip_uri *uri, str *uh, int flg)
 	uh->s[uh->len++] = '@';
 	memcpy( uh->s+uh->len, uri->host.s, uri->host.len);
 	uh->len += uri->host.len;
-	uh->s[uh->len++] = 0;
+	uh->s[uh->len] = 0;
 	return 0;
 }
 
