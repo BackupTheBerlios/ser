@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.43 2003/04/01 09:14:29 janakj Exp $
+ * $Id: t_fwd.c,v 1.44 2003/04/01 11:59:08 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -423,7 +423,9 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 
 	init_branch_iterator();
 	while((current_uri.s=next_branch( &current_uri.len))) {
-		branch_ret=add_uac( t, p_msg, &current_uri, 0, proxy, proto);
+		branch_ret=add_uac( t, p_msg, &current_uri, 
+				    (p_msg->dst_uri.len) ? (&p_msg->dst_uri) : &current_uri, 
+				    proxy, proto);
 		/* pick some of the errors in case things go wrong;
 		   note that picking lowest error is just as good as
 		   any other algorithm which picks any other negative
