@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.h,v 1.2 2003/03/16 18:05:06 janakj Exp $
+ * $Id: enum_mod.h,v 1.3 2003/03/31 15:53:17 jih Exp $
  *
  * Enum module headers
  *
@@ -31,8 +31,14 @@
 #ifndef ENUM_MOD_H
 #define ENUM_MOD_H
 
+
+#include "../../str.h"
+
+
 /*
- * Module parameters variables
+ * Internal module variables
  */
+extern str suffix;           /* str version of domain_suffix */
+
 
 #endif /* ENUM_MOD_H */

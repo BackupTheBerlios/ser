@@ -1,5 +1,5 @@
 /*
- * $Id: enum.h,v 1.2 2003/03/16 18:05:06 janakj Exp $
+ * $Id: enum.h,v 1.3 2003/03/31 15:53:17 jih Exp $
  *
  * Header file for Enum and E164 related functions
  *
@@ -31,18 +31,24 @@
 #ifndef ENUM_H
 #define ENUM_H
 
+
 #include "../../parser/msg_parser.h"
+
+
+#define MAX_DOMAIN_SIZE 256
 		
+
 /*
  * Check if from user is an e164 number
  */
 int is_from_user_e164(struct sip_msg* _msg, char* _s1, char* _s2);
 
+
 /*
  * Make enum query and if query succeeds, replace current uri with the
  * result of the query
  */
-int enum_query(struct sip_msg* _msg, char* _str1, char* _str2);
+int enum_query(struct sip_msg* _msg, char* _service, char* _str2);
 
 
 #endif /* ENUM_H */
