@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.101 2002/06/11 11:04:01 bogdan Exp $
+# $Id: Makefile.defs,v 1.102 2002/06/12 12:06:49 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -88,6 +88,7 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 -DSILENT_FR \
 	 -DUSE_IPV6 \
 	 -DNOISY_REPLIES -DVERY_NOISY_REPLIES\
+	 -DPINGTEL_TAG_HACK\
  	 #-DUSE_SYNONIM\
 	 #-DNO_DEBUG \
 	 #-DADAPTIVE_WAIT -DADAPTIVE_WAIT_LOOPS=0 \
