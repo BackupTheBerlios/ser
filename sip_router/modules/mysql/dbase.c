@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.35 2004/10/28 23:36:14 danp Exp $ 
+ * $Id: dbase.c,v 1.36 2004/12/02 15:55:25 andrei Exp $ 
  *
  * MySQL module core functions
  *
@@ -231,7 +231,7 @@ db_con_t* db_init(const char* _url)
 	}
 	memset(res, 0, sizeof(db_con_t) + sizeof(struct my_con*));
 
-	(struct my_con*)res->tail = get_connection(_url);
+	res->tail = (unsigned long)get_connection(_url);
 
 	if (!res->tail) {
 		LOG(L_ERR, "db_init(): Could not create a connection\n");
