@@ -1,5 +1,5 @@
 /*
- * $Id: snmp_mod.c,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: snmp_mod.c,v 1.3 2003/03/11 16:09:49 andrei Exp $
  *
  * SNMP Module
  *
@@ -52,6 +52,11 @@
  *   authority in charge of managing the SIP MIB. Maybe convince the 
  *   net-snmp folks to add SIP to their agent?
  */
+/*
+ * History:
+ * --------
+ *  2003-03-11  updated to the new module exports interface (andrei)
+ */
 
 /* ser stuff */
 #include "../../sr_module.h"
@@ -82,57 +87,26 @@ int listen_addr_len;
 static int mod_init(void);
 static void mod_destroy(void);
 
+
+static cmd_export_t cmds[]={
+	{"snmp_register_handler",  (cmd_function)snmp_register_handler, 2, 0},
+	{"snmp_register_row",      (cmd_function)snmp_register_row,     2, 0},
+	{"snmp_register_table",    (cmd_function)snmp_register_table,   2, 0},
+	{"snmp_new_handler",       (cmd_function)snmp_new_handler,      1, 0},
+	{"snmp_free_handler",      (cmd_function)snmp_free_handler,     1, 0},
+	{"snmp_new_obj",           (cmd_function)snmp_new_obj,          1, 0},
+	{"snmp_free_obj",          (cmd_function)snmp_free_obj,         1, 0},
+	{"snmp_start",             (cmd_function)snmp_start,            0, 0},
+	{"snmp_stop",              (cmd_function)snmp_stop,             0, 0},
+	{0,0,0,0}
+};
+
+
 struct module_exports exports = {
 	"snmp",
-	(char*[]){	/* script name of functions exported */
-		"snmp_register_handler",
-		"snmp_register_row",
-		"snmp_register_table",
-		"snmp_new_handler",
-		"snmp_free_handler",
-		"snmp_new_obj",
-		"snmp_free_obj",
-		"snmp_start",
-		"snmp_stop"
-	},
-	(cmd_function[]){	/* the actual function */
-		(cmd_function)snmp_register_handler,
-		(cmd_function)snmp_register_row,
-		(cmd_function)snmp_register_table,
-		(cmd_function)snmp_new_handler,
-		(cmd_function)snmp_free_handler,
-		(cmd_function)snmp_new_obj,
-		(cmd_function)snmp_free_obj,
-		(cmd_function)ser_snmp_start,
-		(cmd_function)ser_snmp_stop
-	},
-	(int[]){	/* number of params for ea function */
-		2,
-		2,
-		2,
-		1,
-		1,
-		1,
-		1,
-		0,
-		0
-	},
-	(fixup_function[]){
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		NULL
-	},
-	9,					/* how many functions */
-	(char*[]){NULL},	/* module parameters */
-	(modparam_t[]){0},	/* module params types */
-	(void*[]){NULL},	/* actual parameters */
-	0,					/* num of parameters */
+	cmds,
+	0,                   /* exported params */
+	
 	mod_init,			/* init function */
 	NULL,				/* responses function, returns yes/no */
 	mod_destroy,		/* module destroy function */
