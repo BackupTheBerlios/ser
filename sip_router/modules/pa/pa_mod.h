@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.3 2003/11/10 15:56:06 janakj Exp $
+ * $Id: pa_mod.h,v 1.4 2004/01/14 14:02:56 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,6 +38,12 @@ extern int timer_interval;
 
 /* TM bind */
 extern struct tm_binds tmb;
+
+/* PA database */
+extern int use_db;
+extern str db_url;
+extern char *presentity_table;
+extern char *watcherinfo_table;
 
 
 #endif /* PA_MOD_H */
