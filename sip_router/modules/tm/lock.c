@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.17 2001/12/08 02:29:14 jku Exp $
+ * $Id: lock.c,v 1.18 2001/12/11 09:30:41 andrei Exp $
  */
 
 
@@ -171,6 +171,7 @@ void lock_cleanup()
 	entry_semaphore = transaction_timer_semaphore = retrasmission_timer_semaphore = 0;
 
 }
+
 
 /* lock sempahore s */
 int lock( ser_lock_t s )

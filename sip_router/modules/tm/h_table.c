@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.40 2001/12/11 07:45:30 andrei Exp $
+ * $Id: h_table.c,v 1.41 2001/12/11 09:30:41 andrei Exp $
  */
 
 
@@ -257,7 +257,7 @@ void ref_cell( struct cell* p_cell)
 {
    lock( p_cell->mutex );
    p_cell->ref_counter++;
-   unlock( p_cell->mutex );
+  unlock( p_cell->mutex );
 }
 
 
