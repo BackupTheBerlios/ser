@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.c,v 1.4 2002/03/01 10:50:28 janakj Exp $ 
+ * $Id: utils.c,v 1.5 2002/03/01 11:01:27 janakj Exp $ 
  */
 
 #include <ctype.h>
@@ -43,7 +43,7 @@ char* find_not_quoted(char* _b, char _c)
 /*
  * Remove any leading spaces and tabs
  */
-static inline char* trim_leading(char* _s)
+inline char* trim_leading(char* _s)
 {
 #ifdef PARANOID
 	if (!_s) return NULL;
@@ -57,7 +57,7 @@ static inline char* trim_leading(char* _s)
 /*
  * Remove any trailing spaces and tabs
  */
-static inline char* trim_trailing(char* _s)
+inline char* trim_trailing(char* _s)
 {
 	int len;
 	char* end;
