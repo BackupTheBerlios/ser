@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.14 2003/03/16 20:27:55 janakj Exp $
+/* $Id: sr_module.h,v 1.15 2003/03/19 23:46:09 janakj Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -57,6 +57,7 @@ typedef enum {
 
 
 #define REQUEST_ROUTE 1         /* Function can be used in request route blocks */
+#define REPLY_ROUTE 2           /* Function can be used in reply route blocks */
 
 struct cmd_export_ {
 	char* name;             /* null terminated command name */
@@ -114,7 +115,7 @@ struct sr_module* modules; /* global module list*/
 int register_builtin_modules();
 int register_module(struct module_exports*, char*,  void*);
 int load_module(char* path);
-cmd_function find_export(char* name, int param_no);
+cmd_function find_export(char* name, int param_no, int flags);
 struct sr_module* find_module(void *f, cmd_export_t** cmd);
 void destroy_modules();
 int init_child(int rank);
