@@ -1,6 +1,6 @@
-/* $Id: sr_module.c,v 1.35 2003/10/24 21:03:14 janakj Exp $
+/* $Id: sr_module.c,v 1.36 2004/08/24 08:45:10 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /* 
- * $Id: re.c,v 1.8 2004/04/28 18:49:36 jiri Exp $
+ * $Id: re.c,v 1.9 2004/08/24 08:45:10 janakj Exp $
  *
  * regexp and regexp substitutions implementations
  * 
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -326,7 +326,7 @@ static int replace_build(char* match, int nmatch, regmatch_t* pmatch,
 	
 	rpl->len=replace_len(match, nmatch, pmatch, se, msg);
 	if (rpl->len==0){
-		rpl->s=0; /* emtpy string */
+		rpl->s=0; /* empty string */
 		return 0;
 	}
 	rpl->s=pkg_malloc(rpl->len);

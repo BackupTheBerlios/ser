@@ -1,9 +1,9 @@
-/* $Id: sr_module.h,v 1.21 2004/03/12 14:15:22 bogdan Exp $
+/* $Id: sr_module.h,v 1.22 2004/08/24 08:45:10 janakj Exp $
  *
- * modules/plugin strtuctures declarations
+ * modules/plug-in structures declarations
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -108,7 +108,7 @@ struct module_exports{
 	param_export_t* params;         /* null terminated array of the exported
 									   module parameters */
 
-	init_function init_f;           /* Initilization function */
+	init_function init_f;           /* Initialization function */
 	response_function response_f;   /* function used for responses,
 									   returns yes or no; can be null */
 	destroy_function destroy_f;     /* function called when the module should

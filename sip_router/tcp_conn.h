@@ -1,7 +1,7 @@
 /*
- * $Id: tcp_conn.h,v 1.21 2003/11/29 21:15:32 andrei Exp $
+ * $Id: tcp_conn.h,v 1.22 2004/08/24 08:45:10 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -84,7 +84,7 @@ struct tcp_req{
 	struct tcp_req* next;
 	/* sockaddr ? */
 	char buf[TCP_BUF_SIZE+1]; /* bytes read so far (+0-terminator)*/
-	char* start; /* where the message starts, after alll the empty lines are
+	char* start; /* where the message starts, after all the empty lines are
 					skipped*/
 	char* pos; /* current position in buf */
 	char* parsed; /* last parsed position */

@@ -1,7 +1,7 @@
 /*
- * $Id: db.c,v 1.15 2004/08/04 14:26:24 janakj Exp $
+ * $Id: db.c,v 1.16 2004/08/24 08:45:12 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

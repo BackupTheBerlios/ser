@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#$Id: ccver.sh,v 1.2 2004/07/27 13:45:25 andrei Exp $
+#$Id: ccver.sh,v 1.3 2004/08/24 08:45:10 janakj Exp $
 #
 # finds CC version and prints it in the following format:
 # compiler_name version major_version
@@ -76,7 +76,7 @@ if [ -z "$NAME" ]
 then
 	NAME="unknown"
 	VER="unknown"
-	MAJOR_VER="unkown"
+	MAJOR_VER="unknown"
 fi
 
 

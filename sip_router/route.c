@@ -1,10 +1,10 @@
 /*
- * $Id: route.c,v 1.40 2003/10/21 23:28:46 andrei Exp $
+ * $Id: route.c,v 1.41 2004/08/24 08:45:10 janakj Exp $
  *
  * SIP routing engine
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

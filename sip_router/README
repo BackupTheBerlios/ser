@@ -1,4 +1,4 @@
-$Id: README,v 1.10 2003/01/05 20:14:56 jiri Exp $
+$Id: README,v 1.11 2004/08/24 08:45:10 janakj Exp $
 
 
              iptel.org SIP Express Router (ser)
@@ -10,7 +10,7 @@ I.   About SIP Express Router (ser)
 II.  Feature List
 III. About iptel.org
 IV.  Obtaining Help
-V.   Contact, Licencing and More Information
+V.   Contact, Licensing and More Information
 
 
  SIP Express Router (SER) is an industrial-strength, free VoIP 

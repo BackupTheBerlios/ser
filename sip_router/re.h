@@ -1,9 +1,9 @@
 /*
- * $Id: re.h,v 1.3 2003/11/20 21:01:10 andrei Exp $
+ * $Id: re.h,v 1.4 2004/08/24 08:45:10 janakj Exp $
  *
  * regexp and regexp substitutions implementations
  * 
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

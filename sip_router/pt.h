@@ -1,11 +1,11 @@
 /*
- * $Id: pt.h,v 1.9 2004/03/03 08:30:27 andrei Exp $
+ * $Id: pt.h,v 1.10 2004/08/24 08:45:10 janakj Exp $
  *
  * Process Table
  *
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -88,7 +88,7 @@ inline static int process_count()
 }
 
 
-/* retun processes's pid */
+/* return processes pid */
 inline static int my_pid()
 {
 	return pt ? pt[process_no].pid : getpid();

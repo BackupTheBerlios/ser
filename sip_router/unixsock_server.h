@@ -1,9 +1,9 @@
 /*
- * $Id: unixsock_server.h,v 1.6 2004/03/09 11:10:59 janakj Exp $
+ * $Id: unixsock_server.h,v 1.7 2004/08/24 08:45:10 janakj Exp $
  *
  * UNIX Domain Socket Server
  *
- * Copyright (C) 2001-2004 Fhg Fokus
+ * Copyright (C) 2001-2004 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,7 +1,7 @@
 /*
- * $Id: dbexample.c,v 1.11 2004/08/04 14:26:25 janakj Exp $
+ * $Id: dbexample.c,v 1.12 2004/08/24 08:45:12 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -39,7 +39,7 @@
 
 
 /*
- * Dabase module client example
+ * Database module client example
  */
 
 

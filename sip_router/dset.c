@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.8 2004/04/27 14:52:33 janakj Exp $
+ * $Id: dset.c,v 1.9 2004/08/24 08:45:10 janakj Exp $
  *
  * destination set
  *
@@ -72,7 +72,7 @@ static qvalue_t ruri_q = Q_UNSPECIFIED;
 
 
 /*
- * Intialize the branch iterator, the next
+ * Initialize the branch iterator, the next
  * call to next_branch will return the first
  * contact from the dset array
  */

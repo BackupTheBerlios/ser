@@ -1,8 +1,8 @@
 /*
- * $Id: data_lump_rpl.c,v 1.11 2003/12/18 22:45:23 bogdan Exp $
+ * $Id: data_lump_rpl.c,v 1.12 2004/08/24 08:45:10 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -45,7 +45,7 @@ struct lump_rpl* add_lump_rpl(struct sip_msg *msg, char *s, int len, int flags)
 	struct lump_rpl *lump = 0;
 	struct lump_rpl *foo;
 
-	/* some checkings */
+	/* some checking */
 	if ( (flags&(LUMP_RPL_HDR|LUMP_RPL_BODY))==(LUMP_RPL_HDR|LUMP_RPL_BODY)
 	|| (flags&(LUMP_RPL_HDR|LUMP_RPL_BODY))==0 || (flags&LUMP_RPL_SHMEM) ) {
 		LOG(L_ERR,"ERROR:add_lump_rpl: bad flags combination (%d)!\n",flags);

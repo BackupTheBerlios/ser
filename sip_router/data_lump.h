@@ -1,9 +1,9 @@
 /*
- * $Id: data_lump.h,v 1.10 2004/02/23 16:40:49 bogdan Exp $
+ * $Id: data_lump.h,v 1.11 2004/08/24 08:45:10 janakj Exp $
  *
  * adding/removing headers or any other data chunk from a message
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
- * $Id: resolve.h,v 1.22 2004/07/27 13:45:25 andrei Exp $
+ * $Id: resolve.h,v 1.23 2004/08/24 08:45:10 janakj Exp $
  *
  * resolver related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

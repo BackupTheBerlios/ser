@@ -1,9 +1,9 @@
 /*
- * $Id: cfg.lex,v 1.57 2004/08/23 20:47:51 bogdan Exp $
+ * $Id: cfg.lex,v 1.58 2004/08/24 08:45:10 janakj Exp $
  *
  * scanner for cfg files
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -129,7 +129,7 @@ MAX_LEN			"max_len"
 
 /* condition keywords */
 METHOD	method
-/* hack -- the second element in first line is referrable
+/* hack -- the second element in first line is referable
    as either uri or status; it only would makes sense to
    call it "uri" from route{} and status from onreply_route{}
 */

@@ -1,9 +1,9 @@
 /*
- *$Id: ut.h,v 1.31 2004/04/27 14:51:13 janakj Exp $
+ *$Id: ut.h,v 1.32 2004/08/24 08:45:10 janakj Exp $
  *
  * - various general purpose functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -303,9 +303,9 @@ inline static int hex2int(char hex_digit)
    shorter (if escaped characters occur) or same-long
    as the original one).
 
-   only printeable characters are permitted
+   only printable characters are permitted
 
-	<0 is returned on an uneascaping error, length of the
+	<0 is returned on an unescaping error, length of the
 	unescaped string otherwise
 */
 inline static int un_escape(str *user, str *new_user ) 

@@ -1,7 +1,7 @@
 /*
- * $Id: usr_avp.c,v 1.8 2004/08/23 20:47:52 bogdan Exp $
+ * $Id: usr_avp.c,v 1.9 2004/08/24 08:45:10 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -194,7 +194,7 @@ inline void get_avp_val(struct usr_avp *avp, int_str *val)
 
 
 
-/* seach functions */
+/* search functions */
 
 inline static struct usr_avp *internal_search_ID_avp( struct usr_avp *avp,
 												unsigned short id)
@@ -307,7 +307,7 @@ inline void destroy_avp_list( struct usr_avp **list )
 {
 	struct usr_avp *avp, *foo;
 
-	DBG("DEBUG:destroy_avp_list: destroing list %p\n",*list);
+	DBG("DEBUG:destroy_avp_list: destroying list %p\n",*list);
 	avp = *list;
 	while( avp ) {
 		foo = avp;
