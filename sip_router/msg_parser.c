@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.33 2002/01/22 15:57:34 andrei Exp $
+ * $Id: msg_parser.c,v 1.34 2002/01/22 16:27:50 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -591,7 +591,11 @@ int parse_headers(struct sip_msg* msg, int flags)
 				if (msg->contact==0) msg->contact=hf;
 				msg->parsed_flag|=HDR_CONTACT;
 				break;
-		        case HDR_ROUTE:
+			case HDR_MAXFORWARDS:
+				if(msg->maxforwards==0) msg->maxforwards=hf;
+				msg->parsed_flag|=HDR_MAXFORWARDS;
+				break;
+			case HDR_ROUTE:
 				if (msg->route==0) msg->route=hf;
 				msg->parsed_flag|=HDR_ROUTE;
 				break;
