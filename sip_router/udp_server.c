@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.67 2004/07/05 15:19:14 andrei Exp $
+ * $Id: udp_server.c,v 1.68 2004/07/24 07:36:39 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -254,8 +254,11 @@ static int setup_mcast_rcvr(int sock, union sockaddr_union* addr)
 		memcpy(&mreq6.ipv6mr_multiaddr, &addr->sin6.sin6_addr, 
 		       sizeof(struct in6_addr));
 		mreq6.ipv6mr_interface = 0;
-		
+#ifdef __OS_linux
 		if (setsockopt(sock, IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, &mreq6,
+#else
+		if (setsockopt(sock, IPPROTO_IPV6, IPV6_JOIN_GROUP, &mreq6,
+#endif
 			       sizeof(mreq6))==-1){
 			LOG(L_ERR, "ERROR: setup_mcast_rcvr: setsockopt:%s\n",
 			    strerror(errno));
