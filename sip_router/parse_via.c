@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.6 2001/11/29 19:30:45 andrei Exp $ 
+ * $Id: parse_via.c,v 1.7 2001/12/03 20:22:07 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -700,7 +700,25 @@ find_value:
 						goto error;
 				}
 				break;
-			
+			case ',':
+				switch(state){
+					case P_VALUE:
+						*tmp=0;
+						param->value.len=tmp-param->value.s;
+						state=F_VIA;
+						goto endofvalue;
+					case P_STRING:
+						case F_LF:
+					case F_CR:
+					case F_CRLF:
+						state=END_OF_HEADER;
+						goto end_via;
+					default:
+						LOG(L_ERR, "ERROR: parse_via: invalid char <%c>"
+								" in state %d\n", state);
+						goto error;
+				}
+				break; /* what to do? */
 			case '"':
 				switch(state){
 					case F_VALUE:

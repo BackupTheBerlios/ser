@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.37 2001/12/03 13:07:13 jku Exp $
+# $Id: Makefile,v 1.38 2001/12/03 20:22:07 andrei Exp $
 #
 # sip_router makefile
 #
@@ -31,16 +31,18 @@ NAME=ser
 # SHM_MEM    compiles in shared mem. support, needed by some modules and
 #            by USE_SHM_MEM
 # PKG_MALLOC uses a faster malloc (exclusive w/ USE_SHM_MEM)
-# USE_SHM_MEM all pkg_malloc => sh_malloc (most mallocs use a common sh. mem.
-#           segment); don't define PKG_MALLOC!
-DEFS=-DTHREAD -DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM -DUSE_SHM_MEM #-DNO_DEBUG 
+# USE_SHM_MEM all pkg_malloc => shm_malloc (most mallocs use a common sh. mem.
+#           segment); don't define PKG_MALLOC if you want this!
+DEFS=-DTHREAD -DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM -DUSE_SHM_MEM \
+	 -DPKG_MALLOC -DNO_DEBUG
+#-DNO_DEBUG 
 #-DPKG_MALLOC
 #-DNO_DEBUG#-DSTATS -DNO_DEBUG 
 #-DNO_LOG
 
 PROFILE=  # -pg #set this if you want profiling
-mode = debug
-#mode = release
+#mode = debug
+mode = release
 
 # platform dependent settings
 
