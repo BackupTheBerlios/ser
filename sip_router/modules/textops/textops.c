@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.35 2004/05/08 22:30:02 jiri Exp $
+/*$Id: textops.c,v 1.36 2004/05/12 10:13:46 jiri Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -105,15 +105,6 @@ static int fixup_substre(void**, int);
 static int str_fixup(void** param, int param_no);
 
 static int mod_init(void);
-/* RFC822-conformant dates format:
-
-   %a -- abbreviated week of day name (locale), %d day of month
-   as decimal number, %b abbreviated month name (locale), %Y
-   year with century, %T time in 24h notation
-*/
-#define TIME_FORMAT "Date: %a, %d %b %Y %H:%M:%S GMT"
-
-
 
 
 static cmd_export_t cmds[]={
