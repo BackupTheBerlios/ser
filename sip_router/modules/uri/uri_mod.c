@@ -1,5 +1,5 @@
 /* 
- * $Id: uri_mod.c,v 1.15 2004/01/14 12:05:14 janakj Exp $ 
+ * $Id: uri_mod.c,v 1.16 2004/02/20 00:28:38 jiri Exp $ 
  *
  * Various URI related functions
  *
@@ -32,6 +32,7 @@
  *  2003-03-16: flags export parameter added (janakj)
  *  2003-03-19  replaces all mallocs/frees w/ pkg_malloc/pkg_free (andrei)
  *  2003-04-05: default_uri #define used (jiri)
+ *  2004-03-20: has_totag introduced (jiri)
  */
 
 
@@ -104,6 +105,7 @@ static cmd_export_t cmds[] = {
 	{"check_to",       check_to,       0, 0,         REQUEST_ROUTE},
 	{"check_from",     check_from,     0, 0,         REQUEST_ROUTE},
 	{"does_uri_exist", does_uri_exist, 0, 0,         REQUEST_ROUTE},
+	{"has_totag", 	   has_totag,      0, 0,         REQUEST_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
