@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.162 2003/06/11 13:49:44 andrei Exp $
+ * $Id: main.c,v 1.163 2003/06/25 14:23:36 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -103,7 +103,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.162 2003/06/11 13:49:44 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.163 2003/06/25 14:23:36 jiri Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -270,7 +270,7 @@ int tcp_disable = 0; /* 1 if tcp is disabled */
 struct process_table *pt=0;		/*array with childrens pids, 0= main proc,
 									alloc'ed in shared mem if possible*/
 int sig_flag = 0;              /* last signal received */
-int debug = 0;
+int debug = L_NOTICE;
 int dont_fork = 0;
 int log_stderr = 0;
 /* check if reply first via host==us */
@@ -378,7 +378,7 @@ void cleanup(show_status)
 	}
 #endif
 #ifdef SHM_MEM
-	shm_free(pt);
+	if (pt) shm_free(pt);
 	pt=0;
 	if (show_status){
 			LOG(memlog, "Memory status (shm):\n");
