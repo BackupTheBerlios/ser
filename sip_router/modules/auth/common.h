@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.4 2002/12/02 09:17:22 janakj Exp $
+ * $Id: common.h,v 1.5 2002/12/09 00:21:45 janakj Exp $
  *
  * Common function needed by authorize
  * and challenge related functions
@@ -34,6 +34,10 @@
 
 #include "../../parser/msg_parser.h"
 #include "../../str.h"
+#include "defs.h"
+
+
+#define MESSAGE_400 "Bad Request"
 
 
 /*
@@ -47,5 +51,14 @@ int send_resp(struct sip_msg* _m, int _code, char* _reason, char* _hdr, int _hdr
  */
 int get_username(str* _s);
 
+
+#ifdef REALM_HACK
+
+/* 
+ * Return parsed To or From, host part of the parsed uri is realm
+ */
+int get_realm(struct sip_msg* _m, struct sip_uri* _u);
+
+#endif
 
 #endif /* COMMON_H */

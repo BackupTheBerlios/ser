@@ -1,5 +1,5 @@
 /* 
- * $Id: defs.h,v 1.11 2002/09/19 12:23:53 jku Rel $ 
+ * $Id: defs.h,v 1.12 2002/12/09 00:21:45 janakj Exp $ 
  *
  * Common definitions
  *
@@ -54,6 +54,12 @@
  * Send algorithm=MD5 in challenge
  */
 #define PRINT_MD5
+
+/*
+ * If defined, realm parameter can be omitted and will
+ * be extracted from SIP message
+ */
+#define REALM_HACK
 
 
 #endif /* DEFS_H */
