@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.41 2003/01/23 12:27:50 jiri Exp $
+ * $Id: cfg.y,v 1.42 2003/01/23 13:37:01 jiri Exp $
  *
  *  cfg grammar
  *
@@ -31,7 +31,6 @@
  * 2003-01-23 mhomed added (jiri)
  */
 
- */
 
 %{
 
