@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.41 2002/08/29 16:43:27 jku Exp $
+ * $Id: udp_server.c,v 1.42 2002/09/03 10:26:02 jku Exp $
  */
 
 #include <stdlib.h>
@@ -299,6 +299,9 @@ qa_passed:
 
 again:
 	n=sendto(source->socket, buf, len, 0, &to->s, tolen);
+#ifdef XL_DEBUG
+	LOG(L_INFO, "INFO: send status: %d\n", n);
+#endif
 	if (n==-1){
 		LOG(L_ERR, "ERROR: udp_send: sendto(sock,%p,%d,0,%p,%d): %s(%d)\n",
 				buf,len,to,tolen,
