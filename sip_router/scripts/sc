@@ -1,6 +1,6 @@
 #!/bin/sh   
 #
-# $Id: sc,v 1.74 2003/12/03 20:07:22 janakj Exp $
+# $Id: sc,v 1.75 2003/12/03 20:20:39 andrei Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -69,7 +69,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.74 $'
+VERSION='$Revision: 1.75 $'
 #### SQL names
 
 # Usr Loc Table
@@ -818,6 +818,7 @@ case $1 in
 			echo "error opening read fifo $path"
 			exit 1
 		fi
+		chmod a+w $path
 		trap "rm $path;  clear; echo sc monitor ^C-ed; exit 1" 2
 		attempt=0
 		if [ "$2" == "" ]; then
