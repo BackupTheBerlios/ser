@@ -1,0 +1,9 @@
+$Id: README,v 1.1 2001/10/04 13:10:07 andrei Exp $
+
+[ under construction :) ]
+
+read INSTALL
+compile & sip_router -h
+
+Example configuration files in ./tests/*.cfg
+
