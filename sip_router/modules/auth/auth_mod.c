@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.11 2002/05/10 00:54:56 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.12 2002/05/10 09:41:39 janakj Exp $ 
  */
 
 #include "auth_mod.h"
@@ -58,9 +58,9 @@ char* sec          = "4e9rhygt90ofw34e8hiof09tg"; /* Secret phrase used to gener
 char* grp_table    = "grp";                       /* Table name where group definitions are stored */
 char* grp_user_col = "user";
 char* grp_grp_col  = "grp";
-int   calc_ha1     = 1;
-int   nonce_expire = 60;
-int   retry_count  = 1;
+int   calc_ha1     = 0;
+int   nonce_expire = 300;
+int   retry_count  = 5;
 
 str secret;
 db_con_t* db_handle;   /* Database connection handle */
