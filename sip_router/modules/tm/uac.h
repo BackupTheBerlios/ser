@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.4 2002/08/26 19:03:25 jku Exp $
+ * $Id: uac.h,v 1.5 2002/09/03 02:40:39 jku Exp $
  *
  */
 
@@ -55,4 +55,5 @@ int t_uac(
 	struct dialog *dlg );
 
 int fifo_uac( FILE *stream, char *response_file );
+int fifo_uac_from( FILE *stream, char *response_file );
 #endif

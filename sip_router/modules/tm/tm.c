@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.54 2002/08/28 21:24:28 jku Exp $
+ * $Id: tm.c,v 1.55 2002/09/03 02:40:39 jku Exp $
  *
  * TM module
  *
@@ -234,6 +234,10 @@ static int mod_init(void)
 		return -1;
 	}
 	if (register_fifo_cmd(fifo_uac, "t_uac", 0)<0) {
+		LOG(L_CRIT, "cannot register fifo uac\n");
+		return -1;
+	}
+	if (register_fifo_cmd(fifo_uac_from, "t_uac_from", 0)<0) {
 		LOG(L_CRIT, "cannot register fifo uac\n");
 		return -1;
 	}
