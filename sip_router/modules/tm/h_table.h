@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.60 2002/09/24 17:23:47 jiri Rel $
+ * $Id: h_table.h,v 1.61 2002/10/18 02:32:14 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -106,7 +106,9 @@ typedef struct ua_server
 	struct sip_msg   *request;
 	struct retr_buf  response;
 	unsigned int     status;
+#ifdef TOTAG
 	str              to_tag;
+#endif
 	unsigned int     isACKed;
 }ua_server_type;
 

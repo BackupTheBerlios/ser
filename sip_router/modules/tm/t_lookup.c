@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.46 2002/09/19 12:23:55 jku Rel $
+ * $Id: t_lookup.c,v 1.47 2002/10/18 02:32:14 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -191,9 +191,11 @@ int t_lookup_request( struct sip_msg* p_msg , int leave_new_locked )
 			/* To only the uri and ... */
 			if (get_to(t_msg)->uri.len!=get_to(p_msg)->uri.len)
 				continue;
+#ifdef TOTAG
 			/* ... its to-tag compared to reply's tag */
 			if (p_cell->uas.to_tag.len!=get_to(p_msg)->tag_value.len)
 				continue;
+#endif
 
 			/* we first skip r-uri and Via and proceed with
 			   content of other header-fields */
@@ -205,12 +207,14 @@ int t_lookup_request( struct sip_msg* p_msg , int leave_new_locked )
 			if (!EQ_STR(from)) continue;
 			if (memcmp(get_to(t_msg)->uri.s, get_to(p_msg)->uri.s,
 				get_to(t_msg)->uri.len)!=0) continue;
+#ifdef TOTAG
 			if (
 #ifdef _BUG
 				p_cell->uas.to_tag.len!=0 /* to-tags empty */ || 
 #endif
 				memcmp(p_cell->uas.to_tag.s, get_to(p_msg)->tag_value.s,
 				p_cell->uas.to_tag.len)!=0) continue;
+#endif
 	
 			/* ok, now only r-uri or via can mismatch; they must match
 			   for non-2xx; if it is a 2xx, we don't try to match
