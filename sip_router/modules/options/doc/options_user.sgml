@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/10/23 15:27:29 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/10/23 15:50:02 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -152,7 +152,7 @@ modparam("options", "support", "100rel")
 	<title>Exported Functions</title>
 	<section>
 	    <title>
-		<function moreinfo="none">opt_reply()</function>
+		<function moreinfo="none">options_reply()</function>
 	    </title>
 	    <para>
 			This function checks if the request method is OPTIONS and
@@ -175,12 +175,12 @@ modparam("options", "support", "100rel")
 			in the function).
 		</para>
 	    <example>
-		<title><function>opt_reply</function> usage</title>
+		<title><function>options_reply</function> usage</title>
 		<programlisting format="linespecific">
 ...
 if (uri==myself) {
 	if ((method==OPTIONS) && (! uri=~"sip:.*[@]+.*")) {
-		opt_reply();
+		options_reply();
 	}
 }
 ...
