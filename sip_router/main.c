@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.194 2004/11/10 21:51:24 andrei Exp $
+ * $Id: main.c,v 1.195 2004/11/30 16:28:23 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -124,7 +124,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.194 2004/11/10 21:51:24 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.195 2004/11/30 16:28:23 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1431,7 +1431,7 @@ try_again:
 	}
 	/* fix routing lists */
 	if ( (r=fix_rls())!=0){
-		fprintf(stderr, "ERROR: error %x while trying to fix configuration\n",
+		fprintf(stderr, "ERROR: error %d while trying to fix configuration\n",
 						r);
 		goto error;
 	};

@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.10 2004/11/09 15:15:11 andrei Exp $
+/* $Id: socket_info.c,v 1.11 2004/11/30 16:28:23 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -360,6 +360,13 @@ int add_listen_iface(char* name, unsigned short port, unsigned short proto,
 		if (list==0){
 			LOG(L_ERR, "ERROR: add_listen_iface: get_sock_info_list failed\n");
 			goto error;
+		}
+		if (port==0){ /* use default port */
+			port=
+#ifdef USE_TLS
+				((c_proto)==PROTO_TLS)?tls_port_no:
+#endif
+				port_no;
 		}
 		if (new_sock2list(name, port, c_proto, flags, list)<0){
 			LOG(L_ERR, "ERROR: add_listen_iface: new_sock2list failed\n");
