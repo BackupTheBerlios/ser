@@ -1,5 +1,5 @@
 /*
- * $Id: db_fifo.c,v 1.13 2004/09/14 12:49:29 janakj Exp $
+ * $Id: db_fifo.c,v 1.14 2004/09/21 14:57:09 rco Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -120,6 +120,7 @@
 
 
 static char   buf[MAX_SIZE_LINE];
+static char   tbl_buf[MAX_SIZE_LINE]; /* current 'table name' buffer */
 static FILE*  rpl;
 static db_con_t*     fifo_db_con=0;
 static db_func_t fifo_dbf;
@@ -705,7 +706,7 @@ int db_fifo( FILE *fifo, char *response_file )
 	}
 
 	/* read the table name */
-	line.s = buf;
+	line.s = tbl_buf;/*buf;*/
 	if (!read_line( line.s, MAX_SIZE_LINE-1, fifo, &line.len) || !line.len) {
 		double_log("Table name expected");
 		goto error1;
