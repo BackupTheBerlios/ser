@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.6 2002/11/28 16:53:03 janakj Exp $
+ * $Id: db.h,v 1.7 2003/10/24 20:33:45 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -128,7 +128,7 @@ typedef int (*db_update_f) (db_con_t* _h, db_key_t* _k, db_op_t* _o, db_val_t* _
 
 
 
-typedef struct db_func{
+typedef struct db_func {
 	db_use_table_f  use_table;   /* Specify table name */
 	db_init_f       init;        /* Initialize dabase connection */
 	db_close_f      close;       /* Close database connection */
@@ -161,7 +161,7 @@ extern db_func_t dbf;
 #define db_update     (dbf.update)
 
 
-int bind_dbmod(void);
+int bind_dbmod(char* mod);
  
 
 #endif /* DB_H */

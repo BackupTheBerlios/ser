@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.h,v 1.5 2003/06/25 16:58:26 janakj Exp $ 
+ * $Id: db_con.h,v 1.6 2003/10/24 20:33:45 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -47,9 +47,6 @@ typedef struct {
 #define CON_CONNECTED(cn)  ((cn)->connected)
 #define CON_TABLE(cn)      ((cn)->table)
 #define CON_TAIL(cn)       ((cn)->tail)
-
-
-int use_table(db_con_t* _h, const char* _t);
 
 
 #endif /* DB_CON_H */
