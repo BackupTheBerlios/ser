@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.59 2001/12/06 13:12:53 bogdan Exp $
+ * $Id: t_funcs.c,v 1.60 2001/12/06 13:42:16 bogdan Exp $
  */
 
 
@@ -161,10 +161,14 @@ int t_lookup_request( struct sip_msg* p_msg, char* foo, char* bar  )
                if ( /*callid length*/ p_cell->inbound_request->callid->body.len == p_msg->callid->body.len )
                   if ( /*cseq length*/ p_cell->inbound_request->cseq->body.len == p_msg->cseq->body.len )
                      /* so far the lengths are the same -> let's check the contents */
-                        if ( /*from*/ !memcmp( p_cell->inbound_request->from->body.s , p_msg->from->body.s , p_msg->from->body.len ) )
-                           if ( /*to*/ !memcmp( p_cell->inbound_request->to->body.s , p_msg->to->body.s , p_msg->to->body.len)  )
-                               if ( /*callid*/ !memcmp( p_cell->inbound_request->callid->body.s , p_msg->callid->body.s , p_msg->callid->body.len ) )
-                                  if ( /*cseq*/ !memcmp( p_cell->inbound_request->cseq->body.s , p_msg->cseq->body.s , p_msg->cseq->body.len ) )
+                        if ( /*from*/ !p_cell->inbound_request->from->body.s || !p_msg->from->body.s ||
+                           !memcmp( p_cell->inbound_request->from->body.s , p_msg->from->body.s , p_msg->from->body.len ) )
+                           if ( /*to*/ !p_cell->inbound_request->callid->body.s || !p_msg->callid->body.s   ||
+                               !memcmp( p_cell->inbound_request->to->body.s , p_msg->to->body.s , p_msg->to->body.len)  )
+                               if ( /*callid*/  !p_cell->inbound_request->callid->body.s || !p_msg->callid->body.s ||
+                                  !memcmp( p_cell->inbound_request->callid->body.s , p_msg->callid->body.s , p_msg->callid->body.len ) )
+                                  if ( /*cseq*/  !p_cell->inbound_request->cseq->body.s || !p_msg->cseq->body.s  ||
+                                     !memcmp( p_cell->inbound_request->cseq->body.s , p_msg->cseq->body.s , p_msg->cseq->body.len ) )
                                      { /* WE FOUND THE GOLDEN EGG !!!! */
                                         DBG("DEBUG: t_lookup_request: non-ACK found\n");
                                         T = p_cell;
