@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.38 2003/10/24 20:23:58 andrei Exp $
+ * $Id: globals.h,v 1.39 2003/10/26 19:17:43 bogdan Exp $
  *
  * global variables
  *
@@ -102,6 +102,7 @@ extern unsigned int shm_mem_size;
 char extern *fifo; /* FIFO name */
 extern int fifo_mode;
 char extern *fifo_dir; /* dir. where  reply fifos are allowed */
+extern char *fifo_db_url;  /* db url used by db_fifo interface */
 
 /* moved to pt.h
 extern int *pids;
