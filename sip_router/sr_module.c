@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.16 2002/08/16 13:26:15 jku Exp $
+/* $Id: sr_module.c,v 1.17 2002/08/29 13:53:33 janakj Exp $
  */
 
 #include "sr_module.h"
@@ -133,7 +133,7 @@ int load_module(char* path)
 	struct module_exports* exp;
 	struct sr_module* t;
 	
-	handle=dlopen(path, RTLD_NOW | RTLD_GLOBAL); /* resolve all symbols now */
+	handle=dlopen(path, RTLD_NOW); /* resolve all symbols now */
 	if (handle==0){
 		LOG(L_ERR, "ERROR: load_module: could not open module <%s>: %s\n",
 					path, dlerror() );
