@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.124 2002/09/04 20:46:52 andrei Exp $
+# $Id: Makefile.defs,v 1.125 2002/09/05 15:35:44 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -102,7 +102,7 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 -DSHM_MEM  -DSHM_MMAP \
 	 -DADAPTIVE_WAIT -DADAPTIVE_WAIT_LOOPS=1024 \
 	 -DUSE_IPV6 \
-	 -DF_MALLOC \
+	 # -DF_MALLOC \
 	 #-DEXTRA_DEBUG \
 	 #-DDBG_QM_MALLOC \
 	 #-DVQ_MALLOC  
