@@ -1,7 +1,7 @@
 /*
  * Radius Accounting module
  *
- * $Id: acc_mod.c,v 1.2 2002/08/29 15:13:41 ssi Exp $
+ * $Id: acc_mod.c,v 1.3 2002/09/03 14:05:46 ssi Exp $
  */
 
 #include <stdio.h>
@@ -20,7 +20,7 @@
 #include <radiusclient.h>
 
 /* Defines for radiusclient library */
-#define CONFIG_FILE 	 "/home/ssi/work/client/radiusclient.conf"
+#define CONFIG_FILE 	 "etc/radiusclient.conf"
 
 struct tm_binds tmb;
 
