@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.44 2003/11/11 15:32:36 andrei Exp $
+ * $Id: fifo_server.c,v 1.45 2003/11/30 23:51:07 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -538,6 +538,7 @@ int open_fifo_server()
 {
 	char *t;
 	struct stat filestat;
+	int n;
 #ifdef USE_TCP
 	int sockfd[2];
 #endif
@@ -552,17 +553,19 @@ int open_fifo_server()
 		return 1;
 	}
 	DBG("DBG: open_uac_fifo: opening fifo...\n");
-	if (stat(fifo, &filestat)==0){
+	n=stat(fifo, &filestat);
+	if (n==0){
 		/* FIFO exist, delete it (safer) */
 		if (unlink(fifo)<0){
 			LOG(L_ERR, "ERROR: open_fifo_server: cannot delete old fifo (%s):"
 					" %s\n", fifo, strerror(errno));
 			return -1;
-			}
 		}
-		/* create FIFO ... */
+	}else if (n<0 && errno!=ENOENT){
 		LOG(L_DBG, "DEBUG: open_fifo_server: FIFO stat failed: %s\n",
 			strerror(errno));
+	}
+		/* create FIFO ... */
 		if ((mkfifo(fifo, fifo_mode)<0)) {
 			LOG(L_ERR, "ERROR: open_fifo_server; can't create FIFO: "
 					"%s (mode=%d)\n",
