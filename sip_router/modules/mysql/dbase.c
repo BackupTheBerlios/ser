@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.24 2004/01/26 12:46:15 janakj Exp $ 
+ * $Id: dbase.c,v 1.25 2004/01/26 13:10:35 janakj Exp $ 
  *
  * MySQL module core functions
  *
@@ -224,7 +224,6 @@ void db_close(db_con_t* _h)
 	}
 
 	release_connection((struct my_con*)_h->tail);
-	if (CON_TABLE(_h)) pkg_free(CON_TABLE(_h));
 	pkg_free(_h);
 }
 
