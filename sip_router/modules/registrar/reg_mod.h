@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.8 2003/11/06 19:13:42 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.9 2004/02/06 20:26:49 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -40,6 +40,7 @@ extern int append_branches;
 extern int case_sensitive;
 extern int desc_time_order;
 extern int nat_flag;
+extern int min_expires;
 
 extern float def_q;
 
