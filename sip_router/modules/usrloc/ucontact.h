@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.16 2004/10/04 13:19:43 janakj Exp $ 
+ * $Id: ucontact.h,v 1.17 2004/11/14 22:21:31 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -40,6 +40,8 @@
 #include <time.h>
 #include "../../qvalue.h"
 #include "../../str.h"
+
+
 
 typedef enum cstate {
 	CS_NEW,        /* New contact - not flushed yet */

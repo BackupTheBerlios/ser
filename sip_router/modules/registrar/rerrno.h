@@ -1,5 +1,5 @@
 /*
- * $Id: rerrno.h,v 1.6 2004/08/24 09:00:37 janakj Exp $
+ * $Id: rerrno.h,v 1.7 2004/11/14 22:21:31 janakj Exp $
  *
  * Registrar errno
  *
@@ -57,7 +57,8 @@ typedef enum rerr {
 	R_STAR_CONT,  /* star and more contacts */
 	R_OOO,        /* Out-Of-Order request */
 	R_RETRANS,    /* Request is retransmission */
-	R_UNESCAPE    /* Error while unescaping username */
+	R_UNESCAPE,   /* Error while unescaping username */
+	R_TOO_MANY    /* Too many contacts */
 } rerr_t;
 
 

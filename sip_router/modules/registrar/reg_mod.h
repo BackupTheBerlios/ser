@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.16 2004/11/04 18:26:01 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.17 2004/11/14 22:21:31 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -51,6 +51,8 @@ extern float def_q;
 
 extern str rcv_param;
 extern int_str rcv_avp;
+extern int max_contacts;
+extern int retry_after;
 
 usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
 
