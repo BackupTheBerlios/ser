@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.108 2004/03/05 17:06:40 janakj Exp $
+ * $Id: tm.c,v 1.109 2004/03/05 18:37:20 janakj Exp $
  *
  * TM module
  *
@@ -264,7 +264,7 @@ static param_export_t params[]={
 	{"retr_timer2",           INT_PARAM, &(timer_id2timeout[RT_T2])             },
 	{"noisy_ctimer",          INT_PARAM, &noisy_ctimer                          },
 	{"uac_from",              STR_PARAM, &uac_from                              },
-	{"unix_send_timeout",     INT_PARAM, &unix_send_timeout                     },
+	{"unix_tx_timeout",       INT_PARAM, &tm_unix_tx_timeout                    },
 	{0,0,0}
 };
 

@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.h,v 1.4 2004/03/03 16:03:53 janakj Exp $
+ * $Id: t_fifo.h,v 1.5 2004/03/05 18:37:20 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,7 +36,7 @@
 
 #include "../../parser/msg_parser.h"
 
-extern int unix_send_timeout;
+extern int tm_unix_tx_timeout;
 
 int init_twrite_lines();
 
