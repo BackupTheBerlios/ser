@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.1 2002/08/15 08:13:29 jku Exp $
+ * $Id: fifo_server.c,v 1.2 2002/08/16 23:21:13 jku Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -294,7 +294,8 @@ int open_fifo_server()
 				strerror(errno));
 			return -1;
 		}
-		LOG(L_INFO, "SER: open_uac_fifo: fifo server up...\n");
+		LOG(L_INFO, "SER: open_uac_fifo: fifo server up at %s...\n",
+			fifo);
 		fifo_server( fifo_stream ); /* never retruns */
 	}
 	/* dad process */
