@@ -1,3 +1,9 @@
+/*
+ * Route & Record-Route module
+ *
+ * $Id: rr.h,v 1.3 2002/01/16 15:12:41 janakj Exp $
+ */
+
 #ifndef __RR_H__
 #define __RR_H__
 

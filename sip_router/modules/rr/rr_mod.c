@@ -1,3 +1,9 @@
+/*
+ * Route & Record-Route module
+ *
+ * $Id: rr_mod.c,v 1.3 2002/01/16 15:12:41 janakj Exp $
+ */
+
 #include "../../sr_module.h"
 #include <stdio.h>
 #include "utils.h"
