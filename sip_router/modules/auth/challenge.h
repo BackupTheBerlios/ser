@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.h,v 1.2 2002/09/19 12:23:53 jku Rel $
+ * $Id: challenge.h,v 1.3 2003/03/06 15:32:39 janakj Exp $
  *
  * Challenge related functions
  *
@@ -46,4 +46,10 @@ int www_challenge(struct sip_msg* _msg, char* _realm, char* _str2);
 int proxy_challenge(struct sip_msg* _msg, char* _realm, char* _str2);
 
 
-#endif /* CHALLENGE_H */
+/*
+ * Remove used credentials from a SIP message header
+ */
+int consume_credentials(struct sip_msg* _m, char* _s1, char* _s2);
+
+
+#endif /* AUTH_H */
