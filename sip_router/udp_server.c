@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.57 2003/02/10 15:49:40 andrei Exp $
+ * $Id: udp_server.c,v 1.58 2003/02/10 16:20:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -319,7 +319,7 @@ int udp_rcv_loop()
 			else goto error;
 		}
 		/* we must 0-term the messages, receive_msg expects it */
-		buf[len+1]=0; /* no need to save the previous char */
+		buf[len]=0; /* no need to save the previous char */
 
 #ifndef NO_ZERO_CHECKS
 		if (len==0) {

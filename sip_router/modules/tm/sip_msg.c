@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.60 2003/01/29 19:24:10 jiri Exp $
+ * $Id: sip_msg.c,v 1.61 2003/02/10 16:20:00 andrei Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -54,7 +54,7 @@
 
 
 /* rounds to the first 4 byte multiple on 32 bit archs 
- * and to the first 8 byte mutlipe on 64 bit archs */
+ * and to the first 8 byte multipe on 64 bit archs */
 #define ROUND4(s) \
 	(((s)+(sizeof(char*)-1))&(~(sizeof(char*)-1)))
 
