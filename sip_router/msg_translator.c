@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.45 2002/05/26 21:38:02 andrei Exp $
+/* $Id: msg_translator.c,v 1.46 2002/05/27 00:30:03 noh Exp $
  *
  */
 
@@ -92,7 +92,7 @@ int check_address(struct ip_addr* ip, char *name, int resolver)
 char* via_builder( struct sip_msg *msg , unsigned int *len, 
 					struct socket_info* send_sock )
 {
-	unsigned int  via_len, branch_len, extra_len;;
+	unsigned int  via_len, branch_len, extra_len;
 	char               *line_buf;
 
 	line_buf=0;
