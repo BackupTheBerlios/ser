@@ -1,4 +1,4 @@
-<!-- $Id: seruser.sgml,v 1.25 2003/01/23 12:27:50 jiri Exp $ -->
+<!-- $Id: seruser.sgml,v 1.26 2003/01/23 20:42:12 jiri Exp $ -->
 <!-- DOCTYPE Book SYSTEM "/usr/share/sgml/docbook/dtd-4.2/docbook.dtd" [ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN" [ 
 
@@ -98,7 +98,7 @@
 	    This documentation is continuously updated. For the latest  
 	    version visit our site at 
 	    <ulink url="http://www.iptel.org/ser/">http://www.iptel.org/ser</ulink>.
-	    $Revision: 1.25 $.
+	    $Revision: 1.26 $.
 	</releaseinfo>
     </bookinfo>
 
@@ -2241,6 +2241,31 @@ warning: IP extract from warning activated to be more informational
 		    </para>
 		</answer>
 	    </qandaentry>
+		<qandaentry>
+			<question>
+				<para>
+					Logging
+				</para>
+			</question>
+			<answer>
+				<para>
+					<application>ser</application> by default logs
+					to <application>syslog</application> facility.
+					It is very useful to watch log messages for
+					abnormal behaviour. Log messages, subject to
+					<application>syslog</application> configuration
+					may be stored at different files, or even at remote
+					systems. A typical location of the log file is
+					<filename>/var/log/messages</filename>.
+				</para>
+				<para>
+					One can also use other <application>syslogd</application>
+					implementation. <application>metalog</application>
+					features regular expression matching that enables
+					to filter and group log messages.
+				</para>
+			</answer>
+		</qandaentry>
 	    <qandaentry>
 		<question>
 		    <para>
