@@ -1,5 +1,5 @@
 /* 
- * $Id: c_elem.c,v 1.4 2002/03/05 14:36:03 janakj Exp $ 
+ * $Id: c_elem.c,v 1.5 2002/03/08 05:04:54 bogdan Exp $ 
  */
 
 #include "c_elem.h"
@@ -61,7 +61,7 @@ void print_element(c_elem_t* _el)
 	}
 #endif
 
-	printf("Nothing to print right now\n");
-	printf("location:\n");
+	DBG("usr_loc: Nothing to print right now\n");
+	DBG("usr_loc: location:\n");
 	print_location(_el->loc);
 }

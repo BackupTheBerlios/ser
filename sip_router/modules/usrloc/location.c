@@ -1,5 +1,5 @@
 /* 
- * $Id: location.c,v 1.7 2002/03/05 18:18:49 janakj Exp $ 
+ * $Id: location.c,v 1.8 2002/03/08 05:04:54 bogdan Exp $ 
  */
 
 #include <stdio.h>
@@ -227,8 +227,8 @@ int msg2loc(struct sip_msg* _msg, location_t** _loc, int* _star, int* _expires)
 	}
 
 	     /* Extract username from To URI */
-	to.s = _msg->to->body.s;
-	to.len = _msg->to->body.len;
+	to.s = get_to(_msg)->uri.s;
+	to.len = get_to(_msg)->uri.len;
 	get_to_username(&to);
 	     /* Not needed anymore */
 	    

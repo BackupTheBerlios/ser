@@ -1,5 +1,5 @@
 /* 
- * $Id: cache.c,v 1.10 2002/03/06 00:10:36 janakj Exp $ 
+ * $Id: cache.c,v 1.11 2002/03/08 05:04:54 bogdan Exp $ 
  */
 
 #include "cache.h"
@@ -193,7 +193,7 @@ c_elem_t* cache_get(cache_t* _c, str* _aor)
 	p[_aor->len] = '\0';
 	strlower(p, _aor->len);
 
-	printf("p=%s\n", p);
+	DBG("usr_loc: p=%s\n", p);
 
 	slot_num = hash_func(_c, p, _aor->len);
 	if (slot_num == -1) {

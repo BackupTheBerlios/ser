@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.39 2002/03/07 13:24:47 bogdan Exp $
+ * $Id: tm.c,v 1.40 2002/03/08 05:04:54 bogdan Exp $
  *
  * TM module
  *
@@ -330,7 +330,7 @@ static int t_relay_to( struct sip_msg  *p_msg , char *str_ip , char *str_port)
 					DBG( "SER: new INVITE\n");
 					if (!t_send_reply( p_msg , 100 ,
 					"trying -- your call is important to us"))
-						DBG( "SER: ERROR: t_send_reply (100)\n");
+						LOG( L_CRIT,"SER: ERROR: t_send_reply (100)\n");
 				} else {
 					DBG( "SER: new transaction\n");
 				}

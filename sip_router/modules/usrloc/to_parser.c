@@ -1,5 +1,5 @@
 /*
- * $Id: to_parser.c,v 1.4 2002/03/05 18:18:49 janakj Exp $
+ * $Id: to_parser.c,v 1.5 2002/03/08 05:04:54 bogdan Exp $
  */
 
 #include "utils.h"
@@ -29,7 +29,7 @@ void get_to_username(str* _s)
 			/*	_s->s[_s->len] = '\0'; */
 	} else {
 		_s->len = 0;
-	} 
+	}
 	return;
 }
 
