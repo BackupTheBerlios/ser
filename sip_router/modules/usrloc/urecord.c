@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.7 2002/08/27 13:31:25 janakj Exp $ 
+ * $Id: urecord.c,v 1.8 2002/08/27 15:48:33 janakj Exp $ 
  *
  * Usrloc record structure
  */
@@ -234,8 +234,11 @@ static inline int wb_timer(urecord_t* _r)
 					LOG(L_ERR, "wb_timer(): Error while deleting contact from database\n");
 				}
 			}
+			if (t->expires != 0) {
+				_r->slot->d->expired++;
+			}
+
 			mem_delete_ucontact(_r, t);
-			_r->slot->d->expired++;
 		} else {
 			     /* Determine the operation we have to do */
 			op = st_flush_ucontact(ptr);
