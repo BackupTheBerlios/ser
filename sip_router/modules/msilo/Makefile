@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2002/09/19 12:23:54 jku Exp $
+# $Id: Makefile,v 1.3 2002/09/23 11:38:46 bogdan Rel $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=msilo.so
-LIBS=`pwd`/../im/im.so `pwd`/../tm/tm.so
+LIBS=`pwd`/../im/im.so
 
 include ../../Makefile.modules

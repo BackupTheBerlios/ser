@@ -1,5 +1,5 @@
 /*
- * $Id: msfuncs.c,v 1.4 2002/09/19 12:23:54 jku Exp $
+ * $Id: msfuncs.c,v 1.5 2002/09/23 11:38:46 bogdan Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -170,6 +170,8 @@ error:
 	return -1;
 }
 
+
+#ifdef USE_DEPRECATED
 /**
  * send a MESSAGE using IM library - deprecated - used t_uac instead
  */
@@ -226,6 +228,7 @@ int m_send_message(int mid, str *uri, str *to, str *from, str *contact,
 error:
 	return -1;
 }
+#endif
 
 /** build MESSAGE headers 
  *
