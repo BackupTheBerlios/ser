@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.111 2003/04/12 19:26:15 andrei Exp $
+ * $Id: msg_translator.c,v 1.112 2003/04/12 20:55:30 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -72,7 +72,7 @@
  *    is performed on the address. If no port is present and a srv lookup is 
  *    performed the port is taken from the srv lookup. If the srv lookup failed
  *    or it was not performed, the port is set to the default sip port (5060).
- *  - if reply_to_via is off (default) the local reply is ent to the message
+ *  - if reply_to_via is off (default) the local reply is sent to the message
  *    source ip address. The destination port is set to the source port if 
  *    rport is present or FL_FORCE_RPORT flag is set, to the via port or to
  *    the default sip port (5060) if neither rport or via port are present.

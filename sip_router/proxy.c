@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.23 2003/03/20 17:10:24 andrei Exp $
+ * $Id: proxy.c,v 1.24 2003/04/12 20:55:30 andrei Exp $
  *
  * proxy list & assoc. functions
  *
@@ -30,7 +30,7 @@
  /*
   * History:
   * -------
-  *  2003-02-13  all *proxy fucntions are now proto aware (andrei)
+  *  2003-02-13  all *proxy functions are now proto aware (andrei)
   *  2003-03-19  replaced all mallocs/frees w/ pkg_malloc/pkg_free (andrei)
   */
 
