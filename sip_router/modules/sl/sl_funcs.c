@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.37 2002/12/12 21:41:18 andrei Exp $
+ * $Id: sl_funcs.c,v 1.38 2002/12/18 01:38:26 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -112,7 +112,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 
 	if ( msg->first_line.u.request.method_value==METHOD_ACK)
 	{
-		DBG("DEBUG: sl_send_reply: I won't send a reply for ACK!!\n");
+		LOG(L_WARN, "Warning: sl_send_reply: I won't send a reply for ACK!!\n");
 		goto error;
 	}
 
