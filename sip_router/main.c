@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.68 2002/03/08 02:26:58 andrei Exp $
+ * $Id: main.c,v 1.69 2002/04/03 21:55:31 janakj Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.68 2002/03/08 02:26:58 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.69 2002/04/03 21:55:31 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -666,8 +666,8 @@ int main(int argc, char** argv)
 		goto error;
 	}
 
-	/*init builtin  modules*/
-	init_builtin_modules();
+	/*register builtin  modules*/
+	register_builtin_modules();
 
 	yyin=cfg_stream;
 	if ((yyparse()!=0)||(cfg_errors)){
@@ -675,7 +675,11 @@ int main(int argc, char** argv)
 		goto error;
 	}
 	
-	
+	if (init_modules() != 0) {
+		fprintf(stderr, "ERROR: error while initializing modules\n");
+		goto error;
+	}
+
 	print_rl();
 	/* fix routing lists */
 	if ( (r=fix_rls())!=0){
