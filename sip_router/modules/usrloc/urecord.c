@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.20 2003/03/13 22:13:06 janakj Exp $ 
+ * $Id: urecord.c,v 1.21 2003/03/14 13:35:50 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -59,7 +59,7 @@ int new_urecord(str* _dom, str* _aor, urecord_t** _r)
 
 	(*_r)->aor.s = (char*)shm_malloc(_aor->len);
 	if ((*_r)->aor.s == 0) {
-		LOG(L_ERR, "new_urecord(): No memory left 2\n");
+		LOG(L_ERR, "new_urecord(): No memory left\n");
 		shm_free(*_r);
 		return -2;
 	}
