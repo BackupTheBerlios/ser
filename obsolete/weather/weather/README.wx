@@ -1,0 +1,184 @@
+Copyright
+---------
+
+wx2000 was written by Friedrich Zabel and is distributed under the
+GNU General Public Licence.
+
+Author
+------
+Friedrich Zabel (fredz@mail.telepac.pt)
+
+Introduction
+------------
+
+This is a data extraction program for the Weather data loggers known as
+ws2000, I believe there are similar variants with the same protocol.
+The Type of my data logger is WS7000-13 currently it has only been tested
+with this station, I would like to hear from any other success using this
+program.I also currently own 1 rain, 1 wind, 1 internal pressure/temp/humidity,
+and only 1 external temp/humidity sensor, as the station permits up to 15
+external sensors I do not have the possibility to test the correct read-out
+of data for more than 1 external temp/humidity sensor, but all necessary
+routines are implemented in the program.
+
+List of compatible Stations
+---------------------------
+
+ws2000
+ws7000-13
+wmr 900 h
+
+Installation
+------------
+
+Edit config.h and change ABOVE_NN to the height in meters that your pressure
+sensor is above sealevel (I recommend using a map or gps)
+The Calculation is ABOVE_NN / 8 = pascals to add to pressure to have
+absolute pressure for your location with respect to sealevel.
+
+Also to change the serial port your station is on ->
+			/dev/ttyS0 -> com1 (default)
+			/dev/ttyS1 -> com2
+
+Then do a make, the program should compile without a single error or warning
+(just as a reference I currently use Slackware 7.0 & Linux Kernel 2.2.12)
+
+Using
+-----
+
+there thats it now try ./wx2000 -s on the command line it should printout
+the sensors that are currently detected by the station including no. of no
+receives. The rest is extra data like the logging interval in minutes, if
+the station has DCF (only in europe +- 1000 Km for Germany but even I have
+received it here 2500Km away). The number of sensors connected (8 or 16)
+should be 8 unless you have lots of external sensors. If the DCF signal is
+synchronous (if reception is good). The low battery is not implemented or so
+says the data-handbook, and finally the hardware version of your station.
+
+ex:
+Temp/Humidity 1 : 1 ReceiveErrors : 0
+Rain :            1 ReceiveErrors : 0
+Wind :            1 ReceiveErrors : 0
+Internal :        1 ReceiveErrors : 0
+Internal :        5
+DCF :             1
+HF :              1
+Sensors :         8
+DCF sync :        0
+Low Bat :         0
+Version :         2.4
+
+if the program exits imediately re-check connection & serial port.
+
+Do a ./wx2000 to see other options the most important should be -g & -x
+do a ./wx2000 -g just to see the output
+
+-> should look someting like this line (explained below)
+
+0038 00:59:29 01/02/2000 13.2 83 1 18.3 65 1029 1 0.0 185 1 403.9 1
+
+blocknr 38
+time 	00:59:29	(GMT) but depends on your clock setting in computer
+date	04 Feb 2000
+temp1   13.2 C
+humidity1 83 %
+new1  - 1 if data is new - 0 if data is old (recetion error)
+temp_i  18.3
+hum_i   65 %
+pressure_i 1029 hPa
+new_i - 1 if data is new - 0 if data is old (recetion error)
+wind_speed 0.0 Km/h
+wind_direction  Degrees (N -> 0)
+new_wind - 1 if data is new - 0 if data is old (recetion error)
+rain	(403.9) is the total since rain gauge is on has to be subtracted
+	by previous data for rain in mm
+new_rain - 1 if data is new - 0 if data is old (recetion error)
+
+even if you have more sensors they are not printed needs source modification
+auto detection for which sensors are connected in a future version.
+
+right now that you are sure all is working correctly do a 
+./wx2000 -x > weather.dat
+this will get all data from the weather data logger and put it into the file
+weather.dat (no error checking is implemented yet nor is double block
+checking but in 2 month of daily use no error in data retrieval was detected)
+
+!
+remeber if something happens to your data, your dog eats your harddisk or
+your cat does an rm -rf ImportantWeatherData.file or any other type of loss
+its NOT my fault ;-)
+!
+
+of course I would like to hear from any bugs or enhancements you might have
+found or would like to have.bugs will try to be resolved in next releases
+and enhancements added when time is available.
+if you like to debug wx2000 try a make debug and use the wx2000-debug binary
+it just prints extra info like data in raw and error return data.
+any problems send me a mail with wx2000-debug -command > somefile.txt so
+that I can figure out the possible problem.
+
+Extra
+-----
+
+this program does not do any post-fetch data processing but this can be
+easily implemented using some scripts in perl, or any other scripting
+language.In future I may include a simple script to generate a webpage
+with data & graphs.
+
+Links
+-----
+
+http://wx2000.sourceforge.net/ - main homepage
+http://sourceforge.net/project/?group_id=2248 - wx2000 in sourceforge.net
+http://go.to/wetterstation  - weather forum around ws2000 (German)
+
+History
+-------
+
+September 1999	1st lines of code....
+09/11/1999	v0.1alpha
+		+	simple data fetch possible
+			select next possible
+			read status possible
+			read dcf possible
+			set 9 or 16 sensors possible
+			
+		-	have to have a script to fetch data blocks independently
+			each command executed seperately using commandline
+			no checksum checking
+			all date & time calculations are done using computer time
+			dcf reception is Very bad here, but have had reception.
+			! Negative Temperature not Implemented Yet - don't have that here ;)
+			only for 1 wind,1 rain,1 external + 1 internal sensor
+03/02/2000	v0.2-Beta (1st Public Release)
+		+	data fetch,next,etc... all in 1 command line (-x)
+			much faster because of fetch & next all in one
+			misc. code cleanup
+			checksum routine implemented (does just test nothing else)
+			add length check routine (very simple)
+			implemented external sensor 3,5 & 7 including temp_sign
+			implemented external sensor 2,4,6 including temp_sign
+			added temp_sign for internal sensor
+			added timeout value, if no response from station quit
+05/02/2000
+			bug fixed in sensor 2,4,6 temperature / humidity decoding
+			added external sensor 9 temperature/humidity
+			added more comments in source
+			added external sensors 10, 11, 12, 13, 14 & 15 temperature / humidity / pressure
+			removed a repeated write data when fetching logger status
+
+10/06/2000
+			added serial port lockfile creation in /var/lock
+
+Thanks
+------
+
+my thanks go out to Peter Baumann for writing The Linux Serial Programming HOWTO
+and thus my rapid understanding of linux serial programming as this is my
+first serial project :-)
+also to ELV for their quick response with the latest protocol data sheets,
+to Toni from the weather forum for his information
+& the great people behind sourceforge.net for their excellent service to the
+community
+and anyone I might have forgotten
+...

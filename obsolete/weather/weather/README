@@ -1,0 +1,11 @@
+This example shows how an external application,
+weather station, can easily trigger SIP events
+via ser's textual FIFO interface. The poll utility
+asks a weather station via RS232 about current
+weather and tells ser to send a MESSAGE to a given
+SIP address.
+
+The example is based on a tool wx2000, written by 
+Friedrich Zabel and distributed under the GPL.
+See README.wx.
+
