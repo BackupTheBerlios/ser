@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.27 2003/02/26 09:15:34 jiri Exp $
+# $Id: harv_ser.sh,v 1.28 2003/03/18 01:00:54 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -128,6 +128,7 @@ BEGIN {
 	server_mcet=0;
 	server_sjphone=0;
 	server_starsip=0;
+	server_ipdialog=0;
 	server_xx=0
 
 }
@@ -378,6 +379,10 @@ server==0 && /Server:.*SJLabs-SJPhone/ {
 }
 server==0 && /Server:.*StarSIP/ {
 	server_starsip++
+	server=1
+}
+server==0 && /Server:.*ipDialog/ {
+	server_ipdialog++
 	server=1
 }
 server==0 && /Server:/ {
@@ -720,6 +725,7 @@ END {
 	print "mcet: " server_mcet 
 	print "sjphone: " server_sjphone
 	print "StarSIP: " server_starsip
+	print "ipDialog: " server_ipdialog
 	print "UFO: " server_xx
 }
 '
