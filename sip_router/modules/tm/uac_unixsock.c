@@ -1,5 +1,5 @@
 /*
- * $Id: uac_unixsock.c,v 1.5 2004/03/30 16:20:06 janakj Exp $
+ * $Id: uac_unixsock.c,v 1.6 2004/07/17 19:11:45 andrei Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -461,6 +461,8 @@ static void callback(struct cell *t, int type, struct tmcb_params *ps)
 done:
 	unixsock_reply_sendto(to);
 	shm_free(to);
+	*ps->param=0; /* 0 it so the callback won't do anything if called
+					 for a retransmission */
 }
 
 
