@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.107 2004/03/04 15:41:30 janakj Exp $
+ * $Id: tm.c,v 1.108 2004/03/05 17:06:40 janakj Exp $
  *
  * TM module
  *
@@ -114,7 +114,6 @@ static int fixup_t_send_reply(void** param, int param_no);
 static int fixup_str2int( void** param, int param_no);
 static int fixup_hostport2proxy(void** param, int param_no);
 static int fixup_str2regexp(void** param, int param_no);
-static int fixup_string2str( void** param, int param_no);
 
 
 /* init functions */
@@ -307,25 +306,6 @@ static int fixup_str2int( void** param, int param_no)
 				(char *)(*param));
 			return E_CFG;
 		}
-	}
-	return 0;
-}
-
-
-static int fixup_string2str( void** param, int param_no)
-{
-	str *s;
-
-	if (param_no==1) {
-		s = (str*)pkg_malloc(sizeof(str));
-		if (s==0) {
-			LOG(L_ERR,"ERROR:fixup_string2str: nomore pkg mem\n");
-			return E_OUT_OF_MEM;
-		}
-		s->s = (char*)*param;
-		s->len = strlen( (char*)*param );
-		*param = (void*)s;
-		return 0;
 	}
 	return 0;
 }
