@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.2 2001/10/26 00:39:42 andrei Exp $
+/* $Id: sr_module.h,v 1.3 2001/11/30 17:59:26 andrei Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -31,7 +31,8 @@ struct sr_module{
 	struct module_exports* exports;
 	struct sr_module* next;
 };
-
+ 
+struct sr_module* modules; /* global module list*/
 
 int load_module(char* path);
 cmd_function find_export(char* name, int param_no);

@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.2 2001/10/26 00:39:42 andrei Exp $
+/* $Id: sr_module.c,v 1.3 2001/11/30 17:59:26 andrei Exp $
  */
 
 #include "sr_module.h"
@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 
-static struct sr_module* modules=0;
+struct sr_module* modules=0;
 
 
 
