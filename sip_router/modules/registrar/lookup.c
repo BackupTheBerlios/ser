@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.2 2002/08/27 09:48:05 janakj Exp $
+ * $Id: lookup.c,v 1.3 2002/08/27 14:23:05 janakj Exp $
  *
  * Lookup contacts in usrloc
  */
@@ -102,7 +102,7 @@ int lookup(struct sip_msg* _m, char* _t, char* _s)
 	     /* Append branches if enabled */
 	if (!append_branches) goto skip;
 
-	ptr = ptr->next;
+	if (ptr) ptr = ptr->next;
 	while(ptr) {
 		if (ptr->expires > act_time) {
 			if (append_branch(_m, ptr->c.s, ptr->c.len) == -1) {
