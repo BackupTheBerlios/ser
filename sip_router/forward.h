@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.4 2001/09/21 20:24:13 andrei Exp $
+ *  $Id: forward.h,v 1.5 2001/11/28 23:25:35 bogdan Exp $
  */
 
 
@@ -10,8 +10,6 @@
 #include "route.h"
 #include "proxy.h"
 
-
-int check_address(unsigned long ip, char *name, int resolver);
 
 int forward_request( struct sip_msg* msg,  struct proxy_l* p);
 
