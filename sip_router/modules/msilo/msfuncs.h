@@ -1,5 +1,5 @@
 /*
- * $Id: msfuncs.h,v 1.3 2002/09/19 12:23:54 jku Rel $
+ * $Id: msfuncs.h,v 1.4 2002/10/04 14:47:01 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -83,7 +83,7 @@ int m_send_message(int mid, str *uri, str *to, str *from, str *contact,
 				str *ctype, str *msg);
 
 /** build MESSAGE headers */
-int m_build_headers(str *buf, str ctype);
+int m_build_headers(str *buf, str ctype, str contact);
 
 /** build MESSAGE body */
 int m_build_body(str *body, int date, str msg);
