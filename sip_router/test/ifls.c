@@ -1,4 +1,4 @@
-/* $Id: ifls.c,v 1.2 2002/09/09 16:28:17 andrei Exp $
+/* $Id: ifls.c,v 1.3 2002/09/09 16:37:18 andrei Exp $
  *
  *
  * test programs, list all interfaces and their ip address
@@ -25,7 +25,7 @@
 
 
 static char* version="ifls 0.1";
-static char* id="$Id: ifls.c,v 1.2 2002/09/09 16:28:17 andrei Exp $";
+static char* id="$Id: ifls.c,v 1.3 2002/09/09 16:37:18 andrei Exp $";
 static char* help_msg="\
 Usage: ifls [-6hV} [interface...]\n\
 (if no interface name is specified it will list all the interfaces)\n\
@@ -131,9 +131,10 @@ int ls_ifflags(char* name, int family , int options)
 		/*if (ifr.ifr_flags & IFF_DYNAMIC ) printf ("DYNAMIC ");*/
 		printf ("\n");
 	};
-
+	close(s);
 	return 0;
 error:
+	close(s);
 	return -1;
 }
 
@@ -209,8 +210,10 @@ int ls_ifs(char* name, int family, int options)
 		}
 	}
 	free(ifc.ifc_req); /*clean up*/
+	close(s);
 	return  0;
 error:
+	close(s);
 	return -1;
 }
 
