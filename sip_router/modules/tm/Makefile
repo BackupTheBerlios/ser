@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.13 2001/12/05 20:43:18 andrei Exp $
+# $Id: Makefile,v 1.14 2001/12/06 20:54:54 andrei Exp $
 #
 # print example module makefile
 #
@@ -19,7 +19,7 @@ CFLAGS+= -fPIC -DPIC
 ALLDEP=Makefile ../../Makefile
 
 ifeq ($(ARCH), SunOS)
-LDFLAGS=-O2 -G -fPIC -DPIC
+LDFLAGS=-O2 -G 
 endif
 
 #implicit rules

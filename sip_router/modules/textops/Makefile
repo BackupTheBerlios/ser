@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2001/12/04 00:29:18 andrei Exp $
+# $Id: Makefile,v 1.3 2001/12/06 20:54:54 andrei Exp $
 #
 # print example module makefile
 #
@@ -14,6 +14,7 @@ NAME=textops.so
 
 LDFLAGS=-O2 -shared
 LIBS=
+CFLAGS+= -fPIC -DPIC
 
 ALLDEP=Makefile ../../Makefile
 
