@@ -1,5 +1,5 @@
 /*
- * $Id: to_parser.c,v 1.5 2002/03/08 05:04:54 bogdan Exp $
+ * $Id: to_parser.c,v 1.6 2002/03/08 17:58:17 janakj Exp $
  */
 
 #include "utils.h"
@@ -12,9 +12,9 @@
  */
 
 
-void get_to_username(str* _s)
+void get_username(str* _s)
 {
-	char* at, *dcolon;
+	char* at, *dcolon, *dc;
 	dcolon = find_not_quoted(_s->s, ':');
 
 	if (!dcolon) {
@@ -24,12 +24,18 @@ void get_to_username(str* _s)
 	_s->s = dcolon + 1;
 
 	at = strchr(_s->s, '@');
+	dc = strchr(_s->s, ':');
 	if (at) {
-			_s->len = at - dcolon - 1;
-			/*	_s->s[_s->len] = '\0'; */
+		if ((dc) && (dc < at)) {
+			_s->len = dc - dcolon - 1;
+			return;
+		}
+		
+		_s->len = at - dcolon - 1;
+		/*	_s->s[_s->len] = '\0'; */
 	} else {
 		_s->len = 0;
-	}
+	} 
 	return;
 }
 

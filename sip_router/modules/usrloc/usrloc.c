@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.9 2002/03/07 17:10:10 janakj Exp $
+/* $Id: usrloc.c,v 1.10 2002/03/08 17:58:17 janakj Exp $
  *
  * User location support
  *
@@ -365,9 +365,14 @@ static int lookup_contact(struct sip_msg* _msg, char* _table, char* _str2)
 		return -1;
 	}
 	
-	user.s = _msg->to->body.s;
-	user.len = _msg->to->body.len;
-	get_to_username(&user);
+	if (_msg->new_uri.s) {
+		user.s = _msg->new_uri.s;
+		user.len = _msg->new_uri.len;
+	} else {
+		user.s = _msg->first_line.u.request.uri.s;
+		user.len = _msg->first_line.u.request.uri.len;
+	}
+	get_username(&user);
 	
 	if (user.len == 0) {
 		LOG(L_ERR, "lookup_contact(): Unable to get user name\n");
