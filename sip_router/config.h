@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.41 2002/12/11 21:30:44 andrei Exp $
+ *  $Id: config.h,v 1.42 2003/01/23 18:58:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -85,6 +85,9 @@
 #define TOTAG_TOKEN ";tag="
 #define TOTAG_TOKEN_LEN (sizeof(TOTAG_TOKEN)-1)
 
+#define RPORT ";rport="
+#define RPORT_LEN 7
+
 #define SRV_PREFIX "_sip._udp."
 #define SRV_PREFIX_LEN 10
 
@@ -115,6 +118,7 @@
 /* forwarding  -- Via buffer dimensioning */
 #define MAX_VIA_LINE_SIZE	240
 #define MAX_RECEIVED_SIZE	57
+#define MAX_RPORT_SIZE		13
 
 /* maximum number of branches per transaction */
 #define MAX_BRANCHES    4

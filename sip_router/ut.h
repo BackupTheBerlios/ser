@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.21 2003/01/18 20:25:12 jiri Exp $
+ *$Id: ut.h,v 1.22 2003/01/23 18:58:13 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -139,6 +139,28 @@ static inline int btostr( char *p,  unsigned char val)
 	*(p+(i++)) = '0'+val%10;              /*third digit*/
 
 	return i;
+}
+
+
+
+/* returns a pointer to a static buffer containint l in asciiz & sets len */
+static inline char* int2str(unsigned int l, int* len)
+{
+	static char r[11]; /* 10 digits + 0 */
+	int i;
+	
+	i=9;
+	r[10]=0; /* null terminate */
+	do{
+		r[i]=l%10+'0';
+		i--;
+		l/=10;
+	}while(l && (i>=0));
+	if (l && (i<0)){
+		LOG(L_CRIT, "BUG: int2str: overflow\n");
+	}
+	if (len) *len=9-i;
+	return &r[i+1];
 }
 
 

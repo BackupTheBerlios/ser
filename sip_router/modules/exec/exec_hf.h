@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec_hf.h,v 1.2 2002/12/15 00:05:14 jiri Exp $
+ * $Id: exec_hf.h,v 1.3 2003/01/23 18:58:13 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -79,7 +79,8 @@
 
 
 
-#ifdef _JUST_FOR_INFO_HERE
+#if 0
+/* _JUST_FOR_INFO_HERE */
 struct hdr_field {
         int type;                /* Header field type */
         str name;                /* Header field name */
