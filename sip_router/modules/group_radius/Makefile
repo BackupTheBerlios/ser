@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2003/03/12 16:11:33 janakj Exp $
+# $Id: Makefile,v 1.2 2003/04/18 17:58:34 andrei Exp $
 #
 # Group Membeship checking over Radius
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=group_radius.so
-LIBS=-L/usr/local/lib -lradiusclient
+LIBS=-L$(LOCALBASE)/lib -L/usr/pkg/lib -lradiusclient
 
 include ../../Makefile.modules

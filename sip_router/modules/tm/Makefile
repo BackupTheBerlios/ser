@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.18 2002/08/28 13:19:32 jku Rel $
+# $Id: Makefile,v 1.19 2003/04/18 17:58:34 andrei Exp $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=tm.so
-LIBS= #-lpthread
+LIBS= 
 
 include ../../Makefile.modules

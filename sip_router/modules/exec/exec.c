@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.7 2003/02/28 14:12:26 jiri Exp $
+ * $Id: exec.c,v 1.8 2003/04/18 17:58:34 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -40,7 +40,9 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
+/* 
 #include <sys/resource.h>
+*/
 #include <sys/wait.h>
 #include "../../mem/mem.h"
 #include "../../error.h"

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2002/08/14 16:24:37 bogdan Rel $
+# $Id: Makefile,v 1.2 2003/04/18 17:58:34 andrei Exp $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=cpl-c.so
-LIBS= -L/usr/lib -lxml
+LIBS= -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml
 
 include ../../Makefile.modules

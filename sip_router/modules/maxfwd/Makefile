@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2002/01/25 22:08:57 bogdan Rel $
+# $Id: Makefile,v 1.2 2003/04/18 17:58:34 andrei Exp $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=maxfwd.so
-LIBS= #-lpthread
+LIBS= 
 
 include ../../Makefile.modules

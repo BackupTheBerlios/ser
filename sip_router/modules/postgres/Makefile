@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2003/04/08 01:25:35 lgfausak Exp $
+# $Id: Makefile,v 1.2 2003/04/18 17:58:34 andrei Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
@@ -7,6 +7,7 @@ NAME=postgres.so
 
 # libpq-fe.h locations
 DEFS +=-I/usr/local/pgsql/include
-LIBS=-L/usr/local/pgsql/lib -lpq
+LIBS=-L$(LOCALBASE)/pgsql/lib -L$(LOCALBASE)/lib/pgsql -L/usr/pkg/lib \
+		-L/usr/pkg/lib/pgsql -lpq
 
 include ../../Makefile.modules

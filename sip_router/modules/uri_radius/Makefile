@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2003/03/16 18:00:29 janakj Exp $
+# $Id: Makefile,v 1.2 2003/04/18 17:58:35 andrei Exp $
 #
 # URI checks using Radius
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=uri_radius.so
-LIBS=-L/usr/local/lib -lradiusclient
+LIBS=-L$(LOCALBASE)/lib -L/usr/pkg/lib -lradiusclient
 
 include ../../Makefile.modules
