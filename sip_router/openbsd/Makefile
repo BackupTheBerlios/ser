@@ -4,15 +4,15 @@
 #
 # $OpenBSD$
 #
-# $Id: Makefile,v 1.3 2003/09/03 13:04:53 andrei Exp $
+# $Id: Makefile,v 1.4 2003/11/20 20:58:05 andrei Exp $
 #
 
 COMMENT= "SIP Express Router"
 
 PORTNAME= ser
-PORTVERSION= 0.8.11
+PORTVERSION= 0.8.12
 CATEGORIES= net
-MASTER_SITES= ftp://ftp.berlios.de/pub/ser/0.8.11/src/
+MASTER_SITES= ftp://ftp.berlios.de/pub/ser/0.8.12/src/
 
 MAINTAINER= pelinescu-onciul@fokus.fraunhofer.de
 
