@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.20 2002/06/10 18:02:09 janakj Exp $
+/* $Id: usrloc.c,v 1.21 2002/06/11 21:53:41 jku Exp $
  *
  * User location support module
  *
@@ -191,7 +191,12 @@ struct module_exports exports = {
  */
 static int mod_init(void)
 {
-	printf( "Initializing usrloc module\n");
+	printf( "Initializing usrloc module (OOO_HACK: "
+#ifdef OOO_HACK
+		"On)\n");
+#else
+		"Off)\n");
+#endif
 
 	     /*
 	      * We will need sl_send_reply from stateless
