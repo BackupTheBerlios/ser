@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.45 2002/03/01 18:17:18 bogdan Exp $
+ * $Id: sip_msg.c,v 1.46 2002/03/01 22:23:53 bogdan Exp $
  */
 
 
@@ -187,7 +187,7 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg )
 	p=(char *)sh_malloc(len);foo=p;
 	if (!p)
 	{
-		LOG(L_ERR , "ERROR: sip_msg_cloner_2: cannot allocate memory\n" );
+		LOG(L_ERR , "ERROR: sip_msg_cloner: cannot allocate memory\n" );
 		return 0;
 	}
 

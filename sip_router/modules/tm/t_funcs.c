@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.118 2002/03/01 02:35:03 bogdan Exp $
+ * $Id: t_funcs.c,v 1.119 2002/03/01 22:23:53 bogdan Exp $
  *
  */
 
@@ -297,7 +297,6 @@ int t_should_relay_response( struct cell *Trans , int new_code,
 			return -1;
 		}
 	} else { /* no final response sent yet */
-
 		/* negative replies subject to fork picking */
 		if (new_code >=300 ) {
 			*should_store=1;
