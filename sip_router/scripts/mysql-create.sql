@@ -1,4 +1,4 @@
-# $Id: mysql-create.sql,v 1.6 2002/05/25 17:56:21 jku Exp $
+/* $Id: mysql-create.sql,v 1.7 2002/05/25 18:21:36 jku Exp $ */
 
 create database ser;
 use ser;
@@ -36,7 +36,6 @@ CREATE TABLE subscriber (
    REALM varchar(128) NOT NULL,
    ha1b varchar(128) NOT NULL,
    UNIQUE USER_ID (USER_ID),
-   KEY USER_ID_2 (USER_ID)
-   key(user_id,realm)
+   key(USER_ID,REALM)
 );
 
