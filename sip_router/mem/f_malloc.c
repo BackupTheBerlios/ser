@@ -1,4 +1,4 @@
-/* $Id: f_malloc.c,v 1.14 2004/08/24 08:58:23 janakj Exp $
+/* $Id: f_malloc.c,v 1.15 2004/09/28 18:10:08 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -88,7 +88,7 @@
 
 
 /* computes hash number for big buckets*/
-inline static int big_hash_idx(int s)
+inline static int big_hash_idx(unsigned long s)
 {
 	int idx;
 	/* s is rounded => s = k*2^n (ROUNDTO=2^n) 
@@ -96,7 +96,7 @@ inline static int big_hash_idx(int s)
 	 *
 	 * => index = number of the first non null bit in s*/
 	idx=sizeof(long)*8-1;
-	for (; !(s&(1<<(sizeof(long)*8-1))) ; s<<=1, idx--);
+	for (; !(s&(1UL<<(sizeof(long)*8-1))) ; s<<=1, idx--);
 	return idx;
 }
 

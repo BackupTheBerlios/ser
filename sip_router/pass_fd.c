@@ -1,5 +1,5 @@
 /*
- * $Id: pass_fd.c,v 1.6 2004/08/24 08:45:10 janakj Exp $
+ * $Id: pass_fd.c,v 1.7 2004/09/28 18:10:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -205,7 +205,7 @@ again:
 		*fd=*((int*) CMSG_DATA(cmsg));
 	}else{
 		LOG(L_ERR, "ERROR: receive_fd: no descriptor passed, cmsg=%p,"
-				"len=%d\n", cmsg, cmsg->cmsg_len);
+				"len=%d\n", cmsg, (unsigned)cmsg->cmsg_len);
 		*fd=-1;
 		/* it's not really an error */
 	}

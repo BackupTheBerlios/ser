@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.56 2004/08/24 08:45:10 janakj Exp $
+ * $Id: tcp_main.c,v 1.57 2004/09/28 18:10:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -895,7 +895,7 @@ int tcp_init(struct socket_info* sock_info)
 	if (bind(sock_info->socket, &addr->s, sockaddru_len(*addr))==-1){
 		LOG(L_ERR, "ERROR: tcp_init: bind(%x, %p, %d) on %s: %s\n",
 				sock_info->socket, &addr->s, 
-				sockaddru_len(*addr),
+				(unsigned)sockaddru_len(*addr),
 				sock_info->address_str.s,
 				strerror(errno));
 		goto error;
@@ -903,7 +903,7 @@ int tcp_init(struct socket_info* sock_info)
 	if (listen(sock_info->socket, 10)==-1){
 		LOG(L_ERR, "ERROR: tcp_init: listen(%x, %p, %d) on %s: %s\n",
 				sock_info->socket, &addr->s, 
-				sockaddru_len(*addr),
+				(unsigned)sockaddru_len(*addr),
 				sock_info->address_str.s,
 				strerror(errno));
 		goto error;

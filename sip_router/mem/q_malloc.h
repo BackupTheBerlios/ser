@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.14 2004/08/24 08:58:23 janakj Exp $
+/* $Id: q_malloc.h,v 1.15 2004/09/28 18:10:08 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -68,7 +68,7 @@
 									must be 2^k */
 
 #define QM_HASH_SIZE ((unsigned long)(QM_MALLOC_OPTIMIZE/ROUNDTO + \
-		(sizeof(long)-QM_MALLOC_OPTIMIZE_FACTOR)+1))
+		(sizeof(long)*8-QM_MALLOC_OPTIMIZE_FACTOR)+1))
 
 /* hash structure:
  * 0 .... QM_MALLOC_OPTIMIE/ROUNDTO  - small buckets, size increases with

@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.81 2004/09/09 15:21:49 andrei Exp $
+ * $Id: cfg.y,v 1.82 2004/09/28 18:10:08 andrei Exp $
  *
  *  cfg grammar
  *
@@ -1494,7 +1494,8 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 			if (str2q(&q, $5, strlen($5)) < 0) {
 				yyerror("bad argument, q value expected");
 			}
-			$$=mk_action(APPEND_BRANCH_T, STRING_ST, NUMBER_ST, $3, (void *)q); } 
+			$$=mk_action(APPEND_BRANCH_T, STRING_ST, NUMBER_ST, $3, 
+							(void *)(long)q); } 
 		}
 	
 		| APPEND_BRANCH LPAREN STRING RPAREN { $$=mk_action( APPEND_BRANCH_T,

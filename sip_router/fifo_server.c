@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.50 2004/09/19 20:22:51 andrei Exp $
+ * $Id: fifo_server.c,v 1.51 2004/09/28 18:10:08 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -345,7 +345,7 @@ static int fifo_check(int fd, char* fname)
 	/* check if hard-linked */
 	if (fst.st_nlink>1){
 		LOG(L_ERR, "ERROR: security: fifo_check: %s is hard-linked %d times\n",
-				fname, fst.st_nlink);
+				fname, (unsigned)fst.st_nlink);
 		return -1;
 	}
 	
