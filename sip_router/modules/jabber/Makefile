@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2003/05/23 15:43:43 andrei Exp $
+# $Id: Makefile,v 1.9 2003/06/02 15:41:21 dcm Exp $
 #
 # example module makefile
 #
@@ -11,6 +11,7 @@ NAME=jabber.so
 
 # extra debug messages
 DEFS+=-DXJ_EXTRA_DEBUG
+# -DHAVE_IHTTP
 
 # expat.h location
 DEFS+=-I$(LOCALBASE)/include -I/usr/pkg/include

@@ -1,4 +1,6 @@
 /* ====================================================================
+ * $Id: xsnprintf.c,v 1.2 2003/06/02 15:42:21 dcm Exp $
+ *
  * Copyright (c) 1995-1998 The Apache Group.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

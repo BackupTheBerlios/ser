@@ -1,4 +1,6 @@
 /*
+ * $Id: xjab_jconf.c,v 1.5 2003/06/02 15:42:21 dcm Exp $
+ *
  * eXtended JABber module
  *
  *

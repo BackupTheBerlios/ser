@@ -1,4 +1,5 @@
 /*
+ * $Id: dbt_lib.h,v 1.4 2003/06/02 15:41:21 dcm Exp $
  *
  * DBText library
  *

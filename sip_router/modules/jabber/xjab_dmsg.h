@@ -1,4 +1,5 @@
 /*
+ * $Id: xjab_dmsg.h,v 1.4 2003/06/02 15:42:21 dcm Exp $
  *
  * eXtended JABber module
  *

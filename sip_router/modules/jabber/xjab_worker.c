@@ -1,4 +1,6 @@
 /*
+ * $Id: xjab_worker.c,v 1.31 2003/06/02 15:42:21 dcm Exp $
+ *
  * eXtended JABber module - worker implemetation
  *
  *

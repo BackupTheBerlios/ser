@@ -1,4 +1,6 @@
 /**
+ * $Id: xjab_base.h,v 1.7 2003/06/02 15:42:21 dcm Exp $
+ *
  * eXtended JABber module
  *
  *

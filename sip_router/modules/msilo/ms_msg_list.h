@@ -1,4 +1,6 @@
 /**
+ * $Id: ms_msg_list.h,v 1.3 2003/06/02 15:41:21 dcm Exp $
+ *
  * MSILO module
  *
  * Copyright (C) 2001-2003 Fhg Fokus

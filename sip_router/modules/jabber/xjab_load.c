@@ -1,4 +1,6 @@
 /*
+ * $Id: xjab_load.c,v 1.3 2003/06/02 15:42:21 dcm Exp $
+ *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
  * This file is part of ser, a free SIP server.

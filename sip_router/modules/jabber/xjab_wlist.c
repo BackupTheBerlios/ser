@@ -1,4 +1,6 @@
 /*
+ * $Id: xjab_wlist.c,v 1.8 2003/06/02 15:42:21 dcm Exp $
+ *
  * eXtended JABber module - worker implemetation
  *
  *
