@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.9 2003/01/14 23:32:52 janakj Exp $
+ * $Id: lookup.c,v 1.10 2003/03/06 12:22:25 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -128,10 +128,16 @@ int lookup(struct sip_msg* _m, char* _t, char* _s)
 			if (append_branch(_m, ptr->c.s, ptr->c.len) == -1) {
 				LOG(L_ERR, "lookup(): Error while appending a branch\n");
 				ul_unlock_udomain((udomain_t*)_t);
-				return -6;
-			}
+				     /*
+				      * We return 1 here because at
+				      * least R-URI has been rewritten successfully and
+				      * we only issue a message in logs 
+				      */
+				return 1; 
+			} 
 		} 
-		ptr = ptr->next;
+		
+		ptr = ptr->next; 
 	}
 	
  skip:
