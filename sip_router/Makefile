@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.102 2003/03/13 00:52:11 janakj Exp $
+# $Id: Makefile,v 1.103 2003/04/01 18:20:50 andrei Exp $
 #
 # sip_router makefile
 #
@@ -60,10 +60,10 @@ include Makefile.rules
 
 $(NAME): static_modules
 
-lex.yy.c: cfg.lex $(ALLDEP)
+lex.yy.c: cfg.lex cfg.tab.h $(ALLDEP)
 	$(LEX) $<
 
-cfg.tab.c: cfg.y  $(ALLDEP)
+cfg.tab.c cfg.tab.h: cfg.y  $(ALLDEP)
 	$(YACC) $(YACC_FLAGS) $<
 
 .PHONY: all
