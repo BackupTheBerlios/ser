@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.1 2003/03/25 13:11:07 janakj Exp $
+ * $Id: parse_param.h,v 1.2 2003/03/30 20:31:22 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -65,6 +65,7 @@ typedef struct param {
 	ptype_t type;         /* Type of the parameter */
 	str name;             /* Parameter name */
 	str body;             /* Parameter body */
+	int len;              /* Total lenght of the parameter including = and quotes */
 	struct param* next;   /* Next parameter in the list */
 } param_t;
 
