@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.2 2003/06/07 07:45:04 jiri Exp $
+# $Id: README,v 1.3 2003/06/07 07:48:09 jiri Exp $
 #
 
 
@@ -13,6 +13,8 @@ add_direction_active adds the active direction indication to SDP (flag
 
 Known devices that get along over NATs with nathelper are ATAs
 (as clients) and Cisco Gateways (since 12.2(T)) as servers.
+See
+http://www.cisco.com/en/US/products/sw/iosswrel/ps1839/products_feature_guide09186a0080110bf9.html
 
 
 Exported Functions:
