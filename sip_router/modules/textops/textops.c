@@ -1,10 +1,10 @@
-/*$Id: textops.c,v 1.11 2002/08/31 18:20:49 jku Exp $
+/*$Id: textops.c,v 1.12 2002/09/05 10:17:57 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
- * search_insert("key", "txt") -  insert "txt" before "key"
- * replace("txt1", "txt2")
- * search("txt")
+ * replace("txt1", "txt2") - replaces txt1 with txt2 (txt1 can be a re)
+ * search("txt") - searches for txt (txt can be a regular expression)
+ * append_to_reply("txt") - appends txt to the reply?
  * append_hf("P-foo: bar\r\n");
  *
  * 

@@ -1,4 +1,4 @@
-/*$Id: print.c,v 1.8 2002/04/03 21:54:15 janakj Exp $
+/*$Id: print.c,v 1.9 2002/09/05 10:17:57 andrei Exp $
  *
  * Example ser module, it will just print its string parameter to stdout
  *
@@ -12,6 +12,7 @@
 static int print_f(struct sip_msg*, char*,char*);
 static int mod_init(void);
 
+/* the parameters are not used, they are only meant as an example*/
 char* str_param;
 int int_param;
 
