@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.60 2004/10/08 13:19:07 andrei Exp $
+ * $Id: cfg.lex,v 1.61 2004/10/10 13:21:12 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -508,7 +508,10 @@ EAT_ABLE	[\ \t\b\r]
 
 <INITIAL>{COM_LINE}.*{CR}	{ count(); } 
 
-<INITIAL>{ID}			{ count(); yylval.strval=yytext; return ID; }
+<INITIAL>{ID}			{ count(); addstr(&s_buf, yytext, yyleng); 
+									yylval.strval=s_buf.s;
+									memset(&s_buf, 0, sizeof(s_buf));
+									return ID; }
 
 
 <<EOF>>							{
