@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.15 2002/07/01 15:41:12 bogdan Exp $
+ * $Id: sms.c,v 1.16 2002/07/12 16:31:17 bogdan Exp $
  *
  * MAXFWD module
  *
@@ -618,13 +618,6 @@ static int sms_exit(void)
 
 	if (queued_msgs)
 		shm_free(queued_msgs);
-
-	for(i=0;i<nr_of_modems;i++)
-		/* if the modem is open -> close it!*/
-		if (modems[i].fd) {
-			DBG("DEBUG:sms_exit: closing modem %s\n",modems[i].name);
-			closemodem(&(modems[i]));
-		}
 
 	return 0;
 }
