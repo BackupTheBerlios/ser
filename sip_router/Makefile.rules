@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.13 2003/03/18 16:07:42 andrei Exp $
+# $Id: Makefile.rules,v 1.14 2004/03/09 12:51:14 janakj Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -46,7 +46,7 @@ clean:
 			$(MAKE) -C $$r clean ; \
 		fi ; \
 	done
-	@if [ -n "$(modules)" ]; then cd utils/gen_ha1; $(MAKE) clean; fi
+	@if [ -n "$(modules)" ]; then cd utils/gen_ha1; $(MAKE) clean; cd ../serunix; $(MAKE) clean; fi
 
 .PHONY: proper
 .PHONY: distclean
