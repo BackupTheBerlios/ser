@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.8 2003/05/02 12:22:16 jih Exp $
+ * $Id: acc_mod.h,v 1.9 2003/07/10 00:03:05 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -58,6 +58,7 @@ extern int service_type;
 #ifdef SQL_ACC
 extern int db_flag;
 extern int db_missed_flag;
+extern int db_localtime;
 
 extern db_con_t* db_handle; /* Database connection handle */
 

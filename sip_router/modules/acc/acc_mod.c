@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.25 2003/06/25 14:23:55 jiri Exp $
+ * $Id: acc_mod.c,v 1.26 2003/07/10 00:03:05 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -109,8 +109,10 @@ char *db_url=DEFAULT_DB_URL; /* Database url */
  */
 int db_flag = 0;
 int db_missed_flag = 0;
+int db_localtime = 0;
 
 char *db_table_acc="acc"; /* name of database table> */
+
 
 /* names of columns in tables acc/missed calls*/
 char* acc_sip_from_col      = "sip_from";

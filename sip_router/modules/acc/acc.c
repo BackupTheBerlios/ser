@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.15 2003/05/02 12:22:16 jih Exp $
+ * $Id: acc.c,v 1.16 2003/07/10 00:03:03 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -428,7 +428,7 @@ int acc_db_request( struct sip_msg *rq, struct hdr_field *to,
 	}
 
 	timep = time(NULL);
-	tm = gmtime(&timep);
+	tm = db_localtime ? localtime(&timep) : gmtime(&timep);
 	strftime(time_s, 20, "%Y-%m-%d %H:%M:%S", tm);
 
 
