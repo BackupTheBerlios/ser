@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.7 2002/07/08 17:14:39 janakj Exp $
+ * $Id: msg_parser.c,v 1.8 2002/07/08 17:53:33 janakj Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -66,7 +66,7 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 			memset(vb,0,sizeof(struct via_body));
 			hdr->body.s=tmp;
 			tmp=parse_via(tmp, end, vb);
-			if (vb->error==VIA_PARSE_ERROR){
+			if (vb->error==PARSE_ERROR){
 				LOG(L_ERR, "ERROR: get_hdr_field: bad via\n");
 				pkg_free(vb);
 				goto error;

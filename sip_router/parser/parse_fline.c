@@ -1,17 +1,14 @@
 /*
- * $Id: parse_fline.c,v 1.2 2002/07/08 17:14:39 janakj Exp $
+ * $Id: parse_fline.c,v 1.3 2002/07/08 17:53:33 janakj Exp $
  * 
  * sip first line parsing automaton
  * 
  */
 
-
-
 #include "../dprint.h"
 #include "msg_parser.h"
 #include "parser_f.h"
 #include "../mem/mem.h"
-
 
 /* grammar:
 	request  =  method SP uri SP version CRLF

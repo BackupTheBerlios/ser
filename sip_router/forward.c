@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.53 2002/07/08 16:52:40 andrei Exp $
+ * $Id: forward.c,v 1.54 2002/07/08 17:53:33 janakj Exp $
  */
 
 
@@ -228,7 +228,7 @@ int forward_reply(struct sip_msg* msg)
 	}
 	
 	/* we have to forward the reply stateless, so we need second via -bogdan*/
-	if ((msg->via2==0) || (msg->via2->error!=VIA_PARSE_OK))
+	if ((msg->via2==0) || (msg->via2->error!=PARSE_OK))
 	{
 		/* no second via => error */
 		LOG(L_ERR, "ERROR: forward_msg: no 2nd via found in reply\n");

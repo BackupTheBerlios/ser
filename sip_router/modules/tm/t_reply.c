@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.20 2002/06/11 21:41:36 jku Exp $
+ * $Id: t_reply.c,v 1.21 2002/07/08 17:53:33 janakj Exp $
  *
  */
 
@@ -246,7 +246,7 @@ int t_on_reply( struct sip_msg  *p_msg )
 	}
 
 	/* do we have via2 ? - maybe we'll need it for forwarding -bogdan*/
-	if ((p_msg->via2==0) || (p_msg->via2->error!=VIA_PARSE_OK)){
+	if ((p_msg->via2==0) || (p_msg->via2->error!=PARSE_OK)){
 		/* no second via => error */
 		LOG(L_ERR, "ERROR: t_on_reply: no 2nd via found in reply\n");
 		goto error;
