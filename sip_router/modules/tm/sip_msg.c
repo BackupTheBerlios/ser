@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.84 2004/08/24 09:00:41 janakj Exp $
+ * $Id: sip_msg.c,v 1.85 2005/02/12 23:13:09 bogdan Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -404,6 +404,7 @@ do { \
 	new_msg = (struct sip_msg*)p;
 	/* sip msg structure */
 	memcpy( new_msg , org_msg , sizeof(struct sip_msg) );
+	new_msg->msg_flags |= FL_SHM_CLONE;
 	p += ROUND4(sizeof(struct sip_msg));
 	new_msg->add_rm = 0;
 	new_msg->body_lumps = 0;

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.51 2004/12/28 23:41:30 sobomax Exp $
+ * $Id: msg_parser.h,v 1.52 2005/02/12 23:13:09 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -72,6 +72,7 @@ enum request_method { METHOD_UNDEF=0, METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_A
 #define FL_FORCE_ACTIVE 2  /* force active SDP */
 #define FL_SDP_IP_AFS 4    /* SDP IP rewritten */
 #define FL_SDP_PORT_AFS 8  /* SDP port rewritten */
+#define FL_SHM_CLONE   16  /* msg cloned in SHM as a single chunk */
 
 
 #define IFISMETHOD(methodname,firstchar)                                  \
