@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.113 2002/09/19 18:30:59 andrei Exp $
+ * $Id: main.c,v 1.114 2002/09/20 08:58:02 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -78,7 +78,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.113 2002/09/19 18:30:59 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.114 2002/09/20 08:58:02 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -412,6 +412,8 @@ void handle_sigs()
 			else
 				DBG("SIGTERM received, program terminates\n");
 				
+			/* first of all, kill the children also */
+			kill(0, SIGTERM);
 			destroy_modules();
 #ifdef PKG_MALLOC
 			LOG(memlog, "Memory status (pkg):\n");
@@ -425,8 +427,6 @@ void handle_sigs()
 			shm_mem_destroy();
 #endif
 			if (pid_file) unlink(pid_file);
-			/* kill children also*/
-			kill(0, SIGTERM);
 			dprint("Thank you for flying " NAME "\n");
 			exit(0);
 			break;
