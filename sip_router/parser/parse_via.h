@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.h,v 1.6 2002/10/21 15:46:27 jiri Exp $
+ * $Id: parse_via.h,v 1.7 2002/12/12 21:46:38 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -41,6 +41,7 @@ enum {
 };
 
 
+
 struct via_param {
 	int type;               /* Type of the parameter */
 	str name;               /* Name of the parameter */
@@ -57,6 +58,7 @@ struct via_body {
 	str name;
 	str version;   
 	str transport;
+	int proto; /* transport */
 	str host;
 	int port;
 	str port_str;

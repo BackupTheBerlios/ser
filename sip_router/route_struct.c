@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.19 2002/12/11 21:30:44 andrei Exp $
+ * $Id: route_struct.c,v 1.20 2002/12/12 21:46:38 andrei Exp $
  *
  * route structures helping functions
  *
@@ -234,6 +234,9 @@ void print_action(struct action* a)
 					break;
 			case FORWARD_TCP_T:
 					DBG("forward_tcp(");
+					break;
+			case FORWARD_UDP_T:
+					DBG("forward_udp(");
 					break;
 			case SEND_T:
 					DBG("send(");

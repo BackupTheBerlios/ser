@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.5 2002/12/11 21:30:45 andrei Exp $
+ * $Id: tcp_read.c,v 1.6 2002/12/12 21:46:38 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -366,7 +366,8 @@ int tcp_read_req(struct tcp_connection* con)
 			DBG("calling receive_msg(%p, %d, )\n",
 					req->buf, (int)(req->parsed-req->buf));
 			bind_address=sendipv4; /*&tcp_info[con->sock_idx];*/
-			if (receive_msg(req->buf, req->parsed-req->buf, &con->su)<0){
+			con->rcv.proto_reserved1=con->id; /* copy the id */
+			if (receive_msg(req->buf, req->parsed-req->buf, &con->rcv)<0){
 				resp=CONN_ERROR;
 				goto end_req;
 			}

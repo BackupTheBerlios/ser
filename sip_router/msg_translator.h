@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.14 2002/09/19 12:23:52 jku Rel $
+/*$Id: msg_translator.h,v 1.15 2002/12/12 21:46:38 andrei Exp $
  * 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -38,7 +38,8 @@
 #include "ip_addr.h"
 
 char * build_req_buf_from_sip_req (	struct sip_msg* msg, 
-				unsigned int *returned_len, struct socket_info* send_sock);
+				unsigned int *returned_len, struct socket_info* send_sock,
+				int proto);
 
 char * build_res_buf_from_sip_res(	struct sip_msg* msg,
 				unsigned int *returned_len);
@@ -52,7 +53,7 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 
 char* via_builder( unsigned int *len,
 	struct socket_info* send_sock,
-	char *branch, int branch_len );
+	char *branch, int branch_len, int proto );
 
 #ifdef _OBSOLETED
 char* via_builder( struct sip_msg *msg ,

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.135 2002/12/11 21:30:44 andrei Exp $
+ * $Id: main.c,v 1.136 2002/12/12 21:46:38 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -73,6 +73,9 @@
 #include "name_alias.h"
 #include "hash_func.h"
 #include "pt.h"
+#ifdef USE_TCP
+#include "tcp_init.h"
+#endif
 
 
 #include "stats.h"
@@ -81,7 +84,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.135 2002/12/11 21:30:44 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.136 2002/12/12 21:46:38 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -281,6 +284,10 @@ struct socket_info* bind_address=0; /* pointer to the crt. proc.
 int bind_idx; /* same as above but index in the bound[] array */
 struct socket_info* sendipv4; /* ipv4 socket to use when msg. comes from ipv6*/
 struct socket_info* sendipv6; /* same as above for ipv6 */
+#ifdef USE_TCP
+struct socket_info* sendipv4_tcp; 
+struct socket_info* sendipv6_tcp; 
+#endif
 
 unsigned short port_no=0; /* default port*/
 
@@ -623,6 +630,7 @@ int main_loop()
 		*/
 		for(r=0;r<sock_no;r++){
 			/* create the listening socket (for each address)*/
+			/* udp */
 			if (udp_init(&sock_info[r])==-1) goto error;
 			/* get first ipv4/ipv6 socket*/
 			if ((sock_info[r].address.af==AF_INET)&&
@@ -632,6 +640,19 @@ int main_loop()
 			if((sendipv6==0)&&(sock_info[r].address.af==AF_INET6))
 				sendipv6=&sock_info[r];
 	#endif
+#ifdef USE_TCP
+			tcp_info[r]=sock_info[r]; /* copy the sockets */
+			/* same thing for tcp */
+			if (tcp_init(&tcp_info[r])==-1)  goto error;
+			/* get first ipv4/ipv6 socket*/
+			if ((tcp_info[r].address.af==AF_INET)&&
+					((sendipv4_tcp==0)||(sendipv4_tcp->is_lo)))
+				sendipv4_tcp=&tcp_info[r];
+	#ifdef USE_IPV6
+			if((sendipv6_tcp==0)&&(tcp_info[r].address.af==AF_INET6))
+				sendipv6_tcp=&tcp_info[r];
+	#endif
+#endif
 			/* all procs should have access to all the sockets (for sending)
 			 * so we open all first*/
 		}

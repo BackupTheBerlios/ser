@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.38 2002/12/10 19:41:44 andrei Exp $
+ *$Id: receive.c,v 1.39 2002/12/12 21:46:38 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -50,7 +50,7 @@
 
 unsigned int msg_no=0;
 
-int receive_msg(char* buf, unsigned int len, union sockaddr_union* src_su)
+int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info) 
 {
 	struct sip_msg* msg;
 #ifdef STATS
@@ -76,8 +76,7 @@ int receive_msg(char* buf, unsigned int len, union sockaddr_union* src_su)
 	/* zero termination (termination of orig message bellow not that
 	   useful as most of the work is done with scrath-pad; -jiri  */
 	/* buf[len]=0; */ /* WARNING: zero term removed! */
-	su2ip_addr(&msg->src_ip, src_su);
-	msg->dst_ip=bind_address->address; /* won't work if listening on 0.0.0.0 */
+	msg->rcv=*rcv_info;
 	msg->id=msg_no;
 	/* make a copy of the message */
 	msg->orig=(char*) pkg_malloc(len+1);
