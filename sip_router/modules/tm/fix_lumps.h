@@ -1,5 +1,5 @@
 /*
- * $Id: fix_lumps.h,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: fix_lumps.h,v 1.3 2003/01/21 13:53:48 jiri Exp $
  *
  * here, we delete message lumps which are generated in
  * core functions using pkg_malloc and applied to shmem
@@ -34,6 +34,9 @@
 
 #ifndef _FIX_LUMPS_H
 #define _FIX_LUMPS_H
+
+#include "defs.h"
+
 
 /* used to delete attached via lumps from msg; msg can
    be either an original pkg msg, whose Via lump I want

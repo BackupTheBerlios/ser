@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.5 2002/11/11 21:34:54 andrei Exp $
+ * $Id: t_hooks.c,v 1.6 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -24,6 +24,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+#include "defs.h"
 
 
 #include "stdlib.h"

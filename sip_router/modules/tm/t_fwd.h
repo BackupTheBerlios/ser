@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.h,v 1.3 2002/09/20 12:07:11 andrei Rel $
+ * $Id: t_fwd.h,v 1.4 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,8 @@
 
 #ifndef _T_FWD_H
 #define _T_FWD_H
+
+#include "defs.h"
 
 #include "../../proxy.h"
 

@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.h,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: t_cancel.h,v 1.3 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,9 @@
 
 #ifndef _CANCEL_H
 #define _CANCEL_H
+
+#include "defs.h"
+
 
 /* a buffer is empty but cannot be used by anyone else;
    particularly, we use this value in the buffer pointer

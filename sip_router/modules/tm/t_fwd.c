@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.33 2002/12/12 21:42:33 andrei Exp $
+ * $Id: t_fwd.c,v 1.34 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -25,6 +25,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+#include "defs.h"
 
 
 #include "../../dprint.h"

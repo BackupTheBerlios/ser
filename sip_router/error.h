@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.7 2002/09/19 12:23:52 jku Rel $
+ * $Id: error.h,v 1.8 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -47,6 +47,8 @@
 /* too many branches demanded */
 #define E_TOO_MANY_BRANCHES -12
 #define E_BAD_TO	-13
+/* invalid params */
+#define E_INVALID_PARAMS -14
 
 #define E_SEND		  -477
 /* unresolveable next-hop address */

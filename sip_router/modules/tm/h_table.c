@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.73 2002/12/03 20:24:27 jiri Exp $
+ * $Id: h_table.c,v 1.74 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -24,6 +24,9 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+#include "defs.h"
+
 
 #include <stdlib.h>
 #include "../../mem/shm_mem.h"

@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.20 2002/10/21 21:24:43 jiri Exp $
+ * $Id: config.h,v 1.21 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,8 @@
 
 #ifndef _TM_CONFIG_H
 #define _TM_CONFIG_H
+
+#include "defs.h"
 
 #ifdef _OBSOLETED
 /* moved to hash.h */

@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.5 2002/09/19 12:23:55 jku Rel $
+ * $Id: t_hooks.h,v 1.6 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,9 @@
 
 #ifndef _HOOKS_H
 #define _HOOKS_H
+
+#include "defs.h"
+
 
 struct sip_msg;
 struct cell;

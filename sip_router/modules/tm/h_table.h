@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.63 2002/12/03 20:24:27 jiri Exp $
+ * $Id: h_table.h,v 1.64 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,6 +25,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#include "defs.h"
 
 
 #ifndef _H_TABLE_H

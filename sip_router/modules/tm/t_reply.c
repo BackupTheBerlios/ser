@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.41 2003/01/19 01:37:45 jiri Exp $
+ * $Id: t_reply.c,v 1.42 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,6 +30,7 @@
  * 2003-01-19 faked lump list created in on_reply handlers
  */
 
+#include "defs.h"
 
 
 #include "../../hash_func.h"

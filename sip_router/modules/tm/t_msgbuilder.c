@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.18 2003/01/20 01:18:51 jiri Exp $
+ * $Id: t_msgbuilder.c,v 1.19 2003/01/21 13:53:48 jiri Exp $
  *
  * message printing
  *
@@ -26,6 +26,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+#include "defs.h"
 
 
 #include "../../hash_func.h"
@@ -166,7 +168,7 @@ error:
 }
 
 
-
+#ifndef DEPRECATE_OLD_STUFF
 char *build_uac_request(  str msg_type, str dst, str from,
 	str fromtag, int cseq, str callid, str headers, 
 	str body, int branch, 
@@ -315,6 +317,7 @@ error:
 	return buf;
 	
 }
+#endif
 
 
 char *build_uac_request_dlg(str* msg,           /* Method */

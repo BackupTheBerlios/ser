@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.8 2002/12/07 20:09:51 janakj Exp $
+ * $Id: t_msgbuilder.h,v 1.9 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,9 @@
 
 #ifndef _MSGBUILDER_H
 #define _MSGBUILDER_H
+
+#include "defs.h"
+
 
 #define CSEQ "CSeq: "
 #define CSEQ_LEN (sizeof(CSEQ)-1)

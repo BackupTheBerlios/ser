@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.4 2002/12/17 18:10:04 janakj Exp $
+ * $Id: ut.h,v 1.5 2003/01/21 13:53:48 jiri Exp $
  *
  * utilities
  *
@@ -31,6 +31,9 @@
 
 #ifndef _TM_UT_H
 #define _TM_UT_H
+
+#include "defs.h"
+
 
 #include "../../dprint.h"
 #include "../../error.h"

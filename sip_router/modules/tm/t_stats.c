@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.12 2002/10/21 03:08:20 jiri Exp $
+ * $Id: t_stats.c,v 1.13 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -27,6 +27,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+
+#include "defs.h"
 
 
 #include <stdio.h>

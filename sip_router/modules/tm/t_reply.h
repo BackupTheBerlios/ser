@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.6 2003/01/06 03:55:41 jiri Exp $
+ * $Id: t_reply.h,v 1.7 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,9 @@
 
 #ifndef _T_REPLY_H
 #define _T_REPLY_H
+
+#include "defs.h"
+
 
 #include "h_table.h"
 

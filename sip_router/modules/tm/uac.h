@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.13 2003/01/14 23:18:15 janakj Exp $
+ * $Id: uac.h,v 1.14 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,9 @@
 
 #ifndef _UAC_H
 #define _UAC_H
+
+#include "defs.h"
+
 
 #include <stdio.h>
 #include "config.h"
@@ -111,7 +114,12 @@ int t_uac_dlg(str* msg,                     /* Type of the message - MESSAGE, OP
 	      void* cbp                     /* Callback pointer */
 	      );
 
-
+#ifndef DEPRECATE_OLD_STUFF
 int fifo_uac( FILE *stream, char *response_file );
 int fifo_uac_from( FILE *stream, char *response_file );
+#endif
+
+int fifo_uac_dlg( FILE *stream, char *response_file );
+
+
 #endif

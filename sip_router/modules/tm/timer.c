@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.39 2002/10/21 15:46:27 jiri Exp $
+ * $Id: timer.c,v 1.40 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -92,6 +92,9 @@
 	a REPLY_LOCK.
 
 */
+
+#include "defs.h"
+
 
 
 #include "config.h"

@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.40 2003/01/16 19:22:09 andrei Exp $
+ * $Id: lock.c,v 1.41 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,6 +25,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+
+#include "defs.h"
 
 
 #include <errno.h>

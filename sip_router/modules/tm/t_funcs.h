@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.49 2002/09/24 16:37:18 andrei Rel $
+ * $Id: t_funcs.h,v 1.50 2003/01/21 13:53:48 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,9 @@
 
 #ifndef _T_FUNCS_H
 #define _T_FUNCS_H
+
+#include "defs.h"
+
 
 #include <errno.h>
 #include <netdb.h>

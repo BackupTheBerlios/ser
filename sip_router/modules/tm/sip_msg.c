@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.57 2003/01/19 01:37:45 jiri Exp $
+ * $Id: sip_msg.c,v 1.58 2003/01/21 13:53:48 jiri Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -35,6 +35,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+#include "defs.h"
 
 
 #include <stdio.h>

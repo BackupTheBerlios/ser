@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.3 2002/09/20 12:07:11 andrei Rel $
+ * $Id: t_cancel.c,v 1.4 2003/01/21 13:53:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -26,6 +26,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+
+#include "defs.h"
 
 
 #include "t_funcs.h"

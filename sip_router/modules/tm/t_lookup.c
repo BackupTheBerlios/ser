@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.52 2003/01/06 12:48:56 jiri Exp $
+ * $Id: t_lookup.c,v 1.53 2003/01/21 13:53:48 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -49,6 +49,9 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+
+#include "defs.h"
 
 
 #include <assert.h>
