@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.22 2004/12/20 18:52:54 sobomax Exp $ 
+ * $Id: hf.c,v 1.23 2004/12/28 23:41:30 sobomax Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -130,10 +130,10 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_ACCEPTLANGUAGE:
 			break;
-
+			
 		case HDR_ORGANIZATION:
 			break;
-
+			
 		case HDR_PRIORITY:
 			break;
 
@@ -156,9 +156,6 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_RPID:
 			free_to(hf->parsed);
-			break;
-
-		case HDR_SERVER:
 			break;
 
 		default:

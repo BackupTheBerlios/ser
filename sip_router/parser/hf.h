@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.17 2004/12/20 18:52:54 sobomax Exp $ 
+ * $Id: hf.h,v 1.18 2004/12/28 23:41:30 sobomax Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -73,8 +73,7 @@
 #define HDR_CONTENTDISPOSITION (1 << 27)  /* Content-Disposition hdr field */
 #define HDR_DIVERSION          (1 << 28)  /* Diversion header field */
 #define HDR_RPID               (1 << 29)  /* Remote-Party-ID header field */
-#define HDR_SERVER             (1 << 30)  /* Server header field */
-#define HDR_OTHER              (1 << 31)  /* Some other header field */
+#define HDR_OTHER              (1 << 30)  /* Some other header field */
 
 
 /* returns true if the header links allocated memory on parse field */
