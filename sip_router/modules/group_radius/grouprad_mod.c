@@ -1,5 +1,5 @@
 /* 
- * $Id: grouprad_mod.c,v 1.8 2004/08/24 08:58:30 janakj Exp $ 
+ * $Id: grouprad_mod.c,v 1.9 2004/12/04 20:55:23 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -103,6 +103,7 @@ static int mod_init(void)
 	memset(attrs, 0, sizeof(vals));
 	attrs[A_SERVICE_TYPE].n	= "Service-Type";
 	attrs[A_USER_NAME].n	= "User-Name";
+	attrs[A_SIP_GROUP].n    = "Sip-Group";
 	vals[V_GROUP_CHECK].n	= "Group-Check";
 
 	if ((rh = rc_read_config(radius_config)) == NULL) {
