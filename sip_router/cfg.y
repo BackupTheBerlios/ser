@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.6 2001/09/21 23:47:10 andrei Exp $
+ * $Id: cfg.y,v 1.7 2001/09/22 02:20:24 andrei Exp $
  *
  *  cfg grammar
  */
@@ -267,7 +267,7 @@ net4:	ipv4 SLASH ipv4	{ $$=mk_net($1, $3); }
 								yyerror("invalid bit number in netmask");
 								$$=0;
 							}else{
-								$$=mk_net($1, ((1<<$3)-1));
+								$$=mk_net($1, htonl( ($3)?~( (1<<32-$3)-1 ):0 ) );
 							}
 						}
 	| ipv4				{ $$=mk_net($1, 0xffffffff); }
