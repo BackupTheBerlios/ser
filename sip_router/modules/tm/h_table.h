@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.39 2002/01/11 19:58:59 jku Exp $
+ * $Id: h_table.h,v 1.40 2002/01/25 16:55:49 bogdan Exp $
  */
 
 
@@ -73,7 +73,6 @@ typedef struct cell
 
 	/*the transaction that is canceled (usefull only for CANCEL req)*/
 	struct cell *T_canceled;
-	struct cell *T_canceler;
 
 	/* useful data */
 	/* UA Server */
