@@ -1,5 +1,5 @@
 #
-# $Id: ISSUES,v 1.17 2003/02/26 23:12:09 jiri Exp $
+# $Id: ISSUES,v 1.18 2003/04/03 17:26:06 jiri Exp $
 #
 
 This is a collection of issues which have shown up
@@ -8,6 +8,14 @@ ordered by numbers of ser versions to which they relate,
 beginning with the newest release. Issues related to
 operating systems are summarized in the bottom.
 
+---------------------------------------------------------------
+Desc: serctl returns "read: Illegal option -s" for "add user"
+Ser version: 0.8.10 and before
+Reason: serctl's use of some shell script commands not portable
+Workaround: download serctl 1.45 and set SUBSCRIBER_COLUMN back
+            to user_id
+Download: http://cvs.berlios.de/cgi-bin/viewcvs.cgi/*checkout*/ser/sip_router/scripts/sc?rev=1.45
+CVS Status: fixed
 ---------------------------------------------------------------
 Desc: 3261 ACKs for 200s are consumed by stateful processing
 Ser version: 0.8.10
