@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.62 2004/08/24 08:45:10 janakj Exp $
+ * $Id: action.c,v 1.63 2004/08/31 16:50:34 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -120,7 +120,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 #ifdef USE_TLS
 			else if (a->type==FORWARD_TLS_T) proto= PROTO_TLS;
 #endif
-			else proto=msg->rcv.proto;
+			else proto= PROTO_NONE;
 			if (a->p1_type==URIHOST_ST){
 				/*parse uri*/
 
@@ -151,36 +151,39 @@ int do_action(struct action* a, struct sip_msg* msg)
 							ret=E_UNSPEC;
 							goto error_fwd_uri;
 				}
-				switch(u->proto){
-					case PROTO_NONE:
-						proto=PROTO_UDP;
-						break;
-					case PROTO_UDP:
+				if (proto == PROTO_NONE){ /* only if proto not set get it
+											 from the uri */
+					switch(u->proto){
+						case PROTO_NONE:
+							proto=PROTO_UDP;
+							break;
+						case PROTO_UDP:
 #ifdef USE_TCP
-					case PROTO_TCP:
+						case PROTO_TCP:
 #endif
 #ifdef USE_TLS
-					case PROTO_TLS:
+						case PROTO_TLS:
 #endif
-						proto=u->proto;
-						break;
-					default:
-						LOG(L_ERR,"ERROR: do action: forward: bad uri"
-								" transport %d\n", u->proto);
-						ret=E_BAD_PROTO;
-						goto error_fwd_uri;
-				}
-#ifdef USE_TLS
-				if (u->secure){
-					if (u->proto==PROTO_UDP){
-						LOG(L_ERR, "ERROR: do_action: forward: secure uri"
-								" incompatible with transport %d\n", u->proto);
-						ret=E_BAD_PROTO;
-						goto error_fwd_uri;
+							proto=u->proto;
+							break;
+						default:
+							LOG(L_ERR,"ERROR: do action: forward: bad uri"
+									" transport %d\n", u->proto);
+							ret=E_BAD_PROTO;
+							goto error_fwd_uri;
 					}
-					proto=PROTO_TLS;
-				}
+#ifdef USE_TLS
+					if (u->secure){
+						if (u->proto==PROTO_UDP){
+							LOG(L_ERR, "ERROR: do_action: forward: secure uri"
+									" incompatible with transport %d\n", u->proto);
+							ret=E_BAD_PROTO;
+							goto error_fwd_uri;
+						}
+						proto=PROTO_TLS;
+					}
 #endif
+				}
 				/* create a temporary proxy*/
 				p=mk_proxy(&u->host, port, proto);
 				if (p==0){
@@ -195,6 +198,8 @@ int do_action(struct action* a, struct sip_msg* msg)
 				pkg_free(p);
 				if (ret>=0) ret=1;
 			}else if ((a->p1_type==PROXY_ST) && (a->p2_type==NUMBER_ST)){
+				if (proto==PROTO_NONE)
+					proto=msg->rcv.proto;
 				ret=forward_request(msg,(struct proxy_l*)a->p1.data, proto);
 				if (ret>=0) ret=1;
 			}else{

@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.56 2004/08/27 16:01:54 sobomax Exp $
+/* $Id: nathelper.c,v 1.57 2004/08/31 16:50:35 andrei Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -536,6 +536,10 @@ fix_nated_contact_f(struct sip_msg* msg, char* str1, char* str2)
 	if (uri.port.len == 0)
 		uri.port.s = uri.host.s + uri.host.len;
 
+	if ((c->uri.s < msg->buf)||(c->uri.s > (msg->buf+msg->len))){
+		LOG(L_ERR, "ERROR: fix_nated_contact called twice?\n");
+		return -1;
+	}
 	offset = c->uri.s - msg->buf;
 	anchor = del_lump(msg, offset, c->uri.len, HDR_CONTACT);
 	if (anchor == 0)
