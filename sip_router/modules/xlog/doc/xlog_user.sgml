@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2004/06/16 10:55:40 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2004/07/15 10:56:36 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -26,16 +26,6 @@
 	    <listitem>
 		<para>
 		    %% : '%'
-		</para>
-	    </listitem>
-	    <listitem>
-		<para>
-		    %Ts : unix time stamp
-		</para>
-	    </listitem>
-	    <listitem>
-		<para>
-		    %Tf : string formatted time
 		</para>
 	    </listitem>
 	    <listitem>
@@ -61,6 +51,36 @@
 	    <listitem>
 		<para>
 		    %ft : 'From' tag
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    %is : IP source address 
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    %mb : whole SIP message buffer
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    %mf : flags set for current SIP request
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    %mi : SIP message id
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    %ml : SIP message length
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    %pp : process id (pid)
 		</para>
 	    </listitem>
 	    <listitem>
@@ -95,32 +115,17 @@
 	    </listitem>
 	    <listitem>
 		<para>
-		    %mb : whole SIP message buffer
+		    %Ts : unix time stamp
 		</para>
 	    </listitem>
 	    <listitem>
 		<para>
-		    %mf : flags set for current SIP request
+		    %Tf : string formatted time
 		</para>
 	    </listitem>
 	    <listitem>
 		<para>
-		    %mi : SIP message id
-		</para>
-	    </listitem>
-	    <listitem>
-		<para>
-		    %ml : SIP message length
-		</para>
-	    </listitem>
-	    <listitem>
-		<para>
-		    %pp : process id (pid)
-		</para>
-	    </listitem>
-	    <listitem>
-		<para>
-		    %is : IP source address 
+		    %ua : User agent header field
 		</para>
 	    </listitem>
 	</itemizedlist>
