@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.2 2002/08/31 17:15:22 jku Exp $
+# $Id: harv_ser.sh,v 1.3 2002/08/31 23:01:43 jku Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -39,6 +39,9 @@ echo "Log: $CURRENT"
 
 AWK_PG='
 BEGIN {
+
+	IGNORECASE=1;
+
     rpl100=0; rpl180=0; rpl183=0; rpl1xx=0;
     rpl200=0; rpl202=0; rpl2xx=0;
     rpl300=0; rpl302=0; rpl3xx=0;
