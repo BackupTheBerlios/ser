@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.44 2004/03/04 22:53:53 janakj Exp $
+ * $Id: globals.h,v 1.45 2004/03/08 14:05:46 andrei Exp $
  *
  * global variables
  *
@@ -47,6 +47,12 @@ extern char * cfg_file;
 extern int config_check;
 extern char *stat_file;
 extern unsigned short port_no;
+
+extern int uid;
+extern int gid;
+char* pid_file;
+extern int own_pgid; /* whether or not we have our own pgid (and it's ok
+>--->--->--->--->--->--->--->--->--->--->--- to use kill(0, sig) */
 
 extern struct socket_info* bind_address; /* pointer to the crt. proc.
 											listening address */
