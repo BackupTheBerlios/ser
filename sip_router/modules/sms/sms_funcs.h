@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.h,v 1.19 2002/10/25 12:28:19 bogdan Exp $
+ * $Id: sms_funcs.h,v 1.20 2002/11/28 17:06:42 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,7 +33,6 @@
 #include "../../str.h"
 #include <termios.h>
 #include "../tm/tm_load.h"
-#include "../im/im_load.h"
 
 
 #define MAX_MODEMS    5       /* max number of modems */
@@ -114,7 +113,6 @@ extern int    *queued_msgs;
 extern int    use_contact;
 extern int    sms_report_type;
 extern struct tm_binds tmb;
-extern struct im_binds imb;
 
 void modem_process(struct modem*);
 int  push_on_network(struct sip_msg*, int);

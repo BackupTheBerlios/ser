@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd_funcs.h,v 1.1 2002/11/22 18:40:16 bogdan Exp $
+ * $Id: extcmd_funcs.h,v 1.2 2002/11/28 17:07:36 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,9 +30,9 @@
 #define _H_EXTERNAL_COMMANDS
 
 #include "../../parser/parse_uri.h"
+#include "../tm/tm_load.h"
 
 extern struct tm_binds tmb;
-extern struct im_binds imb;
 extern int    rpl_pipe[2];
 extern int    req_pipe[2];
 

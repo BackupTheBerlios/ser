@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.24 2002/10/25 12:28:19 bogdan Exp $
+ * $Id: sms.c,v 1.25 2002/11/28 17:06:42 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -40,7 +40,6 @@
 #include "../../globals.h"
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
-#include "../im/im_load.h"
 #include "../tm/tm_load.h"
 #include "sms_funcs.h"
 #include "sms_report.h"
@@ -72,7 +71,6 @@ int    *queued_msgs    = 0;
 int    use_contact     = 0;
 int    sms_report_type = NO_REPORT;
 struct tm_binds tmb;
-struct im_binds imb;
 
 struct module_exports exports= {
 	"sms",
@@ -530,7 +528,6 @@ error:
 int global_init()
 {
 	load_tm_f  load_tm;
-	load_im_f  load_im;
 	int        i, net_pipe[2], foo;
 	char       *p;
 
@@ -541,15 +538,6 @@ int global_init()
 	}
 	/* let the auto-loading function load all TM stuff */
 	if (load_tm( &tmb )==-1) 
-		goto error;
-
-	/* import the IM auto-loading function */
-	if ( !(load_im=(load_im_f)find_export("load_im", 1))) {
-		LOG(L_ERR, "ERROR: sms: global_init: cannot import load_im\n");
-		goto error;
-	}
-	/* let the auto-loading function load all TM stuff */
-	if (load_im( &imb )==-1) 
 		goto error;
 
 	/*fix domain lenght*/
