@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.30 2003/04/03 10:34:37 jiri Exp $
+# $Id: harv_ser.sh,v 1.31 2003/04/04 10:27:49 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -301,7 +301,7 @@ ua==0 && /User-Agent:.*sipsak/ {
 	ua_sipsak++
 	ua=1
 }
-ua==0 && /User-Agent:.*FXSGW/ {
+ua==0 && /User-Agent:.*FXS_GW/ {
 	ua_fxsgw++
 	ua=1
 }
