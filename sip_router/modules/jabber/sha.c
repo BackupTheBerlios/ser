@@ -1,5 +1,5 @@
 /*
- * $Id: sha.c,v 1.2 2002/09/19 12:23:53 jku Exp $
+ * $Id: sha.c,v 1.3 2002/09/20 17:48:52 bogdan Rel $
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -190,7 +190,10 @@ int strprintsha(char *dest, int *hashval)
 		snprintf(hashstr, 9, "%08x", hashval[x]);
 		hashstr+=8;
 	}
-	snprintf(hashstr++, 1, "\0");
+	/*old way */
+	//snprintf(hashstr++, 1, "\0");
+	/*new way - by bogdan*/
+	*hashstr = 0;
 
 	return 0;
 }
