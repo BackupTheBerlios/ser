@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.101 2005/02/13 18:28:42 bogdan Exp $
+ * $Id: t_reply.c,v 1.102 2005/02/16 23:14:20 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1324,7 +1324,7 @@ int reply_received( struct sip_msg  *p_msg )
 			*/
 
 			backup_list = set_avp_list( &t->user_avps );
-			if (!avp2timer(&timer, fr_inv_timer_avp)) {
+			if (!fr_inv_avp2timer(&timer)) {
 				DBG("reply_received: FR_INV_TIMER = %d\n", timer);
 				set_timer( & uac->request.fr_timer,
 					   FR_INV_TIMER_LIST, &timer );
