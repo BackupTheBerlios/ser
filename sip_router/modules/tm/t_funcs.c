@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.136 2002/05/16 19:12:14 bogdan Exp $
+ * $Id: t_funcs.c,v 1.137 2002/05/16 19:31:48 bogdan Exp $
  *
  */
 
@@ -620,7 +620,6 @@ int t_add_fork( unsigned int ip, unsigned int port, char* uri_s,
 			if (uri_s && uri_len && free_flag==0)
 			{
 				foo = (char*)shm_malloc(uri_len);
-				DBG(">>>>>>>>>>>>>>> foo=%p uri_s=%p \n",foo,uri_s);
 				if (!foo)
 				{
 					LOG(L_ERR,"ERROR:t_add_fork: cannot get free memory\n");
