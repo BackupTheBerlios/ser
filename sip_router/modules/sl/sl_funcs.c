@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.36 2002/10/21 20:30:15 jiri Exp $
+ * $Id: sl_funcs.c,v 1.37 2002/12/12 21:41:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -158,7 +158,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 		goto error;
 	}
 
-	send_sock=get_send_socket(&to);
+	send_sock=get_send_socket(&to, msg->rcv.proto);
 	if (send_sock!=0)
 	{
 		udp_send( send_sock, buf, len,  &to);
