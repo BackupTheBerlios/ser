@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.65 2004/10/10 21:25:01 jiri Exp $
+/* $Id: nathelper.c,v 1.66 2004/11/09 15:15:12 andrei Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -1583,7 +1583,8 @@ timer(unsigned int ticks, void *param)
 			continue;
 		}
 		hostent2su(&to, he, 0, curi.port_no);
-		send_sock=force_socket ? force_socket : get_send_socket(&to, PROTO_UDP);
+		send_sock=force_socket ? force_socket : 
+					get_send_socket(0, &to, PROTO_UDP);
 		if (send_sock == NULL) {
 			LOG(L_ERR, "ERROR: nathelper::timer: can't get sending socket\n");
 			continue;

@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.60 2004/09/01 10:12:43 janakj Exp $
+ * $Id: t_fwd.c,v 1.61 2004/11/09 15:15:12 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -215,7 +215,7 @@ int add_uac( struct cell *t, struct sip_msg *request, str *uri, str* next_hop,
 	hostent2su( &to, &proxy->host, proxy->addr_idx, 
 		proxy->port ? proxy->port:SIP_PORT);
 
-	send_sock=get_send_socket( &to , proto);
+	send_sock=get_send_socket( request, &to , proto);
 	if (send_sock==0) {
 		LOG(L_ERR, "ERROR: add_uac: can't fwd to af %d, proto %d "
 			" (no corresponding listening socket)\n",

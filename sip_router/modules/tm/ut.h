@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.13 2004/08/24 09:00:44 janakj Exp $
+ * $Id: ut.h,v 1.14 2004/11/09 15:15:12 andrei Exp $
  *
  * utilities
  *
@@ -133,7 +133,8 @@ inline static struct proxy_l *uri2proxy( str *uri, int proto )
 /*
  * Convert a URI into socket_info
  */
-static inline struct socket_info *uri2sock(str *uri, union sockaddr_union *to_su, int proto)
+static inline struct socket_info *uri2sock(struct sip_msg* msg, str *uri,
+									union sockaddr_union *to_su, int proto)
 {
 	struct proxy_l *proxy;
 	struct socket_info* send_sock;
@@ -148,7 +149,7 @@ static inline struct socket_info *uri2sock(str *uri, union sockaddr_union *to_su
 	hostent2su(to_su, &proxy->host, proxy->addr_idx, 
 		   (proxy->port) ? proxy->port : SIP_PORT);
 			/* we use proxy->proto since uri2proxy just set it correctly*/
-	send_sock = get_send_socket(to_su, proxy->proto);
+	send_sock = get_send_socket(msg, to_su, proxy->proto);
 	if (!send_sock) {
 		LOG(L_ERR, "ERROR: uri2sock: no corresponding socket for af %d\n", 
 		    to_su->s.sa_family);

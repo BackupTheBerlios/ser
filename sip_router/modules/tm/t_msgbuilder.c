@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.39 2004/08/24 09:00:43 janakj Exp $
+ * $Id: t_msgbuilder.c,v 1.40 2004/11/09 15:15:12 andrei Exp $
  *
  * message printing
  *
@@ -408,7 +408,7 @@ char *build_dlg_ack(struct sip_msg* rpl, struct cell *Trans, unsigned int branch
 	
 	
 	     /* via */
-	send_sock = uri2sock(next_hop, &to_su, PROTO_NONE);
+	send_sock = uri2sock(rpl, next_hop, &to_su, PROTO_NONE);
 	if (!send_sock) {
 		LOG(L_ERR, "build_dlg_ack: no socket found\n");
 		goto error;

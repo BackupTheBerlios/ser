@@ -1,5 +1,5 @@
 /*
- * $Id: uac_unixsock.c,v 1.7 2004/08/24 09:00:44 janakj Exp $
+ * $Id: uac_unixsock.c,v 1.8 2004/11/09 15:15:12 andrei Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -294,7 +294,7 @@ static char *get_hfblock(str *uri, struct hdr_field *hf, int *l, int proto)
 					if (!new_str(begin, frag_len, &last, &total_len)) goto error;
 					     /* substitute */
 					if (!sock_name) {
-						send_sock = uri2sock(uri, &to_su, proto);
+						send_sock = uri2sock(0, uri, &to_su, proto);
 						if (!send_sock) {
 							LOG(L_ERR, "ERROR: get_hfblock: send_sock failed\n");
 							goto error;

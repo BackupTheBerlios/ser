@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.40 2004/09/01 17:06:26 janakj Exp $
+ * $Id: msg_parser.c,v 1.41 2004/11/09 15:15:12 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -91,7 +91,7 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 	}
 
 	/* eliminate leading whitespace */
-	tmp=eat_lws_end(tmp, end);
+	/* tmp=eat_lws_end(tmp, end); not allowed anyway --andrei */
 	if (tmp>=end) {
 		LOG(L_ERR, "ERROR: get_hdr_field: HF empty\n");
 		goto error;

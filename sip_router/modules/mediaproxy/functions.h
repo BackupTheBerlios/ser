@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.3 2004/08/06 11:32:25 danp Exp $
+/* $Id: functions.h,v 1.4 2004/11/09 15:15:11 andrei Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -86,7 +86,7 @@ pingClients(unsigned int ticks, void *param)
             continue;
         }
         hostent2su(&to, hostent, 0, uri.port_no);
-        sock = get_send_socket(&to, PROTO_UDP);
+        sock = get_send_socket(0, &to, PROTO_UDP);
         if (sock == NULL) {
             LOG(L_ERR, "error: mediaproxy/pingClients(): can't get sending socket\n");
             continue;
