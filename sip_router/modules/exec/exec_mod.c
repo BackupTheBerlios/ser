@@ -1,7 +1,7 @@
 /*
  * execution module
  *
- * $Id: exec_mod.c,v 1.1 2002/08/16 13:22:46 jku Exp $
+ * $Id: exec_mod.c,v 1.2 2002/08/19 19:47:29 jku Exp $
  */
 
 #include <stdio.h>
@@ -10,6 +10,7 @@
 #include "../../str.h"
 #include "../../sr_module.h"
 #include "../../dprint.h"
+#include "../../parser/parse_uri.h"
 
 #include "exec.h"
 #include "kill.h"
