@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.6 2002/01/11 19:58:58 jku Exp $
+/* $Id: sr_module.h,v 1.7 2002/03/01 10:53:16 janakj Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -14,6 +14,7 @@ typedef  int (*fixup_function)(void** param, int param_no);
 typedef  int (*response_function)(struct sip_msg*);
 typedef  void (*onbreak_function)(struct sip_msg*);
 typedef void (*destroy_function)();
+typedef int (*child_init_function)(int rank);
 
 struct module_exports{
 	char* name; /* null terminated module name */
@@ -31,6 +32,7 @@ struct module_exports{
 								  be "destroyed", e.g: on ser exit;
 								  can be null */
 	onbreak_function onbreak_f;
+	child_init_function init_child_f;  /* Function will be called by all processes after the fork */
 };
 
 struct sr_module{
@@ -48,6 +50,7 @@ int load_module(char* path);
 cmd_function find_export(char* name, int param_no);
 struct sr_module* find_module(void *f, int* r);
 void destroy_modules();
+int init_child(int rank);
 
 
 /* modules function prototypes:
