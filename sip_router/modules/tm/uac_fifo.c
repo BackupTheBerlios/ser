@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.6 2004/01/17 21:18:04 jiri Exp $
+ * $Id: uac_fifo.c,v 1.7 2004/02/11 06:44:51 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * --------
  *  2003-12-03 : fifo_callback() updated for changes in tm callbacks (bogdan)
+ *  2004-02-11: fix: TM callback writes to fifo changed to non-blocking (jiri)
  */
 
 #include <string.h>
@@ -560,12 +561,11 @@ static void fifo_callback( struct cell *t, int type, struct tmcb_params *ps )
 		text.s = ps->rpl->first_line.u.reply.reason.s;
 		text.len = ps->rpl->first_line.u.reply.reason.len;
 
-		f = fopen(filename, "wt");
-		if (!f) goto done;
-		fprintf(f, "%d %.*s\n", ps->rpl->first_line.u.reply.statuscode,
-			text.len, text.s);
-		print_uris(f, ps->rpl);
-		fprintf(f, "%s\n", ps->rpl->headers->name.s);
+		f = open_reply_pipe(filename);
+		if (!f) return;
+		fprintf(f, "%d %.*s\n", reply->first_line.u.reply.statuscode, text.len, text.s);
+		print_uris(f, reply);
+		fprintf(f, "%s\n", reply->headers->name.s);
 		fclose(f);
 	}
 	DBG("DEBUG: fifo_callback sucesssfuly completed\n");
