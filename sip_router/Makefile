@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.131 2004/09/19 20:22:51 andrei Exp $
+# $Id: Makefile,v 1.132 2004/10/22 17:17:55 andrei Exp $
 #
 # sip_router makefile
 #
@@ -224,6 +224,7 @@ sunpkg:
 	rm -rf tmp/ser_sun_pkg
 
 
+.PHONY: install
 install: all mk-install-dirs install-cfg install-bin install-modules \
 	install-doc install-man
 
