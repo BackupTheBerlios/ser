@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.14 2003/05/09 13:44:47 andrei Exp $
+ * $Id: dlist.c,v 1.15 2003/10/08 21:56:33 janakj Exp $
  *
  * List of registered domains
  *
@@ -88,7 +88,7 @@ static inline int find_dlist(str* _n, dlist_t** _d)
  * |000000000000|
  * +------------+
  */
-int get_all_ucontacts(void *buf, int len)
+int get_all_ucontacts(void *buf, int len, unsigned int flags)
 {
 	dlist_t *p;
 	urecord_t *r;
@@ -109,6 +109,12 @@ int get_all_ucontacts(void *buf, int len)
 		for (r = p->d->d_ll.first; r != NULL; r = r->d_ll.next) {
 			for (c = r->contacts; c != NULL; c = c->next) {
 				if (c->c.len <= 0)
+					continue;
+				     /*
+				      * List only contacts that have all requested
+				      * flags set
+				      */
+				if ((c->flags & flags) != flags)
 					continue;
 				if (len >= (int)(sizeof(c->c.len) + c->c.len)) {
 					memcpy(cp, &c->c.len, sizeof(c->c.len));

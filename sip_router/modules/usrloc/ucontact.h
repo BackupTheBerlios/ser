@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.9 2003/09/19 08:27:12 janakj Exp $ 
+ * $Id: ucontact.h,v 1.10 2003/10/08 21:56:33 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -174,6 +174,8 @@ int db_delete_ucontact(ucontact_t* _c);
 /*
  * Update ucontact with new values without replication
  */
+typedef int (*update_ucontact_t)(ucontact_t* _c, time_t _e, float _q, str* _cid, int _cs, 
+				 unsigned int _set, unsigned int _res);
 int update_ucontact(ucontact_t* _c, time_t _e, float _q, str* _cid, int _cs,
 		    unsigned int _set, unsigned int _res);
 
