@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.13 2003/12/17 15:43:11 sobomax Exp $ 
+ * $Id: authrad_mod.c,v 1.14 2004/03/29 16:12:15 janakj Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -144,7 +144,7 @@ static int mod_init(void)
 
 	vend = rc_dict_findvend(rh, "Cisco");
 	if (vend == NULL) {
-		LOG(L_WARN, "auth_radius: No `Cisco' vendor in Radius "
+		DBG("auth_radius: No `Cisco' vendor in Radius "
 			   "dictionary\n");
 		ciscopec = -1;
 		attrs[A_CISCO_AVPAIR].n = NULL;
