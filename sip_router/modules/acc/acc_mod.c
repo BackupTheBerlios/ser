@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.39 2004/08/24 08:58:23 janakj Exp $
+ * $Id: acc_mod.c,v 1.40 2005/02/08 14:43:51 bogdan Exp $
  * 
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -173,16 +173,16 @@ static int w_acc_diam_request(struct sip_msg *rq, char *comment, char *foo);
 #endif
 
 static cmd_export_t cmds[] = {
-	{"acc_log_request", w_acc_log_request, 1, 0, REQUEST_ROUTE},
+	{"acc_log_request", w_acc_log_request, 1, 0, REQUEST_ROUTE|FAILURE_ROUTE},
 #ifdef SQL_ACC
-	{"acc_db_request", w_acc_db_request, 2, 0, REQUEST_ROUTE},
+	{"acc_db_request", w_acc_db_request, 2, 0, REQUEST_ROUTE|FAILURE_ROUTE},
 #endif
 #ifdef RAD_ACC
-	{"acc_rad_request", w_acc_rad_request, 1, 0, REQUEST_ROUTE},
+	{"acc_rad_request", w_acc_rad_request, 1, 0, REQUEST_ROUTE|FAILURE_ROUTE},
 #endif
 /* DIAMETER */
 #ifdef DIAM_ACC
-	{"acc_diam_request", w_acc_diam_request, 1, 0, REQUEST_ROUTE},
+	{"acc_diam_request", w_acc_diam_request, 1, 0,REQUEST_ROUTE|FAILURE_ROUTE},
 #endif
 	{0, 0, 0, 0, 0}
 };
