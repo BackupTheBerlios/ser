@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.34 2003/09/19 19:20:36 andrei Exp $
+ * $Id: timer.h,v 1.35 2004/02/13 18:21:34 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
  * History:
  * --------
  *  2003-09-12  timer_link.tg exists only if EXTRA_DEBUG (andrei)
+ *  2004-02-13  timer_link.payload removed (bogdan)
  */
 
 
@@ -62,11 +63,10 @@ enum lists
    links to neighbours and timer value */
 typedef struct timer_link
 {
-	struct timer_link *next_tl;
-	struct timer_link *prev_tl;
-	volatile unsigned int       time_out;
-	void              *payload;
-	struct timer      *timer_list;
+	struct timer_link     *next_tl;
+	struct timer_link     *prev_tl;
+	volatile unsigned int  time_out;
+	struct timer          *timer_list;
 #ifdef EXTRA_DEBUG
 	enum timer_groups  tg;
 #endif

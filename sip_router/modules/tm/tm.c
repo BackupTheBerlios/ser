@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.94 2004/02/11 03:38:49 jiri Exp $
+ * $Id: tm.c,v 1.95 2004/02/13 18:21:34 bogdan Exp $
  *
  * TM module
  *
@@ -452,7 +452,7 @@ static int script_init( struct sip_msg *foo, void *bar)
 
 static int mod_init(void)
 {
-	DBG( "TM - initializing...\n");
+	DBG( "TM - (size of cell=%d) initializing...\n",sizeof(struct cell));
 	/* checking if we have sufficient bitmap capacity for given
 	   maximum number of  branches */
 	if (MAX_BRANCHES+1>31) {

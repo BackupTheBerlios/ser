@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.9 2004/02/11 03:38:48 jiri Exp $
+ * $Id: t_cancel.c,v 1.10 2004/02/13 18:21:33 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,7 +30,7 @@
  * 2003-04-14  checking if a reply sent before cancel is initiated
  *             moved here (jiri)
  * 2004-02-11  FIFO/CANCEL + alignments (hash=f(callid,cseq)) (uli+jiri)
- *
+ * 2004-02-13  timer_link.payload removed (bogdan)
  */
 
 #include <stdio.h> /* for FILE* in fifo_uac_cancel */
@@ -112,7 +112,9 @@ void cancel_branch( struct cell *t, int branch )
 	crb->buffer_len=len;
 	crb->dst=irb->dst;
 	crb->branch=branch;
+	/* TO_REMOVE
 	crb->retr_timer.payload=crb->fr_timer.payload=crb;
+	*/
 	/* label it as cancel so that FR timer can better now how to
 	   deal with it */
 	crb->activ_type=TYPE_LOCAL_CANCEL;

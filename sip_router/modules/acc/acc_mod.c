@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.33 2004/01/15 15:28:44 bogdan Exp $
+ * $Id: acc_mod.c,v 1.34 2004/02/13 18:21:34 bogdan Exp $
  * 
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -444,7 +444,7 @@ static void acc_onreq( struct cell* t, int type, struct tmcb_params *ps )
 		/* also, if that is INVITE, disallow silent t-drop */
 		if (ps->req->REQ_METHOD==METHOD_INVITE) {
 			DBG("DEBUG: noisy_timer set for accounting\n");
-			t->noisy_ctimer=1;
+			t->flags |= T_NOISY_CTIMER_FLAG;
 		}
 	}
 }
@@ -487,7 +487,7 @@ static inline void acc_onreply_in(struct cell *t, struct sip_msg *reply,
 
 	/* don't parse replies in which we are not interested */
 	/* missed calls enabled ? */
-	if (((t->is_invite && code>=300 && is_mc_on(t->uas.request))
+	if (((is_invite(t) && code>=300 && is_mc_on(t->uas.request))
 					|| should_acc_reply(t,code)) 
 				&& (reply && reply!=FAKED_REPLY)) {
 		parse_headers(reply, HDR_TO, 0 );
@@ -516,7 +516,7 @@ static inline void on_missed(struct cell *t, struct sip_msg *reply,
 		return;
 	}
 
-	if (t->is_invite && code>=300) {
+	if (is_invite(t) && code>=300) {
 		if (is_log_mc_on(t->uas.request)) {
 			acc_log_missed( t, reply, code);
 			reset_lmf=1;
