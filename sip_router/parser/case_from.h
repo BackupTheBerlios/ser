@@ -1,7 +1,7 @@
-/*
- * $Id: case_from.h,v 1.3 2002/09/19 12:23:55 jku Rel $
+/* 
+ * $Id: case_from.h,v 1.4 2002/11/18 19:08:16 janakj Exp $ 
  *
- * From header field parser macros
+ * From Header Field Name Parsing Macros
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,7 +32,7 @@
 #define CASE_FROM_H
 
 
-#define From_CASE             \
+#define from_CASE             \
         hdr->type = HDR_FROM; \
         p += 4;               \
         goto dc_end

@@ -1,5 +1,7 @@
-/*
- * $Id: parse_hname2.h,v 1.5 2002/09/19 12:23:55 jku Rel $
+/* 
+ * $Id: parse_hname2.h,v 1.6 2002/11/18 19:08:16 janakj Exp $ 
+ *
+ * Fast 32-bit Header Field Name Parser
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,12 +38,5 @@
  * Fast 32-bit header field name parser
  */
 char* parse_hname2(char* begin, char* end, struct hdr_field* hdr);
-
-
-/*
- * Initialize hash table
- */
-void init_hfname_parser(void);
-
 
 #endif /* PARSE_HNAME2_H */

@@ -1,7 +1,7 @@
-/*
- * $Id: case_cseq.h,v 1.3 2002/09/19 12:23:55 jku Rel $
+/* 
+ * $Id: case_cseq.h,v 1.4 2002/11/18 19:08:16 janakj Exp $ 
  *
- * CSeq header field parser macros
+ * CSeq Header Field Name Parsing Macros
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,7 +32,7 @@
 #define CASE_CSEQ_H
 
 
-#define CSeq_CASE          \
+#define cseq_CASE          \
      hdr->type = HDR_CSEQ; \
      p += 4;               \
      goto dc_end

@@ -1,7 +1,7 @@
-/*
- * $Id: case_allo.h,v 1.3 2002/09/19 12:23:55 jku Rel $
+/* 
+ * $Id: case_allo.h,v 1.4 2002/11/18 19:08:16 janakj Exp $ 
  *
- * Allow header field parser macros
+ * Allow Header Field Name Parsing Macros
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,18 +27,17 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
 #ifndef CASE_ALLO_H
 #define CASE_ALLO_H
 
 
-#define Allo_CASE                     \
-    p += 4;                           \
-    if ((*p == 'w') || (*p == 'W')) { \
-            hdr->type = HDR_ALLOW;    \
-            p++;                      \
-	    goto dc_end;              \
-    }                                 \
+#define allo_CASE                  \
+    p += 4;                        \
+    if (LOWER_BYTE(*p) == 'w') {   \
+            hdr->type = HDR_ALLOW; \
+            p++;                   \
+	    goto dc_end;           \
+    }                              \
     goto other;
 
 

@@ -1,7 +1,7 @@
-/*
- * $Id: case_even.h,v 1.2 2002/09/19 12:23:55 jku Rel $
+/* 
+ * $Id: case_even.h,v 1.3 2002/11/18 19:08:16 janakj Exp $ 
  *
- * Event header field parser macros
+ * Event Header Field Name Parsing Macros
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,9 +32,9 @@
 #define CASE_EVEN_H
 
 
-#define Even_CASE                     \
+#define even_CASE                     \
     p += 4;                           \
-    if ((*p == 't') || (*p == 'T')) { \
+    if (LOWER_BYTE(*p) == 't') {      \
             hdr->type = HDR_EVENT;    \
             p++;                      \
 	    goto dc_end;              \
