@@ -1,10 +1,17 @@
-# $Id: Makefile,v 1.1 2002/08/28 19:02:59 ric Exp $
+# $Id: Makefile,v 1.2 2002/08/28 19:58:09 ric Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
 auto_gen=
 NAME=snmp.so
-CFLAGS=$(CFLAGS) `net-snmp-config --cflags`
-LIBS=`net-snmp-config --agent-libs`
 
 include ../../Makefile.modules
+
+# Tried using net-snmp-config to generate the include paths according to the local 
+# installation, but seems like their compile flags clash with our compile flags
+# (this is in gcc 2.96 in redhat. in debian (both gcc 2.95.4 and gcc-3) works fine)
+# The way it should be:
+# CFLAGS += `net-snmp-config --cflags`
+#
+CFLAGS += -I. -I/usr/local/include
+LIBS+=`net-snmp-config --agent-libs`
