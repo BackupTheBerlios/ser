@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.67 2002/09/09 19:44:20 andrei Exp $
+ * $Id: msg_translator.c,v 1.68 2002/09/10 10:43:11 jku Exp $
  *
  */
 
@@ -9,6 +9,7 @@
 #include <netdb.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "msg_translator.h"
 #include "globals.h"
