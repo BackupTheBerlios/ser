@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.15 2002/08/09 11:17:14 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.16 2002/08/21 20:01:16 janakj Exp $ 
  *
  * Digest Authentication Module
  */
@@ -197,7 +197,7 @@ static int child_init(int rank)
 
 static int mod_init(void)
 {
-	LOG(L_ERR, "auth module - initializing\n");
+	printf("auth module - initializing\n");
 	
 	     /* Find a database module */
 	if (bind_dbmod()) {

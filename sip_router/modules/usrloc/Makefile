@@ -1,12 +1,12 @@
-# $Id: Makefile,v 1.4 2001/12/18 00:29:18 janakj Exp $
+# $Id: Makefile,v 1.5 2002/08/21 20:00:56 janakj Exp $
 #
-# print example module makefile
+# registrar module makefile
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
 
 auto_gen=
-NAME=usrloc.so
+NAME=registrar.so
 LIBS=
 
 include ../../Makefile.modules

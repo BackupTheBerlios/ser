@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.1 2002/08/09 11:17:14 janakj Exp $
+ * $Id: authorize.c,v 1.2 2002/08/21 20:01:16 janakj Exp $
  *
  * Authorize related functions
  */
@@ -212,7 +212,7 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, char* _table, int
 	      * variables for that
 	      */
 	if (check_dig_cred(&(cred->digest)) != E_DIG_OK) {
-		DBG("authorize(): Credentials received are not filled properly\n");
+		LOG(L_ERR, "authorize(): Credentials received are not filled properly\n");
 
 		if (send_resp(_msg, 400, MESSAGE_400, NULL, 0) == -1) {
 			LOG(L_ERR, "authorize(): Error while sending 400 reply\n");
