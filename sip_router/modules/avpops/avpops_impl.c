@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.c,v 1.1 2004/11/01 16:48:44 ramona Exp $
+ * $Id: avpops_impl.c,v 1.2 2004/11/04 19:11:51 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -199,6 +199,8 @@ inline static str* get_source_uri(struct sip_msg* msg,int source)
 		}
 		return &(get_to(msg)->uri);
 	} else if (source&AVPOPS_USE_RURI) {  /* RURI */
+		if(msg->new_uri.s!=NULL && msg->new_uri.len>0)
+			return &(msg->new_uri);
 		return &(msg->first_line.u.request.uri);
 	} else {
 		LOG(L_CRIT,"BUG:avpops:get_source_uri: unknow source <%d>\n",
