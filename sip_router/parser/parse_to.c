@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.10 2002/09/19 12:23:55 jku Exp $
+ * $Id: parse_to.c,v 1.11 2002/09/19 18:14:48 andrei Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -450,7 +450,8 @@ endofheader:
 	if (param->type==TAG_PARAM 
 	&& (saved_status==S_EQUAL||saved_status==S_PARA_VALUE) ) {
 			saved_status = E_PARA_VALUE;
-			param->value.s=(char*)param->value.len=0;
+			param->value.s= 0;
+			param->value.len=0;
 			add_param(param, to_b);
 	}
 #endif
