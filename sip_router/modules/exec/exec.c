@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.2 2002/09/19 12:23:53 jku Rel $
+ * $Id: exec.c,v 1.3 2002/12/12 21:39:54 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -44,7 +44,7 @@ static int set_environment(struct sip_msg *msg)
 {
 	static char srcip[64];
 
-	if (snprintf(srcip, 64, SRCIP "=%s", ip_addr2a(&msg->src_ip))==-1) {
+	if (snprintf(srcip, 64, SRCIP "=%s", ip_addr2a(&msg->rcv.src_ip))==-1) {
 		LOG(L_ERR, "ERROR: set_environment: spritnf failed\n");
 		return 0;
 	}
