@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.88 2004/03/03 16:16:30 janakj Exp $
+ * $Id: h_table.c,v 1.89 2004/03/03 16:26:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -429,7 +429,7 @@ int fifo_hash( FILE *stream, char *response_file )
 }
 
 
-int fifo_hash_unx(str* msg)
+int unixsock_hash(str* msg)
 {
 	unsigned int i, ret;
 

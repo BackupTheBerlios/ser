@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.76 2004/03/03 16:16:30 janakj Exp $
+ * $Id: h_table.h,v 1.77 2004/03/03 16:26:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -322,7 +322,7 @@ unsigned int transaction_count( void );
 int fifo_hash( FILE *stream, char *response_file );
 
 /* Unix socket variant */
-int fifo_hash_unx(str* msg);
+int unixsock_hash(str* msg);
 		    
 #endif
 
