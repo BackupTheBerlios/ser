@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.19 2003/04/08 13:10:14 janakj Exp $
+ * $Id: loose.c,v 1.20 2003/04/17 11:19:31 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -565,9 +565,14 @@ static inline int route_after_strict(struct sip_msg* _m, struct sip_uri* _ruri)
 			}			
 		}
 
-		if (find_last_route(_m, &hdr, &rt, &prev) < 0) {
+
+		res = find_last_route(_m, &hdr, &rt, &prev);
+		if (res < 0) {
 			LOG(L_ERR, "ras(): Error while looking for last Route URI\n");
 			return -7;
+		} else if (res > 0) {
+			LOG(L_ERR, "ras(): UAC screwed up the route set !\n");
+			return 0;
 		}
 
 		uri = &rt->nameaddr.uri;
