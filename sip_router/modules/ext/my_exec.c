@@ -1,5 +1,5 @@
 /*
- * $Id: my_exec.c,v 1.2 2002/08/15 14:47:17 jku Exp $
+ * $Id: my_exec.c,v 1.3 2002/08/19 19:42:24 jku Exp $
  *
  */
 
@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
+#include <signal.h>
 #define  _MY_POPEN_NO_INLINE
 
 #include "../../dprint.h"
