@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.6 2002/08/27 20:07:53 jku Exp $
+ * $Id: fifo_server.c,v 1.7 2002/08/28 18:03:39 jku Exp $
  *
  * Fifo server is a very powerful tool used to access easily
  * ser's internals via textual interface, similarly to
@@ -46,6 +46,7 @@
 #include "globals.h"
 #include "fifo_server.h"
 #include "mem/mem.h"
+#include "sr_module.h"
 
 /* FIFO server vars */
 char *fifo=0; /* FIFO name */
