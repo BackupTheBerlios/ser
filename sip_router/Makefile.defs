@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.271 2004/09/12 16:32:30 andrei Exp $
+# $Id: Makefile.defs,v 1.272 2004/09/12 17:26:59 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -588,7 +588,7 @@ ifeq	($(ARCH), mips2)
 		# if gcc 
 ifeq		($(CC_NAME), gcc)
 				#common stuff
-				CFLAGS= -mips2 -O9 -funroll-loops  -Wcast-align $(PROFILE) \
+				CFLAGS= -mips2 -O9 -funroll-loops $(PROFILE) \
 					-Wall   \
 			#if gcc 3.0
 ifeq			($(CC_SHORTVER), 3.0)
