@@ -1,4 +1,4 @@
-/* $Id: ifls.c,v 1.4 2002/09/19 12:23:55 jku Rel $
+/* $Id: ifls.c,v 1.5 2003/05/09 12:16:05 andrei Exp $
  *
  *
  * test programs, list all interfaces and their ip address
@@ -26,6 +26,11 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+ /*
+  * History:
+  * --------
+  *  2002-09-09  created by andrei
+  */
 
 
 
@@ -49,7 +54,7 @@
 
 
 static char* version="ifls 0.1";
-static char* id="$Id: ifls.c,v 1.4 2002/09/19 12:23:55 jku Rel $";
+static char* id="$Id: ifls.c,v 1.5 2003/05/09 12:16:05 andrei Exp $";
 static char* help_msg="\
 Usage: ifls [-6hV} [interface...]\n\
 (if no interface name is specified it will list all the interfaces)\n\

@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.116 2003/04/16 16:17:09 andrei Exp $
+ * $Id: msg_translator.c,v 1.117 2003/05/09 12:16:05 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -980,7 +980,6 @@ static inline void process_lumps(	struct sip_msg* msg,
 				if ((t->op==LUMP_ADD_OPT) &&
 						(!lump_check_opt(t->u.cond, msg, send_sock))) 
 					continue;
-				break;
 				/* just add it here! */
 				/* process before  */
 				for(r=t->before;r;r=r->before){
