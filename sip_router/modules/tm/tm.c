@@ -1,4 +1,4 @@
-/*$Id: tm.c,v 1.6 2001/11/26 21:21:09 bogdan Exp $
+/*$Id: tm.c,v 1.7 2001/11/29 00:00:58 jku Exp $
  *
  * Example ser module, it will just print its string parameter to stdout
  *
@@ -10,6 +10,7 @@
 #include "../../dprint.h"
 #include "sip_msg.h"
 #include <stdio.h>
+#include "h_table.h"
 
 static int test_f(struct sip_msg*, char*,char*);
 
@@ -25,6 +26,12 @@ static struct module_exports nm_exports= {	"tm_module",
 
 struct module_exports* mod_register()
 {
+	struct s_table *hash_table;
+	DBG("tm module registering\n");
+	DBG("tm init table\n");
+	hash_table = init_hash_table( );
+	DBG("tm free table\n");
+	free_hash_table( hash_table );
 	fprintf(stderr, "nm - registering...\n");
 	return &nm_exports;
 }
