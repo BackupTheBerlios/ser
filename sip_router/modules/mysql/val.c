@@ -1,5 +1,5 @@
 /* 
- * $Id: val.c,v 1.4 2004/08/24 08:58:31 janakj Exp $ 
+ * $Id: val.c,v 1.5 2004/11/03 13:16:45 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -138,6 +138,7 @@ int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l)
 	}
 
 	if (!_s) {
+		memset(_v, 0, sizeof(db_val_t));
 		VAL_TYPE(_v) = _t;
 		VAL_NULL(_v) = 1;
 		return 0;
