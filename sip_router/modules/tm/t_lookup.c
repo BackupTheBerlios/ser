@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.47 2002/10/18 02:32:14 jiri Exp $
+ * $Id: t_lookup.c,v 1.48 2002/10/21 11:46:55 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -191,7 +191,10 @@ int t_lookup_request( struct sip_msg* p_msg , int leave_new_locked )
 			/* To only the uri and ... */
 			if (get_to(t_msg)->uri.len!=get_to(p_msg)->uri.len)
 				continue;
-#ifdef TOTAG
+			/* don't care about to-tags -- many UAC screw them
+			 * up anyway, and it doesn't hurt if we ignore 
+			 * them */
+#ifdef ACKTAG
 			/* ... its to-tag compared to reply's tag */
 			if (p_cell->uas.to_tag.len!=get_to(p_msg)->tag_value.len)
 				continue;
@@ -207,7 +210,7 @@ int t_lookup_request( struct sip_msg* p_msg , int leave_new_locked )
 			if (!EQ_STR(from)) continue;
 			if (memcmp(get_to(t_msg)->uri.s, get_to(p_msg)->uri.s,
 				get_to(t_msg)->uri.len)!=0) continue;
-#ifdef TOTAG
+#ifdef ACKTAG
 			if (
 #ifdef _BUG
 				p_cell->uas.to_tag.len!=0 /* to-tags empty */ || 
@@ -299,8 +302,17 @@ struct cell* t_lookupOriginalT(  struct sip_msg* p_msg )
 			continue;
 		if (!EQ_LEN(from))
 			continue;
+#ifdef CANCEL_TAG
 		if (!EQ_LEN(to))
 			continue;
+#else
+		/* relaxed matching -- we don't care about to-tags anymore,
+		 * many broken UACs screw them up and ignoring them does not
+		 * actually hurt
+		 */
+		if (get_to(t_msg)->uri.len!=get_to(p_msg)->uri.len)
+			continue;
+#endif
 		if (!EQ_REQ_URI_LEN)
 			continue;
 		if (!EQ_VIA_LEN(via1))
@@ -314,8 +326,14 @@ struct cell* t_lookupOriginalT(  struct sip_msg* p_msg )
 			continue;
 		if (!EQ_STR(from))
 			continue;
+#ifdef CANCEL_TAG
 		if (!EQ_STR(to))
 			continue;
+#else
+		if (memcmp(get_to(t_msg)->uri.s, get_to(p_msg)->uri.s,
+					get_to(t_msg)->uri.len)!=0)
+			continue;
+#endif
 		if (!EQ_REQ_URI_STR)
 			continue;
 		if (!EQ_VIA_STR(via1))
