@@ -1,9 +1,12 @@
-/*$Id: msg_translator.h,v 1.5 2001/11/29 19:51:32 andrei Exp $
+/*$Id: msg_translator.h,v 1.6 2001/12/03 13:07:13 jku Exp $
  * 
  */
 
 #ifndef  _MSG_TRANSLATOR_H
 #define _MSG_TRANSLATOR_H
+
+#define MY_HF_SEP ": "
+#define MY_HF_SEP_LEN 2
 
 #include "msg_parser.h"
 

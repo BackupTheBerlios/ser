@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.21 2001/11/29 19:27:45 jku Exp $
+ *$Id: receive.c,v 1.22 2001/12/03 13:07:13 jku Exp $
  */
 
 #include <string.h>
@@ -111,8 +111,10 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 #ifdef STATS
 	skipped = 0;
 #endif
+/* jku: skip no more used
 skip:
 	DBG("skip:...\n");
+*/
 	free_sip_msg(msg);
 	pkg_free(msg);
 #ifdef STATS

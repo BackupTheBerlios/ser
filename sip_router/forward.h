@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.5 2001/11/28 23:25:35 bogdan Exp $
+ *  $Id: forward.h,v 1.6 2001/12/03 13:07:13 jku Exp $
  */
 
 
@@ -12,7 +12,7 @@
 
 
 int forward_request( struct sip_msg* msg,  struct proxy_l* p);
-
+int update_sock_struct_from_via( struct sockaddr_in* to,  struct via_body* via );
 int forward_reply( struct sip_msg* msg);
 
 #endif
