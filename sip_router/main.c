@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.165 2003/06/30 15:48:44 andrei Exp $
+ * $Id: main.c,v 1.166 2003/06/30 16:23:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -99,7 +99,7 @@
 #ifdef USE_TCP
 #include "tcp_init.h"
 #ifdef USE_TLS
-#include "tls_init.h"
+#include "tls/tls_init.h"
 #endif
 #endif
 
@@ -111,7 +111,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.165 2003/06/30 15:48:44 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.166 2003/06/30 16:23:36 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=

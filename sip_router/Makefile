@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.115 2003/06/06 15:01:13 ramona Exp $
+# $Id: Makefile,v 1.116 2003/06/30 16:23:36 andrei Exp $
 #
 # sip_router makefile
 #
@@ -154,6 +154,8 @@ tar:
 		--exclude=$(notdir $(CURDIR))/test* \
 		--exclude=$(notdir $(CURDIR))/tmp* \
 		--exclude=$(notdir $(CURDIR))/debian/ser* \
+		--exclude=$(notdir $(CURDIR))/tls* \
+		--exclude=$(notdir $(CURDIR))/ser_tls* \
 		--exclude=CVS* \
 		--exclude=*.[do] \
 		--exclude=*.so \

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.sources,v 1.12 2003/04/04 15:38:30 andrei Exp $
+# $Id: Makefile.sources,v 1.13 2003/06/30 16:23:36 andrei Exp $
 #
 # common Makefile variables 
 # (source files, objs, etc)
@@ -14,6 +14,9 @@
 sources=$(filter-out $(auto_gen), $(wildcard *.c) $(wildcard mem/*.c) \
 		$(wildcard parser/*.c) $(wildcard parser/digest/*.c) \
 		$(wildcard parser/contact/*.c) $(wildcard db/*.c) ) $(auto_gen)
+ifneq ($(TLS),)
+	sources+= $(wildcard tls/*.c)
+endif
 objs=$(sources:.c=.o)
 extra_objs=
 depends=$(sources:.c=.d)
