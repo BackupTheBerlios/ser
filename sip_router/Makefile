@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.111 2003/05/30 19:27:25 andrei Exp $
+# $Id: Makefile,v 1.112 2003/06/02 11:44:20 andrei Exp $
 #
 # sip_router makefile
 #
@@ -140,13 +140,33 @@ dbg: ser
 	gdb -command debug.gdb
 
 .PHONY: tar
-tar: mantainer-clean 
+.PHONY: dist
+
+dist: tar
+
+tar: 
 	$(TAR) -C .. \
 		--exclude=$(notdir $(CURDIR))/test* \
 		--exclude=$(notdir $(CURDIR))/tmp* \
 		--exclude=$(notdir $(CURDIR))/debian/ser* \
 		--exclude=CVS* \
-		 -zcf ../$(NAME)-$(RELEASE)_src.tar.gz  $(notdir $(CURDIR)) 
+		--exclude=*.[do] \
+		--exclude=*.so \
+		--exclude=*.il \
+		--exclude=$(notdir $(CURDIR))/ser \
+		--exclude=*.gz \
+		--exclude=*.bz2 \
+		--exclude=*.tar \
+		-cf - $(notdir $(CURDIR)) | \
+			(mkdir -p tmp/_tar; \
+			    cd tmp/_tar; $(TAR) -xf - ) && \
+			    mv tmp/_tar/$(notdir $(CURDIR)) \
+			                  tmp/_tar/"$(NAME)-$(RELEASE)" && \
+			    (cd tmp/_tar && $(TAR) \
+			                    -zcf ../../"$(NAME)-$(RELEASE)_src".tar.gz \
+			                               "$(NAME)-$(RELEASE)" ) ; \
+			    rm -rf tmp/_tar
+#		 -zcf ../$(NAME)-$(RELEASE)_src.tar.gz  $(notdir $(CURDIR)) 
 
 # binary dist. tar.gz
 .PHONY: bin
