@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.13 2004/09/14 10:38:02 janakj Exp $
+ * $Id: db.h,v 1.14 2004/09/14 12:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -40,6 +40,7 @@
 #include "db_con.h"
 #include "db_row.h"
 #include "db_res.h"
+#include "db_cap.h"
 
 
 /*

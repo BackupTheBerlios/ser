@@ -1,5 +1,5 @@
 /*
- * $Id: db_cap.h,v 1.2 2004/09/14 10:45:53 janakj Exp $
+ * $Id: db_cap.h,v 1.3 2004/09/14 12:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -42,16 +42,17 @@ typedef enum db_cap {
 
 
 /*
- * All database functions except raw_query
+ * All database capabilities except raw_query which should be checked
+ * separately when needed
  */
-#define DB_CAP_ALL (DB_CAP_QUERY | DB_CAP_INSERT | DB_CAP_DELETE | DB_CAP_UPDATE)	
+#define DB_CAP_ALL (DB_CAP_QUERY | DB_CAP_INSERT | DB_CAP_DELETE | DB_CAP_UPDATE)
 
 
 /*
  * True if all the capabilities in cpv are supported by module
  * represented by dbf, false otherwise
  */
-#define DB_CAPABILITY(dbf, cpv) ((dbf)->cap & (cpv)) == (cpv))
+#define DB_CAPABILITY(dbf, cpv) (((dbf).cap & (cpv)) == (cpv))
 
 
 #endif /* DB_CAP_H */
