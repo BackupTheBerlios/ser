@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.47 2002/05/09 19:22:11 jku Exp $
+ * $Id: tm.c,v 1.48 2002/05/12 16:16:18 janakj Exp $
  *
  * TM module
  *
@@ -46,7 +46,11 @@ static int fixup_t_flag(void** param, int param_no);
 
 static int mod_init(void);
 
+#ifdef STATIC_TM
+struct module_exports tm_exports = {
+#else
 struct module_exports exports= {
+#endif
 	"tm_module",
 	(char*[]){			
 				"t_add_transaction",

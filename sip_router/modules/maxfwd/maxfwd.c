@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.10 2002/04/29 14:12:46 janakj Exp $
+ * $Id: maxfwd.c,v 1.11 2002/05/12 16:16:18 janakj Exp $
  *
  * MAXFWD module
  *
@@ -26,7 +26,11 @@ static int w_process_maxfwd_header(struct sip_msg* msg,char* str,char* str2);
 static int mod_init(void);
 
 
+#ifdef STATIC_MAXFWD
+struct module_exports maxfwd_exports = {
+#else
 struct module_exports exports= {
+#endif
 	"maxfwd_module",
 	(char*[]){	"mf_decrement_maxfwd",
 				"mf_add_maxfwd_header",

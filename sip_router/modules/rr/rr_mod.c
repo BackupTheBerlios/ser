@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.8 2002/04/03 23:35:01 janakj Exp $
+ * $Id: rr_mod.c,v 1.9 2002/05/12 16:16:18 janakj Exp $
  */
 
 #include "../../sr_module.h"
@@ -25,8 +25,11 @@ static int rewriteFromRoute(struct sip_msg* _m, char* _s1, char* _s2);
  */
 static int addRecordRoute(struct sip_msg* _m, char* _s1, char* _s2);
 
-
+#ifdef STATIC_RR
+struct module_exports rr_exports = {
+#else
 struct module_exports exports= {
+#endif
 	"rr",
 	(char*[]) {
 		"rewriteFromRoute",

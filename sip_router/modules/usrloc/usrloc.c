@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.18 2002/04/30 16:58:45 andrei Exp $
+/* $Id: usrloc.c,v 1.19 2002/05/12 16:16:18 janakj Exp $
  *
  * User location support module
  *
@@ -114,7 +114,11 @@ int (*sl_reply)(struct sip_msg* _m, char* _s1, char* _s2);
 /*
  * Module exports structure
  */
+#ifdef STATIC_USRLOC
+struct module_exports usrloc_exports = {
+#else
 struct module_exports exports = {
+#endif
 	"usrloc", 
 	(char*[]) {
 		"save_contact",

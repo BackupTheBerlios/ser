@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.12 2002/05/10 09:41:39 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.13 2002/05/12 16:16:18 janakj Exp $ 
  */
 
 #include "auth_mod.h"
@@ -69,7 +69,11 @@ db_con_t* db_handle;   /* Database connection handle */
 /*
  * Module interface
  */
+#ifdef STATIC_AUTH
+struct module_exports auth_exports = {
+#else
 struct module_exports exports = {
+#endif
 	"auth", 
 	(char*[]) { 
 		"www_authorize",
