@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.141 2003/01/23 12:27:50 jiri Exp $
+ * $Id: main.c,v 1.142 2003/01/29 18:12:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -89,7 +89,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.141 2003/01/23 12:27:50 jiri Exp $";
+static char id[]="@(#) $Id: main.c,v 1.142 2003/01/29 18:12:18 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -878,6 +878,7 @@ static void sig_usr(int signo)
 			case SIGINT:
 			case SIGPIPE:
 			case SIGTERM:
+					LOG(L_INFO, "INFO: signal %d received\n", signo);
 					/* print memory stats for non-main too */
 					#ifdef PKG_MALLOC
 					LOG(memlog, "Memory status (pkg):\n");
