@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.22 2002/08/20 09:34:12 andrei Exp $
+ * $Id: cfg.lex,v 1.23 2002/09/10 10:40:54 jku Exp $
  *
  * scanner for cfg files
  */
@@ -100,6 +100,7 @@ MAXBUFFER maxbuffer
 CHILDREN children
 CHECK_VIA	check_via
 SYN_BRANCH syn_branch
+MEMLOG	memlog
 SIP_WARNING sip_warning
 FIFO fifo
 FIFO_MODE fifo_mode
@@ -197,6 +198,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{CHILDREN}	{ count(); yylval.strval=yytext; return CHILDREN; }
 <INITIAL>{CHECK_VIA}	{ count(); yylval.strval=yytext; return CHECK_VIA; }
 <INITIAL>{SYN_BRANCH}	{ count(); yylval.strval=yytext; return SYN_BRANCH; }
+<INITIAL>{MEMLOG}	{ count(); yylval.strval=yytext; return MEMLOG; }
 <INITIAL>{SIP_WARNING}	{ count(); yylval.strval=yytext; return SIP_WARNING; }
 <INITIAL>{FIFO}	{ count(); yylval.strval=yytext; return FIFO; }
 <INITIAL>{FIFO_MODE}	{ count(); yylval.strval=yytext; return FIFO_MODE; }
