@@ -1,5 +1,5 @@
 /* 
- * $Id: lock.h,v 1.6 2002/11/27 13:21:24 dcm Exp $
+ * $Id: lock.h,v 1.7 2003/01/27 15:47:20 dcm Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -86,7 +86,9 @@ static inline int s_unlock( smart_lock *s )
 /* lock semaphore s */
 static inline int s_lock_at(smart_lock *s, int i)
 {
+#ifdef XJ_EXTRA_DEBUG
 	DBG("XJAB: s_lock_at: <%d>\n", i);
+#endif
 #ifdef FAST_LOCK
 	get_lock(&s[i]);
 	return 0;
@@ -99,7 +101,9 @@ static inline int s_lock_at(smart_lock *s, int i)
 /* ulock semaphore */
 static inline int s_unlock_at(smart_lock *s, int i)
 {
+#ifdef XJ_EXTRA_DEBUG
 	DBG("XJAB: s_unlock_at: <%d>\n", i);
+#endif
 #ifdef FAST_LOCK
 	release_lock(&s[i]);
 	return 0;
