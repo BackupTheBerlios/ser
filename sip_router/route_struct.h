@@ -1,10 +1,23 @@
 /*
- * $Id: route_struct.h,v 1.7 2001/10/26 20:28:55 andrei Exp $
+ * $Id: route_struct.h,v 1.8 2002/01/23 18:10:41 andrei Exp $
  *
  */
 
 #ifndef route_struct_h
 #define route_struct_h
+
+#define EXPR_DROP -127  /* used only by the expression and if evaluator */
+/*
+ * Other important values (no macros for them yet):
+ * expr true = 1
+ * expr false = 0 (used only inside the expression and if evaluator)
+ * 
+ * action continue  or if used in condition true = 1
+ * action drop/quit/stop script processing = 0
+ * action error or if used in condition false = -1 (<0 and !=EXPR_DROP)
+ * 
+ */
+
 
 enum { EXP_T=1, ELEM_T };
 enum { AND_OP=1, OR_OP, NOT_OP };
