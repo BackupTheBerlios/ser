@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.2 2003/05/27 10:27:29 rco Exp $
+ * $Id: uac_fifo.c,v 1.3 2003/06/21 21:48:46 jiri Exp $
  */
 
 #include <string.h>
@@ -613,7 +613,9 @@ int fifo_uac(FILE *stream, char *response_file)
 	dlg.hooks.request_uri = &ruri;
 	dlg.hooks.next_hop = (nexthop.len ? &nexthop : &ruri);
 
+#ifdef XL_DEBUG
 	print_dlg(stderr, &dlg);
+#endif
 
 	/* we got it all, initiate transaction now! */
 	if (fifo_cbp(&shm_file, response_file) < 0) goto error01;
