@@ -1,5 +1,5 @@
 /*
- * $Id: group_mod.h,v 1.1 2003/02/26 14:03:47 janakj Exp $
+ * $Id: group_mod.h,v 1.2 2003/11/29 01:07:32 janakj Exp $
  *
  * Group membership 
  *
@@ -44,12 +44,12 @@
 /*
  * Module parameters variables
  */
-extern char* db_url;          /* Database URL */
-extern char* table;           /* 'group' table name */
-extern char* user_column;     /* 'user' column name in group table */
-extern char* domain_column;   /* 'domain' column name in group table */
-extern char* group_column;    /* "group' column name in group table */
-extern int use_domain;        /* Use domain in is_user_in */
+extern str db_url;          /* Database URL */
+extern str table;           /* 'group' table name */
+extern str user_column;     /* 'user' column name in group table */
+extern str domain_column;   /* 'domain' column name in group table */
+extern str group_column;    /* "group' column name in group table */
+extern int use_domain;      /* Use domain in is_user_in */
 
 extern db_con_t* db_handle;   /* Database connection handle */
 
