@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.17 2003/04/07 06:36:56 jiri Exp $
+/* $Id: sr_module.h,v 1.18 2003/04/27 18:17:23 jiri Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -65,6 +65,8 @@ typedef enum {
 #define PROC_TIMER    -1  /* Timer attendant process */
 #define PROC_FIFO     -2  /* FIFO attendant process */
 #define PROC_TCP_MAIN -4  /* TCP main process */
+
+#define MODULE_VERSION char *module_version=VERSION;
 
 struct cmd_export_ {
 	char* name;             /* null terminated command name */

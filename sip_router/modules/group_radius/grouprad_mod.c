@@ -1,5 +1,5 @@
 /* 
- * $Id: grouprad_mod.c,v 1.5 2003/03/19 18:40:09 andrei Exp $ 
+ * $Id: grouprad_mod.c,v 1.6 2003/04/27 18:17:24 jiri Exp $ 
  *
  * Group membership - module interface
  *
@@ -43,6 +43,7 @@
 #include "grouprad_mod.h"
 #include "group.h"
 
+MODULE_VERSION
 
 static int mod_init(void); /* Module initialization function */
 static int hf_fixup(void** param, int param_no); /* Header field fixup */

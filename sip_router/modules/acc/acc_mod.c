@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.21 2003/04/26 12:56:05 jiri Exp $
+ * $Id: acc_mod.c,v 1.22 2003/04/27 18:17:23 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -57,6 +57,8 @@
 #ifdef RAD_ACC
 #include <radiusclient.h>
 #endif
+
+MODULE_VERSION
 
 struct tm_binds tmb;
 

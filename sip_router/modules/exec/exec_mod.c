@@ -1,7 +1,7 @@
 /*
  * execution module
  *
- * $Id: exec_mod.c,v 1.8 2003/03/16 20:27:23 janakj Exp $
+ * $Id: exec_mod.c,v 1.9 2003/04/27 18:17:24 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -44,6 +44,8 @@
 #include "exec.h"
 #include "kill.h"
 #include "exec_hf.h"
+
+MODULE_VERSION
 
 unsigned int time_to_kill=0;
 

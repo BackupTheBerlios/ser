@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.c,v 1.10 2003/04/11 18:20:51 janakj Exp $
+ * $Id: reg_mod.c,v 1.11 2003/04/27 18:17:24 jiri Exp $
  *
  * Registrar module interface
  *
@@ -45,6 +45,8 @@
 
 #include "save.h"
 #include "lookup.h"
+
+MODULE_VERSION
 
 
 static int mod_init(void);                           /* Module init function */

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.7 2003/04/06 20:28:12 janakj Exp $
+ * $Id: pa_mod.c,v 1.8 2003/04/27 18:17:24 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,6 +38,8 @@
 #include "subscribe.h"
 #include "dlist.h"
 #include "../../error.h"
+
+MODULE_VERSION
 
 
 static int mod_init(void);

@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.c,v 1.6 2003/04/06 20:25:51 janakj Exp $
+ * $Id: enum_mod.c,v 1.7 2003/04/27 18:17:24 jiri Exp $
  *
  * Enum module
  *
@@ -38,6 +38,9 @@
 #include "../../sr_module.h"
 #include "../../error.h"
 #include "enum.h"
+
+MODULE_VERSION
+
 /*
  * Module initialization function prototype
  */

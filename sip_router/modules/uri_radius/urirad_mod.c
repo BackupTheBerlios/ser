@@ -1,5 +1,5 @@
 /* 
- * $Id: urirad_mod.c,v 1.2 2003/03/16 20:27:25 janakj Exp $ 
+ * $Id: urirad_mod.c,v 1.3 2003/04/27 18:17:25 jiri Exp $ 
  *
  * URI checks using Radius
  *
@@ -37,6 +37,8 @@
 #include "../../sr_module.h"
 #include "urirad_mod.h"
 #include "checks.h"
+
+MODULE_VERSION
 
 
 static int mod_init(void); /* Module initialization function */

@@ -1,5 +1,5 @@
 /* 
- * $Id: uri_mod.c,v 1.11 2003/04/05 14:06:11 jiri Exp $ 
+ * $Id: uri_mod.c,v 1.12 2003/04/27 18:17:25 jiri Exp $ 
  *
  * Various URI related functions
  *
@@ -45,6 +45,8 @@
 #include "../../mem/mem.h"
 #include "uri_mod.h"
 #include "checks.h"
+
+MODULE_VERSION
 
 
 static void destroy(void);       /* Module destroy function */

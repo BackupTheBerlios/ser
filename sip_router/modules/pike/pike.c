@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.16 2003/03/16 20:27:24 janakj Exp $
+ * $Id: pike.c,v 1.17 2003/04/27 18:17:24 jiri Exp $
  *
  * PIKE module
  *
@@ -50,6 +50,8 @@
 #include "../../timer.h"
 #include "ip_tree.h"
 #include "pike_funcs.h"
+
+MODULE_VERSION
 
 
 

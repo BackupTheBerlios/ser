@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.16 2003/03/19 18:40:09 andrei Exp $
+ * $Id: maxfwd.c,v 1.17 2003/04/27 18:17:24 jiri Exp $
  *
  * MAXFWD module
  *
@@ -46,6 +46,8 @@
 #include "../../ut.h"
 #include "../../mem/mem.h"
 #include "mf_funcs.h"
+
+MODULE_VERSION
 
 
 static int fixup_maxfwd_header(void** param, int param_no);

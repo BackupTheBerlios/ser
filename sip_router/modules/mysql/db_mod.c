@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.16 2003/04/06 20:25:52 janakj Exp $ 
+ * $Id: db_mod.c,v 1.17 2003/04/27 18:17:24 jiri Exp $ 
  *
  * MySQL module interface
  *
@@ -36,6 +36,8 @@
 #include <stdio.h>
 #include "../../sr_module.h"
 #include "dbase.h"
+
+MODULE_VERSION
 
 
 static int mod_init(void);

@@ -1,5 +1,5 @@
 /* 
- * $Id: group_mod.c,v 1.9 2003/04/26 00:21:45 janakj Exp $ 
+ * $Id: group_mod.c,v 1.10 2003/04/27 18:17:24 jiri Exp $ 
  *
  * Group membership - module interface
  *
@@ -46,6 +46,8 @@
 #include "../../mem/mem.h"
 #include "group_mod.h"
 #include "group.h"
+
+MODULE_VERSION
 
 
 /*

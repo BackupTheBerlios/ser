@@ -1,5 +1,5 @@
 /*
- * $Id: snmp_mod.c,v 1.5 2003/04/24 18:45:13 jiri Exp $
+ * $Id: snmp_mod.c,v 1.6 2003/04/27 18:17:24 jiri Exp $
  *
  * SNMP Module
  *
@@ -84,6 +84,8 @@ int listen_addr_len;
 #include <signal.h>
 #include <errno.h>
 #include <stdlib.h>
+
+MODULE_VERSION
 
 static int mod_init(void);
 static void mod_destroy(void);

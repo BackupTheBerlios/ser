@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.7 2003/04/26 18:25:46 jiri Exp $ 
+ * $Id: authrad_mod.c,v 1.8 2003/04/27 18:17:23 jiri Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -45,6 +45,8 @@
 #include "authrad_mod.h"
 #include "authorize.h"
 #include <radiusclient.h>
+
+MODULE_VERSION
 
 pre_auth_f pre_auth_func = 0;   /* Pre authorization function from auth module */
 post_auth_f post_auth_func = 0; /* Post authorization function from auth module */

@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.9 2003/04/06 20:25:51 janakj Exp $ 
+ * $Id: authdb_mod.c,v 1.10 2003/04/27 18:17:23 jiri Exp $ 
  *
  * Digest Authentication Module
  *
@@ -44,6 +44,8 @@
 #include "../../mem/mem.h"
 #include "authorize.h"
 #include "../auth/api.h"
+
+MODULE_VERSION
 
 
 /*

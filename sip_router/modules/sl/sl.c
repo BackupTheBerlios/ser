@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.15 2003/03/19 18:40:09 andrei Exp $
+ * $Id: sl.c,v 1.16 2003/04/27 18:17:24 jiri Exp $
  *
  * sl module
  *
@@ -68,6 +68,8 @@
 #include "../../mem/mem.h"
 #include "sl_stats.h"
 #include "sl_funcs.h"
+
+MODULE_VERSION
 
 
 static int w_sl_send_reply(struct sip_msg* msg, char* str, char* str2);

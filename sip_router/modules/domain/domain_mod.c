@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.11 2003/04/14 06:13:29 jih Exp $
+ * $Id: domain_mod.c,v 1.12 2003/04/27 18:17:23 jiri Exp $
  *
  * Domain module
  *
@@ -49,6 +49,7 @@ static int mod_init(void);
 static void destroy(void);
 static int child_init(int rank);
 
+MODULE_VERSION
 
 /*
  * Module parameter variables

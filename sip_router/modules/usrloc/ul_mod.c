@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.26 2003/04/21 13:10:53 jiri Exp $
+ * $Id: ul_mod.c,v 1.27 2003/04/27 18:17:25 jiri Exp $
  *
  * Usrloc module interface
  *
@@ -50,6 +50,8 @@
 #include "ucontact.h"        /* update_ucontact */
 #include "ul_fifo.h"
 #include "notify.h"
+
+MODULE_VERSION
 
 
 static int mod_init(void);                          /* Module initialization function */

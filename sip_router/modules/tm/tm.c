@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.82 2003/04/14 02:01:07 jiri Exp $
+ * $Id: tm.c,v 1.83 2003/04/27 18:17:24 jiri Exp $
  *
  * TM module
  *
@@ -93,6 +93,8 @@
 #include "t_fwd.h"
 #include "t_lookup.h"
 #include "t_stats.h"
+
+MODULE_VERSION
 
 
 

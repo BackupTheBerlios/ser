@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.23 2003/04/21 13:52:00 jiri Exp $
+/*$Id: textops.c,v 1.24 2003/04/27 18:17:24 jiri Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -65,6 +65,8 @@
 #include <string.h>
 #include <sys/types.h> /* for regex */
 #include <regex.h>
+
+MODULE_VERSION
 
 static int search_f(struct sip_msg*, char*, char*);
 static int replace_f(struct sip_msg*, char*, char*);
