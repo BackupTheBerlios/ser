@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.12 2004/04/14 15:54:29 jamey Exp $
+ * $Id: presentity.h,v 1.13 2004/06/04 15:26:06 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -70,6 +70,8 @@ typedef struct location_package {
 typedef struct presence_tuple {
 	str contact;
 	str status;
+	double priority;
+	time_t expires;
 	pstate_t state;
 	location_t location;
 	struct presence_tuple *next;
@@ -125,7 +127,7 @@ int timer_presentity(presentity_t* _p);
 /*
  * Create a new presence_tuple
  */
-int new_presence_tuple(str* _contact, presentity_t *_p, presence_tuple_t ** _t);
+int new_presence_tuple(str* _contact, time_t expires, presentity_t *_p, presence_tuple_t ** _t);
 
 /*
  * Find a presence_tuple for contact _contact on presentity _p
