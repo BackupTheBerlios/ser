@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.68 2003/04/04 03:21:59 jiri Exp $
+ * $Id: t_lookup.c,v 1.69 2003/04/04 15:43:10 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -894,7 +894,7 @@ int init_rb( struct retr_buf *rb, struct sip_msg *msg)
 		proto=msg->rcv.proto;
 	} else {
 		/*init retrans buffer*/
-		if (update_sock_struct_from_via( &(rb->dst.to),via )==-1) {
+		if (update_sock_struct_from_via( &(rb->dst.to), msg, via )==-1) {
 			LOG(L_ERR, "ERROR: init_rb: cannot lookup reply dst: %.*s\n",
 				via->host.len, via->host.s );
 			ser_error=E_BAD_VIA;
