@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.213 2003/05/30 19:27:25 andrei Exp $
+# $Id: Makefile.defs,v 1.214 2003/06/04 14:46:53 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -79,8 +79,18 @@ ifeq ($(OS), freebsd)
 	doc-dir = share/doc/ser/
 	man-dir = man/
 else
-	doc-dir=doc/ser/
-	man-dir=man/
+ifeq ($(OS), openbsd)
+	doc-dir = share/doc/ser/
+	man-dir = man/
+else
+ifeq ($(OS), netbsd)
+	doc-dir = share/doc/ser
+	man-dir = man/
+else
+	doc-dir = doc/ser/
+	man-dir = man/
+endif
+endif
 endif
 endif
 ut-prefix = bin/
