@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.25 2002/08/17 02:45:50 jku Exp $
+ * $Id: t_fwd.c,v 1.26 2002/08/28 21:24:28 jku Exp $
  *
  */
 
@@ -317,7 +317,7 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 	t->kr|=REQ_FWDED;
 
 	if (p_msg->REQ_METHOD==METHOD_CANCEL) {
-		t_invite=t_lookupOriginalT( hash_table, p_msg );
+		t_invite=t_lookupOriginalT(  p_msg );
 		if (t_invite!=T_NULL) {
 			e2e_cancel( p_msg, t, t_invite );
 			UNREF(t_invite);

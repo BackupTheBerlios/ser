@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.53 2002/08/28 13:19:32 jku Exp $
+ * $Id: tm.c,v 1.54 2002/08/28 21:24:28 jku Exp $
  *
  * TM module
  *
@@ -243,14 +243,28 @@ static int mod_init(void)
 		return -1;
 	}
 
-	if (tm_startup()==-1) return -1;
+	/* building the hash table*/
+	if (!init_hash_table()) {
+		LOG(L_ERR, "ERROR: mod_init: initializing hash_table failed\n");
+		return -1;
+	}
+
+	if (!tm_init_timers()) {
+		LOG(L_ERR, "ERROR: mod_init: timer init failed\n");
+		return -1;
+	}
+
+	/* init static hidden values */
+	init_t();
+
 	uac_init();
 	register_tmcb( TMCB_ON_NEGATIVE, on_negative_reply, 0 /* empty param */);
     /* register the timer function */
-    register_timer( timer_routine , hash_table , 1 );
+    register_timer( timer_routine , 0 /* empty attr */, 1 );
     /* register post-script clean-up function */
     register_script_cb( w_t_unref, POST_SCRIPT_CB, 0 /* empty param */ );
     register_script_cb( script_init, PRE_SCRIPT_CB , 0 /* empty param */ );
+
 	return 0;
 }
 

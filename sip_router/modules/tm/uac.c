@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.2 2002/08/26 19:03:25 jku Exp $
+ * $Id: uac.c,v 1.3 2002/08/28 21:24:28 jku Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -150,7 +150,7 @@ int t_uac( str *msg_type, str *dst,
 		&& memcmp(msg_type->s, INVITE, INVITE_LEN)==0;
 	new_cell->local=1;
 	LOCK_HASH(new_cell->hash_index);
-	insert_into_hash_table_unsafe( hash_table , new_cell );
+	insert_into_hash_table_unsafe(  new_cell );
 	UNLOCK_HASH(new_cell->hash_index);
 
 	request=&new_cell->uac[branch].request;
