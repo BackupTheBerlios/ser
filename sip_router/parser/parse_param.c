@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.4 2003/03/30 20:31:22 janakj Exp $
+ * $Id: parse_param.c,v 1.5 2003/03/30 20:38:29 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -325,7 +325,7 @@ int parse_params(str* _s, pclass_t _c, param_hooks_t* _h, param_t** _p)
 				goto ok;
 			}
 		} else {
-			t->len = _s-s - t->name.s;
+			t->len = _s->s - t->name.s;
 		}
 
 		if (_s->s[0] == ',') goto ok; /* To be able to parse header parameters */
