@@ -1,5 +1,5 @@
 /*
- * $Id: checks.c,v 1.2 2003/02/26 14:29:04 janakj Exp $
+ * $Id: checks.c,v 1.3 2003/02/26 14:36:27 janakj Exp $
  *
  * Various URI checks
  *
@@ -68,6 +68,7 @@ int is_user(struct sip_msg* _m, char* _user, char* _str2)
 		get_authorized_cred(_m->proxy_auth, &h);
 		if (!h) {
 			LOG(L_ERR, "is_user(): No authorized credentials found (error in scripts)\n");
+			LOG(L_ERR, "is_user(): Call {www,proxy}_authorize before calling is_user function !\n");
 			return -1;
 		}
 	}
@@ -120,6 +121,7 @@ static inline int check_username(struct sip_msg* _m, str* _uri)
 		get_authorized_cred(_m->proxy_auth, &h);
 		if (!h) {
 			LOG(L_ERR, "check_username(): No authorized credentials found (error in scripts)\n");
+			LOG(L_ERR, "check_username(): Call {www,proxy}_authorize before calling check_* function !\n");
 			return -2;
 		}
 	}
