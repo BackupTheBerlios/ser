@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_comm.h,v 1.1 2003/08/29 18:55:15 ramona Exp $
+ * $Id: tcp_comm.h,v 1.2 2003/11/24 19:23:47 ramona Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -51,7 +51,7 @@ void reset_read_buffer(rd_buf_t *rb);
 int do_read( int socket, rd_buf_t *p);
 
 /* it initializes the TCP connection */ 
-int init_mytcp(char* host, char* port);
+int init_mytcp(char* host, int port);
 
 /* send a message over an already opened TCP connection */
 int tcp_send_recv(int sockfd, char* buf, int len, rd_buf_t* resp,

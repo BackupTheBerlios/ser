@@ -1,5 +1,5 @@
 /* 
- * $Id: authorize.h,v 1.1 2003/08/29 18:55:15 ramona Exp $
+ * $Id: authorize.h,v 1.2 2003/11/24 19:23:47 ramona Exp $
  * Digest Authentication - Diameter support
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -56,10 +56,6 @@ int diameter_authorize(struct hdr_field* cred, str* p_method,
 					unsigned int m_id, rd_buf_t *response);
 
 int srv_response(struct sip_msg* msg, rd_buf_t* rb, int hftype);
-
-int init_mytcp(char* host, char* port);
-
-int tcp_send_rcv(int sockfd, char* buf, int len, rd_buf_t* resp);
 
 int send_resp(struct sip_msg* _m, int _code, char* _reason,
 					char* _hdr, int _hdr_len);
