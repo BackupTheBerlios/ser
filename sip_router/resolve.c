@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.17 2003/08/21 10:57:23 andrei Exp $*/
+/* $Id: resolve.c,v 1.18 2003/08/25 12:19:52 andrei Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -530,7 +530,7 @@ struct hostent* sip_resolvehost(str* name, unsigned short* port, int proto)
 				}
 			}
 			if (head) free_rdata_list(head); /*clean up*/
-			DBG("sip_resolvehost: not SRV record found for %.*s," 
+			DBG("sip_resolvehost: no SRV record found for %.*s," 
 					" trying 'normal' lookup...\n", name->len, name->s);
 		}
 	}

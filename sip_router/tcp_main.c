@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.39 2003/08/21 10:57:23 andrei Exp $
+ * $Id: tcp_main.c,v 1.40 2003/08/25 12:19:52 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -815,13 +815,15 @@ read_again:
 					LOG(L_CRIT, "BUG: tcp_main_loop: dead child %d\n", r);
 					/* don't listen on it any more */
 					FD_CLR(pt[r].unix_sock, &master_set);
-					/*exit(-1)*/;
+					/*exit(-1);*/
+					continue;
 				}else if (bytes<0){
 					if (errno==EINTR) goto read_again;
 					else{
 						LOG(L_CRIT, "ERROR: tcp_main_loop: read from child: "
 								" %s\n", strerror(errno));
 						/* try to continue ? */
+						continue;
 					}
 				}
 					
