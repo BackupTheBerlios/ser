@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_proxy.h,v 1.4 2003/08/19 17:11:36 bogdan Exp $
+ * $Id: cpl_proxy.h,v 1.5 2003/08/21 11:43:21 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -136,7 +136,7 @@ static void failed_reply( struct cell* t, struct sip_msg* msg, int code,
 		if( intr->ip==DEFAULT_ACTION)
 			rez = run_default(intr);
 		else
-			rez = run_cpl_script(intr);
+			rez = cpl_run_script(intr);
 		switch ( rez ) {
 			case SCRIPT_END:
 			case SCRIPT_TO_BE_CONTINUED:

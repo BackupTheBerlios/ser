@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.h,v 1.8 2003/08/15 18:00:04 bogdan Exp $
+ * $Id: cpl_run.h,v 1.9 2003/08/21 11:43:21 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -93,7 +93,7 @@ struct cpl_interpreter* new_cpl_interpreter( struct sip_msg *msg, str *script);
 
 void free_cpl_interpreter(struct cpl_interpreter *intr);
 
-int run_cpl_script( struct cpl_interpreter *cpl_intr );
+int cpl_run_script( struct cpl_interpreter *cpl_intr );
 
 #endif
 
