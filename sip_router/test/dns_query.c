@@ -1,5 +1,5 @@
 /*
- * $Id: dns_query.c,v 1.2 2002/08/27 16:36:14 andrei Exp $
+ * $Id: dns_query.c,v 1.3 2002/08/27 17:32:58 andrei Exp $
  *
  * tests for ../resolver.c
  *
@@ -28,7 +28,7 @@ char mem_pool[1024*1024];
 struct qm_block* mem_block;
 
 
-static char* id="$Id: dns_query.c,v 1.2 2002/08/27 16:36:14 andrei Exp $";
+static char* id="$Id: dns_query.c,v 1.3 2002/08/27 17:32:58 andrei Exp $";
 static char* version="dns_query 0.1";
 static char* help_msg="\
 Usage: dns_query  [-t type] [-hV] -n host\n\
@@ -126,29 +126,35 @@ int main(int argc, char** argv)
 			switch(l->type){
 				case T_SRV:
 					srv=(struct srv_rdata*)l->rdata;
-					printf("SRV  type= %d class=%d  ttl=%d\n",
+					printf("SRV    type= %d class=%d  ttl=%d\n",
 							l->type, l->class, l->ttl);
-					printf("     prio= %d weight=%d port=%d\n",
+					printf("       prio= %d weight=%d port=%d\n",
 								srv->priority, srv->weight, srv->port);
-					printf("     name= [%s]\n", srv->name);
+					printf("       name= [%s]\n", srv->name);
+					break;
+				case T_CNAME:
+					printf("CNAME  type= %d class=%d  ttl=%d\n",
+							l->type, l->class, l->ttl);
+					printf("       name=[%s]\n", 
+								((struct cname_rdata*)l->rdata)->name);
 					break;
 				case T_A:
 					ip=(struct a_rdata*)l->rdata;
-					printf("A    type= %d class=%d  ttl=%d\n",
+					printf("A      type= %d class=%d  ttl=%d\n",
 								l->type, l->class, l->ttl);
-					printf("     ip= %d.%d.%d.%d\n",
+					printf("       ip= %d.%d.%d.%d\n",
 								ip->ip[0], ip->ip[1], ip->ip[2], ip->ip[3]);
 					break;
 				case T_AAAA:
-					printf("AAAA  type= %d class=%d  ttl=%d\n",
+					printf("AAAA    type= %d class=%d  ttl=%d\n",
 							l->type, l->class, l->ttl);
-					printf("      ip6= ");
+					printf("        ip6= ");
 					for(r=0;r<16;r++) 
 						printf("%x ", ((struct aaaa_rdata*)l->rdata)->ip6[r]);
 					printf("\n");
 					break;
 				default:
-					printf("UNKN  type= %d class=%d  ttl=%d\n",
+					printf("UNKN    type= %d class=%d  ttl=%d\n",
 								l->type, l->class, l->ttl);
 					printf("       rdata=%p\n", l->rdata);
 			}

@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.4 2002/08/12 18:22:17 andrei Exp $
+ * $Id: resolve.h,v 1.5 2002/08/27 17:32:58 andrei Exp $
  *
  * resolver related functions
  */
@@ -53,6 +53,11 @@ struct a_rdata {
 
 struct aaaa_rdata {
 	unsigned char ip6[16];
+};
+
+/* cname rec. struct*/
+struct cname_rdata {
+	char name[MAX_DNS_NAME];
 };
 
 
