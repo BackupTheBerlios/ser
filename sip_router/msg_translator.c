@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.37 2002/02/26 00:04:05 jku Exp $
+/* $Id: msg_translator.c,v 1.38 2002/03/01 00:20:27 andrei Exp $
  *
  */
 
@@ -77,7 +77,7 @@ static inline char* q_inet_itoa(unsigned long ip)
 		q_inet_itoa_buf[offset+2]=c+'0';
 		q_inet_itoa_buf[offset+3]=0;
 	}else if (b){
-
+		q_inet_itoa_buf[offset]=b+'0';
 		q_inet_itoa_buf[offset+1]=c+'0';
 		q_inet_itoa_buf[offset+2]=0;
 	}else{
