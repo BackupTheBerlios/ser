@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.20 2004/12/03 13:37:57 jamey Exp $ 
+ * $Id: hf.c,v 1.21 2004/12/03 17:11:36 jamey Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -45,8 +45,6 @@
 #include "parse_rr.h"
 #include "contact/parse_contact.h"
 #include "parse_disposition.h"
-#include "parse_allow.h"
-#include "parse_sipifmatch.h"
 #include "../ut.h"
 
 
@@ -120,7 +118,6 @@ void clean_hdr_field(struct hdr_field* hf)
 			break;
 
 		case HDR_ALLOW:
-			free_allow((unsigned int **)(&(hf->parsed)));
 			break;
 
 		case HDR_EVENT:
@@ -159,10 +156,6 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_RPID:
 			free_to(hf->parsed);
-			break;
-
-		case HDR_SIPIFMATCH:
-			free_sipifmatch((str**)(&(hf->parsed)));
 			break;
 
 		default:
