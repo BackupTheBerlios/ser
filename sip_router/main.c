@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.116 2002/09/20 12:47:15 janakj Exp $
+ * $Id: main.c,v 1.117 2002/09/24 16:16:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -78,7 +78,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.116 2002/09/20 12:47:15 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.117 2002/09/24 16:16:20 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -1163,7 +1163,9 @@ int main(int argc, char** argv)
 		r++;
 	}
 	/* get ips & fill the port numbers*/
+#ifdef EXTRA_DEBUG
 	printf("Listening on \n");
+#endif
 	for (r=0; r<sock_no;r++){
 		he=resolvehost(sock_info[r].name.s);
 		if (he==0){
@@ -1228,8 +1230,10 @@ int main(int argc, char** argv)
 		strncpy(sock_info[r].port_no_str.s, port_no_str, strlen(port_no_str)+1);
 		sock_info[r].port_no_str.len=strlen(port_no_str);
 		
+#ifdef EXTRA_DEBUG
 		printf("              %s [%s]:%s\n",sock_info[r].name.s,
 				sock_info[r].address_str.s, sock_info[r].port_no_str.s);
+#endif
 	}
 	/* removing duplicate addresses*/
 	for (r=0; r<sock_no; r++){
@@ -1240,10 +1244,11 @@ int main(int argc, char** argv)
 						sock_info[t].address.u.addr,
 						sock_info[r].address.len)  == 0)
 				){
+#ifdef EXTRA_DEBUG
 				printf("removing duplicate (%d) %s [%s] == (%d) %s [%s]\n",
 						r, sock_info[r].name.s, sock_info[r].address_str.s,
 						t, sock_info[t].name.s, sock_info[t].address_str.s);
-				
+#endif
 				/* add the name to the alias list*/
 				if ((!sock_info[t].is_ip) && (
 						(sock_info[t].name.len!=sock_info[r].name.len)||
