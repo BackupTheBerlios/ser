@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.37 2004/12/04 23:40:28 janakj Exp $ 
+ * $Id: dbase.c,v 1.38 2004/12/06 08:51:44 janakj Exp $ 
  *
  * MySQL module core functions
  *
@@ -115,10 +115,6 @@ static int print_columns(char* _b, int _l, db_key_t* _c, int _n)
 
 	for(i = 0; i < _n; i++) {
 		if (i == (_n - 1)) {
-			ret = snprintf(_b + len, _l - len, "%s ", _c[i]);
-			if (ret < 0 || ret >= (_l - len)) goto error;
-			len += ret;
-
 			ret = snprintf(_b + len, _l - len, "%s ", _c[i]);
 			if (ret < 0 || ret >= (_l - len)) goto error;
 			len += ret;
