@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.9 2003/05/02 08:37:53 janakj Exp $
+ * $Id: subscribe.c,v 1.10 2003/05/08 02:48:42 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -69,14 +69,18 @@ static doctype_t acc;
 void callback(str* _user, int state, void* data)
 {
 	struct presentity* ptr;
+	int orig;
 
 	ptr = (struct presentity*)data;
+	orig = ptr->state;
 
 	if (state == 0) {
 		ptr->state = PS_OFFLINE;
 	} else ptr->state = PS_ONLINE;
 
-	notify_watchers(ptr);
+	if (orig != state) {
+		notify_watchers(ptr);
+	}
 }
 
 
