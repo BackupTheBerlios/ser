@@ -1,5 +1,5 @@
 /*
- * $Id:
+ * $Id: sipsak.c,v 1.8 2002/05/15 15:17:59 noh Exp $
  */
 
 /* sipsak written by nils ohlmeier (ohlmeier@fokus.gmd.de).
