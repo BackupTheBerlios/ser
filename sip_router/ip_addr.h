@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.21 2003/01/20 18:35:09 andrei Exp $
+/* $Id: ip_addr.h,v 1.22 2003/02/11 14:02:50 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -92,7 +92,7 @@ struct receive_info{
 	short src_port;
 	short dst_port;
 	int proto;
-	int proto_reserved1;
+	int proto_reserved1; /* tcp stores the connection id here */
 	int proto_reserved2;
 	union sockaddr_union src_su; /* usefull for replies*/
 	struct socket_info* bind_address; /* sock_info structure on which 
