@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.32 2002/03/02 06:47:27 andrei Exp $
+ * $Id: lock.c,v 1.33 2002/03/07 19:23:48 andrei Exp $
  */
 
 
@@ -93,7 +93,7 @@ static int init_semaphore_set( int size )
 
 
 
-static int change_semaphore( ser_lock_t* s  , int val )
+int change_semaphore( ser_lock_t* s  , int val )
 {
 	struct sembuf pbuf;
 	int r;

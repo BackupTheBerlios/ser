@@ -1,5 +1,5 @@
 /*
- * $Id: lock.h,v 1.18 2002/03/02 06:47:27 andrei Exp $
+ * $Id: lock.h,v 1.19 2002/03/07 19:23:48 andrei Exp $
  */
 
 
@@ -76,7 +76,7 @@ int release_timerlist_lock( struct timer *timerlist );
 
 
 #ifndef FAST_LOCK
-static int change_semaphore( ser_lock_t s  , int val );
+int change_semaphore( ser_lock_t* s  , int val );
 #endif
 
 
