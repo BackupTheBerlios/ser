@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.21 2003/04/15 20:39:37 andrei Exp $
+ *  $Id: forward.h,v 1.22 2003/07/01 20:23:51 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -106,14 +106,30 @@ static inline int msg_send(	struct socket_info* send_sock, int proto,
 					" support is disabled\n");
 			goto error;
 		}else{
-			if (tcp_send(buf, len, to, id)<0){
+			if (tcp_send(proto, buf, len, to, id)<0){
 				STATS_TX_DROPS;
 				LOG(L_ERR, "msg_send: ERROR: tcp_send failed\n");
 				goto error;
 			}
 		}
 	}
-#endif
+#ifdef USE_TLS
+	else if (proto==PROTO_TLS){
+		if (tls_disable){
+			STATS_TX_DROPS;
+			LOG(L_WARN, "msg_send: WARNING: attempt to send on tls and tls"
+					" support is disabled\n");
+			goto error;
+		}else{
+			if (tcp_send(proto, buf, len, to, id)<0){
+				STATS_TX_DROPS;
+				LOG(L_ERR, "msg_send: ERROR: tcp_send failed\n");
+				goto error;
+			}
+		}
+	}
+#endif /* USE_TLS */
+#endif /* USE_TCP */
 	else{
 			LOG(L_CRIT, "BUG: msg_send: unknown proto %d\n", proto);
 			goto error;

@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.37 2003/04/22 21:15:46 jiri Exp $
+ * $Id: cfg.lex,v 1.38 2003/07/01 20:23:51 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -75,6 +75,7 @@
 FORWARD	forward
 FORWARD_TCP	forward_tcp
 FORWARD_UDP	forward_udp
+FORWARD_TLS	forward_tls
 DROP	"drop"|"break"
 SEND	send
 SEND_TCP	send_tcp
@@ -209,6 +210,7 @@ EAT_ABLE	[\ \t\b\r]
 
 <INITIAL>{FORWARD}	{count(); yylval.strval=yytext; return FORWARD; }
 <INITIAL>{FORWARD_TCP}	{count(); yylval.strval=yytext; return FORWARD_TCP; }
+<INITIAL>{FORWARD_TLS}	{count(); yylval.strval=yytext; return FORWARD_TLS; }
 <INITIAL>{FORWARD_UDP}	{count(); yylval.strval=yytext; return FORWARD_UDP; }
 <INITIAL>{DROP}	{ count(); yylval.strval=yytext; return DROP; }
 <INITIAL>{SEND}	{ count(); yylval.strval=yytext; return SEND; }

@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.21 2003/06/26 14:45:15 janakj Exp $
+ * $Id: route_struct.h,v 1.22 2003/07/01 20:23:51 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -64,6 +64,7 @@ enum { FORWARD_T=1, SEND_T, DROP_T, LOG_T, ERROR_T, ROUTE_T, EXEC_T,
 		REVERT_URI_T,
 		FORWARD_TCP_T,
 		FORWARD_UDP_T,
+		FORWARD_TLS_T,
 		SEND_TCP_T,
 		FORCE_RPORT_T
 };
