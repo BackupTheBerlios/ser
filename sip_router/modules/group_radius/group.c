@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.4 2003/03/12 21:47:49 janakj Exp $
+ * $Id: group.c,v 1.5 2003/09/11 22:02:02 janakj Exp $
  *
  * Group membership checking over Radius
  *
@@ -44,7 +44,7 @@
 #include "../../parser/hf.h"
 #include "../../parser/digest/digest.h"
 #include "group.h"
-#include "ser_radius.h"
+#include "dict.h"
 #include "grouprad_mod.h"
 
 

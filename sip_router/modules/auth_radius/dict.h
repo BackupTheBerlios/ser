@@ -1,5 +1,5 @@
 /*
- * $Id: ser_radius.h,v 1.5 2003/05/02 12:21:54 jih Exp $
+ * $Id: dict.h,v 1.1 2003/09/11 22:00:27 janakj Exp $
  *
  * Digest Authentication - Radius support
  * Definitions not found in radiusclient.h
@@ -32,22 +32,23 @@
  * 2003-03-09: Based on ser_radius.h from radius_auth (janakj)
  */
 
-#ifndef SER_RADIUS_H
-#define SER_RADIUS_H
+/*
+ * WARNING: Don't forget to update the dictionary if you update the file !!!
+ */
+
+#ifndef DICT_H
+#define DICT_H
 
 /* Service types */
 #define PW_CALL_CHECK                   10
 #define PW_EMERGENCY_CALL               13
-#define PW_SIP                          15
+#define PW_SIP_SESSION                  15
 
 /* Attributes*/
 #define PW_DIGEST_RESPONSE	        206	/* string */
 #define PW_DIGEST_ATTRIBUTES	        207	/* string */
 
 #define PW_SIP_URI_USER                 208     /* string */
-#define PW_SIP_METHOD                   209     /* int */
-#define PW_SIP_REQ_URI                  210     /* string */
-#define PW_SIP_CC                       212     /* string */
 #define PW_SIP_RPID                     213     /* string */
 
 #define PW_DIGEST_REALM		        1063	/* string */
@@ -62,4 +63,4 @@
 #define	PW_DIGEST_USER_NAME	        1072	/* string */
 
 
-#endif /* SER_RADIUS_H */
+#endif /* DICT_H */

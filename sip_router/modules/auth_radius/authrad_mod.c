@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.11 2003/05/02 21:36:29 janakj Exp $ 
+ * $Id: authrad_mod.c,v 1.12 2003/09/11 22:00:27 janakj Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -45,7 +45,7 @@
 #include "authrad_mod.h"
 #include "authorize.h"
 #include <radiusclient.h>
-#include "ser_radius.h"
+#include "dict.h"
 
 MODULE_VERSION
 
@@ -60,7 +60,7 @@ static int str_fixup(void** param, int param_no); /* char* -> str* */
  * Module parameter variables
  */
 char* radius_config = "/usr/local/etc/radiusclient/radiusclient.conf";
-int service_type = PW_SIP;
+int service_type = PW_SIP_SESSION;
 
 
 /*
