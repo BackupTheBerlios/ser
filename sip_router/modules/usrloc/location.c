@@ -1,5 +1,5 @@
 /* 
- * $Id: location.c,v 1.13 2002/04/12 00:36:01 janakj Exp $ 
+ * $Id: location.c,v 1.14 2002/04/12 11:36:55 janakj Exp $ 
  */
 
 #include <stdio.h>
@@ -680,8 +680,8 @@ int clean_location(location_t* _l, db_con_t* _c, time_t _t)
 			DBG("Contact removed from cache\n");
 		} else {
 			DBG("Contact is still fresh");
-			ptr = ptr->next;
 			prev = ptr;
+			ptr = ptr->next;
 		}
 	}
 	return TRUE;
