@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.11 2004/06/04 15:27:45 jamey Exp $
+ * $Id: publish.c,v 1.12 2004/06/07 17:09:53 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -83,6 +83,10 @@ static int parse_hfs(struct sip_msg* _m)
 			LOG(L_ERR, "parse_hfs(): Error while parsing Event header field\n");
 			return -8;
 		}
+	} else {
+		paerrno = PA_EVENT_PARSE;
+		LOG(L_ERR, "parse_hfs(): Missing Event header field\n");
+		return -7;
 	}
 
 	if (_m->expires) {
@@ -339,12 +343,22 @@ static int publish_presentity_xcap_change(struct sip_msg* _m, struct pdomain* _d
 
 static int publish_presentity(struct sip_msg* _m, struct pdomain* _d, struct presentity* presentity, int *pchanged)
 {
-	event_t *parsed_event = (event_t *)_m->event->parsed;
-	int event_package = parsed_event->parsed;
+	event_t *parsed_event = NULL;
+	int event_package = EVENT_OTHER;
+	if (_m->event) 
+		parsed_event = (event_t *)_m->event->parsed;
+	if (parsed_event)
+		event_package = parsed_event->parsed;
+
 	if (event_package == EVENT_PRESENCE) {
 		publish_presentity_pidf(_m, _d, presentity, pchanged);
 	} else if (event_package == EVENT_XCAP_CHANGE) {
 		publish_presentity_xcap_change(_m, _d, presentity, pchanged);
+	} else {
+		str callid = { 0, 0 };
+		if (_m->callid)
+			callid = _m->callid->body;
+		LOG(L_WARN, "publish_presentity: no handler for event_package=%d callid=%.*s\n", event_package, callid);
 	}
 
 	LOG(L_INFO, "publish_presentity: event_package=%d -1-\n", event_package);
