@@ -1,0 +1,73 @@
+? parser/digest/.digest_parser.c.swp
+Index: parser//digest/digest.h
+===================================================================
+RCS file: /cvsroot/ser/sip_router/parser/digest/digest.h,v
+retrieving revision 1.6
+diff -r1.6 digest.h
+38d37
+< 
+Index: parser//digest/digest_parser.c
+===================================================================
+RCS file: /cvsroot/ser/sip_router/parser/digest/digest_parser.c,v
+retrieving revision 1.10
+diff -r1.10 digest_parser.c
+45a46,50
+> #ifdef WITH_GSM_AUTH
+> #define GSM_SCHEME "gsm"
+> #define GSM_LEN 3
+> #endif
+> 
+352a358
+> 	DBG("parse_digest_cred: ... \n");
+366a373
+> 		DBG("parse_digest_cred: Digest scheme ... \n");
+376a384,386
+> #ifdef WITH_GSM_AUTH
+> 			_c->auth_scheme = AUTH_SCHEME_DIG;
+> #endif
+379c389,417
+< 	} else {
+---
+> 	}
+> #ifdef WITH_GSM_AUTH
+> 	else if (!strncasecmp(tmp.s, GSM_SCHEME, GSM_LEN) &&
+> 	    ((tmp.s[GSM_LEN] == ' ') ||     /* Test for one of LWS chars */
+> 	     (tmp.s[GSM_LEN] == '\r') || 
+> 	     (tmp.s[GSM_LEN] == 'n') || 
+> 	     (tmp.s[GSM_LEN] == '\t') ||
+> 	     (tmp.s[GSM_LEN] == ',')))
+> 	{
+> 		     /* Scheme is GSM */
+> 		DBG("parse_digest_cred: GSM scheme ... \n");
+> 		tmp.s += GSM_LEN + 1;
+> 		tmp.len -= GSM_LEN + 1;
+> 		
+> 		     /* Again, skip all whitespaces */
+> 		trim_leading(&tmp);
+> 
+> 		/* And parse GSM parameters - digest parser does the job very well */
+> 		if (parse_digest_params(&tmp, _c) < 0) {
+> 			return -2; /* We must not return -1 in this function ! */
+> 		} else {
+> 			_c->auth_scheme = AUTH_SCHEME_GSM;
+> 			return 0;
+> 		}
+> 	}
+> #endif
+> 	else
+> 	{
+> 		DBG("parse_digest_cred: Unknown scheme ... \n");
+Index: parser//digest/digest_parser.h
+===================================================================
+RCS file: /cvsroot/ser/sip_router/parser/digest/digest_parser.h,v
+retrieving revision 1.6
+diff -r1.6 digest_parser.h
+41a42,45
+> #ifdef WITH_GSM_AUTH
+> #define AUTH_SCHEME_DIG 0
+> #define AUTH_SCHEME_GSM 1
+> #endif
+86a91,93
+> #ifdef WITH_GSM_AUTH
+> 	int auth_scheme;            /* DIGEST or GSM */
+> #endif
