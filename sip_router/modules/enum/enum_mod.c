@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.c,v 1.5 2003/03/31 15:53:17 jih Exp $
+ * $Id: enum_mod.c,v 1.6 2003/04/06 20:25:51 janakj Exp $
  *
  * Enum module
  *
@@ -98,7 +98,7 @@ struct module_exports exports = {
 
 static int mod_init(void)
 {
-	printf("enum module - initializing\n");
+	DBG("enum module - initializing\n");
 	
 	suffix.s = domain_suffix;
 	suffix.len = strlen(suffix.s);

@@ -1,5 +1,5 @@
 /*
- * $Id: vm.c,v 1.16 2003/04/04 07:45:59 rco Exp $
+ * $Id: vm.c,v 1.17 2003/04/06 20:25:52 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -173,11 +173,6 @@ static int vm_mod_init(void)
 static int vm_init_child(int rank)
 {
     LOG(L_INFO,"voicemail - initializing child %i\n",rank);
-
-    if( !db_init && bind_dbmod() ){
-		LOG(L_CRIT, "cannot bind db_mod\n");
-		return -1;
-    }
 
     assert(db_init);
 

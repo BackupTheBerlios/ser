@@ -1,5 +1,5 @@
 /* 
- * $Id: group_mod.c,v 1.6 2003/04/05 14:06:10 jiri Exp $ 
+ * $Id: group_mod.c,v 1.7 2003/04/06 20:25:51 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -124,11 +124,6 @@ struct module_exports exports = {
 
 static int child_init(int rank)
 {
-	if (db_url == 0) {
-		LOG(L_ERR, "group:init_child(): Use db_url parameter\n");
-		return -1;
-	}
-
 	db_handle = db_init(db_url);
 	if (!db_handle) {
 		LOG(L_ERR, "group:init_child(): Unable to connect database\n");
@@ -141,7 +136,7 @@ static int child_init(int rank)
 
 static int mod_init(void)
 {
-	printf("group module - initializing\n");
+	DBG("group module - initializing\n");
 	
 	     /* Find a database module */
 	if (bind_dbmod()) {

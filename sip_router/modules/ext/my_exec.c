@@ -1,5 +1,5 @@
 /*
- * $Id: my_exec.c,v 1.4 2002/09/19 12:23:53 jku Rel $
+ * $Id: my_exec.c,v 1.5 2003/04/06 20:25:51 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -86,14 +86,16 @@ static void sig_chld(int signo)
 
 
 
-int init_ext()
+int init_ext(int rank)
 {
-	if (signal(SIGCHLD,sig_chld)==SIG_ERR)
-		return -1;
-
-	_private_prog.pid = 0;
-	_private_prog.stat = 0;
-	return 1;
+	if (rank > 0) {
+		if (signal(SIGCHLD,sig_chld)==SIG_ERR)
+			return -1;
+		
+		_private_prog.pid = 0;
+		_private_prog.stat = 0;
+	}
+       return 1;
 }
 
 

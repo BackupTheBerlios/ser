@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.15 2003/03/16 20:27:24 janakj Exp $ 
+ * $Id: db_mod.c,v 1.16 2003/04/06 20:25:52 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -76,6 +76,6 @@ struct module_exports exports = {
 
 static int mod_init(void)
 {
-	fprintf(stderr, "mysql - initializing\n");
+	DBG("mysql - initializing\n");
 	return 0;
 }

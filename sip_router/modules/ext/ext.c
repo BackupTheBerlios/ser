@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.10 2003/03/16 20:27:23 janakj Exp $
+ * $Id: ext.c,v 1.11 2003/04/06 20:25:51 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -93,7 +93,7 @@ struct module_exports exports = {
 
 static int ext_child_init(int child)
 {
-	return init_ext();
+	return init_ext(child);
 }
 
 

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: my_exec.h,v 1.3 2002/09/19 12:23:53 jku Rel $
+ * $Id: my_exec.h,v 1.4 2003/04/06 20:25:51 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -44,7 +44,7 @@ struct program
 };
 
 
-int init_ext();
+int init_ext(int rank);
 int start_prog( char *cmd );
 int kill_prog();
 
