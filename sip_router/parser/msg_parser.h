@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.25 2003/03/29 01:38:12 jiri Exp $
+ * $Id: msg_parser.h,v 1.26 2003/03/31 19:51:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,10 +26,11 @@
  *
  * History
  * -------
- * 2003-03-06 enum_request_method changed to begin with 1;
- *            0 reserved for invalid values; (jiri)
- * 2003-02-28 scratchpad compatibility abandoned (jiri)
- * 2003-01-28 removed scratchpad (jiri)
+ *  2003-03-06  enum_request_method changed to begin with 1;
+ *             0 reserved for invalid values; (jiri)
+ *  2003-02-28  scratchpad compatibility abandoned (jiri)
+ *  2003-01-28  removed scratchpad (jiri)
+ *  2003-03-31  removed sip_msg->repl_add_rm (andrei)
  */
 
 
@@ -141,8 +142,7 @@ struct sip_msg {
 	int parsed_uri_ok; /* 1 if parsed_uri is valid, 0 if not */
 	struct sip_uri parsed_uri; /* speed-up > keep here the parsed uri*/
 	
-	struct lump* add_rm;         /* used for all the forwarded requests */
-	struct lump* repl_add_rm;    /* used for all the forwarded replies */
+	struct lump* add_rm;       /* used for all the forwarded requests/replies */
 	struct lump_rpl *reply_lump; /* only for localy generated replies !!!*/
 
 	/* str add_to_branch; 
