@@ -1,5 +1,5 @@
 /*
- * $Id: parse_from.h,v 1.7 2002/12/08 00:11:50 janakj Exp $
+ * $Id: parse_from.h,v 1.8 2004/01/21 12:41:56 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,6 +34,8 @@
 
 /* casting macro for accessing From body */
 #define get_from(p_msg)  ((struct to_body*)(p_msg)->from->parsed)
+
+#define free_from(_to_body_)  free_to(_to_body_)
 
 
 /*
