@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.19 2003/10/14 13:47:17 sobomax Exp $
+/*$Id: nathelper.c,v 1.20 2003/10/16 16:28:51 jiri Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -79,7 +79,7 @@ MODULE_VERSION
 
 
 /* NAT UAC test constants */
-#define CONTACT_1918        "[@:](192\\.168\\.|10\\.|172\\.16)"
+#define CONTACT_1918        "[@:](192\\.168\\.|10\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.)"
 #define NAT_UAC_TEST_1918	0x01
 #define NAT_UAC_TEST_RCVD	0x02
 
