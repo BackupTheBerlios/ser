@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.14 2002/05/22 19:03:45 andrei Exp $
+/* $Id: sr_module.c,v 1.15 2002/05/28 19:01:38 andrei Exp $
  */
 
 #include "sr_module.h"
@@ -141,7 +141,7 @@ int load_module(char* path)
 	}
 	/* launch register */
 	exp = (struct module_exports*)dlsym(handle, "exports");
-	if ( (error =dlerror())!=0 ){
+	if ( (error =(char*)dlerror())!=0 ){
 		LOG(L_ERR, "ERROR: load_module: %s\n", error);
 		goto error1;
 	}

@@ -1,8 +1,9 @@
-/* $Id: msg_translator.c,v 1.46 2002/05/27 00:30:03 noh Exp $
+/* $Id: msg_translator.c,v 1.47 2002/05/28 19:01:38 andrei Exp $
  *
  */
 
 
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <string.h>

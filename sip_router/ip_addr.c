@@ -1,10 +1,11 @@
 /*
- * $Id: ip_addr.c,v 1.1 2002/05/26 13:50:48 andrei Exp $
+ * $Id: ip_addr.c,v 1.2 2002/05/28 19:01:38 andrei Exp $
  *
  *
  * ip address & address family related functions
  */
 
+#include <stdlib.h>
 #include <stdio.h>
 
 #include "ip_addr.h"

@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.2 2002/05/26 21:38:02 andrei Exp $
+/* $Id: ip_addr.h,v 1.3 2002/05/28 19:01:38 andrei Exp $
  *
  * ip address family realted structures
  */
@@ -7,16 +7,12 @@
 #define ip_addr_h
 
 #include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include "str.h"
 
-#ifdef USE_IPV6
-	#ifdef FreeBSD			/* freebsd is brain damaged and needs a different
-							   include */
-#include <netinet6/in6.h>
-	#endif
-#endif
 
 #include "dprint.h"
 
