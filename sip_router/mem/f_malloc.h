@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.7 2003/05/21 16:42:34 andrei Exp $
+/* $Id: f_malloc.h,v 1.8 2003/07/06 18:43:16 andrei Exp $
  *
  * simple, very fast, malloc library
  *
@@ -116,6 +116,13 @@ void  fm_free(struct fm_block*, void* p, char* file, char* func,
 				unsigned int line);
 #else
 void  fm_free(struct fm_block*, void* p);
+#endif
+
+#ifdef DBG_F_MALLOC
+void*  fm_realloc(struct fm_block*, void* p, unsigned int size, 
+					char* file, char* func, unsigned int line);
+#else
+void*  fm_realloc(struct fm_block*, void* p, unsigned int size);
 #endif
 
 void  fm_status(struct fm_block*);

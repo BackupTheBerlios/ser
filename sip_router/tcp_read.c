@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.23 2003/07/04 20:12:05 andrei Exp $
+ * $Id: tcp_read.c,v 1.24 2003/07/06 18:43:16 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -450,16 +450,16 @@ again:
 					  "buf:\n%.*s\nparsed:\n%.*s\n", req->state, req->error,
 					  (int)(req->pos-req->buf), req->buf,
 					  (int)(req->parsed-req->start), req->start);
-			DBG("- received from: port %d, ip -", con->rcv.src_port);
-			print_ip(&con->rcv.src_ip); DBG("-\n");
+			DBG("- received from: port %d\n", con->rcv.src_port);
+			print_ip("- received from: ip ",&con->rcv.src_ip, "\n");
 			resp=CONN_ERROR;
 			goto end_req;
 		}
 		if (req->complete){
 #ifdef EXTRA_DEBUG
 			DBG("tcp_read_req: end of header part\n");
-			DBG("- received from: port %d, ip - ", con->rcv.src_port);
-			print_ip(&con->rcv.src_ip); DBG("-\n");
+			DBG("- received from: port %d\n", con->rcv.src_port);
+			print_ip("- received from: ip ", &con->rcv.src_ip, "\n");
 			DBG("tcp_read_req: headers:\n%.*s.\n",
 					(int)(req->body-req->start), req->start);
 #endif

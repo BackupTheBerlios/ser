@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.28 2003/04/10 23:51:10 andrei Exp $
+/* $Id: ip_addr.h,v 1.29 2003/07/06 18:43:16 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -157,7 +157,7 @@ struct dest_info{
 struct net* mk_net(struct ip_addr* ip, struct ip_addr* mask);
 struct net* mk_net_bitlen(struct ip_addr* ip, unsigned int bitlen);
 
-void print_ip(struct ip_addr* ip);
+void print_ip(char* prefix, struct ip_addr* ip, char* suffix);
 void stdout_print_ip(struct ip_addr* ip);
 void print_net(struct net* net);
 

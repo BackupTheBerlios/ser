@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.12 2003/06/30 10:04:02 andrei Exp $
+/* $Id: q_malloc.c,v 1.13 2003/07/06 18:43:16 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -268,7 +268,7 @@ static inline struct qm_frag* qm_find_free(struct qm_block* qm,
 
 
 /* returns 0 on success, -1 on error;
- * new_size < size & rounduped already!*/
+ * new_size < size & rounded-up already!*/
 static inline
 #ifdef DBG_QM_MALLOC
 int split_frag(struct qm_block* qm, struct qm_frag* f, unsigned int new_size,
