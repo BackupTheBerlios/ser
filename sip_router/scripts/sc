@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.58 2003/06/01 17:49:26 jiri Exp $
+# $Id: sc,v 1.59 2003/06/01 18:07:10 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.58 $'
+VERSION='$Revision: 1.59 $'
 #### SQL names
 
 # Usr Loc Table
@@ -167,6 +167,15 @@ prompt_pw() {
     	read PW
 		stty $savetty
     	echo
+	fi
+}
+
+print_status() {
+	echo $1 | grep "^[1-6][0-9][0-9]" > /dev/null
+	if [ "$?" -eq 0 ] ; then 
+		echo $1
+	else
+		echo "200 OK"
 	fi
 }
 
@@ -750,13 +759,18 @@ case $1 in
 		;;
 
 	ping)
+		# error handling is hacked -- filter_fl should not
+		# consume positive status -- that should be done by
+		# calling app
 		if [ "$#" -ne 2 ] ; then	
 			usage
 			exit 1
 		fi
-		fifo_cmd t_uac_dlg OPTIONS "$2" "." "From: sip:daemon@$SIP_DOMAIN" \
-			"To: <$2>" "Contact: <sip:daemon@!!>" "." "." |
-			head -1
+		RET=`fifo_cmd t_uac_dlg OPTIONS "$2" "." \
+			"From: sip:daemon@$SIP_DOMAIN" \
+			"To: <$2>" "Contact: <sip:daemon@!!>" "." "." \
+			| head -1 ` 
+		print_status $RET
 		;;
 
 	cisco_restart)
@@ -764,9 +778,12 @@ case $1 in
 			usage
 			exit 1
 		fi
-		fifo_cmd t_uac_dlg NOTIFY "$2" "." "From: sip:daemon@$SIP_DOMAIN" \
-			"To: <$2>" "Event: check-sync" "Contact: <sip:daemon@!!>" "." "." |
-			head -1
+		RET=`fifo_cmd t_uac_dlg NOTIFY "$2" "." \
+			"From: sip:daemon@$SIP_DOMAIN" \
+			"To: <$2>" "Event: check-sync" \
+			"Contact: <sip:daemon@!!>" "." "." |
+			head -1 `
+		print_status $RET
 		;;
 
 	version)
