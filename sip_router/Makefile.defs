@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.1 2001/12/08 22:06:27 andrei Exp $
+# $Id: Makefile.defs,v 1.2 2001/12/10 21:30:00 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -44,7 +44,7 @@ ARCH = $(shell uname -s)
 #		malloc etc.)
 DEFS= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 -DDNS_IP_HACK  -DSHM_MEM \
-	 -DPKG_MALLOC -DDBG_QM_MALLOC -DNODEBUG
+	 -DPKG_MALLOC #-DDBG_QM_MALLOC -DNODEBUG
 #-DEXTRA_DEBUG
 # -DUSE_SHM_MEM
 #-DNO_DEBUG 
