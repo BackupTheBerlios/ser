@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.13 2004/08/24 09:00:34 janakj Exp $
+ * $Id: pdt.c,v 1.14 2004/09/14 12:43:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -254,6 +254,12 @@ static int mod_init(void)
 	if(bind_dbmod(db_url, &pdt_dbf))
 	{
 		LOG(L_ERR, "PDT: mod_init: Database module not found\n");
+		goto error1;
+	}
+
+	if (!DB_CAPABILITY(pdt_dbf, DB_CAP_ALL)) {
+		LOG(L_ERR, "PDT: mod_init: Database module does not "
+		    "implement all functions needed by the module\n");
 		goto error1;
 	}
 

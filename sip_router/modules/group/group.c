@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.13 2004/08/24 08:58:29 janakj Exp $
+ * $Id: group.c,v 1.14 2004/09/14 12:43:37 janakj Exp $
  *
  * Group membership
  *
@@ -228,6 +228,12 @@ int group_db_bind(char* db_url)
 				" module\n");
 		return -1;
 	}
+
+	if (!DB_CAPABILITY(group_dbf, DB_CAP_QUERY)) {
+		LOG(L_ERR, "ERROR: group_db_bind: Database module does not implement 'query' function\n");
+		return -1;
+	}
+
 	return 0;
 }
 

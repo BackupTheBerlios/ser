@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.24 2004/08/24 08:58:32 janakj Exp $
+ * $Id: pa_mod.c,v 1.25 2004/09/14 12:43:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -204,6 +204,11 @@ static int pa_mod_init(void)
 		}
 		if (bind_dbmod(db_url.s, &pa_dbf) < 0) { /* Find database module */
 			LOG(L_ERR, "pa_mod_init(): Can't bind database module via url %s\n", db_url.s);
+			return -1;
+		}
+
+		if (!DB_CAPABILITY(pa_dbf, DB_CAP_ALL)) {
+			LOG(L_ERR, "pa_mod_init(): Database module does not implement all functions needed by the module\n");
 			return -1;
 		}
 	}

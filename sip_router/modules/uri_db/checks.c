@@ -1,5 +1,5 @@
 /*
- * $Id: checks.c,v 1.4 2004/08/04 14:25:10 janakj Exp $
+ * $Id: checks.c,v 1.5 2004/09/14 12:43:37 janakj Exp $
  *
  * Various URI checks
  *
@@ -280,6 +280,13 @@ int uridb_db_bind(char* db_url)
 				" module\n");
 		return -1;
 	}
+
+	if (!DB_CAPABILITY(uridb_dbf, DB_CAP_QUERY)) {
+		LOG(L_ERR, "ERROR: uridb_db_bind: Database module does not "
+		    "implement 'query' function\n");
+		return -1;
+	}
+
 	return 0;
 }
 

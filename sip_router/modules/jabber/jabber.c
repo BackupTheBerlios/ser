@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.56 2004/08/24 08:58:30 janakj Exp $
+ * $Id: jabber.c,v 1.57 2004/09/14 12:43:37 janakj Exp $
  *
  * XJAB module
  *
@@ -207,6 +207,12 @@ static int mod_init(void)
 		LOG(L_ERR, "XJAB:mod_init: error - database module not found\n");
 		return -1;
 	}
+
+	if (!DB_CAPABILITY(jabber_dbf, DB_CAP_QUERY)) {
+		LOG(L_ERR, "XJAB:mod_init: Database module does not implement 'query' function\n");
+		return -1;
+	}
+
 	db_con = (db_con_t**)shm_malloc(nrw*sizeof(db_con_t*));
 	if (db_con == NULL)
 	{
