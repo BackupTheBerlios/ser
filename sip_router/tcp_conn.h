@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.8 2003/01/20 18:35:09 andrei Exp $
+ * $Id: tcp_conn.h,v 1.9 2003/01/28 16:46:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -76,7 +76,7 @@ struct tcp_req{
 
 struct tcp_connection{
 	int s; /*socket, used by "tcp main" */
-	int fd; /* used only by "children" */
+	int fd; /* used only by "children", don't modify it! private data! */
 	int id; /* id (unique!) used to retrieve a specific connection when
 	           reply-ing*/
 	struct receive_info rcv; /* src & dst ip, ports, proto a.s.o*/
