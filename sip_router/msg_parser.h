@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.36 2002/02/26 00:04:05 jku Exp $
+ * $Id: msg_parser.h,v 1.37 2002/03/01 15:00:15 bogdan Exp $
  */
 
 #ifndef msg_parser_h
@@ -156,6 +156,7 @@ struct to_param{
 struct to_body{
 	int error;
 	str body;
+	str uri;
 	str tag_value;
 	struct to_param *param_lst;
 	struct to_param *last_param;

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.44 2002/02/27 21:30:43 bogdan Exp $
+ * $Id: msg_parser.c,v 1.45 2002/03/01 15:00:14 bogdan Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -264,7 +264,8 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 			hdr->parsed=to_b;
 			hdr->body.len=tmp-hdr->body.s;
 			DBG("get_hdr_field: <%s> [%d]; <%s>.len = %d \n",
-				hdr->name.s, hdr->body.len, to_b->body.s,to_b->body.len);
+				hdr->name.s, hdr->body.len, to_b->uri.s,to_b->uri.len);
+			DBG("to <%s>.len=%d\n",to_b->body.s,to_b->body.len);
 			break;
 		case HDR_FROM:
 		case HDR_CALLID:
