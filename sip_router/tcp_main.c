@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.49 2003/12/03 20:21:55 andrei Exp $
+ * $Id: tcp_main.c,v 1.50 2003/12/11 14:02:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -1159,7 +1159,9 @@ void tcp_main_loop()
 								sizeof(response));
 				if (bytes==0){
 					/* EOF -> bad, child has died */
-					LOG(L_CRIT, "BUG: tcp_main_loop: dead tcp child %d\n", r);
+#ifdef EXTRA_DEBUG
+					DBG("DBG: tcp_main_loop: dead tcp child %d\n", r);
+#endif
 					/* don't listen on it any more */
 					FD_CLR(tcp_children[r].unix_sock, &master_set);
 					/*exit(-1);*/
