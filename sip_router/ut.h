@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.8 2002/03/02 02:20:00 andrei Exp $
+ *$Id: ut.h,v 1.9 2002/04/29 14:54:16 janakj Exp $
  *
  * - various general purpose functions
  */
@@ -33,6 +33,14 @@
 
 #define  translate_pointer( _new_buf , _org_buf , _p) \
 	( (_p)?(_new_buf + (_p-_org_buf)):(0) )
+
+#define via_len(_via) \
+	((_via)->bsize-((_via)->name.s-\
+		((_via)->hdr.s+(_via)->hdr.len)))
+
+#define via_s(_via,_p_msg) \
+	translate_pointer((_p_msg)->orig,(_p_msg)->buf,(_via)->name.s)
+
 
 
 
