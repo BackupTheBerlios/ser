@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.7 2003/01/18 10:58:06 janakj Exp $
+ * $Id: reply.c,v 1.8 2003/01/19 20:30:15 jiri Exp $
  *
  * Send a reply
  *
@@ -25,6 +25,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History:
+ * --------
+ * 2003-01-18: buffer overflow patch committed (Jan on behalf of Maxim)
  */
 
 
