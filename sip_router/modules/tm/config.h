@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.8 2002/04/11 20:30:38 bogdan Exp $
+ * $Id: config.h,v 1.9 2002/04/29 14:08:46 janakj Exp $
  *
  */
 
@@ -11,7 +11,7 @@
 #define TABLE_ENTRIES    (1 << (T_TABLE_POWER))
 
 /* maximum number of forks per transaction */
-enum fork_list { MAX_FORK=2 , NO_RPL_BRANCH ,NR_OF_CLIENTS};
+enum fork_list { MAX_FORK=4 , NO_RPL_BRANCH ,NR_OF_CLIENTS};
 enum fork_type { DEFAULT, NO_RESPONSE };
 
 /* maximumum length of localy generated acknowledgement */
@@ -19,8 +19,8 @@ enum fork_type { DEFAULT, NO_RESPONSE };
 
 /* FINAL_RESPONSE_TIMER ... tells how long should the transaction engine
    wait if no final response comes back*/
-#define FR_TIME_OUT       16
-#define INV_FR_TIME_OUT   30
+#define FR_TIME_OUT       30
+#define INV_FR_TIME_OUT   60
 
 /* WAIT timer ... tells how long state should persist in memory after
    a transaction was finalized*/
