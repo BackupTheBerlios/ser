@@ -1,5 +1,5 @@
 /**
- * $Id: xjab_base.h,v 1.8 2003/06/05 17:13:26 dcm Exp $
+ * $Id: xjab_base.h,v 1.9 2003/06/11 17:41:20 dcm Exp $
  *
  * eXtended JABber module
  *
@@ -33,6 +33,7 @@
  *
  * History
  * -------
+ * 2003-06-05  previously added macro replaced with 'xj_extract_aor', (dcm)
  * 2003-05-09  added macro for ajusting a SIP address, (dcm)
  */
 
