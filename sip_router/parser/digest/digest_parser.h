@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.h,v 1.7 2004/08/24 09:01:29 janakj Exp $
+ * $Id: digest_parser.h,v 1.8 2005/02/01 12:35:17 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -95,6 +95,21 @@ typedef struct dig_cred {
 	struct qp qop;              /* Quality Of Protection */
 	str nc;                     /* Nonce count parameter */
 } dig_cred_t;
+
+
+/*
+ * Macro to obtain the value of realm. The macro would first
+ * check if there is any @domain part in the username and if
+ * so, it will be returned as the value of realm. This hack is
+ * ofter used to protect realm using the digest (username parameter
+ * is protected by the response hash) and also to allow subscribers
+ * to specify a different domain part than the one in realm parameter
+ */
+#define GET_REALM(cred)                                           \
+    (((cred)->username.domain.len && (cred)->username.domain.s) ? \
+     &(cred)->username.domain :                                   \
+     &(cred)->realm)
+
 
 
 /*
