@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_nameaddr.c,v 1.5 2003/04/26 20:28:46 jiri Exp $
+ * $Id: parse_nameaddr.c,v 1.6 2003/04/28 22:08:52 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -85,5 +85,6 @@ void print_nameaddr(FILE* _o, name_addr_t* _a)
 	fprintf(_o, "---name-addr---\n");
 	fprintf(_o, "name: '%.*s'\n", _a->name.len, ZSW(_a->name.s));
 	fprintf(_o, "uri : '%.*s'\n", _a->uri.len, ZSW(_a->uri.s));
+	fprintf(_o, "len : %d\n", _a->len);
 	fprintf(_o, "---/name-addr---\n");
 }
