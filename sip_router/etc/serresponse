@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: serresponse,v 1.2 2002/06/14 16:41:00 noh Exp $
+# $Id: serresponse,v 1.3 2002/06/14 16:52:22 noh Exp $
 #
 # use to check whether ser is still responding; if not mail an alert
 #
@@ -18,10 +18,10 @@ TMP=/tmp/serresponse.$$
 MAILCOMMAND=/usr/bin/mail
 
 if [ ! -e $LOCKFILE ] ; then
-	if [ ! -f $MESSAGE ] ; then
-		echo "serresponse did not find the required message $MESSAGE" > $TMP
-	elif [ ! -x $BIN ] ; then
+	if [ ! -x $BIN ] ; then
 		echo "serresponse did not find the required sipsak executable $BIN" > $TMP
+	#elif [ ! -f $MESSAGE ] ; then
+	#	echo "serresponse did not find the required message $MESSAGE" > $TMP
 	else
 		echo "The execution of this command:" > $TMP
 		echo "  $BIN -s $SIPURI" >> $TMP
