@@ -1,11 +1,18 @@
 #!/bin/sh 
 #
-# $Id: geo_split.sh,v 1.1 2003/04/24 19:21:15 jiri Exp $
+# $Id: geo_split.sh,v 1.2 2003/04/24 19:22:25 jiri Exp $
 #
 # utility for displaying geographical break-down of usrloc population
 # it takes functional netgeo support for ser (currently, an
 # experimental unavailable feature)
 # 
+
+
+DB_HOST=dbhost
+DB_USER=ser
+DB_PW=heslo
+
+# ---
 
 TMP=/tmp/geo_split.$$
 
@@ -22,7 +29,7 @@ stats()
 	mv $TMP.2 $TMP
 }
 
-mysql -h dbhost --batch -u ser -pheslo ser -e "select location from netgeo_cache" |
+mysql -h $DB_HOST --batch -u $DB_USER -p$DB_PW ser -e "select location from netgeo_cache" |
 awk -F '/' '
 	BEGIN { line=0 }
 	{ line++ }
