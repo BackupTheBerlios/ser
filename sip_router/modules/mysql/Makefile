@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.18 2003/03/12 12:54:00 andrei Exp $
+# $Id: Makefile,v 1.19 2003/04/16 00:12:19 calrissian Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
@@ -13,6 +13,6 @@ DEFS +=-I$(LOCALBASE)/include -I$(LOCALBASE)/include/mysql \
 # (Debian does the right thing and puts it in /usr/lib)
 LIBS=-L/usr/lib/mysql -L$(LOCALBASE)/lib -L$(LOCALBASE)/lib/mysql \
 		-L$(LOCALBASE)/mysql/lib/mysql/ -L/usr/pkg/lib/mysql \
-		-lmysqlclient -lz 
+		-lmysqlclient
 
 include ../../Makefile.modules
