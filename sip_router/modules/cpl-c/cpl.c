@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.22 2003/09/09 16:33:43 bogdan Exp $
+ * $Id: cpl.c,v 1.23 2003/09/09 17:31:03 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -346,6 +346,11 @@ error:
 
 static int cpl_exit(void)
 {
+	/* free the TZ orig */
+	if (cpl_orig_tz.s)
+		shm_free(cpl_orig_tz.s);
+
+	/* if still runnigng, stop the aux process */
 	if (!aux_process) {
 		LOG(L_INFO,"INFO:cpl_c:cpl_exit: aux process hasn't been created -> "
 			"nothing to kill :-(\n");
