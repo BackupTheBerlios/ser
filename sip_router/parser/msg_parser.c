@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.23 2002/12/17 18:14:32 janakj Exp $
+ * $Id: msg_parser.c,v 1.24 2003/01/24 16:44:43 bogdan Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -153,16 +153,6 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 			DBG("DEBUG: get_hdr_body : content_length=%d\n",(int)hdr->parsed);
 			break;
 		case HDR_CONTENTTYPE:
-			hdr->body.s=tmp;
-			tmp=parse_content_type(tmp,end, &integer);
-			if (tmp==0){
-				LOG(L_ERR, "ERROR:get_hdr_field: bad content_type header\n");
-				goto error;
-			}
-			hdr->parsed=(void*)integer;
-			hdr->body.len=tmp-hdr->body.s;
-			DBG("DEBUG: get_hdr_body : content_type=%d\n",(int)hdr->parsed);
-			break;
 		case HDR_FROM:
 		case HDR_CALLID:
 		case HDR_CONTACT:

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.20 2002/12/12 21:46:38 andrei Exp $
+ * $Id: msg_parser.h,v 1.21 2003/01/24 16:44:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -129,7 +129,7 @@ struct sip_msg {
 	
 	str new_uri; /* changed first line uri*/
 
-        str dst_uri; /* Destination URI, must be forwarded to this URI if len != 0 */
+	str dst_uri; /* Destination URI, must be forwarded to this URI if len != 0 */
 
 	int parsed_uri_ok; /* 1 if parsed_uri is valid, 0 if not */
 	struct sip_uri parsed_uri; /* speed-up > keep here the parsed uri*/
