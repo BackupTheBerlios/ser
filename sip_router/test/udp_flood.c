@@ -1,4 +1,4 @@
-/* $Id: udp_flood.c,v 1.1 2001/10/21 18:33:24 andrei Exp $ */
+/* $Id: udp_flood.c,v 1.2 2001/11/12 22:53:41 jku Exp $ */
 
 
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include <arpa/inet.h>
 
 
-static char *id="$Id: udp_flood.c,v 1.1 2001/10/21 18:33:24 andrei Exp $";
+static char *id="$Id: udp_flood.c,v 1.2 2001/11/12 22:53:41 jku Exp $";
 static char *version="udp_flood 0.1";
 static char* help_msg="\
 Usage: udp_flood -f file -d address -p port -c count [-v]\n\
@@ -173,7 +173,10 @@ int main (int argc, char** argv)
 	/* flood loop */
 	for (r=0; r<count; r++){
 		if ((verbose>1)&&(r%1000))  putchar('.');
-		send(sock, buf, n, 0);
+		if (send(sock, buf, n, 0)==-1) {
+			fprintf(stderr, "Error: send: %s\n",  strerror(errno));
+			exit(1);
+		}
 	}
 	printf("\n%d packets sent, %d bytes each => total %d bytes\n",
 			count, n, n*count);
