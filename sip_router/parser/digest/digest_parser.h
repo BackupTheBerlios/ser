@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.h,v 1.4 2003/03/03 17:45:25 janakj Exp $
+ * $Id: digest_parser.h,v 1.5 2003/03/05 10:43:11 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -67,24 +67,29 @@ struct qp {
 };
 
 
+/* Username structure */
+struct username {
+	str whole;        /* The whole username parameter value */
+	str user;         /* username part only */
+	str domain;       /* Domain part only */
+};
+
+
 /*
  * Parsed digest credentials
  */
 typedef struct dig_cred {
-	str username;         /* Username */
-#ifdef DIGEST_DOMAIN
-	str domain;           /* Domain contained in username */
-#endif
-	str realm;            /* Realm */
-	str nonce;            /* Nonce value */
-	str uri;              /* URI */
-	str response;         /* Response string */
-	str algorithm;        /* Algorithm in string representation */
-	struct algorithm alg; /* Type of algorithm used */
-	str cnonce;           /* Cnonce value */
-	str opaque;           /* Opaque data string */
-	struct qp qop;        /* Quality Of Protection */
-	str nc;               /* Nonce count parameter */
+	struct username username;   /* Username */
+	str realm;                  /* Realm */
+	str nonce;                  /* Nonce value */
+	str uri;                    /* URI */
+	str response;               /* Response string */
+	str algorithm;              /* Algorithm in string representation */
+	struct algorithm alg;       /* Type of algorithm used */
+	str cnonce;                 /* Cnonce value */
+	str opaque;                 /* Opaque data string */
+	struct qp qop;              /* Quality Of Protection */
+	str nc;                     /* Nonce count parameter */
 } dig_cred_t;
 
 
