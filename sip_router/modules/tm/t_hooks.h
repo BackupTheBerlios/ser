@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.8 2003/03/16 00:53:42 jiri Exp $
+ * $Id: t_hooks.h,v 1.9 2003/03/29 01:38:12 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * --------
  * 2003-03-16 backwards-compatibility callback names introduced (jiri)
+ * 2003-03-06 old callbacks renamed, new one introduced (jiri)
  */
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: vm.c,v 1.14 2003/03/26 20:22:14 rco Exp $
+ * $Id: vm.c,v 1.15 2003/03/29 01:38:12 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,11 @@
  * -------
  * 2003-03-11 New module interface (janakj)
  * 2003-03-16 flags export parameter added (janakj)
+ * 2003-03-06 vm_{start|stop} changed to use a single fifo 
+ *            function; new module parameters introduced;
+ *            db now initialized only on start-up; MULTI_DOMAIN
+ *            support introduced; sprintf removed;
+ *
  */
 
 #include "../../fifo_server.h"

@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.10 2003/03/06 17:43:17 jiri Exp $
+ * $Id: tm_load.h,v 1.11 2003/03/29 01:38:12 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -23,6 +23,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ *
+ * History:
+ * --------
+ * 2003-03-06  voicemail changes accepted
+ *
  */
 
 

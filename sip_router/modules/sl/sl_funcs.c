@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.41 2003/03/06 17:43:17 jiri Exp $
+ * $Id: sl_funcs.c,v 1.42 2003/03/29 01:38:11 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  /*
   * History:
   * -------
+  * 2003-03-06  aligned to request2response use of tag bookmarks (jiri)
   * 2003-02-11  modified sl_send_reply to use the transport independend
   *              msg_send  (andrei)
   * 2003-02-18  replaced TOTAG_LEN w/ TOTAG_VALUE_LEN (it was defined twice

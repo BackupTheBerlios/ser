@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.15 2003/03/19 22:39:37 janakj Exp $
+ * $Id: acc_mod.c,v 1.16 2003/03/29 01:38:11 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,9 @@
  * History:
  * -------
  * 2003-03-11: New module interface (janakj)
+ * 2003-03-06: aligned to change in callback names (jiri)
+ * 2003-03-06: fixed improper sql connection, now from 
+ * 	           child_init (jiri)
  * 2003-03-16: flags export parameter added (janakj)
  */
 

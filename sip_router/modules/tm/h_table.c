@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.78 2003/03/16 00:53:42 jiri Exp $
+ * $Id: h_table.c,v 1.79 2003/03/29 01:38:12 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,9 @@
  * History
  * -------
  * 2003-03-16  removed _TOTAG (jiri)
+ * 2003-03-06  200/INV to-tag list deallocation added;
+ *             setting "kill_reason" moved in here -- it is moved
+ *             from transaction state to a static var(jiri)
  */
 
 #include "defs.h"

@@ -1,7 +1,7 @@
 /*
  * Radius Accounting module
  *
- * $Id: acc_mod.c,v 1.8 2003/03/19 22:39:37 janakj Exp $
+ * $Id: acc_mod.c,v 1.9 2003/03/29 01:38:11 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,8 +28,9 @@
  */
 /* History:
  * --------
- *  2003-03-11  updated to the new module exports interface (andrei)
  *  2003-03-16  flags export parameter added (janakj)
+ *  2003-03-11  updated to the new module exports interface (andrei)
+ *  2003-03-06  aligned to new callback names (jiri)
  */
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.69 2003/03/16 00:53:42 jiri Exp $
+ * $Id: h_table.h,v 1.70 2003/03/29 01:38:12 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * --------
  * 2003-03-16  removed _TOTAG (jiri)
+ * 2003-03-06  we keep a list of 200/INV to-tags now (jiri)
  * 2003-03-01  kr set through a function now (jiri)
  */
 
