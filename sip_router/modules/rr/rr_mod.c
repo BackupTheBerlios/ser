@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.23 2003/04/01 16:18:00 janakj Exp $
+ * $Id: rr_mod.c,v 1.24 2003/04/02 16:47:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,13 +45,10 @@
 #include "loose.h"
 #include "common.h"
 
-
-int use_fast_cmp = 0;
 int append_fromtag = 1;
-
+int enable_double_rr = 1; /* Enable using of 2 RR by default */
 
 static int mod_init(void);
-static int child_init(int rank);
 static int str_fixup(void** param, int param_no);
 
 
@@ -80,8 +77,8 @@ static cmd_export_t cmds[]={
  * Exported parameters
  */
 static param_export_t params[]={
-	{"use_fast_cmp",   INT_PARAM, &use_fast_cmp  },
-	{"append_fromtag", INT_PARAM, &append_fromtag},
+	{"append_fromtag",   INT_PARAM, &append_fromtag  },
+	{"enable_double_rr", INT_PARAM, &enable_double_rr},
 	{0,0,0}
 };
 
@@ -94,24 +91,13 @@ struct module_exports exports = {
 	0,         /* response function*/
 	0,         /* destroy function */
 	0,         /* oncancel function */
-	child_init /* per-child init function */
+	0          /* per-child init function */
 };
 
 
 static int mod_init(void)
 {
 	DBG("rr - initializing\n");
-	return 0;
-}
-
-
-static int child_init(int rank)
-{
-	     /* Different children may be listening on
-	      * different IPs or ports and therefore we
-	      * must generate hash in each child
-	      */
-	generate_hash();
 	return 0;
 }
 
