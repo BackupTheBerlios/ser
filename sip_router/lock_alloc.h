@@ -1,4 +1,4 @@
-/* $Id: lock_alloc.h,v 1.3 2003/03/19 18:41:58 andrei Exp $ */
+/* $Id: lock_alloc.h,v 1.4 2003/07/01 17:43:40 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -54,7 +54,7 @@ Implements: (see also locking.h)
 #ifdef SHM_MEM
 #include "mem/shm_mem.h"
 #else
-#error "locking requires shared memroy support"
+#error "locking requires shared memory support"
 #endif
 
 #if defined(FAST_LOCK) || defined(USE_PTHREAD_MUTEX) || defined(USE_POSIX_SEM)
