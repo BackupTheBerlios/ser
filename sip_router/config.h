@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.23 2002/05/26 12:10:13 jku Exp $
+ *  $Id: config.h,v 1.24 2002/05/26 21:38:02 andrei Exp $
  */
 
 
@@ -64,7 +64,6 @@
 #define SHM_MEM_SIZE 128 
 
 #define TIMER_TICK 1
-#define LONG_SLEEP	3600
 
 /* dimensioning buckets in q_malloc */
 /* size of the size2bucket table; everything beyond that asks for

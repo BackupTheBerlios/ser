@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.h,v 1.6 2002/05/26 13:50:48 andrei Exp $
+ * $Id: udp_server.h,v 1.7 2002/05/26 21:38:02 andrei Exp $
  */
 
 #ifndef udp_server_h
@@ -12,11 +12,10 @@
 #define MAX_RECV_BUFFER_SIZE	256*1024
 #define BUFFER_INCREMENT	2048
 
-extern int udp_sock;
 
-int udp_init(struct ip_addr* ip, unsigned short port);
-int udp_send(char *buf, unsigned len, union sockaddr_union*  to,
-				unsigned tolen);
+int udp_init(struct socket_info* si);
+int udp_send(struct socket_info* source,char *buf, unsigned len,
+				union sockaddr_union*  to, unsigned tolen);
 int udp_rcv_loop();
 
 

@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.11 2002/05/13 01:15:40 jku Exp $
+/*$Id: msg_translator.h,v 1.12 2002/05/26 21:38:02 andrei Exp $
  * 
  */
 
@@ -9,9 +9,10 @@
 #define MY_HF_SEP_LEN 2
 
 #include "parser/msg_parser.h"
+#include "ip_addr.h"
 
 char * build_req_buf_from_sip_req (	struct sip_msg* msg, 
-				unsigned int *returned_len);
+				unsigned int *returned_len, struct socket_info* send_sock);
 
 char * build_res_buf_from_sip_res(	struct sip_msg* msg,
 				unsigned int *returned_len);
@@ -23,7 +24,7 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 				struct sip_msg* msg,
 				unsigned int *returned_len);
 char* via_builder( 			struct sip_msg *msg ,
-				unsigned int *len );
+				unsigned int *len, struct socket_info* send_sock);
 
 
 #endif
