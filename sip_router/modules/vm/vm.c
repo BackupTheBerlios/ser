@@ -1,6 +1,6 @@
 /*
  *
- * $Id: vm.c,v 1.36 2004/01/14 17:55:26 janakj Exp $
+ * $Id: vm.c,v 1.37 2004/01/14 18:23:50 rco Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -126,7 +126,7 @@ static param_export_t params[] = {
 
 
 struct module_exports exports = {
-    "voicemail", 
+    "vm", 
     cmds,         /* Exported commands */
     params,       /* Exported parameters */
     vm_mod_init,  /* module initialization function */
