@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.62 2003/02/25 14:57:59 janakj Exp $
+ * $Id: sip_msg.c,v 1.63 2003/02/25 14:59:51 janakj Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -37,6 +37,7 @@
  *
  * History:
  * --------
+ * 2003-02-25 - auth_body cloner added (janakj)
  * 2003-01-29 - scratchpad removed (jiri)
  * 2003-01-23 - msg_cloner clones msg->from->parsed too (janakj)
  */
