@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.6 2002/09/09 19:44:20 andrei Exp $
+/* $Id: ip_addr.h,v 1.7 2002/09/09 20:29:20 andrei Exp $
  *
  * ip address family realted structures
  */
@@ -176,7 +176,7 @@ static inline int init_su( union sockaddr_union* su,
 #ifdef USE_IPV6
 	case	AF_INET6:
 		memcpy(&su->sin6.sin6_addr, ip->u.addr, ip->len); 
-		#ifdef FreeBSD
+		#ifdef __FreeBSD__
 			su->sin6.sin6_len=sizeof(struct sockaddr_in6);
 		#endif
 		su->sin6.sin6_port=port;
@@ -184,7 +184,7 @@ static inline int init_su( union sockaddr_union* su,
 #endif
 	case AF_INET:
 		memcpy(&su->sin.sin_addr, ip->u.addr, ip->len);
-		#ifdef FreeBSD
+		#ifdef __FreeBSD__
 			su->sin.sin_len=sizeof(struct sockaddr_in);
 		#endif
 		su->sin.sin_port=port;
@@ -212,7 +212,7 @@ static inline int hostent2su( union sockaddr_union* su,
 #ifdef USE_IPV6
 	case	AF_INET6:
 		memcpy(&su->sin6.sin6_addr, he->h_addr_list[idx], he->h_length);
-		#ifdef FreeBSD
+		#ifdef __FreeBSD__
 			su->sin6.sin6_len=sizeof(struct sockaddr_in6);
 		#endif
 		su->sin6.sin6_port=port;
@@ -220,7 +220,7 @@ static inline int hostent2su( union sockaddr_union* su,
 #endif
 	case AF_INET:
 		memcpy(&su->sin.sin_addr, he->h_addr_list[idx], he->h_length);
-		#ifdef FreeBSD
+		#ifdef __FreeBSD__
 			su->sin.sin_len=sizeof(struct sockaddr_in);
 		#endif
 		su->sin.sin_port=port;

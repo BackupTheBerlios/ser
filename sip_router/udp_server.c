@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.46 2002/09/08 22:33:48 jku Exp $
+ * $Id: udp_server.c,v 1.47 2002/09/09 20:29:20 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -113,6 +113,7 @@ int probe_max_receive_buffer( int udp_sock )
 int udp_init(struct socket_info* sock_info)
 {
 	union sockaddr_union* addr;
+	int sock_len;
 	int optval;
 
 
@@ -157,8 +158,14 @@ int udp_init(struct socket_info* sock_info)
 
 
 	if ( probe_max_receive_buffer(sock_info->socket)==-1) goto error;
+#ifdef __FreeBSD__
+	sock_len=addr->s.sa_len;
+#else
+	sock_len=sizeof(union sockaddr_union);
+#endif
+	
 
-	if (bind(sock_info->socket,  &addr->s, sizeof(union sockaddr_union))==-1){
+	if (bind(sock_info->socket,  &addr->s, sock_len)==-1){
 		LOG(L_ERR, "ERROR: udp_init: bind(%x, %p, %d) on %s: %s\n",
 				sock_info->socket, &addr->s, 
 				sizeof(union sockaddr_union),

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.104 2002/09/09 19:44:20 andrei Exp $
+ * $Id: main.c,v 1.105 2002/09/09 20:29:20 andrei Exp $
  */
 
 #include <stdio.h>
@@ -54,7 +54,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.104 2002/09/09 19:44:20 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.105 2002/09/09 20:29:20 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -704,7 +704,10 @@ int add_interfaces(char* if_name, int family, unsigned short port)
 	char* tmp;
 	struct ip_addr addr;
 	int ret;
-	
+
+#ifdef __FreeBSD__
+	#define MAX(a,b) ( ((a)>(b))?(a):(b))
+#endif
 	/* ipv4 or ipv6 only*/
 	s=socket(family, SOCK_DGRAM, 0);
 	ret=-1;

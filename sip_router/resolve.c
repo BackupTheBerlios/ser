@@ -1,7 +1,8 @@
-/* $Id: resolve.c,v 1.7 2002/09/05 18:03:15 andrei Exp $*/
+/* $Id: resolve.c,v 1.8 2002/09/09 20:29:20 andrei Exp $*/
 
-/* #include <arpa/nameser.h> -- included from resolve.h*/
+#include <sys/types.h>
 #include <netinet/in.h>
+#include <arpa/nameser.h>
 #include <resolv.h>
 #include <string.h>
 
