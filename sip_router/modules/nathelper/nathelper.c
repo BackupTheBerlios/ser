@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.76 2005/02/15 00:56:05 sobomax Exp $
+/* $Id: nathelper.c,v 1.77 2005/02/15 18:50:56 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -960,7 +960,7 @@ extract_mediaport(str *body, str *mediaport)
 	}
 	/* Extract protocol type */
 	ptype.s = cp;
-	cp = eat_space_end(ptype.s, ptype.s + ptype.len);
+	cp = eat_token_end(ptype.s, ptype.s + ptype.len);
 	if (cp == ptype.s) {
 		LOG(L_ERR, "ERROR: extract_mediaport: no protocol type in `m='\n");
 		return -1;
