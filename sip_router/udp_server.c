@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.62 2003/04/16 16:17:09 andrei Exp $
+ * $Id: udp_server.c,v 1.63 2003/06/21 18:38:32 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -330,8 +330,8 @@ int udp_rcv_loop()
 		buf[len]=0; /* no need to save the previous char */
 
 #ifndef NO_ZERO_CHECKS
-		if (len==0) {
-			LOG(L_WARN, "WARNING: empty packet received\n");
+		if (len<5) {
+			DBG("DEBUG: probing packet received\n");
 			continue;
 		}
 		if (buf[len-1]==0) {
