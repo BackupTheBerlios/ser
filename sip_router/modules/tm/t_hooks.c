@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.8 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: t_hooks.c,v 1.9 2003/12/11 12:05:42 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -126,6 +126,12 @@ int register_tmcb( struct sip_msg* p_msg, int types, transaction_cb f,
 			types);
 		return E_BUG;
 	}
+	/* we don't register null functions */
+	if (f==0) {
+		LOG(L_CRIT, "BUG:tm:register_tmcb: null callback function\n");
+		return E_BUG;
+	}
+
 	if (types&TMCB_REQUEST_IN) {
 		if (types!=TMCB_REQUEST_IN) {
 			LOG(L_CRIT, "BUG:tm:register_tmcb: callback type TMCB_REQUEST_IN "
