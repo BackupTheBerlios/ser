@@ -1,9 +1,9 @@
 /*
- * $Id: mod_options.h,v 1.1 2003/10/23 15:27:29 calrissian Exp $
+ * $Id: mod_options.h,v 1.2 2004/08/24 08:58:32 janakj Exp $
  *
  * Options Reply Module
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.23 2004/08/23 16:52:46 jamey Exp $
+ * $Id: subscribe.c,v 1.24 2004/08/24 09:00:33 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

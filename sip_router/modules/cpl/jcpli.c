@@ -1,7 +1,7 @@
 /*
- * $Id: jcpli.c,v 1.5 2003/05/07 12:05:08 andrei Exp $
+ * $Id: jcpli.c,v 1.6 2004/08/24 08:58:25 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -260,7 +260,7 @@ int executeCPLForSIPMessage(char *msgContent, int msgLength, char *serverAddress
     	respBuff = (char*)pkg_malloc(respLen*1);
         n = recv(jciSocket, respBuff, respLen, MSG_WAITALL);
         DBG("DEBUG : executeCPLForSIPMessage : Bytes received: %d\n", n);
-        if(n != respLen) // some errors occured
+        if(n != respLen) // some errors occurred
         	return 0;
 	}
 

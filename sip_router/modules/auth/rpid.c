@@ -1,9 +1,9 @@
 /*
- * $Id: rpid.c,v 1.7 2003/11/20 15:14:40 janakj Exp $
+ * $Id: rpid.c,v 1.8 2004/08/24 08:58:24 janakj Exp $
  *
  * Remote-Party-ID related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

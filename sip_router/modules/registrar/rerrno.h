@@ -1,9 +1,9 @@
 /*
- * $Id: rerrno.h,v 1.5 2003/02/14 12:04:23 janakj Exp $
+ * $Id: rerrno.h,v 1.6 2004/08/24 09:00:37 janakj Exp $
  *
  * Registrar errno
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

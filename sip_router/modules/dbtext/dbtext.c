@@ -1,9 +1,9 @@
 /*
- * $Id: dbtext.c,v 1.10 2004/08/04 14:27:20 janakj Exp $
+ * $Id: dbtext.c,v 1.11 2004/08/24 08:58:26 janakj Exp $
  *
  * DBText module interface
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

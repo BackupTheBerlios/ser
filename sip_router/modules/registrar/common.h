@@ -1,9 +1,9 @@
 /*
- * $Id: common.h,v 1.9 2003/11/06 19:13:42 janakj Exp $
+ * $Id: common.h,v 1.10 2004/08/24 09:00:37 janakj Exp $
  *
  * Common stuff
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /* 
- * $Id: auth_mod.c,v 1.53 2004/04/28 13:44:23 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.54 2004/08/24 08:58:24 janakj Exp $ 
  *
  * Digest Authentication Module
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

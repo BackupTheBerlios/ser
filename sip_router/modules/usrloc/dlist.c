@@ -1,9 +1,9 @@
 /*
- * $Id: dlist.c,v 1.18 2004/06/08 10:55:31 andrei Exp $
+ * $Id: dlist.c,v 1.19 2004/08/24 09:00:46 janakj Exp $
  *
  * List of registered domains
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

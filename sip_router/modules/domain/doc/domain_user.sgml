@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2003/11/03 13:03:57 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2004/08/24 08:58:27 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -73,7 +73,7 @@ modparam("domain", "db_url", "mysql://ser:pass@db_host/ser")
 	    <example>
 		<title>nonce_expire example</title>
 		<programlisting format="linespecific">
-modparam("domain", "db_mode", 1)   # Use chaching
+modparam("domain", "db_mode", 1)   # Use caching
 </programlisting>
 	    </example>
 	</section>

@@ -1,9 +1,9 @@
 /* 
- * $Id: authrad_mod.c,v 1.14 2004/03/29 16:12:15 janakj Exp $ 
+ * $Id: authrad_mod.c,v 1.15 2004/08/24 08:58:25 janakj Exp $ 
  *
  * Digest Authentication - Radius support
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

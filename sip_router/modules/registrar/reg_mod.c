@@ -1,9 +1,9 @@
 /* 
- * $Id: reg_mod.c,v 1.21 2004/05/18 16:35:13 janakj Exp $
+ * $Id: reg_mod.c,v 1.22 2004/08/24 09:00:37 janakj Exp $
  *
  * Registrar module interface
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

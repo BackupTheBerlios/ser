@@ -1,9 +1,9 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.13 2004/06/04 15:30:24 jamey Exp $
+ * $Id: pdomain.c,v 1.14 2004/08/24 08:58:32 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -187,7 +187,7 @@ int timer_pdomain(pdomain_t* _d)
 }
 
 
-static int in_pdomain = 0; /* this only works with single or multiprocess execution model, but not multithreaded */
+static int in_pdomain = 0; /* this only works with single or multiprocess execution model, but not multi-threaded */
 
 /*
  * Get lock if this process does not already have it

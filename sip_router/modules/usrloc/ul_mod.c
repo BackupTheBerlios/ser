@@ -1,9 +1,9 @@
 /*
- * $Id: ul_mod.c,v 1.38 2004/07/21 07:57:21 sobomax Exp $
+ * $Id: ul_mod.c,v 1.39 2004/08/24 09:00:47 janakj Exp $
  *
  * Usrloc module interface
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

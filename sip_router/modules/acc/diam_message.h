@@ -1,9 +1,9 @@
 /*
- * $Id: diam_message.h,v 1.1 2003/11/24 18:56:18 ramona Exp $
+ * $Id: diam_message.h,v 1.2 2004/08/24 08:58:23 janakj Exp $
  *
  * 2003-04-07 created by bogdan
  *
- * Copyright (C) 2002-2003 Fhg Fokus
+ * Copyright (C) 2002-2003 FhG Fokus
  *
  * This file is part of disc, a free diameter server/client.
  *
@@ -57,7 +57,7 @@
 	(AVP_CODE_SIZE+AVP_FLAGS_SIZE+AVP_LENGTH_SIZE+\
 	AVP_VENDOR_ID_SIZE*(((_flags_)&AAA_AVP_FLAG_VENDOR_SPECIFIC)!=0) )
 
-/* mesage codes
+/* message codes
  */
 #ifndef WORDS_BIGENDIAN
 	#define AS_MSG_CODE      0x12010000

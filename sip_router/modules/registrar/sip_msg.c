@@ -1,9 +1,9 @@
 /*
- * $Id: sip_msg.c,v 1.14 2004/05/18 16:35:13 janakj Exp $
+ * $Id: sip_msg.c,v 1.15 2004/08/24 09:00:37 janakj Exp $
  *
  * SIP message related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -67,7 +67,7 @@ static inline int get_expires_hf(struct sip_msg* _m)
 
 
 /*
- * Parse the whole messsage and bodies of all header fieds
+ * Parse the whole message and bodies of all header fields
  * that will be needed by registrar
  */
 int parse_message(struct sip_msg* _m)

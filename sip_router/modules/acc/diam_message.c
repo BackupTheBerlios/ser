@@ -1,9 +1,9 @@
 /*
- * $Id: diam_message.c,v 1.1 2003/11/24 18:56:18 ramona Exp $
+ * $Id: diam_message.c,v 1.2 2004/08/24 08:58:23 janakj Exp $
  *
  * 2003-04-07 created by bogdan
  *
- * Copyright (C) 2002-2003 Fhg Fokus
+ * Copyright (C) 2002-2003 FhG Fokus
  *
  * This file is part of disc, a free diameter server/client.
  *
@@ -60,7 +60,7 @@ AAAReturnCode AAABuildMsgBuffer( AAAMessage *msg )
 	unsigned char *p;
 	AAA_AVP       *avp;
 
-	/* first let's comput the length of the buffer */
+	/* first let's compute the length of the buffer */
 	msg->buf.len = AAA_MSG_HDR_SIZE; /* AAA message header size */
 	/* count and add the avps */
 	for(avp=msg->avpList.head;avp;avp=avp->next) {
@@ -168,8 +168,8 @@ done:
 
 
 
-/* Sets tthe proper result_code into the Result-Code AVP; ths avp must already
- * exists into the reply messge */
+/* Sets the proper result_code into the Result-Code AVP; thus avp must already
+ * exists into the reply message */
 AAAResultCode  AAASetMessageResultCode(
 	AAAMessage *message,
 	AAAResultCode resultCode)

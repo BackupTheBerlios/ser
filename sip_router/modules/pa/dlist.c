@@ -1,9 +1,9 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.9 2004/04/14 15:54:29 jamey Exp $
+ * $Id: dlist.c,v 1.10 2004/08/24 08:58:32 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,10 +1,10 @@
 /*
- * $Id: ut.h,v 1.12 2003/07/07 20:53:21 andrei Exp $
+ * $Id: ut.h,v 1.13 2004/08/24 09:00:44 janakj Exp $
  *
  * utilities
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -32,7 +32,7 @@
  *  2003-02-13  added proto to uri2proxy (andrei)
  *  2003-04-09  uri2sock moved from uac.c (janakj)
  *  2003-04-14  added get_proto to determine protocol from uri unless
- *              specified explicitely (jiri)
+ *              specified explicitly (jiri)
  *  2003-07-07  get_proto takes now two protos as arguments (andrei)
  *              tls/sips support for get_proto & uri2proxy (andrei)
  */
@@ -63,7 +63,7 @@ inline static enum sip_protos get_proto(enum sip_protos force_proto,
 			switch(proto) {
 				case PROTO_NONE: /* uri default to UDP */
 						return PROTO_UDP;
-				case PROTO_UDP:/* transport specified explicitely */
+				case PROTO_UDP:/* transport specified explicitly */
 #ifdef USE_TCP
 				case PROTO_TCP:
 #endif

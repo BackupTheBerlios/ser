@@ -1,7 +1,7 @@
 /*
- * $Id: ul_callback.h,v 1.2 2004/03/17 16:50:36 bogdan Exp $
+ * $Id: ul_callback.h,v 1.3 2004/08/24 09:00:46 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

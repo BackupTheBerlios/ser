@@ -1,9 +1,9 @@
 /*
- * $Id: sterman.h,v 1.4 2003/12/17 15:43:11 sobomax Exp $
+ * $Id: sterman.h,v 1.5 2004/08/24 08:58:25 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

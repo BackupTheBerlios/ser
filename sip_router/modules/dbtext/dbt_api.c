@@ -1,9 +1,9 @@
 /*
- * $Id: dbt_api.c,v 1.6 2004/01/20 15:53:47 dcm Exp $
+ * $Id: dbt_api.c,v 1.7 2004/08/24 08:58:26 janakj Exp $
  *
  * DBText library
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,8 +1,8 @@
 /* 
- * $Id: pike_funcs.c,v 1.20 2004/07/17 19:02:18 andrei Exp $
+ * $Id: pike_funcs.c,v 1.21 2004/08/24 09:00:35 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -119,7 +119,7 @@ int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 		/* update the timer -> in timer can be only nodes
 		 * as IP-leaf(complete address) or tree-leaf */
 		if (node->leaf_hits[CURR_POS] || node->kids==0) {
-			/* tree leafs which are not potencial red nodes are not update in
+			/* tree leafs which are not potential red nodes are not update in
 			 * order to make them to expire */
 			assert( has_timer_set(&(node->timer_ll)) ); /* debug */
 			if ( !(flags&NO_UPDATE) ) {

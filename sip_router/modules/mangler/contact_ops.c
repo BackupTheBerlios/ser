@@ -1,9 +1,9 @@
 /*
  * mangler module
  *
- * $Id: contact_ops.c,v 1.12 2004/07/02 16:38:59 andrei Exp $
+ * $Id: contact_ops.c,v 1.13 2004/08/24 08:58:30 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -365,7 +365,7 @@ encode2format (str uri, struct uri_format *format)
 	format->first = start - string + 4;	/*sip: */
 	format->second = end - string;
 	/* --------------------------testing ------------------------------- */
-	/* sip:gva@pass@10.0.0.1;;transport=udp>;expires=2 INCORECT BEHAVIOUR OF parse_uri,myfunction works good */
+	/* sip:gva@pass@10.0.0.1;;transport=udp>;expires=2 INCORECT BEHAVIOR OF parse_uri,myfunction works good */
 	foo = parse_uri (start, end - start, &sipUri);
 	if (foo != 0)
 	{
@@ -448,7 +448,7 @@ encode_uri (str uri, char *encoding_prefix, char *public_ip,char separator, str 
 			return -3;
 		}
 #ifdef DEBUG
-	fprintf (stdout, "[pass=%d][Alocated %d bytes][first=%d][lengthsec=%d]\nAdding [%d] ->%.*s\n",format.password.len,result->len,format.first,uri.len-format.second,format.first, format.first,uri.s);fflush (stdout);
+	fprintf (stdout, "[pass=%d][Allocated %d bytes][first=%d][lengthsec=%d]\nAdding [%d] ->%.*s\n",format.password.len,result->len,format.first,uri.len-format.second,format.first, format.first,uri.s);fflush (stdout);
 #endif
 	 	
 	res = snprintf(pos,result->len,"%.*s%s%c%.*s%c%.*s%c%.*s%c%.*s%c%.*s@",format.first,uri.s,encoding_prefix,separator,

@@ -138,7 +138,7 @@ ds_select_dst("1", "0");
 
    Example 1-4. dispatcher list file
 ...
-# $Id: README,v 1.1 2004/08/10 16:50:11 dcm Exp $
+# $Id: README,v 1.2 2004/08/24 08:58:27 janakj Exp $
 # dispatcher destination sets
 #
 
@@ -159,7 +159,7 @@ ds_select_dst("1", "0");
 
    Example 1-5. SER config script - sample dispatcher usage
 ...
-# $Id: README,v 1.1 2004/08/10 16:50:11 dcm Exp $
+# $Id: README,v 1.2 2004/08/24 08:58:27 janakj Exp $
 # sample config file for dispatcher module
 #
 

@@ -1,7 +1,7 @@
 /*
- * $Id: cpl_run.h,v 1.14 2004/06/14 17:41:20 bogdan Exp $
+ * $Id: cpl_run.h,v 1.15 2004/08/24 08:58:26 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,10 +1,10 @@
 /**
- * $Id: xjab_base.h,v 1.10 2004/04/01 17:51:15 jamey Exp $
+ * $Id: xjab_base.h,v 1.11 2004/08/24 08:58:30 janakj Exp $
  *
  * eXtended JABber module
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -34,7 +34,7 @@
  * History
  * -------
  * 2003-06-05  previously added macro replaced with 'xj_extract_aor', (dcm)
- * 2003-05-09  added macro for ajusting a SIP address, (dcm)
+ * 2003-05-09  added macro for adjusting a SIP address, (dcm)
  */
 
 

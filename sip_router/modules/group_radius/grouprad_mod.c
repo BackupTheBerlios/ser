@@ -1,9 +1,9 @@
 /* 
- * $Id: grouprad_mod.c,v 1.7 2003/12/17 15:43:12 sobomax Exp $ 
+ * $Id: grouprad_mod.c,v 1.8 2004/08/24 08:58:30 janakj Exp $ 
  *
  * Group membership - module interface
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

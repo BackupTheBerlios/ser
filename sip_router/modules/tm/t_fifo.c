@@ -1,9 +1,9 @@
 /*
- * $Id: t_fifo.c,v 1.8 2004/08/23 20:47:54 bogdan Exp $
+ * $Id: t_fifo.c,v 1.9 2004/08/24 09:00:42 janakj Exp $
  *
  * transaction maintenance functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

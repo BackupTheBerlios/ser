@@ -1,9 +1,9 @@
 /*
- * $Id: uri_mod.h,v 1.9 2004/04/14 12:33:39 janakj Exp $
+ * $Id: uri_mod.h,v 1.10 2004/08/24 09:00:45 janakj Exp $
  *
  * Various URI related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

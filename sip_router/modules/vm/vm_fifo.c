@@ -1,7 +1,7 @@
 /*
- * $Id: vm_fifo.c,v 1.7 2003/09/28 17:11:49 rco Exp $
+ * $Id: vm_fifo.c,v 1.8 2004/08/24 09:00:49 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

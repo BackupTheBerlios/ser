@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.6 $</revnumber>
-		<date>$Date: 2004/07/06 18:03:34 $</date>
+		<revnumber>$Revision: 1.7 $</revnumber>
+		<date>$Date: 2004/08/24 09:00:40 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -120,7 +120,7 @@ search_append("[Ss]er", " blabla");
 		<function moreinfo="none">replace(re, txt)</function>
 	    </title>
 	    <para>
-		Replaces the first occurence of re with txt.
+		Replaces the first occurrence of re with txt.
 	    </para>
 	    <para>Meaning of the parameters is as follows:</para>
 	    <itemizedlist>
@@ -336,7 +336,7 @@ if (is_present_hf("From")) log(1, "From HF Present");
 	</section>
     </section>
     <section>
-		<title>Known Limitatons</title>
+		<title>Known Limitations</title>
 		<para>
 			Search functions are applied to the original request,
 			i.e., they ignore all changes resulting from message

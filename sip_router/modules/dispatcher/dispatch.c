@@ -1,9 +1,9 @@
 /**
- * $Id: dispatch.c,v 1.1 2004/08/10 16:50:11 dcm Exp $
+ * $Id: dispatch.c,v 1.2 2004/08/24 08:58:27 janakj Exp $
  *
  * dispatcher module
  * 
- * Copyright (C) 2004-2006 Fhg Fokus
+ * Copyright (C) 2004-2006 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -232,7 +232,7 @@ next_line:
 	
 	DBG("DISPATCHER:ds_load_list: found [%d] dest sets\n", setn);
 	
-	/* reindex destination sets for fast access */
+	/* re-index destination sets for fast access */
 	sp0 = (ds_set_p)pkg_malloc(setn*sizeof(ds_set_t));
 	if(sp0==NULL)
 	{

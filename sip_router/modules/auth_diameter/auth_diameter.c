@@ -1,8 +1,8 @@
 /*
- * $Id: auth_diameter.c,v 1.3 2003/11/24 19:23:47 ramona Exp $ 
+ * $Id: auth_diameter.c,v 1.4 2004/08/24 08:58:25 janakj Exp $ 
  * Digest Authentication - Diameter support
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

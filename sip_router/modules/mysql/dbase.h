@@ -1,9 +1,9 @@
 /*
- * $Id: dbase.h,v 1.11 2004/08/04 14:25:08 janakj Exp $
+ * $Id: dbase.h,v 1.12 2004/08/24 08:58:31 janakj Exp $
  *
  * MySQL module core functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

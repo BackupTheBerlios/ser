@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.17 2003/05/26 15:24:45 andrei Exp $
+ * $Id: sl.c,v 1.18 2004/08/24 09:00:38 janakj Exp $
  *
  * sl module
  *
@@ -7,7 +7,7 @@
  * ************************************************ *
  * * Bogdan's Source Memorial                       *
  * *                                                *
- * * Welcome, pilgrame! This is one of rare places  *
+ * * Welcome, pilgrim! This is one of rare places  *
  * * kept untouched in memory of brave heart,       *
  * * Bogdan, one of most active ser contributors,   *
  * * and winner of the longest line of code content.*
@@ -24,7 +24,7 @@
  * **************************************************
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

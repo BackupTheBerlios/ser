@@ -1,7 +1,7 @@
 /**
- * $Id: xlog.c,v 1.5 2003/10/12 13:07:40 ramona Exp $
+ * $Id: xlog.c,v 1.6 2004/08/24 09:00:49 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -106,7 +106,7 @@ static int mod_init(void)
 }
 
 /**
- * Initialize childs
+ * Initialize children
  */
 static int child_init(int rank)
 {

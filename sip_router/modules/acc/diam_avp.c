@@ -1,11 +1,11 @@
 /*
- * $Id: diam_avp.c,v 1.1 2003/11/24 18:56:18 ramona Exp $
+ * $Id: diam_avp.c,v 1.2 2004/08/24 08:58:23 janakj Exp $
  *
  * 2002-10-04 created  by illya (komarov@fokus.gmd.de)
  * 2003-03-12 converted to shm_malloc/free (andrei)
  *
  *
- * Copyright (C) 2002-2003 Fhg Fokus
+ * Copyright (C) 2002-2003 FhG Fokus
  *
  * This file is part of disc, a free diameter server/client.
  *
@@ -169,7 +169,7 @@ AAAReturnCode  AAAAddAVPToMessage(
 	}
 
 	if (!position) {
-		/* insert at the begining */
+		/* insert at the beginning */
 		avp->next = msg->avpList.head;
 		avp->prev = 0;
 		msg->avpList.head = avp;

@@ -1,5 +1,5 @@
 /*
- * $Id: aug_sysdep.h,v 1.2 2003/08/20 14:17:57 andrei Exp $
+ * $Id: aug_sysdep.h,v 1.3 2004/08/24 09:00:35 janakj Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -40,10 +40,10 @@
 **
 **
 **                      $RCSfile: aug_sysdep.h,v $
-**                     $Revision: 1.2 $
+**                     $Revision: 1.3 $
 **
-**             Last change $Date: 2003/08/20 14:17:57 $
-**           Last change $Author: andrei $
+**             Last change $Date: 2004/08/24 09:00:35 $
+**           Last change $Author: janakj $
 **                        $State: Exp $
 **                       $Locker:  $
 **
@@ -60,7 +60,7 @@
 #define AUG_SYSDEP_H
 
 /*
-**  As necessary, detect operating system, cpu, and compiler
+**  As necessary, detect operating system, CPU, and compiler
 **  combinations, and establish defines that describe the
 **  characteristics and requirements for the combination.
 **
@@ -73,7 +73,7 @@
 **	AUG_NO_xxxx	System doesn't have capability xxxx
 **	AUG_BAD_xxxx	System has xxxx, but it's broken
 **
-**  Every system gets AUG_CONFIGURATION so we can reject unconfigured
+**  Every system gets AUG_CONFIGURATION so we can reject misconfigured
 **  compiles.  This should be set to an os/cpu/compiler description.
 */
 #undef AUG_CONFIGURATION
@@ -324,7 +324,7 @@ typedef unsigned int augUInt32;
 */
 
 #ifndef AUG_CONFIGURATION
-error: os/cpu/compiler combination not configured in $Source: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/postgres/Attic/aug_sysdep.h,v $ $Revision: 1.2 $
+error: os/cpu/compiler combination not configured in $Source: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/postgres/Attic/aug_sysdep.h,v $ $Revision: 1.3 $
 #endif
 
 #endif /* AUG_SYSDEP_H */

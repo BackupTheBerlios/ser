@@ -1,9 +1,9 @@
 /*
- * $Id: group.c,v 1.7 2004/01/17 19:11:14 sobomax Exp $
+ * $Id: group.c,v 1.8 2004/08/24 08:58:30 janakj Exp $
  *
  * Group membership checking over Radius
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

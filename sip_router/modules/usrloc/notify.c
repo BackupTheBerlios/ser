@@ -1,7 +1,7 @@
 /*
- * $Id: notify.c,v 1.7 2004/04/01 17:49:59 jamey Exp $
+ * $Id: notify.c,v 1.8 2004/08/24 09:00:46 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

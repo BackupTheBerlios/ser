@@ -1,9 +1,9 @@
 /*
- * $Id: user_in.c,v 1.3 2004/07/02 16:38:58 andrei Exp $
+ * $Id: user_in.c,v 1.4 2004/08/24 08:58:25 janakj Exp $
  *
  * Digest Authentication - Diameter support
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

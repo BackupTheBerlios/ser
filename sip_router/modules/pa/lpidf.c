@@ -1,9 +1,9 @@
 /*
  * Presence Agent, LPIDF document support
  *
- * $Id: lpidf.c,v 1.6 2003/11/10 15:56:06 janakj Exp $
+ * $Id: lpidf.c,v 1.7 2004/08/24 08:58:32 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

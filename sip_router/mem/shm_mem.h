@@ -1,8 +1,8 @@
-/* $Id: shm_mem.h,v 1.21 2003/11/20 20:57:15 andrei Exp $*
+/* $Id: shm_mem.h,v 1.22 2004/08/24 08:58:23 janakj Exp $*
  *
  * shared mem stuff
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -66,7 +66,7 @@
 #	define MY_FREE vqm_free
 #	define MY_STATUS vqm_status
 #	define  shm_malloc_init vqm_malloc_init
-#	warn "no proper vq_realloc implementantion, try another memory allocator"
+#	warn "no proper vq_realloc implementation, try another memory allocator"
 #elif defined F_MALLOC
 #	include "f_malloc.h"
 	extern struct fm_block* shm_block;

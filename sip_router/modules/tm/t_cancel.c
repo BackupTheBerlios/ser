@@ -1,8 +1,8 @@
 /*
- * $Id: t_cancel.c,v 1.12 2004/03/04 22:36:54 janakj Exp $
+ * $Id: t_cancel.c,v 1.13 2004/08/24 09:00:42 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -49,7 +49,7 @@
 #include "../../unixsock_server.h"
 
 
-/* determine which branches should be cancelled; do it
+/* determine which branches should be canceled; do it
    only from within REPLY_LOCK, otherwise collisions
    could occur (e.g., two 200 for two branches processed
    by two processes might concurrently try to generate

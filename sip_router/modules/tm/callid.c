@@ -1,9 +1,9 @@
 /*
- * $Id: callid.c,v 1.3 2003/10/24 20:23:58 andrei Exp $
+ * $Id: callid.c,v 1.4 2004/08/24 09:00:40 janakj Exp $
  *
  * Fast Call-ID Generator
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -48,7 +48,7 @@
 #define CALLID_SUFFIX_LEN ( 1 /* - */                                            + \
 			    5 /* pid */                                          + \
                            42 /* embedded v4inv6 address can be looong '128.' */ + \
-	                    2 /* parenthessis [] */                              + \
+	                    2 /* parenthesis [] */                              + \
                             1 /* ZT 0 */                                         + \
 	                   16 /* one never knows ;-) */                            \
                           )

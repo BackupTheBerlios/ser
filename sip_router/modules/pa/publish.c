@@ -1,9 +1,9 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.14 2004/08/23 16:53:59 jamey Exp $
+ * $Id: publish.c,v 1.15 2004/08/24 09:00:33 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
  *
  * This file is part of ser, a free SIP server.

@@ -1,9 +1,9 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.19 2004/08/23 16:53:59 jamey Exp $
+ * $Id: notify.c,v 1.20 2004/08/24 08:58:32 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

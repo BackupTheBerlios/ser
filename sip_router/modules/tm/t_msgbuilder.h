@@ -1,8 +1,8 @@
 /*
- * $Id: t_msgbuilder.h,v 1.14 2004/03/14 17:54:38 janakj Exp $
+ * $Id: t_msgbuilder.h,v 1.15 2004/08/24 09:00:43 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
- * $Id: group.h,v 1.2 2004/06/08 10:55:30 andrei Exp $
+ * $Id: group.h,v 1.3 2004/08/24 08:58:29 janakj Exp $
  *
  * Group membership
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

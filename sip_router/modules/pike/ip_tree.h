@@ -1,8 +1,8 @@
 /* 
- * $Id: ip_tree.h,v 1.6 2004/07/27 13:45:26 andrei Exp $
+ * $Id: ip_tree.h,v 1.7 2004/08/24 09:00:34 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

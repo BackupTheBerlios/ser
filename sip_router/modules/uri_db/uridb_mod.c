@@ -1,9 +1,9 @@
 /* 
- * $Id: uridb_mod.c,v 1.3 2004/07/26 15:58:03 janakj Exp $ 
+ * $Id: uridb_mod.c,v 1.4 2004/08/24 09:00:45 janakj Exp $ 
  *
  * Various URI related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -140,7 +140,7 @@ struct module_exports exports = {
 
 
 /*
- * Module initialization function calle in each child separately
+ * Module initialization function callee in each child separately
  */
 static int child_init(int rank)
 {

@@ -1,8 +1,8 @@
 /* 
- * $Id: my_con.h,v 1.2 2004/08/03 17:22:06 janakj Exp $
+ * $Id: my_con.h,v 1.3 2004/08/24 08:58:31 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

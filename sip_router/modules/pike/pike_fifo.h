@@ -1,10 +1,10 @@
 /*
- * $Id: pike_fifo.h,v 1.1 2004/05/12 12:30:44 bogdan Exp $
+ * $Id: pike_fifo.h,v 1.2 2004/08/24 09:00:35 janakj Exp $
  *
  * PIKE module
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

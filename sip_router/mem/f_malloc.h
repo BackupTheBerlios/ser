@@ -1,8 +1,8 @@
-/* $Id: f_malloc.h,v 1.9 2004/07/19 13:45:50 andrei Exp $
+/* $Id: f_malloc.h,v 1.10 2004/08/24 08:58:23 janakj Exp $
  *
  * simple, very fast, malloc library
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

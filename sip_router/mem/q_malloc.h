@@ -1,8 +1,8 @@
-/* $Id: q_malloc.h,v 1.13 2004/07/19 13:45:50 andrei Exp $
+/* $Id: q_malloc.h,v 1.14 2004/08/24 08:58:23 janakj Exp $
  *
  * simple & fast malloc library
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -54,7 +54,7 @@
 #else /* DBG_QM_MALLOC */
 	#define ROUNDTO		16 /* size we round to, must be = 2^n  and also
 							 sizeof(qm_frag)+sizeof(qm_frag_end)
-							 must be mutliple of ROUNDTO!
+							 must be multiple of ROUNDTO!
 						   */
 #endif
 #define MIN_FRAG_SIZE	ROUNDTO

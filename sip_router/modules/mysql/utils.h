@@ -1,9 +1,9 @@
 /* 
- * $Id: utils.h,v 1.6 2003/11/17 21:41:56 janakj Exp $ 
+ * $Id: utils.h,v 1.7 2004/08/24 08:58:31 janakj Exp $ 
  *
  * MySQL module utilities
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -50,7 +50,7 @@ time_t mysql2time(const char* _str);
  * Parse a mysql database URL of form 
  * mysql://[username[:password]@]hostname[:port]/database
  *
- * Returns 0 if parsing was sucessful and -1 otherwise
+ * Returns 0 if parsing was successful and -1 otherwise
  */
 int parse_mysql_url(char* _url, char** _user, char** _pass,
 		    char** _host, char** _port, char** _db);

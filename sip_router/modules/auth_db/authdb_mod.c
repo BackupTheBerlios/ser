@@ -1,9 +1,9 @@
 /* 
- * $Id: authdb_mod.c,v 1.19 2004/06/08 10:55:29 andrei Exp $
+ * $Id: authdb_mod.c,v 1.20 2004/08/24 08:58:24 janakj Exp $
  *
  * Digest Authentication Module
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

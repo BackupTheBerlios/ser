@@ -1,5 +1,5 @@
 /*
- * $Id: db_val.c,v 1.3 2004/04/13 14:58:05 janakj Exp $
+ * $Id: db_val.c,v 1.4 2004/08/24 09:00:35 janakj Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -351,7 +351,7 @@ int val2str(db_val_t* _v, char* _s, int* _len)
 		break;
 
 	default:
-		DBG("val2str(): Unknow data type\n");
+		DBG("val2str(): Unknown data type\n");
 		return -7;
 	}
 	return -8;

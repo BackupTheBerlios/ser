@@ -1,9 +1,9 @@
 /*
- * $Id: reply.h,v 1.5 2004/04/27 14:53:22 janakj Exp $
+ * $Id: reply.h,v 1.6 2004/08/24 09:00:37 janakj Exp $
  *
  * Send a reply
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

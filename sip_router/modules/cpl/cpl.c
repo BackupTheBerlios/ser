@@ -1,7 +1,7 @@
 /*
- * $Id: cpl.c,v 1.12 2003/09/11 19:44:16 bogdan Exp $
+ * $Id: cpl.c,v 1.13 2004/08/24 08:58:25 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

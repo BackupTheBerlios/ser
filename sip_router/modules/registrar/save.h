@@ -1,10 +1,10 @@
 /*
- * $Id: save.h,v 1.5 2003/11/06 19:13:42 janakj Exp $
+ * $Id: save.h,v 1.6 2004/08/24 09:00:37 janakj Exp $
  *
  * Functions that process REGISTER message 
  * and store data in usrloc
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

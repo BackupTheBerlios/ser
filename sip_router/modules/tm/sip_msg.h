@@ -1,7 +1,7 @@
 /*
- * $Id: sip_msg.h,v 1.15 2004/02/23 16:47:43 bogdan Exp $
+ * $Id: sip_msg.h,v 1.16 2004/08/24 09:00:42 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,7 +1,7 @@
-/* $Id: f_malloc.c,v 1.13 2004/07/19 13:45:50 andrei Exp $
+/* $Id: f_malloc.c,v 1.14 2004/08/24 08:58:23 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
- * $Id: usrloc.h,v 1.13 2004/03/17 16:50:36 bogdan Exp $
+ * $Id: usrloc.h,v 1.14 2004/08/24 09:00:48 janakj Exp $
  *
  * Convenience usrloc header file
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

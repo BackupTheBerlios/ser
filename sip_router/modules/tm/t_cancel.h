@@ -1,8 +1,8 @@
 /*
- * $Id: t_cancel.h,v 1.5 2004/03/03 18:11:04 janakj Exp $
+ * $Id: t_cancel.h,v 1.6 2004/08/24 09:00:42 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -44,7 +44,7 @@
    to generate a CANCEL, other processes are not supposed to"
    (which might happen if for example in a three-branch forking,
    two 200 would enter separate processes and compete for
-   cancelling the third branch); note that to really avoid
+   canceling the third branch); note that to really avoid
    race conditions, the value must be set in REPLY_LOCK
 */
 

@@ -1,9 +1,9 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.32 2004/01/18 16:19:22 janakj Exp $
+ * $Id: rr_mod.c,v 1.33 2004/08/24 09:00:38 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.23 2004/08/16 21:41:44 janakj Exp $
+ * $Id: pa_mod.c,v 1.24 2004/08/24 08:58:32 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
  * Presence Agent, XPIDF document support
  *
- * $Id: xpidf.h,v 1.4 2004/06/04 12:01:32 jamey Exp $
+ * $Id: xpidf.h,v 1.5 2004/08/24 09:00:33 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,8 +1,8 @@
 /*
- * $Id: nhelpr_funcs.h,v 1.2 2003/12/01 19:40:18 janakj Exp $
+ * $Id: nhelpr_funcs.h,v 1.3 2004/08/24 08:58:32 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

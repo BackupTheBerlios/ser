@@ -1,9 +1,9 @@
 /*
  * UAC FIFO interface
  *
- * $Id: uac_fifo.h,v 1.3 2004/03/24 14:53:04 andrei Exp $
+ * $Id: uac_fifo.h,v 1.4 2004/08/24 09:00:44 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /*
  *
- * $Id: sl_stats.c,v 1.11 2004/03/05 22:43:42 janakj Exp $
+ * $Id: sl_stats.c,v 1.12 2004/08/24 09:00:38 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

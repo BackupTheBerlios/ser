@@ -1,9 +1,9 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.30 2003/10/30 15:10:37 andrei Exp $
+ * $Id: loose.c,v 1.31 2004/08/24 09:00:38 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -55,7 +55,7 @@
 
 
 /*
- * Parse the message and find first occurence of
+ * Parse the message and find first occurrence of
  * Route header field. The function returns -1 or -2 
  * on a parser error, 0 if there is a Route HF and
  * 1 if there is no Route HF.
@@ -241,7 +241,7 @@ static inline int find_next_route(struct sip_msg* _m, struct hdr_field** _hdr)
 	}
 
 	     /* There are no already parsed Route headers, try to find next
-	      * occurence of Route header
+	      * occurrence of Route header
 	      */
 	if (parse_headers(_m, HDR_ROUTE, 1) == -1) {
 		LOG(L_ERR, "fnr(): Error while parsing headers\n");

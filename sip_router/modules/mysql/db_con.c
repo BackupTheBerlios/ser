@@ -1,9 +1,9 @@
 /* 
- * $Id: db_con.c,v 1.15 2004/03/05 18:27:37 janakj Exp $ 
+ * $Id: db_con.c,v 1.16 2004/08/24 08:58:31 janakj Exp $ 
  *
  * Database connection related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2003/11/03 13:03:57 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2004/08/24 08:58:29 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -14,7 +14,7 @@
     <section>
 	<title>Overview</title>
 	<para>
-	    This module export functions necesarry for group membership checking. There is a
+	    This module export functions necessary for group membership checking. There is a
 	    database table that contains list of users and groups they belong to. The table is used
 	    by functions of this module.
 	</para>

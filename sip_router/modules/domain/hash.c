@@ -1,5 +1,5 @@
 /*
- * $Id: hash.c,v 1.6 2003/04/28 22:05:33 janakj Exp $
+ * $Id: hash.c,v 1.7 2004/08/24 08:58:27 janakj Exp $
  *
  * Hash functions for cached domain table
  *
@@ -84,7 +84,7 @@ int hash_table_install (struct domain_list **hash_table, char *domain)
 }
 
 
-/* Check if domain exsist in hash table */
+/* Check if domain exists in hash table */
 int hash_table_lookup (str *domain)
 {
 	struct domain_list *np;

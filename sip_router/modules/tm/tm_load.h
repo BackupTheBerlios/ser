@@ -1,7 +1,7 @@
 /*
- * $Id: tm_load.h,v 1.19 2004/01/22 14:28:50 bogdan Exp $
+ * $Id: tm_load.h,v 1.20 2004/08/24 09:00:44 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

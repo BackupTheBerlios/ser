@@ -1,9 +1,9 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.13 2004/06/08 10:55:29 andrei Exp $
+ * $Id: acc_mod.h,v 1.14 2004/08/24 08:58:23 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

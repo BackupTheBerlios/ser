@@ -1,7 +1,7 @@
 /*
- * $Id: t_funcs.h,v 1.57 2004/02/23 17:30:06 bogdan Exp $
+ * $Id: t_funcs.h,v 1.58 2004/08/24 09:00:42 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -74,7 +74,7 @@ extern int noisy_ctimer;
 
 
 /* send a private buffer: utilize a retransmission structure
-   but take a separate buffer not refered by it; healthy
+   but take a separate buffer not referred by it; healthy
    for reducing time spend in REPLIES locks
 */
 

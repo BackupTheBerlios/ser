@@ -1,9 +1,9 @@
 /* 
- * $Id: res.h,v 1.2 2003/11/17 22:49:50 janakj Exp $ 
+ * $Id: res.h,v 1.3 2004/08/24 08:58:31 janakj Exp $ 
  *
  * MySQL module result related functions
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
