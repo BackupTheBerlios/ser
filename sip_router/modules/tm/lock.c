@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.22 2002/01/28 23:30:56 jku Exp $
+ * $Id: lock.c,v 1.23 2002/01/31 20:10:32 andrei Exp $
  */
 
 
@@ -227,7 +227,7 @@ tryagain:
 	r=semop( s.semaphore_set, &pbuf ,  1 /* just 1 op */ );
 
 	if (r==-1) {
-		if (errno=EINTR) {
+		if (errno==EINTR) {
 			DBG("signal received in a semaphore\n");
 			goto tryagain;
 		} else LOG(L_ERR, "ERROR: change_semaphore: %s\n", strerror(errno));
