@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.7 2002/09/09 20:29:20 andrei Exp $
+/* $Id: ip_addr.h,v 1.8 2002/09/09 21:08:35 andrei Exp $
  *
  * ip address family realted structures
  */
@@ -171,6 +171,7 @@ static inline int init_su( union sockaddr_union* su,
 							struct ip_addr* ip,
 							unsigned short   port ) 
 {
+	memset(su, 0, sizeof(union sockaddr_union));/*needed on freebsd*/
 	su->s.sa_family=ip->af;
 	switch(ip->af){
 #ifdef USE_IPV6
@@ -207,6 +208,7 @@ static inline int hostent2su( union sockaddr_union* su,
 								unsigned int idx,
 								unsigned short   port ) 
 {
+	memset(su, 0, sizeof(union sockaddr_union)); /*needed on freebsd*/
 	su->s.sa_family=he->h_addrtype;
 	switch(he->h_addrtype){
 #ifdef USE_IPV6
