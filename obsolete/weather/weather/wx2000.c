@@ -1,5 +1,7 @@
 /*
 
+   $Id: wx2000.c,v 1.2 2002/09/19 12:23:53 jku Exp $
+
    wx2000 -- Weather Data Logger Extration Program (ws2000 model)
 
    Copyright (C) 2000 Friedrich Zabel
@@ -18,8 +20,8 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-   $Id: wx2000.c,v 1.1 2002/09/05 21:39:29 jku Exp $
-*/
+ */
+
 
 #include <stdio.h>
 #include <string.h>

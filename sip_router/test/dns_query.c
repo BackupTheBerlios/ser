@@ -1,5 +1,5 @@
 /*
- * $Id: dns_query.c,v 1.3 2002/08/27 17:32:58 andrei Exp $
+ * $Id: dns_query.c,v 1.4 2002/09/19 12:23:55 jku Rel $
  *
  * tests for ../resolver.c
  *
@@ -7,7 +7,31 @@
  *  gcc -o dns_query2 dns_query.c ../resolve.o ../dprint.o ../mem/ *.o -lresolv
  *  (and first compile ser with qm_malloc)
  * 
+ *
+ * Copyright (C) 2001-2003 Fhg Fokus
+ *
+ * This file is part of ser, a free SIP server.
+ *
+ * ser is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version
+ *
+ * For a license to use the ser software under conditions
+ * other than those described here, or to purchase support for this
+ * software, please contact iptel.org by e-mail at the following addresses:
+ *    info@iptel.org
+ *
+ * ser is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program; if not, write to the Free Software 
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,7 +52,7 @@ char mem_pool[1024*1024];
 struct qm_block* mem_block;
 
 
-static char* id="$Id: dns_query.c,v 1.3 2002/08/27 17:32:58 andrei Exp $";
+static char* id="$Id: dns_query.c,v 1.4 2002/09/19 12:23:55 jku Rel $";
 static char* version="dns_query 0.1";
 static char* help_msg="\
 Usage: dns_query  [-t type] [-hV] -n host\n\
