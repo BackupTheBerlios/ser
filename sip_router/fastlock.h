@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.10 2002/02/28 18:40:43 andrei Exp $
+ * $Id: fastlock.h,v 1.11 2002/03/08 07:09:44 andrei Exp $
  *
  * 
  */
@@ -37,12 +37,12 @@ inline static int tsl(fl_lock_t* lock)
 	asm volatile(
 		" btsl $0, %1 \n\t"
 		" adcl $0, %0 \n\t"
-		: "=q" (val), "=m" (*lock) : "0"(val) : "memory" /* "cc" */
+		: "=q" (val), "=m" (*lock) : "0"(val) : "memory", "cc" /* "cc" */
 	);
 #else
 	val=1;
 	asm volatile( 
-		" xchg %b0, %1" : "=q" (val), "=m" (*lock) : "0" (val) : "memory"
+		" xchg %b1, %0" : "=q" (val), "=m" (*lock) : "0" (val) : "memory"
 	);
 #endif /*NOSMP*/
 #elif defined __sparc
@@ -53,6 +53,13 @@ inline static int tsl(fl_lock_t* lock)
 #endif
 			: "=r"(val) : "r"(lock):"memory"
 	);
+	
+#elif defined __armv4l
+	asm volatile(
+			"swp [%1], %0 \n\t"
+			"=r" (val), "=m" (*lock): "0" (val) : "memory"
+	);
+	
 #else
 #error "unknown arhitecture"
 #endif
@@ -98,6 +105,10 @@ inline static void release_lock(fl_lock_t* lock)
 			: /*no output*/
 			: "r" (lock)
 			: "memory"
+	);
+#elif defined __armv4l
+	asm volatile(
+		"mov $0, [%0]" : /*no output*/: "r"(lock): "memory"
 	);
 #else
 #error "unknown arhitecture"
