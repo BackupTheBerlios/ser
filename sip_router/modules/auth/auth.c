@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.29 2002/07/30 17:46:43 janakj Exp $
+ * $Id: auth.c,v 1.30 2002/07/31 17:55:28 janakj Exp $
  */
 
 #include "auth.h"
@@ -23,7 +23,7 @@
 #include "group.h"
 #include "nonce.h"
 #include "../../ut.h"
-#include "../../parser/hf.h" /* HDR_WWWAUTH & HDR_PROXYAUTH */
+#include "../../parser/hf.h" /* HDR_AUTHORIZATION & HDR_PROXYAUTH */
 
 
 /*
@@ -394,5 +394,5 @@ int proxy_authorize(struct sip_msg* _msg, char* _realm, char* _table)
 
 int www_authorize(struct sip_msg* _msg, char* _realm, char* _table)
 {
-	return authorize(_msg, _realm, _table, HDR_WWWAUTH);
+	return authorize(_msg, _realm, _table, HDR_AUTHORIZATION);
 }
