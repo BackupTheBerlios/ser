@@ -1,5 +1,5 @@
 /*
- * $Id: loc_set.h,v 1.3 2003/08/15 18:00:04 bogdan Exp $
+ * $Id: loc_set.h,v 1.4 2003/09/01 17:44:12 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -57,7 +57,8 @@ static inline void free_location( struct location *loc)
 
 
 
-/* insert a new location into the set mantaining order by the prio val;
+/* insert a new location into the set mantaining order by the prio val - the
+ * list starts with the smallest prio!
  * For locations having the same prio val, the adding orser will be keept */
 static inline int add_location(struct location **loc_set, char *uri_s,
 											int uri_len, unsigned int prio)
@@ -78,7 +79,7 @@ static inline int add_location(struct location **loc_set, char *uri_s,
 	/* find the proper place for the new location */
 	foo = *loc_set;
 	bar = 0;
-	while(foo && foo->addr.priority>=prio) {
+	while(foo && foo->addr.priority<=prio) {
 		bar = foo;
 		foo = foo->next;
 	}
@@ -105,7 +106,7 @@ static inline void remove_location(struct location **loc_set, char *uri_s,
 
 	for( ; loc ; prev_loc=loc,loc=loc->next ) {
 		if (loc->addr.uri.len==uri_len &&
-		!memcpy(loc->addr.uri.s,uri_s,uri_len) )
+		!strncasecmp(loc->addr.uri.s,uri_s,uri_len) )
 			break;
 	}
 

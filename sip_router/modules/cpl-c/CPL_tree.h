@@ -1,5 +1,5 @@
 /*
- * $Id: CPL_tree.h,v 1.9 2003/08/01 17:04:36 bogdan Exp $
+ * $Id: CPL_tree.h,v 1.10 2003/09/01 17:44:12 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -121,6 +121,7 @@
 #define  LESS_ATTR                   0
 #define  GREATER_ATTR                1
 #define  EQUAL_ATTR                  2
+#define  PRIOSTR_ATTR                3
 #define  EMERGENCY_VAL               0
 #define  EMERGENCY_STR               "emergency"
 #define  EMERGENCY_STR_LEN           (sizeof(EMERGENCY_STR)-1)
@@ -201,13 +202,24 @@
 
 
 
+/* node = | type(1) | nr_kids(1) | nr_attrs(1) | unused(1) |
+ *        | x*kids_offset(2) | y*attrs(2*n) |
+ */
 
-#define      NODE_TYPE(_buf)        ( *(_buf) )
-#define      NR_OF_KIDS(_buf)       ( *((_buf)+1) )
-#define      KID_OFFSET(_buf,_nr)   ( *((unsigned short*)((_buf)+2+2*(_nr))) )
-#define      ATTR_PTR(_buf)         ( (_buf)+2+2*NR_OF_KIDS(_buf)+1 )
-#define      NR_OF_ATTR(_buf)       ( *((_buf)+2+2*NR_OF_KIDS(_buf)) )
-#define      SIMPLE_NODE_SIZE(_buf) ( 2+2*NR_OF_KIDS(_buf) )
+#define      NODE_TYPE(_p)            ( *((unsigned char*)(_p)) )
+#define      NR_OF_KIDS(_p)           ( *((unsigned char* )((_p)+1)) )
+#define      NR_OF_ATTR(_p)           ( *((unsigned char* )((_p)+1+1)) )
+#define      KID_OFFSET_PTR(_p,_n)    ( (unsigned short*)((_p)+4+2*(_n)) )
+#define      ATTR_PTR(_p)             ( (_p)+4+2*NR_OF_KIDS(_p) )
+#define      SIMPLE_NODE_SIZE(_p)     ( 4+2*NR_OF_KIDS(_p) )
+#define      GET_NODE_SIZE(_n)        ( 4+2*(_n) )
+#define      BASIC_ATTR_SIZE          4
+
+#define      SET_KID_OFFSET(_p,_n,_o) *KID_OFFSET_PTR(_p,_n)=htons(_o)
+#define      KID_OFFSET(_p,_n)        ntohs(*KID_OFFSET_PTR(_p,_n))
+
+
 
 
 #endif
+

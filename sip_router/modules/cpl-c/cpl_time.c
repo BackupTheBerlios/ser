@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_time.c,v 1.1 2003/06/26 13:26:58 bogdan Exp $
+ * $Id: cpl_time.c,v 1.2 2003/09/01 17:44:12 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -982,16 +982,23 @@ int check_byxxx(tmrec_p, ac_tm_p);
  */
 int check_tmrec(tmrec_p _trp, ac_tm_p _atp, tr_res_p _tsw)
 {
+	DBG("1\n****** time=%d  start=%d  duration=%d\n",_atp->time,_trp->dtstart,
+			_trp->duration);
+
 	if(!_trp || !_atp || (!_IS_SET(_trp->duration) && !_IS_SET(_trp->dtend)))
 		return REC_ERR;
+	DBG("2\n");
+	DBG("****** time=%d  start=%d\n",_atp->time,_trp->dtstart);
 
 	// it is before start date
 	if(_atp->time < _trp->dtstart)
 		return REC_NOMATCH;
+	DBG("3\n");
 	// compute the duration of the reccurence interval
 	if(!_IS_SET(_trp->duration))
 		_trp->duration = _trp->dtend - _trp->dtstart;
-	
+	DBG("****** time=%d  start=%d  duration=%d\n",_atp->time,_trp->dtstart,
+		_trp->duration);
 	if(_atp->time <= _trp->dtstart+_trp->duration)
 	{
 		if(_tsw)
