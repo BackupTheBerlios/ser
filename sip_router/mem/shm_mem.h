@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.14 2003/02/20 18:30:15 andrei Exp $*
+/* $Id: shm_mem.h,v 1.15 2003/03/06 16:22:10 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -50,7 +50,7 @@
 
 
 #include "../dprint.h"
-#include "../locking.h"
+#include "../lock_ops.h" /* we don't include locking.h on purpose */
 
 #ifdef VQ_MALLOC
 #	include "vq_malloc.h"
