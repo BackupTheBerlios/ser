@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.17 2003/03/16 20:27:24 janakj Exp $
+ * $Id: rr_mod.c,v 1.18 2003/03/19 18:40:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,6 +30,7 @@
  * --------
  *  2003-03-11  updated to the new module interface (andrei)
  *  2003-03-16  flags export parameter added (janakj)
+ *  2003-03-19  all mallocs/frees replaced w/ pkg_malloc/pkg_free (andrei)
  */
 
 
@@ -38,6 +39,7 @@
 #include "../../sr_module.h"
 #include "../../ut.h"
 #include "../../error.h"
+#include "../../mem/mem.h"
 #include "strict.h"
 #include "loose.h"
 #include "common.h"
@@ -118,7 +120,7 @@ static int int_fixup(void** param, int param_no)
 		qop = str2s(*param, strlen(*param), &err);
 
 		if (err == 0) {
-			free(*param);
+			pkg_free(*param);
 			*param=(void*)qop;
 		} else {
 			LOG(L_ERR, "int_fixup(): Bad number <%s>\n",
