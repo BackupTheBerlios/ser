@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.164 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: t_funcs.c,v 1.165 2004/01/15 15:28:44 bogdan Exp $
  *
  * transaction maintenance functions
  *
@@ -106,7 +106,7 @@ void tm_shutdown()
 	/* destroy the hash table */
 	DBG("DEBUG: tm_shutdown : empting hash table\n");
 	free_hash_table( );
-	DBG("DEBUG: tm_shutdown: releasing timers\n");
+	DBG("DEBUG: tm_shutdown : releasing timers\n");
 	free_timer_table();
 	DBG("DEBUG: tm_shutdown : removing semaphores\n");
 	lock_cleanup();

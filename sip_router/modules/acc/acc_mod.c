@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.32 2003/12/17 15:43:11 sobomax Exp $
+ * $Id: acc_mod.c,v 1.33 2004/01/15 15:28:44 bogdan Exp $
  * 
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -300,7 +300,7 @@ static int mod_init( void )
 
 	/* register callbacks*/
 	/* listen for all incoming requests  */
-	if ( tmb.register_tmcb( 0, TMCB_REQUEST_IN, acc_onreq, 0 ) <=0 ) {
+	if ( tmb.register_tmcb( 0, 0, TMCB_REQUEST_IN, acc_onreq, 0 ) <=0 ) {
 		LOG(L_ERR,"ERROR:acc:mod_init: cannot register TMCB_REQUEST_IN "
 			"callback\n");
 		return -1;
@@ -434,7 +434,7 @@ static void acc_onreq( struct cell* t, int type, struct tmcb_params *ps )
 			TMCB_ON_FAILURE_RO |
 			/* get incoming replies ready for processing */
 			TMCB_RESPONSE_IN;
-		if (tmb.register_tmcb( ps->req, tmcb_types, tmcb_func, 0 )<=0) {
+		if (tmb.register_tmcb( 0, t, tmcb_types, tmcb_func, 0 )<=0) {
 			LOG(L_ERR,"ERROR:acc:acc_onreq: cannot register additional "
 				"callbacks\n");
 			return;

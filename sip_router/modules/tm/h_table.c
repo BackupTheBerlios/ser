@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.83 2003/12/05 14:29:12 bogdan Exp $
+ * $Id: h_table.c,v 1.84 2004/01/15 15:28:44 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -155,7 +155,6 @@ void free_cell( struct cell* dead_cell )
 
 	shm_unlock();
 }
-
 
 
 
