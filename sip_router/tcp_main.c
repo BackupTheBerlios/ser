@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.35 2003/07/06 18:43:16 andrei Exp $
+ * $Id: tcp_main.c,v 1.36 2003/07/08 16:40:19 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -678,7 +678,7 @@ static inline void handle_new_connect(struct socket_info* si,
 		/* got a connection on r */
 		su_len=sizeof(su);
 		new_sock=accept(si->socket, &(su.s), &su_len);
-		*n--;
+		(*n)--;
 		if (new_sock<0){
 			LOG(L_ERR,  "WARNING: tcp_main_loop: error while accepting"
 					" connection(%d): %s\n", errno, strerror(errno));
