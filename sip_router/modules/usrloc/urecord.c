@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.24 2003/04/28 22:08:03 janakj Exp $ 
+ * $Id: urecord.c,v 1.25 2003/08/14 13:21:43 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -40,8 +40,8 @@
 #include "../../ut.h"
 #include "ul_mod.h"
 #include "utime.h"
-#include "del_list.h"
-#include "ins_list.h"
+/* #include "del_list.h" */
+/* #include "ins_list.h" */
 #include "notify.h"
 
 
@@ -361,8 +361,8 @@ static inline int wb_timer(urecord_t* _r)
 
 				     /* Should we remove the contact from the database ? */
 				if (st_expired_ucontact(t) == 1) {
-					if (put_on_del_list(t) < 0) {
-						LOG(L_ERR, "wb_timer(): Can't put on delete list\n");
+					if (db_delete_ucontact(t) < 0) {
+						LOG(L_ERR, "wb_timer(): Can't delete contact from the database\n");
 					}
 				}
 
@@ -378,8 +378,8 @@ static inline int wb_timer(urecord_t* _r)
 				break;
 
 			case 1: /* insert */
-				if (put_on_ins_list(ptr) < 0) {
-					LOG(L_ERR, "wb_timer(): Error while putting on ins_list\n");
+				if (db_insert_ucontact(ptr) < 0) {
+					LOG(L_ERR, "wb_timer(): Error while inserting contact into database\n");
 				}
 				break;
 
@@ -392,8 +392,8 @@ static inline int wb_timer(urecord_t* _r)
 				mem_delete_ucontact(_r, ptr);
 				break;
 			case 4: /* delete */
-				if (put_on_del_list(ptr) < 0) {
-					LOG(L_ERR, "wb_timer(): Can't put on delete list\n");
+				if (db_delete_ucontact(ptr) < 0) {
+					LOG(L_ERR, "wb_timer(): Can't delete contact from database\n");
 				}
 				mem_delete_ucontact(_r, ptr);
 				break;
