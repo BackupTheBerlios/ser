@@ -1,7 +1,7 @@
 /*
  * fast architecture specific locking
  *
- * $Id: fastlock.h,v 1.22 2004/09/12 16:32:30 andrei Exp $
+ * $Id: fastlock.h,v 1.23 2004/09/12 16:48:58 andrei Exp $
  *
  * 
  *
@@ -111,6 +111,7 @@ inline static int tsl(fl_lock_t* lock)
         );
 #elif defined __CPU_mips2
 	long tmp;
+	tmp=1; /* just to kill a gcc 2.95 warning */
 	
 	asm volatile(
 		".set noreorder\n\t"
