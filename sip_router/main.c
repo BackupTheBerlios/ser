@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.158 2003/04/16 18:22:47 andrei Exp $
+ * $Id: main.c,v 1.159 2003/04/18 13:58:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -98,7 +98,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.158 2003/04/16 18:22:47 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.159 2003/04/18 13:58:15 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -877,11 +877,11 @@ int main_loop()
 #endif
 	/*DEBUG- remove it*/
 #ifdef DEBUG
-	printf("\n% 3d processes, % 3d children * % 3d listening addresses + main"
-			" + fifo %s\n", process_no+1, children_no, sock_no,
+	fprintf(stderr, "\n% 3d processes (%3d), % 3d children * % 3d listening addresses"
+			"+ main + fifo %s\n", process_no+1, process_count(), children_no, sock_no,
 			(timer_list)?"+ timer":"");
 	for (r=0; r<=process_no; r++){
-		printf("% 3d   % 5d\n", r, pt[r].pid);
+		fprintf(stderr, "% 3d   % 5d - %s\n", r, pt[r].pid, pt[r].desc);
 	}
 #endif
 	process_no=0; 
