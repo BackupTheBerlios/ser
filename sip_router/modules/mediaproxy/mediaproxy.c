@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.16 2004/06/20 20:14:36 danp Exp $
+/* $Id: mediaproxy.c,v 1.17 2004/06/21 03:29:25 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -415,7 +415,12 @@ static Bool
 getCallId(struct sip_msg* msg, str *cid)
 {
     if (msg->callid == NULL) {
-        return False;
+        if (parse_headers(msg, HDR_CALLID, 0) == -1) {
+            return False;
+        }
+        if (msg->callid == NULL) {
+            return False;
+        }
     }
 
     *cid = msg->callid->body;
