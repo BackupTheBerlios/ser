@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.46 2003/04/01 11:58:06 janakj Exp $
+ * $Id: action.c,v 1.47 2003/04/06 14:05:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -190,7 +190,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 				p->ok=1;
 			}
 			ret=hostent2su(	to, &p->host, p->addr_idx,
-						(p->port)?htons(p->port):htons(SIP_PORT) );
+						(p->port)?p->port:SIP_PORT );
 			if (ret==0){
 				p->tx++;
 				p->tx_bytes+=msg->len;

@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.59 2003/03/19 18:41:58 andrei Exp $
+ * $Id: udp_server.c,v 1.60 2003/04/06 14:05:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -217,7 +217,7 @@ int udp_init(struct socket_info* sock_info)
 	}
 */
 	sock_info->proto=PROTO_UDP;
-	if (init_su(addr, &sock_info->address, htons(sock_info->port_no))<0){
+	if (init_su(addr, &sock_info->address, sock_info->port_no)<0){
 		LOG(L_ERR, "ERROR: udp_init: could not init sockaddr_union\n");
 		goto error;
 	}

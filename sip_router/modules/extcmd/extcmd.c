@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd.c,v 1.6 2003/03/19 22:39:37 janakj Exp $
+ * $Id: extcmd.c,v 1.7 2003/04/06 14:05:35 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -140,7 +140,7 @@ static int extcmd_init(void)
 		LOG(L_ERR,"ERROR:extcmd_init: cannot solve \"%s\"!!\n",my_address);
 		goto error;
 	}
-	if (hostent2su( &me, he, 0, htons(my_port))==-1)
+	if (hostent2su( &me, he, 0, my_port)==-1)
 		goto error;
 
 	/* create the socket server */

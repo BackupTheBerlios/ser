@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.20 2003/04/06 00:21:13 andrei Exp $
+ * $Id: tcp_main.c,v 1.21 2003/04/06 14:05:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -268,7 +268,7 @@ void tcpconn_rm(struct tcp_connection* c)
 }
 
 
-/* finds a connection, if id=0 uses the ip addr & port
+/* finds a connection, if id=0 uses the ip addr & port (host byte order)
  * WARNING: unprotected (locks) use tcpconn_get unless you really
  * know what you are doing */
 struct tcp_connection* _tcpconn_find(int id, struct ip_addr* ip, int port)
@@ -277,7 +277,7 @@ struct tcp_connection* _tcpconn_find(int id, struct ip_addr* ip, int port)
 	struct tcp_connection *c;
 	unsigned hash;
 	
-	DBG("tcpconn_find: %d ",id ); print_ip(ip); DBG(" %d\n", ntohs(port));
+	DBG("tcpconn_find: %d ",id ); print_ip(ip); DBG(" %d\n", port);
 	if (id){
 		hash=tcp_id_hash(id);
 		for (c=tcpconn_id_hash[hash]; c; c=c->id_next){
@@ -505,7 +505,7 @@ int tcp_init(struct socket_info* sock_info)
 	
 	addr=&sock_info->su;
 	sock_info->proto=PROTO_TCP;
-	if (init_su(addr, &sock_info->address, htons(sock_info->port_no))<0){
+	if (init_su(addr, &sock_info->address, sock_info->port_no)<0){
 		LOG(L_ERR, "ERROR: tcp_init: could no init sockaddr_union\n");
 		goto error;
 	}
