@@ -1,5 +1,5 @@
 /*
- * $Id: vm.h,v 1.1 2003/03/06 17:40:59 jiri Exp $
+ * $Id: vm.h,v 1.2 2003/07/03 16:11:44 rco Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -34,5 +34,6 @@
 #define _VM_H
 
 extern struct tm_binds _tmb;
+#define FIFO_VERSION "0.1"
 
 #endif
