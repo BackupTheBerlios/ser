@@ -1,4 +1,4 @@
-# $Id: README-MODULES,v 1.1 2002/07/26 12:59:25 jku Exp $
+# $Id: README-MODULES,v 1.2 2002/07/26 13:00:16 jku Exp $
 
 List of currently available ser modules
 ----------------------------------------------------------
@@ -20,6 +20,7 @@ im		temporary	 alpha		Stateless instant messaging
 jabber	experimental beta		SIP2Jabber gateway
 maxfwd	regular		 stable		Max-Forwards check
 mysql	regular		 stable		supporting MySql interface
+pike	experimental alpha		excessive load detection
 print	example		 stable		Printing Message to stdout
 rr		regular		 stable		Record-Routing
 sl		regular		 stable		Stateless Replies
