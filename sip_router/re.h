@@ -1,5 +1,5 @@
 /*
- * $Id: re.h,v 1.1 2003/08/19 17:53:46 andrei Exp $
+ * $Id: re.h,v 1.2 2003/08/20 11:46:07 andrei Exp $
  *
  * regexp and regexp substitutions implementations
  * 
@@ -49,7 +49,7 @@ struct replace_with{
 	union{
 		int nmatch;
 		char c;
-	};
+	}u;
 };
 
 struct subst_expr{
