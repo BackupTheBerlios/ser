@@ -1,5 +1,5 @@
 /*
- * $Id: notify.c,v 1.1 2002/11/14 14:33:16 janakj Exp $
+ * $Id: notify.c,v 1.2 2002/12/08 00:04:43 janakj Exp $
  */
 
 #include "notify.h"
@@ -88,6 +88,8 @@ int register_watcher(str* _d, str* _a, notcb_t _c, void* _data)
 	}
 
 	unlock_udomain(d);
+
+	return 0;
 }
 
 
@@ -125,4 +127,6 @@ int post_script(struct sip_msg* _m, void* param)
 		notify_watchers(notify_record);
 		notify_record = 0;
 	}
+
+	return 0;
 }
