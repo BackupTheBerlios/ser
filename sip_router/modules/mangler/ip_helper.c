@@ -1,7 +1,7 @@
 /*
  * Sdp mangler module
  *
- * $Id: ip_helper.c,v 1.3 2003/04/07 18:39:33 gabriel Exp $
+ * $Id: ip_helper.c,v 1.4 2003/04/09 15:40:01 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -146,16 +146,22 @@ parse_ip_address (char *c, unsigned int *address)	//inet_aton
 		{
 			quat = atoi (p);
 			if (quat > 255)
+				{
 				return 0;
+				}
 			else
 				addrp[3] = (unsigned char) quat;
 			return 1;
 		}
 		else
+			{
 			return 0;
+			}
 	}
 	else
+		{
 		return 0;
+		}
 }
 
 /* return 1 if ALL str is a positive number or 0. no + signs allowed*/

@@ -1,7 +1,7 @@
 /*
- * Sdp mangler module
+ * mangler module
  *
- * $Id: sdp_mangler.h,v 1.2 2003/04/08 10:35:15 gabriel Exp $
+ * $Id: sdp_mangler.h,v 1.3 2003/04/09 15:40:01 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,16 +38,35 @@
 
 
 #include "../../parser/msg_parser.h"	/* struct sip_msg */
+#include "common.h"
 #include <regex.h>
 
 
-#define PORT_REGEX "m=[a-z]+ [0-9]{1,5}"
-#define IP_REGEX "(c=IN IP4 [0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})"
+/* With STRICT_CHECK off:
+If you define a port like 41231311 and BEST_EFFORT is defined it will 
+consider a port the first 5 digits
+Similary an ip like 12.31.12.313131132131 will be mangled with only 3 digits
+from the last group 
+*/
+
+#ifdef STRICT_CHECK
+	#define PORT_REGEX "(m=[a-z]+ [0-9]{1,5} )"
+	#define IP_REGEX "(c=IN IP4 [0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}( |\n|\r))"
+#endif
 
 
-#define MANGLE_IP 1
-#define MANGLE_PORT 2
-#define MANGLE_BOTH 4
+#ifndef STRICT_CHECK
+	#define PORT_REGEX "m=[a-z]+ [0-9]{1,5}"
+	#define IP_REGEX "(c=IN IP4 [0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})"
+#endif
+
+
+#define MIN_ORIGINAL_PORT 1
+#define MAX_ORIGINAL_PORT 65535
+#define MIN_MANGLED_PORT  1
+#define MAX_MANGLED_PORT  65535
+#define MIN_OFFSET_VALUE -65535
+#define MAX_OFFSET_VALUE  65535
 
 
 

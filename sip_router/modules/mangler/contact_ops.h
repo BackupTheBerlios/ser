@@ -1,7 +1,7 @@
 /*
  *  mangler module
  *
- * $Id: contact_ops.h,v 1.4 2003/04/08 16:56:21 gabriel Exp $
+ * $Id: contact_ops.h,v 1.5 2003/04/09 15:40:01 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,10 +36,18 @@
 #ifndef CONTACT_OPS_H
 #define CONTACT_OPS_H
 
-#define DEFAULT_SEPARATOR "*"
+/* if you want to parse all contacts not just de first one */
+
 
 
 #include "../../parser/msg_parser.h"	/* struct sip_msg */
+#include "common.h"
+
+#define ENCODE_ALL_CONTACTS 1
+#define DECODE_ALL_CONTACTS 1
+
+#define DEFAULT_SEPARATOR "*"
+
 
 char *contact_flds_separator;
 
