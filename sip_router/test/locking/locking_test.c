@@ -1,4 +1,4 @@
-/* $Id: locking_test.c,v 1.4 2002/02/13 20:17:59 andrei Exp $ */
+/* $Id: locking_test.c,v 1.5 2002/03/01 15:49:53 andrei Exp $ */
 
 
 #include <stdio.h>
@@ -102,7 +102,7 @@ static int semid=-1;
 
 
 
-static char *id="$Id: locking_test.c,v 1.4 2002/02/13 20:17:59 andrei Exp $";
+static char *id="$Id: locking_test.c,v 1.5 2002/03/01 15:49:53 andrei Exp $";
 static char *version="locking_test 0.1-"
 #ifdef NO_LOCK
  "nolock"
@@ -149,6 +149,7 @@ int main (int argc, char** argv)
 	address=0;
 
 
+
 	opterr=0;
 	while ((c=getopt(argc,argv, "c:vhV"))!=-1){
 		switch(c){
@@ -187,6 +188,7 @@ int main (int argc, char** argv)
 					abort();
 		}
 	}
+
 	
 	/* check if all the required params are present */
 	if(count==0){
@@ -196,6 +198,7 @@ int main (int argc, char** argv)
 		fprintf(stderr, "Invalid count (-c %d)\n", count);
 		exit(-1);
 	}
+
 
 #ifdef SYSV_SEM
 	/*init*/
