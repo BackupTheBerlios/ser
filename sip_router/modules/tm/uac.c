@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.43 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: uac.c,v 1.44 2003/12/11 13:59:53 bogdan Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -184,7 +184,7 @@ int t_uac(str* method, str* headers, str* body, dlg_t* dialog,
 	}
 
 	/* add the callback the the transaction for LOCAL_COMPLETED event */
-	if (insert_tmcb( &(new_cell->tmcb_hl), TMCB_LOCAL_COMPLETED, cb, cbp)!=1) {
+	if(cb && insert_tmcb(&(new_cell->tmcb_hl),TMCB_LOCAL_COMPLETED,cb,cbp)!=1){
 		ret=E_OUT_OF_MEM;
 		LOG(L_ERR, "t_uac: short of tmcb shmem\n");
 		goto error2;
