@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.46 2002/02/14 17:41:30 andrei Exp $
+# $Id: Makefile.defs,v 1.47 2002/02/15 00:45:30 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -73,7 +73,7 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 
 # arh. specific definitions
 ifeq ($(ARCH), i386)
-	DEFS+= -DFAST_LOCK
+#	DEFS+= -DFAST_LOCK
 endif
 
 ifeq ($(ARCH), sparc64)
