@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.26 2003/04/06 00:21:13 andrei Exp $
+/* $Id: ip_addr.h,v 1.27 2003/04/06 22:39:04 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -29,6 +29,7 @@
  * History:
  * --------
  *  2003-02-13  added struct dest_info (andrei)
+ *  2003-04-06  all ports are stored/passed in host byte order now (andrei)
  */
 
 #ifndef ip_addr_h
