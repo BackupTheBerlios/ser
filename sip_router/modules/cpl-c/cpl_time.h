@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_time.h,v 1.1 2003/06/26 13:26:58 bogdan Exp $
+ * $Id: cpl_time.h,v 1.2 2003/09/02 16:08:57 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -167,7 +167,7 @@ int tr_parse_byweekno(tmrec_p, char*);
 int tr_parse_wkst(tmrec_p, char*);
 
 int tr_print(tmrec_p);
-time_t ic_parse_datetime(char*);
+time_t ic_parse_datetime(char*,struct tm*);
 time_t ic_parse_duration(char*);
 
 tr_byxxx_p ic_parse_byday(char*);
