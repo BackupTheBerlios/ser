@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_lib.c,v 1.10 2004/01/20 15:53:47 dcm Exp $
+ * $Id: dbt_lib.c,v 1.11 2004/02/11 15:37:00 bogdan Exp $
  *
  * DBText library
  *
@@ -99,7 +99,7 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 	if(!_s || !_s->s || _s->len<=0)
 		return NULL;
 
-	DBG("DBT:dbt_cache_get_db: looking for db!\n");
+	DBG("DBT:dbt_cache_get_db: looking for db %.*s!\n",_s->len,_s->s);
 
 	lock_get(_cachesem);
 	
@@ -113,6 +113,7 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 					&& !strncasecmp(_dcache->dbp->name.s, _s->s, _s->len))
 			{
 				lock_release(&_dcache->sem);
+				DBG("DBT:dbt_cache_get_db: db already cached!\n");
 				goto done;
 			}
 		}

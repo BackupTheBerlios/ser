@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_base.c,v 1.12 2004/01/26 12:50:03 janakj Exp $
+ * $Id: dbt_base.c,v 1.13 2004/02/11 15:37:00 bogdan Exp $
  *
  * DBText module core functions
  *
@@ -98,6 +98,7 @@ db_con_t* dbt_init(const char* _sqlurl)
 		return NULL;
 	}
 	memset(_res, 0, sizeof(db_con_t) + sizeof(dbt_con_t));
+	_res->tail = (unsigned long)((char*)_res+sizeof(db_con_t));
 	
 	DBT_CON_CONNECTION(_res) = dbt_cache_get_db(&_s);
 	if (!DBT_CON_CONNECTION(_res))
