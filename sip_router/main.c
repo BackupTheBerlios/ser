@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.78 2002/06/26 17:36:51 jku Exp $
+ * $Id: main.c,v 1.79 2002/06/26 17:44:39 jku Exp $
  */
 
 #include <stdio.h>
@@ -43,7 +43,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.78 2002/06/26 17:36:51 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.79 2002/06/26 17:44:39 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -787,6 +787,10 @@ int main(int argc, char** argv)
 		goto error;
 	}
 
+#ifdef STATS
+	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
+#endif
+
 	/*register builtin  modules*/
 	register_builtin_modules();
 
@@ -893,9 +897,6 @@ int main(int argc, char** argv)
 				sock_info[r].port_no_str.s);
 	}
 
-#ifdef STATS
-	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
-#endif
 
 	
 	/* init_daemon? */
