@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.h,v 1.4 2001/09/21 20:35:51 andrei Exp $
+ * $Id: udp_server.h,v 1.5 2001/11/12 19:51:59 jku Exp $
  */
 
 #ifndef udp_server_h
@@ -7,6 +7,9 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+
+#define MAX_RECV_BUFFER_SIZE	256*1024
+#define BUFFER_INCREMENT	2048
 
 extern int udp_sock;
 
