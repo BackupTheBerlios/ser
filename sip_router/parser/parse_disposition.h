@@ -1,5 +1,5 @@
 /*
- * $Id: parse_disposition.h,v 1.1 2003/09/10 12:07:43 bogdan Exp $
+ * $Id: parse_disposition.h,v 1.2 2003/09/10 12:20:53 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -37,7 +37,7 @@
 
 
 #define get_content_disposition(_msg_) \
-	((struct content_disposition*)((_msg_)->content_disposition->parsed))
+	((struct disposition*)((_msg_)->content_disposition->parsed))
 
 
 struct disposition_param {
