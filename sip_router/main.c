@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.47 2001/12/12 23:59:36 andrei Exp $
+ * $Id: main.c,v 1.48 2001/12/13 03:21:09 andrei Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.47 2001/12/12 23:59:36 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.48 2001/12/13 03:21:09 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -148,7 +148,7 @@ unsigned int maxbuffer = MAX_RECV_BUFFER_SIZE; /* maximum buffer size we do not 
 				      		durig the auto-probing procedure; may be
 				      		re-configured */
 int children_no = 0;           /* number of children processing requests */
-int *pids;		       /*array with childrens pids, 0= main proc,
+int *pids=0;		       /*array with childrens pids, 0= main proc,
 				alloc'ed in shared mem if possible*/
 int debug = 0;
 int dont_fork = 0;
@@ -356,8 +356,11 @@ static void sig_usr(int signo)
 		}
 #endif
 #ifdef SHM_MEM
-		if (is_main)
+		if (is_main){
+			/*zero all shmem  alloc vars, that will still use*/
+			pids=0;
 			shm_mem_destroy();
+		}
 #endif
 		dprint("Thank you for flying " NAME "\n");
 		exit(0);
@@ -539,6 +542,9 @@ int main(int argc, char** argv)
 		LOG(L_CRIT, "could not initialize timer, exiting...\n");
 		goto error;
 	}
+
+	/*init builtin  modules*/
+	init_builtin_modules();
 
 	yyin=cfg_stream;
 	if ((yyparse()!=0)||(cfg_errors)){

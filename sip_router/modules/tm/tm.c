@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.18 2001/12/05 22:14:30 jku Exp $
+ * $Id: tm.c,v 1.19 2001/12/13 03:21:09 andrei Exp $
  *
  * TM module
  *
@@ -78,7 +78,11 @@ static struct module_exports nm_exports= {
 
 
 
+#ifdef STATIC_TM
+struct module_exports* tm_mod_register()
+#else
 struct module_exports* mod_register()
+#endif
 {
 
 	DBG( "TM - registering...\n");

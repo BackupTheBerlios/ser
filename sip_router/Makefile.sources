@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.sources,v 1.1 2001/12/08 22:06:27 andrei Exp $
+# $Id: Makefile.sources,v 1.2 2001/12/13 03:21:09 andrei Exp $
 #
 # common Makefile variables 
 # (source files, objs, etc)
@@ -13,5 +13,6 @@
 
 sources=$(filter-out $(auto_gen), $(wildcard *.c)) $(auto_gen)
 objs=$(sources:.c=.o)
+extra_objs=
 depends=$(sources:.c=.d)
 modules=
