@@ -1,5 +1,5 @@
 /*
- * $Id: parse_from.h,v 1.2 2002/08/08 17:32:59 janakj Exp $
+ * $Id: parse_from.h,v 1.3 2002/08/08 17:41:56 ssi Exp $
  */
 
 #ifndef PARSE_FROM
@@ -10,6 +10,6 @@
 /*
  * To header field parser
  */
-int parse_from_header(struct hdr_field* hdr);
+char* parse_from_header(char* buffer, char *end, struct to_body *from_b);
 
 #endif
