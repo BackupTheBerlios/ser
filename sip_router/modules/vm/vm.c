@@ -1,5 +1,5 @@
 /*
- * $Id: vm.c,v 1.20 2003/04/27 12:10:14 rco Exp $
+ * $Id: vm.c,v 1.21 2003/04/28 00:42:20 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -86,6 +86,8 @@
 #define VM_BYE         "bye"
 
 #define ROUTE_BUFFER_MAX 512
+
+MODULE_VERSION
 
 static str empty_param={".",1};
 
