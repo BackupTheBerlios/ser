@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.2 2003/03/30 20:31:22 janakj Exp $
+ * $Id: parse_param.h,v 1.3 2003/03/31 15:49:15 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -121,6 +121,12 @@ void free_params(param_t* _p);
  * Print linked list of parameters, just for debugging
  */
 void print_params(param_t* _p);
+
+
+/*
+ * Duplicate linked list of parameters
+ */
+int duplicate_params(param_t** _n, param_t* _p);
 
 
 #endif /* PARSE_PARAM_H */
