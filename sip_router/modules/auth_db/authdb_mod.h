@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.h,v 1.2 2003/03/18 17:48:19 janakj Exp $
+ * $Id: authdb_mod.h,v 1.3 2003/06/23 10:46:59 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -49,6 +49,7 @@ extern char* pass_column_2;   /* Column containg HA1 string constructed
 			       */
 
 extern int calc_ha1;          /* if set to 1, ha1 is calculated by the server */
+extern int use_domain;        /* If set to 1 then the domain will be used when selecting a row */
 extern db_con_t* db_handle;   /* Database connection handle */
 
 extern pre_auth_f pre_auth_func;
