@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.18 2002/05/16 19:12:14 bogdan Exp $
+ * $Id: t_fwd.c,v 1.19 2002/05/16 20:47:49 bogdan Exp $
  *
  */
 
@@ -195,7 +195,7 @@ int t_forward_nonack( struct sip_msg* p_msg , unsigned int dest_ip_param ,
 	}
 	p_msg->new_uri.s = backup_uri.s;
 	p_msg->new_uri.len = backup_uri.len;
-	//t_clear_forks();
+	t_clear_forks();
 	return 1;
 
 error:
