@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.13 2004/06/04 20:31:55 danp Exp $
+/* $Id: mediaproxy.c,v 1.14 2004/06/09 00:29:50 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -1309,7 +1309,8 @@ UseMediaProxy(struct sip_msg* msg, char* str1, char* str2)
     fromType = (isFromLocal(msg, NULL, NULL)>0) ? "local" : "remote";
 
     if (msg->first_line.type == SIP_REQUEST &&
-        msg->first_line.u.request.method_value == METHOD_INVITE) {
+        (msg->first_line.u.request.method_value == METHOD_INVITE ||
+         msg->first_line.u.request.method_value == METHOD_ACK)) {
         request = True;
         toType = (isDestinationLocal(msg, NULL, NULL)>0) ? "local" : "remote";
     } else if (msg->first_line.type == SIP_REPLY) {
