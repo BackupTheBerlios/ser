@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.16 2004/02/09 15:52:21 janakj Exp $
+ * $Id: parse_param.c,v 1.17 2004/04/14 19:08:55 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -102,6 +102,12 @@ static inline void parse_uri_class(param_hooks_t* _h, param_t* _p)
 		    (!strncasecmp(_p->name.s + 1, "ransport", 8))) {
 			_p->type = P_TRANSPORT;
 			_h->uri.transport = _p;
+		} else if (_p->name.len == 2) {
+			if (((_p->name.s[1] == 't') || (_p->name.s[1] == 'T')) &&
+			    ((_p->name.s[2] == 'l') || (_p->name.s[2] == 'L'))) {
+				_p->type = P_TTL;
+				_h->uri.ttl = _p;
+			}
 		}
 		break;
 
@@ -458,6 +464,7 @@ static inline void print_param(FILE* _o, param_t* _p)
 	case P_LR:        type = "P_LR";        break;
 	case P_R2:        type = "P_R2";        break;
 	case P_MADDR:     type = "P_MADDR";     break;
+	case P_TTL:       type = "P_TTL";       break;
 	default:          type = "UNKNOWN";     break;
 	}
 	
