@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2003/07/15 06:36:45 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2003/07/15 08:08:41 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -33,7 +33,7 @@
 	<section>
 	    <title>External Libraries or Applications</title>
 	    <para>
-		The next libraries or applications must be installed before running
+		The following libraries or applications must be installed before running
 		&ser; with this module loaded:
 	    	<itemizedlist>
 		    <listitem>
