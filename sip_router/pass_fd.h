@@ -1,5 +1,5 @@
 /*
- * $Id: pass_fd.h,v 1.1 2002/11/29 21:12:24 andrei Exp $
+ * $Id: pass_fd.h,v 1.2 2003/11/11 15:32:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,6 +32,8 @@
 int send_fd(int unix_socket, void* data, int data_len, int fd);
 int receive_fd(int unix_socket, void* data, int data_len, int* fd);
 
+int recv_all(int socket, void* data, int data_len);
+int send_all(int socket, void* data, int data_len);
 
 
 #endif

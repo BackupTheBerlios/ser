@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.51 2003/09/22 14:40:19 andrei Exp $
+ * $Id: timer.c,v 1.52 2003/11/11 15:32:36 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -326,6 +326,11 @@ inline static void final_response_handler( void *attr)
 	struct cell *t;
 
 	r_buf = (struct retr_buf*)attr;
+	if (r_buf==0){
+		/* or BUG?, ignoring it for now */
+		LOG(L_CRIT, "ERROR: final_response_handler(0) called\n");
+		return;
+	}
 	t=r_buf->my_T;
 
 #	ifdef EXTRA_DEBUG

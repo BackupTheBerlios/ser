@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.43 2003/10/30 20:54:03 bogdan Exp $
+ * $Id: fifo_server.c,v 1.44 2003/11/11 15:32:36 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -349,8 +349,8 @@ static int fifo_check(int fd, char* fname)
 	 */
 	if ((lst.st_dev!=fst.st_dev)||(lst.st_ino!=fst.st_ino)){
 		LOG(L_ERR, "ERROR: security: fifo_check: inode/dev number differ"
-				": %ld %ld (%s)\n",
-				 fst.st_ino, lst.st_ino, fname);
+				": %d %d (%s)\n",
+				 (int)fst.st_ino, (int)lst.st_ino, fname);
 		return -1;
 	}
 	/* success */
