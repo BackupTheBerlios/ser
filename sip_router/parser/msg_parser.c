@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.10 2002/07/25 15:05:58 janakj Exp $
+ * $Id: msg_parser.c,v 1.11 2002/07/25 15:30:39 janakj Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -316,10 +316,10 @@ int parse_headers(struct sip_msg* msg, int flags)
 			msg->last_header->next=hf;
 			msg->last_header=hf;
 		}
-	#ifdef EXTRA_DEBUG
+#ifdef EXTRA_DEBUG
 		DBG("header field type %d, name=<%s>, body=<%s>\n",
 			hf->type, hf->name.s, hf->body.s);
-	#endif
+#endif
 		tmp=rest;
 	}
 skip:
