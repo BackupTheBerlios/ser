@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.13 2004/02/11 03:38:49 jiri Exp $
+ * $Id: t_msgbuilder.h,v 1.14 2004/03/14 17:54:38 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -73,6 +73,16 @@ char *build_uac_request(  str msg_type, str dst, str from,
 	str fromtag, int cseq, str callid, str headers, 
 	str body, int branch,
 	struct cell *t, unsigned int *len);
+
+
+/*
+ * The function creates an ACK to 200 OK. Route set will be created
+ * and parsed and next_hop parameter will contain uri the which the
+ * request should be send. The function is used by tm when it generates
+ * local ACK to 200 OK (on behalf of applications using uac
+ */
+char *build_dlg_ack(struct sip_msg* rpl, struct cell *Trans, unsigned int branch,
+		    str* to, unsigned int *len, str *next_hop);
 
 
 /*
