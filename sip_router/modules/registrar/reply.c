@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.26 2004/08/24 09:00:37 janakj Exp $
+ * $Id: reply.c,v 1.27 2004/09/01 11:41:09 janakj Exp $
  *
  * Send a reply
  *
@@ -90,6 +90,15 @@ static inline unsigned int calc_buf_len(ucontact_t* c)
 			qlen = len_q(c->q);
 			if (qlen) len += Q_PARAM_LEN + qlen;
 			len += EXPIRES_PARAM_LEN + INT2STR_MAX_LEN;
+			if (c->received.s) {
+				len += 1 /* ; */ 
+					+ rcv_param.len 
+					+ 1 /* = */ 
+					+ 1 /* dquote */ 
+					+ c->received.len
+					+ 1 /* dquote */
+					;
+			}
 		}
 		c = c->next;
 	}
@@ -156,6 +165,17 @@ int build_contact(ucontact_t* c)
 			p += EXPIRES_PARAM_LEN;
 			memcpy(p, int2str((int)(c->expires - act_time), &len), len);
 			p += len;
+
+			if (c->received.s) {
+				*p++ = ';';
+				memcpy(p, rcv_param.s, rcv_param.len);
+				p += rcv_param.len;
+				*p++ = '=';
+				*p++ = '\"';
+				memcpy(p, c->received.s, c->received.len);
+				p += c->received.len;
+				*p++ = '\"';
+			}
 		}
 
 		c = c->next;

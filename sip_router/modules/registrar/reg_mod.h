@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.13 2004/08/24 09:00:37 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.14 2004/09/01 11:41:09 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -46,6 +46,8 @@ extern int max_expires;
 extern str realm_prefix;
 
 extern float def_q;
+
+extern str rcv_param;
 
 usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
 
