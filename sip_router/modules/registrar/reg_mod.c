@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.c,v 1.25 2004/09/01 17:31:56 janakj Exp $
+ * $Id: reg_mod.c,v 1.26 2004/10/04 13:19:21 janakj Exp $
  *
  * Registrar module interface
  *
@@ -86,6 +86,7 @@ int (*sl_reply)(struct sip_msg* _m, char* _s1, char* _s2);
 static cmd_export_t cmds[] = {
 	{"save",         save,         1, domain_fixup, REQUEST_ROUTE                },
 	{"save_noreply", save_noreply, 1, domain_fixup, REQUEST_ROUTE                },
+	{"save_memory",  save_memory,  1, domain_fixup, REQUEST_ROUTE                },
 	{"lookup",       lookup,       1, domain_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{"registered",   registered,   1, domain_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{0, 0, 0, 0, 0}

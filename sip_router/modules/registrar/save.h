@@ -1,5 +1,5 @@
 /*
- * $Id: save.h,v 1.6 2004/08/24 09:00:37 janakj Exp $
+ * $Id: save.h,v 1.7 2004/10/04 13:19:21 janakj Exp $
  *
  * Functions that process REGISTER message 
  * and store data in usrloc
@@ -50,6 +50,12 @@ int save(struct sip_msg* _m, char* _t, char* _s);
  * Process REGISTER request and save it's contacts, do not send any replies
  */
 int save_noreply(struct sip_msg* _m, char* _t, char* _s);
+
+
+/*
+ * Process REGISTER request and save it's contacts, do not send any replies
+ */
+int save_memory(struct sip_msg* _m, char* _t, char* _s);
 
 
 #endif /* SAVE_H */
