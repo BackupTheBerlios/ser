@@ -1,9 +1,11 @@
-$Id: INSTALL,v 1.3 2001/10/26 21:24:00 andrei Exp $
+$Id: INSTALL,v 1.4 2001/11/26 23:31:03 andrei Exp $
 
 Installation Notes
 
 Supported architectures: Linux, FreeBSD, Solaris, Win* (CYGWIN)
 (for other architectures the Makefile must be edited)
+
+There are various configuration options defined in the Makefile.
 
 Requirements:
 
@@ -22,8 +24,13 @@ Arhitecture Notes:
 	(>=0.12). 
 	
 
+Clean:
+make clean   (clean the modules too)
+make proper  (clean also the dependencies)
+
 Compile:
 
+make proper
 make
 (or gmake on non-Linux systems)
 make modules 
