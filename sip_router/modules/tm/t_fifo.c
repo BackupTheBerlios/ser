@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.18 2005/02/23 17:16:06 andrei Exp $
+ * $Id: t_fifo.c,v 1.19 2005/02/28 11:38:11 bogdan Exp $
  *
  * transaction maintenance functions
  *
@@ -633,8 +633,9 @@ static inline char* append2buf( char *buf, int len, struct sip_msg *req,
 						break;
 			}
 			if (hdr) {
+				trim_len( foo.len, foo.s, hdr->body);
 				buf=add2buf( buf, end, ha->title.s, ha->title.len,
-					hdr->body.s , hdr->body.len);
+					foo.s , foo.len);
 				if (!buf)
 					goto overflow_err;
 			}
