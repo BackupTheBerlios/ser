@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.47 2004/01/22 16:38:53 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.48 2004/01/22 16:40:14 janakj Exp $ 
  *
  * Digest Authentication Module
  *
@@ -34,6 +34,8 @@
  * 2003-03-19 all mallocs/frees replaced w/ pkg_malloc/pkg_free (andrei)
  * 2003-04-28 rpid contributed by Juha Heinanen added (janakj) 
  */
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
