@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.26 2003/03/10 22:24:14 andrei Exp $
+ *$Id: ut.h,v 1.27 2003/03/26 20:26:09 rco Exp $
  *
  * - various general purpose functions
  *
@@ -148,11 +148,12 @@ static inline int btostr( char *p,  unsigned char val)
 }
 
 
+#define INT2STR_MAX_LEN 11 /* 10 digits + 0 */
 
 /* returns a pointer to a static buffer containing l in asciiz & sets len */
 static inline char* int2str(unsigned int l, int* len)
 {
-	static char r[11]; /* 10 digits + 0 */
+	static char r[INT2STR_MAX_LEN];
 	int i;
 	
 	i=9;
