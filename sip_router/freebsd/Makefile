@@ -4,12 +4,12 @@
 #
 # $FreeBSD$
 #
-# $Id: Makefile,v 1.1 2002/11/08 19:00:33 andrei Exp $
+# $Id: Makefile,v 1.2 2002/11/12 12:31:25 andrei Exp $
 #
 
 
 PORTNAME= ser
-PORTVERSION= 0.8.9
+PORTVERSION= 0.8.10
 CATEGORIES= net
 MASTER_SITES= ftp://ftp.berlios.de/pub/ser/latest/src/
 
