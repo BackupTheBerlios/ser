@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.75 2005/02/03 17:46:03 sobomax Exp $
+/* $Id: nathelper.c,v 1.76 2005/02/15 00:56:05 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -862,7 +862,7 @@ extract_mediaip(str *body, str *mediaip, int *pf)
 		cp = cp1 + 2;
 	}
 	if (cp1 == NULL) {
-		LOG(L_DBG, "ERROR: extract_mediaip: no `c=' in SDP\n");
+		LOG(L_ERR, "ERROR: extract_mediaip: no `c=' in SDP\n");
 		return -1;
 	}
 	mediaip->s = cp1 + 2;
