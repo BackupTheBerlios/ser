@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.17 2002/09/19 12:23:52 jku Exp $
+ * $Id: proxy.c,v 1.18 2002/09/23 16:39:02 andrei Rel $
  *
  * proxy list & assoc. functions
  *
@@ -85,7 +85,9 @@ static int hostent_cpy(struct hostent *dst, struct hostent* src)
 	}
 
 	/* copy h_aliases */
-	for (len=0;src->h_aliases[len];len++);
+	len=0;
+	if (src->h_aliases)
+		for (;src->h_aliases[len];len++);
 	dst->h_aliases=(char**)malloc(sizeof(char*)*(len+1));
 	if (dst->h_aliases==0){
 		ser_error=ret=E_OUT_OF_MEM;
@@ -106,7 +108,9 @@ static int hostent_cpy(struct hostent *dst, struct hostent* src)
 		strncpy(dst->h_aliases[i], src->h_aliases[i], len2);
 	}
 	/* copy h_addr_list */
-	for (len=0;src->h_addr_list[len];len++);
+	len=0;
+	if (src->h_addr_list)
+		for (;src->h_addr_list[len];len++);
 	dst->h_addr_list=(char**)malloc(sizeof(char*)*(len+1));
 	if (dst->h_addr_list==0){
 		ser_error=ret=E_OUT_OF_MEM;

@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.58 2002/09/20 19:12:38 bogdan Exp $
+ * $Id: tm.c,v 1.59 2002/09/23 16:39:02 andrei Exp $
  *
  * TM module
  *
@@ -276,7 +276,7 @@ static int mod_init(void)
 	DBG( "TM - initializing...\n");
 	/* checking if we have sufficient bitmap capacity for given
 	   maximum number of  branches */
-	if (1<<(MAX_BRANCHES+1)>UINT_MAX) {
+	if (MAX_BRANCHES+1>31) {
 		LOG(L_CRIT, "Too many max UACs for UAC branch_bm_t bitmap: %d\n",
 			MAX_BRANCHES );
 		return -1;
