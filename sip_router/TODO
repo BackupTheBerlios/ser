@@ -1,4 +1,4 @@
-$Id: TODO,v 1.5 2001/10/05 23:58:55 andrei Exp $
+$Id: TODO,v 1.6 2001/10/06 00:19:11 andrei Exp $
 
 - better Via parsing (handle ' ' in uri, eg: foo.bar : 1234 ; received=) and
  ipv6 addresses ([fec0:aa::01]).
@@ -20,6 +20,7 @@ Low priority:
 - flags for using names or ip adresses in Via ?
 
 - handle SIGCHLD, SIGHUP
+- use a  standard lex compatible .lex format (instead of flex)
 
 - make install
 - init.d scripts (and rc.local? for *BSD or Slackware)
