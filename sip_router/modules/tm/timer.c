@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.25 2002/02/26 18:44:32 bogdan Exp $
+ * $Id: timer.c,v 1.26 2002/02/27 21:30:43 bogdan Exp $
  */
 
 
@@ -160,6 +160,9 @@ void timer_routine(unsigned int ticks , void * attr)
 	struct timer_link  *tl, *tmp_tl;
 	int                           id;
 
+#ifdef BOGDAN_TRIFLE
+	DBG(" %d \n",ticks);
+#endif
 
 	for( id=0 ; id<NR_OF_TIMER_LISTS ; id++ )
 	{

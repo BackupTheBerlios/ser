@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.5 2002/01/07 04:39:50 jku Exp $
+ * $Id: timer.c,v 1.6 2002/02/27 21:30:43 bogdan Exp $
  */
 
 #include "timer.h"
@@ -109,6 +109,5 @@ unsigned int get_ticks()
 			", returning 0 (probably wrong)");
 	return 0;
 #endif
-	DBG("- get_ticks:returning %d\n", *jiffies);
 	return *jiffies;
 }
