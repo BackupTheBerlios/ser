@@ -1,6 +1,6 @@
 /*
  *
- * $Id: sl_stats.c,v 1.9 2003/06/29 20:20:06 jiri Exp $
+ * $Id: sl_stats.c,v 1.10 2003/10/24 20:23:58 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -54,14 +54,13 @@ static void add_sl_stats( struct sl_stats *t, struct sl_stats *i)
 static int print_sl_stats(FILE *reply_file)
 {
 	struct sl_stats total;
-	int b, p;
+	int p;
 
 	memset(&total, 0, sizeof(struct sl_stats));
 	if (dont_fork) {
 		add_sl_stats(&total, &sl_stats[0]);
-	} else for (b=0; b<sock_no; b++)
-		for (p=0; p<children_no; p++) 
-			add_sl_stats(&total, &sl_stats[b*children_no+p]);
+	} else for (p=0; p<process_count(); p++)
+			add_sl_stats(&total, &sl_stats[p]);
 
 	fprintf(reply_file, "200: %ld 202: %ld 2xx: %ld" CLEANUP_EOL,
 		total.err[RT_200], total.err[RT_202], total.err[RT_2xx]);
