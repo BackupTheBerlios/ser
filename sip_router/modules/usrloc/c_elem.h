@@ -1,5 +1,5 @@
 /* 
- * $Id: c_elem.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: c_elem.h,v 1.4 2002/03/05 14:36:03 janakj Exp $ 
  */
 
 #ifndef __C_ELEM_H__
@@ -43,31 +43,6 @@ c_elem_t* create_element(location_t* _loc);
  * Free all memory associated with the element
  */
 void free_element(c_elem_t* _el);
-
-
-/*
- * Add element to cache collision slot
- */
-int add_slot_elem(struct c_slot* _slot, c_elem_t* _el);
-
-
-/*
- * Remove element from cache collision slot
- */
-c_elem_t* rem_slot_elem(struct c_slot* _slot, c_elem_t* _el);
-
-
-/*
- * Add element to linked list of all elements in a cache
- */
-int add_cache_elem (struct cache* _c, c_elem_t* _el);
-
-
-/*
- * Remove element from cache linked list
- */
-c_elem_t* rem_cache_elem (struct cache* _c, c_elem_t* _el);
-
 
 /*
  * Print an element, for debugging purposes only

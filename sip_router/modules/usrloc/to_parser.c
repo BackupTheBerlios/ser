@@ -1,5 +1,5 @@
 /*
- * $Id: to_parser.c,v 1.2 2002/03/01 10:50:28 janakj Exp $
+ * $Id: to_parser.c,v 1.3 2002/03/05 14:36:03 janakj Exp $
  */
 
 #include "utils.h"
@@ -11,28 +11,26 @@
  * To field parser for usrloc module
  */
 
-/*
- * Returns username of a To field, NULL is
- * returned in case of error
- */
-char* get_to_username(char* _to, int _len)
+
+void get_to_username(str* _s)
 {
-	char* ptr, *at, *dcolon;
-#ifdef PARANOID
-	if (!_to) {
-		LOG(L_ERR, "get_to_username(): Invalid _to parameter value\n");
-		return FALSE;
+	char* at, *dcolon;
+	dcolon = find_not_quoted(_s->s, ':');
+
+	if (!dcolon) {
+		_s->len = 0;
+		return;
 	}
-#endif
-	dcolon = find_not_quoted(_to, ':');
+	_s->s = dcolon + 1;
 
-	if (!dcolon) return NULL;
-	at = strchr(_to, '@');
-	if (!at) return NULL;
-	else *at = '\0';
-
-	if (dcolon < at) return dcolon + 1;
-	else return NULL;
+	at = strchr(_s->s, '@');
+	if (at) {
+			_s->len = at - dcolon - 1;
+			_s->s[_s->len] = '\0';
+	} else {
+		_s->len = 0;
+	} 
+	return;
 }
 
 

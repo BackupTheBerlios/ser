@@ -1,5 +1,5 @@
 /* 
- * $Id: c_slot.c,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: c_slot.c,v 1.4 2002/03/05 14:36:03 janakj Exp $ 
  */
 
 #include "c_slot.h"
@@ -27,6 +27,8 @@ int init_slot(cache_t* _c, c_slot_t* _slot)
 	_slot->ll.first = NULL;
 	_slot->ll.last = NULL;
 	_slot->cache = _c;
+
+	init_lock(_slot->lock);
 	return TRUE;
 }
 

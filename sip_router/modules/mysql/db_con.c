@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.4 2002/02/24 17:11:42 janakj Exp $ 
+ * $Id: db_con.c,v 1.5 2002/03/05 14:38:46 janakj Exp $ 
  */
 
 
@@ -17,14 +17,14 @@ int use_table(db_con_t* _h, const char* _t)
 	int l;
 #ifdef PARANOID
 	if ((!_h) || (!_t)) {
-		log(L_ERR, "use_table(): Invalid parameter value\n");
+		LOG(L_ERR, "use_table(): Invalid parameter value\n");
 		return FALSE;
 	}
 #endif
 	l = strlen(_t) + 1;
 	ptr = (char*)pkg_malloc(l);
 	if (!ptr) {
-		log(L_ERR, "use_table(): No memory left\n");
+		LOG(L_ERR, "use_table(): No memory left\n");
 		return FALSE;
 	}
 	memcpy(ptr, _t, l);

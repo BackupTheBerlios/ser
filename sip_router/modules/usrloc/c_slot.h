@@ -1,5 +1,5 @@
 /* 
- * $Id: c_slot.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: c_slot.h,v 1.4 2002/03/05 14:36:03 janakj Exp $ 
  */
 
 #ifndef __C_SLOT_H__
@@ -7,6 +7,7 @@
 
 #include "c_elem.h"
 #include "cache.h"
+#include "../../fastlock.h"
 
 struct cache;
 struct c_elem;
@@ -19,6 +20,7 @@ typedef struct c_slot {
 	} ll;
 
 	struct cache* cache;           /* Cache we belong to */
+	fl_lock_t lock;                /* Cache slot lock */
 } c_slot_t;
 
 

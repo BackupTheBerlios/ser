@@ -1,11 +1,14 @@
 /* 
- * $Id: db_utils.c,v 1.2 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: db_utils.c,v 1.3 2002/03/05 14:38:46 janakj Exp $ 
  */
 
 #include "db_utils.h"
 #include <string.h>
 #include "utils.h"
 #include "defs.h"
+
+#define _XOPEN_SOURCE
+#include <time.h>
 
 /*
  * Convert time_t structure to format accepted by MySQL database

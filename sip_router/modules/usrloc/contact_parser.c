@@ -1,5 +1,5 @@
 /* 
- * $Id: contact_parser.c,v 1.4 2002/03/01 10:50:28 janakj Exp $ 
+ * $Id: contact_parser.c,v 1.5 2002/03/05 14:36:03 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -81,7 +81,7 @@ static inline void parse_param(char* _b, char** _name, char** _body)
 
 static inline void parse_params(char* _b, time_t* _exp, float* _q)
 {
-	char* p, *end, *name, *body;
+	char* p, *end = NULL, *name, *body;
 
 #ifdef PARANOID
 	if ((!_exp) || (!_q)) {
@@ -156,8 +156,7 @@ int parse_contact(char* _s, char** _url, time_t* _expire, float* _q)
  */
 int parse_contact_hdr(char* _b, location_t* _loc, int _expires, int* _star, const char* _callid, int _cseq)
 {
-	contact_t* res = NULL, *c;
-	char* body, *url;
+	char *url;
 	char* comma;
 	time_t expires;
 	float q;
@@ -180,12 +179,8 @@ int parse_contact_hdr(char* _b, location_t* _loc, int _expires, int* _star, cons
 		}
 
 		_b = eat_name(_b);
-		printf("tuc:%s\n", _b);
-
 
 		comma = find_next_contact(_b);
-
-		printf("comma: %s\n", comma);
 
 		if (comma) *comma = '\0';
 

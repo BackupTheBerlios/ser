@@ -1,5 +1,5 @@
 /*
- * $Id: auth.h,v 1.5 2002/02/26 17:36:26 janakj Exp $
+ * $Id: auth.h,v 1.6 2002/03/05 14:36:50 janakj Exp $
  */
 
 #ifndef AUTH_H
@@ -26,5 +26,16 @@ int challenge(struct sip_msg* _msg, char* _realm, char* _str2);
  */
 int authorize(struct sip_msg* _msg, char* _realm, char* _str2);
 
+
+/*
+ * Test for user id
+ */
+int is_user(struct sip_msg* _msg, char* _user, char* _str2);
+
+
+/*
+ * Test if the user belongs to given group
+ */
+int is_in_group(struct sip_msg* _msg, char* _group, char* _str2);
 
 #endif
