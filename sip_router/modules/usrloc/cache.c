@@ -1,5 +1,5 @@
 /* 
- * $Id: cache.c,v 1.16 2002/04/12 11:36:55 janakj Exp $ 
+ * $Id: cache.c,v 1.17 2002/08/08 18:17:58 janakj Exp $ 
  */
 
 #include "cache.h"
@@ -390,7 +390,7 @@ int preload_cache(cache_t* _c, db_con_t* _con)
 	}
 #endif
 
-	if (db_query(_con, NULL, NULL, columns, 0, 6, user_col, &res) == FALSE) {
+	if (db_query(_con, NULL, NULL, columns, 0, 6, user_col, &res) < 0) {
 		ERR("Error while doing db_query");
 		return FALSE;
 	}

@@ -1,5 +1,5 @@
 /* 
- * $Id: location.c,v 1.18 2002/07/25 13:48:11 janakj Exp $ 
+ * $Id: location.c,v 1.19 2002/08/08 18:17:58 janakj Exp $ 
  */
 
 #include <stdio.h>
@@ -508,7 +508,7 @@ int db_remove_location(db_con_t* _c, location_t* _loc)
 #endif
 	
 	val[0].val.string_val = _loc->user.s;
-	if (db_delete(_c, key, val, 1) == FALSE) {
+	if (db_delete(_c, key, val, 1) < 0) {
 		ERR("Error while inserting binding");
 		return FALSE;
 	}
