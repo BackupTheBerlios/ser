@@ -1,7 +1,5 @@
 /*
- *
- * $Id: ul_fifo.c,v 1.28 2004/01/23 22:32:08 janakj Exp $
- *
+ * $Id: ul_fifo.c,v 1.29 2004/03/08 14:50:27 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
