@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.2 2001/09/05 18:55:40 andrei Exp $
+ *$Id: receive.c,v 1.3 2001/09/06 02:24:00 andrei Exp $
  */
 
 #include <string.h>
@@ -11,7 +11,7 @@
 #include "forward.h"
 
 
-int receive_msg(char* buf, unsigned int len)
+int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 {
 	struct sip_msg msg;
 	struct route_elem *re;
@@ -49,8 +49,8 @@ int receive_msg(char* buf, unsigned int len)
 		}
 		re->tx++;
 		/* send msg */
-		forward_request(orig, buf, len, &msg, re);
 		DPrint(" found route to: %s\n", re->host.h_name);
+		forward_request(orig, buf, len, &msg, re, src_ip);
 	}else if (msg.first_line.type==SIP_REPLY){
 		/* sanity checks */
 		if (msg.via1.error!=VIA_PARSE_OK){
@@ -64,11 +64,11 @@ int receive_msg(char* buf, unsigned int len)
 		/* check if via1 == us */
 		
 		/* send the msg */
-		forward_reply(orig, buf, len, &msg);
-		DPrint(" reply forwarded to %s:%d\n", 
-					msg.via2.host,
-					(unsigned short) msg.via2.port
-				);
+		if (forward_reply(orig, buf, len, &msg)==0){
+			DPrint(" reply forwarded to %s:%d\n", 
+						msg.via2.host,
+						(unsigned short) msg.via2.port);
+		}
 	}
 skip:
 	free(orig);

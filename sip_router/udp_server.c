@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.2 2001/09/05 21:21:02 andrei Exp $
+ * $Id: udp_server.c,v 1.3 2001/09/06 02:24:00 andrei Exp $
  */
 
 #include <sys/types.h>
@@ -14,10 +14,6 @@
 
 
 int udp_sock;
-
-char* our_name;
-unsigned long our_address;
-unsigned short our_port;
 
 
 
@@ -37,7 +33,7 @@ int udp_init(unsigned long ip, unsigned short port)
 	}
 	/* set sock opts? */
 	optval=1;
-	if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEPORT,
+	if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEADDR,
 					&optval, sizeof(optval)) ==-1)
 	{
 		DPrint("ERROR: udp_init: setsockopt: %s\n", strerror());
@@ -82,15 +78,17 @@ int udp_rcv_loop()
 		/*debugging, make print* msg work */
 		buf[len+1]=0;
 
-		receive_msg(buf, len, from, fromlen);
-
+		receive_msg(buf, len, ((struct sockaddr_in*)from)->sin_addr.s_addr);
+		
 	skip: /* do other stuff */
 		
 	}
-
+	
+	if (from) free(from);
 	return 0;
 	
 error:
+	if (from) free(from);
 	return -1;
 }
 
