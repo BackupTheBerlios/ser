@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.12 2004/08/24 08:58:28 janakj Exp $
+ * $Id: exec.c,v 1.13 2004/09/01 10:12:42 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -160,7 +160,7 @@ int exec_str(struct sip_msg *msg, char *cmd, char *param, int param_len) {
 				goto error02;
 			}
 		} else {
-			if (append_branch(msg, uri_line, uri_len, Q_UNSPECIFIED)==-1) {
+			if (append_branch(msg, uri_line, uri_len, 0, 0, Q_UNSPECIFIED)==-1) {
 				LOG(L_ERR, "ERROR: exec_str: append_branch failed;"
 					" too many or too long URIs?\n");
 				goto error02;

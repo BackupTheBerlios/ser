@@ -1,5 +1,5 @@
 /*
- * $Id: dset.h,v 1.5 2004/04/25 15:13:24 janakj Exp $
+ * $Id: dset.h,v 1.6 2004/09/01 10:12:41 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG FOKUS
  *
@@ -35,7 +35,7 @@ struct sip_msg;
 /* 
  * Add a new branch to current transaction 
  */
-int append_branch(struct sip_msg* msg, char* uri, int uri_len, qvalue_t q);
+int append_branch(struct sip_msg* msg, char* uri, int uri_len, char* dst_uri, int dst_uri_len, qvalue_t q);
 
 
 /* 
@@ -47,7 +47,7 @@ void init_branch_iterator(void);
 /*
  * Get the next branch in the current transaction
  */
-char* next_branch(int* len, qvalue_t* q);
+char* next_branch(int* len, qvalue_t* q, char** dst_uri, int* dst_len);
 
 
 /*
