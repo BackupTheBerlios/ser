@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.h,v 1.8 2004/10/25 18:22:08 sobomax Exp $
+ * $Id: authdb_mod.h,v 1.9 2005/01/31 17:54:02 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -47,16 +47,17 @@ extern str pass_column;     /* 'password' column name */
 extern str pass_column_2;   /* Column containing HA1 string constructed
 			     * of user@domain username
 			     */
-extern str *avps_int;       /* Columns containing int AVPs to be set after successful auth */
-extern str *avps_str;       /* Columns containing str AVPs to be set after successful auth */
-extern int avps_int_n;
-extern int avps_str_n;
 
 extern int calc_ha1;          /* if set to 1, ha1 is calculated by the server */
 extern int use_domain;        /* If set to 1 then the domain will be used when selecting a row */
 
-extern pre_auth_f pre_auth_func;
-extern post_auth_f post_auth_func;
+extern db_con_t* auth_db_handle; /* database connection handle */
+extern db_func_t auth_dbf;
+
+extern auth_api_t auth_api;
+
+extern str* credentials;
+extern int credentials_n;
 
 /*
  * Pointer to reply function in stateless module

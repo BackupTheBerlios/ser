@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.h,v 1.3 2004/08/24 08:58:25 janakj Exp $
+ * $Id: authorize.h,v 1.4 2005/01/31 17:54:02 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -37,7 +37,6 @@
 int auth_db_init(char* db_url);
 int auth_db_bind(char* db_url);
 void auth_db_close();
-int auth_db_ver(char* db_url, str* name);
 
 /*
  * Authorize using Proxy-Authorization header field
