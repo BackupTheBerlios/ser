@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.4 2002/09/24 01:15:38 jiri Rel $
+ * $Id: t_reply.h,v 1.5 2002/10/21 21:24:43 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -108,6 +108,8 @@ int t_on_negative( unsigned int go_to );
 unsigned int get_on_negative();
 
 int t_retransmit_reply( struct cell *t );
+
+void tm_init_tags();
 
 #endif
 

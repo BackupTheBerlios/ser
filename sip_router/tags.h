@@ -1,5 +1,5 @@
 /*
- * $Id: tags.h,v 1.1 2002/10/21 20:30:15 jiri Exp $
+ * $Id: tags.h,v 1.2 2002/10/21 21:24:43 jiri Exp $
  *
  * - utility for generating to-tags
  *   in SER, to-tags consist of two parts: a fixed part
@@ -60,7 +60,7 @@ static inline void calc_crc_suffix( struct sip_msg *msg, char *tag_suffix)
         crcitt_string_array( tag_suffix, suffix_source, ss_nr );
 }
 
-static inline init_tags( char *tag, char **suffix, 
+static void inline init_tags( char *tag, char **suffix, 
 		char *signature, char separator )
 {
 	str src[3];

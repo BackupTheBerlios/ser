@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.61 2002/10/21 03:08:20 jiri Exp $
+ * $Id: tm.c,v 1.62 2002/10/21 21:24:43 jiri Exp $
  *
  * TM module
  *
@@ -337,6 +337,8 @@ static int mod_init(void)
 			0 /* empty param */ );
 	register_script_cb( script_init, PRE_SCRIPT_CB , 
 			0 /* empty param */ );
+
+	tm_init_tags();
 
 	return 0;
 }

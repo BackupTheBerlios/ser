@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.19 2002/10/21 19:21:50 jiri Exp $
+ * $Id: config.h,v 1.20 2002/10/21 21:24:43 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -93,5 +93,8 @@
    this hack has not been tested yet
 */
 #undef ACK_FORKING_HACK
+
+/* to-tag separator for stateful processing */
+#define TM_TAG_SEPARATOR '-'
 
 #endif
