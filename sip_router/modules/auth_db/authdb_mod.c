@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.2 2003/03/11 12:29:45 janakj Exp $ 
+ * $Id: authdb_mod.c,v 1.3 2003/03/11 12:30:32 janakj Exp $ 
  *
  * Digest Authentication Module
  *
@@ -113,8 +113,8 @@ static param_export_t params[] = {
  */
 struct module_exports exports = {
 	"auth_db", 
-	cmds,
-	params,
+	cmds,       /* Exported functions */
+	params,     /* Exported parameters */
 	mod_init,   /* module initialization function */
 	0,          /* response function */
 	destroy,    /* destroy function */
