@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.h,v 1.3 2003/06/27 18:13:31 bogdan Exp $
+ * $Id: cpl_run.h,v 1.4 2003/07/02 16:22:47 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,21 +31,23 @@
 #include "../../str.h"
 #include "../../parser/msg_parser.h"
 
-#define CPL_INCOMING_TYPE   1
-#define CPL_OUTGOING_TYPE   2
-
 #define SCRIPT_END               1
 #define SCRIPT_TO_BE_CONTINUED   2
 
+#define CPL_RUN_OUTGOING        (1<<0)
+#define CPL_RUN_INCOMING        (1<<1)
+#define CPL_LOC_SET_MODIFIED    (1<<2)
+#define CPL_PROXT_DONE          (1<<3)
 
 
 struct cpl_interpreter {
+	unsigned int flags;
 	str user;              /* user */
 	str script;            /* CPL script */
 	unsigned char *ip;     /* instruction pointer */
 	int recv_time;         /* receiving time stamp */
 	struct sip_msg *msg;
-	unsigned char  type;
+//	unsigned char  type;
 	struct location *loc_set;     /* location set */
 	str *ruri;
 	str *to;
@@ -57,8 +59,7 @@ struct cpl_interpreter {
 	str *priority;
 };
 
-struct cpl_interpreter* build_cpl_interpreter( struct sip_msg *msg,
-											str *script, unsigned int type);
+struct cpl_interpreter* new_cpl_interpreter( struct sip_msg *msg, str *script);
 
 void free_cpl_interpreter(struct cpl_interpreter *intr);
 

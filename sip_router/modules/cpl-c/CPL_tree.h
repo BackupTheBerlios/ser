@@ -1,5 +1,5 @@
 /*
- * $Id: CPL_tree.h,v 1.6 2003/06/27 18:13:31 bogdan Exp $
+ * $Id: CPL_tree.h,v 1.7 2003/07/02 16:22:47 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -182,6 +182,17 @@
 #define  MAX_NAME_SIZE               32
 #define  COMMENT_ATTR                1
 #define  MAX_COMMENT_SIZE            128
+
+/* attributes and values for EMAIL node */
+#define  TO_ATTR                     0
+#define  SUBJECT_ATTR                1
+#define  SUBJECT_EMAILHDR_STR        "subject"
+#define  SUBJECT_EMAILHDR_LEN        (sizeof(SUBJECT_EMAILHDR_STR)-1)
+#define  BODY_ATTR                   2
+#define  BODY_EMAILHDR_STR           "body"
+#define  BODY_EMAILHDR_LEN           (sizeof(BODY_EMAILHDR_STR)-1)
+#define  URL_MAILTO_STR              "mailto:"
+#define  URL_MAILTO_LEN              (sizeof(URL_MAILTO_STR)-1)
 
 /* attributs and values for SUB node */
 #define  REF_ATTR                    0
