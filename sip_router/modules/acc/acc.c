@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.7 2002/10/15 04:02:27 jiri Exp $
+ * $Id: acc.c,v 1.8 2002/10/18 00:15:20 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -161,5 +161,5 @@ void acc_ack_report(  struct cell* t , struct sip_msg *ack )
 		ack->new_uri.len, ack->new_uri.s,
 		ack->callid->body.len, ack->callid->body.s,
 		ack->from->body.len, ack->from->body.s,
-		rq->REPLY_STATUS );
+		t->uas.status );
 }
