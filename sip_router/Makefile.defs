@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.236 2003/08/20 18:21:12 andrei Exp $
+# $Id: Makefile.defs,v 1.237 2003/08/21 15:34:27 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -40,7 +40,7 @@ export makefile_defs
 VERSION = 0
 PATCHLEVEL = 8
 SUBLEVEL =   12
-EXTRAVERSION = dev-t13
+EXTRAVERSION = dev-t14
 
 RELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 OS = $(shell uname -s | sed -e s/SunOS/solaris/ | tr "[A-Z]" "[a-z]")
