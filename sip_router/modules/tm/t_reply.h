@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.5 2002/10/21 21:24:43 jiri Exp $
+ * $Id: t_reply.h,v 1.6 2003/01/06 03:55:41 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -47,6 +47,9 @@ enum rps {
 	/* provisional reply not affecting transaction state */
 	RPS_PROVISIONAL
 };
+
+enum route_mode { MODE_REQUEST=1, MODE_ONREPLY_REQUEST };
+extern enum route_mode rmode;
 
 /* branch bitmap type */
 typedef unsigned int branch_bm_t;

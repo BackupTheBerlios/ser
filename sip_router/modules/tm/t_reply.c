@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.38 2003/01/06 03:04:47 jiri Exp $
+ * $Id: t_reply.c,v 1.39 2003/01/06 03:55:41 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -49,6 +49,9 @@
 #include "t_fwd.h"
 #include "fix_lumps.h"
 #include "t_stats.h"
+
+/* are we processing original or shmemed request ? */
+enum route_mode rmode=MODE_REQUEST;
 
 /* private place where we create to-tags for replies */
 static char tm_tags[TOTAG_LEN];
@@ -858,6 +861,7 @@ void on_negative_reply( struct cell* t, struct sip_msg* msg,
 {
 	int act_ret;
 	struct sip_msg faked_msg;
+	enum route_mode backup_mode;
 
 	/* nobody cares about a negative transaction -- ok, return */
 	if (!t->on_negative) {
@@ -900,7 +904,10 @@ void on_negative_reply( struct cell* t, struct sip_msg* msg,
 	*/
 	faked_msg.id=t->uas.request->id-1;
 
+	backup_mode=rmode;
+	rmode=MODE_ONREPLY_REQUEST;
 	act_ret=run_actions(reply_rlist[t->on_negative], &faked_msg );
+	rmode=backup_mode;
 
 	if (act_ret<0) {
 		LOG(L_ERR, "on_negative_reply: Error in do_action\n");

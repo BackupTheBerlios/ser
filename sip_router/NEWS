@@ -6,7 +6,7 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.1 2003/01/05 20:14:56 jiri Exp $
+$Id: NEWS,v 1.2 2003/01/06 03:55:41 jiri Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
@@ -75,4 +75,6 @@ XXX
 
 tm module:
 ----------
-XXX t_uac/FIFO
+- t_reply_unsafe, used in former versions within reply_routes,
+  is deprecated; now t_reply is used from any places in script
+- XXX t_uac/FIFO
