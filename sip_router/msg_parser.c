@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.45 2002/03/01 15:00:14 bogdan Exp $
+ * $Id: msg_parser.c,v 1.46 2002/03/01 23:21:25 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -324,7 +324,7 @@ char* parse_hostport(char* buf, str* host, short int* port)
 		*port=0;
 	}else{
 		*tmp=0;
-		*port=str2s(tmp+1, strlen(tmp+1), &err);
+		*port=str2s((unsigned char*)(tmp+1), strlen(tmp+1), &err);
 		if (err ){
 			LOG(L_INFO, 
 					"ERROR: hostport: trailing chars in port number: %s\n",

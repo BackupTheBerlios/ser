@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.8 2002/01/15 17:36:44 bogdan Exp $
+ * $Id: proxy.c,v 1.9 2002/03/01 23:21:25 andrei Exp $
  *
  * proxy list & assoc. functions
  *
@@ -176,7 +176,7 @@ struct proxy_l* mk_proxy(char* name, unsigned short port)
 	p->port=port;
 #ifdef DNS_IP_HACK
 	len=strlen(name);
-	ip=str2ip(name, len, &err);
+	ip=str2ip((unsigned char*)name, len, &err);
 	if (err==0){
 		p->host.h_name=malloc(len+1);
 		if (p->host.h_name==0) goto error;

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.13 2002/02/11 17:56:22 andrei Exp $ 
+ * $Id: parse_via.c,v 1.14 2002/03/01 23:21:25 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1699,7 +1699,7 @@ endofpacket:
 	vb->error=VIA_PARSE_OK;
 	vb->bsize=tmp-buffer;
 	if (vb->port_str.s){
-		vb->port=str2s(vb->port_str.s, vb->port_str.len, &err);
+		vb->port=str2s((unsigned char*)vb->port_str.s, vb->port_str.len, &err);
 		if (err){
 					LOG(L_ERR, "ERROR: parse_via: invalid port number <%s>\n",
 						vb->port_str.s);
@@ -1712,7 +1712,7 @@ nextvia:
 	vb->error=VIA_PARSE_OK;
 	vb->bsize=tmp-buffer;
 	if (vb->port_str.s){
-		vb->port=str2s(vb->port_str.s, vb->port_str.len, &err);
+		vb->port=str2s((unsigned char*)vb->port_str.s, vb->port_str.len, &err);
 		if (err){
 					LOG(L_ERR, "ERROR: parse_via: invalid port number <%s>\n",
 						vb->port_str.s);

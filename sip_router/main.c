@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.65 2002/03/01 12:07:35 janakj Exp $
+ * $Id: main.c,v 1.66 2002/03/01 23:21:25 andrei Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.65 2002/03/01 12:07:35 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.66 2002/03/01 23:21:25 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -388,7 +388,7 @@ int main_loop()
 		for(;;) sleep(LONG_SLEEP);
 	}
 	
-	return 0;
+	/*return 0; */
  error:
 	return -1;
 
@@ -748,7 +748,8 @@ int main(int argc, char** argv)
 			DPrint("ERROR: could not resolve %s\n", names[r]);
 			goto error;
 		}
-		addresses[r]=*((long*)he->h_addr_list[0]);
+		memcpy(&addresses[r], he->h_addr_list[0], sizeof(int));
+		/*addresses[r]=*((long*)he->h_addr_list[0]);*/
 		printf("%s [%s] : %d\n",names[r],
 				inet_ntoa(*(struct in_addr*)&addresses[r]),
 				(unsigned short)port_no);

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.c,v 1.3 2002/02/11 17:56:22 andrei Exp $
+ * $Id: parse_fline.c,v 1.4 2002/03/01 23:21:25 andrei Exp $
  * 
  * sip first line parsing automaton
  * 
@@ -504,8 +504,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
 						break;
-						state=VER3;
-						break;
 					case L_VER:
 					case VER1:
 					case VER2:
@@ -553,8 +551,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
 						break;
-						state=VER3;
-						break;
 					case L_VER:
 					case VER1:
 					case VER2:
@@ -601,8 +597,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 					case L_URI:
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
-						break;
-						state=VER3;
 						break;
 					case L_VER:
 					case VER1:
@@ -657,8 +651,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
 						break;
-						state=VER3;
-						break;
 					case L_VER:
 					case VER1:
 					case VER2:
@@ -708,8 +700,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 					case L_URI:
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
-						break;
-						state=VER3;
 						break;
 					case L_VER:
 					case VER1:
@@ -761,8 +751,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
 						break;
-						state=VER3;
-						break;
 					case L_VER:
 					case VER1:
 					case VER2:
@@ -809,8 +797,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 					case L_URI:
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
-						break;
-						state=VER3;
 						break;
 					case L_VER:
 					case VER1:
@@ -859,8 +845,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
 						break;
-						state=VER3;
-						break;
 					case L_VER:
 					case VER1:
 					case VER2:
@@ -904,8 +888,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 					case L_URI:
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
-						break;
-						state=VER3;
 						break;
 					case L_VER:
 					case VER1:
@@ -953,8 +935,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 					case L_URI:
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
-						break;
-						state=VER3;
 						break;
 					case L_VER:
 					case VER1:
@@ -1058,8 +1038,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
 						break;
-						state=VER3;
-						break;
 					case L_VER:
 					case VER1:
 					case VER2:
@@ -1101,8 +1079,6 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 					case L_URI:
 						fl->u.request.uri.s=tmp;
 						state=P_URI;
-						break;
-						state=VER3;
 						break;
 					case L_VER:
 					case VER1:

@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.7 2002/02/14 17:41:30 andrei Exp $*
+/* $Id: shm_mem.h,v 1.8 2002/03/01 23:21:25 andrei Exp $*
  *
  * shared mem stuff
  */
@@ -126,18 +126,24 @@ again:
 
 #define shm_malloc_unsafe(_size ) \
 	MY_MALLOC(shm_block, (_size), __FILE__, __FUNCTION__, __LINE__ )
-#define shm_malloc(_size) \
-({\
-	void *p;\
-	\
+
+
+
+inline static void* shm_malloc(unsigned int size)
+{
+	void *p;
+	
 	shm_lock();\
-	p=shm_malloc_unsafe( (_size) );\
-	shm_unlock();\
-	p; \
-})
+	p=shm_malloc_unsafe(size);
+	shm_unlock();
+	return p; 
+}
+
+
 
 #define shm_free_unsafe( _p  ) \
 	MY_FREE( shm_block, (_p), __FILE__, __FUNCTION__, __LINE__ )
+
 #define shm_free(_p) \
 do { \
 		shm_lock(); \
@@ -148,21 +154,27 @@ do { \
 #define shm_resize(_p, _s ) \
 	_shm_resize( (_p), (_s),   __FILE__, __FUNCTION__, __LINE__)
 
+
+
 #else
 
+
 #define shm_malloc_unsafe(_size) MY_MALLOC(shm_block, (_size))
-#define shm_malloc(size) \
-({\
-	void *p;\
-	\
-		shm_lock();\
-		p=shm_malloc_unsafe(size); \
-		shm_unlock();\
-	 p; \
-})
+
+inline static void* shm_malloc(unsigned int size)
+{
+	void *p;
+	
+	shm_lock();
+	p=shm_malloc_unsafe(size);
+	shm_unlock();
+	 return p; 
+}
+
 
 
 #define shm_free_unsafe( _p ) MY_FREE(shm_block, (_p))
+
 #define shm_free(_p) \
 do { \
 		shm_lock(); \
@@ -170,7 +182,10 @@ do { \
 		shm_unlock(); \
 }while(0)
 
+
+
 #define shm_resize(_p, _s) _shm_resize( (_p), (_s))
+
 
 #endif
 

@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.20 2001/11/29 12:49:49 jku Exp $
+ * $Id: cfg.y,v 1.21 2002/03/01 23:21:25 andrei Exp $
  *
  *  cfg grammar
  */
@@ -592,7 +592,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 		| SET_URI error { $$=0; yyerror("missing '(' or ')' ?"); }
 		| SET_URI LPAREN error RPAREN { $$=0; yyerror("bad argument, "
 										"string expected"); }
-		| ID LPAREN RPAREN			{ f_tmp=find_export($1, 0);
+		| ID LPAREN RPAREN			{ f_tmp=(void*)find_export($1, 0);
 									   if (f_tmp==0){
 										yyerror("unknown command, missing"
 										" loadmodule?\n");
@@ -606,7 +606,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 													);
 									   }
 									}
-		| ID LPAREN STRING RPAREN { f_tmp=find_export($1, 1);
+		| ID LPAREN STRING RPAREN { f_tmp=(void*)find_export($1, 1);
 									if (f_tmp==0){
 										yyerror("unknown command, missing"
 										" loadmodule?\n");
@@ -621,7 +621,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 									}
 								  }
 		| ID LPAREN STRING  COMMA STRING RPAREN 
-								  { f_tmp=find_export($1, 2);
+								  { f_tmp=(void*)find_export($1, 2);
 									if (f_tmp==0){
 										yyerror("unknown command, missing"
 										" loadmodule?\n");

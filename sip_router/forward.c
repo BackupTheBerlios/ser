@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.37 2002/02/27 21:30:43 bogdan Exp $
+ * $Id: forward.c,v 1.38 2002/03/01 23:21:25 andrei Exp $
  */
 
 
@@ -63,8 +63,12 @@ int forward_request( struct sip_msg* msg, struct proxy_l * p)
 			p->addr_idx++;
 		p->ok=1;
 	}
-	/* ? not 64bit clean?*/
+	
+	memcpy(&(to->sin_addr.s_addr), p->host.h_addr_list[p->addr_idx],
+			sizeof(to->sin_addr.s_addr));
+	/* 
 	to->sin_addr.s_addr=*((long*)p->host.h_addr_list[p->addr_idx]);
+	*/
 
 	p->tx++;
 	p->tx_bytes+=len;
@@ -98,7 +102,7 @@ int update_sock_struct_from_via( struct sockaddr_in* to,  struct via_body* via )
 	to->sin_port = (via->port)?htons(via->port): htons(SIP_PORT);
 
 #ifdef DNS_IP_HACK
-	to->sin_addr.s_addr=str2ip(via->host.s, via->host.len, &err);
+	to->sin_addr.s_addr=str2ip((unsigned char*)via->host.s,via->host.len,&err);
 	if (err)
 #endif
 	{
@@ -109,7 +113,11 @@ int update_sock_struct_from_via( struct sockaddr_in* to,  struct via_body* via )
 					via->host.s);
 			return -1;
 		}
+		memcpy(&(to->sin_addr.s_addr), he->h_addr_list[0], 
+				sizeof(to->sin_addr.s_addr));
+		/*
 		to->sin_addr.s_addr=*((long*)he->h_addr_list[0]);
+		*/
 	}
 	return 1;
 }
