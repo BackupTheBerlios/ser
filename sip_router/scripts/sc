@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.29 2002/09/21 06:32:43 jiri Exp $
+# $Id: sc,v 1.30 2002/09/21 08:10:52 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -76,6 +76,7 @@ if [ "0$VERIFY_ACL" -eq 1 ] ; then
 	EXTRA_TEXT="ACL privileges are: $ACL_GROUPS"
 fi
 cat <<EOF
+sc $Revision: 1.30 $
 usage: 
            < subscribers >
  $CMD add <name> <password> <email> ... add a new subscriber (*)
