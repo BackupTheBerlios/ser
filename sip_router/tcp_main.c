@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.26 2003/04/16 16:17:09 andrei Exp $
+ * $Id: tcp_main.c,v 1.27 2003/05/20 17:30:39 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -177,7 +177,7 @@ struct tcp_connection* tcpconn_connect(union sockaddr_union* server)
 	int s;
 	struct socket_info* si;
 	union sockaddr_union my_name;
-	int my_name_len;
+	socklen_t my_name_len;
 	int optval;
 #ifdef DISABLE_NAGLE
 	int flag;

@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.12 2003/04/28 22:08:03 janakj Exp $
+ * $Id: reply.c,v 1.13 2003/05/20 17:30:39 andrei Exp $
  *
  * Send a reply
  *
@@ -104,7 +104,9 @@ void build_contact(ucontact_t* _c)
 	}
 
 	if (_c) {
-		DBG("build_contact(): Created Contact HF: %.*s\n", l, ZSW(b));
+		DBG("build_contact(): Created Contact HF: %.*s\n", l, /*ZSW*/(b));
+		/*b can never be 0; ZSW commented out to get rid of an icc warning
+		 * --andrei */
 	}
 }
 
