@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.27 2002/01/31 22:46:59 andrei Exp $
+ * $Id: lock.c,v 1.28 2002/02/05 01:29:28 andrei Exp $
  */
 
 
@@ -232,7 +232,6 @@ void lock_cleanup()
 
 
 
-
 /* lock sempahore s */
 #ifdef DBG_LOCK
 inline int _lock( ser_lock_t s , char *file, char *function, unsigned int line )
@@ -255,6 +254,7 @@ inline int _unlock( ser_lock_t s )
 #ifdef DBG_LOCK
 	DBG("DEBUG: unlock : entered from %s, %s:%d\n", file, function, line );
 #endif
+	
 	return change_semaphore( s, +1 );
 }
 
