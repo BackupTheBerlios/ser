@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.c,v 1.12 2003/07/30 12:22:56 bogdan Exp $
+ * $Id: cpl_parser.c,v 1.13 2003/08/01 17:04:36 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -463,16 +463,34 @@ int encript_node_attr( xmlNodePtr node, unsigned char *node_ptr,
 		/* enconding attributes and values for LANGUAGE node */
 		case LANGUAGE_NODE:
 			FOR_ALL_ATTR(node,attr) {
-				nr_attr++;
 				val = (char*)xmlGetProp(node,attr->name);
-				if (attr->name[0]=='M' || attr->name[0]=='m') {
-					*(p++) = MATCHES_ATTR;
-				} else goto error;
-				foo = strlen(val);
-				*((unsigned short*)(p)) = (unsigned short)foo;
-				p += 2;
-				memcpy(p,val,foo);
-				p += foo;
+				if (attr->name[0]!='M' && attr->name[0]!='m')
+					goto error;
+				for(end=val,foo=0;;end++) {
+					if (!foo && (*end==' ' || *end=='\t')) continue;
+					if (nr_attr>=2) goto error;
+					if (((*end)|0x20)>='a' && ((*end)|0x20)<='z') {
+						foo++; continue;
+					} else if (*end=='*' && foo==0 && nr_attr==0 &&
+					(*end==' '|| *end=='\t' || *end==0)) {
+						foo++;
+						*(p++)=MATCHES_TAG_ATTR;
+					} else if (foo && nr_attr==0 && *end=='-' ) {
+						*(p++)=MATCHES_TAG_ATTR;
+					} else if (foo && nr_attr>=0 && nr_attr<=1 &&
+					(*end==' '|| *end=='\t' || *end==0)) {
+						*(p++)=(!nr_attr)?MATCHES_TAG_ATTR:MATCHES_SUBTAG_ATTR;
+					} else goto error;
+					nr_attr++;
+					/*DBG("----> language tag=%d; %d [%.*s]\n",*(p-1),
+						foo,foo,end-foo);*/
+					*((unsigned short*)(p)) = (unsigned short)foo;
+					p += 2;
+					memcpy(p,end-foo,foo);
+					p += foo;
+					foo = 0;
+					if (*end==0) break;
+				}
 			}
 			break;
 		/* enconding attributes and values for TIME-SWITCH node */

@@ -1,5 +1,5 @@
 /*
- * $Id: CPL_tree.h,v 1.8 2003/07/30 12:22:56 bogdan Exp $
+ * $Id: CPL_tree.h,v 1.9 2003/08/01 17:04:36 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -91,7 +91,8 @@
 #define  DISPALY_VAL                 3
 
 /* attributs and values for LANGUAGE node */
-#define  MATCHES_ATTR                0
+#define  MATCHES_TAG_ATTR            0
+#define  MATCHES_SUBTAG_ATTR         1
 
 /* attributs and values for TIME-SWITCH node */
 #define  TZID_ATTR                   0
