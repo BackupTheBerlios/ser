@@ -1,5 +1,5 @@
 /* 
- * $Id: usrloc.h,v 1.4 2002/04/12 00:36:01 janakj Exp $ 
+ * $Id: usrloc.h,v 1.5 2002/04/23 09:31:25 andrei Exp $ 
  */
 
 #ifndef USRLOC_H
@@ -15,7 +15,6 @@
 #include "contact_parser.h"
 
 
-#define BUF_SIZE 256      /* Maximum buffer size */
 
 
 extern char* db_table;    /* Database table name parameter variable */

@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.16 2002/04/22 14:25:06 bogdan Exp $
+ * $Id: t_reply.c,v 1.17 2002/04/23 09:31:25 andrei Exp $
  *
  */
 
@@ -75,7 +75,6 @@ int t_send_reply( struct sip_msg* p_msg, unsigned int code, char * text,
 	}
 
 	LOCK_REPLIES( T );
-
 	relay = t_should_relay_response(T, code, branch, &save_clone);
 
 	if (save_clone)
