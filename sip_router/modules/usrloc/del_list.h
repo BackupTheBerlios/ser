@@ -1,5 +1,5 @@
 /* 
- * $Id: del_list.h,v 1.3 2002/09/19 12:23:55 jku Rel $
+ * $Id: del_list.h,v 1.4 2003/03/12 12:49:19 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -38,7 +38,7 @@ struct del_itm {
 	struct del_itm* next;
 	int user_len;
 	int cont_len;
-	char tail[0];
+	char tail[1];
 };
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: nonce.c,v 1.9 2003/03/09 13:08:04 janakj Exp $
+ * $Id: nonce.c,v 1.10 2003/03/12 12:48:11 janakj Exp $
  *
  * Nonce related functions
  *
@@ -99,10 +99,10 @@ static inline int hex2integer(char* _s)
  * Nonce value consists of time in seconds since 1.1 1970 and
  * secret phrase
  */
-inline void calc_nonce(char* _nonce, int _expires, str* _secret)
+void calc_nonce(char* _nonce, int _expires, str* _secret)
 {
 	MD5_CTX ctx;
-	char bin[16];
+	unsigned char bin[16];
 
 	MD5Init(&ctx);
 	
@@ -119,7 +119,7 @@ inline void calc_nonce(char* _nonce, int _expires, str* _secret)
 /*
  * Get expiry time from nonce string
  */
-inline time_t get_nonce_expires(str* _n)
+time_t get_nonce_expires(str* _n)
 {
 	return (time_t)hex2integer(_n->s);
 }
