@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.4 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: uac_fifo.c,v 1.5 2003/12/08 15:47:51 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -202,7 +202,7 @@ static inline int fifo_cbp(char** shm_file, char* response_file)
 		}
 		memcpy(*shm_file, response_file, fn_len);
 	} else {
-		shm_file = 0;
+		*shm_file = 0;
 	}
 	return 0;
 }
