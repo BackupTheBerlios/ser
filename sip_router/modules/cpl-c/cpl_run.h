@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.h,v 1.5 2003/07/02 20:09:43 bogdan Exp $
+ * $Id: cpl_run.h,v 1.6 2003/07/30 12:22:56 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,6 +42,8 @@
 #define CPL_LOC_SET_MODIFIED    (1<<2)
 #define CPL_PROXY_DONE          (1<<3)
 
+#define STR_NOT_FOUND           ((str*)0xffffffff)
+
 
 struct cpl_interpreter {
 	unsigned int flags;
@@ -57,7 +59,7 @@ struct cpl_interpreter {
 	str *subject;
 	str *organization;
 	str *user_agent;
-	str *accepted_langs;
+	str *accept_language;
 	str *priority;
 };
 

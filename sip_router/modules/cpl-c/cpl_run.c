@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.11 2003/07/03 17:33:18 bogdan Exp $
+ * $Id: cpl_run.c,v 1.12 2003/07/30 12:22:56 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,6 +80,8 @@ extern char *log_dir;
 
 /* include all inline functions for processing the switches */
 #include "cpl_switches.h"
+/* include inline function for running proxy node */
+#include "cpl_proxy.h"
 
 
 
@@ -774,6 +776,10 @@ int run_cpl_script( struct cpl_interpreter *intr )
 			case REMOVE_LOCATION_NODE:
 				DBG("DEBUG:run_cpl_script: processing remove_location node\n");
 				intr->ip = run_remove_location( intr );
+				break;
+			case PROXY_NODE:
+				DBG("DEBUG:run_cpl_script: processing proxy node\n");
+				intr->ip = run_proxy( intr );
 				break;
 			case REJECT_NODE:
 				DBG("DEBUG:run_cpl_script: processing reject node\n");
