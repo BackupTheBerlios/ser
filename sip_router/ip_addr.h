@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.5 2002/09/05 18:03:15 andrei Exp $
+/* $Id: ip_addr.h,v 1.6 2002/09/09 19:44:20 andrei Exp $
  *
  * ip address family realted structures
  */
@@ -113,6 +113,30 @@ inline static int matchnet(struct ip_addr* ip, struct net* net)
 		return 1;
 	};
 	return -1;
+}
+
+
+
+/* inits an ip_addr pointer from a sockaddr structure*/
+static inline void sockaddr2ip_addr(struct ip_addr* ip, struct sockaddr* sa)
+{
+	switch(sa->sa_family){
+	case AF_INET:
+			ip->af=AF_INET;
+			ip->len=4;
+			memcpy(ip->u.addr, &((struct sockaddr_in*)sa)->sin_addr, 4);
+			break;
+#ifdef USE_IPV6
+	case AF_INET6:
+			ip->af=AF_INET6;
+			ip->len=16;
+			memcpy(ip->u.addr, &((struct sockaddr_in6*)sa)->sin6_addr, 16);
+			break;
+#endif
+	default:
+			LOG(L_CRIT, "sockaddr2ip_addr: BUG: unknown address family %d\n",
+					sa->sa_family);
+	}
 }
 
 
