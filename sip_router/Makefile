@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.39 2001/12/03 22:30:58 andrei Exp $
+# $Id: Makefile,v 1.40 2001/12/03 22:58:21 bogdan Exp $
 #
 # sip_router makefile
 #
@@ -7,7 +7,7 @@
 
 auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 exclude_modules=CVS
-sources=$(filter-out $(auto_gen), $(wildcard *.c)) $(auto_gen) 
+sources=$(filter-out $(auto_gen), $(wildcard *.c)) $(auto_gen)
 objs=$(sources:.c=.o)
 depends=$(sources:.c=.d)
 modules=$(filter-out $(addprefix modules/, $(exclude_modules)), \
@@ -33,10 +33,8 @@ NAME=ser
 # PKG_MALLOC uses a faster malloc (exclusive w/ USE_SHM_MEM)
 # USE_SHM_MEM all pkg_malloc => shm_malloc (most mallocs use a common sh. mem.
 #           segment); don't define PKG_MALLOC if you want this!
-DEFS=-DTHREAD -DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM \
-	 -DPKG_MALLOC -DNO_DEBUG
-# -DUSE_SHM_MEM
-#-DNO_DEBUG 
+DEFS=-DTHREAD -DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM -DUSE_SHM_MEM \
+	 -DPKG_MALLOC  -DNO_DEBUG
 #-DPKG_MALLOC
 #-DNO_DEBUG#-DSTATS -DNO_DEBUG 
 #-DNO_LOG
