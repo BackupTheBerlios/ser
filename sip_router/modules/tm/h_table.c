@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.86 2004/02/13 18:21:33 bogdan Exp $
+ * $Id: h_table.c,v 1.87 2004/02/23 16:47:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -217,7 +217,7 @@ static void inline init_branches(struct cell *t)
 struct cell*  build_cell( struct sip_msg* p_msg )
 {
 	struct cell* new_cell;
-
+	int          sip_msg_len;
 
 	/* allocs a new cell */
 	new_cell = (struct cell*)shm_malloc( sizeof( struct cell ) );
@@ -242,9 +242,10 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 		run_reqin_callbacks( new_cell, p_msg, p_msg->REQ_METHOD);
 
 	if (p_msg) {
-		new_cell->uas.request = sip_msg_cloner(p_msg);
+		new_cell->uas.request = sip_msg_cloner(p_msg,&sip_msg_len);
 		if (!new_cell->uas.request)
 			goto error;
+		new_cell->uas.end_request=((char*)new_cell->uas.request)+sip_msg_len;
 	}
 
 	/* UAC */

@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.h,v 1.14 2003/01/21 13:53:48 jiri Exp $
+ * $Id: sip_msg.h,v 1.15 2004/02/23 16:47:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -40,7 +40,7 @@
 #define  sip_msg_free_unsafe(_p_msg) shm_free_unsafe( (_p_msg) )
 
 
-struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg );
+struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg, int *sip_msg_len );
 
 
 #endif

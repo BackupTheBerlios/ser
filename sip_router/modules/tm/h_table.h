@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.74 2004/02/13 18:21:33 bogdan Exp $
+ * $Id: h_table.h,v 1.75 2004/02/23 16:47:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -124,6 +124,7 @@ typedef struct retr_buf
 typedef struct ua_server
 {
 	struct sip_msg   *request;
+	char             *end_request;
 	struct retr_buf  response;
 	unsigned int     status;
 	/* keep to-tags for local 200 replies for INVITE -- 
