@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.14 2002/09/04 22:37:30 jku Exp $
+ * $Id: fifo_server.c,v 1.15 2002/09/05 14:21:40 jku Exp $
  *
  * Fifo server is a very powerful tool used to access easily
  * ser's internals via textual interface, similarly to
@@ -429,7 +429,7 @@ int open_fifo_server()
 	t=ctime(&up_since);
 	if (strlen(t)+1>=MAX_CTIME_LEN) {
 		LOG(L_ERR, "ERROR: open_fifo_server: "
-			"too long date %s\n", strlen(t));
+			"too long date %d\n", strlen(t));
 		return -1;
 	}
 	memcpy(up_since_ctime,t,strlen(t)+1);
