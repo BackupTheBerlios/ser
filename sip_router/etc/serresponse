@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: serresponse,v 1.15 2003/09/07 21:56:10 calrissian Exp $
+# $Id: serresponse,v 1.16 2003/09/09 00:28:31 calrissian Exp $
 #
 # PLEASE configure before use !!!
 #
@@ -116,7 +116,7 @@ if [ ! -e $LOCKF ] ; then
 	
 	if [ -e $TMP ] ; then
 		if [ $HOSTN = $RUNHOST ] ; then
-			$MAILCOMMAND -s "$SER_SUBJECT" $NOTIFY < $TMP
+			$MAILCOMMAND -s "$SERR_SUBJECT" $NOTIFY < $TMP
 			rm -f $TMP
 			touch $LOCKF
 			for i in $SMSNUMBERS; do
