@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: mangler.c,v 1.6 2003/04/11 15:34:45 gabriel Exp $
+ * $Id: mangler.c,v 1.7 2003/04/16 10:42:29 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -109,6 +109,7 @@ static cmd_export_t cmds[] =
 	{"sdp_mangle_port",sdp_mangle_port, 1,0, REQUEST_ROUTE},// fixup_char2int if I use an int as offset
 	{"encode_contact",encode_contact,2,0,REQUEST_ROUTE},//fixup_char2str
 	{"decode_contact",decode_contact,0,0,REQUEST_ROUTE},
+	{"decode_contact_header",decode_contact_header,0,0,REQUEST_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 

@@ -1,7 +1,7 @@
 /*
  *  mangler module
  *
- * $Id: contact_ops.h,v 1.5 2003/04/09 15:40:01 gabriel Exp $
+ * $Id: contact_ops.h,v 1.6 2003/04/16 10:42:29 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -68,6 +68,7 @@ typedef struct uri_format contact_fields_t;
 
 int encode_contact (struct sip_msg *msg, char *encoding_prefix,char *public_ip);
 int decode_contact (struct sip_msg *msg, char *unused1,char *unused2);
+int decode_contact_header (struct sip_msg *msg, char *unused1,char *unused2);
 	
 int encode2format (str uri, struct uri_format *format);
 int decode2format (str uri, char separator, struct uri_format *format);
