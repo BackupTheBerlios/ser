@@ -1,0 +1,391 @@
++--sipCommonMIB(9990)
+   |
+   +--sipCommonMIBNotifs(0)
+   |  |
+   |  +-- ---N INTEGER   sipNotifApplIndex(1)
+   |  |        Range: 1..2147483647
+   |  +--sipStatusCodeNotif(2)
+   |  +--sipStatusCodeThreshExceededNotif(3)
+   |
+   +--sipCommonMIBObjects(1)
+   |  |
+   |  +--sipCommonCfgBase(1)
+   |  |  |
+   |  |  +--sipCommonCfgTable(1)
+   |  |  |  |
+   |  |  |  +--sipCommonCfgEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -R-- String    sipProtocolVersion(1)
+   |  |  |     |        Textual Convention: SnmpAdminString
+   |  |  |     |        Size: 0..255
+   |  |  |     +-- -R-- EnumVal   sipServiceOperStatus(2)
+   |  |  |     |        Values: up(1), down(2), congested(3), restarting(4), quiescing(5), testing(6), unknown(7)
+   |  |  |     +-- -RW- EnumVal   sipServiceAdminStatus(3)
+   |  |  |     |        Values: noop(1), up(2), down(3), reset(4), quieseSessions(5), quieseApplication(6)
+   |  |  |     +-- -R-- TimeTicks sipServiceStartTime(4)
+   |  |  |     +-- -R-- TimeTicks sipServiceLastChange(5)
+   |  |  |     +-- -RW- String    sipOrganization(6)
+   |  |  |     |        Textual Convention: SnmpAdminString
+   |  |  |     |        Size: 0..255
+   |  |  |     +-- -R-- Unsigned  sipMaxSessions(7)
+   |  |  |     |        Range: 1..2147483647
+   |  |  |     +-- -RW- EnumVal   sipRequestUriHostMatching(8)
+   |  |  |              Textual Convention: TruthValue
+   |  |  |              Values: true(1), false(2)
+   |  |  |
+   |  |  +--sipPortTable(2)
+   |  |  |  |
+   |  |  |  +--sipPortEntry(1)
+   |  |  |     |  Index: applIndex, sipPort
+   |  |  |     |
+   |  |  |     +-- ---- INTEGER   sipPort(1)
+   |  |  |     |        Range: 1..65535
+   |  |  |     +-- CR-- BitString sipTransportRcv(2)
+   |  |  |     |        Textual Convention: SipTransportProtocol
+   |  |  |     |        Values: other(0), udp(1), tcp(2), sctp(3), tls(4)
+   |  |  |     +-- CR-- BitString sipTransportSnd(3)
+   |  |  |     |        Textual Convention: SipTransportProtocol
+   |  |  |     |        Values: other(0), udp(1), tcp(2), sctp(3), tls(4)
+   |  |  |     +-- CR-- EnumVal   sipPortStatus(4)
+   |  |  |              Textual Convention: RowStatus
+   |  |  |              Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |  |
+   |  |  +--sipUriSupportedTable(3)
+   |  |  |  |
+   |  |  |  +--sipUriSupportedEntry(1)
+   |  |  |     |  Index: applIndex, sipUriSupportedIndex
+   |  |  |     |
+   |  |  |     +-- ---- Unsigned  sipUriSupportedIndex(1)
+   |  |  |     |        Range: 1..2147483647
+   |  |  |     +-- -R-- String    sipUriSupported(2)
+   |  |  |              Textual Convention: SnmpAdminString
+   |  |  |              Size: 0..255
+   |  |  |
+   |  |  +--sipFtrSupportedTable(4)
+   |  |     |
+   |  |     +--sipFtrSupportedEntry(1)
+   |  |        |  Index: applIndex, sipFtrSupportedIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipFtrSupportedIndex(1)
+   |  |        |        Range: 1..2147483647
+   |  |        +-- -R-- String    sipFtrSupported(2)
+   |  |                 Textual Convention: SnmpAdminString
+   |  |                 Size: 0..255
+   |  |
+   |  +--sipCommonCfgTimer(2)
+   |  |  |
+   |  |  +--sipCommonCfgTimerTable(1)
+   |  |  |  |
+   |  |  |  +--sipCommonCfgTimerEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -RW- Unsigned  sipCfgInitialTimerInvite(1)
+   |  |  |     |        Range: 100..1000
+   |  |  |     +-- -RW- Unsigned  sipCfgTimerProv(2)
+   |  |  |     |        Range: 60000..300000
+   |  |  |     +-- -RW- Unsigned  sipCfgInitialTimerBye(3)
+   |  |  |     |        Range: 100..1000
+   |  |  |     +-- -RW- Unsigned  sipCfgInitialTimerRegister(4)
+   |  |  |     |        Range: 100..1000
+   |  |  |     +-- -RW- Unsigned  sipCfgInitialTimerOptions(5)
+   |  |  |     |        Range: 100..1000
+   |  |  |     +-- -RW- Unsigned  sipCfgInitialTimerInfo(6)
+   |  |  |     |        Range: 100..1000
+   |  |  |     +-- -RW- Unsigned  sipCfgInitialTimerRsp(7)
+   |  |  |     |        Range: 100..1000
+   |  |  |     +-- -RW- Unsigned  sipCfgTimerT2(8)
+   |  |  |              Range: 200..10000
+   |  |  |
+   |  |  +--sipCommonCfgTimerExtMethodTable(2)
+   |  |     |
+   |  |     +--sipCommonCfgTimerExtMethodEntry(1)
+   |  |        |  Index: applIndex, sipCfgTimerExtMethodIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipCfgTimerExtMethodIndex(1)
+   |  |        |        Range: 1..2147483647
+   |  |        +-- CR-- String    sipCfgTimerExtMethodName(2)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- CR-- Unsigned  sipCfgTimerExtMethodTimer(3)
+   |  |        +-- CR-- EnumVal   sipCfgTimerExtMethodStatus(4)
+   |  |                 Textual Convention: RowStatus
+   |  |                 Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |
+   |  +--sipCommonCfgRetry(3)
+   |  |  |
+   |  |  +--sipCommonCfgRetryTable(1)
+   |  |  |  |
+   |  |  |  +--sipCommonCfgRetryEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryInvite(1)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryBye(2)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryCancel(3)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryRegister(4)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryOptions(5)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryInfo(6)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryFinalResponse(7)
+   |  |  |     |        Range: 1..10
+   |  |  |     +-- -RW- Unsigned  sipCfgRetryNonFinalResponse(8)
+   |  |  |              Range: 1..10
+   |  |  |
+   |  |  +--sipCommonCfgRetryExtMethodTable(2)
+   |  |     |
+   |  |     +--sipCommonCfgRetryExtMethodEntry(1)
+   |  |        |  Index: applIndex, sipCfgRetryExtMethodIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipCfgRetryExtMethodIndex(1)
+   |  |        |        Range: 1..2147483647
+   |  |        +-- CR-- String    sipCfgRetryExtMethodName(2)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- CR-- Unsigned  sipCfgRetryExtMethodRetry(3)
+   |  |        +-- CR-- EnumVal   sipCfgRetryExtMethodStatus(4)
+   |  |                 Textual Convention: RowStatus
+   |  |                 Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |
+   |  +--sipCommonCfgExpires(4)
+   |  |  |
+   |  |  +--sipCommonCfgExpiresMethodTable(1)
+   |  |  |  |
+   |  |  |  +--sipCommonCfgExpiresMethodEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -RW- Unsigned  sipCfgExpiresInvite(1)
+   |  |  |     |        Range: 0..2147483647
+   |  |  |     +-- -RW- Unsigned  sipCfgExpiresRegister(2)
+   |  |  |     |        Range: 0..2147483647
+   |  |  |     +-- -RW- BitString sipCfgExpiresHeaderMethod(3)
+   |  |  |              Values: invite(0), register(1)
+   |  |  |
+   |  |  +--sipCommonCfgExpiresStatusCodeTable(2)
+   |  |     |
+   |  |     +--sipCommonCfgExpiresStatusCodeEntry(1)
+   |  |        |  Index: applIndex, sipCfgExpiresStatusCodeValue
+   |  |        |
+   |  |        +-- ---- INTEGER   sipCfgExpiresStatusCodeValue(1)
+   |  |        |        Range: 100..999
+   |  |        +-- CR-- Unsigned  sipCfgExpiresHeaderValue(2)
+   |  |        |        Range: 0..2147483647
+   |  |        +-- CR-- EnumVal   sipCfgExpiresStatusCodeStatus(3)
+   |  |                 Textual Convention: RowStatus
+   |  |                 Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |
+   |  +--sipCommonStatsSummary(5)
+   |  |  |
+   |  |  +--sipSummaryStatsTable(1)
+   |  |     |
+   |  |     +--sipSummaryStatsEntry(1)
+   |  |        |  Index: applIndex
+   |  |        |
+   |  |        +-- -R-- Counter   sipSummaryInRequests(1)
+   |  |        +-- -R-- Counter   sipSummaryOutRequests(2)
+   |  |        +-- -R-- Counter   sipSummaryInResponses(3)
+   |  |        +-- -R-- Counter   sipSummaryOutResponses(4)
+   |  |        +-- -R-- Counter   sipSummaryTotalTransactions(5)
+   |  |
+   |  +--sipCommonStatsMethod(6)
+   |  |  |
+   |  |  +--sipMethodStatsTable(1)
+   |  |  |  |
+   |  |  |  +--sipMethodStatsEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -R-- Counter   sipStatsInviteIns(1)
+   |  |  |     +-- -R-- Counter   sipStatsInviteOuts(2)
+   |  |  |     +-- -R-- Counter   sipStatsAckIns(3)
+   |  |  |     +-- -R-- Counter   sipStatsAckOuts(4)
+   |  |  |     +-- -R-- Counter   sipStatsByeIns(5)
+   |  |  |     +-- -R-- Counter   sipStatsByeOuts(6)
+   |  |  |     +-- -R-- Counter   sipStatsCancelIns(7)
+   |  |  |     +-- -R-- Counter   sipStatsCancelOuts(8)
+   |  |  |     +-- -R-- Counter   sipStatsOptionsIns(9)
+   |  |  |     +-- -R-- Counter   sipStatsOptionsOuts(10)
+   |  |  |     +-- -R-- Counter   sipStatsRegisterIns(11)
+   |  |  |     +-- -R-- Counter   sipStatsRegisterOuts(12)
+   |  |  |     +-- -R-- Counter   sipStatsInfoIns(13)
+   |  |  |     +-- -R-- Counter   sipStatsInfoOuts(14)
+   |  |  |
+   |  |  +--sipStatsExtMethodTable(2)
+   |  |     |
+   |  |     +--sipStatsExtMethodEntry(1)
+   |  |        |  Index: applIndex, sipStatsExtMethodIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipStatsExtMethodIndex(1)
+   |  |        |        Range: 1..2147483647
+   |  |        +-- CR-- String    sipStatsExtMethodName(2)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- Counter   sipStatsExtMethodIns(3)
+   |  |        +-- -R-- Counter   sipStatsExtMethodOuts(4)
+   |  |        +-- CR-- EnumVal   sipStatsExtMethodStatus(5)
+   |  |                 Textual Convention: RowStatus
+   |  |                 Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |
+   |  +--sipCommonStatusCode(7)
+   |  |  |
+   |  |  +--sipStatusCodesTable(1)
+   |  |  |  |
+   |  |  |  +--sipStatusCodesEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -R-- Counter   sipStatsInfoClassIns(1)
+   |  |  |     +-- -R-- Counter   sipStatsInfoClassOuts(2)
+   |  |  |     +-- -R-- Counter   sipStatsSuccessClassIns(3)
+   |  |  |     +-- -R-- Counter   sipStatsSuccessClassOuts(4)
+   |  |  |     +-- -R-- Counter   sipStatsRedirClassIns(5)
+   |  |  |     +-- -R-- Counter   sipStatsRedirClassOuts(6)
+   |  |  |     +-- -R-- Counter   sipStatsReqFailClassIns(7)
+   |  |  |     +-- -R-- Counter   sipStatsReqFailClassOuts(8)
+   |  |  |     +-- -R-- Counter   sipStatsServerFailClassIns(9)
+   |  |  |     +-- -R-- Counter   sipStatsServerFailClassOuts(10)
+   |  |  |     +-- -R-- Counter   sipStatsGlobalFailClassIns(11)
+   |  |  |     +-- -R-- Counter   sipStatsGlobalFailClassOuts(12)
+   |  |  |     +-- -R-- Counter   sipStatsOtherClassesIns(13)
+   |  |  |     +-- -R-- Counter   sipStatsOtherClassesOuts(14)
+   |  |  |
+   |  |  +--sipCommonStatusCodeTable(2)
+   |  |  |  |
+   |  |  |  +--sipCommonStatusCodeEntry(1)
+   |  |  |     |  Index: applIndex, sipCommonStatusCodeValue
+   |  |  |     |
+   |  |  |     +-- ---- INTEGER   sipCommonStatusCodeValue(1)
+   |  |  |     |        Range: 100..999
+   |  |  |     +-- -R-- Counter   sipCommonStatusCodeIns(2)
+   |  |  |     +-- -R-- Counter   sipCommonStatusCodeOuts(3)
+   |  |  |     +-- CR-- EnumVal   sipCommonStatusCodeStatus(4)
+   |  |  |              Textual Convention: RowStatus
+   |  |  |              Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |  |
+   |  |  +--sipCommonStatusCodeNotifTable(3)
+   |  |  |  |
+   |  |  |  +--sipCommonStatusCodeNotifEntry(1)
+   |  |  |     |
+   |  |  |     +-- CR-- EnumVal   sipCommonStatusCodeNotifSend(1)
+   |  |  |     |        Textual Convention: TruthValue
+   |  |  |     |        Values: true(1), false(2)
+   |  |  |     +-- CR-- EnumVal   sipCommonStatusCodeNotifEmitMode(2)
+   |  |  |     |        Values: normal(1), oneShot(2), triggered(3)
+   |  |  |     +-- CR-- Unsigned  sipCommonStatusCodeNotifThresh(3)
+   |  |  |     +-- CR-- Unsigned  sipCommonStatusCodeNotifInterval(4)
+   |  |  |
+   |  |  +-- ---N String    sipStatusCodeNotifTo(4)
+   |  |  |        Textual Convention: SnmpAdminString
+   |  |  |        Size: 0..255
+   |  |  +-- ---N String    sipStatusCodeNotifFrom(5)
+   |  |  |        Textual Convention: SnmpAdminString
+   |  |  |        Size: 0..255
+   |  |  +-- ---N String    sipStatusCodeNotifCallId(6)
+   |  |  |        Textual Convention: SnmpAdminString
+   |  |  |        Size: 0..255
+   |  |  +-- ---N Unsigned  sipStatusCodeNotifCSeq(7)
+   |  |
+   |  +--sipCommonStatsTrans(8)
+   |  |  |
+   |  |  +--sipCurrentTransTable(1)
+   |  |  |  |
+   |  |  |  +--sipCurrentTransEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -R-- Gauge     sipCurrentTransactions(1)
+   |  |  |              Range: 0..2147483647
+   |  |  |
+   |  |  +--sipTransactionTable(2)
+   |  |     |
+   |  |     +--sipTransactionEntry(1)
+   |  |        |  Index: applIndex, sipTransIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipTransIndex(1)
+   |  |        |        Range: 0..2147483647
+   |  |        +-- -R-- String    sipTransTo(2)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- String    sipTransFrom(3)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- String    sipTransCallId(4)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- Unsigned  sipTransCSeq(5)
+   |  |        +-- -R-- EnumVal   sipTransState(6)
+   |  |        |        Values: null(1), initial(2), calling(3), ringing(4), completed(5), callProceeding(6), failure(7), success(8), confirmed(9)
+   |  |        +-- -R-- Integer32 sipTransNumOutstandingBranches(7)
+   |  |        |        Range: 0..255
+   |  |        +-- -R-- String    sipTransExpiry(8)
+   |  |        |        Textual Convention: DateAndTime
+   |  |        |        Size: 8 | 11
+   |  |        +-- -R-- String    sipTransMethod(9)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- String    sipTransActivityInfo(10)
+   |  |                 Textual Convention: SnmpAdminString
+   |  |                 Size: 0..255
+   |  |
+   |  +--sipCommonStatsRetry(9)
+   |  |  |
+   |  |  +--sipCommonStatsRetryTable(1)
+   |  |  |  |
+   |  |  |  +--sipCommonStatsRetryEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -R-- Counter   sipStatsRetryInvites(1)
+   |  |  |     +-- -R-- Counter   sipStatsRetryByes(2)
+   |  |  |     +-- -R-- Counter   sipStatsRetryCancels(3)
+   |  |  |     +-- -R-- Counter   sipStatsRetryRegisters(4)
+   |  |  |     +-- -R-- Counter   sipStatsRetryOptions(5)
+   |  |  |     +-- -R-- Counter   sipStatsRetryInfos(6)
+   |  |  |     +-- -R-- Counter   sipStatsRetryFinalResponses(7)
+   |  |  |     +-- -R-- Counter   sipStatsRetryNonFinalResponses(8)
+   |  |  |
+   |  |  +--sipCommonStatsRetryExtMethodTable(2)
+   |  |     |
+   |  |     +--sipCommonStatsRetryExtMethodEntry(1)
+   |  |        |  Index: applIndex, sipStatsRetryExtMethodIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipStatsRetryExtMethodIndex(1)
+   |  |        |        Range: 1..2147483647
+   |  |        +-- CR-- String    sipStatsRetryExtMethodName(2)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- Counter   sipStatsRetryExtMethodRetries(3)
+   |  |        +-- CR-- EnumVal   sipStatsRetryExtMethodStatus(4)
+   |  |                 Textual Convention: RowStatus
+   |  |                 Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |
+   |  +--sipCommonStatsOther(10)
+   |     |
+   |     +--sipOtherStatsTable(1)
+   |        |
+   |        +--sipOtherStatsEntry(1)
+   |           |  Index: applIndex
+   |           |
+   |           +-- -R-- Counter   sipNumUnsupportedUris(1)
+   |
+   +--sipCommonMIBConform(2)
+      |
+      +--sipCommonMIBCompliances(1)
+      |  |
+      |  +--sipCommonCompliance(1)
+      |
+      +--sipCommonMIBGroups(2)
+         |
+         +--sipCommonConfigGroup(1)
+         +--sipCommonConfigTimerGroup(2)
+         +--sipCommonConfigTimerExtMethodGroup(3)
+         +--sipCommonConfigRetryGroup(4)
+         +--sipCommonConfigRetryExtMethodGroup(5)
+         +--sipCommonStatsGroup(6)
+         +--sipCommonStatsRetryGroup(7)
+         +--sipCommonStatsRetryExtMethodsGroup(8)
+         |
+         +--sipCommonNotifGroup(9)
+         |
+         +--sipCommonStatusCodeNotifGroup(10)
+         +--sipCommonConfigExpiresGroup(11)

@@ -1,0 +1,17 @@
+  /* change path to agentx socket. Useful when we can't run as root
+   * (e.g. make snmpd listen on a network socket and connect there 
+   * as a user program). This should be done before init_agent() */
+  if(0) {
+	  char *agentx;
+	  agentx = calloc(255, sizeof(char));
+	  sprintf(agentx, "/home/ric/agentx");
+	  netsnmp_ds_set_string(NETSNMP_DS_APPLICATION_ID, 
+			NETSNMP_DS_AGENT_X_SOCKET, agentx);
+  }
+
+  /* to enable pings. This was changed in favor of letting the user
+   * specify it from the configuration file
+   * (use agentxPingInterval <seconds> in ser_snmp.conf)
+   */
+   netsnmp_ds_set_int(NETSNMP_DS_APPLICATION_ID, 
+			NETSNMP_DS_AGENT_AGENTX_PING_INTERVAL, SER_SNMP_PING);

@@ -1,0 +1,167 @@
++--sipServerMIB(9991)
+   |
+   +--sipServerMIBObjects(1)
+   |  |
+   |  +--sipServerCfg(1)
+   |  |  |
+   |  |  +--sipServerCfgTable(1)
+   |  |     |
+   |  |     +--sipServerCfgEntry(1)
+   |  |        |  Index: applIndex
+   |  |        |
+   |  |        +-- -RW- EnumVal   sipServerHostAddrType(1)
+   |  |        |        Textual Convention: InetAddressType
+   |  |        |        Values: unknown(0), ipv4(1), ipv6(2), dns(16)
+   |  |        +-- -RW- String    sipServerHostAddr(2)
+   |  |        |        Textual Convention: InetAddress
+   |  |        |        Size: 1..254
+   |  |        +-- -R-- String    sipPgpVersion(3)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -RW- EnumVal   sipServerContactDfltAction(4)
+   |  |        |        Values: redirect(1), proxy(2)
+   |  |        +-- -RW- EnumVal   sipServerRespectUAAction(5)
+   |  |                 Textual Convention: TruthValue
+   |  |                 Values: true(1), false(2)
+   |  |
+   |  +--sipServerStats(2)
+   |  |
+   |  +--sipProxyCfg(3)
+   |  |  |
+   |  |  +--sipProxyCfgTable(1)
+   |  |     |
+   |  |     +--sipProxyCfgEntry(1)
+   |  |        |  Index: applIndex
+   |  |        |
+   |  |        +-- -RW- Unsigned  sipRequestMaxExpires(1)
+   |  |        |        Range: 0..2147483647
+   |  |        +-- -RW- EnumVal   sipProxyStatefulness(2)
+   |  |        |        Values: stateless(1), transactionStateful(2), callStateful(3)
+   |  |        +-- -RW- EnumVal   sipProxySendsCancel(3)
+   |  |        |        Textual Convention: TruthValue
+   |  |        |        Values: true(1), false(2)
+   |  |        +-- -RW- EnumVal   sipProxyForwardAll1xx(4)
+   |  |        |        Textual Convention: TruthValue
+   |  |        |        Values: true(1), false(2)
+   |  |        +-- -RW- EnumVal   sipProxyRecursion(5)
+   |  |        |        Textual Convention: TruthValue
+   |  |        |        Values: true(1), false(2)
+   |  |        +-- -RW- EnumVal   sipProxyProvideAlternatives(6)
+   |  |        |        Textual Convention: TruthValue
+   |  |        |        Values: true(1), false(2)
+   |  |        +-- -RW- EnumVal   sipProxyRecordRoute(7)
+   |  |        |        Textual Convention: TruthValue
+   |  |        |        Values: true(1), false(2)
+   |  |        +-- -RW- Integer32 sipProxyStateTimeout(8)
+   |  |        |        Range: 0..255
+   |  |        +-- -RW- BitString sipProxyAuthMethod(9)
+   |  |        |        Values: none(0), basic(1), digest(2), pgp(3)
+   |  |        +-- -RW- EnumVal   sipProxyAuthPgpAlgorithm(10)
+   |  |        |        Values: other(1), md5(2), sha1(3)
+   |  |        +-- -RW- String    sipProxyAuthRealm(11)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -RW- Integer32 sipProxyNonceLifeTime(12)
+   |  |        |        Range: 0..65535
+   |  |        +-- -RW- String    sipPgpPrivateKey(13)
+   |  |                 Size: 0..255
+   |  |
+   |  +--sipProxyStats(4)
+   |  |  |
+   |  |  +--sipProxyStatsTable(1)
+   |  |     |
+   |  |     +--sipProxyStatsEntry(1)
+   |  |        |  Index: applIndex
+   |  |        |
+   |  |        +-- -R-- Counter   sipNumProxyRequireFailures(1)
+   |  |
+   |  +--sipRedirCfg(5)
+   |  |
+   |  +--sipRedirStats(6)
+   |  |
+   |  +--sipRegCfg(7)
+   |  |  |
+   |  |  +--sipRegCfgTable(1)
+   |  |  |  |
+   |  |  |  +--sipRegCfgEntry(1)
+   |  |  |     |  Index: applIndex
+   |  |  |     |
+   |  |  |     +-- -RW- EnumVal   sipRegAllowThirdParty(1)
+   |  |  |     |        Textual Convention: TruthValue
+   |  |  |     |        Values: true(1), false(2)
+   |  |  |     +-- -RW- Unsigned  sipRegMaxContactExpiryDate(2)
+   |  |  |     |        Range: 0..2147483647
+   |  |  |     +-- -R-- Unsigned  sipRegMaxUsers(3)
+   |  |  |     |        Range: 1..2147483647
+   |  |  |     +-- -R-- Gauge     sipRegCurrentUsers(4)
+   |  |  |     |        Range: 0..2147483647
+   |  |  |     +-- -RW- Unsigned  sipRegDfltRegActiveInterval(5)
+   |  |  |              Range: 1..2147483647
+   |  |  |
+   |  |  +--sipRegUserTable(2)
+   |  |  |  |
+   |  |  |  +--sipRegUserEntry(1)
+   |  |  |     |  Index: applIndex, sipUserIndex
+   |  |  |     |
+   |  |  |     +-- ---- Unsigned  sipUserIndex(1)
+   |  |  |     |        Range: 1..2147483647
+   |  |  |     +-- CR-- String    sipUserUri(2)
+   |  |  |     |        Textual Convention: SnmpAdminString
+   |  |  |     |        Size: 0..255
+   |  |  |     +-- -R-- Counter   sipUserAuthenticationFailures(3)
+   |  |  |     +-- CR-- EnumVal   sipUserTableRowStatus(4)
+   |  |  |              Textual Convention: RowStatus
+   |  |  |              Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |  |  |
+   |  |  +--sipContactTable(3)
+   |  |     |
+   |  |     +--sipContactEntry(1)
+   |  |        |  Index: applIndex, sipUserIndex, sipContactIndex
+   |  |        |
+   |  |        +-- ---- Unsigned  sipContactIndex(1)
+   |  |        |        Range: 1..2147483647
+   |  |        +-- -R-- String    sipContactDisplayName(2)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- String    sipContactURI(3)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- TimeTicks sipContactLastUpdated(4)
+   |  |        |        Textual Convention: TimeStamp
+   |  |        +-- -R-- String    sipContactExpiry(5)
+   |  |        |        Textual Convention: DateAndTime
+   |  |        |        Size: 8 | 11
+   |  |        +-- -R-- String    sipContactPreference(6)
+   |  |        |        Textual Convention: SnmpAdminString
+   |  |        |        Size: 0..255
+   |  |        +-- -R-- EnumVal   sipContactAction(7)
+   |  |        |        Values: redirect(1), proxy(2)
+   |  |        +-- -R-- String    sipContactRetryAfter(8)
+   |  |                 Textual Convention: DateAndTime
+   |  |                 Size: 8 | 11
+   |  |
+   |  +--sipRegStats(8)
+   |     |
+   |     +--sipRegStatsTable(1)
+   |        |
+   |        +--sipRegStatsEntry(1)
+   |           |  Index: applIndex
+   |           |
+   |           +-- -R-- Counter   sipRegAcceptedRegistrations(1)
+   |           +-- -R-- Counter   sipRegRejectedRegistrations(2)
+   |
+   +--sipServerMIBConform(2)
+      |
+      +--sipServerMIBCompliances(1)
+      |  |
+      |  +--sipProxyServerCompliance(1)
+      |  +--sipRedirectServerCompliance(2)
+      |  +--sipRegistrarServerCompliance(3)
+      |
+      +--sipServerMIBGroups(2)
+         |
+         +--sipServerConfigGroup(1)
+         +--sipProxyConfigGroup(2)
+         +--sipProxyStatsGroup(3)
+         +--sipRegistrarConfigGroup(4)
+         +--sipRegistrarStatsGroup(5)

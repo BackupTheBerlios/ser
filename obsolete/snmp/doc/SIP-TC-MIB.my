@@ -1,0 +1,90 @@
+ 
+   SIP-TC DEFINITIONS ::= BEGIN    
+       
+   IMPORTS    
+        MODULE-IDENTITY,  
+        mib-2  
+             FROM SNMPv2-SMI    
+                 
+        TEXTUAL-CONVENTION    
+             FROM SNMPv2-TC;  
+  
+   sipTC MODULE-IDENTITY    
+        LAST-UPDATED   "200202040000Z"    
+        ORGANIZATION   "IETF SIP Working Group, SIP MIB Team"    
+        CONTACT-INFO    
+                "SIP MIB email: sip@ietf.org 
+       
+                 Co-editor  Kevin Lingle    
+                            Cisco Systems, Inc.    
+                 postal:    7025 Kit Creek Road    
+                            P.O. Box 14987    
+                            Research Triangle Park, NC 27709    
+                            USA    
+                 email:     klingle@cisco.com    
+                 phone:     +1 919 392 2029    
+  
+                 Co-editor  Joon Maeng    
+                            ipDialog, Inc.  
+                 postal:    7701 N. Lamar Blvd., Suite 304  
+                            Austin, TX 78752-1023  
+                            USA    
+                 email:     jmaeng@ipdialog.com    
+                 phone:     +1 512 371 1770              
+   
+                 Co-editor  Dave Walker    
+                            SS8 Networks, Inc.    
+                 postal:    495 March Road   
+                            Kanata, ON K2K 3G1   
+                            Canada    
+                 email:     drwalker@ss8.com    
+                 phone:     +1 613 592 2100   
+   
+                 Co-editor  Jean-Francois Mule    
+                            CableLabs    
+                 postal:    400 Centennial Parkway    
+                            Louisville, CO 80027    
+                            USA    
+                 email:     jf.mule@cablelabs.com    
+                 phone:     +1 303 661 3708  " 
+        DESCRIPTION    
+                "Initial version of Session Initiation Protocol (SIP)    
+                 MIB Textual Conventions module used by other    
+                 SIP-related MIB Modules."    
+        ::= { mib-2 9992 }  -- to be assigned by IANA  
+     
+   
+
+   
+    
+       
+   --    
+   -- Textual Conventions    
+   --    
+   
+   SipTransportProtocol ::= TEXTUAL-CONVENTION   
+           STATUS current   
+           DESCRIPTION   
+                "This convention is a bit map.  Each bit represents a    
+                 transport protocol.  If a bit has value 1, then that    
+                 selected transport protocol is in some way dependent 
+                 on the context of the object using this convention.      
+                 If a bit has value 0, then that transport protocol   
+                 is not selected.  Combinations of bits can be    
+                 set when multiple transport protocols are selected.   
+   
+                 bit 0   : a protocol other than those defined here.   
+                 bit 1   : User Datagram Protocol.    
+                 bit 2   : Transmission Control Protocol.    
+                 bit 3   : Stream Control Transmission Protocol.   
+                 bit 4   : Transport Layer Security Protocol."   
+           SYNTAX     BITS {    
+                            other(0),  -- none of the following   
+                            udp(1),   
+                            tcp(2),    
+                            sctp(3),   
+                            tls(4)   
+           }    
+   
+   END   
+

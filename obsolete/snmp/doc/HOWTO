@@ -1,0 +1,651 @@
+SNMP MODULE: The Naked Truth
+
+Everything about the handlers:
+- General Description
+- How To Write a Handler
+  - Writing the Handler
+  - Registering it
+    - snmp_register_handler()
+    - snmp_register_row()
+    - snmp_register_table()
+  - Testing it (look here on quick intro on how to use snmp tools)
+
+comments/flames/bugs: Ricardo Baratto - baratto@fokus.gmd.de
+
+So what's all this??
+====================
+
+There are 2 kinds of SNMP Handlers:
+- Column handlers
+- Table handlers
+
+Column handlers are responsible for operations on only one column in a 
+particular table. We use columns, instead of specific objects (row,col pair)
+to simplify the implementation, because most of the SIP MIB's tables will 
+contain only one row. However, whenever a handler is called it will be
+passed the corresponding row "number" (for tables with multiple indexes,
+this number is the last index). The possible operations are:
+GET
+SET
+UNDO
+COMMIT
+
+The last 2 are actually part of SET handling, which works like this
+(this is a simplification, but it's what a handler in ser will see):
+
+ |
+ v
+SET ---- fail ----> UNDO
+ |
+ |
+ Ok
+ |
+ v
+COMMIT
+
+The reason for the UNDO and COMMIT states is that when multiple SETs are
+issued on a single SNMP request, it's mandatory that if one of them
+fails, all of them fail. COMMIT is used to tell the handler that a SET
+was successful and can release any resources it may have taken in other
+to cope with UNDO.
+A handler doesn't need to support all operations, and in fact, it should
+only support those operations required by the MIB (it could support
+less but it shouldn't support more). 
+
+Table handlers on the other hand are in charge of a complete table. They
+should be able to handle all the possible objects in a particular table.
+They are supposed to be used by those tables for which it's impossible
+(e.g. due to efficiency or practical reasons) to keep informed the snmp
+agent of the contents of their table. 
+
+Ok, ok, so what do i have to do??
+=================================
+[NOTE: object handlers and column handlers may be used interchangeably,
+but feel free to report the use of "object handlers" as a BUG.]
+
+For column handlers is verrry easy. There are various examples for your
+reference in case the following doesn't make any sense. Good ones to look at:
+- stats.c -> Bunch of GET-only handlers
+- sipCommonCfgTable.c -> At least two GET/SET handlers, and one which handles
+  two objects at a time (waaaoooo)
+- sipCommonCfgTable.c -> look in ser_add_sipCommonCfgTable() for how to
+  register one row in one quick sweep (clap, clap, clap!!!)
+
+OK, so this is the idea:
+1. Write a cool function to support GET/SET of your object
+2. Register your function with the snmp module
+3. Wait for somebody to try to do something to your precious object (Ok, ok,
+maybe you don't have friends, or it's too late to call them and tell
+them about your new object, so i'll show you how to manipulate it yourself)
+
+Step 1: Write the handling function
+------
+
+- Start by including:
+"modules/snmp/snmp_handler.h"
+- The prototype for your handling function is the following:
+int myFunction(struct sip_snmp_obj *o, enum handler_op op)
+
+The sip_snmp_obj structure contains all the info about your object. To your
+handler the important fields are:
+
+* enum ser_type type: 
+The type of your object. ser_type is an enumeration of all the types used
+throught the SIP MIB. They provide a mapping to the types used internally
+by the SNMP library. The type for your object should be:
+SER_<type in MIB in uppercase> (e.g. EnumVal is SER_ENUMVAL)
+If in doubt, check enum ser_types in snmp_handler.h.
+
+* union {
+	void	*voidp;
+	long	*integer;
+	u_char	*string;
+} value
+This is the actual value of your object. 
+
+* size_t val_len
+The size of your object.
+
+* int row, col
+The row and column for which we're asking your function right now.
+Since we know it may be really boring to keep track of the number for 
+your particular column(s), we have #defined them nicely for you in the
+header files for each particular table in the MIB. For example, the
+column number for sipProtocolVersion in the sipCommonCfgTable is
+defined as COLUMN_SIPPROTOCOLVERSION. Yes, long and horrible names, but
+that's life :) It's actually preferred that you use these numbers instead
+of hardcoding your column numbers. If the MIB where to change, we wouldn't
+want to be asking you for the right object, and you telling us: "Oh, I'm
+an outdated piece of code and don't know about that object"
+
+The handler_op enumeration defines the possible operations for a handler:
+SER_GET, SER_SET, SER_UNDO, SER_COMMIT
+So a normal, all purpose handler would normally consist of a big switch:
+switch(op) {
+	case SER_GET:
+		/* do your get */
+	case SER_SET:
+		/* do your set */		
+	case SER_UNDO:
+		/* do your undo */		
+	case SER_COMMIT:
+		/* do your commit */
+
+Of course, each one of these can be a different function, as you'll see
+later on.
+The return value of your function should be:
+-1 on error
+0 or 1 on success (see below).
+Errors can be anything that you don't feel comfortable about, don't be shy...
+
+Ok, so what should I do on each op???
+Good question.. here it goes:
+- On GET you must do just one simple thing: Fill out o->type, o->value and
+o->val_len appropiately. It may be possible that o->value has memory
+already allocated to it (memory may be preserved across calls to your handler),
+so chk first for NULL'ness before going crazy leaking tons of precious memory.
+Please be extra careful with string objects. 
+On success you should return 0 or 1 accordingly:
+0 -> you filled the object with current info and want us to pass it back
+to the SNMP agent
+1 -> you don't care about this particular object right now. Whatever value
+is stored on the SNMP agent is ok for you. This is normally useful for
+general handlers (like table handlers), where some of the data they
+manage is static (set upon registration). It seems a good time to mention 
+that if your particular object doesn't ever change and cannot be written,
+then you don't need to write a handler for it. Only thing to do is upon
+registration pass its value and forget about it.
+Some example code of what a GET handler may look like (taken from
+serHandleStatus in sipCommonCfgTable.c):
+
+	case SER_GET:
+			if(!o->value.integer)
+				o->value.integer = calloc(1, sizeof(u_int));
+			if(!o->value.integer) {
+				LOG(L_ERR, "Help, help!!\n");
+				return -1;
+			}
+			if(o->col == COLUMN_SIPSERVICEOPERSTATUS)
+				*o->value.integer = serStatus;
+			else
+				/* for admin status always return noop(1), but this is
+				 * just to play nice. We shouldn't get called for GET
+				 * on ADMINSTATUS */
+				*o->value.integer = 1;
+			o->val_len = sizeof(serStatus);
+			o->type = SER_INTEGER;
+			break;
+
+- On SET things start to get interesting. As mentioned above, you need to
+be able to undo your changes, which definitely may complicate your life.
+The info about the new value for your object is passed in the sip_snmp_obj.
+Its type has already been checked. Note that for string objects the
+val_len member doesn't include the '\0' at the end of the string. This is
+because in SNMP, strings are not NULL terminated.
+Some code of what a SET handler may look like:
+
+		case SER_SET:
+			newS = *o->value.integer;
+			if(newS == 1) {	/* do nothing */
+				LOG(L_DBG, "%s: noop(1) state passed. Doing nothing\n", func);
+				/* so we know nothing happened in case undo is called */
+				oldS = -1;
+				break;
+			}
+			/* chk validity */
+			if(newS < 2 || newS > 6) {
+				LOG(L_ERR, "%s: Can't change to invalid operation state %d\n",
+					func, newS);
+				return -1;
+			}
+			/* for undo */
+			oldS = serStatus;
+			serStatus = newS-1;
+			break;
+
+Note that in this case, we don't need to do much for undo. Just backup the
+old value. So our UNDO part looks like:
+		case SER_UNDO:
+			if(oldS == -1)
+				break;
+			LOG(L_DBG, "%s: Undoing status change. Going back to %d\n", func,
+				oldS);
+			serStatus = oldS;
+			break;
+
+But of course, you may have needed to allocate some memory for the old value, 
+or do some preventive work. So then COMMIT is your chance to release all this
+(and breath calmly).
+
+Ok, so that covers the handler part.
+
+Step 2. Registering your handler
+------
+
+Registering is done using the sip_snmp_handler structure defined in
+snmp_handler.h as:
+struct sip_snmp_handler {
+	/* the object */
+	struct sip_snmp_obj	*sip_obj;
+	/* the functions */
+	sip_handler			on_get;
+	sip_handler			on_set;
+	sip_handler			on_end;	/* undo or commit, look at op arg */
+	struct sip_snmp_handler *next;
+};
+
+The 3 function pointers represent the possible registrations you can done.
+on_end is the place where you register your undo/commit function.
+
+Registration is done through one of the following fuctions:
+int snmp_register_handler(const char *name, struct sip_snmp_handler *h);
+int snmp_register_row(const char *name, struct sip_snmp_handler *h);
+int snmp_register_table(const char *name, struct sip_snmp_handler *h);
+
+These functions are exported to ser and registered
+as having 2 parameters. It seems like a good moment to mention all the 
+helper functions exported by the module (all are registered as having
+1 parameter):
+
+- snmp_new_handler(size_t val_len)
+Creates a new sip_snmp_handler structure with its corresponding
+sip_snmp_obj. If val_len > 0, the sip_obj->value field will be initialized
+with that amount of memory, and val_len stored in sip_obj->val_len.
+NULL is returned on error.
+
+- snmp_free_handler(struct sip_snmp_handler *h)
+free()s the memory allocated to h. If sip_obj->value is not NULL it is
+also free()d. We think this is safe since all the possible objects to which
+it can point are shallow. [ Is this true?? ]
+
+-  snmp_new_obj(enum ser_types type, void *value, size_t val_len)
+Creates a new sip_snmp_obj structure and initializes the corresponding fields.
+If val_len > 0, memory is allocated in the o->value pointer.
+
+- snmp_free_obj(struct sip_snmp_obj *o)
+If o->value is valid (not-NULL) it's free()d too.
+
+snmp_register_handler()
+-----------------------
+
+Probably the best example on how to register a handler can be found in 
+stats.c under stats_register(). The steps are straightforward:
+1- Create the handler structure (h) and set the fields you're interested in.
+Initializing h->sip_obj and h->sip_obj->value is mandatory, since we need
+to register _some_ value with the SNMP agent. If your value depends on
+the moment when you're called, just pust some dummy value ("" or 0) at
+registration time.
+It's also mandatory that if you register an on_set function, you must
+register an on_end function which handles UNDO.
+
+2- Register your function. The name parameter is the name given
+to your column in the SIP MIB. The SNMP library is relativelly good at
+finding the OID for your names so you can be relativelly sloppy with
+the passed name. You can also pass the numeric OID in a string like:
+".1.3.6.1.2.1.9990.1.8.2".
+An example:
+if(snmp_register_handler("sipProtocolVersion", h) == -1)
+	LOG(L_ERR, "Couldn't register!!!\n");
+
+3- Free the memory used by your handler. We make local copies of all the
+handlers registered so you don't need to worry about having sip_snmp_handler
+structures lying around. We don't make copies of the data (sip_obj->value), 
+and you can free it without worries since we really don't care about it
+(we actually make that pointer NULL upon copy).
+
+snmp_register_row()
+-------------------
+Use this when you want to be in charge of a table with many rows, or
+if you want to register all the handlers for one table in one single
+call. 
+All of the SIP MIB tables have applIndex as their default index, an
+object defined in the NETWORK-SERVICES MIB (this is the 
+reason why most of the tables have only 1 row). This is
+automatically assigned (by ourselves :) upon startup and is handled
+automatically for all the tables so you never have to worry about it.
+However, some tables have multiple indexes making the mapping
+appl <-> row, one to many. 
+
+For these cases, snmp_register_handler() doesn't work since it only 
+knows about 1 index: applIndex, and currently there's no way to tell 
+it about additional indexes.
+For tables with multiple indexes we created snmp_register_row().
+(however, you can still use snmp_register_row() for tables with only
+1 index. Just don't pass any index information).
+
+The parameters have different meanings to snmp_register_handler():
+- name is the name of the table to which your row(s) belong
+- h is a linked list of sip_snmp_handler's (use h->next) This linked list
+  has the index(es) for your row and then the data (a more complete
+  description is given below)
+ 
+The idea is that a new row is created every time the function is called. In
+addition, the first time it's called, the handlers passed in the linked list
+are registered for their respective columns. On the following calls,
+these are ignored, and only their sip_obj is looked at. Every time you
+need to pass a valid sip_obj structure since for every row we need to
+add some data (see discussion on this in snmp_register_handler()).
+
+The linked list you pass is compossed in the following way:
+<index1>-><index2>-><indexN>-><data1>-><data2>->...-><dataM>
+
+Note: since applIndex is normally an index into the table you don't need to 
+pass it as part of the linked list. As we said before, we take care of that
+for you. 
+Note: indexN is always put at column 1, so be careful not to pass it twice 
+(the rest of the indexes don't have a column at all)
+Note: The data must be passed in the correct column order.
+
+The tables are ordered lexicographically automatically, so you don't have 
+to insert them in any particular order.
+
+For an example of using this function look at ser_add_sipCommonCfgTable in
+sipCommonCfgTable.c. [ This example shows how to use this function with
+tables with only 1 index. An example for a multi-indexed table is in
+the ToDo list]
+
+Note: Some tables may not support this operation. applTable is currently
+the only one, but if your registration fails, look at the error messages
+printed to see if this was the reason.
+
+Note: A quick comparison between register_handler() [1] and register_row() [2]
+(this is only for the trivial case of registering handlers for a bunch of
+columns in the same table, and that there are cases where only one of them 
+can be used and this comparison becomes NULL):
+[1] requires one lookup to find the OID every time its called, while [2]
+requires only one lookup for all the columns. However, with [1] you
+can reuse your sip_snmp_handler, so there's less chance of messing
+up while managing memory. You could cut down on OID lookup by passing your
+object's OID inside the string, but then that's a pain and doesn't seem
+to be worth the trouble :)
+
+snmp_register_table()
+---------------------
+This function is sort of an extension to snmp_register_row(). Here, 
+instead of providing a bunch of handlers for each column, you provide
+a global handler which is cabable of handling all the objects in
+your table. In addition, you don't need to register any data before hand,
+you do however, need to create before hand as many rows as you plan to
+have in your table. The initial idea with this function was to provide
+a way for some tables to live completely out of the agent, where all
+the information (rows and columns) is only shown at query time. However,
+since the need for such a thing became irrelevant (mostly because of
+practical purposes) we arrived at the current implementation.
+
+The idea is the following:
+- First you create the global handler (identical to the handlers
+we've come to know and love) and then you register passing the table name.
+- Then you create as many rows as you want to report from your table
+using snmp_register_row(). snmp_register_row() will know that you
+just registered a global handler and it won't do anything with the
+handler functions in the passed structure.
+Since the idea is that you don't have to report beforehand about the data
+in your table, you could just pass the index information in your calls
+to snmp_register_row().
+- Whenever a request comes in for your table, your handling function will
+be called with a bonus: in the 'opaque' field of the sip_snmp_obj that
+your function receives, there's a pointer to a function which you can
+use to fill in the rest of the columns row by row. 
+The prototype of this function is:
+
+int replaceRow(struct sip_snmp_obj *idx, struct sip_snmp_obj *data);
+
+idx is a linked list wit the index information so we can find the row you 
+want, and data, well, is a linked list with the data (ordered by column).
+(remeber, for idx you don't need to pass applIndex)
+Probably an example will help clarify this:
+(taken from test_handler.c in the examples/ dir)
+
+/* o->opaque has function to fill up the desired row */
+/* global handler for sipTransactionTable */
+int handle_transTable(struct sip_snmp_obj* o, enum handler_op op)
+{
+	const char *func = __FUNCTION__;
+	int (*fill)(struct sip_snmp_obj *, struct sip_snmp_obj *);
+	struct sip_snmp_obj *idx, *data;
+	char *to = "ricardo@iptel.org";
+	
+	/* 
+     * Only need to fill the table when asked for the first column
+     * (the index column). We return 1 to tell the agent to use
+     * the data we stored there before. Of course you could just
+     * as well fill one column at a time if that's easier for you...
+     */
+	if(o->col != 1)
+		return 1;
+
+	if(!o->opaque) {
+		LOG(L_WARN, "%s: Invalid function to fill row!!\n", func);
+		return -1;
+	}
+	fill = o->opaque;
+
+	/* Build index info. In this case, the index is the passed row */
+	idx = snmp_new_obj(SER_INTEGER, &o->row, sizeof(unsigned int));
+	if(!idx) {
+		LOG(L_ERR, "%s: Error creating index object\n", func);
+		return -1;
+	}
+
+	/* in this case since we're lazy, we're only putting data for the 
+     * 2nd column of each row */
+	data = snmp_new_obj(SER_STRING, to, strlen(to));
+	if(!data) {
+		LOG(L_ERR, "%s: Error creating data for row\n", func);
+		snmp_free_obj(idx);
+		return -1;
+	}
+
+	/* put the data */
+	if(fill(idx, data) == -1) {
+		LOG(L_ERR, "%s: Couldn't put data into row\n", func);
+		snmp_free_obj(idx);
+		snmp_free_obj(data);
+		return -1;
+	}
+
+	/* done. If you're outside the snmp module you'll need to export
+     * this */
+	snmp_free_obj(idx);
+	snmp_free_obj(data);
+	
+	/* tell SNMP the data it wants is already there */
+	return 1;
+}
+
+[TODO]
+Some notes on this:
+- This is still beta, and it may be possible that some additional functionality
+  may be needed.
+- Initially only table traversal operations are supported as this moment for 
+  this tables (e.g. snmpwalk localhost sipTransactionTable), because this is
+  the expected operation for tables using this handlers. This is the current
+  situation:
+  -> If a GET is done for an specific object diferent from one of the row
+  indexes you declared before a GET for those indexes is done, the operation 
+  will fail since we don't know about that object. This could be fixed by 
+  implementing a new handler which replaces the SNMP lib default handler. 
+  However, we think that this sort of operation won't be very common, i.e. 
+  that a manager won't try to get a specific piece of data it doesn't even 
+  know it exists (since the number of rows is not defined by the MIB).
+  Instead it will first do a traversal (at least of the index part)
+  to figure out how many rows there are and then GET specific objects.
+  If this case, and your handler is implemented similarly to the example
+  given above, then specific GETs won't fail, although they will
+  probably show outdated information (there's no way around this: since
+  your data is probably very volatile, by the time a new GET comes
+  your rows will have changed so instead of outdated you'll have
+  inconsistent data). Probably a warning like "Table traversal is
+  the way to see this table" seems appropiate.
+  Right now it's not clear how SET could be supported (none of the tables 
+  which could take advantage of this functionality need SET, so this is 
+  low priority right now).
+
+For a complete example of how to register and use snmp_register_table()
+look in test_handler.c in the examples/ dir. If you want to see it working,
+add a call to test_globalhandler() somewhere in mod_init()
+
+Step 3. Test it!
+-------
+
+This section describes how to get and set objects for our SNMP agent. It's
+only a short introduction to the Net-SNMP tools (http://www.netsnmp.org), 
+and definitely doesn't replace reading the man pages. Recomended reading:
+snmp.conf.5, snmpd.conf.5, snmpcmd.1, snmpd.1
+The first the thing you need to know is which version of SNMP you want to
+use. If you're running the snmp module in ser as an agentx subagent (you
+have a main snmp agent, snmpd, running on your system) then you can
+use SNMP v1 or 3 (2 exists but it's mostly a transition from 1 to 2).
+If you are running the snmp module as a standalone snmp agent, then you
+can only use SNMP v1. This is because we'd need to include, among many
+other things, the implementation of the USM MIB (new security model for v3)
+in our module.
+The easiest way to configure snmp is by running the command:
+snmpconf -g basic_setup
+It will allow you to setup v3 users and v1 communities (both ro and rw), and
+do basic general setup of the agent. An example of the most basic snmpd.conf
+follows (see snmp.conf(5) for more details):
+
+# rwuser: a SNMPv3 read-write user
+#   arguments:  user [noauth|auth|priv] [restriction_oid]
+
+rwuser  ser_user auth
+
+# If you want to allow an snmp community: (use rocommunity similarly)
+# rwcommunity: a SNMPv1/SNMPv2c read-write access community name
+#   arguments:  community [default|hostname|network/bits] [oid]
+
+rwcommunity  ser_comm 127.0.0.0/8
+
+# very important. Without this
+master agentx
+
+rwuser defines v3 users. Important thing to note is that you need to tell
+the snmpd agent about this user in /var/net-snmp/snmpd.conf (i'm not 
+sure if the snmpconf script does this for you). It seems like
+the easiest way to create it is by running
+(the following is an excerpt from README.snmpv3 distributed with het-snmp):
+
+$ net-snmp-config --create-snmpv3-user -a "my_password" ser_user
+
+WARNING: SNMPv3 pass phrases must be at least 8 characters long!
+
+The above line creates the user "myuser" with a password of
+"my_password" (and uses MD5 and DES for protection).  (Note that
+encryption support isn't enabled in the binary releases downloadable
+from the net-snmp web site.)  net-snmp-config will also add a line
+to your snmpd.conf file to let that user have read/write access to
+your agent.
+
+To test it:
+$ snmpget -v 3 -u ser_user -l authNoPriv -a MD5 -A my_password localhost 
+sysUpTime.0
+
+Now, if you get tired of typing all those command lines, create a
+~/.snmp/snmp.conf file like this:
+  defSecurityName ser_user
+  defContext ""
+  defAuthType MD5
+  defSecurityLevel authNoPriv
+  defAuthPassphrase my_password
+  defVersion 3
+
+this should be readable only by you!!
+
+Now test it:
+$ snmpget localhost sysUpTime.0
+
+If you want to use v1, then, then using the community you created in 
+snmpd.conf is as simple as:
+snmpget -v 1 -c ser_comm localhost sypUpTime.0
+
+Ok, so now your snmpd agent is up and running. Run ser, if all works fine
+the snmp module should load and connect to the main snmp agent. The snmp
+module defines 3 subtrees of the MIB:
+application -> NETWORK-SERVICES-MIB
+sipCommonMIB and sipServerMIB
+[ Should we implement sipUAMIB too??]
+Since these MIBs are not part of the default set known by the standard SNMP
+agent and tools, you won't be able rightaway to do things like (all the
+following examples ignore auth parameters):
+$ snmpget localhost sipProtocolVersion.1
+It'll probably return saying it cannot find the OID for the requested
+object. What to do, what to do?? Well, you could memorize the numeric
+value for all the objects you're interested in, for example,
+sipProtocolVersion.1 is at:
+.1.3.6.1.2.1.9990.1.1.1.1.1.1
+easy, no?? :)
+ok, ok, so you're not good with numbers... so what can you do? well, it's
+very easy. In the doc/ directory of the snmp module you'll find the
+following files:
+NETWORK-SERVICES-MIB.my
+SIP-COMMON-MIB.my
+SIP-TC-MIB.my
+SIP-SERVER-MIB.my
+SIP-UA-MIB.my
+They're the standard definitions for the SIP MIB. Copy this files to
+~/.snmp/mibs
+Then define an environment variable MIBS with a comma separated list of
+the name of the MIBS you want the snmp tools to use while looking for
+oids. However, the easiest way is to do:
+export MIBS=ALL or setenv MIBS ALL
+
+!!!IMPORTANT, IMPORTANT!!!
+The user under which ser is running also needs to have this MIBs accessible.
+Probably the best approach at this point is to copy the mib files to
+/usr/local/share/snmp/mibs
+However, you still need to define $MIBS for every user that wants to
+use the snmp tools.
+
+The following is a list of the most used snmp commands (please don't consider
+this as a replacement to reading the man pages):
+
+snmpget:
+=======
+syntax:
+snmpget <machine-name> <snmp object>.<index>
+example:
+snmpget localhost sipProtocolVersion.1
+SIP-COMMON-MIB::sipProtocolVersion.1 = STRING: SIP/2.0
+notes:
+Most of the time index will be 1 and in all the tables where this is true
+it means row 1. For some tables, there may be 2 (or 3) indices, and you have
+to explicitly put them all, like:
+<snmp object>.<idx1>.<idx2>... etc...
+
+snmpwalk
+========
+syntax:
+snmpwalk <machine-name> <table-name>
+example:
+snmpwalk localhost sipCommonCfgTable
+notes:
+table-name doesn't have to be really a Table name. It can be any snmp object.
+What it does is hard to explain in words, so let's see if with a couple
+examples we can explain it better:
+$ snmpwalk localhost sipProtocolVersion.1
+SIP-COMMON-MIB::sipProtocolVersion.1 = STRING: SIP/2.0
+$ snmpwalk localhost sipCommonCfgTable
+[ prints all rows in sipCommonCfgTable, column by column ]
+$ snmpwalk localhost sipCommonMIB
+[ prints every valid object in sipCommonMIB ]
+
+So, if you look at the MIB as a tree (look at the .tree files in doc/ to see
+what I mean), snmpwalk prints everything that's under a particular node in
+the tree.
+NOTE: net-snmp 5.0.3 introduced a bug which makes 
+"snmpwalk localhost sipCommonMIB" fail, if sipCommonMIB is registered 
+through an agentx subagent. This has been fixed in the cvs version.
+
+snmpset
+=======
+syntax:
+snmpset <machine-name> <object-name>.<index> = <value>, ...
+example:
+$ snmpset localhost sipServiceAdminStatus.1 = 3
+Should shutdown ser :)
+notes:
+Instead of '=' you can put the specific data type. Look at the man
+page for the conventions. 
+You can send a bunch of sets in one single command. However, if one of them
+fails, all will fail.

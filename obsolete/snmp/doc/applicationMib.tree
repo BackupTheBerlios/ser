@@ -1,0 +1,80 @@
++--application(27)
+   |
+   +--applTable(1)
+   |  |
+   |  +--applEntry(1)
+   |     |  Index: applIndex
+   |     |
+   |     +-- ---- INTEGER   applIndex(1)
+   |     |        Range: 1..2147483647
+   |     +-- -R-- String    applName(2)
+   |     |        Textual Convention: SnmpAdminString
+   |     |        Size: 0..255
+   |     +-- -R-- String    applDirectoryName(3)
+   |     |        Textual Convention: DistinguishedName
+   |     |        Size: 0..255
+   |     +-- -R-- String    applVersion(4)
+   |     |        Textual Convention: SnmpAdminString
+   |     |        Size: 0..255
+   |     +-- -R-- TimeTicks applUptime(5)
+   |     |        Textual Convention: TimeStamp
+   |     +-- -R-- EnumVal   applOperStatus(6)
+   |     |        Values: up(1), down(2), halted(3), congested(4), restarting(5), quiescing(6)
+   |     +-- -R-- TimeTicks applLastChange(7)
+   |     |        Textual Convention: TimeStamp
+   |     +-- -R-- Gauge     applInboundAssociations(8)
+   |     +-- -R-- Gauge     applOutboundAssociations(9)
+   |     +-- -R-- Counter   applAccumulatedInboundAssociations(10)
+   |     +-- -R-- Counter   applAccumulatedOutboundAssociations(11)
+   |     +-- -R-- TimeTicks applLastInboundActivity(12)
+   |     |        Textual Convention: TimeStamp
+   |     +-- -R-- TimeTicks applLastOutboundActivity(13)
+   |     |        Textual Convention: TimeStamp
+   |     +-- -R-- Counter   applRejectedInboundAssociations(14)
+   |     +-- -R-- Counter   applFailedOutboundAssociations(15)
+   |     +-- -R-- String    applDescription(16)
+   |     |        Textual Convention: SnmpAdminString
+   |     |        Size: 0..255
+   |     +-- -R-- String    applURL(17)
+   |              Textual Convention: URLString
+   |              Size: 0..255
+   |
+   +--assocTable(2)
+   |  |
+   |  +--assocEntry(1)
+   |     |  Index: applIndex, assocIndex
+   |     |
+   |     +-- ---- INTEGER   assocIndex(1)
+   |     |        Range: 1..2147483647
+   |     +-- -R-- String    assocRemoteApplication(2)
+   |     |        Textual Convention: SnmpAdminString
+   |     |        Size: 0..255
+   |     +-- -R-- ObjID     assocApplicationProtocol(3)
+   |     +-- -R-- EnumVal   assocApplicationType(4)
+   |     |        Values: uainitiator(1), uaresponder(2), peerinitiator(3), peerresponder(4)
+   |     +-- -R-- TimeTicks assocDuration(5)
+   |              Textual Convention: TimeStamp
+   |
+   +--applConformance(3)
+   |  |
+   |  +--applGroups(1)
+   |  |  |
+   |  |  +--assocRFC1565Group(2)
+   |  |  +--applRFC2248Group(3)
+   |  |  +--assocRFC2248Group(4)
+   |  |  +--applRFC2788Group(5)
+   |  |  +--assocRFC2788Group(6)
+   |  |  +--applRFC1565Group(7)
+   |  |
+   |  +--applCompliances(2)
+   |     |
+   |     +--applCompliance(1)
+   |     +--assocCompliance(2)
+   |     +--applRFC2248Compliance(3)
+   |     +--assocRFC2248Compliance(4)
+   |     +--applRFC2788Compliance(5)
+   |     +--assocRFC2788Compliance(6)
+   |
+   +--applTCPProtoID(4)
+   |
+   +--applUDPProtoID(5)

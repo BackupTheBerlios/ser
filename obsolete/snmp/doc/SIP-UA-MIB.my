@@ -1,0 +1,249 @@
+   SIP-UA-MIB DEFINITIONS ::= BEGIN    
+       
+   IMPORTS    
+        MODULE-IDENTITY,    
+        OBJECT-TYPE,    
+        Unsigned32,  
+        mib-2  
+             FROM SNMPv2-SMI    
+       
+        MODULE-COMPLIANCE,    
+        OBJECT-GROUP  
+             FROM SNMPv2-CONF    
+   
+        RowStatus   
+             FROM SNMPv2-TC   
+   
+        applIndex    
+             FROM NETWORK-SERVICES-MIB   
+   
+        InetAddressType,   
+        InetAddress   
+             FROM INET-ADDRESS-MIB;   
+       
+       
+   sipUAMIB MODULE-IDENTITY    
+        LAST-UPDATED   "200202040000Z"    
+        ORGANIZATION   "IETF SIP Working Group, SIP MIB Team"    
+        CONTACT-INFO    
+                "SIP MIB email: sip@ietf.org 
+       
+                 Co-editor  Kevin Lingle    
+                            Cisco Systems, Inc.    
+                 postal:    7025 Kit Creek Road    
+                            P.O. Box 14987    
+                            Research Triangle Park, NC 27709    
+                            USA    
+                 email:     klingle@cisco.com    
+                 phone:     +1 919 392 2029    
+       
+                 Co-editor  Joon Maeng    
+                            ipDialog, Inc.  
+                 postal:    7701 N. Lamar Blvd., Suite 304  
+                            Austin, TX 78752-1023  
+                            USA    
+                 email:     jmaeng@ipdialog.com    
+                 phone:     +1 512 371 1770              
+     
+   
+
+   
+    
+   
+                 Co-editor  Dave Walker    
+                            SS8 Networks, Inc.    
+                 postal:    495 March Road   
+                            Kanata, ON K2K 3G1   
+                            Canada    
+                 email:     drwalker@ss8.com    
+                 phone:     +1 613 592 2100   
+ 
+                 Co-editor  Jean-Francois Mule    
+                            CableLabs    
+                 postal:    400 Centennial Parkway    
+                            Louisville, CO 80027    
+                            USA    
+                 email:     jf.mule@cablelabs.com    
+                 phone:     +1 303 661 3708  " 
+        DESCRIPTION    
+                "Initial version of Session Initiation Protocol (SIP)    
+                 User Agent (UA) MIB module.    
+                     
+                 SIP is an application-layer signalling protocol for     
+                 creating, modifying and terminating multimedia     
+                 sessions with one or more participants. These sessions    
+                 include 
+                 telephone calls.  SIP is defined in RFC 2543 (March     
+                 1999).    
+                     
+                 A User Agent is an application that contains both a    
+                 User Agent Client (UAC) and a User Agent Server (UAS).    
+                 A UAC is an application that initiates a SIP request.    
+                 A UAS is an application that contacts the user when a    
+                 SIP request is received and that returns a response on    
+                 behalf of the user.  The response accepts, rejects, or    
+                 redirects the request."    
+        ::= { mib-2 9992 }  -- to be assigned by IANA  
+  
+   -- Top-Level Components of this MIB.       
+   sipUAMIBObjects       OBJECT IDENTIFIER ::= { sipUAMIB 1 }  
+   sipUAMIBConform       OBJECT IDENTIFIER ::= { sipUAMIB 2 }  
+       
+   --    
+   -- This MIB contains objects related to SIP User Agents.    
+   --    
+   sipUACfgSipServer     OBJECT IDENTIFIER ::= { sipUAMIBObjects 1 }   
+       
+   --    
+   -- SIP Server Configuration    
+   --        
+   sipUACfgSipServerTable OBJECT-TYPE    
+       SYNTAX      SEQUENCE OF SipUACfgSipServerEntry    
+       MAX-ACCESS not-accessible    
+       STATUS     current    
+       DESCRIPTION    
+            "This table contains SIP server configuration objects    
+             applicable to each SIP user agent in this system."  
+       ::= { sipUACfgSipServer 1 }    
+       
+     
+   
+
+   
+    
+   sipUACfgSipServerEntry OBJECT-TYPE    
+       SYNTAX     SipUACfgSipServerEntry    
+       MAX-ACCESS not-accessible    
+       STATUS     current    
+       DESCRIPTION    
+            "A row of server configuration.  
+  
+             Each row represents those objects for a particular SIP   
+             user agent present in this system.  applIndex is used to   
+             uniquely identify these instances of SIP user agents and   
+             correlate them through the common framework of the   
+             NETWORK-SERVICES-MIB (RFC 2788). The same value of 
+             applIndex used in the corresponding SIP-COMMON-MIB is 
+             used here."  
+       INDEX { applIndex, sipUACfgSipServerAddrIndex }    
+       ::= { sipUACfgSipServerTable 1 }    
+       
+   SipUACfgSipServerEntry ::=    
+       SEQUENCE {    
+                sipUACfgSipServerAddrIndex   Unsigned32,   
+                sipUACfgSipServerAddrType    InetAddressType,   
+                sipUACfgSipServerAddr        InetAddress,   
+                sipUACfgSipServerAddrStatus  RowStatus                 
+       }    
+      
+   sipUACfgSipServerAddrIndex OBJECT-TYPE    
+       SYNTAX     Unsigned32   
+       MAX-ACCESS not-accessible    
+       STATUS     current    
+       DESCRIPTION    
+            "A unique identifier of a server address when   
+             multiple addresses are configured by the SIP entity.   
+             If one address isn't reachable, then another can   
+             be tried."   
+       ::= { sipUACfgSipServerEntry 1 }    
+   
+   sipUACfgSipServerAddrType OBJECT-TYPE    
+       SYNTAX     InetAddressType   
+       MAX-ACCESS read-create   
+       STATUS     current    
+       DESCRIPTION    
+            "This object specifies the type of address contained   
+             in the associated instance of sipUACfgSipServerAddr."   
+       REFERENCE "INET-ADDRESS-MIB (RFC 2851)"   
+       DEFVAL { ipv4 }   
+       ::= { sipUACfgSipServerEntry 2 }    
+       
+   sipUACfgSipServerAddr OBJECT-TYPE    
+       SYNTAX     InetAddress   
+       MAX-ACCESS read-create   
+       STATUS     current    
+       DESCRIPTION    
+            "This object specifies the address of a SIP server   
+             this user agent will use to proxy/redirect calls."   
+       ::= { sipUACfgSipServerEntry 3 }    
+ 
+   
+     
+   
+
+   
+    
+   sipUACfgSipServerAddrStatus OBJECT-TYPE    
+       SYNTAX     RowStatus   
+       MAX-ACCESS read-create   
+       STATUS     current    
+       DESCRIPTION    
+            "This object is used to control rows in this table.   
+               
+             'active'        : the row's information is completely   
+                               populated and that information is    
+                               being used by the user agent.   
+   
+             'notInService'  : the row's address is not being used   
+                               by the user agent, but will remain in 
+                               the table.   
+   
+             'notReady'      : key information is missing thus,  
+                               preventing the row from being made  
+                               'active' (eg, no address specified).   
+   
+             'createAndGo'   : only allowed if the manager also  
+                               provides a varbind for  
+                               sipUACfgSipServerAddr object in the  
+                               same set operation.   
+   
+             'createAndWait' : not applicable.   
+   
+             'destroy'       : the row's address will no longer be used   
+                               by the user agent and the row will be   
+                               removed from the table."   
+       ::= { sipUACfgSipServerEntry 4 }    
+       
+   --    
+   -- Conformance    
+   --    
+   sipUAMIBCompliances          
+     OBJECT IDENTIFIER ::= { sipUAMIBConform 1 }    
+   sipUAMIBGroups               
+     OBJECT IDENTIFIER ::= { sipUAMIBConform 2 }    
+       
+   --    
+   -- Compliance Statements    
+   --    
+   sipUACompliance MODULE-COMPLIANCE    
+       STATUS     current    
+       DESCRIPTION    
+            "The compliance statement for SIP entities."    
+       MODULE -- this module    
+            MANDATORY-GROUPS { sipUAConfigGroup }    
+       ::= { sipUAMIBCompliances 1 }    
+       
+   --    
+   -- Units of Conformance    
+   --    
+   sipUAConfigGroup OBJECT-GROUP    
+       OBJECTS {    
+               sipUACfgSipServerAddrType,   
+               sipUACfgSipServerAddr,   
+     
+   
+
+   
+    
+      
+     
+               sipUACfgSipServerAddrStatus   
+       }    
+       STATUS  current    
+       DESCRIPTION    
+            "A collection of objects providing configuration for    
+             SIP User Agents."    
+       ::= { sipUAMIBGroups 1 }    
+       
+   END   
+

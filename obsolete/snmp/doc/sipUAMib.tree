@@ -1,0 +1,31 @@
++--sipUAMIB(9992)
+   |
+   +--sipUAMIBObjects(1)
+   |  |
+   |  +--sipUACfgSipServer(1)
+   |     |
+   |     +--sipUACfgSipServerTable(1)
+   |        |
+   |        +--sipUACfgSipServerEntry(1)
+   |           |  Index: applIndex, sipUACfgSipServerAddrIndex
+   |           |
+   |           +-- ---- Unsigned  sipUACfgSipServerAddrIndex(1)
+   |           +-- CR-- EnumVal   sipUACfgSipServerAddrType(2)
+   |           |        Textual Convention: InetAddressType
+   |           |        Values: unknown(0), ipv4(1), ipv6(2), dns(16)
+   |           +-- CR-- String    sipUACfgSipServerAddr(3)
+   |           |        Textual Convention: InetAddress
+   |           |        Size: 0..255
+   |           +-- CR-- EnumVal   sipUACfgSipServerAddrStatus(4)
+   |                    Textual Convention: RowStatus
+   |                    Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |
+   +--sipUAMIBConform(2)
+      |
+      +--sipUAMIBCompliances(1)
+      |  |
+      |  +--sipUACompliance(1)
+      |
+      +--sipUAMIBGroups(2)
+         |
+         +--sipUAConfigGroup(1)
