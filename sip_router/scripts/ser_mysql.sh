@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.61 2004/10/25 18:22:08 sobomax Exp $
+# $Id: ser_mysql.sh,v 1.62 2004/11/03 12:35:51 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -588,7 +588,7 @@ CREATE TABLE usr_preferences (
   attribute varchar(32) NOT NULL default '',
   value varchar(128) NOT NULL default '',
   modified timestamp(14) NOT NULL,
-  PRIMARY KEY  (attribute,uuid)
+  PRIMARY KEY  (attribute,$USERCOL,domain)
 ) $TABLE_TYPE;
 
 
