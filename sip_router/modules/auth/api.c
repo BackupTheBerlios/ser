@@ -1,5 +1,5 @@
 /*
- * $Id: api.c,v 1.8 2004/04/27 21:59:33 jiri Exp $
+ * $Id: api.c,v 1.9 2004/04/28 13:44:23 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -41,18 +41,18 @@
  * if realm determined from request, look if there are some
  * modification rules
  */
-void strip_realm(str *_realm)
+void strip_realm(str* _realm)
 {
 	/* no param defined -- return */
 	if (!realm_prefix.len) return;
 
 	/* prefix longer than realm -- return */
-	if (realm_prefix.len>_realm->len) return;
+	if (realm_prefix.len > _realm->len) return;
 
 	/* match ? -- if so, shorten realm -*/
-	if (memcmp(realm_prefix.s,_realm->s,realm_prefix.len)==0) {
-		_realm->s+=realm_prefix.len;
-		_realm->len-=realm_prefix.len;
+	if (memcmp(realm_prefix.s, _realm->s, realm_prefix.len) == 0) {
+		_realm->s += realm_prefix.len;
+		_realm->len -= realm_prefix.len;
 	}
 	return;
 }

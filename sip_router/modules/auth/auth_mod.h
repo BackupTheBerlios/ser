@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.h,v 1.18 2004/04/27 21:59:33 jiri Exp $
+ * $Id: auth_mod.h,v 1.19 2004/04/28 13:44:23 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -45,7 +45,7 @@ extern str secret;            /* secret phrase used to generate nonce */
 extern int nonce_expire;      /* nonce expire interval */
 extern str rpid_prefix;       /* Remote-Party-ID prefix */
 extern str rpid_suffix;       /* Remote-Party-ID suffix */
-extern str realm_prefix; /* stripp off auto-generated realm */
+extern str realm_prefix;      /* stripp off auto-generated realm */
 
 
 /* Stateless reply function pointer */
