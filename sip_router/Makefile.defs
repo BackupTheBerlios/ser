@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.42 2002/02/12 20:45:43 andrei Exp $
+# $Id: Makefile.defs,v 1.43 2002/02/13 20:33:53 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -9,7 +9,7 @@
 VERSION = 0
 PATCHLEVEL = 8
 SUBLEVEL = 6
-EXTRAVERSION = 1
+EXTRAVERSION = 2
 
 RELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 OS = $(shell uname -s)
@@ -78,6 +78,9 @@ endif
 
 ifeq ($(ARCH), sparc64)
 	DEFS+= -DFAST_LOCK
+ifeq($(OS), SunOs)
+	CFLAGS+= -mv8 -Wa,-xarch=v8plus
+endif
 endif
 
 
@@ -141,6 +144,7 @@ ifeq  ($(OS), SunOS)
 
 YACC=yacc
 LIBS+=-L/usr/local/lib -lxnet -lrt # or -lnsl -lsocket or -lglibc ?
+# -lrt needed for sched_yield
 
 endif
 ifeq ($(OS), FreeBSD)
