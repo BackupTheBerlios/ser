@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.9 2003/05/09 13:44:47 andrei Exp $
+ * $Id: dlg.c,v 1.10 2003/07/02 12:09:30 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -225,7 +225,6 @@ static inline int get_contact_uri(struct sip_msg* _m, str* _uri)
 		return -3;
 	}
 
-	     /* FIXME: c->uri may contain name-addr !! */
 	_uri->s = c->uri.s;
 	_uri->len = c->uri.len;
 	return 0;
