@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.16 2001/10/26 00:39:42 andrei Exp $
+ * $Id: main.c,v 1.17 2001/10/26 20:28:55 andrei Exp $
  */
 
 #include <stdio.h>
@@ -29,8 +29,8 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.16 2001/10/26 00:39:42 andrei Exp $";
-static char version[]="ser 0.8.2";
+static char id[]="@(#) $Id: main.c,v 1.17 2001/10/26 20:28:55 andrei Exp $";
+static char version[]="ser 0.8.3";
 static char flags[]="NOCR:"
 #ifdef NOCR
 "On"

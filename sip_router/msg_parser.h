@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.6 2001/10/23 19:59:08 andrei Exp $
+ * $Id: msg_parser.h,v 1.7 2001/10/26 20:28:55 andrei Exp $
  */
 
 #ifndef msg_parser_h
@@ -102,6 +102,7 @@ char* parse_hostport(char* buf, char** host, short int* port);
 char* parse_via_body(char* buffer,unsigned int len, struct via_body * vb);
 int parse_msg(char* buf, unsigned int len, struct sip_msg* msg);
 int parse_uri(char *buf, int len, struct sip_uri* uri);
+void free_uri(struct sip_uri* u);
 
 
 

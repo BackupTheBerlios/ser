@@ -1,4 +1,4 @@
-/* $Id: data_lump.c,v 1.2 2001/10/24 19:17:54 andrei Exp $
+/* $Id: data_lump.c,v 1.3 2001/10/26 20:28:55 andrei Exp $
  *
  */
 
@@ -186,14 +186,30 @@ void free_lump(struct lump* lmp)
 
 void free_lump_list(struct lump* l)
 {
-	struct lump* t, *crt;
+	struct lump* t, *r, *foo,*crt;
 	t=l;
 	while(t){
 		crt=t;
 		t=t->next;
-		/* dangerous recursive clean*/
+	/*
+		 dangerous recursive clean
 		if (crt->before) free_lump_list(crt->before);
 		if (crt->after)  free_lump_list(crt->after);
+	*/
+		/* no more recursion, clean after and before and that's it */
+		r=crt->before;
+		while(r){
+			foo=r; r=r->before;
+			free_lump(foo);
+			free(foo);
+		}
+		r=crt->after;
+		while(r){
+			foo=r; r=r->after;
+			free_lump(foo);
+			free(foo);
+		}
+		
 		/*clean current elem*/
 		free_lump(crt);
 		free(crt);

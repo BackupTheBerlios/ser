@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.6 2001/10/24 12:43:39 andrei Exp $
+ * $Id: route_struct.h,v 1.7 2001/10/26 20:28:55 andrei Exp $
  *
  */
 
@@ -15,7 +15,7 @@ enum { FORWARD_T=1, SEND_T, DROP_T, LOG_T, ERROR_T, ROUTE_T, EXEC_T,
 		SET_HOST_T, SET_HOSTPORT_T, SET_USER_T, SET_USERPASS_T, 
 		SET_PORT_T, SET_URI_T, IF_T, MODULE_T };
 enum { NOSUBTYPE=0, STRING_ST, NET_ST, NUMBER_ST, IP_ST, RE_ST, PROXY_ST,
-		EXPR_ST, ACTIONS_ST, CMDF_ST };
+		EXPR_ST, ACTIONS_ST, CMDF_ST, MODFIXUP_ST, URIHOST_ST, URIPORT_ST };
 
 	
 struct expr{

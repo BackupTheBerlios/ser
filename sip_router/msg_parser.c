@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.9 2001/09/26 17:18:02 andrei Exp $
+ * $Id: msg_parser.c,v 1.10 2001/10/26 20:28:55 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -382,16 +382,6 @@ error:
 }
 
 
-			
-
-			
-			
-	
-		
-	
-	
-
-
 
 /* parses a via body, returns next via (for compact vias) & fills vb,
  * the buffer should be null terminated! */
@@ -686,3 +676,16 @@ error:
 	return -1;
 }
 
+
+
+void free_uri(struct sip_uri* u)
+{
+	if (u){
+		if (u->user) free(u->user);
+		if (u->passwd) free(u->passwd);
+		if (u->host) free(u->host);
+		if (u->port) free(u->port);
+		if (u->params) free(u->params);
+		if (u->headers) free(u->headers);
+	}
+}
