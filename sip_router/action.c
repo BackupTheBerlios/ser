@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.47 2003/04/06 14:05:35 andrei Exp $
+ * $Id: action.c,v 1.48 2003/04/11 16:58:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -140,6 +140,22 @@ int do_action(struct action* a, struct sip_msg* msg)
 										" param type (%d)\n", a->p2_type);
 							ret=E_UNSPEC;
 							goto error_fwd_uri;
+				}
+				switch(u->proto){
+					case PROTO_NONE:
+						proto=PROTO_UDP;
+						break;
+					case PROTO_UDP:
+#ifdef USE_TCP
+					case PROTO_TCP:
+#endif
+						proto=u->proto;
+						break;
+					default:
+						LOG(L_ERR,"ERROR: do action: forward: bad uri protocol"
+								" %d\n", u->proto);
+						ret=E_BAD_PROTO;
+						goto error_fwd_uri;
 				}
 				/* create a temporary proxy*/
 				p=mk_proxy(&u->host, port, proto);

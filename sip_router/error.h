@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.8 2003/01/21 13:53:48 jiri Exp $
+ * $Id: error.h,v 1.9 2003/04/11 16:58:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,6 +55,8 @@
 #define E_BAD_ADDRESS -478
 /* unparseable URI */
 #define E_BAD_URI 	  -479
+/* bad protocol, like */
+#define E_BAD_PROTO	  -480
 /* misformated request */
 #define E_BAD_REQ	  -400
 

@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.195 2003/04/10 23:51:10 andrei Exp $
+# $Id: Makefile.defs,v 1.196 2003/04/11 16:58:29 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -21,7 +21,7 @@
 VERSION = 0
 PATCHLEVEL = 8
 SUBLEVEL =   11
-EXTRAVERSION = pre15-new_parse_uri
+EXTRAVERSION = pre16
 
 RELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 OS = $(shell uname -s | sed -e s/SunOS/solaris/ | tr "[A-Z]" "[a-z]")
@@ -211,6 +211,10 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 # debugging symbols in all cases (-g). --andrei
 ifeq ($(mode),)
 	mode = release
+endif
+
+ifeq ($(mode),debug)
+	DEFS+= -DEXTRA_DEBUG
 endif
 
 # platform dependent settings
