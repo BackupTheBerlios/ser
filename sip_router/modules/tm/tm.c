@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.102 2004/03/03 16:03:53 janakj Exp $
+ * $Id: tm.c,v 1.103 2004/03/03 16:16:30 janakj Exp $
  *
  * TM module
  *
@@ -483,6 +483,11 @@ static int mod_init(void)
 
 	if (register_fifo_cmd(fifo_t_reply, "t_reply", 0)<0) {
 		LOG(L_CRIT, "cannot register t_reply\n");
+		return -1;
+	}
+
+	if (unixsock_register_cmd("t_hash", fifo_hash_unx) < 0) {
+		LOG(L_CRIT, "cannot register t_hash with the unix server\n");
 		return -1;
 	}
 
