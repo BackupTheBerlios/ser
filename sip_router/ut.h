@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.20 2003/01/18 10:50:43 jiri Exp $
+ *$Id: ut.h,v 1.21 2003/01/18 20:25:12 jiri Exp $
  *
  * - various general purpose functions
  *
@@ -261,6 +261,11 @@ inline static int un_escape(str *user, str *new_user )
 {
  	int i, j, value;
 	int hi, lo;
+
+	if( new_user==0 || new_user->s==0) {
+		LOG(L_CRIT, "BUG: un_escape: called with invalid param\n");
+		return -1;
+	}
 
 	new_user->len = 0;
 	j = 0;
