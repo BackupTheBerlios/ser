@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.h,v 1.3 2003/03/26 16:44:50 janakj Exp $
+ * $Id: sip_msg.h,v 1.4 2003/11/05 11:49:25 janakj Exp $
  *
  * SIP message related functions
  *
@@ -32,8 +32,8 @@
 #define SIP_MSG_H
 
 
-#include "../../parser/msg_parser.h"
-#include "../../parser/contact/parse_contact.h"
+#include <parser/msg_parser.h>
+#include <parser/contact/parse_contact.h>
 
 
 /*

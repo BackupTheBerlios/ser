@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.6 2003/10/08 21:56:18 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.7 2003/11/05 11:49:25 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -31,13 +31,12 @@
 #ifndef REG_MOD_H
 #define REG_MOD_H
 
-#include "../../parser/msg_parser.h"
-#include "../usrloc/usrloc.h"
+#include <parser/msg_parser.h>
+#include <usrloc.h>
 
 extern int default_expires;
 extern int default_q;
 extern int append_branches;
-extern int use_domain;
 extern int case_sensitive;
 extern int desc_time_order;
 extern int nat_flag;

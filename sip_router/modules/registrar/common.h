@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.7 2003/04/01 15:48:20 janakj Exp $
+ * $Id: common.h,v 1.8 2003/11/05 11:49:25 janakj Exp $
  *
  * Common stuff
  *
@@ -31,8 +31,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include "../../str.h"
-#include "../../parser/msg_parser.h"
+#include <str.h>
 
 
 /*

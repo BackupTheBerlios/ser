@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.18 2003/11/03 16:17:23 janakj Exp $
+ * $Id: reply.c,v 1.19 2003/11/05 11:49:25 janakj Exp $
  *
  * Send a reply
  *
@@ -34,18 +34,21 @@
  */
 
 #include <stdio.h>
-#include "../../ut.h"
-#include "../../parser/msg_parser.h"
-#include "../../data_lump_rpl.h"
+#include <ut.h>
+#include <parser/msg_parser.h>
+#include <data_lump_rpl.h>
+#include <usrloc.h>
 #include "rerrno.h"
 #include "reg_mod.h"
 #include "regtime.h"
 #include "reply.h"
 
+
 #define MAX_CONTACT_BUFFER 1024
 
 #define E_INFO "P-Registrar-Error: "
 #define E_INFO_LEN (sizeof(E_INFO) - 1)
+
 
 static char b[MAX_CONTACT_BUFFER];
 static int l;
@@ -202,7 +205,6 @@ int codes[] = {
 	200, /* R_RETRANS */
 	400  /* R_UNESCAPE */
 };
-
 
 
 /*

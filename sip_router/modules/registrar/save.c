@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.22 2003/10/08 21:56:18 janakj Exp $
+ * $Id: save.c,v 1.23 2003/11/05 11:49:25 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -34,20 +34,20 @@
  */
 
 
-#include "../../comp_defs.h"
-#include "save.h"
-#include "../../str.h"
-#include "../../parser/parse_to.h"
-#include "../../dprint.h"
-#include "../../trim.h"
-#include "../../ut.h"
-#include "../usrloc/usrloc.h"
+#include <comp_defs.h>
+#include <str.h>
+#include <parser/parse_to.h>
+#include <dprint.h>
+#include <trim.h>
+#include <ut.h>
+#include <usrloc.h>
 #include "common.h"
 #include "sip_msg.h"
 #include "rerrno.h"
 #include "reply.h"
 #include "reg_mod.h"
 #include "regtime.h"
+#include "save.h"
 
 
 void remove_cont(urecord_t* _r, ucontact_t* _c)

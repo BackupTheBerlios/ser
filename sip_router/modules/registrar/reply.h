@@ -1,5 +1,5 @@
 /*
- * $Id: reply.h,v 1.2 2002/09/19 12:23:54 jku Rel $
+ * $Id: reply.h,v 1.3 2003/11/05 11:49:25 janakj Exp $
  *
  * Send a reply
  *
@@ -31,8 +31,7 @@
 #ifndef REPLY_H
 #define REPLY_H
 
-#include "../../parser/msg_parser.h"
-#include "../usrloc/usrloc.h"
+#include <parser/msg_parser.h>
 
 
 /*
