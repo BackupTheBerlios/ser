@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.4 $</revnumber>
-		<date>$Date: 2003/08/20 18:25:46 $</date>
+		<revnumber>$Revision: 1.5 $</revnumber>
+		<date>$Date: 2003/10/09 08:16:40 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -59,6 +59,8 @@ From: medabeda
 	    </para>
 	</section>
     </section>
+
+
     <section>
 	<title>Exported Functions</title>
 	<section>
@@ -304,6 +306,14 @@ if (is_present_hf("From")) log(1, "From HF Present");
 	    </example>
 	</section>
     </section>
+    <section>
+		<title>Known Limitatons</title>
+		<para>
+			Search functions are applied to the original request,
+			i.e., they ignore all changes resulting from message
+			processing in SER script.
+		</para>
+	</section>
 </chapter>
 
 <!-- Keep this element at the end of the file
