@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.h,v 1.16 2002/09/19 12:23:54 jku Exp $
+ * $Id: sms_funcs.h,v 1.17 2002/09/20 17:22:28 bogdan Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,6 +32,7 @@
 #include "../../parser/msg_parser.h"
 #include "../../str.h"
 #include <termios.h>
+#include "../tm/tm_load.h"
 
 
 #define MAX_MODEMS    5       /* max number of modems */
@@ -99,14 +100,15 @@ struct incame_sms {
 
 extern struct modem modems[MAX_MODEMS];
 extern struct network networks[MAX_NETWORKS];
-extern int  net_pipes_in[MAX_NETWORKS];
-extern int  nr_of_networks;
-extern int  nr_of_modems;
-extern int  max_sms_parts;
-extern str  domain;
-extern int  *queued_msgs;
-extern int  use_contact;
-extern int  use_sms_report;
+extern int    net_pipes_in[MAX_NETWORKS];
+extern int    nr_of_networks;
+extern int    nr_of_modems;
+extern int    max_sms_parts;
+extern str    domain;
+extern int    *queued_msgs;
+extern int    use_contact;
+extern int    use_sms_report;
+extern struct tm_binds tmb;
 
 void modem_process(struct modem*);
 int  push_on_network(struct sip_msg*, int);

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2002/09/20 12:52:23 bogdan Exp $
+# $Id: Makefile,v 1.4 2002/09/20 17:22:28 bogdan Rel $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=sms.so
-LIBS=`pwd`/../im/im.so `pwd`/../tm/tm.so 
+LIBS=`pwd`/../im/im.so 
 
 include ../../Makefile.modules
