@@ -6,7 +6,7 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.9 2003/04/14 12:20:15 jiri Exp $
+$Id: NEWS,v 1.10 2003/04/16 10:40:39 dcm Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
@@ -102,10 +102,17 @@ exec module:
 - exec_dset takes an additional parameter, which enables 
   validation of SIP URIs returned by external application
 
+jabber module:
+--------------
+- presence support for Jabber users is enabled loading the PA
+  module and using subscribe("jabber") for SUBSCRIBE requests to
+  jabber user 
+
 msilo module:
 -------------
-XXX
-
+- m_store has now a parameter to set what should be considered
+  for storing as destination uri. This enables support for saving
+  the messages on negative replies.
 
 radius_acc module:
 ------------------
