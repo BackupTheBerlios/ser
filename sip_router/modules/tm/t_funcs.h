@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.45 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_funcs.h,v 1.46 2002/08/19 15:40:30 jku Exp $
  */
 
 
@@ -20,6 +20,7 @@
 #include "../../mem/mem.h"
 #include "../../md5utils.h"
 #include "../../ip_addr.h"
+#include "../../parser/parse_uri.h"
 
 #include "config.h"
 #include "lock.h"
