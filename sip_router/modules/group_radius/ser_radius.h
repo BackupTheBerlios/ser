@@ -1,7 +1,7 @@
 /*
- * $Id: ser_radius.h,v 1.1 2003/03/12 19:47:51 janakj Exp $
+ * $Id: ser_radius.h,v 1.2 2003/09/11 18:18:35 janakj Exp $
  *
- * Group Membership - R
+ * Group Membership - Radius
  * Definitions not found in radiusclient.h
  *
  * Copyright (C) 2001-2003 Fhg Fokus
