@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.64 2002/09/19 12:23:52 jku Rel $
+ * $Id: forward.c,v 1.65 2002/10/14 16:39:23 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -238,11 +238,9 @@ error:
 int update_sock_struct_from_ip( union sockaddr_union* to,
 	struct sip_msg *msg )
 {
-	to->sin.sin_port=(msg->via1->port)
-		?htons(msg->via1->port): htons(SIP_PORT);
-	to->sin.sin_family=msg->src_ip.af;
-	memcpy(&to->sin.sin_addr, &msg->src_ip.u, msg->src_ip.len);
 
+	init_su(to, &msg->src_ip, 
+		(msg->via1->port)?htons(msg->via1->port): htons(SIP_PORT) );
 	return 1;
 }
 
