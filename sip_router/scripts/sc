@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.9 2002/06/18 08:05:57 jku Exp $
+# $Id: sc,v 1.10 2002/06/26 17:52:45 jku Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -81,6 +81,10 @@ usage() {
 	echo 
 	echo "   commands labeled with (*) will prompt for a MySQL password"
 	echo "   if the variable PW is set, the password will not be prompted"
+
+	if [ "0$VERIFY_ACL" -eq 1 ] ; then
+		echo "   ACL privileges are: $ACL_GROUPS"
+	fi
 	echo
 }
 
