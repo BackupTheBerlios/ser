@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.12 2002/03/08 08:19:36 andrei Exp $
+ * $Id: fastlock.h,v 1.13 2002/03/08 08:30:40 andrei Exp $
  *
  * 
  */
@@ -28,7 +28,7 @@ typedef  volatile int fl_lock_t;
 /*test and set lock, ret 1 if lock held by someone else, 0 otherwise*/
 inline static int tsl(fl_lock_t* lock)
 {
-	volatile int val;
+	int val;
 
 #ifdef __i386
 
