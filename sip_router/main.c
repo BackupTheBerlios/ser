@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.160 2003/05/09 16:21:14 andrei Exp $
+ * $Id: main.c,v 1.161 2003/05/28 16:11:45 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -99,7 +99,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.160 2003/05/09 16:21:14 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.161 2003/05/28 16:11:45 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -274,7 +274,7 @@ int check_via =  0;
 /* shall use stateful synonym branches? faster but not reboot-safe */
 int syn_branch = 1;
 /* debugging level for memory stats */
-int memlog = L_DBG;
+int memlog = L_INFO;
 /* should replies include extensive warnings? by default yes,
    good for trouble-shooting
 */
