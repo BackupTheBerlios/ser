@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ctd.sh,v 1.6 2003/03/06 17:43:17 jiri Exp $
+# $Id: ctd.sh,v 1.7 2003/04/11 20:03:10 jiri Exp $
 #
 # Usage: ctd.sh $FROM $TARGET
 # 
@@ -20,7 +20,8 @@
 #
 # Requirements: 
 # -------------
-# SER with FIFO server turned on and TM module loaded
+# - SER with FIFO server turned on and TM module loaded
+# - gawk >= 3.1
 #
 # Limitations: 
 # ------------
@@ -63,7 +64,7 @@ fi
 
 #---------------------------------
 # fixed config data
-FIFO="/tmp/ser_fifo"
+FIFO="/tmp/ser_fifox"
 # address of controller
 FROM="<sip:controller@foo.bar>"
 CSEQ="1"
@@ -83,7 +84,7 @@ FIXED_DLG=`printf "From: $FROM;tag=$CALLIDNR\nCall-ID: $CALLID\nContact: <sip:ca
 filter_fl()
 {
 
-awk -F ' ' '
+gawk -F ' ' '
 BEGIN { IGNORECASE=1; rri=0; line=0; ret=1;eoh=0 }
 END { # print dialog information a la RFC3261, S. 12.2.1.1
 	# calculate route set 
