@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.23 2002/09/25 10:03:20 andrei Rel $
+ * $Id: fifo_server.c,v 1.24 2002/10/03 21:04:16 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -295,7 +295,7 @@ void fifo_reply( char *reply_fifo, char *reply_fmt, ... )
 	file_handle=open_reply_pipe(reply_fifo);
 	if (file_handle==0) {
 		LOG(L_ERR, "ERROR: fifo_reply: no reply pipe %s\n",
-			fifo);
+			reply_fifo);
 		return;
 	}
 retry:
