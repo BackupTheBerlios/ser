@@ -22,7 +22,7 @@
 		<firstname>Juha</firstname>
 		<surname>Heinanen</surname>
 		<affiliation><orgname>Song Networks</orgname></affiliation>
-		<email>jh@lohi.eng.song.fi</email>
+		<email>jh@song.fi</email>
 	    </author>
 	    <editor>
 		<firstname>Jan</firstname>
@@ -37,8 +37,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/05/02 18:28:27 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/05/02 21:39:33 $</date>
 	    </revision>
 	</revhistory>
     </bookinfo>
