@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.36 2002/03/08 05:04:54 bogdan Exp $
+ * $Id: t_funcs.h,v 1.37 2002/03/08 08:25:41 bogdan Exp $
  */
 
 
@@ -143,7 +143,8 @@ extern struct s_table*  hash_table;
 		DBG_REF("ref", (_T_cell));	})
 #endif
 
-enum addifnew_status { AIN_ERROR, AIN_RETR, AIN_NEW, AIN_NEWACK, AIN_OLDACK } ;
+enum addifnew_status { AIN_ERROR, AIN_RETR, AIN_NEW, AIN_NEWACK,
+	AIN_OLDACK, AIN_RTRACK } ;
 
 
 int   tm_startup();

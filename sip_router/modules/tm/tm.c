@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.40 2002/03/08 05:04:54 bogdan Exp $
+ * $Id: tm.c,v 1.41 2002/03/08 08:25:41 bogdan Exp $
  *
  * TM module
  *
@@ -357,6 +357,10 @@ static int t_relay_to( struct sip_msg  *p_msg , char *str_ip , char *str_port)
 			if ( !t_forward_ack( p_msg , (unsigned int) str_ip ,
 			(unsigned int) str_port ) )
 				DBG( "SER: WARNING: bad ACK forward\n");
+			ret = 1;
+			break;
+		case AIN_RTRACK:
+			DBG("SER: ACK retransmission detected: drop ACK!\n");
 			ret = 1;
 			break;
 		default:

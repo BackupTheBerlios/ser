@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.26 2002/03/06 18:39:46 bogdan Exp $
+ * $Id: t_lookup.c,v 1.27 2002/03/08 08:25:41 bogdan Exp $
  *
  */
 
@@ -501,7 +501,15 @@ enum addifnew_status t_addifnew( struct sip_msg* p_msg )
 			return ret;
 		} else {
 			/* tramsaction found, it's a retransmission  or ACK */
-			return p_msg->REQ_METHOD==METHOD_ACK ? AIN_OLDACK : AIN_RETR;
+			if (p_msg->REQ_METHOD!=METHOD_ACK)
+				return AIN_RETR;
+			else {
+				if (T->inbound_request_isACKed)
+					return AIN_RTRACK;
+				else
+					return AIN_OLDACK;
+				}
+			//return p_msg->REQ_METHOD==METHOD_ACK ? AIN_OLDACK : AIN_RETR;
 		}
 	} else {
 		if (T)
