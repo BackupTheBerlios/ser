@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.36 2004/05/12 10:13:46 jiri Exp $
+/*$Id: textops.c,v 1.37 2004/05/12 10:23:22 jiri Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -485,7 +485,7 @@ static int append_time_f(struct sip_msg* msg, char* p1, char *p2)
 	}
 
 	len=strftime(time_str, MAX_TIME, TIME_FORMAT, bd_time);
-	if (len>MAX_TIME+2 || len==0) {
+	if (len>MAX_TIME-2 || len==0) {
 		LOG(L_ERR, "ERROR: append_time: unexpected time length\n");
 		return -1;
 	}
