@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.10 2002/01/11 19:58:58 jku Exp $
+ * $Id: globals.h,v 1.11 2002/02/26 00:04:05 jku Exp $
  *
  * global variables
  *
@@ -40,5 +40,7 @@ extern int *pids;
 
 extern int cfg_errors;
 extern unsigned int msg_no;
+
+extern unsigned int shm_mem_size;
 
 #endif

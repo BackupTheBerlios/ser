@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.29 2002/01/31 15:27:55 bogdan Exp $
+ * $Id: tm.c,v 1.30 2002/02/26 00:04:05 jku Exp $
  *
  * TM module
  *
@@ -129,7 +129,11 @@ static struct module_exports nm_exports= {
 #else
 	10,
 #endif
+#ifdef SRL
+	(response_function) t_on_reply,
+#else
 	(response_function) t_on_reply_received,
+#endif
 	(destroy_function) tm_shutdown,
 	w_onbreak
 };
@@ -358,7 +362,7 @@ static int w_t_unref( struct sip_msg* p_msg, char* foo, char* bar )
 static w_t_retransmit_reply( struct sip_msg* p_msg, char* foo, char* bar  )
 {
 	if (t_check( p_msg  , 0 )==-1) return 1;
-	if (T) return t_retransmit_reply( p_msg );
+	if (T) return t_retransmit_reply( /* p_msg */ );
 	else return -1;
 }
 

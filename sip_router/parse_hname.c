@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname.c,v 1.5 2002/01/28 18:45:42 janakj Exp $
+ * $Id: parse_hname.c,v 1.6 2002/02/26 00:04:05 jku Exp $
  *
  * header name parsing automaton:
 
@@ -45,7 +45,7 @@ enum { INITIAL=0,
 
 
 /* returns end or pointer to next elem*/
-char* parse_hname(char* p, char* end, struct hdr_field* hdr)
+char* parse_hname1(char* p, char* end, struct hdr_field* hdr)
 {
 
 	char* t;

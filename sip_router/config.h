@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.19 2002/02/21 22:52:33 andrei Exp $
+ *  $Id: config.h,v 1.20 2002/02/26 00:04:05 jku Exp $
  */
 
 
@@ -55,7 +55,7 @@
 #define PKG_MEM_POOL_SIZE 1024*1024
 
 /*used if SH_MEM is defined*/
-#define SHM_MEM_SIZE 256*1024*1024
+#define SHM_MEM_SIZE 256
 
 #define TIMER_TICK 1
 #define LONG_SLEEP	3600
