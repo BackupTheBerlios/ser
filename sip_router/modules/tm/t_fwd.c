@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.4 2002/02/26 16:49:55 jku Exp $
+ * $Id: t_fwd.c,v 1.5 2002/02/26 16:59:41 jku Exp $
  *
  */
 
@@ -223,11 +223,6 @@ int t_forward_ack( struct sip_msg* p_msg , unsigned int dest_ip_param ,
 
 	memcpy( (char *) srb + sizeof ( struct retrans_buff ), buf, len );
 	free( buf );
-
-	/* quick fix by Jiri; forgive me for having it omitted! */
-	memcpy( & T->ack_to, 
-		& T->outbound_request[ branch ]->to,
-		sizeof (struct sockaddr_in));
 
 	send_ack( T, branch, srb, len );
 	return 1;
