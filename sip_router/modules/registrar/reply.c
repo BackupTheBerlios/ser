@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.24 2004/04/27 14:53:22 janakj Exp $
+ * $Id: reply.c,v 1.25 2004/05/05 12:25:18 bogdan Exp $
  *
  * Send a reply
  *
@@ -53,7 +53,7 @@
 #define CONTACT_BEGIN "Contact: "
 #define CONTACT_BEGIN_LEN (sizeof(CONTACT_BEGIN) - 1)
 
-#define Q_PARAM ">;q="
+#define Q_PARAM ";q="
 #define Q_PARAM_LEN (sizeof(Q_PARAM) - 1)
 
 #define EXPIRES_PARAM ";expires="
@@ -142,7 +142,7 @@ int build_contact(ucontact_t* c)
 			*p++ = '<';
 			memcpy(p, c->c.s, c->c.len);
 			p += c->c.len;
-			*p++ = '<';
+			*p++ = '>';
 
 			len = len_q(c->q);
 			if (len) {
