@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.33 2002/02/08 14:29:34 bogdan Exp $
+ * $Id: sip_msg.c,v 1.34 2002/02/12 16:48:34 bogdan Exp $
  */
 
 
@@ -287,7 +287,6 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg )
       lump_anchor = &((*lump_anchor)->next);
       lump_chain = lump_chain->next;
    }
-   DBG("-----------> len=%d <---> written=%d\n",len,p-foo);
    return new_msg;
 }
 
