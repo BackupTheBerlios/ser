@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.57 2004/02/06 18:56:49 bogdan Exp $
+ * $Id: action.c,v 1.58 2004/02/18 16:17:00 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -667,11 +667,12 @@ int do_action(struct action* a, struct sip_msg* msg)
 				break;
 			}
 			/* load the attribute(s)*/
-			if ( load_avp( msg, (int)a->p1.number, a->p2.string,
-			(int)a->p3.number)!=0 ) {
+			if ( (ret=load_avp( msg, (int)a->p1.number, a->p2.string,
+			(int)a->p3.number))==-1 ) {
 				LOG(L_ERR,"ERROR:do_action: load avp failed\n");
 				ret=E_UNSPEC;
 			}
+			ret = (ret==0)?1/*success*/:E_UNSPEC/*notfound*/;
 			break;
 		default:
 			LOG(L_CRIT, "BUG: do_action: unknown type %d\n", a->type);
