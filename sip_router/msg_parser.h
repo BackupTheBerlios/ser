@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.11 2001/11/23 00:47:19 andrei Exp $
+ * $Id: msg_parser.h,v 1.12 2001/11/23 09:15:13 andrei Exp $
  */
 
 #ifndef msg_parser_h
@@ -181,6 +181,7 @@ char* parse_cseq(char* buffer, char* end, struct cseq_body *cb);
 void free_via_list(struct via_body *vb);
 void clean_hdr_field(struct hdr_field* hf);
 void free_hdr_field_lst(struct hdr_field* hf);
+void free_sip_msg(struct sip_msg* msg);
 
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.28 2001/11/23 00:47:19 andrei Exp $
+ * $Id: main.c,v 1.29 2001/11/23 09:15:13 andrei Exp $
  */
 
 #include <stdio.h>
@@ -23,6 +23,8 @@
 #include "route.h"
 #include "udp_server.h"
 #include "globals.h"
+#include "mem.h"
+
 
 #include <signal.h>
 
@@ -35,7 +37,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.28 2001/11/23 00:47:19 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.29 2001/11/23 09:15:13 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -502,11 +504,21 @@ int main(int argc, char** argv)
 	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
 #endif
 
+	
 	/* init_daemon? */
 	if (!dont_fork){
 		if ( daemonize(argv[0]) <0 ) goto error;
 	}
-		
+
+#ifdef PKG_MALLOC
+	/*init mem*/
+	mem_block=qm_malloc_init(mem_pool, MEM_POOL_SIZE);
+	if (mem_block==0){
+		LOG(L_CRIT, "could not initialize memory pool\n");
+		goto error;
+	}
+#endif
+
 	
 	return main_loop();
 
