@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.51 2003/11/03 13:03:57 janakj Exp $
+ * $Id: jabber.c,v 1.52 2003/12/05 14:31:49 bogdan Exp $
  *
  * XJAB module
  *
@@ -200,7 +200,7 @@ static int mod_init(void)
 	}
 
 	/* import mysql functions */
-	if (bind_dbmod())
+	if (bind_dbmod(db_url))
 	{
 		LOG(L_ERR, "XJAB:mod_init: error - database module not found\n");
 		return -1;

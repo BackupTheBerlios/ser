@@ -1,5 +1,5 @@
 /*
- * $Id: xjab_worker.h,v 1.14 2003/06/02 15:42:21 dcm Exp $
+ * $Id: xjab_worker.h,v 1.15 2003/12/05 14:31:49 bogdan Exp $
  *
  * eXtended JABber module
  *
@@ -101,8 +101,7 @@ void xj_sig_handler(int s);
 
 int xj_send_sip_msg(str *, str *, str *, str *, int *);
 int xj_send_sip_msgz(str *,str *, str *, char *, int *);
-void xj_tuac_callback(struct cell *, struct sip_msg *,
-			int, void *);
+void xj_tuac_callback( struct cell *t, int type, struct tmcb_params *ps);
 void xj_worker_check_jcons(xj_wlist, xj_jcon_pool, int, fd_set*);
 void xj_worker_check_qmsg(xj_wlist, xj_jcon_pool);
 void xj_worker_check_watcher(xj_wlist, xj_jcon_pool, xj_jcon, xj_sipmsg);
