@@ -1,5 +1,5 @@
 /* 
- * $Id: my_id.c,v 1.1 2004/01/26 12:46:15 janakj Exp $
+ * $Id: my_id.c,v 1.2 2005/01/21 23:17:07 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2004 iptel.org
@@ -77,13 +77,15 @@ struct my_id* new_my_id(const char* url)
 	}
 	memcpy(ptr->username.s, username, ptr->username.len + 1);
 
-	ptr->password.len = strlen(password);
-	ptr->password.s = (char*)pkg_malloc(ptr->password.len + 1);
-	if (!ptr->password.s) {
-		LOG(L_ERR, "new_connection(): No memory left\n");
-		goto err;
+	if (password) {
+		ptr->password.len = strlen(password);
+		ptr->password.s = (char*)pkg_malloc(ptr->password.len + 1);
+		if (!ptr->password.s) {
+			LOG(L_ERR, "new_connection(): No memory left\n");
+			goto err;
+		}
+		memcpy(ptr->password.s, password, ptr->password.len + 1);
 	}
-	memcpy(ptr->password.s, password, ptr->password.len + 1);
 
 	ptr->host.len = strlen(host);
 	ptr->host.s = (char*)pkg_malloc(ptr->host.len + 1);
