@@ -1,5 +1,5 @@
 /* 
- * $Id: group_mod.c,v 1.8 2003/04/26 00:19:56 janakj Exp $ 
+ * $Id: group_mod.c,v 1.9 2003/04/26 00:21:45 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -78,7 +78,7 @@ char* db_url       = DEFAULT_RODB_URL;
 char* table         = "grp";    /* Table name where group definitions are stored */
 char* user_column   = "username";
 char* domain_column = "domain";
-char* grp_column    = "grp";
+char* group_column  = "grp";
 int   use_domain    = 0;
 
 db_con_t* db_handle = 0;   /* Database connection handle */
