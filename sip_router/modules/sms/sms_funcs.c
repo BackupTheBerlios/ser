@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.47 2002/11/27 17:38:20 bogdan Exp $
+ * $Id: sms_funcs.c,v 1.48 2002/11/28 11:13:33 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -768,14 +768,16 @@ void modem_process(struct modem *mdm)
 				/* let's read a sms from pipe */
 				len = read(net->pipe_out, &sms_messg,
 					sizeof(sms_messg));
-				LOG(L_INFO,"INFO:modem_process: read from pipe\n");
 				if (len!=sizeof(sms_messg)) {
 					if (len>=0)
 						LOG(L_ERR,"ERROR:modem_process: truncated message"
 						" read from pipe! -> discarted\n");
-					else if (errno==EAGAIN) {
+					else if (errno==EAGAIN)
 						empty_pipe = 1;
-					}
+					else
+						LOG(L_ERR,"ERROR:modem_process: pipe reding failed: "
+							" : %s\n",strerror(errno));
+					sleep(1);
 					counter++;
 					continue;
 				}
