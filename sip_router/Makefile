@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.117 2003/08/27 16:10:24 andrei Exp $
+# $Id: Makefile,v 1.118 2003/08/28 12:02:14 andrei Exp $
 #
 # sip_router makefile
 #
@@ -282,6 +282,8 @@ install-doc: $(doc-prefix)/$(doc-dir)
 	$(INSTALL-DOC) README-MODULES $(doc-prefix)/$(doc-dir)
 	$(INSTALL-TOUCH) $(doc-prefix)/$(doc-dir)/AUTHORS 
 	$(INSTALL-DOC) AUTHORS $(doc-prefix)/$(doc-dir)
+	$(INSTALL-TOUCH) $(doc-prefix)/$(doc-dir)/NEWS
+	$(INSTALL-DOC) NEWS $(doc-prefix)/$(doc-dir)
 	-@for r in $(modules_basenames) "" ; do \
 		if [ -n "$$r" ]; then \
 			if [ -f modules/"$$r"/README ]; then \
