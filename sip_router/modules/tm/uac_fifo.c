@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.5 2003/12/08 15:47:51 andrei Exp $
+ * $Id: uac_fifo.c,v 1.6 2004/01/17 21:18:04 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -504,6 +504,7 @@ static inline int print_uris(FILE* out, struct sip_msg* reply)
 	memset(dlg, 0, sizeof(dlg_t));
 	if (dlg_response_uac(dlg, reply) < 0) {
 		LOG(L_ERR, "print_routes(): Error while creating dialog structure\n");
+		free_dlg(dlg);
 		return -2;
 	}
 
