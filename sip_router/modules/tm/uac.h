@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.15 2003/01/22 21:05:28 jiri Exp $
+ * $Id: uac.h,v 1.16 2003/01/27 21:19:48 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -37,6 +37,8 @@
 #include "config.h"
 #include "t_dlg.h"
 
+/* substitution character for FIFO UAC */
+#define SUBST_CHAR '!'
 #ifdef _DEPRECATED
 /* number of random digits in beginning of a string --
    please multiples of 2 */

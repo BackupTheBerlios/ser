@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.68 2003/01/22 22:08:30 jiri Exp $
+ * $Id: tm.c,v 1.69 2003/01/27 21:19:48 jiri Exp $
  *
  * TM module
  *
@@ -265,7 +265,7 @@ struct module_exports exports= {
 #ifndef DEPRECATE_OLD_STUFF
 	1+
 #endif
-	11,      /* Number of module paramers */
+	10,      /* Number of module paramers */
 
 	mod_init, /* module initialization function */
 	(response_function) t_on_reply,
