@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.5 2002/12/11 21:30:44 andrei Exp $
+ * $Id: pt.h,v 1.6 2003/04/15 20:39:37 andrei Exp $
  *
  * Process Table
  *
@@ -27,6 +27,11 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+/*
+ * History:
+ * --------
+ *  2003-04-15  added tcp_disable support (andrei)
  */
 
 
@@ -66,9 +71,10 @@ inline static int process_count()
 		/* fifo server */
 		+((fifo==NULL || strlen(fifo)==0) ? 0 : 1 )
 #ifdef USE_TCP
-		+ 1/* tcp main */ + tcp_children_no + 
-		(timer_list ? 0: 1) /* add the timer proc. if not already taken
-							   into account */
+		+ (!tcp_disable)?( 1/* tcp main */ + tcp_children_no + 
+							(timer_list ? 0: 1)):0 /* add the timer proc.
+													  if not already taken
+													  into account */
 #endif
 		
 		;

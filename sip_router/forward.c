@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.83 2003/04/12 19:26:15 andrei Exp $
+ * $Id: forward.c,v 1.84 2003/04/15 20:39:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -289,8 +289,8 @@ int forward_request( struct sip_msg* msg, struct proxy_l * p, int proto)
 
 	send_sock=get_send_socket(to, proto);
 	if (send_sock==0){
-		LOG(L_ERR, "forward_req: ERROR: cannot forward to af %d "
-				"no coresponding listening socket\n", to->s.sa_family);
+		LOG(L_ERR, "forward_req: ERROR: cannot forward to af %d, proto %d "
+				"no coresponding listening socket\n", to->s.sa_family, proto);
 		ser_error=E_NO_SOCKET;
 		goto error1;
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.29 2003/04/12 19:26:15 andrei Exp $
+ * $Id: globals.h,v 1.30 2003/04/15 20:39:37 andrei Exp $
  *
  * global variables
  *
@@ -67,6 +67,7 @@ extern unsigned int maxbuffer;
 extern int children_no;
 #ifdef USE_TCP
 extern int tcp_children_no;
+extern int tcp_disable;
 #endif
 extern int dont_fork;
 extern int check_via;
