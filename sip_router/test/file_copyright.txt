@@ -1,9 +1,7 @@
 /*
- * $Id: file_copyright.txt,v 1.2 2002/08/15 08:13:30 jku Exp $
- *
  * Copyright (C) 2001-2003 Fhg Fokus 
  *
- * This file is part of ser, a free sip proxy.
+ * This file is part of ser, a free SIP server.
  *
  * ser is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
