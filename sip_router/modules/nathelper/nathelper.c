@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.6 2003/05/05 21:47:27 sobomax Exp $
+/*$Id: nathelper.c,v 1.7 2003/05/09 13:44:47 andrei Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -494,8 +494,8 @@ timer(unsigned int ticks, void *param)
 		memcpy(&(c.len), cp, sizeof(c.len));
 		if (c.len == 0)
 			break;
-		c.s = cp + sizeof(c.len);
-		cp += sizeof(c.len) + c.len;
+		c.s = (char*)cp + sizeof(c.len);
+		cp =  (char*)cp + sizeof(c.len) + c.len;
 		if (parse_uri(c.s, c.len, &curi) < 0) {
 			LOG(L_ERR, "ERROR: nathelper::timer: can't parse contact uri\n");
 			continue;

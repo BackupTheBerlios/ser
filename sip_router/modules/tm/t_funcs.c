@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.161 2003/04/30 18:50:58 janakj Exp $
+ * $Id: t_funcs.c,v 1.162 2003/05/09 13:44:47 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -231,8 +231,8 @@ int t_relay_to( struct sip_msg  *p_msg , struct proxy_l *proxy, int proto,
 	if ( p_msg->REQ_METHOD==METHOD_ACK) {
 		DBG( "SER: forwarding ACK  statelessly \n");
 		if (proxy==0) {
-			uri = &GET_RURI(p_msg);
-			proxy=uri2proxy(&GET_NEXT_HOP(p_msg), proto);
+			uri = GET_RURI(p_msg);
+			proxy=uri2proxy(GET_NEXT_HOP(p_msg), proto);
 			if (proxy==0) {
 					ret=E_BAD_ADDRESS;
 					goto done;
@@ -245,7 +245,7 @@ int t_relay_to( struct sip_msg  *p_msg , struct proxy_l *proxy, int proto,
 			init_branch_iterator();
 			while((ack_uri.s=next_branch(&ack_uri.len))) {
 				p_msg->new_uri=ack_uri;
-				proxy=uri2proxy(&GET_NEXT_HOP(p_msg), proto);
+				proxy=uri2proxy(GET_NEXT_HOP(p_msg), proto);
 				if (proxy==0) continue;
 				forward_request(p_msg, proxy, proxy->proto);
 				free_proxy( proxy );	

@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.29 2003/04/30 18:50:58 janakj Exp $
+ * $Id: t_msgbuilder.c,v 1.30 2003/05/09 13:44:47 andrei Exp $
  *
  * message printing
  *
@@ -233,7 +233,8 @@ static inline int assemble_via(str* dest, struct cell* t, struct socket_info* so
 {
 	static char branch_buf[MAX_BRANCH_PARAM_LEN];
 	char* via;
-	int len, via_len;
+	int len;
+	unsigned int via_len;
 	str branch_str;
 
 	if (!t_calc_branch(t, branch, branch_buf, &len)) {

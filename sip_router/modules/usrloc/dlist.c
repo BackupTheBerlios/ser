@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.13 2003/04/30 22:20:09 sobomax Exp $
+ * $Id: dlist.c,v 1.14 2003/05/09 13:44:47 andrei Exp $
  *
  * List of registered domains
  *
@@ -112,9 +112,9 @@ int get_all_ucontacts(void *buf, int len)
 					continue;
 				if (len >= (int)(sizeof(c->c.len) + c->c.len)) {
 					memcpy(cp, &c->c.len, sizeof(c->c.len));
-					cp += sizeof(c->c.len);
+					cp = (char*)cp + sizeof(c->c.len);
 					memcpy(cp, c->c.s, c->c.len);
-					cp += c->c.len;
+					cp = (char*)cp + c->c.len;
 					len -= sizeof(c->c.len) + c->c.len;
 				} else {
 					shortage += sizeof(c->c.len) + c->c.len;

@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: contact_ops.c,v 1.9 2003/04/16 17:50:49 gabriel Exp $
+ * $Id: contact_ops.c,v 1.10 2003/05/09 13:44:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -247,11 +247,11 @@ decode_contact_header (struct sip_msg *msg,char *unused1,char *unused2)
 
 #ifdef DEBUG
 	fprintf (stdout,"Using separator %c\n",separator);
-	str ruri;
+	str* ruri;
 	ruri = GET_RURI(msg);
-	fprintf (stdout,"[len = %d]New uri is->%*.s\n",ruri.len,ruri.len,ruri.s);
-	ruri = msg->first_line.u.request.uri;
-	fprintf (stdout, "INITIAL.s=[%.*s]\n", ruri.len, ruri.s);
+	fprintf (stdout,"[len = %d]New uri is->%*.s\n",ruri->len,ruri->len,ruri->s);
+	ruri = &msg->first_line.u.request.uri;
+	fprintf (stdout, "INITIAL.s=[%.*s]\n", ruri->len, ruri->s);
 #endif
 		
 	if (msg->contact->parsed == NULL) parse_contact (msg->contact);

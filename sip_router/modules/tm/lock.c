@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.44 2003/03/17 18:41:10 andrei Exp $
+ * $Id: lock.c,v 1.45 2003/05/09 13:44:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -241,7 +241,6 @@ int init_cell_lock( struct cell *cell )
 {
 #ifdef GEN_LOCK_T_PREFERED
 	lock_init(&cell->reply_mutex);
-	return 0;
 #else
 	cell->reply_mutex.semaphore_set=reply_semaphore;
 	cell->reply_mutex.semaphore_index = cell->hash_index % sem_nr;

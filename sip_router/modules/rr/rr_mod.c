@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.29 2003/04/27 18:17:24 jiri Exp $
+ * $Id: rr_mod.c,v 1.30 2003/05/09 13:44:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -49,7 +49,7 @@ int append_fromtag = 1;
 int enable_double_rr = 1; /* Enable using of 2 RR by default */
 int enable_full_lr = 0;   /* Disabled by default */
 
-MODULE_VERSION;
+MODULE_VERSION
 
 static int mod_init(void);
 static int str_fixup(void** param, int param_no);
