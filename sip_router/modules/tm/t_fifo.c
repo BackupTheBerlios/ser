@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.9 2004/08/24 09:00:42 janakj Exp $
+ * $Id: t_fifo.c,v 1.10 2004/09/06 14:53:41 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -55,6 +55,27 @@
 #include "t_lookup.h"
 #include "t_fwd.h"
 #include "../../tsend.h"
+
+
+/* AF_LOCAL is not defined on solaris */
+#if !defined(AF_LOCAL)
+#define AF_LOCAL AF_UNIX
+#endif
+#if !defined(PF_LOCAL)
+#define PF_LOCAL PF_UNIX
+#endif
+
+
+/* solaris doesn't have SUN_LEN */
+#ifndef SUN_LEN
+#define SUN_LEN(sa)	 ( strlen((sa)->sun_path) + \
+					 (size_t)(((struct sockaddr_un*)0)->sun_path) )
+#endif
+
+
+
+
+
 
 int tm_unix_tx_timeout = 2; /* Default is 2 seconds */
 

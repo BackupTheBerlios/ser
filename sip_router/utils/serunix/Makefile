@@ -1,12 +1,16 @@
+# $Id: Makefile,v 1.2 2004/09/06 14:53:41 andrei Exp $
+#
+#  serunix Makefile
+# 
 
-all: serunix
+include ../../Makefile.defs
 
-serunix: serunix.o
-	gcc -o serunix serunix.o
+auto_gen=
+NAME=serunix
 
-serunix.o: serunix.c
-	gcc -c serunix.c
 
-clean:
-	rm -f *~ *.o serunix
+include ../../Makefile.sources
+include ../../Makefile.rules
 
+
+modules:
