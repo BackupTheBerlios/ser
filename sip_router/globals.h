@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.27 2003/01/29 19:24:10 jiri Exp $
+ * $Id: globals.h,v 1.28 2003/04/02 15:51:03 andrei Exp $
  *
  * global variables
  *
@@ -49,16 +49,7 @@ extern struct socket_info sock_info[]; /* all addresses we listen/send from*/
 extern struct socket_info tcp_info[]; /* all tcp sockets we listen on*/
 extern int sock_no; /* number of addresses/open sockets*/
 extern unsigned short port_no;
-/*
-extern char port_no_str[];
-extern int port_no_str_len;
-*/
-/*
-extern char * names[];
-extern int names_len[];
-extern struct ip_addr addresses[];
-extern int addresses_no;
-*/
+
 extern struct socket_info* bind_address; /* pointer to the crt. proc.
 											listening address */
 extern int bind_idx; /* same as above but index in the bound[] array */

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.150 2003/03/31 12:28:09 andrei Exp $
+ * $Id: main.c,v 1.151 2003/04/02 15:51:03 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -94,7 +94,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.150 2003/03/31 12:28:09 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.151 2003/04/02 15:51:03 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1409,7 +1409,7 @@ try_again:
 	for (r=0; r<sock_no;r++){
 		/* fix port number, port_no should be !=0 here */
 		if (sock_info[r].port_no==0) sock_info[r].port_no=port_no;
-		port_no_str_len=snprintf(port_no_str, MAX_PORT_LEN, ":%d", 
+		port_no_str_len=snprintf(port_no_str, MAX_PORT_LEN, "%d", 
 									(unsigned short) sock_info[r].port_no);
 		/* if buffer too small, snprintf may return per C99 estimated size
 		   of needed space; there is no guarantee how many characters 
