@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.2 2004/11/09 17:50:26 andrei Exp $
+ * $Id: avp_db.c,v 1.3 2005/03/14 13:16:01 mma Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -101,7 +101,7 @@ static param_export_t params[] = {
 	{"username_column", STR_PARAM, &username_column},
 	{"domain_column",   STR_PARAM, &domain_column  },
 	{"attr_column",     STR_PARAM, &attr_column    },
-	{"val_column",      INT_PARAM, &val_column     },
+	{"val_column",      STR_PARAM, &val_column     },
 	{"use_domain",      INT_PARAM, &use_domain     },
 	{0, 0, 0}
 };
