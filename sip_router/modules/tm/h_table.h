@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.50 2002/04/11 20:30:38 bogdan Exp $
+ * $Id: h_table.h,v 1.51 2002/05/09 19:22:11 jku Exp $
  */
 
 
@@ -14,6 +14,7 @@
 #include "../../msg_parser.h"
 #include "../../types.h"
 #include "config.h"
+#include "t_flags.h"
 
 struct s_table;
 struct entry;
@@ -130,6 +131,9 @@ typedef struct cell
 	ser_lock_t   reply_mutex;
 	/* protection against concurrent ACK processing */
 	ser_lock_t	ack_mutex;
+
+	tflags_t	flags;
+
 #ifdef WAIT
 	/* protection against reentering WAIT state */
 	ser_lock_t	wait_mutex;

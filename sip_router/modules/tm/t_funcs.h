@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.40 2002/04/11 20:30:38 bogdan Exp $
+ * $Id: t_funcs.h,v 1.41 2002/05/09 19:22:11 jku Exp $
  */
 
 
@@ -9,6 +9,7 @@
 #include <errno.h>
 #include <netinet/in.h>
 #include <netdb.h>
+
 #include "../../msg_parser.h"
 #include "../../globals.h"
 #include "../../udp_server.h"
@@ -16,6 +17,10 @@
 #include "../../timer.h"
 #include "../../forward.h"
 #include "../../mem/mem.h"
+
+#include "config.h"
+#include "lock.h"
+#include "timer.h"
 
 struct s_table;
 struct timer;
