@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.c,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: db_val.c,v 1.4 2002/03/01 10:51:03 janakj Exp $ 
  */
 
 #include "db_val.h"
@@ -118,6 +118,7 @@ int val2str(db_val_t* _v, char* _s, int* _len)
 			*_s++ = '\'';
 			memcpy(_s, VAL_STRING(_v), l);
 			*(_s + l) = '\'';
+			*(_s + l + 1) = '\0'; /* FIXME */
 			*_len = l + 2;
 			return TRUE;
 		}

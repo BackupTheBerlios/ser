@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.1 2002/02/12 16:48:34 bogdan Exp $
+ * $Id: sl.c,v 1.2 2002/03/01 10:51:26 janakj Exp $
  *
  * MAXFWD module
  *
@@ -41,7 +41,8 @@ static struct module_exports sl_exports= {
 	2,
 	(response_function) 0,
 	(destroy_function) 0,
-	0
+	0,
+	0  /* per-child init function */
 };
 
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: db_row.c,v 1.4 2002/02/24 17:11:42 janakj Exp $ 
+ * $Id: db_row.c,v 1.5 2002/03/01 10:51:03 janakj Exp $ 
  */
 
 #include "db_row.h"
@@ -45,7 +45,7 @@ int free_row(db_row_t* _r)
 		return FALSE;
 	}
 #endif
-	pkg_free(ROW_VALUES(_r));
+	if (ROW_VALUES(_r)) pkg_free(ROW_VALUES(_r));
 	return TRUE;
 }
 

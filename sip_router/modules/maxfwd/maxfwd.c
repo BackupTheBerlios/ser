@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.6 2002/02/20 21:21:08 bogdan Exp $
+ * $Id: maxfwd.c,v 1.7 2002/03/01 10:50:56 janakj Exp $
  *
  * MAXFWD module
  *
@@ -61,7 +61,8 @@ static struct module_exports mf_exports= {
 	6,
 	(response_function) 0,
 	(destroy_function) 0,
-	0
+	0,
+	0  /* per-child init function */
 };
 
 

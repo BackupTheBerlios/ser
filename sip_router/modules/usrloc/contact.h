@@ -1,5 +1,5 @@
 /* 
- * $Id: contact.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: contact.h,v 1.4 2002/03/01 10:50:28 janakj Exp $ 
  */
 
 #ifndef __CONTACT_H__
@@ -51,13 +51,20 @@ int cmp_contact(contact_t* _c1, contact_t* _c2);
 /*
  * Remove particular contact from database
  */
+#ifdef USE_DB
 int db_remove_contact(db_con_t* _c, contact_t* _con);
-
+#endif
 
 /*
  * Update particular contact in database
  */
+#ifdef USE_DB
 int db_update_contact(db_con_t* _c, contact_t* _con);
+#endif
+
+#ifdef USE_DB
+int db_insert_contact(db_con_t* _c, contact_t* _con);
+#endif
 
 
 #endif

@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.3 2002/02/28 18:35:47 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.4 2002/03/01 10:50:35 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -32,7 +32,7 @@ static struct module_exports auth_exports = {"auth",
 					     NULL, /* response function */
 					     destroy, /* destroy function */
 					     NULL,  /* oncancel function */
-					     init_child /* Per child initialization */
+					     0
 };
 
 
@@ -58,17 +58,6 @@ struct module_exports* mod_register()
 	}
 
 	return &auth_exports;
-}
-
-
-int init_child(int rank)
-{
-	LOG(L_ERR, "auth: Initializing child with rank %d\n", rank);
-
-	     /* Open a database connection, each ser child will have
-	      * its own database connection
-	      */
-	return 0;
 }
 
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: cache.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: cache.h,v 1.4 2002/03/01 10:50:28 janakj Exp $ 
  */
 
 #ifndef __CACHE_H__
@@ -48,7 +48,13 @@ typedef struct cache {
 /*
  * Create a new cache structure
  */
-cache_t* create_cache(int _size, db_con_t* _db_con, const char* _table);
+cache_t* create_cache(int _size, const char* _table);
+
+
+/*
+ * Associate connection with a cache
+ */
+int cache_use_connection(cache_t* _c, db_con_t* _con);
 
 
 /*

@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.5 2002/02/13 21:37:17 bogdan Exp $
+/*$Id: textops.c,v 1.6 2002/03/01 10:51:35 janakj Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -59,7 +59,8 @@ static struct module_exports my_exports= {
 	4,
 	0, /* response function */
 	0,  /* destroy function */
-	0 /* on_cancel function */
+	0, /* on_cancel function */
+	0, /* per-child init function */
 };
 
 

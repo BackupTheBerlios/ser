@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.4 2002/01/23 18:48:27 bogdan Exp $
+ * $Id: rr_mod.c,v 1.5 2002/03/01 10:51:19 janakj Exp $
  */
 
 #include "../../sr_module.h"
@@ -44,11 +44,16 @@ static struct module_exports rr_exports= {
 	2, /* number of functions*/
 	0, /* response function*/
 	0, /* destroy function */
-	0  /* oncancel function */
+	0, /* oncancel function */
+	0  /* per-child init function */
 };
 
 
+#ifdef STATIC_RR
+struct module_exports* rr_mod_register()
+#else
 struct module_exports* mod_register()
+#endif
 {
 	fprintf(stderr, "rr - registering\n");
 	return &rr_exports;

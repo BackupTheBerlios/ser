@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.4 2002/01/11 19:58:58 jku Exp $ 
+ * $Id: db_mod.c,v 1.5 2002/03/01 10:51:03 janakj Exp $ 
  */
 
 #include "../../sr_module.h"
@@ -41,11 +41,16 @@ static struct module_exports mysql_exports = {
 	8, /* number of functions*/
 	0, /* response function*/
 	0,  /* destroy function */
-	0	/* oncancel function */
+	0,	/* oncancel function */
+	0   /* per-child init function */
 };
 
 
+#ifdef STATIC_MYSQL
+struct module_exports* mysql_mod_register()
+#else
 struct module_exports* mod_register()
+#endif
 {
 	fprintf(stderr, "mysql - registering...\n");
 	return &mysql_exports;
