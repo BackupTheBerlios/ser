@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.7 2002/09/21 17:13:01 jiri Exp $
+ * $Id: uac.h,v 1.8 2002/09/21 17:23:12 jiri Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -75,7 +75,11 @@ int t_uac(
 	str *body,
 	/* completion callback (optional) */
 	transaction_cb completion_cb,
-	/* callback parameter */
+	/* callback parameter  -- it MUST be in shmem and it MAY NOT be
+	   released -- TM does release the fragment; (actually, we should
+	   do a favor to developers in cases like these and check the
+	   pointer ranges -- good idea for a de-luxe release)
+	*/
 	void *cbp,
 	struct dialog *dlg );
 
