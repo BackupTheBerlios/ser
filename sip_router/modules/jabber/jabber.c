@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.54 2004/06/08 10:55:30 andrei Exp $
+ * $Id: jabber.c,v 1.55 2004/06/16 14:20:13 janakj Exp $
  *
  * XJAB module
  *
@@ -261,7 +261,10 @@ static int mod_init(void)
 		}
 		else
 		{
-			jabber_dbf.use_table(db_con[i], db_table);
+			if (jabber_dbf.use_table(db_con[i], db_table) < 0) {
+				LOG(L_ERR, "XJAB:mod_init: Error in use_table\n");
+				return -1;
+			}
 			DBG("XJAB:mod_init: Database connection opened successfuly\n");
 		}
 	}

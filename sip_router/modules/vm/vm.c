@@ -1,6 +1,6 @@
 /*
  *
- * $Id: vm.c,v 1.47 2004/06/08 10:55:31 andrei Exp $
+ * $Id: vm.c,v 1.48 2004/06/16 14:20:14 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -314,7 +314,11 @@ static int vm_get_user_info( str* user,   /*[in]*/
 	VAL_NULL(&vals[1]) = 0;
 	VAL_STR(&vals[1])  = *host;
 
-	vm_dbf.use_table(db_handle, subscriber_table);
+	if (vm_dbf.use_table(db_handle, subscriber_table) < 0) {
+		LOG(L_ERR, "ERROR: vm: get_user_info: Error in use_table\n");
+		goto error;
+	}
+
 	if (vm_dbf.query(db_handle, keys, 0, vals, cols, (use_domain ? 2 : 1),
 				1, 0, &email_res))
 	{

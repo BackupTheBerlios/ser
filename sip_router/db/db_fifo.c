@@ -1,5 +1,5 @@
 /*
- * $Id: db_fifo.c,v 1.9 2004/06/08 10:55:29 andrei Exp $
+ * $Id: db_fifo.c,v 1.10 2004/06/16 14:20:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -708,7 +708,11 @@ int db_fifo( FILE *fifo, char *response_file )
 
 	/* select the correct table */
 	line.s[line.len] = 0; /* make it null terminated */
-	fifo_dbf.use_table( fifo_db_con, line.s);
+
+	if (fifo_dbf.use_table( fifo_db_con, line.s) < 0) {
+		double_log("use_table function failed");
+		goto error1;
+	}
 
 	/*read 'where' avps */
 	if (get_avps( fifo , keys2, ops2, vals2, &nr2, MAX_ARRAY)!=0 )

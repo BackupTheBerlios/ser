@@ -1,5 +1,5 @@
 /* 
- * $Id: del_list.c,v 1.7 2004/06/08 10:55:31 andrei Exp $
+ * $Id: del_list.c,v 1.8 2004/06/16 14:20:13 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -74,7 +74,10 @@ int process_del_list(str* _d)
 	     /* FIXME */
 		memcpy(b, _d->s, _d->len);
 		b[_d->len] = '\0';
-		ul_dbf.use_table(ul_dbh, b);
+		if (ul_dbf.use_table(ul_dbh, b) < 0) {
+			LOG(L_ERR, "process_del_list(): Error in use_table\n");
+			return -1;
+		}
 	
 		VAL_TYPE(vals) = VAL_TYPE(vals + 1) = DB_STR;
 		VAL_NULL(vals) = VAL_NULL(vals + 1) = 0;

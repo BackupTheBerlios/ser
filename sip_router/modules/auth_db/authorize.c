@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.14 2004/06/08 10:55:29 andrei Exp $
+ * $Id: authorize.c,v 1.15 2004/06/16 14:20:13 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -80,7 +80,11 @@ static inline int get_ha1(struct username* _username, str* _domain, char* _table
 
 	n = (use_domain ? 2 : 1);
 	nc = (use_rpid ? 2 : 1);
-	auth_dbf.use_table(db_handle, _table);
+	if (auth_dbf.use_table(db_handle, _table) < 0) {
+		LOG(L_ERR, "get_ha1(): Error in use_table\n");
+		return -1;
+	}
+
 	if (auth_dbf.query(db_handle, keys, 0, vals, col, n, nc, 0, &res) < 0) {
 		LOG(L_ERR, "get_ha1(): Error while querying database\n");
 		return -1;

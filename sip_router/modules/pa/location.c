@@ -1,7 +1,7 @@
 /*
  * Presence Agent, location package handling
  *
- * $Id: location.c,v 1.4 2004/06/08 10:55:30 andrei Exp $
+ * $Id: location.c,v 1.5 2004/06/16 14:20:13 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -247,11 +247,15 @@ int pa_location_init(void)
 	  result_cols[room_col = n_result_cols++] = "room";
 	  result_cols[placeid_col = n_result_cols++] = "placeid";
 
-	  pa_dbf.use_table(pa_db, place_table);
+	  if (pa_dbf.use_table(pa_db, place_table) < 0) {
+		  LOG(L_ERR, "pa_location_init: Error in use_table\n");
+		  return -1;
+	  }
+
 	  if (pa_dbf.query (pa_db, query_cols, query_ops, query_vals,
 			result_cols, n_query_cols, n_result_cols, 0, &res) < 0) {
-	       LOG(L_ERR, "db_new_tuple(): Error while querying tuple\n");
-	       return -1;
+		  LOG(L_ERR, "pa_location_init: Error while querying tuple\n");
+		  return -1;
 	  }
 	  LOG(L_ERR, "pa_location_init: res=%p res->n=%d\n", res, res->n);
 	  if (res && res->n > 0) {

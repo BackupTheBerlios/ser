@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.10 2004/06/08 10:55:30 andrei Exp $
+ * $Id: pdt.c,v 1.11 2004/06/16 14:20:13 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -267,7 +267,10 @@ static int mod_init(void)
 	}
 	else
 	{
-		pdt_dbf.use_table(db_con, db_table);
+		if (pdt_dbf.use_table(db_con, db_table) < 0) {
+			LOG(L_ERR, "PDT: mod_init: Error in use_table\n");
+			goto error1;
+		}
 		DBG("PDT: mod_init: Database connection opened successfully\n");
 	}
 	
@@ -362,8 +365,11 @@ static int mod_child_init(int r)
 	}
 	else
 	{
-	  pdt_dbf.use_table(db_con, db_table);
-	  DBG("PDT:child %d: Database connection opened successfuly\n",r);
+		if (pdt_dbf.use_table(db_con, db_table) < 0) {
+			LOG(L_ERR, "PDT:child %d: Error in use_table\n", r);
+			return -1;
+		}
+		DBG("PDT:child %d: Database connection opened successfuly\n",r);
 	}
 	return 0;
 }

@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.33 2004/06/08 10:55:30 andrei Exp $
+ * $Id: msilo.c,v 1.34 2004/06/16 14:20:13 janakj Exp $
  *
  * MSILO module
  *
@@ -250,7 +250,11 @@ static int child_init(int rank)
 	}
 	else
 	{
-		msilo_dbf.use_table(db_con, db_table);
+		if (msilo_dbf.use_table(db_con, db_table) < 0) {
+			LOG(L_ERR, "MSILO: child %d: Error in use_table\n");
+			return -1;
+		}
+		
 		DBG("MSILO: child %d: Database connection opened successfully\n", rank);
 	}
 	return 0;
