@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.9 2002/03/02 04:51:55 bogdan Exp $*
+/* $Id: shm_mem.h,v 1.10 2002/03/08 02:21:45 andrei Exp $*
  *
  * shared mem stuff
  */
@@ -71,13 +71,14 @@ static inline void shm_lock()
 {
 
 	struct sembuf sop;
+	int ret;
 	
 	sop.sem_num=0;
 	sop.sem_op=-1; /*down*/
 	sop.sem_flg=0 /*SEM_UNDO*/;
 again:
-	semop(shm_semid, &sop, 1);
-#if 0
+	ret=semop(shm_semid, &sop, 1);
+
 	switch(ret){
 		case 0: /*ok*/
 			break;
@@ -88,7 +89,6 @@ again:
 			LOG(L_ERR, "ERROR: sh_lock: error waiting on semaphore: %s\n",
 					strerror(errno));
 	}
-#endif
 }
 
 
@@ -96,13 +96,13 @@ again:
 static inline void shm_unlock()
 {
 	struct sembuf sop;
+	int ret;
 	
 	sop.sem_num=0;
 	sop.sem_op=1; /*up*/
 	sop.sem_flg=0 /*SEM_UNDO*/;
 again:
-	semop(shm_semid, &sop, 1);
-#if 0
+	ret=semop(shm_semid, &sop, 1);
 	/*should ret immediately*/
 	switch(ret){
 		case 0: /*ok*/
@@ -114,7 +114,6 @@ again:
 			LOG(L_ERR, "ERROR: sh_lock: error waiting on semaphore: %s\n",
 					strerror(errno));
 	}
-#endif
 }
 
 /* ret -1 on erro*/
