@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.8 2003/04/18 17:58:34 andrei Exp $
+ * $Id: exec.c,v 1.9 2003/08/20 11:25:00 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -160,6 +160,7 @@ int exec_str(struct sip_msg *msg, char *cmd, char *param, int param_len) {
 			}
 			msg->new_uri.s=new_uri;
 			msg->new_uri.len=uri_len;
+			msg->parsed_uri_ok=0; /* invalidate current parsed uri */
 		} else {
 			if (append_branch(msg, uri_line, uri_len)==-1) {
 				LOG(L_ERR, "ERROR: exec_str: append_branch failed;"
