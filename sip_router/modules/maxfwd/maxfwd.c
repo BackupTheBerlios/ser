@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.4 2002/01/31 15:27:55 bogdan Exp $
+ * $Id: maxfwd.c,v 1.5 2002/02/06 12:30:28 andrei Exp $
  *
  * MAXFWD module
  *
@@ -59,7 +59,11 @@ static struct module_exports mf_exports= {
 };
 
 
+#ifdef STATIC_MAXFWD
+struct module_exports* maxfwd_mod_register()
+#else
 struct module_exports* mod_register()
+#endif
 {
 	fprintf(stderr, "maxfwd - registering\n");
 	mf_startup();

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.60 2002/01/15 21:29:27 andrei Exp $
+# $Id: Makefile,v 1.61 2002/02/06 12:30:28 andrei Exp $
 #
 # sip_router makefile
 #
@@ -17,7 +17,7 @@ extra_sources=$(wildcard $(addsuffix /*.c, $(static_modules_path)))
 extra_objs=$(extra_sources:.c=.o)
 
 static_defs= $(foreach  mod, $(static_modules), \
-		-DSTATIC_$(shell echo $(mod) | tr a-z A-Z) )
+		-DSTATIC_$(shell echo $(mod) | tr [:lower:] [:upper:]) )
 DEFS+=$(static_defs)
 modules=$(filter-out $(addprefix modules/, \
 			$(exclude_modules) $(static_modules)), \
