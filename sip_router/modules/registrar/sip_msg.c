@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.3 2003/01/18 14:22:31 janakj Exp $
+ * $Id: sip_msg.c,v 1.4 2003/01/21 20:48:54 janakj Exp $
  *
  * SIP message related functions
  *
@@ -54,9 +54,11 @@ static inline int get_expires_hf(struct sip_msg* _m)
 	
 	if (_m->expires) {
 		p = (exp_body_t*)_m->expires->parsed;
-		if (p->val != 0) {
-			return p->val + act_time;
-		} else return 0;
+		if (p->valid) {
+			if (p->val != 0) {
+				return p->val + act_time;
+			} else return 0;
+		} else return act_time + default_expires;
 	} else {
 		return act_time + default_expires;
 	}
