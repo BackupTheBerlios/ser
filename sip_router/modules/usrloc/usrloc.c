@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.1 2001/12/07 23:10:09 janakj Exp $
+/* $Id: usrloc.c,v 1.2 2001/12/18 00:29:18 janakj Exp $
  *
  * User location support
  *
