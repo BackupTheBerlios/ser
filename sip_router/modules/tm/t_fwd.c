@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.54 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: t_fwd.c,v 1.55 2004/02/05 17:23:19 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -464,12 +464,6 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 		LOG(L_ERR, "ERROR: t_forward_nonack: failure to add branches\n");
 		return lowest_ret;
 	}
-
-	/* store script processing value of failure route to transactional
-	   context; if currently 0, this forwarding attempt will no longer 
-	   result in failure_route on error
-	*/
-	t->on_negative=get_on_negative();
 
 	/* send them out now */
 	success_branch=0;
