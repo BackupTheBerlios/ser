@@ -1,5 +1,5 @@
 /*
- * $Id: loc_set.h,v 1.5 2003/09/05 12:37:34 bogdan Exp $
+ * $Id: loc_set.h,v 1.6 2003/11/13 20:08:07 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -98,7 +98,7 @@ static inline int add_location(struct location **loc_set, str *uri,
 		/* insert after bar, before foo  */
 		loc->next = foo;
 		bar->next = loc;
-	 }
+	}
 
 	return 0;
 }

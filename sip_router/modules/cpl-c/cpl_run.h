@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.h,v 1.11 2003/10/23 17:27:19 bogdan Exp $
+ * $Id: cpl_run.h,v 1.12 2003/11/13 20:08:07 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,7 +42,6 @@
 #define CPL_RUN_INCOMING               (1<<1)
 #define CPL_LOC_SET_MODIFIED           (1<<2)
 #define CPL_PROXY_DONE                 (1<<3)
-#define CPL_USER_DUPLICATED            (1<<4)
 #define CPL_RURI_DUPLICATED            (1<<5)
 #define CPL_TO_DUPLICATED              (1<<6)
 #define CPL_FROM_DUPLICATED            (1<<7)
