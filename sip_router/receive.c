@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.6 2001/09/21 20:24:13 andrei Exp $
+ *$Id: receive.c,v 1.7 2001/09/25 23:06:39 andrei Exp $
  */
 
 #include <string.h>
@@ -18,6 +18,7 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 	struct sip_msg msg;
 	struct route_elem *re;
 
+	memset(&msg,0, sizeof(struct sip_msg)); /* init everything to 0 */
 	/* fill in msg */
 	msg.buf=buf;
 	msg.len=len;

@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.9 2001/09/21 21:42:52 andrei Exp $
+ * $Id: route.c,v 1.10 2001/09/25 23:06:39 andrei Exp $
  *
  * SIP routing engine
  *
@@ -407,16 +407,16 @@ void print_rl()
 
 	for(j=0; j<RT_NO; j++){
 		if (rlist[j]==0){
-			if (j==0) printf("WARNING: the main routing table is empty\n");
+			if (j==0) DBG("WARNING: the main routing table is empty\n");
 			continue;
 		}
-		printf("routing table %d:\n",j);
+		DBG("routing table %d:\n",j);
 		for (t=rlist[j],i=0; t; i++, t=t->next){
-			printf("%2d.condition: ",i);
+			DBG("%2d.condition: ",i);
 			print_expr(t->condition);
-			printf("\n  -> ");
+			DBG("\n  -> ");
 			print_action(t->actions);
-			printf("\n    Statistics: tx=%d, errors=%d, tx_bytes=%d\n",
+			DBG("\n    Statistics: tx=%d, errors=%d, tx_bytes=%d\n",
 					t->tx, t->errors, t->tx_bytes);
 		}
 	}
