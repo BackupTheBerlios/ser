@@ -1,7 +1,7 @@
 /*
  * Sdp mangler module
  *
- * $Id: contact_ops.h,v 1.1 2003/04/07 16:53:24 gabriel Exp $
+ * $Id: contact_ops.h,v 1.2 2003/04/07 18:39:33 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,7 +56,7 @@ int encode_contact (struct sip_msg *msg, char *encoding_prefix,char *public_ip);
 int decode_contact (struct sip_msg *msg, char *separator,char *unused);
 
 
-int free_uri_format (struct uri_format format);
+int free_uri_format (struct uri_format *format);
 	
 int encode2format (str uri, struct uri_format *format);
 int decode2format (str uri, char separator, struct uri_format *format);
