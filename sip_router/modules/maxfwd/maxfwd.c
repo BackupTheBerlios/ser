@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.20 2004/08/24 08:58:31 janakj Exp $
+ * $Id: maxfwd.c,v 1.21 2004/09/03 15:21:22 janakj Exp $
  *
  * MAXFWD module
  *
@@ -150,7 +150,7 @@ static int w_process_maxfwd_header(struct sip_msg* msg, char* str1,char* str2)
 			return -1;
 		default:
 			if (max_limit && val>max_limit){
-				LOG(L_NOTICE, "NOTICE:maxfwd:process_maxfwd_header: "
+				DBG("DBG:maxfwd:process_maxfwd_header: "
 					"value %d decreased to %d\n", val, max_limit);
 				val = max_limit+1;
 			}
