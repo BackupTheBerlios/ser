@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sr,v 1.3 2002/04/15 22:34:24 jku Exp $
+# $Id: sr,v 1.4 2002/06/12 23:31:04 jku Exp $
 #
 #
 # 3w-xxxx:      Starts the sip_router process
@@ -9,7 +9,7 @@
 #
 # chkconfig: 2345 20 80
 # description: controls execution of SIP router
-# processname: sip_router
+# processname: sr
 # config: /etc/sip_router.cfg
 
 # Source function library.
