@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.16 2003/09/25 09:47:09 sobomax Exp $
+/*$Id: nathelper.c,v 1.17 2003/10/08 13:07:21 janakj Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -119,7 +119,7 @@ mod_init(void)
 
 	if (natping_interval > 0) {
 		get_all_ucontacts =
-		    (int (*)(void *, int))find_export("~ul_get_all_ucontacts", 1, 0);
+		    (int (*)(void *, int))find_export("ul_get_all_ucontacts", 1, 0);
 		if (!get_all_ucontacts) {
 			LOG(L_ERR, "This module requires usrloc module\n");
 			return -1;

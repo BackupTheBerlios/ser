@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.5 2003/04/30 17:49:29 janakj Exp $
+ * $Id: dlist.c,v 1.6 2003/10/08 13:07:22 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -106,14 +106,14 @@ static inline int new_dlist(str* _n, dlist_t** _d)
 	ptr->name.len = _n->len;
 
 	if ((_n->len == 9) && (!strncasecmp(_n->s, "registrar", 9))) {
-		reg = find_export("~ul_register_watcher", 1, 0);
+		reg = find_export("ul_register_watcher", 1, 0);
 		if (reg == 0) {
-			LOG(L_ERR, "new_dlist(): ~ul_register_watcher not found\n");
+			LOG(L_ERR, "new_dlist(): ul_register_watcher not found\n");
 			return -3;
 		}
-		unreg = find_export("~ul_unregister_watcher", 1, 0);
+		unreg = find_export("ul_unregister_watcher", 1, 0);
 		if (unreg == 0) {
-			LOG(L_ERR, "new_dlist(): ~ul_unregister_watcher not found\n");
+			LOG(L_ERR, "new_dlist(): ul_unregister_watcher not found\n");
 			return -4;
 		}
 	} else if ((_n->len == 6) && (!strncasecmp(_n->s, "jabber", 6))) {
