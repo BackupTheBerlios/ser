@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.14 2003/10/08 21:34:11 janakj Exp $
+ * $Id: domain_mod.c,v 1.15 2003/10/08 21:49:29 janakj Exp $
  *
  * Domain module
  *
@@ -177,5 +177,5 @@ static void destroy(void)
 	/* Destroy is called from the main process only,
 	 * there is no need to close database here because
 	 * it is closed in mod_init already
-	 * /
+	 */
 }
