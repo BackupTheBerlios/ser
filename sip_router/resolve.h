@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.9 2002/09/19 18:31:27 andrei Exp $
+ * $Id: resolve.h,v 1.10 2002/09/20 10:05:02 andrei Exp $
  *
  * resolver related functions
  *
@@ -96,7 +96,8 @@ void free_rdata_list(struct rdata* head);
 
 
 
-#define rev_resolvehost(ip) gethostbyaddr((ip)->u.addr, (ip)->len, (ip)->af);
+#define rev_resolvehost(ip)\
+					gethostbyaddr((char*)(ip)->u.addr, (ip)->len, (ip)->af);
 
 
 
