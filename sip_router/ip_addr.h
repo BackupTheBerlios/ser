@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.30 2003/10/24 20:23:58 andrei Exp $
+/* $Id: ip_addr.h,v 1.31 2004/03/09 11:26:06 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -246,7 +246,7 @@ static inline int su_cmp(union sockaddr_union* s1, union sockaddr_union* s2)
 
 
 /* gets the port number (host byte order) */
-static inline short su_getport(union sockaddr_union* su)
+static inline unsigned short su_getport(union sockaddr_union* su)
 {
 	switch(su->s.sa_family){
 		case AF_INET:
