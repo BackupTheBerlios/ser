@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.2 2003/04/12 20:55:55 jiri Exp $
+/*$Id: nathelper.c,v 1.3 2003/04/15 20:35:48 jiri Exp $
  *
  * Ser module, it implements the following commands:
  * add_rport() - insert a rport parameter into the first Via field
@@ -202,7 +202,7 @@ fixup_str2int( void** param, int param_no)
 	if (param_no == 1) {
 		go_to = str2s(*param, strlen(*param), &err);
 		if (err == 0) {
-			free(*param);
+			pkg_free(*param);
 			*param = (void *)go_to;
 			return 0;
 		} else {
