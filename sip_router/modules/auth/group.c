@@ -1,11 +1,11 @@
 /*
- * $Id: group.c,v 1.2 2002/05/11 21:27:30 jku Exp $
+ * $Id: group.c,v 1.3 2002/07/09 09:08:25 janakj Exp $
  */
 
 #include "group.h"
 #include <string.h>
 #include "../../dprint.h"
-#include "db.h"
+#include "../../db/db.h"
 #include "auth.h"
 #include "auth_mod.h"
 #include "utils.h"

@@ -1,5 +1,5 @@
 /* 
- * $Id: contact.h,v 1.6 2002/03/25 11:08:50 janakj Exp $ 
+ * $Id: contact.h,v 1.7 2002/07/09 09:08:25 janakj Exp $ 
  */
 
 #ifndef __CONTACT_H__
@@ -7,7 +7,7 @@
 
 #include <time.h>
 #include "../../str.h"
-#include "db.h"
+#include "../../db/db.h"
 #include "defs.h"
 
 

@@ -1,11 +1,11 @@
 /*
- * $Id: auth_mod.h,v 1.3 2002/05/11 21:27:30 jku Exp $
+ * $Id: auth_mod.h,v 1.4 2002/07/09 09:08:25 janakj Exp $
  */
 
 #ifndef auth_mod_h
 #define auth_mod_h
 
-#include "db.h"
+#include "../../db/db.h"
 #include "defs.h"
 #include "../../str.h"
 

@@ -1,9 +1,5 @@
-/*
- * $Id: db.c,v 1.1 2002/07/04 11:14:18 daniel Exp $
- */
-
 #include "db.h"
-#include "../../sr_module.h"
+#include "../sr_module.h"
 
 db_func_t dbf;
 

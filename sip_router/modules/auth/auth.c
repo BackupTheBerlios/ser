@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.26 2002/05/26 12:10:13 jku Exp $
+ * $Id: auth.c,v 1.27 2002/07/09 09:08:25 janakj Exp $
  */
 
 #include "auth.h"
@@ -10,7 +10,7 @@
 #include "../../mem/shm_mem.h"
 #include "../../data_lump_rpl.h"
 #include "cred.h"
-#include "db.h"
+#include "../../db/db.h"
 #include "calc.h"
 #include "../../md5global.h"
 #include "../../md5.h"

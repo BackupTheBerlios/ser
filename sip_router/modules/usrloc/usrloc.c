@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.21 2002/06/11 21:53:41 jku Exp $
+/* $Id: usrloc.c,v 1.22 2002/07/09 09:08:25 janakj Exp $
  *
  * User location support module
  *
@@ -11,7 +11,7 @@
 #include "utils.h"
 #include "../../sr_module.h"
 #include "to_parser.h"
-#include "db.h"
+#include "../../db/db.h"
 #include "../../action.h"
 #include "defs.h"
 #include "../../data_lump_rpl.h"

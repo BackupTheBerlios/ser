@@ -1,5 +1,5 @@
 /* 
- * $Id: cache.h,v 1.8 2002/04/12 00:36:01 janakj Exp $ 
+ * $Id: cache.h,v 1.9 2002/07/09 09:08:25 janakj Exp $ 
  */
 
 #ifndef CACHE_H
@@ -8,7 +8,7 @@
 #include "c_slot.h"
 #include "c_elem.h"
 #include "location.h"
-#include "db.h"
+#include "../../db/db.h"
 #include "../../fastlock.h"
 #include "../../str.h"
 

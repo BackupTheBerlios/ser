@@ -1,7 +1,3 @@
-/*
- * $Id: db.h,v 1.1 2002/07/04 11:14:18 daniel Exp $
- */
-
 #ifndef __DB_H__
 #define __DB_H__
 
@@ -29,7 +25,7 @@ typedef const char* db_key_t;
  */
 typedef enum {
 	DB_INT,
-	DB_DOUBLE,
+        DB_DOUBLE,
 	DB_STRING,
 	DB_DATETIME
 } db_type_t;

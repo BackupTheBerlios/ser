@@ -1,5 +1,5 @@
 /* 
- * $Id: location.h,v 1.6 2002/05/13 01:15:41 jku Exp $ 
+ * $Id: location.h,v 1.7 2002/07/09 09:08:25 janakj Exp $ 
  */
 
 #ifndef LOCATION_H
@@ -8,7 +8,7 @@
 #include <time.h>
 #include "contact.h"
 #include "../../parser/msg_parser.h"
-#include "db.h"
+#include "../../db/db.h"
 
 
 /*

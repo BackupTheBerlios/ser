@@ -1,5 +1,5 @@
 /*
- * $Id: jc_pool.h,v 1.1 2002/07/04 11:14:18 daniel Exp $
+ * $Id: jc_pool.h,v 1.2 2002/07/09 09:08:25 janakj Exp $
  *
  * JABBER module
  *
@@ -17,7 +17,7 @@
 #include "sip2jabber.h"
 #include "tree234.h"
 #include "../../str.h"
-#include "db.h"
+#include "../../db/db.h"
 #include "lock.h"
 
 /**********             ***/

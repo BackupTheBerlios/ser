@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.4 2002/07/04 19:00:43 daniel Exp $
+ * $Id: jabber.c,v 1.5 2002/07/09 09:08:25 janakj Exp $
  *
  * JABBER module
  *
@@ -23,7 +23,7 @@
 
 #include "sip2jabber.h"
 #include "jc_pool.h"
-#include "db.h"
+#include "../../db/db.h"
 
 jab_wlist jwl = NULL;
 
