@@ -1,7 +1,7 @@
 /*
  * Presence Agent, XPIDF document support
  *
- * $Id: xpidf.h,v 1.3 2003/11/10 15:56:06 janakj Exp $
+ * $Id: xpidf.h,v 1.4 2004/06/04 12:01:32 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,8 +35,7 @@
 
 typedef enum xpidf_status {
 	XPIDF_ST_OPEN,
-	XPIDF_ST_CLOSED,
-	XPIDF_ST_INUSE
+	XPIDF_ST_CLOSED
 } xpidf_status_t;
 
 
