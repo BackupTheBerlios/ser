@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.15 2002/05/28 19:01:38 andrei Exp $
+/* $Id: sr_module.c,v 1.16 2002/08/16 13:26:15 jku Exp $
  */
 
 #include "sr_module.h"
@@ -13,6 +13,9 @@
 
 struct sr_module* modules=0;
 
+#ifdef STATIC_EXEC
+	extern struct module_exports* exec_exports();
+#endif
 #ifdef STATIC_TM
 	extern struct module_exports* tm_exports();
 #endif
@@ -42,6 +45,11 @@ int register_builtin_modules()
 	ret=0;
 #ifdef STATIC_TM
 	ret=register_module(tm_exports,"built-in", 0); 
+	if (ret<0) return ret;
+#endif
+
+#ifdef EXEC_TM
+	ret=register_module(exec_exports,"built-in", 0); 
 	if (ret<0) return ret;
 #endif
 

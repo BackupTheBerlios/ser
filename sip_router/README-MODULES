@@ -1,4 +1,4 @@
-# $Id: README-MODULES,v 1.3 2002/08/15 08:13:29 jku Exp $
+# $Id: README-MODULES,v 1.4 2002/08/16 13:26:15 jku Exp $
 
 List of currently available ser modules
 ----------------------------------------------------------
@@ -20,6 +20,9 @@ cpl		experimental alpha		Call Processing Language
 
 ext		experimental alpha		Execution of external URI
 (bia)							processing logic
+
+exec	experimental beta		Execution of external URI
+(jku)							processing logic
 
 im		temporary	 alpha		Stateless instant messaging	
 (bia)							client
