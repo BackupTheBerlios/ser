@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.20 2003/09/04 12:48:21 bogdan Exp $
+ * $Id: cpl.c,v 1.21 2003/09/04 15:07:58 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -269,15 +269,15 @@ static int cpl_init(void)
 	}
 
 	/* make a copy of the original TZ env. variable */
-	if ( (ptr=getenv("TZ"))!=0 ) {
-		cpl_orig_tz.len = 3/*"TZ="*/ + strlen(ptr) + 1;
-		if ( (cpl_orig_tz.s=shm_malloc(cpl_orig_tz.len))==0 ) {
-			LOG(L_ERR,"ERROR:cpl_init: no more shm mem. for saving TZ!\n");
-			goto error;
-		}
-		memcpy(cpl_orig_tz.s,"TZ=",3);
-		strcpy(cpl_orig_tz.s+3,ptr);
+	ptr = getenv("TZ");
+	cpl_orig_tz.len = 3/*"TZ="*/ + (ptr?(strlen(ptr)+1):0);
+	if ( (cpl_orig_tz.s=shm_malloc(cpl_orig_tz.len))==0 ) {
+		LOG(L_ERR,"ERROR:cpl_init: no more shm mem. for saving TZ!\n");
+		goto error;
 	}
+	memcpy(cpl_orig_tz.s,"TZ=",3);
+	if (ptr)
+		strcpy(cpl_orig_tz.s+3,ptr);
 
 	return 0;
 error:
