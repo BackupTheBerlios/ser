@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.5 2003/09/03 17:42:10 bogdan Exp $
+# $Id: Makefile,v 1.6 2003/09/04 14:10:57 bogdan Exp $
 #
 # example module makefile
 #
@@ -9,7 +9,7 @@ include ../../Makefile.defs
 auto_gen=
 NAME=cpl-c.so
 
-DEFS +=-I/usr/include/libxml2
+DEFS +=-I/usr/local/include/libxml2
 
 LIBS= -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2
 

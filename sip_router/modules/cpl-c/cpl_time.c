@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_time.c,v 1.4 2003/09/04 11:21:47 bogdan Exp $
+ * $Id: cpl_time.c,v 1.5 2003/09/04 14:10:57 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,6 +33,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "../../mem/mem.h"
 #include "cpl_time.h"
