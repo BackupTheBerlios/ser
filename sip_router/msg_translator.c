@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.103 2003/03/31 19:51:10 andrei Exp $
+ * $Id: msg_translator.c,v 1.104 2003/03/31 19:56:37 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -515,9 +515,15 @@ static inline void process_lumps(	struct sip_msg* msg,
 	switch((subst_l)->u.subst){ \
 		case SUBST_RCV_IP: \
 			if (msg->rcv.bind_address){  \
+				if (msg->rcv.bind_address->address.af!=AF_INET){\
+					new_buf[offset]='['; offset++; \
+				}\
 				memcpy(new_buf+offset, msg->rcv.bind_address->address_str.s, \
 						msg->rcv.bind_address->address_str.len); \
 				offset+=msg->rcv.bind_address->address_str.len; \
+				if (msg->rcv.bind_address->address.af!=AF_INET){\
+					new_buf[offset]=']'; offset++; \
+				}\
 			}else{  \
 				/*FIXME*/ \
 				LOG(L_CRIT, "FIXME: process_lumps: null bind_address\n"); \
@@ -535,9 +541,15 @@ static inline void process_lumps(	struct sip_msg* msg,
 			break; \
 		case SUBST_SND_IP: \
 			if (send_sock){  \
+				if (send_sock->address.af!=AF_INET){\
+					new_buf[offset]='['; offset++; \
+				}\
 				memcpy(new_buf+offset, send_sock->address_str.s, \
 									send_sock->address_str.len); \
 				offset+=send_sock->address_str.len; \
+				if (send_sock->address.af!=AF_INET){\
+					new_buf[offset]=']'; offset++; \
+				}\
 			}else{  \
 				/*FIXME*/ \
 				LOG(L_CRIT, "FIXME: process_lumps: called with" \
