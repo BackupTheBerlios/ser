@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.h,v 1.5 2002/08/27 12:14:05 janakj Exp $ 
+ * $Id: udomain.h,v 1.6 2002/08/27 13:31:25 janakj Exp $ 
  *
  * Usrloc domain structure
  */
@@ -8,6 +8,7 @@
 #define UDOMAIN_H
 
 
+#include <stdio.h>
 #include "../../fastlock.h"
 #include "../../str.h"
 #include "urecord.h"
@@ -57,7 +58,7 @@ void free_udomain(udomain_t* _d);
 /*
  * Just for debugging
  */
-void print_udomain(udomain_t* _d);
+void print_udomain(FILE* _f, udomain_t* _d);
 
 
 /*

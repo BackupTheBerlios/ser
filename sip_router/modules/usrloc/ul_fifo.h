@@ -1,6 +1,6 @@
 /*
  *
- * $Id: ul_fifo.h,v 1.3 2002/08/21 20:09:02 janakj Exp $
+ * $Id: ul_fifo.h,v 1.4 2002/08/27 13:31:25 janakj Exp $
  *
  *
  */
@@ -11,6 +11,8 @@
 /* FIFO commands */
 #define UL_STATS	"ul_stats"
 #define UL_RM		"ul_rm"
+#define UL_DUMP         "ul_dump"
+#define UL_FLUSH        "ul_flush"
 
 /* buffer dimensions */
 #define MAX_TABLE 128

@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.h,v 1.4 2002/08/27 09:47:03 janakj Exp $ 
+ * $Id: urecord.h,v 1.5 2002/08/27 13:31:25 janakj Exp $ 
  *
  * Usrloc record structure
  */
@@ -8,6 +8,7 @@
 #define URECORD_H
 
 
+#include <stdio.h>
 #include <time.h>
 #include "hslot.h"
 #include "../../str.h"
@@ -48,7 +49,7 @@ void free_urecord(urecord_t* _r);
 /*
  * Print an element, for debugging purposes only
  */
-void print_urecord(urecord_t* _r);
+void print_urecord(FILE* _f, urecord_t* _r);
 
 
 /*

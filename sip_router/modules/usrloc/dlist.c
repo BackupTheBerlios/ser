@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.7 2002/08/27 12:14:05 janakj Exp $
+ * $Id: dlist.c,v 1.8 2002/08/27 13:31:25 janakj Exp $
  *
  * List of registered domains
  */
@@ -144,18 +144,18 @@ void free_all_udomains(void)
 /*
  * Just for debugging
  */
-void print_all_udomains(void)
+void print_all_udomains(FILE* _f)
 {
 	dlist_t* ptr;
 	
 	ptr = root;
 
-	printf("===Domain list===\n");
+	fprintf(_f, "===Domain list===\n");
 	while(ptr) {
-		print_udomain(ptr->d);
+		print_udomain(_f, ptr->d);
 		ptr = ptr->next;
 	}
-	printf("===/Domain list===\n");
+	fprintf(_f, "===/Domain list===\n");
 }
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.h,v 1.4 2002/08/27 12:14:05 janakj Exp $
+ * $Id: dlist.h,v 1.5 2002/08/27 13:31:25 janakj Exp $
  *
  * List of registered domains
  */
@@ -7,6 +7,7 @@
 #ifndef DLIST_H
 #define DLIST_H
 
+#include <stdio.h>
 #include "udomain.h"
 #include "../../str.h"
 
@@ -41,7 +42,7 @@ void free_all_udomains(void);
 /*
  * Just for debugging
  */
-void print_all_udomains(void);
+void print_all_udomains(FILE* _f);
 
 
 /*

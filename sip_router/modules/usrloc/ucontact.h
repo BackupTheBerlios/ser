@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.4 2002/08/27 09:47:03 janakj Exp $ 
+ * $Id: ucontact.h,v 1.5 2002/08/27 13:31:25 janakj Exp $ 
  *
  * Usrloc contact structure
  */
@@ -8,6 +8,7 @@
 #define UCONTACT_H
 
 
+#include <stdio.h>
 #include <time.h>
 #include "../../str.h"
 
@@ -49,7 +50,7 @@ void free_ucontact(ucontact_t* _c);
 /*
  * Print contact, for debugging purposes only
  */
-void print_ucontact(ucontact_t* _c);
+void print_ucontact(FILE* _f, ucontact_t* _c);
 
 
 /*
