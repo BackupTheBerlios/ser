@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.11 2001/09/26 17:18:02 andrei Exp $
+ * $Id: main.c,v 1.12 2001/10/06 22:17:53 jku Exp $
  */
 
 #include <stdio.h>
@@ -20,14 +20,31 @@
 #include "udp_server.h"
 #include "globals.h"
 
+#include <signal.h>
+
+
 
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.11 2001/09/26 17:18:02 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.12 2001/10/06 22:17:53 jku Exp $";
 static char version[]="sip_router 0.6";
+static char flags[]="NOCR:"
+#ifdef NOCR
+"On"
+#else
+"Off"
+#endif
+", MACROEATER:"
+#ifdef MACROEATER
+"On"
+#else
+"Off"
+#endif
+;
+
 static char help_msg[]= "\
 Usage: sip_router -l address [-l address] [options]\n\
 Options:\n\
@@ -196,7 +213,17 @@ int main_loop()
 	return -1;
 
 }
-	
+
+/* added by jku; allows for regular exit on a specific signal;
+   good for profiling which only works if exited regularly and
+   not by default signal handlers
+*/	
+
+static void sig_usr(int signo)
+{
+	DPrint("INT received, program terminates\n");
+	exit(0);
+}
 	
 	
 	
@@ -208,6 +235,12 @@ int main(int argc, char** argv)
 	int c,r;
 	char *tmp;
 	struct utsname myname;
+
+	/* added by jku: add exit handler */
+        if (signal(SIGINT, sig_usr) == SIG_ERR ) {
+ 		DPrint("ERROR: no signal handler can be installed\n");
+                goto error;
+        }
 
 	/* process command line (get port no, cfg. file path etc) */
 	opterr=0;
@@ -266,6 +299,7 @@ int main(int argc, char** argv)
 					break;
 			case 'V':
 					printf("version: %s\n", version);
+					printf("flags: %s\n", flags );
 					printf("%s\n",id);
 					exit(0);
 					break;

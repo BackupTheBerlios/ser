@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.10 2001/09/27 13:03:06 andrei Exp $
+# $Id: Makefile,v 1.11 2001/10/06 22:17:53 jku Exp $
 #
 # sip_router makefile
 #
@@ -14,6 +14,14 @@ depends= $(sources:.c=.d)
 
 NAME=sip_router
 
+# compile-time options
+# NOCR disables seeking for CRs -- breaks standard but is fast
+# recommended: on (speed-up, no implementation really sends CR)
+# MACROEATER replaces frequently called parser helper functions
+# with macros
+# recommanded: on (speed-up)
+DEFS=-DNOCR -DMACROEATER
+
 # platform dependent settings
 
 ARCH = $(shell uname -s)
@@ -21,7 +29,7 @@ ARCH = $(shell uname -s)
 ifeq ($(ARCH), Linux)
 
 CC=gcc
-CFLAGS=-O2 -Wcast-align #-Wmissing-prototypes  -Wall
+CFLAGS=-O2 -pg -Wcast-align #-Wmissing-prototypes  -Wall
 LEX=flex
 YACC=bison
 YACC_FLAGS=-d -b cfg
@@ -54,7 +62,7 @@ LIBS=-lfl
 endif
 
 
-MKDEP=gcc -M
+MKDEP=gcc -M $(DEFS)
 
 ALLDEP=Makefile
 
@@ -62,7 +70,7 @@ ALLDEP=Makefile
 
 
 %.o:%.c $(ALLDEP)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEFS) -c $< -o $@
 
 %.d: %.c
 	$(MKDEP) $< >$@
