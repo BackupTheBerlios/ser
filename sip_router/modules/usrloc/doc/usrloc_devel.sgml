@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2003/10/08 22:16:54 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2003/11/03 16:40:05 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -211,7 +211,8 @@
 	    </itemizedlist>
 	    <itemizedlist>
 		<listitem>
-		    <para><emphasis>unsigned int flags</emphasis></para> - Flags to be set.
+		    <para><emphasis>unsigned int flags</emphasis> - Flags to be set.
+			</para> 
 		</listitem>
 	    </itemizedlist>
 	    <itemizedlist>
@@ -360,6 +361,25 @@
 	    </itemizedlist>
 	</section>
     </section>
+	<section>
+	<title>Contact states</title>
+		<figure id="ucontact_states" float="0">
+			<title>States of a ucontact</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata align="center" fileref="usrloc_states_w_zombie.png" format="PNG">
+				</imageobject>
+			</mediaobject>
+		</figure>
+		<para>
+		Contacts in one of the zombie states should be ignored by any function
+		which interacts with an external user. Contacts are only kept in a
+		zombie state to store the informations for replication. Contacts can
+		also apear in a zombie state even if no replication is used, but in
+		this case the contacts should be reomved by the next timer event 
+		automaticly.
+		</para>
+	</section>
 </chapter>
 
 <!-- Keep this element at the end of the file
