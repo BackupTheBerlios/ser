@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.19 2002/11/11 16:31:19 dcm Exp $
+ * $Id: jabber.c,v 1.20 2002/11/12 09:18:14 dcm Exp $
  *
  * JABBER module
  *
@@ -649,7 +649,7 @@ void destroy(void)
 
 void xjab_check_workers(int mpid)
 {
-	int i, j, n, stat;
+	int i, n, stat;
 	DBG("XJAB:%d:xjab_check_workers: time=%d\n", mpid, get_ticks());
 	if(!jwl || jwl->len <= 0)
 		return;
