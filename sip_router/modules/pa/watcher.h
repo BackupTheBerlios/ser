@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: watcher.h,v 1.2 2003/01/14 22:49:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -73,7 +73,7 @@ void free_watcher(watcher_t* _w);
 /*
  * Print contact, for debugging purposes only
  */
-void print_ucontact(FILE* _f, watcher_t* _w);
+void print_watcher(FILE* _f, watcher_t* _w);
 
 
 int update_watcher(watcher_t* _w, str* _c, time_t _e);

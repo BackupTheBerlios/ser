@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: pdomain.c,v 1.2 2003/01/14 22:49:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,7 +56,7 @@ static inline int hash_func(pdomain_t* _d, char* _s, int _l)
  * structure stored in domain list
  * _s is hash table size
  */
-int new_pdomain(str* _n, int _s, pdomain_t** _d)
+int new_pdomain(str* _n, int _s, pdomain_t** _d, register_watcher_t _r, unregister_watcher_t _u)
 {
 	int i;
 	
@@ -87,6 +87,9 @@ int new_pdomain(str* _n, int _s, pdomain_t** _d)
 	(*_d)->users = 0;
 	(*_d)->expired = 0;
 	
+	(*_d)->reg = _r;
+	(*_d)->unreg = _u;
+
 	return 0;
 }
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: presentity.h,v 1.2 2003/01/14 22:49:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -54,7 +54,7 @@ int new_presentity(str* _to, presentity_t** _p);
 /*
  * Free all memory associated with a presentity
  */
-int free_presentity(presentity_t* _p);
+void free_presentity(presentity_t* _p);
 
 
 int timer_presentity(presentity_t* _p);
@@ -67,6 +67,10 @@ int remove_watcher(presentity_t* _p, watcher_t* _w);
 
 int notify_watchers(presentity_t* _p);
 
+/*
+ * Print a presentity
+ */
+void print_presentity(FILE* _f, presentity_t* _p);
 
 #endif /* PRESENTITY_H */
 

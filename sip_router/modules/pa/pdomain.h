@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: pdomain.h,v 1.2 2003/01/14 22:49:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,16 +36,21 @@
 #include "../../fastlock.h"
 #include "../../str.h"
 
+typedef int (*register_watcher_t)(str* _f, str* _t, void* _cb, void* _data);
+typedef int (*unregister_watcher_t)(str* _f, str* _t, void* _cb, void* _data);
+
 
 typedef struct pdomain {
 	str* name;
-	int size;                 /* Hash table size */
-	struct presentity* first; /* First presentity in the domain */
-	struct presentity* last;  /* Last presentity in the domain */
-	struct hslot* table;      /* Hash table for fast lookup */
-	fl_lock_t lock;           /* Lock for the domain */
-	int users;                /* Number of registered presentities */
-	int expired;              /* Number of expired presentities */
+	int size;                   /* Hash table size */
+	struct presentity* first;   /* First presentity in the domain */
+	struct presentity* last;    /* Last presentity in the domain */
+	struct hslot* table;        /* Hash table for fast lookup */
+	fl_lock_t lock;             /* Lock for the domain */
+	int users;                  /* Number of registered presentities */
+	int expired;                /* Number of expired presentities */
+	register_watcher_t reg;     /* Register watcher function */
+	unregister_watcher_t unreg; /* Unregister watcher function */
 } pdomain_t;
 
 
@@ -57,26 +62,26 @@ typedef struct pdomain {
  * structure stored in domain list
  * _s is hash table size
  */
-int new_pdomain(str* _n, int _s, pdomain_t** _d);
+int new_pdomain(str* _n, int _s, pdomain_t** _d, register_watcher_t _reg, unregister_watcher_t _unreg);
 
 
 /*
  * Free all memory allocated for
  * the domain
  */
-void free_udomain(pdomain_t* _d);
+void free_pdomain(pdomain_t* _d);
 
 
 /*
  * Just for debugging
  */
-void print_udomain(FILE* _f, pdomain_t* _d);
+void print_pdomain(FILE* _f, pdomain_t* _d);
 
 
 /*
  * Timer handler for given domain
  */
-int timer_udomain(pdomain_t* _d);
+int timer_pdomain(pdomain_t* _d);
 
 
 /*

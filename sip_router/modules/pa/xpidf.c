@@ -1,7 +1,7 @@
 /*
  * Presence Agent, XPIDF document support
  *
- * $Id: xpidf.c,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: xpidf.c,v 1.2 2003/01/14 22:49:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -93,8 +93,6 @@
  */
 int start_xpidf_doc(str* _b, int _l)
 {
-	int len;
-
 	if ((XML_VERSION_LEN + 2 +
 	     DOCTYPE_LEN + 2 +
 	     PRESENCE_STAG_LEN + 2) > _l) {
@@ -140,7 +138,7 @@ int xpidf_add_presentity(str* _b, int _l, str* _uri)
  */
 int xpidf_add_address(str* _b, int _l, str* _addr, xpidf_status_t _st)
 {
-	int len;
+	int len = 0;
 	char* p;
 
 	switch(_st) {

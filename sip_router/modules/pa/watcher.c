@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: watcher.c,v 1.2 2003/01/14 22:49:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -116,7 +116,7 @@ void print_watcher(FILE* _f, watcher_t* _w)
 	fprintf(_f, "~~~Watcher~~~\n");
 	fprintf(_f, "from   : \'%.*s\'\n", _w->from.len, _w->from.s);
 	fprintf(_f, "contact: \'%.*s\'\n", _w->contact.len, _w->contact.s);
-	fprintf(_f, "expires: %d\n", _w->expires - time(0));
+	fprintf(_f, "expires: %d\n", (int)(_w->expires - time(0)));
 	fprintf(_f, "accept : %s\n", (_w->accept == DOC_XPIDF) ? ("DOC_XPIDF") : ("DOC_LPIDF"));
 	fprintf(_f, "next   : %p\n", _w->next);
 	fprintf(_f, "dialog.callid: \'%.*s\'\n", _w->dialog.callid.len, _w->dialog.callid.s);
