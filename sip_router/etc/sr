@@ -1,5 +1,8 @@
 #!/bin/sh 
 #
+# $Id: sr,v 1.2 2002/04/12 06:52:12 jku Exp $
+#
+#
 # 3w-xxxx:      Starts the sip_router process
 #
 # Version:      @(#) /etc/rc.d/init.d/3w-xxxx

@@ -1,4 +1,11 @@
 #!/bin/sh
+#
+# $Id: sercheck,v 1.2 2002/04/12 06:52:12 jku Exp $
+#
+# use to check whether all ser processes are running; if not, restart
+# and issue an alert; run from cron daemon for best results :-)
+#
+
 
 NOTIFY=sr@iptel.org
 SERDIR=/home/srouter/sip_router
