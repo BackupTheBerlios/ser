@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, strict routing support
  *
- * $Id: strict.c,v 1.4 2003/03/31 09:39:48 janakj Exp $
+ * $Id: strict.c,v 1.5 2003/04/03 12:21:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -54,7 +54,7 @@ int strict_route(struct sip_msg* _m, char* _s1, char* _s2)
 			LOG(L_ERR, "strict_route(): Error while rewriting request URI\n");
 			return -2;
 		}
-		if (remove_first_route(_m, _m->route) < 0) {
+		if (remove_route(_m, _m->route, _m->route->parsed, 0) < 0) {
 			LOG(L_ERR, "strict_route(): Error while removing the topmost Route URI\n");
 			return -3;
 		}

@@ -1,7 +1,7 @@
 /*
- * Route & Record-Route module
+ * $Id: record.h,v 1.1 2003/04/03 12:21:40 janakj Exp $
  *
- * $Id: common.h,v 1.10 2003/04/03 12:21:40 janakj Exp $
+ * Route & Record-Route module
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,42 +28,32 @@
  *
  * History:
  * -------
- * 2003-03-27 Adapted to new RR parser (janakj)
+ * 2003-04-04 Extracted from common.[ch] (janakj)
  */
 
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef RECORD_H
+#define RECORD_H
 
 #include "../../parser/msg_parser.h"
-#include "../../parser/parse_rr.h"
-#include "../../parser/hf.h"
-#include "../../str.h"
 
 
 /*
- * Parse the message and find first occurence of
- * Route header field. The function returns -1 on
- * an parser error, 0 if there is a Route HF and
- * 1 if there is no Route HF.
+ * Insert a new Record-Route header field with lr parameter
  */
-int find_first_route(struct sip_msg* _m);
+int record_route(struct sip_msg* _m, char* _s1, char* _s2);
 
 
 /*
- * Rewrites Request-URI with string given in _s parameter
- *
- * Return 0 on success, negative number on error
+ * Insert manualy created Record-Route header, no checks, no restrictions,
+ * always adds lr parameter, only fromtag is added automatically when requested
  */
-int rewrite_RURI(struct sip_msg* _m, str* _s);
+int record_route_preset(struct sip_msg* _m, char* _ip, char* _s2);
 
 
 /*
- * Remove route field given by _hdr and _r, if the route
- * field is not first in it's header field, previous route
- * URI in the same header must be given in _p
- * Returns 0 on success, negative number on failure
+ * Insert a new Record-Route header field without lr parameter
  */
-int remove_route(struct sip_msg* _m, struct hdr_field* _hdr, rr_t* _r, rr_t* _p);
+int record_route_strict(struct sip_msg* _m, char* _s1, char* _s2);
 
 
-#endif /* COMMON_H */
+#endif /* RECORD_H */
