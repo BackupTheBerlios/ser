@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.26 2003/11/27 10:39:27 bogdan Exp $
+/*$Id: nathelper.c,v 1.27 2003/11/27 19:38:29 bogdan Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -434,7 +434,6 @@ extract_mediaip(str *body, str *mediaip)
 		cp = cp1 + 2;
 	}
 	if (cp1 == NULL) {
-		LOG(L_ERR, "ERROR: extract_mediaip: no `c=' in SDP\n");
 		return -1;
 	}
 	mediaip->s = cp1 + 2;
