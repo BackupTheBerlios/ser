@@ -1,5 +1,5 @@
 /*
- * $Id: tm_mod.c,v 1.2 2002/08/16 21:04:58 jku Exp $
+ * $Id: tm_mod.c,v 1.3 2002/08/20 00:19:05 jku Exp $
  *
  * TM module
  *
@@ -238,7 +238,7 @@ static int mod_init(void)
 		return -1;
 	}
 	
-	if (init_stats()<0) {
+	if (init_tm_stats()<0) {
 		LOG(L_CRIT, "ERROR: mod_init: failed to init stats\n");
 		return -1;
 	}

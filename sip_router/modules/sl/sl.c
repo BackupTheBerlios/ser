@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.6 2002/07/08 13:53:56 bogdan Exp $
+ * $Id: sl.c,v 1.7 2002/08/20 00:19:05 jku Exp $
  *
  * MAXFWD module
  *
@@ -13,6 +13,7 @@
 #include "../../dprint.h"
 #include "../../error.h"
 #include "../../ut.h"
+#include "sl_stats.h"
 #include "sl_funcs.h"
 
 
@@ -66,6 +67,10 @@ struct module_exports exports= {
 static int mod_init(void)
 {
 	fprintf(stderr, "stateless - initializing\n");
+	if (init_sl_stats()<0) {
+		LOG(L_ERR, "ERROR: init_sl_stats failed\n");
+		return -1;
+	}
 	sl_startup();
 	return 0;
 }
@@ -75,6 +80,7 @@ static int mod_init(void)
 
 static int mod_destroy()
 {
+	sl_stats_destroy();
 	return sl_shutdown();
 }
 

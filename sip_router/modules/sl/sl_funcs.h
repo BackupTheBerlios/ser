@@ -1,9 +1,9 @@
 /*
- * $Id: sl_funcs.h,v 1.8 2002/08/15 10:05:36 jku Exp $
+ * $Id: sl_funcs.h,v 1.9 2002/08/20 00:19:05 jku Exp $
  */
 
 #ifndef _SL_FUNCS_H
-#define SL_FUNCS_H
+#define _SL_FUNCS_H
 
 #include "../../parser/msg_parser.h"
 

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.92 2002/08/19 11:51:31 andrei Exp $
+ * $Id: main.c,v 1.93 2002/08/20 00:19:05 jku Exp $
  */
 
 #include <stdio.h>
@@ -45,7 +45,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.92 2002/08/19 11:51:31 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.93 2002/08/20 00:19:05 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -874,8 +874,8 @@ int main(int argc, char** argv)
 	}
 
 	/* register a diagnostic FIFO command */
-	if (register_fifo_cmd(print_fifo_cmd, "print", 0)<0) {
-		LOG(L_CRIT, "unable to register 'print' FIFO cmd\n");
+	if (register_core_fifo()<0) {
+		LOG(L_CRIT, "unable to register core FIFO commands\n");
 		goto error;
 	}
 

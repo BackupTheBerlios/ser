@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.26 2002/08/15 10:05:36 jku Exp $
+ * $Id: sl_funcs.c,v 1.27 2002/08/20 00:19:05 jku Exp $
  */
 
 #include <netinet/in.h>
@@ -14,11 +14,12 @@
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
 #include "../../crc.h"
-#include "sl_funcs.h"
 #include "../../dset.h"
 #include "../../data_lump_rpl.h"
 #include "../../action.h"
 #include "../../config.h"
+#include "sl_stats.h"
+#include "sl_funcs.h"
 
 
 /* to-tag including pre-calculated and fixed part */
@@ -167,9 +168,11 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	}
 	pkg_free(buf);
 
+	update_sl_stats(code);
 	return 1;
 
 error:
+	update_sl_failures();
 	return -1;
 }
 
