@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.50 2003/04/27 19:03:50 jiri Exp $
+# $Id: sc,v 1.51 2003/04/30 11:07:21 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.50 $'
+VERSION='$Revision: 1.51 $'
 #### SQL names
 
 # Usr Loc Table
@@ -324,7 +324,11 @@ usrloc() {
 			if [ $# -eq 2 ] ; then
 				fifo_cmd ul_show_contact $TABLE $2
 			elif [ $# -eq 1 ] ; then
-				fifo_cmd ul_dump
+				printf "Dumping all contacts may take long: are you sure you want to proceed? [Y|N] "
+				read answer
+				if [ "$answer" = "y" -o "$answer" = "Y" ] ; then
+					fifo_cmd ul_dump
+				fi
 			else
 				echo "wrong number of params for usrloc show"
 				usage
