@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.12 2002/05/09 18:40:54 jku Exp $
+/* $Id: shm_mem.c,v 1.13 2002/05/26 13:50:48 andrei Exp $
  *
  * Shared memory functions
  */
@@ -7,6 +7,7 @@
 
 #include "shm_mem.h"
 #include "../config.h"
+#include "../globals.h"
 
 #ifdef  SHM_MMAP
 
@@ -21,6 +22,8 @@
 #ifdef FAST_LOCK
 #include "../fastlock.h"
 #endif
+
+
 
 
 /* define semun */

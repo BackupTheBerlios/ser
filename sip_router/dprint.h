@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.5 2002/03/01 23:21:25 andrei Exp $
+ * $Id: dprint.h,v 1.6 2002/05/26 13:50:48 andrei Exp $
  */
 
 
@@ -8,7 +8,6 @@
 
 #include <syslog.h>
 
-#include "globals.h"
 
 #define L_ALERT -3
 #define L_CRIT  -2
@@ -18,6 +17,10 @@
 #define L_INFO   3
 #define L_DBG    4
 
+/* vars:*/
+
+extern int debug;
+extern int log_stderr;
 
 
 #define DPRINT_LEV	1

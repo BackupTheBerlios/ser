@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.30 2002/05/13 01:15:40 jku Exp $
+ *$Id: receive.c,v 1.31 2002/05/26 13:50:48 andrei Exp $
  */
 
 #include <string.h>
@@ -7,6 +7,7 @@
 #include <sys/time.h>
 
 #include "receive.h"
+#include "globals.h"
 #include "dprint.h"
 #include "route.h"
 #include "parser/msg_parser.h"
@@ -14,6 +15,7 @@
 #include "action.h"
 #include "mem/mem.h"
 #include "stats.h"
+#include "ip_addr.h"
 
 
 #ifdef DEBUG_DMALLOC
@@ -22,7 +24,7 @@
 
 unsigned int msg_no=0;
 
-int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
+int receive_msg(char* buf, unsigned int len, union sockaddr_union* src_su)
 {
 	struct sip_msg* msg;
 #ifdef STATS
@@ -40,8 +42,8 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 	/* fill in msg */
 	msg->buf=buf;
 	msg->len=len;
-	msg->src_ip=src_ip;
-	msg->dst_ip=bind_address; /* won't work if listening on 0.0.0.0 */
+	su2ip_addr(&msg->src_ip, src_su);
+	msg->dst_ip=*bind_address; /* won't work if listening on 0.0.0.0 */
 	msg->id=msg_no;
 	/* make a copy of the message */
 	msg->orig=(char*) pkg_malloc(len+1);

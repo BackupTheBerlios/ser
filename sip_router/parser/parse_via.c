@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.1 2002/05/13 01:15:41 jku Exp $ 
+ * $Id: parse_via.c,v 1.2 2002/05/26 13:50:48 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1284,8 +1284,7 @@ main_via:
 							" no host found\n");
 						goto error;
 					case P_IP6HOST:
-						LOG(L_ERR, "ERROR:parse_via: bad ipv6 reference\n");
-						goto error;
+						break;
 					case P_HOST:
 						*tmp=0; /*mark  end of host*/
 						vb->host.len=tmp-vb->host.s;

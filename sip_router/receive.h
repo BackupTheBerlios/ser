@@ -1,12 +1,14 @@
 /*
- * $Id: receive.h,v 1.2 2001/09/06 02:24:00 andrei Exp $
+ * $Id: receive.h,v 1.3 2002/05/26 13:50:48 andrei Exp $
  */
 
 
 #ifndef receive_h
 #define receive_h
 
-int receive_msg(char* buf, unsigned int len, unsigned long src_ip);
+#include "ip_addr.h"
+
+int receive_msg(char* buf, unsigned int len, union sockaddr_union *src_su);
 
 
 #endif

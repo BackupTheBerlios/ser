@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.3 2002/05/26 12:10:13 jku Exp $
+ * $Id: msg_parser.h,v 1.4 2002/05/26 13:50:48 andrei Exp $
  */
 
 #ifndef msg_parser_h
@@ -8,6 +8,7 @@
 #include "../str.h"
 #include "../data_lump.h"
 #include "../flags.h"
+#include "../ip_addr.h"
 
 #define SIP_REQUEST 1
 #define SIP_REPLY   2
@@ -209,8 +210,8 @@ struct sip_msg{
 	char* eoh; /* pointer to the end of header (if found) or null */
 	char* unparsed; /* here we stopped parsing*/
 
-	unsigned int src_ip;
-	unsigned int dst_ip;
+	struct ip_addr src_ip;
+	struct ip_addr dst_ip;
 	char* orig; /* original message copy */
 	char* buf;  /* scratch pad, holds a modfied message,
 				   via, etc. point into it */

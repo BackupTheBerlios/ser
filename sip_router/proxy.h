@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.h,v 1.4 2002/01/15 17:36:44 bogdan Exp $
+ * $Id: proxy.h,v 1.5 2002/05/26 13:50:48 andrei Exp $
  *
  */
 
@@ -7,6 +7,7 @@
 #define proxy_h
 
 #include <netdb.h>
+#include "ip_addr.h"
 
 struct proxy_l{
 	struct proxy_l* next;
@@ -29,7 +30,7 @@ extern struct proxy_l* proxies;
 
 struct proxy_l* add_proxy(char* name, unsigned short port);
 struct proxy_l* mk_proxy(char* name, unsigned short port);
-struct proxy_l* mk_proxy_from_ip(unsigned int ip, unsigned short port);
+struct proxy_l* mk_proxy_from_ip(struct ip_addr* ip, unsigned short port);
 void free_proxy(struct proxy_l* p);
 
 

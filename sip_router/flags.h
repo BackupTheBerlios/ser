@@ -1,5 +1,5 @@
 /*
- * $Id: flags.h,v 1.1 2002/05/13 01:15:40 jku Exp $
+ * $Id: flags.h,v 1.2 2002/05/26 13:50:48 andrei Exp $
  */
 
 
@@ -9,7 +9,7 @@
 enum { FL_WHITE=1, FL_YELLOW, FL_GREEN, FL_RED, FL_BLUE, FL_MAGENTA,
 	   FL_BROWN, FL_BLACK, FL_ACC, FL_MAX };
 
-typedef unsigned long flag_t;
+typedef unsigned int flag_t;
 
 #define MAX_FLAG  ( sizeof(flag_t) * CHAR_BIT - 1 )
 
