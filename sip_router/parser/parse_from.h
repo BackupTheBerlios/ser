@@ -1,5 +1,5 @@
 /*
- * $Id: parse_from.h,v 1.6 2002/12/03 11:45:52 bogdan Exp $
+ * $Id: parse_from.h,v 1.7 2002/12/08 00:11:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,6 +30,11 @@
 #define _PARSE_FROM_H
 
 #include "msg_parser.h"
+
+
+/* casting macro for accessing From body */
+#define get_from(p_msg)  ((struct to_body*)(p_msg)->from->parsed)
+
 
 /*
  * To header field parser
