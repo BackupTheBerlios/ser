@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_parser.h,v 1.1 2001/09/03 21:27:11 andrei Exp $
+ * $Id: cfg_parser.h,v 1.2 2001/09/04 20:55:41 andrei Exp $
  */
 
 #ifndef  cfg_parser_h
@@ -20,6 +20,7 @@ struct cfg_line{
 	char* method;
 	char* uri;
 	char* address;
+	short int port;
 };
 
 

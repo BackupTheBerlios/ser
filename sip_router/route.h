@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.1 2001/09/03 21:27:11 andrei Exp $
+ * $Id: route.h,v 1.2 2001/09/04 20:55:41 andrei Exp $
  */
 
 #ifndef route_h
@@ -21,6 +21,8 @@ struct route_elem{
 	regex_t uri;
 	struct hostent host;
 	int current_addr_idx;
+	short int port;
+	short int reserved; /* pad */
 	int ok; /* set to 0 if an error was found sendig a pkt*/
 	/*counters*/
 	int errors;
