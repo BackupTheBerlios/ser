@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.40 2003/01/27 19:11:47 jiri Exp $
+# $Id: sc,v 1.41 2003/01/27 19:42:48 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -46,7 +46,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.40 $'
+VERSION='$Revision: 1.41 $'
 #### SQL names
 
 # Usr Loc Table
@@ -189,6 +189,8 @@ fifo_cmd()
 		shift
 	done
 	CMD="${CMD}\n"
+
+	trap "rm -f $path; exit 1" 2
 
 	# start reader now so that it is ready for replies
 	# immediately after a request was sent out
@@ -534,7 +536,7 @@ case $1 in
 			echo "error opening read fifo $path"
 			exit 1
 		fi
-		trap "rm $path; clear; echo sc monitor ^C-ed; exit 1" 2
+		trap "rm $path;  clear; echo sc monitor ^C-ed; exit 1" 2
 		attempt=0
 		clear
 		while [ 1 -eq 1 ]; do
