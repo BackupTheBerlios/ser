@@ -1,7 +1,7 @@
 /*
  * Presence Agent, location package handling
  *
- * $Id: location.c,v 1.2 2004/04/14 15:54:29 jamey Exp $
+ * $Id: location.c,v 1.3 2004/06/04 15:30:24 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -226,7 +226,7 @@ static int compare_location_placeid_rows(const void *v1, const void *v2)
 {
      const struct location_placeid_row *r1 = v1;
      const struct location_placeid_row *r2 = v2;
-     return str_strcmp(&r1->room_name, &r2->room_name);
+     return str_strcasecmp(&r1->room_name, &r2->room_name);
 }
 
 static int places_initialized = 0;
@@ -303,7 +303,7 @@ int location_lookup_placeid(str *room_name, int *placeid)
      if (!use_bsearch) {
 	  for (i = 0; i < location_placeid_n_rows; i++) {
 	       struct location_placeid_row *row = &location_placeid_table[i];
-	       if (str_strcmp(room_name, &row->room_name) == 0) {
+	       if (str_strcasecmp(room_name, &row->room_name) == 0) {
 		    *placeid = row->placeid;
 		    LOG(L_ERR, "  placeid=%d\n", row->placeid);
 		    return 1;

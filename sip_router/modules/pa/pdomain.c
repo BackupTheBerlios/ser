@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.12 2004/04/14 15:53:37 jamey Exp $
+ * $Id: pdomain.c,v 1.13 2004/06/04 15:30:24 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -155,15 +155,15 @@ void print_pdomain(FILE* _f, pdomain_t* _d)
 
 int timer_pdomain(pdomain_t* _d)
 {
-	struct presentity* ptr, *t;
+	struct presentity* presentity, *t;
 
 	lock_pdomain(_d);
 
-	ptr = _d->first;
+	presentity = _d->first;
 
-	if (0) LOG(L_ERR, "timer_pdomain: _d=%s d->first=%p\n", _d->name->s, ptr);
-	while(ptr) {
-		if (timer_presentity(ptr) < 0) {
+	if (0) LOG(L_ERR, "timer_pdomain: _d=%s d->first=%p\n", _d->name->s, presentity);
+	while(presentity) {
+		if (timer_presentity(presentity) < 0) {
 			LOG(L_ERR, "timer_pdomain(): Error in timer_pdomain\n");
 			unlock_pdomain(_d);
 			return -1;
@@ -172,13 +172,13 @@ int timer_pdomain(pdomain_t* _d)
 		     /* Remove the entire record
 		      * if it is empty
 		      */
-		if (ptr->watchers == 0 && ptr->winfo_watchers==0) {
-			t = ptr;
-			ptr = ptr->next;
+		if (presentity->watchers == 0 && presentity->winfo_watchers==0) {
+			t = presentity;
+			presentity = presentity->next;
 			remove_presentity(_d, t);
 			free_presentity(t);
 		} else {
-			ptr = ptr->next;
+			presentity = presentity->next;
 		}
 	}
 	

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.19 2004/04/14 15:54:29 jamey Exp $
+ * $Id: subscribe.c,v 1.20 2004/06/04 15:30:24 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -71,6 +71,8 @@ void callback(str* _user, str *_contact, int state, void* data)
 {
      presentity_t *presentity;
 
+     get_act_time();
+
      presentity = (struct presentity*)data;
 
      if (presentity && callback_update_db) {
@@ -84,7 +86,7 @@ void callback(str* _user, str *_contact, int state, void* data)
 
 	       find_presence_tuple(_contact, presentity, &tuple);
 	       if (!tuple) {
-		    new_presence_tuple(_contact, presentity, &tuple);
+		    new_presence_tuple(_contact, act_time + default_expires, presentity, &tuple);
 		    add_presence_tuple(presentity, tuple);
 	       };
 
@@ -95,6 +97,8 @@ void callback(str* _user, str *_contact, int state, void* data)
 	       } else {
 		    tuple->state = PS_ONLINE;
 	       }
+
+	       tuple->expires = act_time + default_expires;
 
 	       db_update_presentity(presentity);
 
@@ -649,8 +653,8 @@ int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2)
 		w->flags |= WFLAG_SUBSCRIPTION_CHANGED;
 	}
 
-	LOG(L_ERR, "handle_subscription about to return 1: event_package=%d accept=%d\n",
-	    (w ? w->event_package : -1), (w ? w->accept : -1));
+	LOG(L_ERR, "handle_subscription about to return 1: w->event_package=%d w->accept=%d p->flags=%x w->flags=%x w=%p\n",
+	    (w ? w->event_package : -1), (w ? w->accept : -1), (p ? p->flags : -1), (w ? w->flags : -1), w);
 	unlock_pdomain(d);
 	return 1;
 	
