@@ -1,5 +1,5 @@
 /*
- * $Id: defs.h,v 1.10 2002/06/10 17:02:53 janakj Exp $
+ * $Id: defs.h,v 1.11 2002/06/10 18:02:09 janakj Exp $
  */
 
 #ifndef DEFS_H
@@ -15,5 +15,9 @@
  * will be accepted
  */
 #define OOO_HACK
+
+/*
+ * Debug info in reason phrase
+ */
 
 #endif
