@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.27 2003/11/28 23:48:48 janakj Exp $ 
+ * $Id: urecord.c,v 1.28 2004/01/12 00:10:51 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -202,7 +202,7 @@ static inline int nodb_timer(urecord_t* _r)
 	ptr = _r->contacts;
 
 	while(ptr) {
-		if (ptr->expires < act_time) {
+		if ((ptr->expires < act_time) && !(ptr->flags & FL_PERMANENT)) {
 			if (ptr->replicate != 0) {
 				LOG(L_NOTICE, "Keeping binding '%.*s','%.*s' for replication\n", 
 				    ptr->aor->len, ZSW(ptr->aor->s), ptr->c.len, ZSW(ptr->c.s));
@@ -265,7 +265,7 @@ static inline int wt_timer(urecord_t* _r)
 	ptr = _r->contacts;
 	
 	while(ptr) {
-		if (ptr->expires < act_time) {
+		if ((ptr->expires < act_time) && !(ptr->flags & FL_PERMANENT)) {
 			if (ptr->replicate != 0) {
 				LOG(L_NOTICE, "Keeping binding '%.*s','%.*s' for "
 					"replication\n", ptr->aor->len, ZSW(ptr->aor->s),
@@ -335,7 +335,7 @@ static inline int wb_timer(urecord_t* _r)
 	ptr = _r->contacts;
 
 	while(ptr) {
-		if (ptr->expires < act_time) {
+		if ((ptr->expires < act_time) && !(ptr->flags & FL_PERMANENT)) {
 			if (ptr->replicate != 0) {
 				LOG(L_NOTICE, "Keeping binding '%.*s','%.*s' for "
 					"replication\n", ptr->aor->len, ZSW(ptr->aor->s),
