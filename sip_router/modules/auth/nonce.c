@@ -1,5 +1,5 @@
 /*
- * $Id: nonce.c,v 1.8 2003/03/06 15:32:39 janakj Exp $
+ * $Id: nonce.c,v 1.9 2003/03/09 13:08:04 janakj Exp $
  *
  * Nonce related functions
  *
@@ -113,11 +113,6 @@ inline void calc_nonce(char* _nonce, int _expires, str* _secret)
 	MD5Final(bin, &ctx);
 	string2hex(bin, 16, _nonce + 8);
 	_nonce[8 + 32] = '\0';
-
-	DBG("calc_nonce(): _expires=%d, _secret=%.*s -> "
-	    "nonce=[%s]\n",
-	    _expires, _secret->len, _secret->s, _nonce);
-
 }
 
 
