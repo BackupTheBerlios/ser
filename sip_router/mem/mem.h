@@ -1,4 +1,4 @@
-/* $Id: mem.h,v 1.5 2003/03/10 22:24:14 andrei Exp $
+/* $Id: mem.h,v 1.6 2003/03/19 18:41:14 andrei Exp $
  *
  * memory related stuff (malloc & friends)
  * 
@@ -66,14 +66,14 @@
 				__FUNCTION__, __LINE__)
 #		elif defined F_MALLOC
 #			define pkg_malloc(s) fm_malloc(mem_block, (s),__FILE__, \
-				__FUNCTION__, __LINE__);
+				__FUNCTION__, __LINE__)
 #			define pkg_free(p)   fm_free(mem_block, (p), __FILE__,  \
-				__FUNCTION__, __LINE__);
+				__FUNCTION__, __LINE__)
 #		else
 #			define pkg_malloc(s) qm_malloc(mem_block, (s),__FILE__, \
-				__FUNCTION__, __LINE__);
+				__FUNCTION__, __LINE__)
 #			define pkg_free(p)   qm_free(mem_block, (p), __FILE__,  \
-				__FUNCTION__, __LINE__);
+				__FUNCTION__, __LINE__)
 #		endif
 #	else
 #		ifdef VQ_MALLOC
