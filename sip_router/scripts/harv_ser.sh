@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.21 2003/01/24 15:47:05 jiri Exp $
+# $Id: harv_ser.sh,v 1.22 2003/01/26 12:44:56 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -122,6 +122,7 @@ BEGIN {
 	server_snom=0;
 	server_edgeaccess=0;
 	server_mcet=0;
+	server_sjphone=0;
 	server_xx=0
 
 }
@@ -348,6 +349,10 @@ server==0 && /Server:.*EdgEAccEss/ {
 }
 server==0 && /Server:.*MCET/ {
 	server_mcet++
+	server=1
+}
+server==0 && /Server:.*SJLabs-SJPhone/ {
+	server_sjphone++
 	server=1
 }
 server==0 && /Server:/ {
@@ -684,6 +689,7 @@ END {
 	print "lucent: " server_lucent
 	print "edgeAccess: " server_edgeaccess
 	print "mcet: " server_mcet 
+	print "sjphone: " server_sjphone
 	print "UFO: " server_xx
 }
 '
