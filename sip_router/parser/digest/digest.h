@@ -1,5 +1,5 @@
 /*
- * $Id: digest.h,v 1.5 2003/03/05 15:59:28 janakj Exp $
+ * $Id: digest.h,v 1.6 2003/03/12 15:30:50 janakj Exp $
  *
  * Digest credentials parser interface
  *
@@ -66,6 +66,7 @@ typedef enum dig_err {
 	E_DIG_RESPONSE = 16, /* Response missing */
 	E_DIG_CNONCE = 32,   /* CNONCE missing */
 	E_DIG_NC = 64,       /* Nonce-count missing */
+	E_DIG_DOMAIN = 128   /* Username domain != realm */
 } dig_err_t;
 
 
