@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.h,v 1.6 2001/12/18 00:30:46 bogdan Exp $
+ * $Id: sip_msg.h,v 1.7 2002/01/11 03:32:19 jku Exp $
  */
 
 
@@ -13,14 +13,15 @@
 #define sip_msg_cloner(p_msg) \
     sip_msg_cloner_2(p_msg)
 
-#define sip_msg_free(p_msg) \
-    sip_msg_free_2(p_msg)
+#define sip_msg_free(_p_msg) shm_free( (_p_msg ))
+#define sip_msg_free_unsafe(_p_msg) shm_free_unsafe( (_p_msg) )
+/*    sip_msg_free_2(p_msg) */
 
 
 struct sip_msg*  sip_msg_cloner_1( struct sip_msg *org_msg );
 struct sip_msg*  sip_msg_cloner_2( struct sip_msg *org_msg );
 void                     sip_msg_free_1( struct sip_msg *org_msg );
-void                     sip_msg_free_2( struct sip_msg *org_msg );
+/* void                     sip_msg_free_2( struct sip_msg *org_msg ); */
 
 
 #endif

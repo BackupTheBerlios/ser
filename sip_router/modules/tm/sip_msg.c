@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.22 2002/01/07 04:39:54 jku Exp $
+ * $Id: sip_msg.c,v 1.23 2002/01/11 03:32:19 jku Exp $
  */
 
 
@@ -693,7 +693,3 @@ struct via_body* via_body_cloner_2( char* new_buf , char *org_buf , struct via_b
    return new_via;
 }
 
-void sip_msg_free_2(struct sip_msg* msg)
-{
-   sh_free( (char*)msg );
-}

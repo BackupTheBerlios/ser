@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.18 2002/01/09 18:50:24 jku Exp $
+ * $Id: action.c,v 1.19 2002/01/11 03:32:18 jku Exp $
  */
 
 
@@ -395,7 +395,8 @@ int run_actions(struct action* a, struct sip_msg* msg)
 	}
 		
 	if (a==0){
-		LOG(L_ERR, "WARNING: run_actions: null action list\n");
+		LOG(L_ERR, "WARNING: run_actions: null action list (rec_level=%d)\n", 
+			rec_lev);
 		ret=0;
 	}
 
