@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.57 2001/12/06 11:25:26 bogdan Exp $
+ * $Id: t_funcs.c,v 1.58 2001/12/06 12:21:13 bogdan Exp $
  */
 
 
@@ -90,6 +90,10 @@ int t_add_transaction( struct sip_msg* p_msg, char* foo, char* bar )
    new_cell = build_cell( p_msg ) ;
    if  ( !new_cell )
       return -1;
+   /*init the links with the canceled / canceler transaction */
+   new_cell->T_canceled  = T_UNDEFINED;
+   new_cell->T_canceler  = T_UNDEFINED;
+   /*insert the transaction into hash table*/
    insert_into_hash_table( hash_table , new_cell );
    DBG("DEBUG: t_add_transaction: new transaction inserted, hash: %d\n", new_cell->hash_index );
 
