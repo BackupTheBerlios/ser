@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.14 2002/09/24 16:00:32 jiri Rel $
+# $Id: ser_mysql.sh,v 1.15 2002/12/08 12:56:50 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -125,7 +125,8 @@ INSERT INTO version VALUES ( 'active_sessions', '1');
 INSERT INTO version VALUES ( 'acc', '1');
 INSERT INTO version VALUES ( 'config', '1');
 INSERT INTO version VALUES ( 'silo', '1');
-
+INSERT INTO version VALUES ( 'realm', '1');
+INSERT INTO version VALUES ( 'uri', '1');
 
 
 #
@@ -380,6 +381,29 @@ CREATE TABLE silo(
     ctype VARCHAR(32) NOT NULL DEFAULT "text/plain",
     body BLOB NOT NULL
 ) $TABLE_TYPE ;
+
+
+#
+# Table structure for table 'realm' -- realms proxy is responsible for
+#
+
+CREATE TABLE realm (
+  realm varchar(50) NOT NULL default '',
+  last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (realm)
+) $TABLE_TYPE;
+
+
+#
+# Table structure for table 'uri' -- uri user parts users are allowed to use
+#
+CREATE TABLE uri (
+  user varchar(50) NOT NULL default '',
+  realm varchar(50) NOT NULL default '',
+  uri_user varchar(50) NOT NULL default '',
+  last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY (user, realm, uri_user)
+) $TABLE_TYPE;
 
 
 # add an admin user "admin" with password==heslo, 
