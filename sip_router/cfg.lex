@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.58 2004/08/24 08:45:10 janakj Exp $
+ * $Id: cfg.lex,v 1.59 2004/09/09 15:21:49 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -154,6 +154,8 @@ MATCH	=~
 NOT		!|"not"
 AND		"and"|"&&"|"&"
 OR		"or"|"||"|"|"
+PLUS	"+"
+MINUS	"-"
 
 /* config vars. */
 DEBUG	debug
@@ -406,6 +408,8 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{NOT}		{ count(); return NOT; }
 <INITIAL>{AND}		{ count(); return AND; }
 <INITIAL>{OR}		{ count(); return OR;  }
+<INITIAL>{PLUS}		{ count(); return PLUS; }
+<INITIAL>{MINUS}	{ count(); return MINUS; }
 
 
 
