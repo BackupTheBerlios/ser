@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.40 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_lookup.c,v 1.41 2002/08/15 09:29:20 jku Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -574,7 +574,6 @@ int t_newtran( struct sip_msg* p_msg )
 	int ret, lret;
 	struct cell *new_cell;
 	struct sip_msg *shm_msg;
-	int a,b,c;
 
 	ret=1;
 
