@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.h,v 1.5 2003/11/06 19:13:42 janakj Exp $
+ * $Id: sip_msg.h,v 1.6 2004/04/27 14:53:22 janakj Exp $
  *
  * SIP message related functions
  *
@@ -31,7 +31,7 @@
 #ifndef SIP_MSG_H
 #define SIP_MSG_H
 
-
+#include "../../qvalue.h"
 #include "../../parser/msg_parser.h"
 #include "../../parser/contact/parse_contact.h"
 
@@ -80,7 +80,7 @@ int calc_contact_expires(struct sip_msg* _m, param_t* _ep, int* _e);
  * 1) If q parameter exist, use it
  * 2) If the parameter doesn't exist, use default value
  */
-int calc_contact_q(param_t* _q, float* _r);
+int calc_contact_q(param_t* _q, qvalue_t* _r);
 
 
 #endif /* SIP_MSG_H */

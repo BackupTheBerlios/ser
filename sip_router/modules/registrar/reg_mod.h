@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.9 2004/02/06 20:26:49 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.10 2004/04/27 14:53:22 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -32,17 +32,16 @@
 #define REG_MOD_H
 
 #include "../../parser/msg_parser.h"
+#include "../../qvalue.h"
 #include "../usrloc/usrloc.h"
 
 extern int default_expires;
-extern int default_q;
+extern qvalue_t default_q;
 extern int append_branches;
 extern int case_sensitive;
 extern int desc_time_order;
 extern int nat_flag;
 extern int min_expires;
-
-extern float def_q;
 
 usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
 

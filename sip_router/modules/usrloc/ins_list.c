@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.c,v 1.10 2003/11/28 23:48:48 janakj Exp $
+ * $Id: ins_list.c,v 1.11 2004/04/27 14:53:23 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -123,7 +123,7 @@ int process_ins_list(str* _d)
 		VAL_STR(vals + 1).s = p->cont->s;
 
 		VAL_TIME(vals + 2) = p->expires;
-		VAL_DOUBLE(vals + 3) = p->q;
+		VAL_DOUBLE(vals + 3) = q2double(p->q);
 		
 		VAL_STR(vals + 4).len = p->cid_len;
 		VAL_STR(vals + 4).s = p->callid;

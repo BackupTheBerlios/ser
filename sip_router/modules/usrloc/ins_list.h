@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.h,v 1.6 2003/03/13 22:13:06 janakj Exp $
+ * $Id: ins_list.h,v 1.7 2004/04/27 14:53:23 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -36,13 +36,14 @@
 #define INS_LIST_H
 
 #include "ucontact.h"
+#include "../../qvalue.h"
 #include "../../str.h"
 
 
 struct ins_itm {
 	struct ins_itm* next;
 	time_t expires;
-	float q;
+	qvalue_t q;
 	int cseq;
 	int replicate;
 	cstate_t state;
