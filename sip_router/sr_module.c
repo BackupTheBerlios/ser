@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.5 2001/12/13 03:21:09 andrei Exp $
+/* $Id: sr_module.c,v 1.6 2002/02/06 13:17:28 andrei Exp $
  */
 
 #include "sr_module.h"
@@ -22,6 +22,9 @@ int init_builtin_modules()
 {
 	#ifdef STATIC_TM
 		register_module(tm_mod_register,"built-in", 0);
+	#endif
+	#ifdef STATIC_MAXFWD
+		register_module(maxfwd_mod_register, "buitl-in", 0);
 	#endif
 }
 
