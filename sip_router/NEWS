@@ -1,7 +1,7 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.28 2004/07/05 17:35:31 dcm Exp $
+$Id: NEWS,v 1.29 2004/08/09 11:41:57 jiri Exp $
 
 0.8.13 changes
 
@@ -110,6 +110,9 @@ core:
        username for identifing the attribute into DB; if no attribute is given,
        all atributes for the given user will be loaded.
        Functions return false is they failed (error) or if no avp was loaded.
+utilities:
+ - ngrep patch for displaying new lines in captured SIP messages is no longer
+   needed; use ngrep V 1.42 with the option "-W byline"
 
 
 
