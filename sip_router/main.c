@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.36 2001/12/05 23:00:08 jku Exp $
+ * $Id: main.c,v 1.37 2001/12/06 18:28:30 andrei Exp $
  */
 
 #include <stdio.h>
@@ -28,6 +28,7 @@
 #include "shm_mem.h"
 #endif
 #include "sr_module.h"
+#include "timer.h"
 
 
 #include <signal.h>
@@ -41,7 +42,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.36 2001/12/05 23:00:08 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.37 2001/12/06 18:28:30 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]=
 "STATS:"
@@ -230,6 +231,22 @@ int main_loop()
 #endif
 		/* only one address */
 		if (udp_init(addresses[0],port_no)==-1) goto error;
+
+		/* we need another process to act as the timer*/
+		if (timer_list){
+				if ((pid=fork())<0){
+					LOG(L_CRIT,  "main_loop: Cannot fork\n");
+					goto error;
+				}
+				if (pid==0){
+					/* child */
+					/* timer!*/
+					for(;;){
+						sleep(TIMER_TICK);
+						timer_ticker();
+					}
+				}
+		}
 		/* receive loop */
 		udp_rcv_loop();
 	}else{
@@ -252,11 +269,16 @@ int main_loop()
 			close(udp_sock); /*parent*/
 		}
 	}
-		
-	for(;;){
-		/* debug:  instead of doing something usefull */
-		/* (placeholder for timers, etc.) */
-		sleep(10);
+	if (timer_list){
+		for(;;){
+			/* debug:  instead of doing something usefull */
+			/* (placeholder for timers, etc.) */
+			sleep(TIMER_TICK);
+			/* if we received a signal => TIMER_TICK may have not elapsed*/
+			timer_ticker();
+		}
+	}else{
+		for(;;) sleep(LONG_SLEEP);
 	}
 	
 	return 0;
@@ -309,8 +331,9 @@ static void sig_usr(int signo)
 #endif
 	}
 }
-	
-	
+
+
+
 int main(int argc, char** argv)
 {
 
@@ -331,6 +354,7 @@ int main(int argc, char** argv)
 		DPrint("ERROR: no SIGUSR1 signal handler can be installed\n");
 		goto error;
 	}
+
 
 	/* process command line (get port no, cfg. file path etc) */
 	opterr=0;
@@ -542,7 +566,6 @@ int main(int argc, char** argv)
 	if (!dont_fork){
 		if ( daemonize(argv[0]) <0 ) goto error;
 	}
-
 
 	return main_loop();
 
