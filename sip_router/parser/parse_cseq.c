@@ -1,5 +1,5 @@
 /* 
- * $Id 
+ * $Id: parse_cseq.c,v 1.2 2002/08/27 21:42:55 jku Exp $ 
  */
 
 #include "parse_cseq.h"
