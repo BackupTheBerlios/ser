@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.8 2004/04/14 19:08:55 janakj Exp $
+ * $Id: parse_param.h,v 1.9 2004/08/13 12:07:11 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -46,7 +46,7 @@ typedef enum ptype {
 	P_OTHER = 0, /* Unknown parameter */
 	P_Q,         /* Contact: q parameter */
 	P_EXPIRES,   /* Contact: expires parameter */
-	P_METHOD,    /* Contact: method parameter */
+	P_METHODS,   /* Contact: method parameter */
 	P_TRANSPORT, /* URI: transport parameter */
 	P_LR,        /* URI: lr parameter */
 	P_R2,        /* URI: r2 parameter (ser specific) */
