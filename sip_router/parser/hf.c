@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.9 2002/11/28 16:14:53 bogdan Exp $ 
+ * $Id: hf.c,v 1.10 2003/03/26 16:51:07 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -23,6 +23,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History:
+ * -------
+ * 2003-03-26 Frees also hdr->parsed for Route & Record-Route (janakj)
  */
 
 
@@ -36,6 +40,7 @@
 #include "digest/digest.h" /* free_credentials */
 #include "parse_event.h"
 #include "parse_expires.h"
+#include "parse_rr.h"
 #include "contact/parse_contact.h"
 
 
@@ -78,6 +83,11 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_CONTACT:
 			free_contact((contact_body_t**)(&(hf->parsed)));
+			break;
+
+		case HDR_ROUTE:
+		case HDR_RECORDROUTE:
+			free_rr((rr_t**)(&hf->parsed));
 			break;
 
 		case HDR_CONTENTLENGTH:
