@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.15 2002/10/21 15:46:27 jiri Exp $
+ * $Id: msg_parser.h,v 1.16 2002/10/21 19:21:50 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,20 +34,13 @@
 #include "../flags.h"
 #include "../ip_addr.h"
 #include "../md5utils.h"
+#include "../config.h"
 #include "parse_def.h"
 #include "parse_cseq.h"
 #include "parse_to.h"
 #include "parse_via.h"
 #include "parse_fline.h"
 #include "hf.h"
-
-
-/* Maximum length of values appended to Via-branch parameter */
-#ifdef USE_SYNONIM
-#define MAX_BRANCH_PARAM_LEN  22
-#else
-#define MAX_BRANCH_PARAM_LEN  48
-#endif
 
 
 /* convenience short-cut macros */

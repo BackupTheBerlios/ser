@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.12 2002/10/21 03:08:20 jiri Exp $
+ * $Id: t_msgbuilder.c,v 1.13 2002/10/21 19:21:50 jiri Exp $
  *
  * message printing
  *
@@ -329,8 +329,3 @@ int t_calc_branch(struct cell *t,
 			b, branch, branch_len );
 }
 
-int t_setbranch( struct cell *t, struct sip_msg *msg, int b )
-{
-	return t_calc_branch( t, b, 
-		msg->add_to_branch_s, &msg->add_to_branch_len );
-}

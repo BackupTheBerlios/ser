@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.36 2002/10/21 03:08:20 jiri Exp $
+ *  $Id: config.h,v 1.37 2002/10/21 19:21:50 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -141,5 +141,12 @@
 */
 #define FIFO_REPLY_RETRIES	4
 #define FIFO_REPLY_WAIT		80000
+
+/* magic cookie for transaction matching as defined in RFC3261 */
+#define MCOOKIE "z9hG4bK"
+#define MCOOKIE_LEN (sizeof(MCOOKIE)-1)
+/* Maximum length of values appended to Via-branch parameter */
+#define MAX_BRANCH_PARAM_LEN  (MCOOKIE_LEN+48)
+
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.6 2002/10/21 03:08:20 jiri Exp $
+ * $Id: t_msgbuilder.h,v 1.7 2002/10/21 19:21:50 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -80,7 +80,6 @@ char *build_uac_request(  str msg_type, str dst, str from,
 
 int t_calc_branch(struct cell *t,
 	int b, char *branch, int *branch_len);
-int t_setbranch( struct cell *t, struct sip_msg *msg, int b );
 
 
 #endif
