@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.9 2003/01/20 10:50:35 jiri Exp $
+ * $Id: challenge.c,v 1.10 2003/01/25 15:15:40 janakj Exp $
  *
  * Challenge related functions
  *
@@ -61,16 +61,16 @@
 static char auth_hf[AUTH_HF_LEN];
 #endif
 
-#define QOP_PARAM			", qop=\"auth\""
-#define QOP_PARAM_LEN		(sizeof(QOP_PARAM)-1)
-#define STALE_PARAM			", stale=true"
-#define STALE_PARAM_LEN		(sizeof(STALE_PARAM)-1)
-#define DIGEST_REALM		": Digest realm=\""
-#define DIGEST_REALM_LEN	(sizeof(DIGEST_REALM)-1)
-#define DIGEST_NONCE		"\", nonce=\""
-#define DIGEST_NONCE_LEN	(sizeof(DIGEST_NONCE)-1)
-#define DIGEST_MD5			", algorithm=MD5"
-#define DIGEST_MD5_LEN		(sizeof(DIGEST_MD5)-1)
+#define QOP_PARAM	  ", qop=\"auth\""
+#define QOP_PARAM_LEN	  (sizeof(QOP_PARAM)-1)
+#define STALE_PARAM	  ", stale=true"
+#define STALE_PARAM_LEN	  (sizeof(STALE_PARAM)-1)
+#define DIGEST_REALM	  ": Digest realm=\""
+#define DIGEST_REALM_LEN  (sizeof(DIGEST_REALM)-1)
+#define DIGEST_NONCE	  "\", nonce=\""
+#define DIGEST_NONCE_LEN  (sizeof(DIGEST_NONCE)-1)
+#define DIGEST_MD5	  ", algorithm=MD5"
+#define DIGEST_MD5_LEN	  (sizeof(DIGEST_MD5)-1)
 
 
 /*

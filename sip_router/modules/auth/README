@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.9 2002/12/08 13:04:07 janakj Exp $
+# $Id: README,v 1.10 2003/01/25 15:15:40 janakj Exp $
 #
 
 Module depends on: mysql - Used as interface to database
@@ -25,14 +25,14 @@ Desc:    Name of table containing subscribers
 
 Name:    user_column
 Type:    string
-Default: "user_id"
+Default: "user"
 Desc:    Name of column containing usernames in subscriber table
 
 
-Name:    realm_column
+Name:    domain_column
 Type:    string
-Default: "realm"
-Desc:    Name of column containing realm in subscriber table
+Default: "domain"
+Desc:    Name of column containing domain in subscriber table
 
 
 Name:    password_column
