@@ -1,4 +1,4 @@
-/* $Id: trim.h,v 1.1 2002/08/09 11:27:41 janakj Exp $ */
+/* $Id: trim.h,v 1.2 2002/08/12 12:21:24 janakj Exp $ */
 
 #ifndef TRIM_H
 #define TRIM_H
@@ -73,4 +73,4 @@ static inline void trim(str* _s)
 }
 
 
-#endif
+#endif /* TRIM_H */

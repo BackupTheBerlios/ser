@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.h,v 1.1 2002/07/08 17:14:39 janakj Exp $
+ * $Id: parse_uri.h,v 1.2 2002/08/12 12:18:21 janakj Exp $
  */
 
 #ifndef PARSE_URI_H
@@ -30,4 +30,4 @@ int parse_uri(char *buf, int len, struct sip_uri* uri);
 
 void free_uri(struct sip_uri* u);
 
-#endif
+#endif /* PARSE_URI_H */

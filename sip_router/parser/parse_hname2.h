@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname2.h,v 1.3 2002/07/30 16:31:33 janakj Exp $
+ * $Id: parse_hname2.h,v 1.4 2002/08/12 12:16:46 janakj Exp $
  */
 
 #ifndef PARSE_HNAME2_H
@@ -20,4 +20,4 @@ char* parse_hname2(char* begin, char* end, struct hdr_field* hdr);
 void init_hfname_parser(void);
 
 
-#endif
+#endif /* PARSE_HNAME2_H */

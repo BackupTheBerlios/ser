@@ -1,12 +1,12 @@
 /*
- * $Id: digest.c,v 1.1 2002/08/09 11:11:53 janakj Exp $
+ * $Id: digest.c,v 1.2 2002/08/12 12:20:08 janakj Exp $
  *
  * Digest credentials parser interface
  */
 
 #include "digest.h"
 #include "../../mem/mem.h"  /* pkg_malloc */
-#include "../../dprint.h"
+#include "../../dprint.h"   /* Guess what */
 #include <stdio.h>          /* printf */
 
 
@@ -14,15 +14,8 @@ static inline int new_credentials(struct hdr_field* _h)
 {
 	auth_body_t* b;
 
-	b = (auth_body_t*)(_h->parsed);
-
-	if (b) {
-		DBG("parse_credentials(): Credentials already parsed\n");
-		return -1;
-	}
-
 	b = (auth_body_t*)pkg_malloc(sizeof(auth_body_t));
-	if (!b) {
+	if (b == 0) {
 		LOG(L_ERR, "parse_credentials(): No memory left\n");
 		return -2;
 	}
@@ -41,6 +34,10 @@ static inline int new_credentials(struct hdr_field* _h)
 int parse_credentials(struct hdr_field* _h)
 {
 	int res;
+
+	if (_h->parsed) {
+		return 0;  /* Already parsed */
+	}
 
 	if (new_credentials(_h) < 0) {
 		LOG(L_ERR, "parse_credentials(): Can't create new credentials\n");

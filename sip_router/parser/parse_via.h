@@ -1,9 +1,9 @@
 /*
- * $Id: parse_via.h,v 1.2 2002/07/08 17:53:33 janakj Exp $
+ * $Id: parse_via.h,v 1.3 2002/08/12 12:18:50 janakj Exp $
  */
 
-#ifndef PARSE_VIA
-#define PARSE_VIA
+#ifndef PARSE_VIA_H
+#define PARSE_VIA_H
 
 #include "../str.h"
 
@@ -62,4 +62,4 @@ char* parse_via(char* buffer, char* end, struct via_body *vb);
 void free_via_list(struct via_body *vb);
 
 
-#endif
+#endif /* PARSE_VIA_H */
