@@ -1,11 +1,18 @@
 /*
- * $Id: dset.h,v 1.1 2002/08/15 08:13:29 jku Exp $
+ * $Id: dset.h,v 1.2 2002/08/15 10:05:36 jku Exp $
  */
 
 #ifndef _T_FORKS_H
 #define _T_FORKS_H
 
 #include "config.h"
+
+#define CONTACT "Contact: "
+#define CONTACT_LEN 9
+#define CONTACT_DELIM ", "
+#define CONTACT_DELIM_LEN 2
+
+char *create_dset( struct sip_msg *msg, int *len );
 
 struct branch
 {

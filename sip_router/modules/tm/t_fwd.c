@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.23 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_fwd.c,v 1.24 2002/08/15 10:05:36 jku Exp $
  *
  */
 
@@ -339,7 +339,7 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 			lowest_ret=branch_ret;
 	}
 
-	init_branch_iterator(p_msg);
+	init_branch_iterator();
 	while((current_uri.s=next_branch( &current_uri.len))) {
 		branch_ret=add_uac( t, p_msg, &current_uri, proxy );
 		/* pick some of the errors in case things go wrong;

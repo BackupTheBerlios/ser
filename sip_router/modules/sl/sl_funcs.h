@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.h,v 1.7 2002/08/15 09:49:09 jku Exp $
+ * $Id: sl_funcs.h,v 1.8 2002/08/15 10:05:36 jku Exp $
  */
 
 #ifndef _SL_FUNCS_H
@@ -8,11 +8,6 @@
 #include "../../parser/msg_parser.h"
 
 #define TOTAG_SEPARATOR		'.'
-
-#define CONTACT "Contact: "
-#define CONTACT_LEN 9
-#define CONTACT_DELIM ", "
-#define CONTACT_DELIM_LEN 2
 
 #define SL_RPL_WAIT_TIME  2  // in sec
 
