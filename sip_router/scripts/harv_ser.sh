@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.36 2003/06/01 18:10:54 jiri Exp $
+# $Id: harv_ser.sh,v 1.37 2003/06/04 23:26:18 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -142,7 +142,7 @@ BEGIN {
 
 {ua=0; request=0;reply=0;server=0}
 
-ua==0 && /User-Agent:.*Windows RTC/ {
+ua==0 && /User-Agent:.*RTC\// {
 	ua_msn++
 	ua=1
 }
