@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.c,v 1.6 2002/02/27 10:10:14 janakj Exp $ 
+ * $Id: utils.c,v 1.7 2002/03/05 14:36:38 janakj Exp $ 
  */
 
 #include <ctype.h>
@@ -151,7 +151,7 @@ char* eat_name(char* _b)
 {
 	int quoted = 0;
 	char* b = _b;
-	char* last_ws;
+	char* last_ws = _b;
 
 	if (!_b) return NULL;
 
