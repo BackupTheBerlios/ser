@@ -1,5 +1,5 @@
 /*
- * $Id: dset.h,v 1.6 2004/09/01 10:12:41 janakj Exp $
+ * $Id: dset.h,v 1.7 2004/09/27 03:11:08 jiri Exp $
  *
  * Copyright (C) 2001-2004 FhG FOKUS
  *
@@ -73,5 +73,9 @@ void set_ruri_q(qvalue_t q);
  * Get the q value of the Request-URI
  */
 qvalue_t get_ruri_q(void);
+
+int get_request_uri(struct sip_msg* _m, str* _u);
+int rewrite_uri(struct sip_msg* _m, str* _s);
+
 
 #endif /* _DSET_H */
