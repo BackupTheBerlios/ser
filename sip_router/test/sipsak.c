@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.23 2002/06/14 15:27:30 noh Exp $
+ * $Id: sipsak.c,v 1.24 2002/06/14 16:42:25 noh Exp $
  */
 
 /* sipsak written by nils ohlmeier (ohlmeier@fokus.gmd.de).
@@ -859,7 +859,7 @@ void print_help() {
 	printf("(compiled with DEBUG) ");
 #endif
 	printf("\n\n"
-		" shoot : sipsak -f filename -s sip:uri\n"
+		" shoot : sipsak [-f filename] -s sip:uri\n"
 		" trace : sipsak -t [-f filename] -s sip:uri\n"
 		" USRLOC: sipsak -u [-b number] -e number [-E number] -s sip:uri\n"
 		" flood : sipsak -F [-c number] -s sip:uri\n"
