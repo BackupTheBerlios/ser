@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.3 2002/08/21 20:09:02 janakj Exp $
+ * $Id: dlist.c,v 1.4 2002/08/25 22:29:50 janakj Exp $
  *
  * List of registered domains
  */
@@ -12,6 +12,7 @@
 #include "udomain.h"       /* new_udomain, free_udomain */
 #include "utime.h"
 #include "ul_mod.h"
+
 
 /*
  * List of all registered domains
@@ -169,12 +170,11 @@ int timer_handler(void)
 	get_act_time(); /* Get and save actual time */
 
 	ptr = root;
-
 	while(ptr) {
 		res |= timer_udomain(ptr->d);
 		ptr = ptr->next;
 	}
-
+	
 	return res;
 }
 

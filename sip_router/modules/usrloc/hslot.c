@@ -1,5 +1,5 @@
 /* 
- * $Id: hslot.c,v 1.3 2002/08/21 20:09:02 janakj Exp $ 
+ * $Id: hslot.c,v 1.4 2002/08/25 22:32:40 janakj Exp $ 
  *
  * Hash table collision slot related functions
  */
@@ -47,13 +47,12 @@ void slot_add(hslot_t* _s, struct urecord* _r)
 {
 	if (_s->n == 0) {
 		_s->first = _s->last = _r;
-		_s->n++;
 	} else {
 		_r->s_ll.prev = _s->last;
 		_s->last->s_ll.next = _r;
 		_s->last = _r;
 	}
-	
+	_s->n++;
 	_r->slot = _s;
 }
 
