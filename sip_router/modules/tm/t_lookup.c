@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.61 2003/02/26 23:24:48 jiri Exp $
+ * $Id: t_lookup.c,v 1.62 2003/02/27 20:29:25 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -51,6 +51,7 @@
  *
  * History:
  * ----------
+ * 2003-02-27  3261 ACK/200 consumption bug removed (jiri)
  * 2003-01-28  scratchpad removed (jiri)
  * 2003-01-27  next baby-step to removing ZT - PRESERVE_ZT (jiri)
  * 2003-01-23  options for disabling r-uri matching introduced (jiri)
