@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.h,v 1.10 2003/10/29 17:41:27 andrei Exp $
+ * $Id: parse_via.h,v 1.11 2004/03/31 09:29:55 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -43,6 +43,7 @@
 
 /* via param types
  * WARNING: keep in sync with parse_via.c FIN_HIDDEN... 
+ * and with tm/sip_msg.c via_body_cloner
  */
 enum {
 	PARAM_HIDDEN=230, PARAM_TTL, PARAM_BRANCH, 
@@ -66,6 +67,7 @@ struct via_param {
 
 
 /* Format: name/version/transport host:port;params comment */
+ /* WARNING: keep in sync with tm/sip_msg.c via_body_cloner */
 struct via_body { 
 	int error;
 	str hdr;   /* Contains "Via" or "v" */
