@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: common.h,v 1.5 2003/03/27 20:44:06 janakj Exp $
+ * $Id: common.h,v 1.6 2003/03/31 09:39:48 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -95,9 +95,14 @@ int insert_RR(struct sip_msg* _m, str* _l);
 
 
 /*
- * Insert a new Record-Route header field
+ * Insert a new Record-Route header field with lr parameter
  */
 int record_route(struct sip_msg* _m, char* _s1, char* _s2);
 
+
+/*
+ * Insert a new Record-Route header field without lr parameter
+ */
+int record_route_strict(struct sip_msg* _m, char* _s1, char* _s2);
 
 #endif /* COMMON_H */

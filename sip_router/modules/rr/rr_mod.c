@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.20 2003/03/27 20:44:06 janakj Exp $
+ * $Id: rr_mod.c,v 1.21 2003/03/31 09:39:48 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -58,9 +58,10 @@ static int int_fixup(void** param, int param_no);
  * Exported functions
  */
 static cmd_export_t cmds[]={
-	{"loose_route",  loose_route,   0, 0, REQUEST_ROUTE},
-	{"strict_route", strict_route,  0, 0, REQUEST_ROUTE},
-	{"record_route", record_route,  0, 0, REQUEST_ROUTE},
+	{"loose_route",         loose_route,         0, 0, REQUEST_ROUTE},
+	{"strict_route",        strict_route,        0, 0, 0            },
+	{"record_route",        record_route,        0, 0, REQUEST_ROUTE},
+	{"record_route_strict", record_route_strict, 0, 0, REQUEST_ROUTE},
 	{0,0,0,0,0}
 };
 

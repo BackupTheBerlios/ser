@@ -1,6 +1,6 @@
-# $Id: Makefile,v 1.1 2002/01/16 10:53:12 janakj Rel $
+# $Id: Makefile,v 1.2 2003/03/31 09:39:48 janakj Exp $
 #
-# example module makefile
+# rr module makefile
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile

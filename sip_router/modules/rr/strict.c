@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, strict routing support
  *
- * $Id: strict.c,v 1.3 2003/03/27 20:44:06 janakj Exp $
+ * $Id: strict.c,v 1.4 2003/03/31 09:39:48 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -49,8 +49,6 @@ int strict_route(struct sip_msg* _m, char* _s1, char* _s2)
 	}
 
 	if (!ret) {
-		print_rr(_m->route->parsed);
-
 		uri = &((rr_t*)_m->route->parsed)->nameaddr.uri;
 		if (rewrite_RURI(_m, uri) < 0) {
 			LOG(L_ERR, "strict_route(): Error while rewriting request URI\n");
@@ -66,4 +64,3 @@ int strict_route(struct sip_msg* _m, char* _s1, char* _s2)
 	DBG("strict_route(): There is no Route HF\n");
 	return -1;
 }
-
