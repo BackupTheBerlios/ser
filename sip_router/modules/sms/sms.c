@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.16 2002/07/12 16:31:17 bogdan Exp $
+ * $Id: sms.c,v 1.17 2002/07/16 11:32:20 bogdan Exp $
  *
  * MAXFWD module
  *
@@ -611,8 +611,6 @@ static int sms_init(void)
 
 static int sms_exit(void)
 {
-	int i;
-
 	if (!domain_str)
 		pkg_free(domain.s);
 
