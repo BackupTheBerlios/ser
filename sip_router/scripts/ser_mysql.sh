@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.38 2003/05/24 19:32:41 calrissian Exp $
+# $Id: ser_mysql.sh,v 1.39 2003/07/30 14:04:30 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -527,7 +527,13 @@ CREATE TABLE server_monitoring (
 ) $TABLE_TYPE;
 
 
-
+CREATE TABLE preferences (
+  $USERCOL varchar(50) NOT NULL default '',
+  domain varchar(100) NOT NULL default '',
+  attribute varchar(50) NOT NULL default '',
+  value varchar(100) NOT NULL default '',
+  PRIMARY KEY ($USERCOL, domain, attribute)
+) $TABLE_TYPE;
 
 #
 # Table structure for table 'server_monitoring_ul'
