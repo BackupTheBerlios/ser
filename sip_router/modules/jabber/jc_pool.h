@@ -1,5 +1,5 @@
 /*
- * $Id: jc_pool.h,v 1.4 2002/08/05 16:33:58 daniel Exp $
+ * $Id: jc_pool.h,v 1.5 2002/08/12 16:26:34 daniel Exp $
  *
  * JABBER module
  *
@@ -35,7 +35,6 @@ typedef struct _jab_wlist
 	int maxj;			// maximum jobs / worker
 	struct sockaddr_in sserver;  // sip server address
 	str *contact_h;	// contact header
-    //int semid;          // semaphore for mutual access to the list
     smart_lock *sems;	//
 	jab_worker workers; // the list of workers
 } t_jab_wlist, *jab_wlist;

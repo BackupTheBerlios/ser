@@ -1,5 +1,5 @@
 /*
- * $Id: sip2jabber.h,v 1.2 2002/07/04 11:14:18 daniel Exp $
+ * $Id: sip2jabber.h,v 1.3 2002/08/12 16:26:34 daniel Exp $
  *
  * JABBER module - headers for functions used for SIP 2 JABBER communication
  *
@@ -47,3 +47,4 @@ int jb_send_sig_msg(jbconnection, char*, int, char*, int, char*, int);
 char *shahash(const char *);
 
 #endif
+

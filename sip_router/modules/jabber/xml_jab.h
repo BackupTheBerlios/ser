@@ -1,5 +1,5 @@
 /*
- * $Id: xml_jab.h,v 1.1 2002/07/04 11:09:11 daniel Exp $
+ * $Id: xml_jab.h,v 1.2 2002/08/12 16:26:34 daniel Exp $
  *
  * JABBER module
  *
@@ -70,5 +70,5 @@ int xml_unescape(char *, int, char *, int);
 int j2s_parse_jmsgx(const char *, int, jab_jmsg);
 int j2s_parse_jmsg(const char *, int, jab_jmsg);
 
-
 #endif
+
