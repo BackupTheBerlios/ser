@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.129 2002/04/02 16:11:49 bogdan Exp $
+ * $Id: t_funcs.c,v 1.130 2002/04/03 15:53:27 bogdan Exp $
  *
  */
 
@@ -258,7 +258,7 @@ int t_should_relay_response( struct cell *Trans , int new_code,
 		else {
 			if (!T->uac[branch].rpl_received) *should_store=1;
 				else *should_store=0;
-			if (T_code==0) return branch;
+			if (Trans->uas.status==0) return branch;
 				else return -1;
 		}
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.47 2002/03/25 16:26:34 bogdan Exp $
+ * $Id: h_table.h,v 1.48 2002/04/03 15:53:27 bogdan Exp $
  */
 
 
@@ -88,6 +88,7 @@ typedef struct ua_client
 	struct retr_buf  request;
 	unsigned int     status;
 	str              tag;
+	str              rpl_buffer;
 	unsigned int     rpl_received;
 }ua_client_type;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.58 2002/03/25 16:26:34 bogdan Exp $
+ * $Id: h_table.c,v 1.59 2002/04/03 15:53:27 bogdan Exp $
  */
 
 #include "hash_func.h"
@@ -40,6 +40,11 @@ void free_cell( struct cell* dead_cell )
 			b = 0;
 		}
 		if ( (b=dead_cell->uac[i].request.cancel) )
+		{
+			shm_free_unsafe( b );
+			b = 0;
+		}
+		if ( (b=dead_cell->uac[i].rpl_buffer.s) )
 		{
 			shm_free_unsafe( b );
 			b = 0;
