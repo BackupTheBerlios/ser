@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.59 2002/09/24 16:37:18 andrei Exp $
+ * $Id: h_table.h,v 1.60 2002/09/24 17:23:47 jiri Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -237,7 +237,8 @@ typedef struct entry
 	unsigned int    next_label;
 	/* sync mutex */
 	ser_lock_t      mutex;
-	unsigned long entries;
+	unsigned long acc_entries;
+	unsigned long cur_entries;
 }entry_type;
 
 
