@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.63 2003/02/28 14:12:26 jiri Exp $
+ * $Id: t_lookup.c,v 1.64 2003/03/01 23:09:34 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -51,13 +51,14 @@
  *
  * History:
  * ----------
+ * 2003-03-01  kr set through a function now (jiri)
  * 2003-02-28 scratchpad compatibility abandoned (jiri)
  * 2003-02-27  3261 ACK/200 consumption bug removed (jiri)
+ * 2003-02-24  s/T_NULL/T_NULL_CELL/ to avoid redefinition conflict w/
+ * 2003-02-13  init_rb() is proto indep. & it uses struct dest_info (andrei)
  * 2003-01-28  scratchpad removed (jiri)
  * 2003-01-27  next baby-step to removing ZT - PRESERVE_ZT (jiri)
  * 2003-01-23  options for disabling r-uri matching introduced (jiri)
- * 2003-02-13  init_rb() is proto indep. & it uses struct dest_info (andrei)
- * 2003-02-24  s/T_NULL/T_NULL_CELL/ to avoid redefinition conflict w/
  *              nameser_compat.h (andrei)
  */
 
@@ -382,7 +383,7 @@ notfound:
 found:
 	set_t(p_cell);
 	REF_UNSAFE( T );
-	T->kr|=REQ_EXIST;
+	set_kr(T, REQ_EXIST);
 	UNLOCK_HASH( p_msg->hash_index );
 	DBG("DEBUG: t_lookup_request: transaction found (T=%p)\n",T);
 	return 1;
