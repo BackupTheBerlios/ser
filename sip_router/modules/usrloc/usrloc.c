@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.c,v 1.31 2002/09/19 12:23:55 jku Exp $
+ * $Id: usrloc.c,v 1.32 2002/09/19 14:29:05 janakj Rel $
  *
  * Usrloc interface
  *
@@ -27,7 +27,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
+ 
 #include "usrloc.h"
 #include "../../sr_module.h"
 
