@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.c,v 1.10 2003/07/02 16:22:47 bogdan Exp $
+ * $Id: cpl_parser.c,v 1.11 2003/07/02 20:09:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -588,7 +588,7 @@ int encript_node_attr( xmlNodePtr node, unsigned char *node_ptr,
 				switch(attr->name[0]) {
 					case 'U': case 'u':
 						*(p++) = URL_ATTR;
-						foo = strlen(val);
+						foo = strlen(val) + 1; /*copy also the \0 */
 						*((unsigned short*)(p)) = (unsigned short)foo;
 						p += 2;
 						memcpy(p,val,foo);
