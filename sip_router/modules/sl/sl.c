@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.19 2005/02/13 18:28:42 bogdan Exp $
+ * $Id: sl.c,v 1.20 2005/03/01 11:15:43 bogdan Exp $
  *
  * sl module
  *
@@ -53,6 +53,8 @@
  *  2003-03-11  updated to the new module exports interface (andrei)
  *  2003-03-16  flags export parameter added (janakj)
  *  2003-03-19  all mallocs/frees replaced w/ pkg_malloc/pkg_free
+ *  2005-03-01  force for stateless replies the incoming interface of
+ *              the request (bogdan)
  */
 
 

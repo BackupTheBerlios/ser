@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.50 2005/02/23 17:16:05 andrei Exp $
+ * $Id: sl_funcs.c,v 1.51 2005/03/01 11:15:43 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -183,7 +183,9 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	*/
 	backup_mhomed=mhomed;
 	mhomed=0;
-	ret=msg_send(0, msg->rcv.proto, &to, msg->rcv.proto_reserved1, buf, len);
+	/* use for sending the received interface -bogdan*/
+	ret = msg_send( msg->rcv.bind_address, msg->rcv.proto, &to,
+			msg->rcv.proto_reserved1, buf, len);
 	mhomed=backup_mhomed;
 	if (ret<0) 
 		goto error;
