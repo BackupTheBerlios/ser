@@ -1,4 +1,4 @@
-/* $Id: socket_info.h,v 1.2 2004/08/24 08:45:10 janakj Exp $
+/* $Id: socket_info.h,v 1.3 2004/08/27 14:41:24 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -68,14 +68,14 @@ static inline int next_proto(unsigned short proto)
 			return PROTO_UDP;
 		case PROTO_UDP:
 #ifdef	USE_TCP
-			return PROTO_TCP;
+			return (tcp_disable)?0:PROTO_TCP;
 #else
 			return 0;
 #endif
 #ifdef USE_TCP
 		case PROTO_TCP:
 #ifdef USE_TLS
-			return PROTO_TLS;
+			return (tls_disable)?0:PROTO_TLS;
 #else
 			return 0;
 #endif
