@@ -1,5 +1,5 @@
 /*
- * $Id: parse_rr.h,v 1.4 2003/03/31 15:49:15 janakj Exp $
+ * $Id: parse_rr.h,v 1.5 2003/04/04 14:04:00 janakj Exp $
  *
  * Route & Record-Route Parser
  *
@@ -44,6 +44,7 @@ typedef struct rr {
 	name_addr_t nameaddr; /* Name-addr part */
 	param_t* r2;          /* Hook to r2 parameter */
 	param_t* params;      /* Linked list of other parameters */
+	int len;              /* Length of the whole route field */
         struct rr* next;      /* Next RR in the list */
 } rr_t;
 
