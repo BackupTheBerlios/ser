@@ -1,5 +1,5 @@
 /*
- * $Id: parse_expires.c,v 1.4 2003/01/19 19:00:01 janakj Exp $
+ * $Id: parse_expires.c,v 1.5 2003/04/26 20:28:46 jiri Exp $
  *
  * Expires header field body parser
  *
@@ -25,6 +25,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History:
+ * --------
+ * 2003-04-26 ZSW (jiri)
  */
 
 
@@ -34,6 +38,7 @@
 #include "../dprint.h"
 #include "../trim.h"        /* trim_leading */
 #include <string.h>         /* memset */
+#include "../ut.h"
 
 
 static inline int expires_parser(char* _s, int _l, exp_body_t* _e)
@@ -134,7 +139,7 @@ void free_expires(exp_body_t** _e)
 void print_expires(exp_body_t* _e)
 {
 	printf("===Expires===\n");
-	printf("text: \'%.*s\'\n", _e->text.len, _e->text.s);
+	printf("text: \'%.*s\'\n", _e->text.len, ZSW(_e->text.s));
 	printf("val : %d\n", _e->val);
 	printf("===/Expires===\n");
 }
