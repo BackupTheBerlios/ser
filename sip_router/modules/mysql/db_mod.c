@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.24 2004/09/15 12:38:26 janakj Exp $ 
+ * $Id: db_mod.c,v 1.25 2004/10/28 23:36:14 danp Exp $ 
  *
  * MySQL module interface
  *
@@ -38,6 +38,7 @@
 #include "db_mod.h"
 
 int ping_interval = 5 * 60; /* Default is 5 minutes */
+int auto_reconnect = 1;     /* Default is enabled */
 
 MODULE_VERSION
 
@@ -64,6 +65,7 @@ static cmd_export_t cmds[] = {
  */
 static param_export_t params[] = {
 	{"ping_interval", INT_PARAM, &ping_interval},
+	{"auto_reconnect", INT_PARAM, &auto_reconnect},
 	{0, 0, 0}
 };
 

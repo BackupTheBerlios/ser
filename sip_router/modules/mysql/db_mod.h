@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.h,v 1.2 2004/08/24 08:58:31 janakj Exp $ 
+ * $Id: db_mod.h,v 1.3 2004/10/28 23:36:14 danp Exp $ 
  *
  * MySQL module interface
  *
@@ -37,5 +37,6 @@
 #define DB_MOD_H
 
 extern int ping_interval;
+extern int auto_reconnect;
 
 #endif /* DB_MOD_H */
