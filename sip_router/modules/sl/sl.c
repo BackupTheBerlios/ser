@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.18 2004/08/24 09:00:38 janakj Exp $
+ * $Id: sl.c,v 1.19 2005/02/13 18:28:42 bogdan Exp $
  *
  * sl module
  *
@@ -113,7 +113,10 @@ static int mod_init(void)
 		return -1;
 	}
 	/* if SL loaded, filter ACKs on beginning */
-	register_script_cb( sl_filter_ACK, PRE_SCRIPT_CB, 0 );
+	if (register_script_cb( sl_filter_ACK, PRE_SCRIPT_CB|REQ_TYPE_CB, 0 )<0) {
+		LOG(L_ERR,"ERROR:sl:mod_init: failed to install SCRIPT callback\n");
+		return -1;
+	}
 	sl_startup();
 
 	return 0;
