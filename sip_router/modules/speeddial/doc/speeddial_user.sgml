@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2004/10/27 18:21:22 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2004/10/27 18:30:06 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -189,7 +189,7 @@ modparam("speeddial", "new_uri_column", "real_uri")
 		<title>Set <varname>domain_prefix</varname> parameter</title>
 		<programlisting format="linespecific">
 ...
-modparam("speeddial", "domain_prefix", "mysql://ser:xxx@localhost/ser")
+modparam("speeddial", "domain_prefix", "tel.")
 ...
 </programlisting>
 	    </example>

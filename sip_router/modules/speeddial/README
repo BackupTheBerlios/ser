@@ -177,7 +177,7 @@ modparam("speeddial", "new_uri_column", "real_uri")
 
    Example 1-7. Set domain_prefix parameter
 ...
-modparam("speeddial", "domain_prefix", "mysql://ser:xxx@localhost/ser")
+modparam("speeddial", "domain_prefix", "tel.")
 ...
      _________________________________________________________
 
@@ -245,7 +245,7 @@ CREATE TABLE speed_dial (
    Example 1-11. SER config script - sample speeddial usage
 ...
 #
-# $Id: README,v 1.1 2004/10/27 18:21:22 ramona Exp $
+# $Id: README,v 1.2 2004/10/27 18:30:06 ramona Exp $
 #
 # sample config script to use speeddial module
 #
