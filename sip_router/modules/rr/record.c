@@ -1,5 +1,5 @@
 /*
- * $Id: record.c,v 1.4 2003/04/06 21:33:54 janakj Exp $
+ * $Id: record.c,v 1.5 2003/04/06 21:47:45 janakj Exp $
  *
  * Route & Record-Route module
  *
@@ -54,7 +54,7 @@
 #define RR_FROMTAG ";ftag="
 #define RR_FROMTAG_LEN (sizeof(RR_FROMTAG)-1)
 
-#define RR_R2 ";r2"
+#define RR_R2 ";r2=on"
 #define RR_R2_LEN (sizeof(RR_R2)-1)
 
 #define INBOUND  1  /* Insert inbound Record-Route */
