@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.5 2001/09/06 02:24:00 andrei Exp $
+ * $Id: main.c,v 1.6 2001/09/07 01:24:32 andrei Exp $
  */
 
 #include <stdio.h>
@@ -19,7 +19,7 @@
 #include "globals.h"
 
 
-static char id[]="@(#) $Id: main.c,v 1.5 2001/09/06 02:24:00 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.6 2001/09/07 01:24:32 andrei Exp $";
 static char version[]="sip_router 0.3";
 static char help_msg[]= "\
 Usage: sip_router -l address [-l address] [options]\n\
@@ -212,13 +212,13 @@ int main(int argc, char** argv)
 	/* load config file or die */
 	cfg_stream=fopen (cfg_file, "r");
 	if (cfg_stream==0){
-		DPrint("ERROR: loading config file(%s): %s\n", cfg_file,
+		fprintf(stderr, "ERROR: loading config file(%s): %s\n", cfg_file,
 				strerror(errno));
 		goto error;
 	}
 
 	if (cfg_parse_stream(cfg_stream)!=0){
-		DPrint("ERROR: config parser failure\n");
+		fprintf(stderr, "ERROR: config parser failure\n");
 		goto error;
 	}
 	
