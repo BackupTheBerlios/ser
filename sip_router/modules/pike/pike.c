@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.9 2002/08/02 19:54:50 bogdan Exp $
+ * $Id: pike.c,v 1.10 2002/08/05 10:31:12 bogdan Exp $
  *
  * PIKE module
  *
@@ -28,7 +28,6 @@ static int pike_exit(void);
 
 
 /* parameters */
-int time_unit = 20;
 int max_reqs  = 30;
 int timeout   = 120;
 
