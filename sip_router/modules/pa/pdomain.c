@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.7 2003/12/10 02:25:38 jamey Exp $
+ * $Id: pdomain.c,v 1.8 2003/12/19 22:56:42 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -223,7 +223,7 @@ int find_presentity(pdomain_t* _d, str* _uri, struct presentity** _p)
 		
 		p = p->next;
 	}
-	
+
 	return 1;   /* Nothing found */
 }
 
