@@ -1,4 +1,4 @@
-# $Id: README,v 1.1 2002/08/08 12:14:39 jku Exp $
+# $Id: README,v 1.2 2002/08/08 12:15:50 jku Rel $
 
 To: sr <sr@iptel.org>
 Subject: [Sr] IM gateway capabilities and limitations
@@ -142,3 +142,22 @@ http://mailman.jabber.org/pipermail/jdev/2002-July/012327.html
 * capabilities
 - log into Yahoo Messenger server, and send/recv messages.
 * limitations
+
+
+-------------------------------------------------------
+I've been trying to make available the Yahoo! transport on Jabber server from 'bat.iptel.org', but Jabber does not connect to Yahoo server. The problem is that Yahoo! changed the protocol.
+
+
+http://mailman.jabber.org/pipermail/jadmin/2002-July/005987.html
+http://mailman.jabber.org/pipermail/jadmin/2002-July/006093.html
+
+
+Someone is working on the new version.
+
+
+http://mailman.jabber.org/pipermail/jadmin/2002-July/006087.html
+
+
+Best regards,
+  Daniel
+
