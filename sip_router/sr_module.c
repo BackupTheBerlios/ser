@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.24 2002/12/14 22:09:23 jiri Exp $
+/* $Id: sr_module.c,v 1.25 2003/01/20 18:35:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -256,6 +256,7 @@ void destroy_modules()
 
 	for(t=modules;t;t=t->next)
 		if  ((t->exports)&&(t->exports->destroy_f)) t->exports->destroy_f();
+	modules=0;
 }
 
 #ifdef NO_REVERSE_INIT

@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.20 2002/12/17 18:14:32 janakj Exp $
+/* $Id: ip_addr.h,v 1.21 2003/01/20 18:35:09 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -49,6 +49,7 @@ struct ip_addr{
 	
 	/* 64 bits alligned address */
 	union {
+		unsigned long  addrl[16/sizeof(long)]; /* long format*/
 		unsigned int   addr32[4];
 		unsigned short addr16[8];
 		unsigned char  addr[16];

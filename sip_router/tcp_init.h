@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_init.h,v 1.1 2002/12/12 21:46:38 andrei Exp $
+ * $Id: tcp_init.h,v 1.2 2003/01/20 18:35:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,6 +30,7 @@
 #include "ip_addr.h"
 
 int init_tcp();
+void destroy_tcp();
 int tcp_init(struct socket_info* sock_info);
 int tcp_init_children();
 void tcp_main_loop();

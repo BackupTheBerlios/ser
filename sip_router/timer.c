@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.7 2002/09/19 12:23:53 jku Rel $
+ * $Id: timer.c,v 1.8 2003/01/20 18:35:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -66,7 +66,19 @@ int init_timer()
 
 
 
-	
+void destroy_timer()
+{
+	if (jiffies){
+#ifdef SHM_MEM
+		shm_free(jiffies); jiffies=0;
+#else
+		free(jiffies); jiffies=0;
+#endif
+	}
+}
+
+
+
 /*register a periodic timer;
  * ret: <0 on error*/
 int register_timer(timer_function f, void* param, unsigned int interval)

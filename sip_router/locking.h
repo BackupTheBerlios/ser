@@ -1,4 +1,4 @@
-/* $Id: locking.h,v 1.3 2003/01/17 16:24:51 andrei Exp $ */
+/* $Id: locking.h,v 1.4 2003/01/20 18:35:09 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -44,12 +44,6 @@ Implements:
 #ifndef _locking_h
 #define _locking_h
 
-#include "mem/mem.h"
-#ifdef SHM_MEM
-#include "mem/shm_mem.h"
-#else
-#error "locking requires shared memroy support"
-#endif
 
 #ifdef FAST_LOCK
 #include "fastlock.h"
@@ -179,5 +173,12 @@ inline static void lock_release(lock_t* lock)
 #endif
 
 
+/*shm_{malloc, free}*/
+#include "mem/mem.h"
+#ifdef SHM_MEM
+#include "mem/shm_mem.h"
+#else
+#error "locking requires shared memroy support"
+#endif
 
 #endif
