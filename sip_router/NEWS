@@ -6,11 +6,18 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.2 2003/01/06 03:55:41 jiri Exp $
+$Id: NEWS,v 1.3 2003/01/07 23:00:02 jiri Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
 ***********************************************
+
++--------------------------------------------------------+
+| CAUTION: the 0.8.11 release include changes which      |
+| are incompatible with scripts and databases used       |
+| in previous versions. Care is advised when upgrading   |
+| from previous releases to 0.8.11.                      |
++--------------------------------------------------------+
 
 New features
 =============

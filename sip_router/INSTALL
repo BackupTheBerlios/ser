@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.27 2003/01/05 21:10:46 jiri Exp $
+$Id: INSTALL,v 1.28 2003/01/07 23:00:02 jiri Exp $
 
 
      ===========================================
@@ -19,6 +19,15 @@ TOC
    C) Quick Start
    D) ser with Persistent Data Storage
 4. Troubleshooting
+
+
+
++--------------------------------------------------------+
+| CAUTION: the 0.8.11 release include changes which      |
+| are incompatible with scripts and databases used       |
+| in previous versions. Care is advised when upgrading   |
+| from previous releases to 0.8.11.                      |
++--------------------------------------------------------+
 
 
 
