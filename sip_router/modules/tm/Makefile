@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2001/11/27 16:50:28 bogdan Exp $
+# $Id: Makefile,v 1.9 2001/11/29 00:32:49 jku Exp $
 #
 # print example module makefile
 #
@@ -12,7 +12,7 @@ depends= $(sources:.c=.d)
 
 NAME=tm.so
 
-LDFLAGS=-O2 -shared
+SHLIB_LD_FLAGS= -shared
 LIBS= -lpthread
 
 ifeq ($(ARCH), SunOS)
@@ -28,7 +28,7 @@ endif
 
 
 $(NAME): $(objs)
-	$(LD) $(LDFLAGS) $(objs) $(LIBS) -o $(NAME)
+	$(LD) $(LDFLAGS) $(SHLIB_LD_FLAGS) $(objs) $(LIBS) -o $(NAME)
 
 
 .PHONY: all
