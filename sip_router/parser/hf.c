@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.11 2003/04/26 20:28:46 jiri Exp $ 
+ * $Id: hf.c,v 1.12 2003/05/02 08:36:15 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -128,4 +128,3 @@ void dump_hdr_field( struct hdr_field* hf )
 		hf->body.len, ZSW(hf->body.s),
 		hf->parsed, hf->next );
 }
-

@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.8 2003/03/10 22:24:14 andrei Exp $ 
+ * $Id: hf.h,v 1.9 2003/05/02 08:36:15 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
  * ---------
  * 2003-02-28 scratchpad compatibility abandoned (jiri)
  * 2003-01-27 next baby-step to removing ZT - PRESERVE_ZT (jiri)
+ * 2003-05-01 HDR_ACCEPT added (janakj)
  */
 
 
@@ -64,7 +65,8 @@
 #define HDR_UNSUPPORTED   (1 << 19)  /* Unsupported header field */
 #define HDR_ALLOW         (1 << 20)  /* Allow header field */
 #define HDR_EVENT         (1 << 21)  /* Event header field */
-#define HDR_OTHER         (1 << 22)  /* Some other header field */
+#define HDR_ACCEPT        (1 << 22)  /* Accept header field */
+#define HDR_OTHER         (1 << 23)  /* Some other header field */
 
 
 /* 
