@@ -1,5 +1,5 @@
 /* 
- * $Id: domain.c,v 1.13 2003/04/28 22:05:33 janakj Exp $
+ * $Id: domain.c,v 1.14 2003/11/29 00:57:22 janakj Exp $
  *
  * Domain table related functions
  *
@@ -47,10 +47,10 @@ int is_domain_local(str* _host)
 		db_key_t cols[1]; 
 		db_res_t* res;
 
-		keys[0]=domain_col;
-		cols[0]=domain_col;
+		keys[0]=domain_col.s;
+		cols[0]=domain_col.s;
 		
-		if (db_use_table(db_handle, domain_table) < 0) {
+		if (db_use_table(db_handle, domain_table.s) < 0) {
 			LOG(L_ERR, "is_local(): Error while trying to use domain table\n");
 			return -1;
 		}
