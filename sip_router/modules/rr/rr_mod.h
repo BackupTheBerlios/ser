@@ -1,7 +1,7 @@
 /*
  * Record-Route & Route module interface
  *
- * $Id: rr_mod.h,v 1.6 2003/04/14 11:13:50 janakj Exp $
+ * $Id: rr_mod.h,v 1.7 2003/07/15 10:05:23 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,10 +36,13 @@
 #ifndef RR_MOD_H
 #define RR_MOD_H
 
+#ifdef ENABLE_USER_CHECK
+#include "../../str.h"
+extern str i_user;
+#endif
 
 extern int append_fromtag;
 extern int enable_double_rr;
 extern int enable_full_lr;
-
 
 #endif /* RR_MOD_H */
