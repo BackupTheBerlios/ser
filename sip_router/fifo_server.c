@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.16 2002/09/08 15:41:06 jku Exp $
+ * $Id: fifo_server.c,v 1.17 2002/09/10 10:48:45 jku Exp $
  *
  * Fifo server is a very powerful tool used to access easily
  * ser's internals via textual interface, similarly to
@@ -94,6 +94,8 @@ int register_fifo_cmd(fifo_cmd f, char *cmd_name, void *param)
 
 	new_cmd->next=cmd_list;
 	cmd_list=new_cmd;
+	
+	DBG("DEBUG: register_fifo_cmd: new command (%s) registered\n", cmd_name );
 
 	return 1;
 }
