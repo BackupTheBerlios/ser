@@ -1,6 +1,5 @@
 /* 
- * $Id: my_con.h,v 1.3 2004/08/24 08:58:31 janakj Exp $
- *
+ * $Id: my_con.h,v 1.4 2005/02/02 19:09:22 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -29,18 +28,22 @@
 #ifndef MY_CON_H
 #define MY_CON_H
 
+#include "../../db/db_pool.h"
+#include "../../db/db_id.h"
+
 #include <time.h>
 #include <mysql/mysql.h>
-#include "my_id.h"
+
 
 struct my_con {
-	struct my_id* id;    /* Connection identifier */
-	int ref;             /* Reference count */
-	MYSQL_RES* res;      /* Actual result */
-	MYSQL* con;          /* Connection representation */
-	MYSQL_ROW row;       /* Actual row in the result */
-	time_t timestamp;    /* Timestamp of last query */
-	struct my_con* next; /* Next connection in the pool */
+	struct db_id* id;        /* Connection identifier */
+	unsigned int ref;        /* Reference count */
+	struct pool_con* next;   /* Next connection in the pool */
+
+	MYSQL_RES* res;          /* Actual result */
+	MYSQL* con;              /* Connection representation */
+	MYSQL_ROW row;           /* Actual row in the result */
+	time_t timestamp;        /* Timestamp of last query */
 };
 
 
@@ -57,7 +60,7 @@ struct my_con {
  * Create a new connection structure,
  * open the MySQL connection and set reference count to 1
  */
-struct my_con* new_connection(struct my_id* id);
+struct my_con* new_connection(struct db_id* id);
 
 
 /*
