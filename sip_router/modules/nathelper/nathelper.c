@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.68 2005/02/02 18:29:49 sobomax Exp $
+/* $Id: nathelper.c,v 1.69 2005/02/03 13:22:14 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -492,7 +492,12 @@ static inline int
 get_callid(struct sip_msg* _m, str* _cid)
 {
 
-	if (_m->callid == 0) {
+	if ((parse_headers(_m, HDR_CALLID, 0) == -1)) {
+		LOG(L_ERR, "get_callid(): parse_headers() failed\n");
+		return -1;
+	}
+
+	if (_m->callid == NULL) {
 		LOG(L_ERR, "get_callid(): Call-ID not found\n");
 		return -1;
 	}
