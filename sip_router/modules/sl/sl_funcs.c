@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.8 2002/05/11 21:30:08 jku Exp $
+ * $Id: sl_funcs.c,v 1.9 2002/05/16 19:12:14 bogdan Exp $
  */
 
 #include <netinet/in.h>
@@ -60,6 +60,11 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	unsigned int       len;
 	struct sockaddr_in to;
 
+	if ( msg->first_line.u.request.method_value==METHOD_ACK)
+	{
+		DBG("DEBUG: sl_send_reply: I wan't send a reply for ACK!!\n");
+		goto error;
+	}
 	to.sin_family = AF_INET;
 	if (update_sock_struct_from_via(  &(to),  msg->via1 )==-1)
 	{

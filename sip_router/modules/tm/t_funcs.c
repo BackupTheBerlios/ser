@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.135 2002/05/13 01:15:41 jku Exp $
+ * $Id: t_funcs.c,v 1.136 2002/05/16 19:12:14 bogdan Exp $
  *
  */
 
@@ -28,6 +28,7 @@ unsigned int     global_msg_id;
 struct s_table*  hash_table;
 unsigned int     nr_forks;
 struct fork      t_forks[ NR_OF_CLIENTS ];
+
 
 
 void timer_routine(unsigned int, void*);
@@ -618,7 +619,8 @@ int t_add_fork( unsigned int ip, unsigned int port, char* uri_s,
 					" it was set before -> overriding\n");
 			if (uri_s && uri_len && free_flag==0)
 			{
-				foo = (char*)pkg_malloc(uri_len);
+				foo = (char*)shm_malloc(uri_len);
+				DBG(">>>>>>>>>>>>>>> foo=%p uri_s=%p \n",foo,uri_s);
 				if (!foo)
 				{
 					LOG(L_ERR,"ERROR:t_add_fork: cannot get free memory\n");
@@ -630,7 +632,6 @@ int t_add_fork( unsigned int ip, unsigned int port, char* uri_s,
 			free_flag = 0;
 			pos = NO_RPL_BRANCH;
 	}
-
 	t_forks[pos].ip = ip;
 	t_forks[pos].port = port;
 	if (uri_s && uri_len)
