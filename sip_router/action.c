@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.42 2003/02/28 14:12:25 jiri Exp $
+ * $Id: action.c,v 1.43 2003/03/19 12:58:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -548,7 +548,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 	
 error_uri:
 	LOG(L_ERR, "ERROR: do_action: set*: uri too long\n");
-	if (new_uri) free(new_uri);
+	if (new_uri) pkg_free(new_uri);
 	return E_UNSPEC;
 error_fwd_uri:
 	/*free_uri(&uri); -- not needed anymore, using msg->parsed_uri*/
