@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.42 2003/10/24 20:23:58 andrei Exp $
+ * $Id: tcp_main.c,v 1.43 2003/10/27 16:47:01 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -562,7 +562,7 @@ int tcp_init(struct socket_info* sock_info)
 #endif
 	
 	addr=&sock_info->su;
-	sock_info->proto=PROTO_TCP;
+	/* sock_info->proto=PROTO_TCP; */
 	if (init_su(addr, &sock_info->address, sock_info->port_no)<0){
 		LOG(L_ERR, "ERROR: tcp_init: could no init sockaddr_union\n");
 		goto error;
@@ -750,7 +750,9 @@ void tcp_main_loop()
 				FD_SET(si->socket, &master_set);
 				if (si->socket>maxfd) maxfd=si->socket;
 			}else{
-			LOG(L_CRIT, "BUG: tcp_main_loop: non tls address in tls_listen\n");
+				LOG(L_CRIT, "BUG: tcp_main_loop: non tls address"
+						" in tls_listen\n");
+			}
 		}
 	}
 #endif
