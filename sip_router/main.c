@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.169 2003/10/21 23:28:46 andrei Exp $
+ * $Id: main.c,v 1.170 2003/10/22 10:34:59 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -112,7 +112,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.169 2003/10/21 23:28:46 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.170 2003/10/22 10:34:59 bogdan Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1473,11 +1473,11 @@ try_again:
 		goto error;
 	}
 	
-	/* register a diagnostic FIFO command */
+	/* register a diagnostic FIFO command  - moved to fifo server - bogdan
 	if (register_core_fifo()<0) {
 		LOG(L_CRIT, "unable to register core FIFO commands\n");
 		goto error;
-	}
+	}*/
 
 	/*register builtin  modules*/
 	register_builtin_modules();
