@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.99 2004/02/24 16:59:33 bogdan Exp $
+ * $Id: tm.c,v 1.100 2004/03/02 16:39:38 janakj Exp $
  *
  * TM module
  *
@@ -225,6 +225,8 @@ static cmd_export_t cmds[]={
 			REQUEST_ROUTE | FAILURE_ROUTE | ONREPLY_ROUTE },
 	{"t_write_req",       t_write_req,              2, 0,
 			REQUEST_ROUTE | FAILURE_ROUTE },
+	{"t_write_unix",      t_write_unix,             2, unixsock_fixup,
+	                REQUEST_ROUTE | FAILURE_ROUTE },
 
 	/* not applicable from the script */
 	{"register_tmcb",      (cmd_function)register_tmcb,     NO_SCRIPT,   0, 0},
