@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.100 2003/03/06 17:43:17 jiri Exp $
+# $Id: Makefile,v 1.101 2003/03/12 12:56:36 andrei Exp $
 #
 # sip_router makefile
 #
@@ -12,6 +12,8 @@
 #  2003-02-24  make install no longer overwrites ser.cfg  - patch provided
 #               by Maxim Sobolev   <sobomax@FreeBSD.org> and 
 #                  Tomas Björklund <tomas@webservices.se>
+#  2003-03-11  PREFIX & LOCALBASE must also be exported (andrei)
+#
 
 auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 
@@ -48,6 +50,7 @@ include Makefile.defs
 #export relevant variables to the sub-makes
 export DEFS PROFILE CC  LD MKDEP MKTAGS CFLAGS LDFLAGS MOD_CFLAGS MOD_LDFLAGS
 export LEX YACC YACC_FLAGS
+export PREFIX LOCALBASE
 
 
 # include the common rules

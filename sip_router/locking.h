@@ -1,4 +1,4 @@
-/* $Id: locking.h,v 1.6 2003/03/06 16:22:10 andrei Exp $ */
+/* $Id: locking.h,v 1.7 2003/03/12 12:56:36 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -39,6 +39,7 @@ Implements (in lock_ops.h & lock_alloc.h):
 
 	simple locks:
 	-------------
+	type: gen_lock_t
 	gen_lock_t* lock_alloc();                - allocates a lock in shared mem.
 	gen_lock_t* lock_init(gen_lock_t* lock); - inits the lock
 	void    lock_destroy(gen_lock_t* lock);  - removes the lock (e.g sysv rmid)
@@ -46,8 +47,9 @@ Implements (in lock_ops.h & lock_alloc.h):
 	void    lock_get(gen_lock_t* lock);      - lock (mutex down)
 	void    lock_release(gen_lock_t* lock);  - unlock (mutex up)
 	
-	lock sets: [implemented only for FL & SYSV so far]
+	lock sets:
 	----------
+	type: lock_set_t
 	lock_set_t* lock_set_alloc(no)               - allocs a lock set in shm.
 	lock_set_t* lock_set_init(lock_set_t* set);  - inits the lock set
 	void lock_set_destroy(lock_set_t* s);        - removes the lock set
