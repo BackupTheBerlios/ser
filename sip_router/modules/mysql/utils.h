@@ -1,10 +1,12 @@
 /* 
- * $Id: utils.h,v 1.2 2002/01/07 04:39:53 jku Exp $ 
+ * $Id: utils.h,v 1.3 2002/08/08 17:26:34 janakj Exp $ 
+ *
+ * MySQL module utilities
  */
 
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef UTILS_H
+#define UTILS_H
 
 char* trim(char* _s);
 
-#endif
+#endif /* UTILS_H */

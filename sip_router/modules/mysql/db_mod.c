@@ -1,5 +1,7 @@
 /* 
- * $Id: db_mod.c,v 1.7 2002/07/24 14:45:59 janakj Exp $ 
+ * $Id: db_mod.c,v 1.8 2002/08/08 17:26:34 janakj Exp $ 
+ *
+ * MySQL module interface
  */
 
 #include "../../sr_module.h"

@@ -1,10 +1,13 @@
 /* 
- * $Id: utils.c,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: utils.c,v 1.4 2002/08/08 17:26:34 janakj Exp $ 
+ *
+ * MySQL module utilities
  */
 
 #include "utils.h"
 #include <string.h>
 #include "defs.h"
+
 
 /*
  * Remove any tabs and spaces from the begining and the end of
