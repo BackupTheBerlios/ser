@@ -1,5 +1,5 @@
 /*
- * $Id: script_cb.h,v 1.4 2003/03/29 02:30:35 jiri Exp $
+ * $Id: script_cb.h,v 1.5 2004/03/16 14:47:09 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,6 +25,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef _SCRIPT_CB_H_
+#define _SCRIPT_CB_H_
 
 #include "parser/msg_parser.h"
 
@@ -48,4 +50,5 @@ int exec_pre_cb( struct sip_msg *msg);
 void exec_post_cb( struct sip_msg *msg);
 void destroy_script_cb();
 
+#endif
 
