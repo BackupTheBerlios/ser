@@ -1,11 +1,19 @@
-#!/bin/sh
+#!/bin/sh -x
 #
-# $Id: serstat,v 1.2 2002/04/12 06:52:12 jku Exp $
+# $Id: serstat,v 1.3 2002/05/21 20:53:33 jku Exp $
 #
 # check current status of ser: print running processes and
 # -- if in possession of MySql password -- dump USRLOC database
 # as well
 
+USER_COLUMN='user'
+
+if [ $# -gt 1 ] ; then
+	echo "usage: $0 [username]"
+	exit 1
+elif [ $# -eq 1 ] ; then
+	CLAUSE=" WHERE $USER_COLUMN='$1' "
+fi
 
 PIDS=`ps --no-headers -o "pid" -C sr`
 for i in $PIDS ;  do
@@ -15,4 +23,5 @@ done
 
 #ps  -wwwwww -o "drs,pid,user,group,euser,egroup,fuser,fgroup,args" -C sr 
 
-mysql -h dbhost -u csps -p -e "select * from location;" csps107
+
+mysql -h dbhost -u csps -p -e "select * from location $CLAUSE;" csps107
