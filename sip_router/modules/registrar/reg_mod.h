@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.11 2004/04/27 21:59:33 jiri Exp $ 
+ * $Id: reg_mod.h,v 1.12 2004/05/18 16:35:13 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -42,6 +42,7 @@ extern int case_sensitive;
 extern int desc_time_order;
 extern int nat_flag;
 extern int min_expires;
+extern int max_expires;
 extern str realm_prefix;
 
 extern float def_q;

@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.13 2004/04/27 14:53:22 janakj Exp $
+ * $Id: sip_msg.c,v 1.14 2004/05/18 16:35:13 janakj Exp $
  *
  * SIP message related functions
  *
@@ -234,6 +234,10 @@ int calc_contact_expires(struct sip_msg* _m, param_t* _ep, int* _e)
 
 	if ((*_e != 0) && ((*_e - act_time) < min_expires)) {
 		*_e = min_expires + act_time;
+	}
+
+	if ((*_e != 0) && max_expires && ((*_e - act_time) > max_expires)) {
+		*_e = max_expires + act_time;
 	}
 
 	return 0;
