@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.79 2002/08/15 08:13:29 jku Exp $
+# $Id: Makefile,v 1.80 2002/09/04 11:45:48 jku Exp $
 #
 # sip_router makefile
 #
@@ -116,7 +116,7 @@ $(man-prefix)/$(man-dir)/man5:
 		mkdir -p $(man-prefix)/$(man-dir)/man5
 
 install-cfg:
-		$(INSTALL-CFG) ser.cfg $(cfg-prefix)/$(cfg-dir)
+		$(INSTALL-CFG) etc/ser.cfg $(cfg-prefix)/$(cfg-dir)
 
 install-bin:
 		$(INSTALL-BIN) ser $(bin-prefix)/$(bin-dir)
