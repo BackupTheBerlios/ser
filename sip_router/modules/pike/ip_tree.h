@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.h,v 1.7 2004/08/24 09:00:34 janakj Exp $
+ * $Id: ip_tree.h,v 1.8 2004/11/05 14:21:00 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -30,6 +30,7 @@
  * --------
  *  2004-07-28  s/lock_set_t/gen_lock_set_t/ because of a type conflict
  *              on darwin (andrei)
+ *  2004-11-05: adaptiv init lock (bogdan)
  */
 
 #ifndef _IP_TREE_H
@@ -70,10 +71,10 @@ struct ip_tree
 {
 	struct entry {
 		struct ip_node *node;
-		gen_lock_t     *lock;
+		int            lock_idx;
 	} entries[MAX_IP_BRANCHES];
-	unsigned short max_hits;
-	gen_lock_set_t   *entry_lock_set;
+	unsigned short   max_hits;
+	gen_lock_set_t  *entry_lock_set;
 };
 
 

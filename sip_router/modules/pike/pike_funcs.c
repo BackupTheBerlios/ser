@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.22 2004/10/19 17:28:16 bogdan Exp $
+ * $Id: pike_funcs.c,v 1.23 2004/11/05 14:21:00 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -161,7 +161,7 @@ void clean_routine(unsigned int ticks , void *param)
 	struct ip_node   *node;
 	int i;
 
-	DBG("DEBUG:pike:clean_routine:  entering (%d)\n",ticks);
+	/* DBG("DEBUG:pike:clean_routine:  entering (%d)\n",ticks); */
 	/* before locking check first if the list is not empty and if can
 	 * be at least one element removed */
 	if ( is_list_empty( timer ) || ll2ipnode(timer->next)->expires>ticks )
@@ -265,7 +265,7 @@ void swap_routine( unsigned int ticks, void *param)
 	struct ip_node *node;
 	int i;
 
-	DBG("DEBUG:pike:swap_routine:  entering \n");
+	/* DBG("DEBUG:pike:swap_routine:  entering \n"); */
 	for(i=0;i<MAX_IP_BRANCHES;i++) {
 		node = get_tree_branch(i);
 		if (node) {

@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.h,v 1.13 2004/08/24 09:00:35 janakj Exp $
+ * $Id: pike_funcs.h,v 1.14 2004/11/05 14:21:00 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -32,11 +32,6 @@
 
 #include "../../parser/msg_parser.h"
 #include "../../locking.h"
-
-
-//extern int                     time_unit;
-//extern int                     max_value;
-//extern gen_lock_t              *timer_lock;
 
 
 int  pike_check_req(struct sip_msg *msg, char *foo, char *bar);
