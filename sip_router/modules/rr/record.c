@@ -1,5 +1,5 @@
 /*
- * $Id: record.c,v 1.6 2003/04/14 11:13:50 janakj Exp $
+ * $Id: record.c,v 1.7 2003/07/13 12:59:06 janakj Exp $
  *
  * Route & Record-Route module
  *
@@ -344,6 +344,8 @@ int record_route_preset(struct sip_msg* _m, char* _data, char* _s2)
 	p += ((str*)_data)->len;
 	
 	if (append_fromtag && from->tag_value.len) {
+		memcpy(p, RR_FROMTAG, RR_FROMTAG_LEN);
+		p += RR_FROMTAG_LEN;
 		memcpy(p, from->tag_value.s, from->tag_value.len);
 		p += from->tag_value.len;
 	}
