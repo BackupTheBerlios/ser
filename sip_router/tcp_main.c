@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.27 2003/05/20 17:30:39 andrei Exp $
+ * $Id: tcp_main.c,v 1.28 2003/06/25 20:45:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -118,7 +118,6 @@ struct tcp_connection* tcpconn_new(int sock, union sockaddr_union* su,
 {
 	struct tcp_connection *c;
 	
-
 	c=(struct tcp_connection*)shm_malloc(sizeof(struct tcp_connection));
 	if (c==0){
 		LOG(L_ERR, "ERROR: tcpconn_add: mem. allocation failure\n");

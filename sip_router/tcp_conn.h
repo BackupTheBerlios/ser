@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.12 2003/02/20 18:30:15 andrei Exp $
+ * $Id: tcp_conn.h,v 1.13 2003/06/25 20:45:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -88,12 +88,6 @@ struct tcp_connection{
 	int id; /* id (unique!) used to retrieve a specific connection when
 	           reply-ing*/
 	struct receive_info rcv; /* src & dst ip, ports, proto a.s.o*/
-#if 0
-	struct ip_addr ip; /* peer ip */
-	int port; /* peer port */
-	int sock_idx; /* receiving socket index in the tcp_info array */
-	union sockaddr_union su;
-#endif
 	struct tcp_req req; /* request data */
 	volatile int refcnt;
 	int bad; /* if set this is a "bad" connection */
