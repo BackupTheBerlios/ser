@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.9 2001/12/05 23:00:08 jku Exp $ 
+ * $Id: parse_via.c,v 1.10 2001/12/06 20:43:05 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1603,6 +1603,7 @@ main_via:
 								state=saved_state;
 								goto endofheader;
 							case PARAM_ERROR:
+								pkg_free(param);
 								goto error;
 							default:
 								LOG(L_ERR, "ERROR: parse_via after"

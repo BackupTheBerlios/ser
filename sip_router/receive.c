@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.22 2001/12/03 13:07:13 jku Exp $
+ *$Id: receive.c,v 1.23 2001/12/06 20:43:05 andrei Exp $
  */
 
 #include <string.h>
@@ -77,6 +77,7 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 					"error while trying script\n");
 			goto error;
 		}
+		DBG("succesfully ran routing scripts...\n");
 #ifdef STATS
 		/* jku -- update request statistics  */
 		else update_received_request(msg->first_line.u.request.method_value );
@@ -115,6 +116,7 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 skip:
 	DBG("skip:...\n");
 */
+	DBG("receive_msg: cleaning up\n");
 	free_sip_msg(msg);
 	pkg_free(msg);
 #ifdef STATS
