@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.19 2003/07/02 12:09:18 janakj Exp $
+ * $Id: save.c,v 1.20 2003/07/02 12:41:28 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -319,8 +319,6 @@ static inline int contacts(struct sip_msg* _m, contact_t* _c, udomain_t* _d, str
 {
 	int res;
 	urecord_t* r;
-
-	print_contact(stdout, (contact_body_t*)_m->contact->parsed);
 
 	ul_lock_udomain(_d);
 	res = ul_get_urecord(_d, _a, &r);
