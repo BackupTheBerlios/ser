@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.13 2003/10/08 21:31:55 janakj Exp $
+ * $Id: domain_mod.c,v 1.14 2003/10/08 21:34:11 janakj Exp $
  *
  * Domain module
  *
@@ -151,7 +151,6 @@ static int mod_init(void)
 		}
 			
 		db_close(db_handle);
-		db_handle = 0;
 	}
 
 	return 0;
@@ -175,5 +174,8 @@ static int child_init(int rank)
 
 static void destroy(void)
 {
-	if (db_handle) db_close(db_handle);
+	/* Destroy is called from the main process only,
+	 * there is no need to close database here because
+	 * it is closed in mod_init already
+	 * /
 }
