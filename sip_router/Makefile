@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.134 2004/11/02 21:16:31 bogdan Exp $
+# $Id: Makefile,v 1.135 2004/11/22 11:59:39 andrei Exp $
 #
 # sip_router makefile
 #
@@ -123,7 +123,7 @@ include Makefile.rules
 
 #extra targets 
 
-$(NAME): static_modules
+$(NAME): $(extra_objs) # static_modules
 
 lex.yy.c: cfg.lex cfg.tab.h $(ALLDEP)
 	$(LEX) $<
@@ -146,8 +146,7 @@ modules:
 		fi ; \
 	done 
 
-.PHONY: static_modules
-static_modules:
+$(extra_objs):
 	-@echo "Extra objs: $(extra_objs)" 
 	-@for r in $(static_modules_path) "" ; do \
 		if [ -n "$$r" ]; then \
