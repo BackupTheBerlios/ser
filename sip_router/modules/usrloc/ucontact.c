@@ -1,5 +1,5 @@
-\/* 
- * $Id: ucontact.c,v 1.3 2002/08/21 20:09:02 janakj Exp $ 
+/* 
+ * $Id: ucontact.c,v 1.4 2002/08/24 13:26:11 janakj Exp $ 
  *
  * Usrloc contact structure
  */
