@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.c,v 1.31 2004/12/03 19:09:33 andrei Exp $
+ * $Id: reg_mod.c,v 1.32 2004/12/04 18:33:31 janakj Exp $
  *
  * Registrar module interface
  *
@@ -177,6 +177,18 @@ static int mod_init(void)
 	
 
 	if (bind_usrloc(&ul) < 0) {
+		return -1;
+	}
+
+	     /*
+	      * Test if use_domain parameters of usrloc and registrar
+	      * module are equal
+	      */
+	if (ul.use_domain != use_domain) {
+		LOG(L_ERR, "ERROR: 'use_domain' parameters of 'usrloc' and 'registrar' modules"
+		    " must have the same value !\n");
+		LOG(L_ERR, "(Hint: Did you forget to use modparam(\"registrar\", \"use_domain\", 1) in"
+			" in your ser.cfg ?)\n");
 		return -1;
 	}
 

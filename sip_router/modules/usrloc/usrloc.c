@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.c,v 1.38 2004/08/24 09:00:48 janakj Exp $
+ * $Id: usrloc.c,v 1.39 2004/12/04 18:33:31 janakj Exp $
  *
  * Usrloc interface
  *
@@ -30,7 +30,7 @@
  
 #include "usrloc.h"
 #include "../../sr_module.h"
-
+#include "ul_mod.h"
 
 int bind_usrloc(usrloc_api_t* api)
 {
@@ -132,6 +132,8 @@ int bind_usrloc(usrloc_api_t* api)
 		LOG(L_ERR, "bind_usrloc(): Can't bind register_ulcb\n");
 		return -1;
 	}
+
+	api->use_domain = use_domain;
 
 	return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.h,v 1.14 2004/08/24 09:00:48 janakj Exp $
+ * $Id: usrloc.h,v 1.15 2004/12/04 18:33:31 janakj Exp $
  *
  * Convenience usrloc header file
  *
@@ -40,6 +40,7 @@
 
 
 typedef struct usrloc_api {
+	int use_domain;
 	register_udomain_t   register_udomain;
 	get_all_ucontacts_t  get_all_ucontacts;
 
