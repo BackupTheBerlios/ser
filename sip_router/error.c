@@ -1,8 +1,9 @@
 /*
- * $Id: error.c,v 1.1 2002/05/31 01:59:06 jku Exp $
+ * $Id: error.c,v 1.2 2002/07/11 17:46:58 andrei Exp $
  *
  */
 
+#include <stdio.h>
 #include "error.h"
 
 /* current function's error; */

@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.106 2002/07/11 14:39:30 andrei Exp $
+# $Id: Makefile.defs,v 1.107 2002/07/11 17:46:58 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -8,7 +8,7 @@
 VERSION = 0
 PATCHLEVEL = 8
 SUBLEVEL = 7
-EXTRAVERSION = -4-ipv6
+EXTRAVERSION = -5-ipv6
 
 RELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 OS = $(shell uname -s)
