@@ -1,5 +1,5 @@
 /*
- * $Id: hash_func.c,v 1.7 2002/02/11 17:56:22 andrei Exp $
+ * $Id: hash_func.c,v 1.8 2002/02/14 17:41:30 andrei Exp $
  */
 
 
@@ -23,7 +23,7 @@ int old_hash( str  call_id, str cseq_nr )
    int  hash_code = 0;
    int  i;
 	
-#ifdef i386
+#if 0 /*def i386*/
    int ci_len, cs_len;
    char *ci, *cs;
    
@@ -48,7 +48,7 @@ int old_hash( str  call_id, str cseq_nr )
       for( i=0 ; i<call_id.len ; hash_code+=call_id.s[i++]  );
 #endif
 
-#ifdef i386
+#if 0 /*def i386*/
 
 		int dummy2;
 		if (cseq_nr.len>=4){

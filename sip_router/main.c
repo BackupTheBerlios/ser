@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.55 2002/02/12 20:09:20 andrei Exp $
+ * $Id: main.c,v 1.56 2002/02/14 17:41:30 andrei Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.55 2002/02/12 20:09:20 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.56 2002/02/14 17:41:30 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -307,7 +307,7 @@ int main_loop()
 		pids[0]=getpid();
 		process_bit = 1;
 		process_no=0; /*main process number*/
-		udp_rcv_loop();
+		return udp_rcv_loop();
 	}else{
 		for(r=0;r<addresses_no;r++){
 			/* create the listening socket (for each address)*/
@@ -329,7 +329,7 @@ int main_loop()
 						pids[i+1]=pid; /*should be in shared mem.*/
 				}
 			}
-			/*close(udp_sock);*/ /*parent*/
+			close(udp_sock); /*parent*/
 		}
 	}
 	/*this is the main process*/

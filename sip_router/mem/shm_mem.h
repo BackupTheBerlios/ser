@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.6 2002/02/12 20:45:43 andrei Exp $*
+/* $Id: shm_mem.h,v 1.7 2002/02/14 17:41:30 andrei Exp $*
  *
  * shared mem stuff
  */
@@ -177,9 +177,9 @@ do { \
 
 #define shm_status() \
 do { \
-		shm_lock(); \
+		/*shm_lock();*/ \
 		MY_STATUS(shm_block); \
-		shm_unlock(); \
+		/*shm_unlock();*/ \
 }while(0)
 
 
