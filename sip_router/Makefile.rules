@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.1 2001/12/08 22:06:27 andrei Exp $
+# $Id: Makefile.rules,v 1.2 2001/12/10 16:11:42 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -58,6 +58,6 @@ TAGS:
 	
 
 ifneq (,$(filter-out clean proper distclean realclean mantainer-clean TAGS \
-		tar, $(MAKECMDGOALS)))
+		tar modules, $(MAKECMDGOALS)))
 include $(depends)
 endif
