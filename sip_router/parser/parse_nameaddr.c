@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_nameaddr.c,v 1.1 2003/03/24 16:42:21 janakj Exp $
+ * $Id: parse_nameaddr.c,v 1.2 2003/03/25 22:39:26 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -47,8 +47,6 @@ int parse_nameaddr(str* _s, name_addr_t* _a)
 		LOG(L_ERR, "parse_nameaddr(): Invalid parameter value\n");
 		return -1;
 	}
-
-	memset(_a, 0, sizeof(name_addr_t));
 
 	_a->name.s = _s->s;
 

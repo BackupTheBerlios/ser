@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.1 2003/03/25 13:11:07 janakj Exp $
+ * $Id: parse_param.c,v 1.2 2003/03/25 22:39:26 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -324,7 +324,8 @@ int parse_params(str* _s, pclass_t _c, param_hooks_t* _h, param_t** _p)
 			}
 		}
 
-		if (_s->s[0] == ',') goto ok;
+		if (_s->s[0] == ',') goto ok; /* To be able to parse header parameters */
+		if (_s->s[0] == '>') goto ok; /* To be able to parse URI parameters */
 
 		if (_s->s[0] != ';') {
 			LOG(L_ERR, "parse_params(): Invalid character, ; expected\n");

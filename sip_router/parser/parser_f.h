@@ -1,5 +1,5 @@
 /* 
- * $Id: parser_f.h,v 1.6 2003/03/24 16:42:21 janakj Exp $
+ * $Id: parser_f.h,v 1.7 2003/03/25 22:39:26 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History
  * --------
  * 2003-02-28 scratchpad compatibility abandoned (jiri)
+ * 2003-03-24 find_not_quoted function added (janakj)
  */
 
 
@@ -101,5 +102,6 @@ inline static char* find_not_quoted(str* _s, char _c)
 	}
 	return 0;
 }
+
 
 #endif /* parser_f_h */
