@@ -1,5 +1,5 @@
 /*
- * $Id: user_in.c,v 1.1 2003/08/29 18:55:15 ramona Exp $
+ * $Id: user_in.c,v 1.2 2003/11/20 20:53:21 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -128,7 +128,7 @@ int diameter_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 
 	grp = (str*)_group; /* via fixup */
 
-	hf_type = (int)_hf;
+	hf_type = (int)(long)_hf;
 
 	/* extract the uri according with the _hf parameter */
 	switch(hf_type) 

@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_comm.c,v 1.1 2003/08/29 18:55:15 ramona Exp $
+ * $Id: tcp_comm.c,v 1.2 2003/11/20 20:53:21 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h> 
@@ -317,7 +318,7 @@ next:
 				break;
 			}
 			rb->chall_len=avp->data.len;
-			rb->chall = (char*)pkg_malloc(avp->data.len*sizeof(char));
+			rb->chall = (unsigned char*)pkg_malloc(avp->data.len*sizeof(char));
 			if(rb->chall == NULL)
 			{
 				LOG(L_ERR, M_NAME": no more free memory\n");

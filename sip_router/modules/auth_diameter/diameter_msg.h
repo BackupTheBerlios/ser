@@ -1,5 +1,5 @@
 /*
- * $Id: diameter_msg.h,v 1.1 2003/08/29 18:55:15 ramona Exp $
+ * $Id: diameter_msg.h,v 1.2 2003/11/20 20:53:21 andrei Exp $
  *
  * 2003-04-07 created by bogdan
  *
@@ -319,7 +319,7 @@ AAAMessage *AAAInMessage(
 AAAReturnCode AAAFreeMessage(
 		AAAMessage **message);
 
-AAAResultCode AAASetMessageResultCode(
+AAAReturnCode AAASetMessageResultCode(
 		AAAMessage *message,
 		AAAResultCode resultCode);
 
@@ -348,7 +348,7 @@ AAA_AVP* AAACreateAVP(
 		AAA_AVPFlag flags,
 		AAAVendorId vendorId,
 		char *data,
-		size_t length,
+		unsigned int length,
 		AVPDataStatus data_status);
 
 AAA_AVP* AAACloneAVP(

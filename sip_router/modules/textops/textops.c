@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.31 2003/11/11 19:37:16 bogdan Exp $
+/*$Id: textops.c,v 1.32 2003/11/20 20:55:27 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -349,7 +349,7 @@ static int subst_uri_f(struct sip_msg* msg, char*  subst, char* ignored)
 	if (result){
 		DBG("%s: subst_uri_f: match - old uri= [%.*s], new uri= [%.*s]\n",
 				exports.name, len, tmp,
-				(result->len)?result->len:sizeof(""),(result->s)?result->s:"");
+				(result->len)?result->len:0,(result->s)?result->s:"");
 		if (msg->new_uri.s) pkg_free(msg->new_uri.s);
 		msg->new_uri=*result;
 		msg->parsed_uri_ok=0; /* reset "use cached parsed uri" flag */
