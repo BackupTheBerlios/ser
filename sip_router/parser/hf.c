@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.1 2002/07/08 17:14:39 janakj Exp $ 
+ * $Id: hf.c,v 1.2 2002/08/08 17:14:45 ssi Exp $ 
  */
 
 #include "hf.h"
@@ -29,6 +29,10 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_CSEQ:
 			free_cseq(hf->parsed);
+			break;
+
+		case HDR_FROM:
+			free_to(hf->parsed);
 			break;
 
 		default:
