@@ -1,5 +1,5 @@
 /* MD5.H - header file for MD5C.C
- * $Id: md5.h,v 1.3 2002/09/19 12:23:52 jku Rel $
+ * $Id: md5.h,v 1.4 2003/04/10 12:37:50 janakj Exp $
  */
 
 
@@ -25,6 +25,11 @@ These notices must be retained in any copies of any part of this
 documentation and/or software.
  */
 
+#ifndef MD5_H
+#define MD5_H
+
+#include "md5global.h"
+
 /* MD5 context. */
 typedef struct {
   UINT4 state[4];                                   /* state (ABCD) */
@@ -37,3 +42,4 @@ void MD5Update PROTO_LIST
   ((MD5_CTX *, unsigned char *, unsigned int));
 void MD5Final PROTO_LIST ((unsigned char [16], MD5_CTX *));
 
+#endif /* MD5_H */

@@ -1,5 +1,5 @@
 /* 
- * $Id: md5utils.h,v 1.3 2002/09/19 12:23:52 jku Rel $
+ * $Id: md5utils.h,v 1.4 2003/04/10 12:37:50 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -36,4 +36,4 @@
 
 void MDStringArray (char *dst, str src[], int size);
 
-#endif
+#endif /* _MD5UTILS_H */
