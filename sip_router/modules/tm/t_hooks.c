@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.11 2004/01/23 15:33:51 bogdan Exp $
+ * $Id: t_hooks.c,v 1.12 2004/03/16 19:49:28 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -121,7 +121,7 @@ int register_tmcb( struct sip_msg* p_msg, struct cell *t, int types,
 	struct tmcb_head_list *cb_list;
 
 	/* are the callback types valid?... */
-	if ( types<0 || types>=TMCB_MAX ) {
+	if ( types<0 || types>TMCB_MAX ) {
 		LOG(L_CRIT, "BUG:tm:register_tmcb: invalid callback types: mask=%d\n",
 			types);
 		return E_BUG;
