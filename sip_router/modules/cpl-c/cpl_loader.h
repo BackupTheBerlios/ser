@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_loader.h,v 1.2 2003/08/21 10:50:44 bogdan Exp $
+ * $Id: cpl_loader.h,v 1.3 2003/10/20 15:37:29 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,7 @@
 
 int cpl_load( FILE *fifo_stream, char *response_file );
 int cpl_remove( FILE *fifo_stream, char *response_file );
+int cpl_get( FILE *fifo_stream, char *response_file );
 
 #endif
 

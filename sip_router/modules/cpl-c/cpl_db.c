@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.c,v 1.9 2003/09/12 15:38:56 bogdan Exp $
+ * $Id: cpl_db.c,v 1.10 2003/10/20 15:37:29 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -79,10 +79,11 @@ int get_user_script( db_con_t *db_hdl, str *user, str *script, char* key)
 			script->len = res->rows[0].values[0].val.blob_val.len;
 			script->s = shm_malloc( script->len );
 			if (!script->s) {
-				LOG(L_ERR,"ERROR:cpl-c:get_user_script: no more free sh_mem\n");
+				LOG(L_ERR,"ERROR:cpl-c:get_user_script: no free sh_mem\n");
 				goto error;
 			}
-			memcpy(script->s,res->rows[0].values[0].val.blob_val.s,script->len);
+			memcpy( script->s, res->rows[0].values[0].val.blob_val.s,
+				script->len);
 		}
 	}
 
