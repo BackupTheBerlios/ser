@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.7 2002/07/24 14:45:59 janakj Exp $ 
+ * $Id: dbase.c,v 1.8 2002/08/06 11:13:25 janakj Exp $ 
  */
 
 #include <mysql/mysql.h>
@@ -20,7 +20,6 @@
 static int connect_db    (db_con_t* _h, const char* _db_url);
 static int disconnect_db (db_con_t* _h);
 static int submit_query  (db_con_t* _h, const char* _s);
-static int get_result    (db_con_t* _h, db_res_t** _r);
 static int print_columns (char* _b, int _l, db_key_t* _c, int _n);
 static int print_values  (char* _b, int _l, db_val_t* _v, int _n);
 static int print_where   (char* _b, int _l, db_key_t* _k, db_val_t* _v, int _n);
