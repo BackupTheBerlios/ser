@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.8 2003/12/19 22:56:42 jamey Exp $
+ * $Id: pdomain.c,v 1.9 2003/12/29 16:04:08 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -190,6 +190,7 @@ int timer_pdomain(pdomain_t* _d)
  */
 void lock_pdomain(pdomain_t* _d)
 {
+	LOG(L_INFO, "lock_pdomain\n");
 	lock_get(&_d->lock);
 }
 
@@ -199,6 +200,7 @@ void lock_pdomain(pdomain_t* _d)
  */
 void unlock_pdomain(pdomain_t* _d)
 {
+	LOG(L_INFO, "unlock_pdomain\n");
 	lock_release(&_d->lock);
 }
 

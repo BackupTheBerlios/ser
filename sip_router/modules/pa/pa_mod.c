@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.13 2003/12/19 22:56:42 jamey Exp $
+ * $Id: pa_mod.c,v 1.14 2003/12/29 16:04:08 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,6 +31,8 @@
  * 2003-03-16  flags export parameter added (janakj)
  */
 
+
+#include <signal.h>
 
 #include "../../fifo_server.h"
 #include "../../db/db.h"
@@ -101,6 +103,12 @@ struct module_exports exports = {
 };
 
 
+void pa_sig_handler(int s) 
+{
+	signal(SIGSEGV, pa_sig_handler);
+	DBG("PA:pa_worker:%d: SIGNAL received=%d\n **************", getpid(), s);
+}
+
 static int pa_mod_init(void)
 {
 	load_tm_f load_tm;
@@ -170,6 +178,8 @@ static int pa_child_init(int _rank)
 			return -1;
 		}
 	}
+
+	signal(SIGSEGV, pa_sig_handler);
 
 	return 0;
 }
