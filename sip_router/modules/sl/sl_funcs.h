@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.h,v 1.5 2002/05/31 01:59:06 jku Exp $
+ * $Id: sl_funcs.h,v 1.6 2002/07/08 13:53:56 bogdan Exp $
  */
 
 #ifndef _SL_FUNCS_H
@@ -14,6 +14,7 @@
 #define TOTAG_LEN MD5_LEN+CRC16_LEN+1
 
 int sl_startup();
+int sl_shutdown();
 int sl_send_reply(struct sip_msg*,int,char*);
 int sl_filter_ACK(struct sip_msg* );
 int sl_reply_error(struct sip_msg *msg );
