@@ -1,5 +1,5 @@
 /*
- * $Id: user_in.c,v 1.4 2004/08/24 08:58:25 janakj Exp $
+ * $Id: user_in.c,v 1.5 2005/02/23 17:16:02 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -85,7 +85,7 @@ static inline int get_request_uri(struct sip_msg* m, str* u)
 static inline int get_to_uri(struct sip_msg* m, str* u)
 {
      // check that the header field is there and is parsed
-	if (!m->to && ((parse_headers(m, HDR_TO, 0) == -1)|| (!m->to))) 
+	if (!m->to && ((parse_headers(m, HDR_TO_F, 0) == -1)|| (!m->to))) 
 	{
 		LOG(L_ERR, "get_to_uri(): Can't get To header field\n");
 		return -1;

@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: utils.c,v 1.5 2004/08/24 08:58:30 janakj Exp $
+ * $Id: utils.c,v 1.6 2005/02/23 17:16:04 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -83,7 +83,7 @@ patch_content_length (struct sip_msg *msg, unsigned int newValue)
 	contentLength = msg->content_length;
 	if (contentLength == NULL)	/* maybe not yet parsed */
 	{
-		if (parse_headers (msg, HDR_CONTENTLENGTH, 0) == -1)
+		if (parse_headers (msg, HDR_CONTENTLENGTH_F, 0) == -1)
 		{
 			LOG (L_ERR,"ERROR: patch_content_length: parse headers on Content-Length failed\n");
 			return -1;

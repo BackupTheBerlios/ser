@@ -1,5 +1,5 @@
 /*
- * $Id: parse_diversion.c,v 1.2 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_diversion.c,v 1.3 2005/02/23 17:16:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -45,7 +45,8 @@ int parse_diversion_header(struct sip_msg *msg)
 {
  	struct to_body* diversion_b;
 	
- 	if (!msg->diversion && (parse_headers(msg, HDR_DIVERSION, 0) == -1 || !msg->diversion)) {
+ 	if (!msg->diversion && (parse_headers(msg, HDR_DIVERSION_F, 0) == -1 ||
+				!msg->diversion)) {
  		goto error;
  	}
  

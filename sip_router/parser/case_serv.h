@@ -1,5 +1,5 @@
 /*
- * $Id: case_serv.h,v 1.1 2004/12/20 18:52:54 sobomax Exp $
+ * $Id: case_serv.h,v 1.2 2005/02/23 17:16:07 andrei Exp $
  *
  * Subject Header Field Name Parsing Macros
  *
@@ -35,7 +35,7 @@
 #define serv_CASE                   \
     p += 4;                         \
     if (LOWER_BYTE(*p) == 'e' && LOWER_BYTE(p[1]) == 'r') {   \
-            hdr->type = HDR_SERVER; \
+            hdr->type = HDR_SERVER_T; \
             p+= 2;                  \
 	    goto dc_end;            \
     }                               \

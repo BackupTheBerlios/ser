@@ -1,5 +1,5 @@
 /* 
- * $Id: case_auth.h,v 1.5 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_auth.h,v 1.6 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Authorization Header Field Name Parsing Macros
  *
@@ -36,7 +36,7 @@
 	        p += 4;                                \
 		switch(LOWER_BYTE(*p)) {               \
 		case 'n':                              \
-		        hdr->type = HDR_AUTHORIZATION; \
+		        hdr->type = HDR_AUTHORIZATION_T; \
 			p++;                           \
 			goto dc_end;                   \
                                                        \

@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.57 2004/09/14 12:43:37 janakj Exp $
+ * $Id: jabber.c,v 1.58 2005/02/23 17:16:03 andrei Exp $
  *
  * XJAB module
  *
@@ -470,7 +470,8 @@ int xjab_manage_sipmsg(struct sip_msg *msg, int type)
 	}
 	
 	// check for TO and FROM headers - if is not SIP MESSAGE 
-	if(parse_headers( msg, HDR_TO|HDR_FROM, 0)==-1 || !msg->to || !msg->from)
+	if(parse_headers( msg, HDR_TO_F|HDR_FROM_F, 0)==-1 || !msg->to 
+			|| !msg->from)
 	{
 		LOG(L_ERR,"XJAB:xjab_manage_sipmsg: cannot find TO or FROM HEADERS!\n");
 		goto error;

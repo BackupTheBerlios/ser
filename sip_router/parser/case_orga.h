@@ -1,5 +1,5 @@
 /* 
- * $Id: case_orga.h,v 1.2 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_orga.h,v 1.3 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Organization Header Field Name Parsing Macros
  *
@@ -34,7 +34,7 @@
 
 #define tion_CASE                             \
         if (LOWER_DWORD(val) == _tion_) {     \
-	        hdr->type = HDR_ORGANIZATION; \
+	        hdr->type = HDR_ORGANIZATION_T; \
 		p += 4;                       \
 		goto dc_end;                  \
 	}                                     \

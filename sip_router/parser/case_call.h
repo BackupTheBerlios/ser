@@ -1,5 +1,5 @@
 /* 
- * $Id: case_call.h,v 1.7 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_call.h,v 1.8 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Call-ID Header Name Parsing Macros
  *
@@ -41,12 +41,12 @@
 #define ID_CASE                      \
      switch(LOWER_DWORD(val)) {      \
      case __id1_:                    \
-	     hdr->type = HDR_CALLID; \
+	     hdr->type = HDR_CALLID_T; \
 	     hdr->name.len = 7;      \
 	     return (p + 4);         \
 	                             \
      case __id2_:                    \
-	     hdr->type = HDR_CALLID; \
+	     hdr->type = HDR_CALLID_T; \
 	     p += 4;                 \
 	     goto dc_end;            \
      }

@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.24 2005/02/11 13:15:40 janakj Exp $
+ * $Id: authorize.c,v 1.25 2005/02/23 17:16:02 andrei Exp $
  *
  * Digest Authentication - Database support
  *
@@ -203,7 +203,8 @@ static int generate_avps(db_res_t* result)
 /*
  * Authorize digest credentials
  */
-static inline int authorize(struct sip_msg* _m, str* _realm, char* _table, int _hftype)
+static inline int authorize(struct sip_msg* _m, str* _realm, char* _table,
+								hdr_types_t _hftype)
 {
 	char ha1[256];
 	int res;
@@ -273,7 +274,7 @@ static inline int authorize(struct sip_msg* _m, str* _realm, char* _table, int _
 int proxy_authorize(struct sip_msg* _m, char* _realm, char* _table)
 {
 	     /* realm parameter is converted to str* in str_fixup */
-	return authorize(_m, (str*)_realm, _table, HDR_PROXYAUTH);
+	return authorize(_m, (str*)_realm, _table, HDR_PROXYAUTH_T);
 }
 
 
@@ -282,5 +283,5 @@ int proxy_authorize(struct sip_msg* _m, char* _realm, char* _table)
  */
 int www_authorize(struct sip_msg* _m, char* _realm, char* _table)
 {
-	return authorize(_m, (str*)_realm, _table, HDR_AUTHORIZATION);
+	return authorize(_m, (str*)_realm, _table, HDR_AUTHORIZATION_T);
 }

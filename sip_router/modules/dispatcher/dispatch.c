@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.c,v 1.5 2004/12/03 19:09:32 andrei Exp $
+ * $Id: dispatch.c,v 1.6 2005/02/23 17:16:03 andrei Exp $
  *
  * dispatcher module
  * 
@@ -451,7 +451,7 @@ int ds_hash_callid(struct sip_msg *msg, unsigned int *hash)
 		return -1;
 	}
 	
-	if(msg->callid==NULL && ((parse_headers(msg, HDR_CALLID, 0)==-1) ||
+	if(msg->callid==NULL && ((parse_headers(msg, HDR_CALLID_F, 0)==-1) ||
 				(msg->callid==NULL)) )
 	{
 		LOG(L_ERR, "DISPATCHER:ds_hash_callid:ERROR cannot parse Call-Id\n");

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_max.h,v 1.5 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_max.h,v 1.6 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Max-Forwards Header Field Name Parsing Macros
  *
@@ -34,7 +34,7 @@
 
 #define ARDS_CASE                            \
         if (LOWER_DWORD(val) == _ards_) {    \
-	        hdr->type = HDR_MAXFORWARDS; \
+	        hdr->type = HDR_MAXFORWARDS_T; \
 	        p += 4;                      \
 		goto dc_end;                 \
 	}

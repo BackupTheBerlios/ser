@@ -1,5 +1,5 @@
 /* 
- * $Id: case_expi.h,v 1.7 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_expi.h,v 1.8 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Expires Header Field Name Parsing Macros
  *
@@ -41,12 +41,12 @@
 #define EXPI_RES_CASE                    \
         switch(LOWER_DWORD(val)) {       \
         case _res1_:                     \
-		hdr->type = HDR_EXPIRES; \
+		hdr->type = HDR_EXPIRES_T; \
 		hdr->name.len = 7;       \
 		return (p + 4);          \
                                          \
         case _res2_:                     \
-		hdr->type = HDR_EXPIRES; \
+		hdr->type = HDR_EXPIRES_T; \
 		p += 4;                  \
 		goto dc_end;             \
         }

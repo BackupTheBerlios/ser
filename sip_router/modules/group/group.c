@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.15 2005/02/01 13:19:51 janakj Exp $
+ * $Id: group.c,v 1.16 2005/02/23 17:16:03 andrei Exp $
  *
  * Group membership
  *
@@ -73,7 +73,7 @@ static inline int get_request_uri(struct sip_msg* _m, str* _u)
  */
 static inline int get_to_uri(struct sip_msg* _m, str* _u)
 {
-	if (!_m->to && ((parse_headers(_m, HDR_TO, 0) == -1) || (!_m->to))) {
+	if (!_m->to && ((parse_headers(_m, HDR_TO_F, 0) == -1) || (!_m->to))) {
 		LOG(L_ERR, "get_to_uri(): Can't get To header field\n");
 		return -1;
 	}

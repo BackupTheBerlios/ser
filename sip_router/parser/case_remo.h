@@ -1,5 +1,5 @@
 /* 
- * $Id: case_remo.h,v 1.2 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_remo.h,v 1.3 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Remote-Party-ID Header Field Name Parsing Macros
  *
@@ -34,12 +34,12 @@
 #define _ID_CASE                         \
         switch(LOWER_DWORD(val)) {       \
         case __id1_:                     \
-	        hdr->type = HDR_RPID;    \
+	        hdr->type = HDR_RPID_T;    \
 	        hdr->name.len = 15;      \
 	        return (p + 4);          \
                                          \
         case __id2_:                     \
-                hdr->type = HDR_RPID;    \
+                hdr->type = HDR_RPID_T;    \
                 p += 4;                  \
 	        goto dc_end;             \
         }

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_requ.h,v 1.7 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_requ.h,v 1.8 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Require Header Field Name Parsing Macros
  *
@@ -42,12 +42,12 @@
 #define IRE_CASE                         \
         switch(LOWER_DWORD(val)) {       \
         case _ire1_:                     \
-                hdr->type = HDR_REQUIRE; \
+                hdr->type = HDR_REQUIRE_T; \
                 hdr->name.len = 7;       \
                 return (p + 4);          \
                                          \
         case _ire2_:                     \
-                hdr->type = HDR_REQUIRE; \
+                hdr->type = HDR_REQUIRE_T; \
                 p += 4;                  \
                 goto dc_end;             \
         }

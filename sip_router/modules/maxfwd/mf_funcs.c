@@ -1,5 +1,5 @@
 /*
- * $Id: mf_funcs.c,v 1.24 2004/12/04 17:12:01 janakj Exp $
+ * $Id: mf_funcs.c,v 1.25 2005/02/23 17:16:04 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -54,7 +54,7 @@ int is_maxfwd_present( struct sip_msg* msg , str *foo)
 
 	/* lookup into the message for MAX FORWARDS header*/
 	if ( !msg->maxforwards ) {
-		if  ( parse_headers( msg , HDR_MAXFORWARDS, 0 )==-1 ){
+		if  ( parse_headers( msg , HDR_MAXFORWARDS_F, 0 )==-1 ){
 			LOG( L_ERR , "ERROR:maxfwd:is_maxfwd_present :"
 				" parsing MAX_FORWARD header failed!\n");
 			return -2;

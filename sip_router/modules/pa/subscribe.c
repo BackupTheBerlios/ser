@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.24 2004/08/24 09:00:33 janakj Exp $
+ * $Id: subscribe.c,v 1.25 2005/02/23 17:16:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -238,8 +238,9 @@ int parse_accept(struct hdr_field* _h, doctype_t* _a)
  */
 static int parse_hfs(struct sip_msg* _m, int accept_header_required)
 {
-	if ( (parse_headers(_m, HDR_FROM | HDR_EVENT | HDR_EXPIRES | HDR_ACCEPT, 0)
-				== -1) || (_m->from==0)||(_m->event==0)||(_m->expires==0) ||
+	if ( (parse_headers(_m, HDR_FROM_F | HDR_EVENT_F | HDR_EXPIRES_F |
+							HDR_ACCEPT_F, 0) == -1) ||
+			(_m->from==0)||(_m->event==0)||(_m->expires==0) ||
 			(_m->accept==0) ) {
 		paerrno = PA_PARSE_ERR;
 		LOG(L_ERR, "parse_hfs(): Error while parsing headers\n");
@@ -572,7 +573,7 @@ int pa_handle_registration(struct sip_msg* _m, char* _domain, char* _s2)
 	       if (_m->contact) {
 		    struct hdr_field* ptr = _m->contact;
 		    while (ptr) {
-			 if (ptr->type == HDR_CONTACT) {
+			 if (ptr->type == HDR_CONTACT_T) {
 			      if (!ptr->parsed && (parse_contact(ptr) < 0)) {
 				   goto next;
 			      }

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_dive.h,v 1.2 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_dive.h,v 1.3 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Diversion Header Field Parsing Macros
  *
@@ -37,7 +37,7 @@
         case _rsio_:                               \
 	        p += 4;                            \
 	        if (LOWER_BYTE(*p) == 'n') {       \
-		        hdr->type = HDR_DIVERSION; \
+		        hdr->type = HDR_DIVERSION_T; \
                         p++;                       \
                         goto dc_end;               \
                 }                                  \

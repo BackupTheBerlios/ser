@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.62 2004/08/24 09:00:39 janakj Exp $
+ * $Id: sms_funcs.c,v 1.63 2005/02/23 17:16:06 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -208,8 +208,9 @@ int push_on_network(struct sip_msg *msg, int net)
 		msg->first_line.u.request.uri.len ,&uri)||!uri.user.len )
 		{
 			DBG("DEBUG:sms_push_on_net: string to get user from To\n");
-			if ( (!msg->to&&((parse_headers(msg,HDR_TO,0)==-1) || !msg->to)) ||
-			parse_uri( get_to(msg)->uri.s, get_to(msg)->uri.len, &uri)==-1
+			if ( (!msg->to&&((parse_headers(msg,HDR_TO_F,0)==-1) ||
+					!msg->to)) ||
+				parse_uri( get_to(msg)->uri.s, get_to(msg)->uri.len, &uri)==-1
 			|| !uri.user.len)
 			{
 				LOG(L_ERR,"ERROR:sms_push_on_net: unable to extract user"

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_user.h,v 1.2 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: case_user.h,v 1.3 2005/02/23 17:16:07 andrei Exp $ 
  *
  * User-Agent Header Field Name Parsing Macros
  *
@@ -35,7 +35,7 @@
     if (LOWER_BYTE(*p) == 'n') {               \
             p++;                               \
             if (LOWER_BYTE(*p) == 't') {       \
-                    hdr->type = HDR_USERAGENT; \
+                    hdr->type = HDR_USERAGENT_T; \
                     p++;                       \
                     goto dc_end;               \
             }                                  \

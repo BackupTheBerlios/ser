@@ -1,5 +1,5 @@
 /* 
- * $Id: diversion.c,v 1.4 2004/12/04 23:58:58 janakj Exp $
+ * $Id: diversion.c,v 1.5 2005/02/23 17:16:03 andrei Exp $
  *
  * Diversion Header Field Support
  *
@@ -137,7 +137,7 @@ static inline int add_diversion_helper(struct sip_msg* msg, str* s)
 		anchor = 0;
 	}
 	
-	if (!msg->diversion && parse_headers(msg, HDR_DIVERSION, 0) == -1) {
+	if (!msg->diversion && parse_headers(msg, HDR_DIVERSION_F, 0) == -1) {
 		LOG(L_ERR, "add_diversion_helper: Header parsing failed\n");
 		return -1;
 	}

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_even.h,v 1.4 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_even.h,v 1.5 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Event Header Field Name Parsing Macros
  *
@@ -35,7 +35,7 @@
 #define even_CASE                     \
     p += 4;                           \
     if (LOWER_BYTE(*p) == 't') {      \
-            hdr->type = HDR_EVENT;    \
+            hdr->type = HDR_EVENT_T;    \
             p++;                      \
 	    goto dc_end;              \
     }                                 \

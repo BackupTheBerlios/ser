@@ -1,5 +1,5 @@
 /* 
- * $Id: case_cseq.h,v 1.5 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_cseq.h,v 1.6 2005/02/23 17:16:07 andrei Exp $ 
  *
  * CSeq Header Field Name Parsing Macros
  *
@@ -33,7 +33,7 @@
 
 
 #define cseq_CASE          \
-     hdr->type = HDR_CSEQ; \
+     hdr->type = HDR_CSEQ_T; \
      p += 4;               \
      goto dc_end
 

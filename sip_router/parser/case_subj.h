@@ -1,5 +1,5 @@
 /* 
- * $Id: case_subj.h,v 1.2 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_subj.h,v 1.3 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Subject Header Field Name Parsing Macros
  *
@@ -35,12 +35,12 @@
 #define ect_CASE                         \
         switch(LOWER_DWORD(val)) {       \
         case _ect1_:                     \
-	        hdr->type = HDR_SUBJECT; \
+	        hdr->type = HDR_SUBJECT_T; \
 	        hdr->name.len = 7;       \
 	        return (p + 4);          \
                                          \
         case _ect2_:                     \
-                hdr->type = HDR_SUBJECT; \
+                hdr->type = HDR_SUBJECT_T; \
                 p += 4;                  \
 	        goto dc_end;             \
         }

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_supp.h,v 1.5 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: case_supp.h,v 1.6 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Supported Header Field Name Parsing Macros
  *
@@ -37,7 +37,7 @@
         case _orte_:                               \
 	        p += 4;                            \
 	        if (LOWER_BYTE(*p) == 'd') {       \
-		        hdr->type = HDR_SUPPORTED; \
+		        hdr->type = HDR_SUPPORTED_T; \
                         p++;                       \
                         goto dc_end;               \
                 }                                  \

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_disposition.c,v 1.2 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_disposition.c,v 1.3 2005/02/23 17:16:07 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -376,7 +376,7 @@ int parse_content_disposition( struct sip_msg *msg )
 
 	/* look for Content-Disposition header */
 	if (msg->content_disposition==0) {
-		if (parse_headers(msg,HDR_CONTENTDISPOSITION,0)==-1)
+		if (parse_headers(msg, HDR_CONTENTDISPOSITION_F, 0)==-1)
 			goto error;
 		if (msg->content_disposition==0) {
 			DBG("DEBUG:parse_content_disposition: hdr not found\n");

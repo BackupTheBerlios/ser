@@ -1,5 +1,5 @@
 /*
- * $Id: parse_from.c,v 1.4 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_from.c,v 1.5 2005/02/23 17:16:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -48,7 +48,7 @@ int parse_from_header( struct sip_msg *msg)
 {
 	struct to_body* from_b;
 
-	if ( !msg->from && ( parse_headers(msg,HDR_FROM,0)==-1 || !msg->from)) {
+	if ( !msg->from && ( parse_headers(msg,HDR_FROM_F,0)==-1 || !msg->from)) {
 		LOG(L_ERR,"ERROR:parse_from_header: bad msg or missing FROM header\n");
 		goto error;
 	}

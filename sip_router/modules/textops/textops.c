@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.40 2004/11/12 16:58:58 andrei Exp $
+/*$Id: textops.c,v 1.41 2005/02/23 17:16:06 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -445,7 +445,7 @@ static int remove_hf_f(struct sip_msg* msg, char* str_hf, char* foo)
 
 	cnt=0;
 	/* we need to be sure we have seen all HFs */
-	parse_headers(msg, HDR_EOH, 0);
+	parse_headers(msg, HDR_EOH_F, 0);
 	for (hf=msg->headers; hf; hf=hf->next) {
 		if (hf->name.len!=((str *)str_hf)->len)
 			continue;
@@ -466,7 +466,7 @@ static int is_present_hf_f(struct sip_msg* msg, char* str_hf, char* foo)
 	struct hdr_field *hf;
 
 	/* we need to be sure we have seen all HFs */
-	parse_headers(msg, HDR_EOH, 0);
+	parse_headers(msg, HDR_EOH_F, 0);
 	for (hf=msg->headers; hf; hf=hf->next) {
 		if (hf->name.len!=((str *)str_hf)->len)
 			continue;
@@ -579,7 +579,7 @@ static int append_hf_helper(struct sip_msg* msg, str *str1, str *str2)
 	char *s;
 	int len;
 
-	if (parse_headers(msg, HDR_EOH, 0) == -1) {
+	if (parse_headers(msg, HDR_EOH_F, 0) == -1) {
 		LOG(L_ERR, "append_hf(): Error while parsing message\n");
 		return -1;
 	}

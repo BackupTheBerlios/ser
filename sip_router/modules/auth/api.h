@@ -1,5 +1,5 @@
 /*
- * $Id: api.h,v 1.6 2005/01/31 17:52:12 janakj Exp $
+ * $Id: api.h,v 1.7 2005/02/23 17:16:02 andrei Exp $
  *
  * Digest Authentication Module
  *
@@ -50,8 +50,10 @@ typedef enum auth_result {
  * we should really authenticate (there must be no authentication for
  * ACK and CANCEL
  */
-typedef auth_result_t (*pre_auth_t)(struct sip_msg* _m, str* _realm, int _hftype, struct hdr_field** _h);
-auth_result_t pre_auth(struct sip_msg* _m, str* _realm, int _hftype, struct hdr_field** _h);
+typedef auth_result_t (*pre_auth_t)(struct sip_msg* _m, str* _realm,
+								hdr_types_t _hftype, struct hdr_field** _h);
+auth_result_t pre_auth(struct sip_msg* _m, str* _realm, hdr_types_t _hftype,
+						struct hdr_field** _h);
 
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: checks.c,v 1.6 2005/02/01 13:19:51 janakj Exp $
+ * $Id: checks.c,v 1.7 2005/02/23 17:16:06 andrei Exp $
  *
  * Various URI checks
  *
@@ -161,7 +161,7 @@ static inline int check_username(struct sip_msg* _m, str* _uri)
  */
 int check_to(struct sip_msg* _m, char* _s1, char* _s2)
 {
-	if (!_m->to && ((parse_headers(_m, HDR_TO, 0) == -1) || (!_m->to))) {
+	if (!_m->to && ((parse_headers(_m, HDR_TO_F, 0) == -1) || (!_m->to))) {
 		LOG(L_ERR, "check_to(): Error while parsing To header field\n");
 		return -1;
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.10 2005/02/01 13:19:51 janakj Exp $
+ * $Id: group.c,v 1.11 2005/02/23 17:16:03 andrei Exp $
  *
  * Group membership checking over Radius
  *
@@ -74,7 +74,7 @@ static inline int get_to_uri(struct sip_msg* _m, str* _u)
 	     /* Double check that the header field is there
 	      * and is parsed
 	      */
-	if (!_m->to && ((parse_headers(_m, HDR_TO, 0) == -1) || !_m->to)) {
+	if (!_m->to && ((parse_headers(_m, HDR_TO_F, 0) == -1) || !_m->to)) {
 		LOG(L_ERR, "get_to_uri(): Can't get To header field\n");
 		return -1;
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: auth_diameter.c,v 1.4 2004/08/24 08:58:25 janakj Exp $ 
+ * $Id: auth_diameter.c,v 1.5 2005/02/23 17:16:02 andrei Exp $ 
  * Digest Authentication - Diameter support
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -198,7 +198,7 @@ static int str_fixup(void** param, int param_no)
 int diameter_proxy_authorize(struct sip_msg* _msg, char* _realm, char* _s2)
 {
 	/* realm parameter is converted to str* in str_fixup */
-	return authorize(_msg, (str*)_realm, HDR_PROXYAUTH);
+	return authorize(_msg, (str*)_realm, HDR_PROXYAUTH_T);
 
 }
 
@@ -208,7 +208,7 @@ int diameter_proxy_authorize(struct sip_msg* _msg, char* _realm, char* _s2)
  */
 int diameter_www_authorize(struct sip_msg* _msg, char* _realm, char* _s2)
 {
-	return authorize(_msg, (str*)_realm, HDR_AUTHORIZATION);
+	return authorize(_msg, (str*)_realm, HDR_AUTHORIZATION_T);
 }
 
 static int group_fixup(void** param, int param_no)

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_reco.h,v 1.5 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_reco.h,v 1.6 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Record-Route Header Field Name Parsing Macros
  *
@@ -34,7 +34,7 @@
 
 #define OUTE_CASE                            \
         if (LOWER_DWORD(val) == _oute_) {    \
-	        hdr->type = HDR_RECORDROUTE; \
+	        hdr->type = HDR_RECORDROUTE_T; \
 		p += 4;                      \
 		goto dc_end;                 \
 	}                                    \

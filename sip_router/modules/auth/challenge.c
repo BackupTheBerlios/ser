@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.23 2004/11/30 02:59:35 danp Exp $
+ * $Id: challenge.c,v 1.24 2005/02/23 17:16:02 andrei Exp $
  *
  * Challenge related functions
  *
@@ -135,17 +135,18 @@ static inline int challenge(struct sip_msg* _msg, str* _realm, int _qop,
 	struct hdr_field* h;
 	auth_body_t* cred = 0;
 	char *auth_hf;
-	int ret, hftype = 0; /* Makes gcc happy */
+	int ret;
+	hdr_types_t hftype = 0; /* Makes gcc happy */
 	struct sip_uri uri;
 
 	switch(_code) {
 	case 401: 
 		get_authorized_cred(_msg->authorization, &h); 
-		hftype = HDR_AUTHORIZATION;
+		hftype = HDR_AUTHORIZATION_T;
 		break;
 	case 407: 
 		get_authorized_cred(_msg->proxy_auth, &h);
-		hftype = HDR_PROXYAUTH;
+		hftype = HDR_PROXYAUTH_T;
 		break;
 	}
 

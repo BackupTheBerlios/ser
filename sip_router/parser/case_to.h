@@ -1,5 +1,5 @@
 /* 
- * $Id: case_to.h,v 1.7 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: case_to.h,v 1.8 2005/02/23 17:16:07 andrei Exp $ 
  *
  * To Header Field Name Parsing Macros
  *
@@ -39,7 +39,7 @@
 #include "../comp_defs.h"
 
 #define to12_CASE           \
-        hdr->type = HDR_TO; \
+        hdr->type = HDR_TO_T; \
         hdr->name.len = 2;  \
         return (p + 4);
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_via.h,v 1.7 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: case_via.h,v 1.8 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Via Header Field Name Parsing Macros
  *
@@ -38,12 +38,12 @@
 #include "../comp_defs.h"
 
 #define via1_CASE            \
-        hdr->type = HDR_VIA; \
+        hdr->type = HDR_VIA_T; \
         hdr->name.len = 3;   \
         return (p + 4)        
 
 #define via2_CASE            \
-        hdr->type = HDR_VIA; \
+        hdr->type = HDR_VIA_T; \
         p += 4;              \
         goto dc_end
 

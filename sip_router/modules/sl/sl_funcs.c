@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.49 2004/10/10 23:01:25 jiri Exp $
+ * $Id: sl_funcs.c,v 1.50 2005/02/23 17:16:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -161,7 +161,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 		 * 100 replies */
        		/* msg->first_line.u.request.method_value==METHOD_INVITE && */
 		code>=180 &&
-		(msg->to || (parse_headers(msg,HDR_TO, 0)!=-1 && msg->to))
+		(msg->to || (parse_headers(msg,HDR_TO_F, 0)!=-1 && msg->to))
 		&& (get_to(msg)->tag_value.s==0 || get_to(msg)->tag_value.len==0) ) 
 	{
 		calc_crc_suffix( msg, tag_suffix );
@@ -241,7 +241,7 @@ int sl_filter_ACK(struct sip_msg *msg, void *bar )
 	}
 
 	/*force to parse to header -> we need it for tag param*/
-	if (parse_headers( msg, HDR_TO, 0 )==-1)
+	if (parse_headers( msg, HDR_TO_F, 0 )==-1)
 	{
 		LOG(L_ERR,"ERROR : SL_FILTER_ACK: unable to parse To header\n");
 		return -1;

@@ -1,5 +1,5 @@
 /* 
- * $Id: case_unsu.h,v 1.7 2004/08/24 09:01:25 janakj Exp $ 
+ * $Id: case_unsu.h,v 1.8 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Unsupported Header Field Name Parsing Macros
  *
@@ -41,12 +41,12 @@
 #define TED_CASE                             \
         switch(LOWER_DWORD(val)) {           \
         case _ted1_:                         \
-                hdr->type = HDR_UNSUPPORTED; \
+                hdr->type = HDR_UNSUPPORTED_T; \
                 hdr->name.len = 11;          \
 	        return (p + 4);              \
                                              \
         case _ted2_:                         \
-                hdr->type = HDR_UNSUPPORTED; \
+                hdr->type = HDR_UNSUPPORTED_T; \
                 p += 4;                      \
 	        goto dc_end;                 \
         }

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.c,v 1.12 2005/02/18 21:09:41 bogdan Exp $
+ * $Id: parse_content.c,v 1.13 2005/02/23 17:16:07 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -348,7 +348,7 @@ int parse_content_type_hdr( struct sip_msg *msg )
 	/* is the header already found? */
 	if ( msg->content_type==0 ) {
 		/* if not, found it */
-		if ( parse_headers(msg,HDR_CONTENTTYPE,0)==-1)
+		if ( parse_headers(msg, HDR_CONTENTTYPE_F, 0)==-1)
 			goto error;
 		if ( msg->content_type==0 ) {
 			DBG("DEBUG:parse_content_type_hdr: missing Content-Type"
@@ -400,7 +400,7 @@ int parse_accept_hdr( struct sip_msg *msg )
 	/* is the header already found? */
 	if ( msg->accept==0 ) {
 		/* if not, found it */
-		if ( parse_headers(msg,HDR_ACCEPT,0)==-1)
+		if ( parse_headers(msg, HDR_ACCEPT_F, 0)==-1)
 			goto error;
 		if ( msg->accept==0 ) {
 			DBG("DEBUG:parse_accept_hdr: missing Accept header\n");

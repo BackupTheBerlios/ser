@@ -1,5 +1,5 @@
 /* 
- * $Id: case_from.h,v 1.5 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_from.h,v 1.6 2005/02/23 17:16:07 andrei Exp $ 
  *
  * From Header Field Name Parsing Macros
  *
@@ -33,7 +33,7 @@
 
 
 #define from_CASE             \
-        hdr->type = HDR_FROM; \
+        hdr->type = HDR_FROM_T; \
         p += 4;               \
         goto dc_end
 

@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.98 2004/12/01 16:51:17 andrei Exp $
+ * $Id: forward.c,v 1.99 2005/02/23 17:16:01 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -463,7 +463,7 @@ int forward_reply(struct sip_msg* msg)
 	}
 
 	/* we have to forward the reply stateless, so we need second via -bogdan*/
-	if (parse_headers( msg, HDR_VIA2, 0 )==-1 
+	if (parse_headers( msg, HDR_VIA2_F, 0 )==-1 
 		|| (msg->via2==0) || (msg->via2->error!=PARSE_OK))
 	{
 		/* no second via => error */

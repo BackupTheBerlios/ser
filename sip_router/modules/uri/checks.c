@@ -1,5 +1,5 @@
 /*
- * $Id: checks.c,v 1.19 2004/09/27 03:56:26 jiri Exp $
+ * $Id: checks.c,v 1.20 2005/02/23 17:16:06 andrei Exp $
  *
  * Various URI checks and Request URI manipulation
  *
@@ -56,7 +56,7 @@ int has_totag(struct sip_msg* _m, char* _foo, char* _bar)
 {
 	str tag;
 
-	if (!_m->to && parse_headers(_m, HDR_TO,0)==-1) {
+	if (!_m->to && parse_headers(_m, HDR_TO_F,0)==-1) {
 		LOG(L_ERR, "ERROR: has_totag: To parsing failed\n");
 		return -1;
 	}

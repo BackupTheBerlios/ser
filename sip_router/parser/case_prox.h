@@ -1,5 +1,5 @@
 /* 
- * $Id: case_prox.h,v 1.8 2004/08/24 09:01:24 janakj Exp $ 
+ * $Id: case_prox.h,v 1.9 2005/02/23 17:16:07 andrei Exp $ 
  *
  * Proxy-Require, Proxy-Authorization Header Field Name Parsing Macros
  *
@@ -41,12 +41,12 @@
 #define ION_CASE                           \
         switch(LOWER_DWORD(val)) {         \
         case _ion1_:                       \
-	        hdr->type = HDR_PROXYAUTH; \
+	        hdr->type = HDR_PROXYAUTH_T; \
 	        hdr->name.len = 19;        \
 	        return (p + 4);            \
                                            \
         case _ion2_:                       \
-                hdr->type = HDR_PROXYAUTH; \
+                hdr->type = HDR_PROXYAUTH_T; \
                 p += 4;                    \
 	        goto dc_end;               \
         }
@@ -78,7 +78,7 @@
 	        p += 4;                               \
                 switch(LOWER_BYTE(*p)) {              \
                 case 'e':                             \
-                        hdr->type = HDR_PROXYREQUIRE; \
+                        hdr->type = HDR_PROXYREQUIRE_T; \
 	                p++;                          \
                         goto dc_end;                  \
                 }                                     \

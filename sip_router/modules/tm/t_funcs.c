@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.176 2005/02/16 23:14:20 bogdan Exp $
+ * $Id: t_funcs.c,v 1.177 2005/02/23 17:16:06 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -63,10 +63,10 @@
 
 /* fr_timer AVP specs */
 static int     fr_timer_avp_type = 0;
-static int_str fr_timer_avp = (int_str)0;
+static int_str fr_timer_avp = {0};
 static str     fr_timer_str;
 static int     fr_inv_timer_avp_type = 0;
-static int_str fr_inv_timer_avp = (int_str)0;
+static int_str fr_inv_timer_avp = {0};
 static str     fr_inv_timer_str;
 
 

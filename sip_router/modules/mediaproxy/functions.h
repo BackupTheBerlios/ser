@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.4 2004/11/09 15:15:11 andrei Exp $
+/* $Id: functions.h,v 1.5 2005/02/23 17:16:04 andrei Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -152,7 +152,7 @@ FixContact(struct sip_msg* msg, char* str1, char* str2)
     }
 
     offset = contact->uri.s - msg->buf;
-    anchor = del_lump(msg, offset, contact->uri.len, HDR_CONTACT);
+    anchor = del_lump(msg, offset, contact->uri.len, HDR_CONTACT_T);
 
     if (!anchor) {
         pkg_free(buf);
@@ -170,7 +170,7 @@ FixContact(struct sip_msg* msg, char* str1, char* str2)
                       newip, msg->rcv.src_port, after.len, after.s);
     }
 
-    if (insert_new_lump_after(anchor, buf, len, HDR_CONTACT) == 0) {
+    if (insert_new_lump_after(anchor, buf, len, HDR_CONTACT_T) == 0) {
         pkg_free(buf);
         return -1;
     }
