@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.19 2004/10/29 12:16:11 dcm Exp $
+ * $Id: authorize.c,v 1.20 2004/10/29 18:57:31 dcm Exp $
  *
  * Digest Authentication - Database support
  *
@@ -235,8 +235,10 @@ static inline int authorize(struct sip_msg* _m, str* _realm, char* _table, int _
 				    iname.s->len, ZSW(iname.s->s), ivalue.n);
 			}
 			for (i = 0; i < avps_str_n; i++) {
-				iname.s = &(avps_str[i]);
 				value.s = (char*)VAL_STRING(&(result->rows[0].values[1 + avps_int_n + i]));
+				if(value.s==NULL)
+					continue;
+				iname.s = &(avps_str[i]);
 				value.len = strlen(value.s);
 				ivalue.s = &value;
 				add_avp(AVP_NAME_STR | AVP_VAL_STR, iname, ivalue);
