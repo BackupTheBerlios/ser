@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.3 2002/02/11 17:56:22 andrei Exp $
+/* $Id: q_malloc.c,v 1.4 2002/02/15 14:10:40 andrei Exp $
  *
  */
 
@@ -417,7 +417,7 @@ void qm_status(struct qm_block* qm)
 		
 		for (f=qm->free_hash[h].head.u.nxt_free,j=0; 
 				f!=&(qm->free_hash[h].head); f=f->u.nxt_free, i++, j++);
-		if (j) LOG(L_INFO, "hash= %3d. fragments no.: %5d\n", h, j);
+			if (j) LOG(L_INFO, "hash= %3d. fragments no.: %5d\n", h, j);
 	}
 	LOG(L_INFO, "-----------------------------\n");
 }

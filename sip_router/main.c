@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.57 2002/02/15 01:28:12 bogdan Exp $
+ * $Id: main.c,v 1.58 2002/02/15 14:10:40 andrei Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.57 2002/02/15 01:28:12 bogdan Exp $";
+static char id[]="@(#) $Id: main.c,v 1.58 2002/02/15 14:10:40 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -94,7 +94,7 @@ static char flags[]=
 static char help_msg[]= "\
 Usage: " NAME " -l address [-l address] [options]\n\
 Options:\n\
-    -c		 Perform loop checks and compute branches\n\
+    -c           Perform loop checks and compute branches\n\
     -f file      Configuration file (default " CFG_FILE ")\n\
     -p port      Listen on the specified port (default: 5060)\n\
     -l address   Listen on the specified address (multiple -l mean\n\

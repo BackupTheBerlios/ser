@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.1 2002/02/12 20:10:45 andrei Exp $
+/* $Id: f_malloc.h,v 1.2 2002/02/15 14:10:40 andrei Exp $
  *
  * simple, very fast, & dummy malloc library
  */
@@ -16,7 +16,7 @@
 
 
 
-#define F_MALLOC_OPTIMIZE_FACTOR 10 /*used below */
+#define F_MALLOC_OPTIMIZE_FACTOR 11 /*used below */
 #define F_MALLOC_OPTIMIZE  (1<<F_MALLOC_OPTIMIZE_FACTOR)
 								/* size to optimize for,
 									(most allocs < this size),
