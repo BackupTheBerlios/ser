@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2001/12/07 23:10:08 janakj Exp $
+# $Id: Makefile,v 1.2 2001/12/08 02:29:14 jku Exp $
 #
 # print example module makefile
 #
@@ -13,7 +13,7 @@ depends= $(sources:.c=.d)
 NAME=usrloc.so
 
 LDFLAGS=-O2 -shared
-LIBS=-lmysqlclient
+LIBS=-lmysqlclient -L/usr/lib/mysql
 
 ALLDEP=Makefile ../../Makefile
 

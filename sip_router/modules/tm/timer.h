@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.19 2001/12/06 20:32:32 bogdan Exp $
+ * $Id: timer.h,v 1.20 2001/12/08 02:29:14 jku Exp $
  */
 
 
@@ -55,6 +55,8 @@ void                        insert_into_timer_list( struct s_table* hash_table ,
 void                        remove_from_timer_list( struct s_table* hash_table , struct timer_link* tl , int list_id);
 struct timer_link  *remove_from_timer_list_from_head( struct s_table* hash_table, int list_id );
 void                       timer_routine(unsigned int, void *);
+
+void remove_delete_list( struct s_table *hash_table );
 
 
 #endif

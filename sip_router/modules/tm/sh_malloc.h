@@ -1,5 +1,5 @@
 /*
- * $Id: sh_malloc.h,v 1.4 2001/12/05 22:14:30 jku Exp $
+ * $Id: sh_malloc.h,v 1.5 2001/12/08 02:29:14 jku Exp $
  */
 
 
@@ -8,7 +8,6 @@
 
 #include "../../shm_mem.h"
 
-/*
 #if defined SHM_MEM
 
 #include "../../shm_mem.h"
@@ -17,7 +16,6 @@
 #define sh_free(ptr)		shm_free((ptr))
 
 #else
-*/
 
 #include <stdlib.h>
 
@@ -26,17 +24,4 @@
 
 #endif
 
-/*
-#ifdef MEM_DBG
-
-#include <stdlib.h>
-
-#define sh_malloc(size)		({ void *_p=malloc((size)); \
-				  printf("MEMDBG: malloc (%d): %p\n", (size), _p); \
-				  _p; })
-
-#define sh_free(ptr)		({ printf("MEMDBG: free: %p\n", (ptr)); free((ptr)); })
-
-
 #endif
-*/
