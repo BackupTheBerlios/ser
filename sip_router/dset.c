@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.2 2002/08/15 10:05:36 jku Exp $
+ * $Id: dset.c,v 1.3 2002/08/15 10:07:42 jku Exp $
  *
  * destination set
  */
@@ -88,7 +88,7 @@ int append_branch( struct sip_msg *msg, char *uri, int uri_len )
 
 
 
-char *create_dset( struct sip_msg *msg, int *len ) 
+char *print_dset( struct sip_msg *msg, int *len ) 
 {
 	int cnt;
 	str uri;

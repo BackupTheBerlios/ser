@@ -1,5 +1,5 @@
 /*
- * $Id: dset.h,v 1.2 2002/08/15 10:05:36 jku Exp $
+ * $Id: dset.h,v 1.3 2002/08/15 10:07:42 jku Exp $
  */
 
 #ifndef _T_FORKS_H
@@ -12,7 +12,6 @@
 #define CONTACT_DELIM ", "
 #define CONTACT_DELIM_LEN 2
 
-char *create_dset( struct sip_msg *msg, int *len );
 
 struct branch
 {
@@ -33,4 +32,5 @@ void init_branch_iterator();
 char *next_branch( int *len );
 void clear_branches();
 
+char *print_dset( struct sip_msg *msg, int *len );
 #endif
