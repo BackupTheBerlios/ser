@@ -1,5 +1,5 @@
 /*
- * $Id: modparam.h,v 1.3 2002/09/19 12:23:52 jku Rel $
+ * $Id: modparam.h,v 1.4 2003/03/20 15:40:06 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -33,5 +33,7 @@
 #include "sr_module.h"
 
 int set_mod_param(char* _mod, char* _name, modparam_t _type, void* _val);
+
+int set_mod_param_regex(char* regex, char* name, modparam_t type, void* val);
 
 #endif

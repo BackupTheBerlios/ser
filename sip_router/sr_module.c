@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.28 2003/03/19 23:46:09 janakj Exp $
+/* $Id: sr_module.c,v 1.29 2003/03/20 15:40:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -242,7 +242,6 @@ void* find_param_export(char* mod, char* name, modparam_t type)
 			name, mod);
 	return 0;
 }
-
 
 
 /* finds a module, given a pointer to a module function *
