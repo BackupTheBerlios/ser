@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.153 2003/04/06 20:28:12 janakj Exp $
+ * $Id: main.c,v 1.154 2003/04/08 12:31:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -95,7 +95,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.153 2003/04/06 20:28:12 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.154 2003/04/08 12:31:40 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -795,6 +795,11 @@ int main_loop()
 			close(sockfd[0]);
 			unix_tcp_sock=sockfd[1];
 #endif
+			if (init_child(PROC_TIMER) < 0) {
+				LOG(L_ERR, "timer: init_child failed\n");
+				goto error;
+			}
+			
 			for(;;){
 				/* debug:  instead of doing something usefull */
 				/* (placeholder for timers, etc.) */
