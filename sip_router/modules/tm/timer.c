@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.58 2004/11/19 11:34:23 andrei Exp $
+ * $Id: timer.c,v 1.59 2005/02/01 13:25:57 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -628,7 +628,7 @@ static void insert_timer_unsafe( struct timer *timer_list, struct timer_link *tl
 	for(ptr = timer_list->last_tl.prev_tl; 
 	    ptr != &timer_list->first_tl; 
 	    ptr = ptr->prev_tl) {
-		if (ptr->time_out <= time_out) break;
+		if ((ptr->time_out != TIMER_DELETED) && (ptr->time_out <= time_out)) break;
 	}
 
 	tl->prev_tl = ptr;
