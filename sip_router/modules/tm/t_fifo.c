@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.13 2004/11/22 22:51:17 andrei Exp $
+ * $Id: t_fifo.c,v 1.14 2004/11/23 09:56:01 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -800,7 +800,8 @@ static int assemble_msg(struct sip_msg* msg, struct tw_info *twi)
 	DBG("assemble_msg: next r-uri: %.*s\n",
 	    str_uri.len,str_uri.len ? str_uri.s : "");
 	
-	if ( REQ_LINE(msg).method_value==METHOD_INVITE || twi->append->add_body ) {
+	if ( REQ_LINE(msg).method_value==METHOD_INVITE || 
+			(twi->append && twi->append->add_body) ) {
 		/* get body */
 		if( (body.s = get_body(msg)) == 0 ){
 			LOG(L_ERR, "assemble_msg: get_body failed\n");
