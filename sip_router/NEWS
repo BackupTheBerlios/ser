@@ -6,7 +6,7 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.3 2003/01/07 23:00:02 jiri Exp $
+$Id: NEWS,v 1.4 2003/01/28 16:27:23 andrei Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
@@ -35,6 +35,9 @@ New features
 - improved tm/FIFO (external applications, such as
   click-to-dial can now better initiate transactions)
   [tm module]
+- powerpc fast locking support
+- netbsd support
+- 64 bits arch. support (e.g. netbsd/sparc64).
 
 Changes to use of ser scripts
 =============================
