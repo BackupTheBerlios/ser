@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.22 2002/07/09 09:08:25 janakj Exp $
+/* $Id: usrloc.c,v 1.23 2002/08/06 10:39:23 jku Exp $
  *
  * User location support module
  *
@@ -16,6 +16,7 @@
 #include "defs.h"
 #include "../../data_lump_rpl.h"
 #include "../../timer.h"
+#include "../../config.h"
 
 
 
@@ -715,9 +716,13 @@ static int lookup_contact(struct sip_msg* _msg, char* _table, char* _str2)
  */
 static int rwrite(struct sip_msg* _msg, str* _s)
 {
-	char buffer[256];
+	char buffer[MAX_URI_SIZE];
 	struct action act;
 
+	if (_s->len>MAX_URI_SIZE-1 ) {
+		ERR("ERROR: rwrite: too long uri");
+		return FALSE;
+	}
 	memcpy(buffer, _s->s, _s->len);
 	buffer[_s->len] = '\0';
 
