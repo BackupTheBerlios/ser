@@ -1,5 +1,5 @@
 /* 
- * $Id: uridb_mod.c,v 1.2 2004/06/08 10:55:31 andrei Exp $ 
+ * $Id: uridb_mod.c,v 1.3 2004/07/26 15:58:03 janakj Exp $ 
  *
  * Various URI related functions
  *
@@ -157,6 +157,15 @@ static int mod_init(void)
 
 	DBG("uri_db - initializing\n");
 
+	db_url.len = strlen(db_url.s);
+        uri_table.len = strlen(uri_table.s);
+	uri_user_col.len = strlen(uri_user_col.s);
+	uri_domain_col.len = strlen(uri_domain_col.s);
+        uri_uriuser_col.len = strlen(uri_uriuser_col.s);
+	subscriber_table.len = strlen(subscriber_table.s);
+	subscriber_user_col.len = strlen(subscriber_user_col.s);
+        subscriber_domain_col.len = strlen(subscriber_domain_col.s);
+
 	if (uridb_db_bind(db_url.s)) {
 		LOG(L_ERR, "ERROR: uri_db:mod_init(): No database module found\n");
 		return -1;
@@ -184,7 +193,7 @@ static int mod_init(void)
 				" subscriber table (use ser_mysql.sh reinstall)\n");
 		goto err;
 	}		
-	
+
 	return 0;
 
  err:
