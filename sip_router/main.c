@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.24 2001/11/15 17:44:26 andrei Exp $
+ * $Id: main.c,v 1.25 2001/11/15 23:39:36 andrei Exp $
  */
 
 #include <stdio.h>
@@ -33,7 +33,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.24 2001/11/15 17:44:26 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.25 2001/11/15 23:39:36 andrei Exp $";
 static char version[]="ser 0.8.3.8";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -64,6 +64,9 @@ static char flags[]="NOCR:"
 #endif
 #ifdef OLD_PARSER
 ", OLD_PARSER"
+#endif
+#ifdef DNS_IP_HACK
+", DNS_IP_HACK"
 #endif
 ;
 

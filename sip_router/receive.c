@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.14 2001/11/15 17:44:26 andrei Exp $
+ *$Id: receive.c,v 1.15 2001/11/15 23:39:36 andrei Exp $
  */
 
 #include <string.h>
@@ -89,7 +89,7 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 		/* send the msg */
 		if (forward_reply(&msg)==0){
 			DBG(" reply forwarded to %s:%d\n", 
-						msg.via2.host,
+						msg.via2.host.s,
 						(unsigned short) msg.via2.port);
 		}
 	}
