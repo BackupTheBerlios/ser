@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.c,v 1.7 2003/08/20 17:05:23 andrei Exp $
+ * $Id: parse_content.c,v 1.8 2003/09/04 11:22:48 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -45,9 +45,9 @@
 
 
 #define is_mime_char(_c_) \
-	(isalpha(_c_) || (_c_)=='-' || (_c_)=='+')
+	(isalpha((int)_c_) || (_c_)=='-' || (_c_)=='+')
 #define is_char_equal(_c_,_cs_) \
-	( (isalpha(_c_)?(((_c_)|0x20)==(_cs_)):((_c_)==(_cs_)))==1 )
+	( (isalpha((int)_c_)?(((_c_)|0x20)==(_cs_)):((_c_)==(_cs_)))==1 )
 
 
 /*
