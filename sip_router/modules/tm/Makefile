@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2001/11/26 20:49:23 bogdan Exp $
+# $Id: Makefile,v 1.8 2001/11/27 16:50:28 bogdan Exp $
 #
 # print example module makefile
 #
@@ -39,7 +39,7 @@ dep: $(depends)
 
 .PHONY: clean
 clean:
-	-rm $(objs) $(NAME)
+	-rm -f $(objs) $(NAME)
 
 .PHONY: proper
 proper: clean
