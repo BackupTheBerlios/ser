@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: common.c,v 1.2 2002/12/02 09:18:25 janakj Exp $
+ * $Id: common.c,v 1.3 2002/12/10 11:05:34 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,7 @@
 #include "../../data_lump.h"
 #include "../../globals.h"
 #include "utils.h"
+#include "rr_mod.h"
 
 
 char rr_hash[MD5_LEN];
@@ -241,7 +242,7 @@ int remove_TMRoute(struct sip_msg* _m, struct hdr_field* _route, str* _uri)
 		DBG("remove_TMRoute(): No next URI in the same Route found\n");
 		offset = _route->name.s - _m->buf;
 		len = _route->name.len + _route->body.len + 2;
-		if (_route->body.s[_route->body.len] != '\0') len++;  /* FIXME: Is this necessary ? */
+		if (_route->body.s[_route->body.len] != '\0') len++;  /* FIXME: Is this necessary ?, Yes it is */
 
 		_uri->s = 0;
 		_uri->len = 0;
@@ -284,7 +285,7 @@ int build_RR(struct sip_msg* _m, str* _l, int _lr)
 		get_username(&user);
 	}
 	
-	if (_lr) {
+	if (_lr && use_fast_cmp) {
 		memcpy(_l->s + _l->len, rr_hash, MD5_LEN);
 		_l->len += MD5_LEN;
 

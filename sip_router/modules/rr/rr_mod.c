@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.12 2002/12/02 09:18:25 janakj Exp $
+ * $Id: rr_mod.c,v 1.13 2002/12/10 11:05:34 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -37,6 +37,10 @@
 #include "loose.h"
 #include "common.h"
 
+
+int use_fast_cmp = 0;
+
+
 static int mod_init(void);
 static int child_init(int rank);
 static int int_fixup(void** param, int param_no);
@@ -66,10 +70,16 @@ struct module_exports exports = {
 	},
 	3, /* number of functions*/
 
-	0,   /* Module parameter names */
-	0,   /* Module parameter types */
-	0,   /* Module parameter variable pointers */
-	0,      /* Number of module paramers */
+	(char*[]) { /* Module parameter names */
+		"use_fast_cmp"
+	},
+	(modparam_t[]) {   /* Module parameter types */
+		INT_PARAM
+	},
+	(void*[]) {   /* Module parameter variable pointers */
+		&use_fast_cmp
+	},
+	1,         /* Number of module paramers */
 
 	mod_init,  /* initialize module */
 	0,         /* response function*/
