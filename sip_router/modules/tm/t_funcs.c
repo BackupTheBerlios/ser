@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.173 2004/12/03 19:09:33 andrei Exp $
+ * $Id: t_funcs.c,v 1.174 2004/12/03 22:10:47 janakj Exp $
  *
  * transaction maintenance functions
  *
@@ -340,7 +340,7 @@ void init_avp_params(void)
 	fr_inv_timer_avp.s = &fr_inv_timer_param;
 
 	fr_timer_param.len = strlen(fr_timer_param.s);
-	fr_inv_timer_param.len = strlen(fr_timer_param.s);
+	fr_inv_timer_param.len = strlen(fr_inv_timer_param.s);
 }
 
 
