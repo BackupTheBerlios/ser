@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.2 2002/01/11 03:32:19 jku Exp $
+ * $Id: config.h,v 1.3 2002/01/12 02:33:31 jku Exp $
  *
  */
 
@@ -38,5 +38,12 @@
    replaced by a subsequent, longer message
 */
 #define REPLY_OVERBUFFER_LEN 160
+
+/* character which separates individual parts of MPLS-ized branch */
+#ifdef BRUT_HACK
+#	define BRANCH_SEPARATOR 'X'
+#else
+#	define BRANCH_SEPARATOR '.'
+#endif
 
 #endif
