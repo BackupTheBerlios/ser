@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.123 2002/03/06 23:32:03 bogdan Exp $
+ * $Id: t_funcs.c,v 1.124 2002/03/07 13:24:47 bogdan Exp $
  *
  */
 
@@ -729,6 +729,7 @@ int get_ip_and_port_from_uri( struct sip_msg* p_msg , unsigned int *param_ip, un
 			port = SIP_PORT;
 		}
 	}
+	port = htons(port);
 
 	/* getting host address*/
 #ifdef DNS_IP_HACK
