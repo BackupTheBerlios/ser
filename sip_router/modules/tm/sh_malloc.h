@@ -1,3 +1,8 @@
+/*
+ * $Id: sh_malloc.h,v 1.4 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #ifndef _SH_MALLOC_H
 #define _SH_MALLOC_H
 

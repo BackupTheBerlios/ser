@@ -1,3 +1,8 @@
+/*
+ * $Id: sip_msg.c,v 1.14 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #include "sip_msg.h"
 #include "../../dprint.h"
 #include "../../mem.h"

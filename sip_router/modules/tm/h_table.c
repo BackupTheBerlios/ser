@@ -1,3 +1,8 @@
+/*
+ * $Id: h_table.c,v 1.32 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #include "h_table.h"
 #include "../../dprint.h"
 #include "sh_malloc.h"

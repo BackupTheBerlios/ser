@@ -1,5 +1,5 @@
 /*
- * $Header: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/tm/lock.c,v 1.15 2001/12/05 22:10:19 jku Exp $
+ * $Id: lock.c,v 1.16 2001/12/05 22:14:30 jku Exp $
  */
 
 

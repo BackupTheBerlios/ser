@@ -1,3 +1,8 @@
+/*
+ * $Id: t_funcs.c,v 1.56 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #include "t_funcs.h"
 #include "../../dprint.h"
 #include "../../config.h"

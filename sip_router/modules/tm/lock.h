@@ -1,3 +1,8 @@
+/*
+ * $Id: lock.h,v 1.12 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #ifndef _SEMAPHORE_H
 #define _SEMAPHORE_H
 

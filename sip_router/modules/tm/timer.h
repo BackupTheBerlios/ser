@@ -1,3 +1,8 @@
+/*
+ * $Id: timer.h,v 1.17 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #ifndef _TIMER_H
 #define _TIMER_H
 

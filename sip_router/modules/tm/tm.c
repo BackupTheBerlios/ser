@@ -1,4 +1,5 @@
-/*$Id: tm.c,v 1.17 2001/12/05 17:15:37 bogdan Exp $
+/*
+ * $Id: tm.c,v 1.18 2001/12/05 22:14:30 jku Exp $
  *
  * TM module
  *

@@ -1,3 +1,8 @@
+/*
+ * $Id: t_funcs.h,v 1.19 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #ifndef _T_FUNCS_H
 #define _T_FUNCS_H
 

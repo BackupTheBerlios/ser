@@ -1,3 +1,8 @@
+/*
+ * $Id: sip_msg.h,v 1.4 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #ifndef _SIP_MSG_H
 #define _SIP_MSG_H
 

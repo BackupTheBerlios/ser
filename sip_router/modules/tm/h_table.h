@@ -1,3 +1,8 @@
+/*
+ * $Id: h_table.h,v 1.31 2001/12/05 22:14:30 jku Exp $
+ */
+
+
 #ifndef _H_TABLE_H
 #define _H_TABLE_H
 
