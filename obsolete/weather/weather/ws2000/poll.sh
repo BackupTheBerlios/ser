@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: poll.sh,v 1.1 2002/09/23 18:55:10 jiri Exp $
+# $Id: poll.sh,v 1.2 2002/09/23 18:56:01 jiri Rel $
 #
 # demo app -- it polls local weatherstation using the
 # wx2000 utility http://wx2000.sourceforge.net/ 
@@ -14,7 +14,7 @@ SIP_TO="gh@iptel.org"
 # -g reads the recent value and leaves it in the station
 #OPTIONS="-g"
 OPTIONS="-x"
-WX="/home/jiri/tmp/weather/wx2000-0.3/wx2000 $OPTIONS"
+WX="wx2000 $OPTIONS"
 SER_FIFO=/tmp/ser_fifo
 REPLY_FIFO=hh
 
