@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.h,v 1.7 2004/04/27 14:53:23 janakj Exp $
+ * $Id: ins_list.h,v 1.8 2004/07/21 11:55:15 sobomax Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -49,6 +49,7 @@ struct ins_itm {
 	cstate_t state;
 	str* user;
 	str* cont;
+	str* user_agent;
 	int cid_len;
 	char callid[1];
 };
