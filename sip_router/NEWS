@@ -6,7 +6,7 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.11 2003/04/18 13:31:36 jiri Exp $
+$Id: NEWS,v 1.12 2003/04/18 14:11:30 jiri Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
@@ -128,7 +128,7 @@ XXX
 rr module:
 ----------
 - addRecordRoute has been replaced with record_route
-- rewriteFromRoute has been replaced with strict_route()
+- rewriteFromRoute has been replaced with loose_route()
 - a new option, "enable_full_lr" can be set to make life
   with misimplemented UAs easier and put LR in from "lr=on"
 
