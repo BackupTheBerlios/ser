@@ -1,5 +1,5 @@
 /* 
- * $Id: db_utils.h,v 1.3 2002/09/19 12:23:54 jku Exp $ 
+ * $Id: db_utils.h,v 1.4 2002/09/19 14:52:11 janakj Rel $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,8 +26,8 @@
  */
 
 
-#ifndef __DB_UTILS_H__
-#define __DB_UTILS_H__
+#ifndef DB_UTILS_H
+#define DB_UTILS_H
 
 #define __USE_XOPEN /* Because of strptime */
 #include <time.h>
