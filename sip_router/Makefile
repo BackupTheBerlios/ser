@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.123 2004/03/09 12:51:14 janakj Exp $
+# $Id: Makefile,v 1.124 2004/03/12 14:15:22 bogdan Exp $
 #
 # sip_router makefile
 #
@@ -46,7 +46,7 @@ skip_modules?=
 exclude_modules?= 			cpl ext extcmd \
 							postgres snmp \
 							im radius_acc radius_auth \
-							jabber mysql \
+							jabber \
 							auth_radius group_radius uri_radius 
 # always exclude the CVS dir
 override exclude_modules+= CVS $(skip_modules)
