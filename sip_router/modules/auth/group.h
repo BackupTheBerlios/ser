@@ -1,5 +1,5 @@
 /*
- * $Id: group.h,v 1.8 2002/12/07 23:59:49 janakj Exp $
+ * $Id: group.h,v 1.9 2002/12/11 13:05:15 janakj Exp $
  *
  * Check, if a username matches those in digest credentials
  * or if a user is member of a group
@@ -33,12 +33,6 @@
 #define GROUP_H
 
 #include "../../parser/msg_parser.h"
-
-
-/*
- * Check if a user is member of a group
- */
-int is_in_group(struct sip_msg* _msg, char* _group, char* _str2);
 
 
 /*
