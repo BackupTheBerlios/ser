@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.62 2004/11/03 12:35:51 janakj Exp $
+# $Id: ser_mysql.sh,v 1.63 2004/11/16 10:12:38 dcm Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -246,7 +246,7 @@ INSERT INTO version VALUES ( 'aliases', '6');
 INSERT INTO version VALUES ( 'active_sessions', '1');
 INSERT INTO version VALUES ( 'acc', '2');
 INSERT INTO version VALUES ( 'config', '1');
-INSERT INTO version VALUES ( 'silo', '2');
+INSERT INTO version VALUES ( 'silo', '3');
 INSERT INTO version VALUES ( 'realm', '1');
 INSERT INTO version VALUES ( 'domain', '1');
 INSERT INTO version VALUES ( 'uri', '1');
