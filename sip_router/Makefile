@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.99 2003/02/24 16:46:11 andrei Exp $
+# $Id: Makefile,v 1.100 2003/03/06 17:43:17 jiri Exp $
 #
 # sip_router makefile
 #
@@ -18,7 +18,7 @@ auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 #include  source related defs
 include Makefile.sources
 
-override exclude_modules:=CVS cpl cpl-c ext radius_acc radius_auth snmp \
+override exclude_modules:=CVS cpl cpl-c ext radius_acc radius_auth snmp jabber sms pa extcmd msilo auth \
 	$(exclude_modules)
 static_modules=
 static_modules_path=$(addprefix modules/, $(static_modules))

@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.41 2003/02/28 14:12:26 jiri Exp $
+ * $Id: timer.c,v 1.42 2003/03/06 17:43:17 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -336,7 +336,7 @@ inline static void final_response_handler( void *attr)
 	if (r_buf->activ_type>0) {
 #		ifdef EXTRA_DEBUG
 		if (t->uas.request->REQ_METHOD!=METHOD_INVITE
-			|| t->uas.status < 300 ) {
+			|| t->uas.status < 200 ) {
 			LOG(L_ERR, "ERROR: FR timer: uknown type reply buffer\n");
 			abort();
 		}

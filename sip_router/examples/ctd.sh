@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ctd.sh,v 1.5 2003/03/01 16:28:56 jiri Exp $
+# $Id: ctd.sh,v 1.6 2003/03/06 17:43:17 jiri Exp $
 #
 # Usage: ctd.sh $FROM $TARGET
 # 
@@ -55,7 +55,7 @@ else
 fi
 # address of user wishing to initiate conversation
 if [ -z "$1" ] ; then
-	URI="sip:113311@192.168.2.16"
+	URI="sip:44@192.168.2.16"
 	echo "caller unspecified -- taking default value $URI"
 else
 	URI="$1"

@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.19 2003/02/28 23:46:26 jiri Exp $
+/*$Id: msg_translator.h,v 1.20 2003/03/06 17:43:17 jiri Exp $
  * 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -45,6 +45,11 @@
 #include "parser/msg_parser.h"
 #include "ip_addr.h"
 
+/* point to some remarkable positions in a SIP message */
+struct bookmark {
+	str to_tag_val;
+};
+
 char * build_req_buf_from_sip_req (	struct sip_msg* msg, 
 				unsigned int *returned_len, struct socket_info* send_sock,
 				int proto);
@@ -57,7 +62,8 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 				char *new_tag ,
 				unsigned int new_tag_len ,
 				struct sip_msg* msg,
-				unsigned int *returned_len);
+				unsigned int *returned_len,
+				struct bookmark *bmark);
 char * build_res_buf_with_body_from_sip_req(	unsigned int code ,
 				char *text ,
 				char *new_tag ,
@@ -67,7 +73,8 @@ char * build_res_buf_with_body_from_sip_req(	unsigned int code ,
 				char *content_type,
 				unsigned int content_type_len,
 				struct sip_msg* msg,
-				unsigned int *returned_len);
+				unsigned int *returned_len,
+				struct bookmark *bmark);
 
 char* via_builder( unsigned int *len,
 	struct socket_info* send_sock,

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.23 2003/02/28 14:12:26 jiri Exp $
+ * $Id: msg_parser.h,v 1.24 2003/03/06 17:43:18 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,7 +56,7 @@
 #define REPLY_CLASS(_reply) ((_reply)->REPLY_STATUS/100)
 
 /* number methods as power of two to allow bitmap matching */
-enum request_method { METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_ACK=4, 
+enum request_method { METHOD_UNDEF=0, METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_ACK=4, 
 	METHOD_BYE=8, METHOD_OTHER=16 };
 
 

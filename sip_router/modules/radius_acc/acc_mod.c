@@ -1,7 +1,7 @@
 /*
  * Radius Accounting module
  *
- * $Id: acc_mod.c,v 1.4 2002/09/19 12:23:54 jku Rel $
+ * $Id: acc_mod.c,v 1.5 2003/03/06 17:43:17 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -175,7 +175,7 @@ static int mod_init( void )
 	if (load_tm( &tmb )==-1) return -1;
 
 	/* register callbacks */
-	if (tmb.register_tmcb( TMCB_REPLY, rad_acc_onreply, 
+	if (tmb.register_tmcb( TMCB_REPLY_OUT, rad_acc_onreply, 
 								0 /* empty param */ ) <= 0) 
 		return -1;
 	if (tmb.register_tmcb( TMCB_E2EACK, rad_acc_onack, 

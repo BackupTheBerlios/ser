@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.151 2003/03/01 23:09:34 jiri Exp $
+ * $Id: t_funcs.c,v 1.152 2003/03/06 17:43:17 jiri Exp $
  *
  * transaction maintenance functions
  *
@@ -101,7 +101,7 @@ void tm_shutdown()
 */
 int t_release_transaction( struct cell *trans )
 {
-	set_kr(trans,REQ_RLSD);
+	set_kr(REQ_RLSD);
 
 	reset_timer( & trans->uas.response.fr_timer );
 	reset_timer( & trans->uas.response.retr_timer );

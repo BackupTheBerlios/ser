@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.40 2003/02/19 17:16:41 andrei Exp $
+ * $Id: sl_funcs.c,v 1.41 2003/03/06 17:43:17 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -115,6 +115,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	char *dset;
 	struct lump_rpl *dset_lump;
 	int dset_len;
+	struct bookmark dummy_bm;
 
 
 	if ( msg->first_line.u.request.method_value==METHOD_ACK)
@@ -156,9 +157,9 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	{
 		calc_crc_suffix( msg, tag_suffix );
 		buf = build_res_buf_from_sip_req(code,text,sl_tag,TOTAG_VALUE_LEN,
-											msg ,&len);
+											msg ,&len, &dummy_bm);
 	} else {
-		buf = build_res_buf_from_sip_req(code,text,0,0,msg ,&len);
+		buf = build_res_buf_from_sip_req(code,text,0,0,msg ,&len, &dummy_bm);
 	}
 	if (!buf)
 	{

@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.29 2003/03/01 23:09:34 jiri Exp $
+ * $Id: uac.c,v 1.30 2003/03/06 17:43:17 jiri Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -360,7 +360,7 @@ int t_uac_dlg(str* msg,                     /* Type of the message - MESSAGE, OP
 
 	new_cell->is_invite = msg->len == INVITE_LEN && memcmp(msg->s, INVITE, INVITE_LEN) == 0;
 	new_cell->local= 1 ;
-	set_kr(new_cell, REQ_FWDED);
+	set_kr(REQ_FWDED);
 
 	request = &new_cell->uac[branch].request;
 	request->dst.to = to_su;
