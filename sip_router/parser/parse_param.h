@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.11 2004/09/01 11:56:59 janakj Exp $
+ * $Id: parse_param.h,v 1.12 2005/02/26 15:27:03 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -53,6 +53,8 @@ typedef enum ptype {
 	P_R2,        /* URI: r2 parameter (ser specific) */
 	P_MADDR,     /* URI: maddr parameter */
 	P_TTL,       /* URI: ttl parameter */
+	P_DSTIP,     /* URI: dstip parameter */
+	P_DSTPORT,   /* URi: dstport parameter */
 } ptype_t;
 
 
@@ -98,6 +100,8 @@ struct uri_hooks {
 	struct param* r2;        /* r2 parameter */
 	struct param* maddr;     /* maddr parameter */
 	struct param* ttl;       /* ttl parameter */
+	struct param* dstip;     /* Destination IP */
+	struct param* dstport;   /* Destination port */
 };
 
 
