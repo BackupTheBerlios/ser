@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.7 2002/12/09 00:21:45 janakj Exp $
+ * $Id: common.c,v 1.8 2003/01/16 00:25:20 janakj Exp $
  *
  * Common functions needed by authorize
  * and challenge functions
@@ -131,7 +131,7 @@ int get_username(str* _s)
 }
 
 
-#ifdef REALM_HACK
+#ifdef AUTO_REAL
 
 /* 
  * Return parsed To or From, host part of the parsed uri is realm

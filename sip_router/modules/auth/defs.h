@@ -1,5 +1,5 @@
 /* 
- * $Id: defs.h,v 1.12 2002/12/09 00:21:45 janakj Exp $ 
+ * $Id: defs.h,v 1.13 2003/01/16 00:25:20 janakj Exp $ 
  *
  * Common definitions
  *
@@ -59,7 +59,7 @@
  * If defined, realm parameter can be omitted and will
  * be extracted from SIP message
  */
-#define REALM_HACK
+#define AUTO_REALM
 
 
 #endif /* DEFS_H */

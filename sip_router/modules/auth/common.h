@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.5 2002/12/09 00:21:45 janakj Exp $
+ * $Id: common.h,v 1.6 2003/01/16 00:25:20 janakj Exp $
  *
  * Common function needed by authorize
  * and challenge related functions
@@ -52,7 +52,7 @@ int send_resp(struct sip_msg* _m, int _code, char* _reason, char* _hdr, int _hdr
 int get_username(str* _s);
 
 
-#ifdef REALM_HACK
+#ifdef AUTO_REALM
 
 /* 
  * Return parsed To or From, host part of the parsed uri is realm
