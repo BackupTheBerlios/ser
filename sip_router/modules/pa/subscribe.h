@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.h,v 1.6 2003/12/22 16:10:03 jamey Exp $
+ * $Id: subscribe.h,v 1.7 2004/04/01 17:48:25 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -48,6 +48,11 @@ int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2);
  */
 int existing_subscription(struct sip_msg* _m, char* _domain, char* _s2);
 
+
+/*
+ * Handle a REGISTER Request: ensures AOR is in presentity table.
+ */
+int pa_handle_registration(struct sip_msg* _m, char* _domain, char* _s2);
 
 /*
  * Returns 1 if possibly a user agent can handle SUBSCRIBE

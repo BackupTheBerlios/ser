@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.5 2004/01/21 18:16:03 jamey Exp $
+ * $Id: pa_mod.h,v 1.6 2004/04/01 17:48:25 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,10 +45,12 @@ extern int use_place_table;
 extern str db_url;
 extern str pa_domain;
 extern char *presentity_table;
+extern char *presentity_contact_table;
 extern char *watcherinfo_table;
 extern char *place_table;
 extern int use_bsearch;
 extern int use_location_package;
 extern int new_watcher_pending;
+extern int callback_update_db;
 
 #endif /* PA_MOD_H */

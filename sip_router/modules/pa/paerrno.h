@@ -1,7 +1,7 @@
 /*
  * Presence Agent, error reporting
  *
- * $Id: paerrno.h,v 1.4 2003/05/02 08:37:53 janakj Exp $
+ * $Id: paerrno.h,v 1.5 2004/04/01 17:48:25 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -43,6 +43,7 @@ typedef enum paerr {
 	PA_TIMER_ERROR,   /* Error in timer */
 	PA_EXTRACT_USER,  /* Error while extracting username from R-URI */
 	PA_FROM_ERR,      /* From malformed or missing */
+	PA_TO_ERR,        /* To malformed or missing */
 	PA_SMALL_BUFFER,  /* Buffer too small */
 	PA_UNSUPP_DOC,    /* Unsupported presence document format */
 	PA_ACCEPT_PARSE,  /* Error while parsing Accept header field */

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.10 2004/01/21 18:16:03 jamey Exp $
+ * $Id: pdomain.c,v 1.11 2004/04/01 17:48:25 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -160,6 +160,7 @@ int timer_pdomain(pdomain_t* _d)
 
 	ptr = _d->first;
 
+	if (0) LOG(L_ERR, "timer_pdomain: _d=%s d->first=%p\n", _d->name->s, ptr);
 	while(ptr) {
 		if (timer_presentity(ptr) < 0) {
 			LOG(L_ERR, "timer_pdomain(): Error in timer_pdomain\n");
