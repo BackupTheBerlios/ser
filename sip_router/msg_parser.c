@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.26 2001/12/04 06:57:37 bogdan Exp $
+ * $Id: msg_parser.c,v 1.27 2001/12/05 19:02:32 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -734,14 +734,14 @@ int parse_headers(struct sip_msg* msg, int flags)
 			case HDR_VIA:
 				msg->parsed_flag|=HDR_VIA;
 				DBG("parse_headers: Via1 found, flags=%d\n", flags);
-				if (msg->h_via1==0) {
+				if (msg->via1==0) {
 					msg->h_via1=hf;
 					msg->via1=hf->parsed;
 					if (msg->via1->next){
 						msg->via2=msg->via1->next;
 						msg->parsed_flag|=HDR_VIA2;
 					}
-				}else if (msg->h_via2==0){
+				}else if (msg->via2==0){
 					msg->h_via2=hf;
 					msg->via2=hf->parsed;
 					msg->parsed_flag|=HDR_VIA2;
