@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.36 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_run.c,v 1.37 2004/12/15 17:49:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -613,7 +613,7 @@ static inline char *run_reject( struct cpl_interpreter *intr )
 		i = cpl_fct.tmb.t_reply(intr->msg, (int)status, reason_s );
 	} else {
 		/* reply statelessly */
-		i = cpl_fct.sl_reply(intr->msg, (char*)(int)status, reason_s );
+		i = cpl_fct.sl_reply(intr->msg, (char*)(long)status, reason_s );
 	}
 
 	if ( i!=1 ) {

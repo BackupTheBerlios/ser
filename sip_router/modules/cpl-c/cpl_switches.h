@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_switches.h,v 1.12 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_switches.h,v 1.13 2004/12/15 17:49:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -967,8 +967,8 @@ no_matche:
 	return 0;
 error:
 	LOG(L_ERR,"ERROR:cpl-c:is_lang_tag_matching: parse error in Accept-"
-		"Language body <%.*s> at char <%c>[%d] offset %d!\n",
-		range->len,range->s,*c,*c,c-range->s);
+		"Language body <%.*s> at char <%c>[%d] offset %ld!\n",
+		range->len,range->s,*c,*c,(long)(c-range->s));
 	return -1;
 }
 

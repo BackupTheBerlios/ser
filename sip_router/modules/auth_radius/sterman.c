@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.12 2004/12/03 19:09:32 andrei Exp $
+ * $Id: sterman.c,v 1.13 2004/12/15 17:49:13 andrei Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -34,7 +34,9 @@
 
 #include <stdlib.h>
 #include <string.h>
+#ifdef HAVE_ALLOCA_H
 #include <alloca.h>
+#endif  /* else alloca() it's defined in stdlib.h */
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 #include "../auth/api.h"

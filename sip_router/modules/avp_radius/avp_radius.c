@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.1 2004/11/01 13:03:50 janakj Exp $
+ * $Id: avp_radius.c,v 1.2 2004/12/15 17:49:13 andrei Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -334,7 +334,7 @@ static int load_avp_radius(struct sip_msg* msg, char* attr, char* _dummy)
 
 static int load_avp_fixup(void** param, int param_no)
 {
-	int id = 0;
+	long id = 0;
 
 	if (param_no == 1) {
 		if (!strcasecmp(*param, "caller")) {

@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.8 2004/08/24 08:58:30 janakj Exp $
+ * $Id: group.c,v 1.9 2004/12/15 17:49:13 andrei Exp $
  *
  * Group membership checking over Radius
  *
@@ -126,7 +126,7 @@ int radius_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 	grp = (str*)_group; /* via fixup */
 	send = received = 0;
 
-	hf_type = (int)_hf;
+	hf_type = (int)(long)_hf;
 
 	switch(hf_type) {
 	case 1: /* Request-URI */
