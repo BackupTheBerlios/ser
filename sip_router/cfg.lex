@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.24 2002/09/25 19:20:26 andrei Rel $
+ * $Id: cfg.lex,v 1.25 2002/12/11 21:30:44 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -41,8 +41,10 @@
 
 /* action keywords */
 FORWARD	forward
+FORWARD_TCP	forward_tcp
 DROP	"drop"|"break"
 SEND	send
+SEND_TCP	send_tcp
 LOG		log
 ERROR	error
 ROUTE	route
@@ -152,8 +154,10 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{EAT_ABLE}	{ count(); }
 
 <INITIAL>{FORWARD}	{count(); yylval.strval=yytext; return FORWARD; }
+<INITIAL>{FORWARD_TCP}	{count(); yylval.strval=yytext; return FORWARD_TCP; }
 <INITIAL>{DROP}	{ count(); yylval.strval=yytext; return DROP; }
 <INITIAL>{SEND}	{ count(); yylval.strval=yytext; return SEND; }
+<INITIAL>{SEND_TCP}	{ count(); yylval.strval=yytext; return SEND_TCP; }
 <INITIAL>{LOG}	{ count(); yylval.strval=yytext; return LOG_TOK; }
 <INITIAL>{ERROR}	{ count(); yylval.strval=yytext; return ERROR; }
 <INITIAL>{SETFLAG}	{ count(); yylval.strval=yytext; return SETFLAG; }

@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.40 2002/12/03 20:24:27 jiri Exp $
+ *  $Id: config.h,v 1.41 2002/12/11 21:30:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -50,7 +50,7 @@
 #define DEFAULT_RT 0 /* default routing table */
 
 #define MAX_REC_LEV 100 /* maximum number of recursive calls */
-#define ROUTE_MAX_REC_LEV 10 /* maximum number of recursive calls
+#define ROUTE_MAX_REC_LEV 100 /* maximum number of recursive calls
 							   for route()*/
 
 #define MAX_URI_SIZE 1024	/* used when rewriting URIs */

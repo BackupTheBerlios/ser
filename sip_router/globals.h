@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.23 2002/11/29 21:12:24 andrei Exp $
+ * $Id: globals.h,v 1.24 2002/12/11 21:30:44 andrei Exp $
  *
  * global variables
  *
@@ -65,6 +65,10 @@ extern int bind_idx; /* same as above but index in the bound[] array */
 extern struct socket_info* sendipv4; /* ipv4 socket to use when msg.
 										comes from ipv6*/
 extern struct socket_info* sendipv6; /* same as above for ipv6 */
+
+#ifdef USE_TCP
+extern int unix_tcp_sock; /* socket used for communication with tcp main*/
+#endif
 
 extern unsigned int maxbuffer;
 extern int children_no;
