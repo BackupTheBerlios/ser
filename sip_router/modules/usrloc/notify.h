@@ -1,5 +1,5 @@
 /*
- * $Id: notify.h,v 1.5 2004/03/24 14:53:04 andrei Exp $
+ * $Id: notify.h,v 1.6 2004/04/01 17:49:59 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,7 +45,7 @@ typedef enum pres_state {
 	PRES_ONLINE
 } pres_state_t;
 
-typedef void (*notcb_t)(str* _user, pres_state_t _p, void* _d);
+typedef void (*notcb_t)(str* _user, str* _contact, pres_state_t _p, void* _d);
 
 typedef int (*register_watcher_t)(str* _f, str* _t, notcb_t _c, void* _data);
 typedef int (*unregister_watcher_t)(str* _f, str* _t, notcb_t _c, void* _data);
@@ -57,7 +57,7 @@ typedef struct notify_cb {
 } notify_cb_t;
 
 
-void notify_watchers(struct urecord* _r, int state);
+void notify_watchers(struct urecord* _r, ucontact_t *_c, int state);
 
 int add_watcher(struct urecord* _r, notcb_t _c, void* _d);
 
