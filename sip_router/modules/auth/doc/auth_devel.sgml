@@ -1,11 +1,11 @@
-<!-- Auth_radius Module Developer's Guide -->
+<!-- Auth Module Developer's Guide -->
 
 <chapter>
     <chapterinfo>
 	<revhistory>
 	    <revision>
 		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/05/02 21:36:29 $</date>
+		<date>$Date: 2003/07/14 21:03:05 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -17,6 +17,6 @@
 
 <!-- Keep this element at the end of the file
 Local Variables:
-sgml-parent-document: ("auth_radius.sgml" "book" "chapter")
+sgml-parent-document: ("auth.sgml" "book" "chapter")
 End:
 -->
