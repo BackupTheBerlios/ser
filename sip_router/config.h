@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.31 2002/09/03 08:38:00 jku Exp $
+ *  $Id: config.h,v 1.32 2002/09/05 14:08:55 jku Exp $
  */
 
 
@@ -65,7 +65,7 @@
 #define PKG_MEM_POOL_SIZE 1024*1024
 
 /*used if SH_MEM is defined*/
-#define SHM_MEM_SIZE 128 
+#define SHM_MEM_SIZE 32
 
 #define TIMER_TICK 1
 
