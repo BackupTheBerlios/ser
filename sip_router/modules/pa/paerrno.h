@@ -1,7 +1,7 @@
 /*
  * Presence Agent, error reporting
  *
- * $Id: paerrno.h,v 1.5 2004/04/01 17:48:25 jamey Exp $
+ * $Id: paerrno.h,v 1.6 2004/08/05 12:29:21 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -39,6 +39,7 @@ typedef enum paerr {
 	PA_EVENT_PARSE,   /* Error while parsing Event header field */
 	PA_EXPIRES_PARSE, /* Error while parsing Expires header field */
 	PA_EVENT_UNSUPP,  /* Unsupported event package */
+	PA_WRONG_ACCEPTS, /* Accepts does not match event package */
 	PA_NO_MEMORY,     /* No memory left */
 	PA_TIMER_ERROR,   /* Error in timer */
 	PA_EXTRACT_USER,  /* Error while extracting username from R-URI */

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.10 2004/06/04 15:24:21 jamey Exp $
+ * $Id: watcher.h,v 1.11 2004/08/05 12:29:21 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,9 +42,9 @@ typedef enum doctype {
 	DOC_PIDF = 2,
 	DOC_WINFO = 3,
 	DOC_XCAP_CHANGE = 4,
-	DOC_LOCATION =5
+	DOC_LOCATION = 5,
+	N_DOCTYPES
 } doctype_t;
-
 
 typedef enum watcher_status {
 	WS_PENDING = 0,

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.21 2004/07/02 16:39:00 andrei Exp $
+ * $Id: subscribe.c,v 1.22 2004/08/05 12:29:21 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,6 +55,14 @@
 #define DOCUMENT_TYPE "application/cpim-pidf+xml"
 #define DOCUMENT_TYPE_L (sizeof(DOCUMENT_TYPE) - 1)
 
+static int accepts_to_event_package[N_DOCTYPES] = {
+	[DOC_XPIDF] = EVENT_PRESENCE,
+	[DOC_LPIDF] = EVENT_PRESENCE,
+	[DOC_PIDF] = EVENT_PRESENCE,
+	[DOC_WINFO] = EVENT_PRESENCE_WINFO,
+	[DOC_XCAP_CHANGE] = EVENT_XCAP_CHANGE,
+	[DOC_LOCATION] = EVENT_LOCATION,
+};
 
 /*
  * A static variable holding document type accepted
@@ -282,22 +290,23 @@ int check_message(struct sip_msg* _m)
 {
 	if (_m->event) {
 		event_t *event;
-		
+
 		if (!_m->event->parsed)
 			parse_event(_m->event);
 		event = (event_t*)(_m->event->parsed);
 
-		if ((event->parsed != EVENT_PRESENCE)
-		    && (event->parsed != EVENT_PRESENCE_WINFO)
-		    && (event->parsed != EVENT_LOCATION)
-		    && (event->parsed != EVENT_XCAP_CHANGE)) {
-			paerrno = PA_EVENT_UNSUPP;
-			LOG(L_ERR, "check_message(): Unsupported event package event=%p et=%d len=%d\n",
-			    event, event->parsed, event->text.len);
+		if (event->parsed != accepts_to_event_package[acc]) {
+			char *accept_s = NULL;
+			int accept_len = 0;
+			if (_m->accept && _m->accept->body.len) {
+				accept_s = _m->accept->body.s;
+				accept_len = _m->accept->body.len;
+			}
+			LOG(L_ERR, "check_message(): Accepts %.*s not valid for event package et=%.*s\n",
+			    _m->accept->body.len, _m->accept->body.s, event->text.len, event->text.s);
 			return -1;
 		}
 	}
-
 	return 0;
 }
 
