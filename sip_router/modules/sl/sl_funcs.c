@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.11 2002/05/22 16:08:01 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.12 2002/05/22 16:40:49 jku Exp $
  */
 
 #include <netinet/in.h>
@@ -62,7 +62,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 
 	if ( msg->first_line.u.request.method_value==METHOD_ACK)
 	{
-		DBG("DEBUG: sl_send_reply: I wan't send a reply for ACK!!\n");
+		DBG("DEBUG: sl_send_reply: I won't send a reply for ACK!!\n");
 		goto error;
 	}
 	to.sin_family = AF_INET;
