@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.14 2001/11/23 09:15:13 andrei Exp $
+ * $Id: udp_server.c,v 1.15 2001/11/23 09:29:00 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -14,6 +14,7 @@
 #include "config.h"
 #include "dprint.h"
 #include "receive.h"
+#include "mem.h"
 
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
@@ -153,7 +154,7 @@ int udp_rcv_loop()
 	struct sockaddr* from;
 	int fromlen;
 
-	buf=pkt_malloc(BUF_SIZE+1);
+	buf=pkg_malloc(BUF_SIZE+1);
 	if (buf==0){
 		LOG(L_ERR, "ERROR: udp_rcv_loop: could not allocate receive"
 				 " buffer\n");

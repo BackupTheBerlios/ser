@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.17 2001/11/23 09:15:13 andrei Exp $
+ * $Id: msg_parser.c,v 1.18 2001/11/23 09:29:00 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -13,6 +13,7 @@
 #include "ut.h"
 #include "error.h"
 #include "dprint.h"
+#include "mem.h"
 
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
@@ -928,4 +929,3 @@ void free_sip_msg(struct sip_msg* msg)
 
 
 
-}
