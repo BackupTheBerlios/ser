@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.5 2002/12/02 09:17:22 janakj Exp $
+ * $Id: common.c,v 1.6 2002/12/07 23:59:49 janakj Exp $
  *
  * Common functions needed by authorize
  * and challenge functions
@@ -48,8 +48,7 @@ int send_resp(struct sip_msg* _m, int _code, char* _reason, char* _hdr, int _hdr
 		add_lump_rpl(_m, ptr);
 	}
 	
-	sl_reply(_m, (char*)_code, _reason);
-	return 0;
+	return sl_reply(_m, (char*)_code, _reason);
 }
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: checks.h,v 1.5 2002/09/19 12:23:53 jku Rel $
+ * $Id: checks.h,v 1.6 2002/12/07 23:59:49 janakj Exp $
  *
  * Check if to and from contain the same username as
  * in digest credentials
@@ -33,6 +33,12 @@
 #define CHECKS_H
 
 #include "../../parser/msg_parser.h"
+
+
+/*
+ * Check if given username matches those in digest credentials
+ */
+int is_user(struct sip_msg* _msg, char* _user, char* _str2);
 
 
 /*
