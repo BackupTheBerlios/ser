@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.34 2003/10/23 17:54:48 bogdan Exp $
+ * $Id: cpl.c,v 1.35 2003/10/27 12:33:08 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -239,7 +239,7 @@ static int cpl_init(void)
 	}
 
 	/* bind to the mysql module */
-	if (bind_dbmod()) {
+	if (bind_dbmod( DB_URL )) {
 		LOG(L_CRIT,"ERROR:cpl_init: cannot bind to database module! "
 			"Did you forget to load a database module ?\n");
 		goto error;
