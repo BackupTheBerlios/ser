@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.71 2003/04/15 20:39:37 andrei Exp $
+ * $Id: t_lookup.c,v 1.72 2003/04/30 01:09:19 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -936,7 +936,7 @@ int init_rb( struct retr_buf *rb, struct sip_msg *msg)
 int t_newtran( struct sip_msg* p_msg )
 {
 
-	int ret, lret;
+	int ret, lret, my_err;
 	struct cell *new_cell;
 	struct sip_msg *shm_msg;
 
@@ -988,21 +988,24 @@ int t_newtran( struct sip_msg* p_msg )
 			if (p_msg->REQ_METHOD==METHOD_INVITE) {
 				if (parse_from_header(p_msg)<0) {
 					LOG(L_ERR, "ERROR: t_newtran: no valid From\n");
-					return E_BAD_REQ;
+					my_err=E_BAD_REQ;
+					goto new_err;
 				}
 			}
 			/* REVIEW */
 			/* make sure uri will be parsed before cloning */
 			if (parse_sip_msg_uri(p_msg)<0) {
 				LOG(L_ERR, "ERROR: t_new_tran: uri invalid\n");
-				return E_BAD_REQ;
+				my_err=E_BAD_REQ;
+				goto new_err;
 			}
 			
 			/* add new transaction */
 			new_cell = build_cell( p_msg ) ;
 			if  ( !new_cell ){
 				LOG(L_ERR, "ERROR: t_addifnew: out of mem:\n");
-				ret = E_OUT_OF_MEM;
+				my_err = E_OUT_OF_MEM;
+				goto new_err;
 			} else {
 				insert_into_hash_table_unsafe( new_cell );
 				set_t(new_cell);
@@ -1084,6 +1087,10 @@ int t_newtran( struct sip_msg* p_msg )
 	}
 	/* things are done -- return from script */
 	return 0;
+
+new_err:
+	UNLOCK_HASH(p_msg->hash_index);
+	return my_err;
 
 }
 
