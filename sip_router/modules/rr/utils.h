@@ -1,7 +1,7 @@
 /* 
  * Route & Record-Route module, helper functions
  *
- * $Id: utils.h,v 1.8 2002/11/14 14:01:41 janakj Exp $ 
+ * $Id: utils.h,v 1.9 2002/11/19 17:05:57 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -37,5 +37,11 @@
  * Find a character occurence that is not quoted
  */
 char* find_not_quoted(str* _s, char _c);
+
+
+/*
+ * Extract username part from URI
+ */
+int get_username(str* _s);
 
 #endif
