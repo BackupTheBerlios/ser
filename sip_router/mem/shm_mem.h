@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.20 2003/07/06 18:43:16 andrei Exp $*
+/* $Id: shm_mem.h,v 1.21 2003/11/20 20:57:15 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -29,6 +29,8 @@
  * History:
  * --------
  *  2003-06-29  added shm_realloc & replaced shm_resize (andrei)
+ *  2003-11-19  reverted shm_resize to the old version, using
+ *               realloc causes terrible fragmentation  (andrei)
  */
 
 
@@ -165,11 +167,14 @@ do { \
 
 
 
-#define shm_resize(_p, _s ) shm_realloc( (_p), (_s))
+void* _shm_resize(void* ptr, unsigned int size, char* f, char* fn, int line);
+#define shm_resize(_p, _s ) _shm_resize((_p), (_s), \
+		__FILE__, __FUNCTION__, __LINE__ )
+/*#define shm_resize(_p, _s ) shm_realloc( (_p), (_s))*/
 
 
 
-#else
+#else /*DBQ_QM_MALLOC*/
 
 
 #define shm_malloc_unsafe(_size) MY_MALLOC(shm_block, (_size))
@@ -207,7 +212,9 @@ do { \
 
 
 
-#define shm_resize(_p, _s) shm_realloc( (_p), (_s))
+void* _shm_resize(void* ptr, unsigned int size);
+#define shm_resize(_p, _s) _shm_resize( (_p), (_s))
+/*#define shm_resize(_p, _s) shm_realloc( (_p), (_s))*/
 
 
 #endif
