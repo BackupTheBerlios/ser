@@ -2,11 +2,12 @@
 # Date created:        6 November 2002
 # Whom:                andrei
 #
-# $FreeBSD$
+# $NetBSD$
 #
-# $Id: Makefile,v 1.1 2003/06/02 19:02:40 andrei Exp $
+# $Id: Makefile,v 1.2 2003/06/03 14:18:12 andrei Exp $
 #
 
+COMMENT= "SIP Express Router"
 
 PORTNAME= ser
 PORTVERSION= 0.8.11pre29
@@ -22,7 +23,8 @@ MANCOMPRESSED= no
 
 USE_GMAKE= yes
 # we override the DISTFILE NAME
-DISTNAME= ${PORTNAME}-${PORTVERSION}_src
+DISTNAME= ${PORTNAME}-${PORTVERSION}
+DISTFILES= ${DISTNAME}_src.tar.gz
 WRKSRC= ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 #.include "/usr/pkgsrc/mk/bsd.prefs.mk"
