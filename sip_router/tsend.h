@@ -1,5 +1,5 @@
 /*
- * $Id: tsend.h,v 1.1 2004/02/26 18:00:49 andrei Exp $
+ * $Id: tsend.h,v 1.2 2004/03/03 11:13:25 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,8 +35,9 @@
 
 
 int tsend_stream(int fd, char* buf, unsigned int len, int timeout);
-int tsend_dgram(int fd, char* buf, unsigned int len, int timeout,
-				const struct sockaddr* to, socklen_t tolen);
+int tsend_dgram(int fd, char* buf, unsigned int len, 
+				const struct sockaddr* to, socklen_t tolen, int timeout);
+int tsend_dgram_ev(int fd, const struct iovec* v, int count, int timeout);
 
 
 
