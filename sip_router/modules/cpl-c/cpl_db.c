@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.c,v 1.12 2004/06/08 10:55:30 andrei Exp $
+ * $Id: cpl_db.c,v 1.13 2004/06/14 17:41:20 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -91,7 +91,7 @@ void cpl_db_close()
  * Returns:  1 - success
  *          -1 - error
  */
-int get_user_script(str *user, str *script, char* key)
+int get_user_script(str *user, str *script, const char* key)
 {
 	db_key_t   keys_cmp[] = {"user"};
 	db_key_t   keys_ret[] = { key };

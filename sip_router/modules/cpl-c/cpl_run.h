@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.h,v 1.13 2004/01/22 14:45:47 bogdan Exp $
+ * $Id: cpl_run.h,v 1.14 2004/06/14 17:41:20 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,7 +30,6 @@
 
 #include "../../str.h"
 #include "../../parser/msg_parser.h"
-#include "../tm/t_hooks.h"
 
 #define SCRIPT_END               0
 #define SCRIPT_DEFAULT           1
