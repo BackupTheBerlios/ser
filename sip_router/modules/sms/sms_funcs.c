@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.46 2002/11/26 11:34:50 bogdan Exp $
+ * $Id: sms_funcs.c,v 1.47 2002/11/27 17:38:20 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -729,6 +729,7 @@ void modem_process(struct modem *mdm)
 	int cpms_unsuported;
 	int max_mem=0, used_mem=0;
 
+	sms_messg = 0;
 	cpms_unsuported = 0;
 	last_smsc_index = -1;
 
@@ -767,6 +768,7 @@ void modem_process(struct modem *mdm)
 				/* let's read a sms from pipe */
 				len = read(net->pipe_out, &sms_messg,
 					sizeof(sms_messg));
+				LOG(L_INFO,"INFO:modem_process: read from pipe\n");
 				if (len!=sizeof(sms_messg)) {
 					if (len>=0)
 						LOG(L_ERR,"ERROR:modem_process: truncated message"
