@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.8 2002/11/25 20:29:44 andrei Exp $
+/* $Id: q_malloc.h,v 1.9 2002/11/26 15:29:51 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -46,13 +46,13 @@
 
 
 #define QM_MALLOC_OPTIMIZE_FACTOR 11 /*used below */
-#define QM_MALLOC_OPTIMIZE  (1<<QM_MALLOC_OPTIMIZE_FACTOR)
+#define QM_MALLOC_OPTIMIZE  ((unsigned long)(1<<QM_MALLOC_OPTIMIZE_FACTOR))
 								/* size to optimize for,
 									(most allocs < this size),
 									must be 2^k */
 
-#define QM_HASH_SIZE (QM_MALLOC_OPTIMIZE/ROUNDTO + \
-		(32-QM_MALLOC_OPTIMIZE_FACTOR)+1)
+#define QM_HASH_SIZE ((unsigned long)(QM_MALLOC_OPTIMIZE/ROUNDTO + \
+		(32-QM_MALLOC_OPTIMIZE_FACTOR)+1))
 
 /* hash structure:
  * 0 .... QM_MALLOC_OPTIMIE/ROUNDTO  - small buckets, size increases with

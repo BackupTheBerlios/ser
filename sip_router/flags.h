@@ -1,5 +1,5 @@
 /*
- * $Id: flags.h,v 1.3 2002/09/19 12:23:52 jku Rel $
+ * $Id: flags.h,v 1.4 2002/11/26 15:29:51 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,7 +35,7 @@ enum { FL_WHITE=1, FL_YELLOW, FL_GREEN, FL_RED, FL_BLUE, FL_MAGENTA,
 
 typedef unsigned int flag_t;
 
-#define MAX_FLAG  ( sizeof(flag_t) * CHAR_BIT - 1 )
+#define MAX_FLAG  ((unsigned int)( sizeof(flag_t) * CHAR_BIT - 1 ))
 
 struct sip_msg;
 

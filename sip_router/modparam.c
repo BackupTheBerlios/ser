@@ -1,5 +1,5 @@
 /*
- * $Id: modparam.c,v 1.3 2002/09/19 12:23:52 jku Rel $
+ * $Id: modparam.c,v 1.4 2002/11/26 15:29:51 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -58,7 +58,7 @@ int set_mod_param(char* _mod, char* _name, modparam_t _type, void* _val)
 		break;
 
 	case INT_PARAM:
-		*((int*)ptr) = (int)_val;
+		*((int*)ptr) = (int)(long)_val;
 		break;
 	}
 

@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.36 2002/11/02 01:35:08 andrei Exp $
+ * $Id: cfg.y,v 1.37 2002/11/26 15:29:51 andrei Exp $
  *
  *  cfg grammar
  */
@@ -48,8 +48,8 @@ struct id_list* lst_tmp;
 %}
 
 %union {
-	int intval;
-	unsigned uval;
+	long intval;
+	unsigned long uval;
 	char* strval;
 	struct expr* expr;
 	struct action* action;

@@ -1,5 +1,5 @@
 /*
- * $Id: flags.c,v 1.3 2002/09/19 12:23:52 jku Rel $
+ * $Id: flags.c,v 1.4 2002/11/26 15:29:51 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *

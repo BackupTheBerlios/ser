@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.25 2002/10/22 20:37:29 andrei Exp $
+ * $Id: fifo_server.c,v 1.26 2002/11/26 15:29:51 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -479,7 +479,7 @@ int open_fifo_server()
 	t=ctime(&up_since);
 	if (strlen(t)+1>=MAX_CTIME_LEN) {
 		LOG(L_ERR, "ERROR: open_fifo_server: "
-			"too long date %d\n", strlen(t));
+			"too long date %d\n", (int)strlen(t));
 		return -1;
 	}
 	memcpy(up_since_ctime,t,strlen(t)+1);
