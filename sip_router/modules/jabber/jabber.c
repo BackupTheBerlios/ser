@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.32 2003/02/24 11:11:37 dcm Exp $
+ * $Id: jabber.c,v 1.33 2003/02/24 15:25:20 dcm Exp $
  *
  * XJAB module
  *
@@ -475,7 +475,7 @@ int xjab_manage_sipmsg(struct sip_msg *msg, int type)
 			&& get_content_type(msg)!=CONTENT_TYPE_MESSAGE_CPIM)
 		{
 			LOG(L_ERR,"XJAB:xjab_manage_sipmsg: ERROR invalid content-type for"
-				" a message request! type found=%d\n", get_content_type(msg));
+				" a message request! type found=%ld\n", get_content_type(msg));
 			goto error;
 		}
 	}
