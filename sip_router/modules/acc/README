@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.6 2003/05/02 12:25:43 jih Exp $
+# $Id: README,v 1.7 2003/06/01 00:09:45 jiri Exp $
 #
 
 About acc Module
@@ -114,7 +114,7 @@ Type:    int
 Default: 1
 Desc:    request flag which needs to be set to account a transaction
 
-Name:	 missed_flag
+Name:	 log_missed_flag
 Type:	 int
 Default: 2
 Desc:	 request flag which needs to be set to account missed calls
