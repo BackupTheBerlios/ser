@@ -1,7 +1,7 @@
 /*
  * Presence Agent, LPIDF document support
  *
- * $Id: lpidf.c,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: lpidf.c,v 1.2 2003/02/25 19:10:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
  */
 
 
+#include <string.h>
 #include "lpidf.h"
 #include "paerrno.h"
 #include "../../dprint.h"
