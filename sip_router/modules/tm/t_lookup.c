@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.77 2003/05/29 20:07:57 calrissian Exp $
+ * $Id: t_lookup.c,v 1.78 2003/06/25 14:24:49 jiri Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -867,7 +867,7 @@ int t_check( struct sip_msg* p_msg , int *param_branch )
 
 		}
 #ifdef EXTRA_DEBUG
-		if ( T && T!=T_UNDEFINED && T->damocles==1) {
+		if ( T && T!=T_UNDEFINED && T->damocles) {
 			LOG( L_ERR, "ERROR: transaction %p scheduled for deletion "
 				"and called from t_check\n", T);
 			abort();
