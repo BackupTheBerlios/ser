@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2003/07/14 13:00:03 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2003/07/16 15:17:34 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -13,7 +13,7 @@
     <qandaset defaultlabel="number">
 	<qandaentry>
 	    <question>
-		<para>Where can I find more about SER?</para>
+		<para>Where can I find more about &ser;?</para>
 	    </question>
 	    <answer>
 		<para>
