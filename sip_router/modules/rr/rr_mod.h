@@ -1,7 +1,7 @@
 /*
  * Record-Route & Route module interface
  *
- * $Id: rr_mod.h,v 1.5 2003/04/02 16:47:25 janakj Exp $
+ * $Id: rr_mod.h,v 1.6 2003/04/14 11:13:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -39,6 +39,7 @@
 
 extern int append_fromtag;
 extern int enable_double_rr;
+extern int enable_full_lr;
 
 
 #endif /* RR_MOD_H */
