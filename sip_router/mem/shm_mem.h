@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.13 2003/01/16 19:22:09 andrei Exp $*
+/* $Id: shm_mem.h,v 1.14 2003/02/20 18:30:15 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -73,7 +73,7 @@
 #endif
 
 	
-	extern lock_t* mem_lock;
+	extern gen_lock_t* mem_lock;
 
 
 int shm_mem_init();

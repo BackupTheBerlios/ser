@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.12 2003/02/20 18:13:22 andrei Exp $
+ * $Id: tcp_main.c,v 1.13 2003/02/20 18:30:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,7 +80,7 @@ struct tcp_child{
 struct tcp_connection** tcpconn_addr_hash=0;
 /* connection hash table (after connection id) */
 struct tcp_connection** tcpconn_id_hash=0;
-lock_t* tcpconn_lock=0;
+gen_lock_t* tcpconn_lock=0;
 
 struct tcp_child tcp_children[MAX_TCP_CHILDREN];
 static int connection_id=1; /*  unique for each connection, used for 
