@@ -1,5 +1,5 @@
 /*
- * $Id: parse_rr.c,v 1.15 2003/10/29 12:25:31 dcm Exp $
+ * $Id: parse_rr.c,v 1.16 2003/10/30 11:33:41 dcm Exp $
  *
  * Route & Record-Route header field parser
  *
@@ -55,7 +55,7 @@ static inline int do_parse_rr_body(char *buf, int len, rr_t **head)
 	{
 		DBG("parse_rr_body(): No body for record-route\n");
 		*head = 0;
-		return 0;
+		return -2;
 	}
 	s.s = buf;
 	s.len = len;
