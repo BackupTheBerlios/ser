@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.104 2004/03/03 16:26:37 janakj Exp $
+ * $Id: tm.c,v 1.105 2004/03/03 18:11:04 janakj Exp $
  *
  * TM module
  *
@@ -492,6 +492,10 @@ static int mod_init(void)
 		return -1;
 	}
 
+	if (unixsock_register_cmd("t_uac_cancel", unixsock_uac_cancel) < 0) {
+		LOG(L_CRIT, "cannot register t_uac_cancel with the unix server\n");
+		return -1;
+	}
 
 	/* building the hash table*/
 	if (!init_hash_table()) {

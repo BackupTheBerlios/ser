@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.h,v 1.4 2004/02/11 03:38:48 jiri Exp $
+ * $Id: t_cancel.h,v 1.5 2004/03/03 18:11:04 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -55,6 +55,8 @@ void cancel_uacs( struct cell *t, branch_bm_t cancel_bm );
 void cancel_branch( struct cell *t, int branch );
 
 int fifo_uac_cancel( FILE* stream, char *response_file );
+
+int unixsock_uac_cancel(str* msg);
 
 char *build_cancel(struct cell *Trans,unsigned int branch,
 	unsigned int *len );
