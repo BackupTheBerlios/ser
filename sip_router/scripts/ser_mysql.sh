@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.27 2003/01/25 14:56:39 janakj Exp $
+# $Id: ser_mysql.sh,v 1.28 2003/01/25 17:07:53 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -118,10 +118,10 @@ CREATE TABLE version (
 # Dumping data for table 'version'
 #
 
-INSERT INTO version VALUES ( 'subscriber', '1');
+INSERT INTO version VALUES ( 'subscriber', '2');
 INSERT INTO version VALUES ( 'reserved', '1');
 INSERT INTO version VALUES ( 'phonebook', '1');
-INSERT INTO version VALUES ( 'pending', '1');
+INSERT INTO version VALUES ( 'pending', '2');
 INSERT INTO version VALUES ( 'missed_calls', '1');
 INSERT INTO version VALUES ( 'location', '2');
 INSERT INTO version VALUES ( 'grp', '2');
