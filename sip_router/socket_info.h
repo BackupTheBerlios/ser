@@ -1,4 +1,4 @@
-/* $Id: socket_info.h,v 1.3 2004/08/27 14:41:24 andrei Exp $
+/* $Id: socket_info.h,v 1.4 2004/10/10 16:19:00 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -57,6 +57,8 @@ int fix_all_socket_lists();
 void print_all_socket_lists();
 void print_aliases();
 
+struct socket_info* grep_sock_info(str* host, unsigned short port,
+										unsigned short proto);
 
 /* helper function:
  * returns next protocol, if the last one is reached return 0
@@ -106,7 +108,6 @@ inline static struct socket_info* get_first_socket()
 #endif
 	return 0;
 }
-
 
 
 #endif

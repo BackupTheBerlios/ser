@@ -1,5 +1,5 @@
 /*
- * $Id: name_alias.h,v 1.8 2004/08/24 08:45:10 janakj Exp $
+ * $Id: name_alias.h,v 1.9 2004/10/10 16:19:00 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -59,6 +59,13 @@ static inline int grep_aliases(char* name, int len, unsigned short port,
 {
 	struct  host_alias* a;
 	
+#ifdef USE_IPV6
+	if ((len>2)&&((*name)=='[')&&(name[len-1]==']')){
+		/* ipv6 reference, skip [] */
+		name++;
+		len-=2;
+	}
+#endif
 	for(a=aliases;a;a=a->next)
 		if ((a->alias.len==len) && ((a->port==0) || (port==0) || 
 				(a->port==port)) && ((a->proto==0) || (proto==0) || 
