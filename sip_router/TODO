@@ -1,4 +1,4 @@
-$Id: TODO,v 1.40 2003/04/10 23:51:10 andrei Exp $
+$Id: TODO,v 1.41 2003/04/11 00:35:31 andrei Exp $
 
 ( - todo, x - done)
 
@@ -22,6 +22,8 @@ x (different way) add request header bitmap field for the modules
 - BUG:?? ipv6 only and try to send to ipv4 => getsendsocket=>0 (send_ipv6=0)
   the reverse is also true
 - resolver should resolve [ipv6]
+- remove parse_uri debugging info
+- fix DBG("<%.*s>", len, _null_)
 
 
 High priority:

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.c,v 1.9 2003/04/10 23:51:10 andrei Exp $
+ * $Id: parse_uri.c,v 1.10 2003/04/11 00:35:31 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -76,7 +76,7 @@ int parse_uri(char* buf, int len, struct sip_uri* uri)
 					/* sctp */
 					VS_S, VS_C, VS_T, VS_P_FIN
 	};
-	enum states state;
+	register enum states state;
 	char* s;
 	char* b; /* param start */
 	char *v; /* value start */
@@ -85,7 +85,7 @@ int parse_uri(char* buf, int len, struct sip_uri* uri)
 	str user;
 	str password;
 	int port_no;
-	char* p;
+	register char* p;
 	char* end;
 	char* pass;
 	int found_user;
@@ -316,7 +316,7 @@ int parse_uri(char* buf, int len, struct sip_uri* uri)
 	
 	s=p;
 	for(;p<end; p++){
-		switch(state){
+		switch((unsigned char)state){
 			case URI_INIT:
 				switch(*p){
 					case '[':
