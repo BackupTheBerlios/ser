@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.8 2005/02/14 21:03:18 bogdan Exp $
+ * $Id: usr_avp.h,v 1.9 2005/02/20 19:30:06 jih Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -41,6 +41,7 @@
  *     0        avp_core          avp has a string name
  *     1        avp_core          avp has a string value
  *     3        avpops module     avp was loaded from DB
+ *     4        lcr module        contact avp qvalue change
  *
  */
 
