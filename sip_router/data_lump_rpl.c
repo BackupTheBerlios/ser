@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.c,v 1.9 2003/11/11 19:34:34 bogdan Exp $
+ * $Id: data_lump_rpl.c,v 1.10 2003/12/09 13:59:00 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -81,13 +81,16 @@ struct lump_rpl* add_lump_rpl(struct sip_msg *msg, char *s, int len, int flags)
 		if (!(flags&LUMP_RPL_BODY))
 			for(foo=msg->reply_lump;foo->next;foo=foo->next);
 		else
-			for(foo=msg->reply_lump;foo->next;foo=foo->next)
-				if (lump->flags&LUMP_RPL_BODY) {
+			for(foo=msg->reply_lump; ;foo=foo->next) {
+				if (foo->flags&LUMP_RPL_BODY) {
 					LOG(L_ERR,"ERROR:add_lump_rpl: LUMP_RPL_BODY "
 						"already added!\n");
 					pkg_free(lump);
 					goto error;
 				}
+				if (foo->next==0)
+					break;
+			}
 		foo->next = lump;
 	}
 
