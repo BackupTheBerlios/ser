@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.c,v 1.9 2003/09/10 18:12:51 bogdan Exp $
+ * $Id: parse_content.c,v 1.10 2003/11/20 20:58:56 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -263,7 +263,7 @@ int parse_content_type_hdr( struct sip_msg *msg )
 {
 	char *end;
 	char *ret;
-	int  mime;
+	unsigned int  mime;
 
 	/* is the header already found? */
 	if ( msg->content_type==0 ) {
@@ -297,7 +297,7 @@ int parse_content_type_hdr( struct sip_msg *msg )
 		goto error;
 	}
 
-	msg->content_type->parsed = (void*)(long)mime;
+	msg->content_type->parsed = (void*)(unsigned long)mime;
 	return mime;
 
 error:
@@ -311,9 +311,9 @@ error:
  *          = -1 error */
 int parse_accept_hdr( struct sip_msg *msg )
 {
-	static int mimes[MAX_MIMES_NR];
+	static unsigned int mimes[MAX_MIMES_NR];
 	int nr_mimes;
-	int mime;
+	unsigned int mime;
 	char *end;
 	char *ret;
 
