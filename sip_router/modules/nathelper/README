@@ -1,0 +1,29 @@
+#
+# $Id: README,v 1.1 2003/04/07 06:33:18 jiri Exp $
+#
+
+
+
+This is a module to help with NAT traversal.
+
+
+Exported Functions:
+------------------
+
+
+Name:	add_rport()
+Params:	
+Desc:	Adds blank `rport=' parameter into the first Via field.
+Example:	if (search("User-Agent: Cisco ATA.*") {add_rport();};
+
+
+Name:	fix_nated_contact()
+Params:	
+Desc:	
+Example:	
+
+
+Name:	add_direction_active()
+Params:	
+Desc:	
+Example:	
