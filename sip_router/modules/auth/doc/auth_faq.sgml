@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/07/14 21:03:05 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/07/31 15:43:33 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -21,7 +21,7 @@
 	</qandaentry>
     </qandaset>
 </chapter>
-
+	
 <!-- Keep this element at the end of the file
 Local Variables:
 sgml-parent-document: ("auth.sgml" "Book" "chapter")
