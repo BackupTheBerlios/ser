@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.37 2002/03/06 21:01:57 bogdan Exp $
+ * $Id: tm.c,v 1.38 2002/03/06 23:32:03 bogdan Exp $
  *
  * TM module
  *
@@ -338,7 +338,8 @@ static int t_relay_to( struct sip_msg  *p_msg , char *str_ip , char *str_port)
 			}
 			break;
 		case AIN_NEWACK:	/* it's an ACK for which no transaction exists */
-			DBG( "SER: forwarding ACK  statelessly\n");
+			DBG( "SER: forwarding ACK  statelessly to %d : %d\n",
+				(unsigned int)str_ip, (unsigned int)str_port );
 			proxy=mk_proxy_from_ip((unsigned int)str_ip,(unsigned int)str_port);
 			forward_request( p_msg , proxy ) ;
 			free_proxy(proxy);
