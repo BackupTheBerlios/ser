@@ -1,5 +1,5 @@
 
-/* $Id: re_test.c,v 1.1 2003/11/18 17:53:50 andrei Exp $ */
+/* $Id: re_test.c,v 1.2 2003/11/22 13:25:46 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -25,6 +25,13 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+/*
+ * regexec test program (good to find re lib. bugs)
+ * uses the same flags as ser/textops for re-matching
+ * History:
+ * --------
+ *  created by andrei
+ */
 
 
 
@@ -40,7 +47,7 @@
 #include <regex.h>
 
 
-static char *id="$Id: re_test.c,v 1.1 2003/11/18 17:53:50 andrei Exp $";
+static char *id="$Id: re_test.c,v 1.2 2003/11/22 13:25:46 andrei Exp $";
 static char *version="re_test 0.1";
 static char* help_msg="\
 Usage: re_test [-f file] regular_expression \n\
@@ -67,6 +74,7 @@ int main (int argc, char** argv)
 	int flags;
 	regmatch_t pmatch;
 	int match;
+	int eflags;
 	
 	int verbose;
 	char *fname;
@@ -78,6 +86,7 @@ int main (int argc, char** argv)
 	flags=REG_EXTENDED|REG_ICASE|REG_NEWLINE;
 	match=0;
 	buf=buffer;
+	eflags=0;
 
 	opterr=0;
 	while ((c=getopt(argc,argv, "f:nsvhV"))!=-1){
@@ -154,17 +163,19 @@ int main (int argc, char** argv)
 	if (verbose) printf("read %d bytes from file %s\n", n, fname);
 	if (fd!=0) close(fd); /* we don't want to close stdin */
 	
-	while (regexec(&re, buf, 1, &pmatch, 0)==0){
+	while (regexec(&re, buf, 1, &pmatch, eflags)==0){
+		eflags|=REG_NOTBOL;
 		match++;
 		if (pmatch.rm_so==-1){
 			fprintf(stderr, "ERROR: unknown match offset\n");
 			goto error;
 		}else{
 			if (verbose){
-				printf("%4d -%4d: ", pmatch.rm_so+buf-buffer,
-						pmatch.rm_eo+buf-buffer);
+				printf("%4d -%4d: ", (int)pmatch.rm_so+buf-buffer,
+						(int)pmatch.rm_eo+buf-buffer);
 			}
-			printf("%.*s\n", pmatch.rm_eo-pmatch.rm_so, buf+pmatch.rm_so);
+			printf("%.*s\n", (int)(pmatch.rm_eo-pmatch.rm_so),
+								buf+pmatch.rm_so);
 		}
 		buf+=pmatch.rm_eo;
 	}
