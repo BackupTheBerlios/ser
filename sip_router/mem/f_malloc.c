@@ -1,4 +1,4 @@
-/* $Id: f_malloc.c,v 1.11 2003/07/06 18:43:16 andrei Exp $
+/* $Id: f_malloc.c,v 1.12 2003/08/15 14:19:18 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -322,7 +322,7 @@ void* fm_realloc(struct fm_block* qm, void* p, unsigned int size)
 #ifdef DBG_F_MALLOC
 	DBG("fm_realloc(%p, %p, %d) called from %s: %s(%d)\n", qm, p, size,
 			file, func, line);
-	if (p>(void*)qm->last_frag || p<(void*)qm->first_frag){
+	if ((p)&&(p>(void*)qm->last_frag || p<(void*)qm->first_frag)){
 		LOG(L_CRIT, "BUG: fm_free: bad pointer %p (out of memory block!) - "
 				"aborting\n", p);
 		abort();

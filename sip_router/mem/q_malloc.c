@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.13 2003/07/06 18:43:16 andrei Exp $
+/* $Id: q_malloc.c,v 1.14 2003/08/15 14:19:18 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -469,7 +469,7 @@ void* qm_realloc(struct qm_block* qm, void* p, unsigned int size)
 #ifdef DBG_QM_MALLOC
 	DBG("qm_realloc(%p, %p, %d) called from %s: %s(%d)\n", qm, p, size,
 			file, func, line);
-	if (p>(void*)qm->last_frag_end || p<(void*)qm->first_frag){
+	if ((p)&&(p>(void*)qm->last_frag_end || p<(void*)qm->first_frag)){
 		LOG(L_CRIT, "BUG: qm_free: bad pointer %p (out of memory block!) - "
 				"aborting\n", p);
 		abort();

@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.15 2003/07/01 17:43:40 andrei Exp $
+ * $Id: tcp_conn.h,v 1.16 2003/08/15 14:19:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -102,7 +102,7 @@ struct tcp_connection{
 	volatile int refcnt;
 	int type; /* PROTO_TCP or a protocol over it, e.g. TLS */
 	int flags; /* connection related flags */
-	int state; /* connection state, not used by raw tcp */
+	int state; /* connection state */
 	void* extra_data; /* extra data associated to the connection, 0 for tcp*/
 	int timeout; /* connection timeout, after this it will be removed*/
 	unsigned addr_hash; /* hash indexes in the 2 tables */
