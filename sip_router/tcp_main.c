@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.11 2003/02/07 17:02:15 andrei Exp $
+ * $Id: tcp_main.c,v 1.12 2003/02/20 18:13:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,10 +33,10 @@
 #error "shared memory support needed (add -DSHM_MEM to Makefile.defs)"
 #endif
 
-#include <sys/select.h>
 
 #include <sys/time.h>
 #include <sys/types.h>
+#include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/uio.h>  /* writev*/
 
@@ -348,7 +348,13 @@ get_fd:
 send_it:
 	DBG("tcp_send: sending...\n");
 	lock_get(&c->write_lock);
-	n=send(fd, buf, len, MSG_NOSIGNAL);
+	n=send(fd, buf, len,
+#ifdef HAVE_MSG_NOSIGNAL
+			MSG_NOSIGNAL
+#else
+			0
+#endif
+			);
 	lock_release(&c->write_lock);
 	DBG("tcp_send: after write: c= %p n=%d fd=%d\n",c, n, fd);
 	DBG("tcp_send: buf=\n%.*s\n", (int)len, buf);

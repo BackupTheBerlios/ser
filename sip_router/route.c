@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.27 2003/02/19 17:16:41 andrei Exp $
+ * $Id: route.c,v 1.28 2003/02/20 18:13:22 andrei Exp $
  *
  * SIP routing engine
  *
@@ -249,7 +249,7 @@ static int comp_port( int port, void *param, int op, int subtype )
 		LOG(L_CRIT, "BUG: comp_port: number expected: %d\n", subtype );
 		return E_BUG;
 	}
-	return port==(int)param;
+	return port==(long)param;
 }
 
 /* eval_elem helping function, returns str op param */

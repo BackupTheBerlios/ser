@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.173 2003/02/19 17:16:41 andrei Exp $
+# $Id: Makefile.defs,v 1.174 2003/02/20 18:13:22 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -530,7 +530,8 @@ LIBS= -lfl -ldl -lresolv
 
 #os specific stuff
 ifeq ($(OS), linux)
-	DEFS+=-DHAVE_GETHOSTBYNAME2 -DHAVE_UNION_SEMUN -DHAVE_SCHED_YIELD
+	DEFS+=-DHAVE_GETHOSTBYNAME2 -DHAVE_UNION_SEMUN -DHAVE_SCHED_YIELD \
+			-DHAVE_MSG_NOSIGNAL
 	ifneq ($(found_lock_method), yes)
 		DEFS+= -DUSE_SYSV_SEM  # try posix sems
 		found_lock_method=yes

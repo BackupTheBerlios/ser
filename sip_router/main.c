@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.144 2003/02/07 17:02:15 andrei Exp $
+ * $Id: main.c,v 1.145 2003/02/20 18:13:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -90,7 +90,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.144 2003/02/07 17:02:15 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.145 2003/02/20 18:13:22 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -712,7 +712,7 @@ int main_loop()
 			for(i=0;i<children_no;i++){
 				process_no++;
 #ifdef USE_TCP
-		 		if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd)<0){
+		 		if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockfd)<0){
 					LOG(L_ERR, "ERROR: main_loop: socketpair failed: %s\n",
 						strerror(errno));
 					goto error;
@@ -770,7 +770,7 @@ int main_loop()
 #endif
 	{
 #ifdef USE_TCP
- 		if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd)<0){
+ 		if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockfd)<0){
 			LOG(L_ERR, "ERROR: main_loop: socketpair failed: %s\n",
 				strerror(errno));
 			goto error;

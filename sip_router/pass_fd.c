@@ -1,5 +1,5 @@
 /*
- * $Id: pass_fd.c,v 1.1 2002/11/29 21:12:24 andrei Exp $
+ * $Id: pass_fd.c,v 1.2 2003/02/20 18:13:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,9 +29,10 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/uio.h>
+#include <stdlib.h> /* for NULL definition on openbsd */
 
-/* remove this after replacing fprintf*/
-#include <stdio.h>
+#include "dprint.h"
 
 
 /* at least 1 byte must be sent! */
@@ -100,18 +101,18 @@ int receive_fd(int unix_socket, void* data, int data_len, int* fd)
 	cmsg=CMSG_FIRSTHDR(&msg);
 	if ((cmsg!=0) && (cmsg->cmsg_len==CMSG_LEN(sizeof(new_fd)))){
 		if (cmsg->cmsg_type!= SCM_RIGHTS){
-			fprintf(stderr, " msg control type != SCM_RIGHTS\n");
+			LOG(L_ERR, "receive_fd: msg control type != SCM_RIGHTS\n");
 			ret=-1;
 			goto error;
 		}
 		if (cmsg->cmsg_level!= SOL_SOCKET){
-			fprintf(stderr, " msg level != SOL_SOCKET\n");
+			LOG(L_ERR, "receive_fd: msg level != SOL_SOCKET\n");
 			ret=-1;
 			goto error;
 		}
 		*fd=*((int*) CMSG_DATA(cmsg));
 	}else{
-		fprintf(stderr, " no descriptor passed, cmsg=%p, len=%d\n",
+		LOG(L_ERR, "receive_fd: no descriptor passed, cmsg=%p, len=%d\n",
 				cmsg, cmsg->cmsg_len);
 		*fd=-1;
 		/* it's not really an error */
