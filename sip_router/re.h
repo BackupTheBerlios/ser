@@ -1,5 +1,5 @@
 /*
- * $Id: re.h,v 1.2 2003/08/20 11:46:07 andrei Exp $
+ * $Id: re.h,v 1.3 2003/11/20 21:01:10 andrei Exp $
  *
  * regexp and regexp substitutions implementations
  * 
@@ -63,7 +63,7 @@ struct subst_expr{
 
 struct replace_lst{
 	int offset;
-	int size;   /* at offset, delete size bytes and replace them with rpl */;
+	int size;   /* at offset, delete size bytes and replace them with rpl */
 	str rpl;
 	struct replace_lst *next;
 };

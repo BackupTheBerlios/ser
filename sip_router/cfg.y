@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.62 2003/10/29 17:41:27 andrei Exp $
+ * $Id: cfg.y,v 1.63 2003/11/20 21:01:10 andrei Exp $
  *
  *  cfg grammar
  *
@@ -1103,6 +1103,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 														$3,
 														0);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1115,6 +1116,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															$3,
 															0);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1127,6 +1129,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															(void*)$3,
 															0);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1139,6 +1142,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															$3,
 															(void*)$5);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1151,6 +1155,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															$3,
 															(void*)$5);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1163,6 +1168,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															 (void*)$3,
 															(void*)$5);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1175,6 +1181,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															0,
 															0);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1189,6 +1196,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															0,
 															(void*)$5);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif
@@ -1201,6 +1209,7 @@ cmd:		FORWARD LPAREN host RPAREN	{ $$=mk_action(	FORWARD_T,
 															0,
 															0);
 										#else
+											$$=0;
 											yyerror("tls support not "
 													"compiled in");
 										#endif

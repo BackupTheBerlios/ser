@@ -1,5 +1,5 @@
 /*
- * $Id: pass_fd.c,v 1.4 2003/11/11 15:32:36 andrei Exp $
+ * $Id: pass_fd.c,v 1.5 2003/11/20 21:01:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,7 +56,7 @@ int recv_all(int socket, void* data, int data_len)
 	
 	b_read=0;
 	do{
-		n=recv(socket, data+b_read, data_len-b_read, MSG_WAITALL);
+		n=recv(socket, (char*)data+b_read, data_len-b_read, MSG_WAITALL);
 		if (n<0){
 			/* error */
 			if (errno==EINTR) continue; /* signal, try again */
