@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.18 2003/01/16 00:24:24 janakj Exp $
+# $Id: ser_mysql.sh,v 1.19 2003/01/17 00:35:56 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -402,10 +402,10 @@ CREATE TABLE domain (
 #
 CREATE TABLE uri (
   user varchar(50) NOT NULL default '',
-  realm varchar(50) NOT NULL default '',
+  domain varchar(50) NOT NULL default '',
   uri_user varchar(50) NOT NULL default '',
   last_modified datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY (user, realm, uri_user)
+  PRIMARY KEY (user, domain, uri_user)
 ) $TABLE_TYPE;
 
 
