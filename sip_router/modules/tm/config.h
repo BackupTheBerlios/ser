@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.5 2002/02/11 17:56:22 andrei Exp $
+ * $Id: config.h,v 1.6 2002/03/25 16:26:34 bogdan Exp $
  *
  */
 
@@ -11,7 +11,7 @@
 #define TABLE_ENTRIES  		(1 << (T_TABLE_POWER))
 
 /* maximum number of forks per transaction */
-#define MAX_FORK		2
+#define MAX_FORK		4
 
 /* maximumum length of localy generated acknowledgement */
 #define MAX_ACK_LEN 		1024

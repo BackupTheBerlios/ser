@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.28 2002/03/02 04:51:55 bogdan Exp $
+ * $Id: timer.c,v 1.29 2002/03/25 16:26:34 bogdan Exp $
  */
 
 
@@ -70,7 +70,6 @@ void remove_timer_unsafe(  struct timer_link* tl )
 		abort();
 	};
 #endif
-
 	if (is_in_timer_list2( tl )) {
 		tl->prev_tl->next_tl = tl->next_tl;
 		tl->next_tl->prev_tl = tl->prev_tl;
