@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.c,v 1.3 2003/01/29 19:24:10 jiri Exp $
+ * $Id: cpl_parser.c,v 1.4 2003/06/23 15:38:48 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,8 +33,8 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
-#include <gnome-xml/libxml/xmlmemory.h>
-#include <gnome-xml/libxml/parser.h>
+#include <gnome-xml/xmlmemory.h>
+#include <gnome-xml/parser.h>
 #include "CPL_tree.h"
 #include "sub_list.h"
 #include "../../dprint.h"
@@ -192,8 +192,7 @@ int encript_node_attr( xmlNodePtr node, unsigned char *node_ptr,
 		case DEFAULT_NODE:
 		case ANCILLARY_NODE:
 			break;
-		/* enconding attributes and values fro ADDRESS-SWITCH node */
-
+		/* enconding attributes and values for ADDRESS-SWITCH node */
 		case ADDRESS_SWITCH_NODE:
 			FOR_ALL_ATTR(node,attr) {
 				nr_attr++;
@@ -231,7 +230,7 @@ int encript_node_attr( xmlNodePtr node, unsigned char *node_ptr,
 				}
 			}
 			break;
-		/* enconding attributes and values fro ADDRESS node */
+		/* enconding attributes and values for ADDRESS node */
 		case ADDRESS_NODE:
 			FOR_ALL_ATTR(node,attr) {
 				nr_attr++;
@@ -706,7 +705,7 @@ int encrypt_node( xmlNodePtr node, unsigned char *p)
 char* encryptXML( char* xml_s, int xml_len, char* DTD_filename, int *bin_len)
 {
 	static unsigned char buf[2048];
-	unsigned int  len;
+	int  len;
 	xmlValidCtxt  cvp;
 	xmlDocPtr  doc;
 	xmlNodePtr cur;
