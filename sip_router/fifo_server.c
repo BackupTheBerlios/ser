@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.22 2002/09/22 15:10:12 jiri Exp $
+ * $Id: fifo_server.c,v 1.23 2002/09/25 10:03:20 andrei Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -76,7 +76,7 @@
 #include "pt.h"
 
 /* FIFO server vars */
-char *fifo="/tmp/ser_fifo"; /* FIFO name */
+char *fifo=0; /* FIFO name */
 int fifo_mode=S_IRUSR | S_IWUSR | S_IRGRP | 
 	S_IWGRP | S_IROTH | S_IWOTH;
 pid_t fifo_pid;

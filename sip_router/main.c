@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.117 2002/09/24 16:16:20 andrei Exp $
+ * $Id: main.c,v 1.118 2002/09/25 10:03:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -78,7 +78,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.117 2002/09/24 16:16:20 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.118 2002/09/25 10:03:20 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -173,9 +173,10 @@ Options:\n\
     -t  dir      chroot to \"dir\"\n\
     -u uid       change uid \n\
     -g gid       change gid \n\
-    -P file      create a pid file\n"
+    -P file      create a pid file\n\
+    -i fifo_path create a fifo (usefull for monitoring " NAME ") \n"
 #ifdef STATS
-"    -s file	 File to which statistics is dumped (disabled otherwise)\n"
+"    -s file     File to which statistics is dumped (disabled otherwise)\n"
 #endif
 ;
 
@@ -917,7 +918,7 @@ int main(int argc, char** argv)
 #ifdef STATS
 	"s:"
 #endif
-	"f:p:m:b:l:n:rRvdDEVhw:t:u:g:P:";
+	"f:p:m:b:l:n:rRvdDEVhw:t:u:g:P:i:";
 	
 	while((c=getopt(argc,argv,options))!=-1){
 		switch(c){
@@ -1043,6 +1044,9 @@ int main(int argc, char** argv)
 			case 'P':
 					pid_file=optarg;
 					break;
+			case 'i':
+					fifo=optarg;
+					break;
 			case '?':
 					if (isprint(optopt))
 						fprintf(stderr, "Unknown option `-%c´.\n", optopt);
@@ -1073,7 +1077,7 @@ int main(int argc, char** argv)
 	}
 
 
-        init_hfname_parser();
+	init_hfname_parser();
 	init_digest_parser();
 
 	/* init hash fucntion */

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.13 2002/09/19 12:23:55 jku Exp $
+ * $Id: msg_parser.h,v 1.14 2002/09/25 10:03:20 andrei Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -91,7 +91,9 @@ struct sip_msg {
 	int parsed_flag;               /* Already parsed header field types */
 
 	     /* Via, To, CSeq, Call-Id, From, end of header*/
-	     /* first occurance of it; subsequent occurances saved in 'headers' */
+	     /* pointers to the first occurances of these headers;
+		  * everything is also saved in 'headers'
+		  * (WARNING: do not deallocate them twice!)*/
 
 	struct hdr_field* h_via1;
 	struct hdr_field* h_via2;
