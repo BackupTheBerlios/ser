@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.2 2002/01/07 17:52:26 jku Exp $
+ * $Id: t_lookup.c,v 1.3 2002/01/09 18:50:24 jku Exp $
  *
  */
 
@@ -69,7 +69,8 @@ int t_lookup_request( struct sip_msg* p_msg )
    {
       LOG(L_ERR, "ERROR: TM module: t_lookup_request: too few headers\n");
       T=0;
-      return -1;
+	  /* stop processing */
+      return 0;
    }
 
    /* start searching into the table */

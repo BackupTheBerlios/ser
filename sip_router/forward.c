@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.34 2002/01/07 04:39:49 jku Exp $
+ * $Id: forward.c,v 1.35 2002/01/09 18:50:24 jku Exp $
  */
 
 
@@ -182,7 +182,12 @@ int forward_reply(struct sip_msg* msg)
 		STATS_TX_DROPS;
 		goto error;
 	}
-	else STATS_TX_RESPONSE(  msg->first_line.u.reply.statusclass );
+	else {
+#ifdef STATS
+		int j = msg->first_line.u.reply.statuscode/100;
+		STATS_TX_RESPONSE(  j );
+#endif
+	}
 	free(new_buf);
 	free(to);
 skip:

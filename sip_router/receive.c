@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.25 2002/01/07 17:52:26 jku Exp $
+ *$Id: receive.c,v 1.26 2002/01/09 18:50:24 jku Exp $
  */
 
 #include <string.h>
@@ -106,7 +106,7 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 
 #ifdef STATS
 		gettimeofday( & tvb, &tz );
-		STATS_RX_RESPONSE ( msg->first_line.u.reply.statusclass );
+		STATS_RX_RESPONSE ( msg->first_line.u.reply.statuscode / 100 );
 #endif
 		
 		/* send the msg */

@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.22 2002/01/07 04:39:54 jku Exp $
+ * $Id: tm.c,v 1.23 2002/01/09 18:50:24 jku Exp $
  *
  * TM module
  *
@@ -209,7 +209,7 @@ static int fixup_t_send_reply(void** param, int param_no)
 
 static int w_t_check(struct sip_msg* msg, char* str, char* str2)
 {
-	return t_check( msg , 0 );
+	return t_check( msg , 0 ) ? 1 : -1;
 }
 
 static int w_t_forward(struct sip_msg* msg, char* str, char* str2)

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.84 2002/01/07 17:52:26 jku Exp $
+ * $Id: t_funcs.c,v 1.85 2002/01/09 18:50:24 jku Exp $
  *
  */
 
@@ -521,7 +521,8 @@ error:
 	t_unref( p_msg, NULL, NULL );
 	T->inbound_response[branch]=NULL;
 	sip_msg_free( clone );
-	return -1;
+	/* don't try to relay statelessly on error */
+	return 0;
 }
 
 
