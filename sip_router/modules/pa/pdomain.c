@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.14 2004/08/24 08:58:32 janakj Exp $
+ * $Id: pdomain.c,v 1.15 2004/09/03 15:23:46 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -194,7 +194,7 @@ static int in_pdomain = 0; /* this only works with single or multiprocess execut
  */
 void lock_pdomain(pdomain_t* _d)
 {
-	LOG(L_INFO, "lock_pdomain\n");
+	DBG("lock_pdomain\n");
 	if (!in_pdomain++)
 	     lock_get(&_d->lock);
 }
@@ -205,7 +205,7 @@ void lock_pdomain(pdomain_t* _d)
  */
 void unlock_pdomain(pdomain_t* _d)
 {
-	LOG(L_INFO, "unlock_pdomain\n");
+	DBG("unlock_pdomain\n");
 	in_pdomain--;
 	if (!in_pdomain)
 	     lock_release(&_d->lock);
