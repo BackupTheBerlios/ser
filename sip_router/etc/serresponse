@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: serresponse,v 1.4 2002/06/14 19:46:30 noh Exp $
+# $Id: serresponse,v 1.5 2002/06/14 20:49:36 noh Exp $
 #
 # use to check whether ser is still responding; if not mail an alert
 #
@@ -16,7 +16,7 @@ LOCKDIR=/var/lock
 LOCKFILE=serresponse
 LOCK_TIMEOUT=240
 TMP=/tmp/serresponse.$$
-MAILCOMMAND=/usr/bin/mail
+MAILCOMMAND=/bin/mail
 
 ############################
 
