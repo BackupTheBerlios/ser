@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.66 2004/02/06 18:56:49 bogdan Exp $
+ * $Id: cfg.y,v 1.67 2004/02/12 15:47:37 bogdan Exp $
  *
  *  cfg grammar
  *
@@ -181,6 +181,7 @@ static struct id_list* mk_listen_id(char*, int, int);
 %token DEBUG
 %token FORK
 %token LOGSTDERROR
+%token LOGFACILITY
 %token LISTEN
 %token ALIAS
 %token DNS
@@ -367,6 +368,13 @@ assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
 		| FORK  EQUAL error  { yyerror("boolean value expected"); }
 		| LOGSTDERROR EQUAL NUMBER { if (!config_check) log_stderr=$3; }
 		| LOGSTDERROR EQUAL error { yyerror("boolean value expected"); }
+		| LOGFACILITY EQUAL ID {
+					if ( (i_tmp=str2facility($3))==-1)
+						yyerror("bad facility (see syslog(3) man page)");
+					if (!config_check)
+						log_facility=i_tmp;
+									}
+		| LOGFACILITY EQUAL error { yyerror("ID expected"); }
 		| DNS EQUAL NUMBER   { received_dns|= ($3)?DO_DNS:0; }
 		| DNS EQUAL error { yyerror("boolean value expected"); }
 		| REV_DNS EQUAL NUMBER { received_dns|= ($3)?DO_REV_DNS:0; }
