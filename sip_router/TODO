@@ -1,4 +1,4 @@
-$Id: TODO,v 1.44 2003/04/14 18:51:58 andrei Exp $
+$Id: TODO,v 1.45 2003/04/14 20:26:27 andrei Exp $
 
 ( - todo, x - done)
 
@@ -100,7 +100,7 @@ optimizations:
 
 tcp stuff:
 x tcp disable nagle 
-- set TOS to minimize delay
+x set TOS to minimize delay
 - tcp locking/atomic ops review
 - tcp fix simultaneous connects (ser process is blocked until connect timeouts
  => possible DOS)

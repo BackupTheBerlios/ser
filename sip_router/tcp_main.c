@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.24 2003/04/14 19:27:57 andrei Exp $
+ * $Id: tcp_main.c,v 1.25 2003/04/14 20:26:27 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -440,6 +440,8 @@ send_it:
 	DBG("tcp_send: after write: c= %p n=%d fd=%d\n",c, n, fd);
 	DBG("tcp_send: buf=\n%.*s\n", (int)len, buf);
 	if (n<0){
+		if (errno==EINTR) goto send_it; /* interrupted write, try again*/
+										/* keep the lock or lock/unlock again?*/
 		LOG(L_ERR, "ERROR: tcpsend: failed to send, n=%d: %s (%d)\n",
 				n, strerror(errno), errno);
 		/* error on the connection , mark it as bad and set 0 timeout */
