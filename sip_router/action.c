@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.34 2002/09/19 12:23:52 jku Rel $
+ * $Id: action.c,v 1.35 2002/10/17 12:09:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -350,10 +350,10 @@ int do_action(struct action* a, struct sip_msg* msg)
 					if (msg->new_uri.s) {
 							pkg_free(msg->new_uri.s);
 							msg->new_uri.len=0;
-							if (msg->parsed_uri_ok){
-								msg->parsed_uri_ok=0;
-								free_uri(&msg->parsed_uri);
-							}
+					}
+					if (msg->parsed_uri_ok){
+							msg->parsed_uri_ok=0;
+							free_uri(&msg->parsed_uri);
 					}
 					len=strlen(a->p1.string);
 					msg->new_uri.s=pkg_malloc(len+1);
