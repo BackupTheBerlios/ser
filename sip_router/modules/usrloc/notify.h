@@ -1,5 +1,5 @@
 /*
- * $Id: notify.h,v 1.3 2003/01/14 22:46:15 janakj Exp $
+ * $Id: notify.h,v 1.4 2004/03/16 14:52:31 bogdan Exp $
  */
 
 #ifndef NOTIFY_H
@@ -23,6 +23,8 @@ typedef enum pres_state {
 
 typedef void (*notcb_t)(str* _user, pres_state_t _p, void* _d);
 
+typedef int (*register_watcher_t)(str* _f, str* _t, notcb_t _c, void* _data);
+typedef int (*unregister_watcher_t)(str* _f, str* _t, notcb_t _c, void* _data);
 
 typedef struct notify_cb {
 	notcb_t cb;

@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.c,v 1.35 2003/10/08 21:56:33 janakj Exp $
+ * $Id: usrloc.c,v 1.36 2004/03/16 14:52:31 bogdan Exp $
  *
  * Usrloc interface
  *
@@ -109,6 +109,20 @@ int bind_usrloc(usrloc_api_t* api)
 	api->update_ucontact = (update_ucontact_t)find_export("ul_update_ucontact", 1, 0);
 	if (api->update_ucontact == 0) {
 		LOG(L_ERR, "bind_usrloc(): Can't bind update_ucontact\n");
+		return -1;
+	}
+
+	api->register_watcher = (register_watcher_t)
+		find_export("ul_register_watcher", 1, 0);
+	if (api->register_watcher == 0) {
+		LOG(L_ERR, "bind_usrloc(): Can't bind register_watcher\n");
+		return -1;
+	}
+
+	api->unregister_watcher = (unregister_watcher_t)
+		find_export("ul_unregister_watcher", 1, 0);
+	if (api->unregister_watcher == 0) {
+		LOG(L_ERR, "bind_usrloc(): Can't bind unregister_watcher\n");
 		return -1;
 	}
 
