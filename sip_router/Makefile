@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.18 2001/10/26 00:39:42 andrei Exp $
+# $Id: Makefile,v 1.19 2001/11/07 19:52:42 jku Exp $
 #
 # sip_router makefile
 #
@@ -21,7 +21,9 @@ NAME=ser
 # MACROEATER replaces frequently called parser helper functions
 # with macros
 # recommanded: on (speed-up)
-DEFS=-DNOCR -DMACROEATER
+# STATS allows to print out number of packets processed on CTRL-C; implementation
+#  still nasty and reports per-process
+DEFS=-DNOCR -DMACROEATER -DSTATS
 
 # platform dependent settings
 
