@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.47 2002/06/10 16:34:38 bogdan Exp $
+ * $Id: forward.c,v 1.48 2002/06/21 15:54:36 bogdan Exp $
  */
 
 
@@ -134,13 +134,14 @@ error:
 int update_sock_struct_from_via( union sockaddr_union* to,
 								 struct via_body* via )
 {
-	int err;
 	struct hostent* he;
-	unsigned int ip;
 	char *host_copy;
 
 
 #ifdef DNS_IP_HACK
+	int err;
+	unsigned int ip;
+
 	ip=str2ip((unsigned char*)via->host.s,via->host.len,&err);
 	if (err==0){
 		to->sin.sin_family=AF_INET;
