@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.72 2003/01/24 17:56:42 andrei Exp $
+ * $Id: forward.c,v 1.73 2003/01/29 16:14:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -327,7 +327,7 @@ int forward_request( struct sip_msg* msg, struct proxy_l * p, int proto)
 	}
 #ifdef USE_TCP
 	 else if (proto==PROTO_TCP){
-		if (tcp_send(buf, len, to, 0)==-1){
+		if (tcp_send(buf, len, to, 0)<0){
 				ser_error=E_SEND;
 				p->errors++;
 				p->ok=0;
@@ -495,7 +495,7 @@ int forward_reply(struct sip_msg* msg)
 			DBG("forward_reply: id= %x\n", id);
 		}		
 				
-		if (tcp_send(new_buf, new_len,  to, id)==-1)
+		if (tcp_send(new_buf, new_len,  to, id)<0)
 		{
 			STATS_TX_DROPS;
 			goto error;
