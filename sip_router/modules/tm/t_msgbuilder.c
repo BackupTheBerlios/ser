@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.9 2002/09/19 12:23:55 jku Exp $
+ * $Id: t_msgbuilder.c,v 1.10 2002/09/19 21:34:58 jiri Exp $
  *
  * message printing
  *
@@ -172,7 +172,7 @@ char *build_uac_request(  str msg_type, str dst, str from,
 		struct cell *t, int *len)
 {
 	char *via;
-	int via_len;
+	unsigned int via_len;
 	char content_len[10];
 	int content_len_len;
 	char *buf;
