@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.1 2002/08/15 08:13:30 jku Exp $
+ * $Id: uac.h,v 1.2 2002/08/15 23:19:44 jku Exp $
  *
  */
 
@@ -31,6 +31,7 @@ void generate_callid();
 typedef int (*tuac_f)(str *msg_type, str *dst, str *headers,str *body,
 	transaction_cb completion_cb );
 
+/* transactional UAC; look for an example of usage at fifo_uac */
 int t_uac( 
 	/* MESSAGE, OPTIONS, etc. */
 	str *msg_type,  
