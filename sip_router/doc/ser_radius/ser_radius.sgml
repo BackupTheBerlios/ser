@@ -1,4 +1,4 @@
-<!-- $Id: ser_radius.sgml,v 1.4 2003/09/12 19:07:03 janakj Exp $ -->
+<!-- $Id: ser_radius.sgml,v 1.5 2003/09/23 18:56:40 janakj Exp $ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN" [
 
 <!ENTITY ser "<acronym>SIP</acronym> Express Router">
@@ -29,8 +29,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.4 $</revnumber>
-		<date>$Date: 2003/09/12 19:07:03 $</date>
+		<revnumber>$Revision: 1.5 $</revnumber>
+		<date>$Date: 2003/09/23 18:56:40 $</date>
 	    </revision>
 	</revhistory>
     </bookinfo>
@@ -565,6 +565,37 @@ libradiusclient.so.0: cannot open shared object file: No such file or directory
 			    moreinfo="none">/etc/ld.so.conf</filename> and run <command
 			    moreinfo="none">ldconfig -v</command> (as root).
 		    </simpara>
+		</answer>
+	    </qandaentry>
+	    <qandaentry>
+		<question>
+		    <simpara>
+			I configured everything as described in this HOWTO, but I get the following
+			message from radiusclient librarary <quote> check_radius_reply: received
+			invalid reply digest from RADIUS server</quote>. What does that mean ?
+		    </simpara>
+		</question>
+		<answer>
+		    <simpara>
+			That means that radiusclient library was unable to verify digest of the
+			RADIUS message (it is not related to &sip; digest) because shared secret of
+			the client and server do not match.
+		    </simpara>
+		    <note>
+			<simpara>
+			    FreeRADIUS server has two files that can contain definitions of clients
+			    and corresponding shared secrets--<filename
+				moreinfo="none">clients</filename> and <filename
+			    moreinfo="none">clients.conf</filename>.
+			</simpara>
+			<simpara>
+			    If you have proper shared secret in one file and you still get the
+			    mentioned error message then check also the other file. This can easily
+			    happen to clients running on the same host (127.0.0.1 or localhost),
+			    because <filename moreinfo="none">clients.conf</filename> contains
+			    definition for localhost by default with secret <quote>testing123</quote>.
+			</simpara>
+		    </note>
 		</answer>
 	    </qandaentry>
 	</qandaset>
