@@ -1,7 +1,7 @@
 /*
  * Sdp mangler module
  *
- * $Id: mangler.h,v 1.1 2003/04/07 16:53:24 gabriel Exp $
+ * $Id: mangler.h,v 1.2 2003/04/08 10:35:15 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -37,6 +37,11 @@
 
 #include "../../str.h"
 #include "../../parser/msg_parser.h"	/* struct sip_msg */
+#include "sdp_mangler.h"
+
+extern regex_t *portExpression;
+extern regex_t *ipExpression;
+
 
 
 #endif
