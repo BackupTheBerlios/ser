@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.23 2003/04/12 19:26:15 andrei Exp $
+ * $Id: route_struct.c,v 1.24 2003/06/26 14:45:15 janakj Exp $
  *
  * route structures helping functions
  *
@@ -325,7 +325,7 @@ void print_action(struct action* a)
 					DBG("\"%s\"", t->p1.string);
 					break;
 			case NUMBER_ST:
-					DBG("%d",t->p1.number);
+					DBG("%lu",t->p1.number);
 					break;
 			case IP_ST:
 					print_ip((struct ip_addr*)t->p1.data);
@@ -350,7 +350,7 @@ void print_action(struct action* a)
 					DBG(", \"%s\"", t->p2.string);
 					break;
 			case NUMBER_ST:
-					DBG(", %d",t->p2.number);
+					DBG(", %lu",t->p2.number);
 					break;
 			case EXPR_ST:
 					print_expr((struct expr*)t->p2.data);
@@ -369,7 +369,7 @@ void print_action(struct action* a)
 					DBG(", \"%s\"", t->p3.string);
 					break;
 			case NUMBER_ST:
-					DBG(", %d",t->p3.number);
+					DBG(", %lu",t->p3.number);
 					break;
 			case EXPR_ST:
 					print_expr((struct expr*)t->p3.data);

@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.20 2003/04/22 21:15:46 jiri Exp $
+ * $Id: route_struct.h,v 1.21 2003/06/26 14:45:15 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -94,7 +94,7 @@ struct action{
 	int p2_type;
 	int p3_type;
 	union {
-		int number;
+		long number;
 		char* string;
 		void* data;
 	}p1, p2, p3;
