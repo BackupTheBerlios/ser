@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2002/02/13 19:38:08 andrei Exp $
+# $Id: Makefile,v 1.4 2002/02/13 20:17:59 andrei Rel $
 #
 
 
@@ -10,6 +10,7 @@ CFLAGS= -O2 -Wall
 DEFS=
 LIBS=
 INCLUDE=
+PTHREAD_LIBS= -lpthread
 
 OS = $(shell uname -s)
 
@@ -17,6 +18,10 @@ OS = $(shell uname -s)
 ifeq ($(OS), SunOS)
 LIBS+= -lrt
 CFLAGS+=-mv8 -Wa,-xarch=v8plus
+PTHREAD_LIBS= -lpthread
+endif
+ifeq ($(OS), FreeBSD)
+PTHREAD_LIBS= -lc_r
 endif
 
 $(NAME): $(NAME).c
@@ -31,10 +36,12 @@ $(NAME)_flock: $(NAME).c
 	gcc $(CFLAGS) $(DEFS) -DFLOCK -o $@ $(INCLUDE) $< $(LIBS)
 
 $(NAME)_posix: $(NAME).c
-	gcc $(CFLAGS) $(DEFS) -DPOSIX_SEM -o $@ $(INCLUDE) $< $(LIBS) -lpthread
+	gcc $(CFLAGS) $(DEFS) -DPOSIX_SEM -o $@ $(INCLUDE) $< $(LIBS) \
+		$(PTHREAD_LIBS) 
 
 $(NAME)_pmutex: $(NAME).c
-	gcc $(CFLAGS) $(DEFS) -DPTHREAD_MUTEX -o $@ $(INCLUDE) $< $(LIBS) -lpthread
+	gcc $(CFLAGS) $(DEFS) -DPTHREAD_MUTEX -o $@ $(INCLUDE) $< $(LIBS) \
+		$(PTHREAD_LIBS)
 
 $(NAME)_fastlock: $(NAME).c
 	gcc $(CFLAGS) $(DEFS) -DFAST_LOCK -o $@ $(INCLUDE) $< $(LIBS) 

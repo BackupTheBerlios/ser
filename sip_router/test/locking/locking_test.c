@@ -1,4 +1,4 @@
-/* $Id: locking_test.c,v 1.3 2002/02/13 19:38:08 andrei Exp $ */
+/* $Id: locking_test.c,v 1.4 2002/02/13 20:17:59 andrei Exp $ */
 
 
 #include <stdio.h>
@@ -37,7 +37,8 @@ fl_lock_t lock;
 #include <sys/sem.h>
 
 
-#if defined(__GNU_LIBRARY__) && !defined(_SEM_SEMUN_UNDEFINED)
+#if (defined(__GNU_LIBRARY__) && !defined(_SEM_SEMUN_UNDEFINED)) || \
+	defined(__FreeBSD__)
 	/* union semun is defined by including <sys/sem.h> */
 #else
 	/* according to X/OPEN we have to define it ourselves */
@@ -101,7 +102,7 @@ static int semid=-1;
 
 
 
-static char *id="$Id: locking_test.c,v 1.3 2002/02/13 19:38:08 andrei Exp $";
+static char *id="$Id: locking_test.c,v 1.4 2002/02/13 20:17:59 andrei Exp $";
 static char *version="locking_test 0.1-"
 #ifdef NO_LOCK
  "nolock"
