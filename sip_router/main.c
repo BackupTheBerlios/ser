@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.126 2002/11/11 22:36:41 andrei Exp $
+ * $Id: main.c,v 1.127 2002/11/18 19:09:31 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,7 +80,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.126 2002/11/11 22:36:41 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.127 2002/11/18 19:09:31 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1080,7 +1080,6 @@ int main(int argc, char** argv)
 	}
 
 
-	init_hfname_parser();
 	init_digest_parser();
 
 	/* init hash fucntion */
