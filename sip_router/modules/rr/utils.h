@@ -1,5 +1,5 @@
 /*
- * $Id: utils.h,v 1.2 2002/01/23 21:56:58 bogdan Exp $ 
+ * $Id: utils.h,v 1.3 2002/02/07 16:02:45 bogdan Exp $ 
  */
 
 #ifndef __UTILS_H__
@@ -29,7 +29,7 @@ struct hdr_field* remove_crlf(struct hdr_field* _hf);
 char* strlower(char* _s, int len);
 char* strupper(char* _s, int len);
 
-char* parse_to(char* _to);
+char* parse_to_char(char* _to);
 
 char* find_not_quoted(char* _b, char c);
 char* eat_name(char* _b);

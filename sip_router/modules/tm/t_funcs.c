@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.100 2002/01/31 16:03:25 andrei Exp $
+ * $Id: t_funcs.c,v 1.101 2002/02/07 16:02:45 bogdan Exp $
  *
  */
 
@@ -450,6 +450,7 @@ int t_on_reply_received( struct sip_msg  *p_msg )
 		/* release previously hold message */
 		backup = T->inbound_response[branch];
 		T->inbound_response[branch] = clone;
+		T->tag=&(get_to(clone)->tag_value);
 	} else {
 		backup = NULL;
 		sip_msg_free( clone );

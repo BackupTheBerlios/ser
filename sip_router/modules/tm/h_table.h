@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.42 2002/01/31 19:16:36 bogdan Exp $
+ * $Id: h_table.h,v 1.43 2002/02/07 16:02:45 bogdan Exp $
  */
 
 
@@ -78,18 +78,17 @@ typedef struct cell
 
 	/* useful data */
 	/* UA Server */
-	struct sip_msg 		*inbound_request;
+	struct sip_msg             *inbound_request;
 	struct retrans_buff	outbound_response;
-	unsigned int		status;
-	str*				tag;
-	unsigned int		inbound_request_isACKed;
-	int					relaied_reply_branch;
-	int					nr_of_outgoings;
+	unsigned int                status;
+	str                                 *tag;
+	unsigned int                inbound_request_isACKed;
+	int                                 relaied_reply_branch;
+	int                                 nr_of_outgoings;
 	/* UA Clients */
-	struct retrans_buff	*outbound_request[ MAX_FORK ];
-	struct sip_msg		*inbound_response[ MAX_FORK ];
-	/* unsigned int		outbound_request_isACKed[MAX_FORK]; */
-	struct retrans_buff	*outbound_ack[ MAX_FORK ];
+	struct retrans_buff      *outbound_request[ MAX_FORK ];
+	struct sip_msg             *inbound_response[ MAX_FORK ];
+	struct retrans_buff      *outbound_ack[ MAX_FORK ];
 
 	/* protection against concurrent reply processing */
 	ser_lock_t	reply_mutex;
