@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.90 2002/08/15 08:13:29 jku Exp $
+ * $Id: main.c,v 1.91 2002/08/16 13:21:37 jku Exp $
  */
 
 #include <stdio.h>
@@ -45,7 +45,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.90 2002/08/15 08:13:29 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.91 2002/08/16 13:21:37 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -426,6 +426,13 @@ void handle_sigs()
 								" signal %d\n", chld,
 								 WSTOPSIG(chld_status));
 			}
+#ifndef STOP_JIRIS_CHANGES
+			if (dont_fork) {
+				LOG(L_INFO, "INFO: dont_fork turned on, living on\n");
+				break;
+			} 
+			LOG(L_INFO, "INFO: terminating due to SIGCHLD\n");
+#endif
 			/* exit */
 			kill(0, SIGTERM);
 			DBG("terminating due to SIGCHLD\n");
@@ -631,7 +638,12 @@ static void sig_usr(int signo)
 			case SIGHUP:
 					break;
 			case SIGCHLD:
+#ifndef 			STOP_JIRIS_CHANGES
+					LOG(L_INFO, "INFO: SIGCHLD received: "
+						"we do not worry about grand-children\n");
+#else
 					exit(0); /* terminate if one child died */
+#endif
 		}
 	}
 }
