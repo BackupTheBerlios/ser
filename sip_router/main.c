@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.13 2001/10/11 23:03:42 andrei Exp $
+ * $Id: main.c,v 1.14 2001/10/21 18:33:24 andrei Exp $
  */
 
 #include <stdio.h>
@@ -29,7 +29,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.13 2001/10/11 23:03:42 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.14 2001/10/21 18:33:24 andrei Exp $";
 static char version[]="ser 0.7";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -310,7 +310,7 @@ int main(int argc, char** argv)
 					break;
 			case '?':
 					if (isprint(optopt))
-						fprintf(stderr, "Unknown option `-%c'.\n", optopt);
+						fprintf(stderr, "Unknown option `-%c´.\n", optopt);
 					else
 						fprintf(stderr, 
 								"Unknown option character `\\x%x´.\n",
