@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.5 2001/09/06 03:58:35 andrei Exp $
+ * $Id: udp_server.c,v 1.6 2001/09/06 04:10:28 andrei Exp $
  */
 
 #include <sys/types.h>
@@ -74,7 +74,7 @@ int udp_rcv_loop()
 	}
 
 	for(;;){
-		fromlen=sizeof(*from);
+		fromlen=sizeof(struct sockaddr);
 		len=recvfrom(udp_sock, buf, BUF_SIZE, 0, from, &fromlen);
 		if (len==-1){
 			DPrint("ERROR: udp_rcv_loop:recvfrom: %s\n", strerror());
