@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.46 2004/12/28 23:41:30 sobomax Exp $
+ * $Id: msg_parser.c,v 1.47 2005/02/05 09:17:04 bogdan Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -364,7 +364,7 @@ int parse_headers(struct sip_msg* msg, int flags, int next)
 				msg->parsed_flag|=HDR_ALLOW;
 				break;
 			case HDR_EVENT:
-				if (msg->allow==0) msg->event = hf;
+				if (msg->event==0) msg->event = hf;
 				msg->parsed_flag|=HDR_EVENT;
 				break;
 		        case HDR_ACCEPT:
