@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.9 2002/03/02 02:20:00 andrei Exp $
+/* $Id: shm_mem.c,v 1.10 2002/03/02 07:03:38 andrei Exp $
  *
  * Shared memory functions
  */
@@ -127,6 +127,7 @@ int shm_mem_init()
 
 #ifndef FAST_LOCK
 	union semun su;
+	int ret;
 #endif
 #ifdef SHM_MMAP
 	int fd;
