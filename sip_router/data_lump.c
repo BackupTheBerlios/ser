@@ -1,4 +1,4 @@
-/* $Id: data_lump.c,v 1.18 2004/08/24 08:45:10 janakj Exp $
+/* $Id: data_lump.c,v 1.19 2005/03/24 12:14:39 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -285,7 +285,7 @@ struct lump* del_lump(struct sip_msg* msg, int offset, int len, int type)
 	
 	tmp=pkg_malloc(sizeof(struct lump));
 	if (tmp==0){
-		LOG(L_ERR, "ERROR: insert_new_lump_before: out of memory\n");
+		LOG(L_ERR, "ERROR: del_lump: out of memory\n");
 		return 0;
 	}
 	memset(tmp,0,sizeof(struct lump));
