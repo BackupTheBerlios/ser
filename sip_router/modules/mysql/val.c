@@ -1,5 +1,5 @@
 /* 
- * $Id: val.c,v 1.8 2005/02/24 17:44:54 janakj Exp $ 
+ * $Id: val.c,v 1.9 2005/02/24 19:37:11 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -40,16 +40,18 @@
  */
 static inline int str2int(const char* _s, int* _v)
 {
+
 	long tmp;
 
-	if ((!_s) || (!_v)) {
-		LOG(L_ERR, "str2int: Invalid parameter value\n");
-		return -1;
+	if (!_s || !_v) {
+	       LOG(L_ERR, "str2int: Invalid parameter value\n");
+	       return -1;
 	}
 
-	tmp = strtol(_s, 0, 10);
-	if ((errno == ERANGE) || (tmp < INT_MIN || tmp > UINT_MAX)) {
-		LOG(L_ERR, "str2int: Value out of range\n");
+	tmp = strtoul(_s, 0, 10);
+	if ((tmp == ULONG_MAX && errno == ERANGE) || 
+	    (tmp < INT_MIN) || (tmp > UINT_MAX)) {
+		printf("str2int: Value out of range\n");
 		return -1;
 	}
 
