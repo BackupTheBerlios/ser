@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.21 2003/04/28 22:08:03 janakj Exp $
+ * $Id: loose.c,v 1.22 2003/05/09 00:19:04 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -376,7 +376,7 @@ static inline int save_ruri(struct sip_msg* _m)
 	memcpy(s + ROUTE_PREFIX_LEN, _m->first_line.u.request.uri.s, _m->first_line.u.request.uri.len);
 	memcpy(s + ROUTE_PREFIX_LEN + _m->first_line.u.request.uri.len, ROUTE_SUFFIX, ROUTE_SUFFIX_LEN);
 
-	DBG("save_ruri(): New header: '%s'\n", s);
+	DBG("save_ruri(): New header: '%.*s'\n", len, ZSW(s));
 
 	     /* Insert it */
 	if (insert_new_lump_before(anchor, s, len, 0) == 0) {
