@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.32 2002/03/08 02:26:58 andrei Exp $
+ * $Id: udp_server.c,v 1.33 2002/04/30 16:58:45 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -185,9 +185,10 @@ int udp_rcv_loop()
 		len=recvfrom(udp_sock, buf, BUF_SIZE, 0, (struct sockaddr*)from,
 						&fromlen);
 		if (len==-1){
-			LOG(L_ERR, "ERROR: udp_rcv_loop:recvfrom: %s\n",
-						strerror(errno));
-			if (errno==EINTR)	continue; /* goto skip;*/
+			LOG(L_ERR, "ERROR: udp_rcv_loop:recvfrom:[%d] %s\n",
+						errno, strerror(errno));
+			if ((errno==EINTR)||(errno==EAGAIN)||(errno==EWOULDBLOCK))
+				continue; /* goto skip;*/
 			else goto error;
 		}
 		/*debugging, make print* msg work */
