@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.7 2002/09/04 19:43:21 jku Exp $
+# $Id: ser_mysql.sh,v 1.8 2002/09/04 22:12:09 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -278,7 +278,7 @@ CREATE TABLE pending (
   ha1b varchar(128) NOT NULL default '',
   UNIQUE KEY USER_ID (USER_ID),
   KEY USER_ID_2 (USER_ID),
-  UNIQUE KEY phplib_id (phplib_id),
+  UNIQUE KEY phplib_id (phplib_id)
 ) $TABLE_TYPE;
 
 
