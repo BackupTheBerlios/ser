@@ -1,5 +1,5 @@
 /*
- * $Id: t_thandlers.c,v 1.3 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_thandlers.c,v 1.4 2002/08/28 09:06:34 jku Exp $
  *
  * Timer handlers
  */
@@ -41,7 +41,7 @@ static void unlink_timers( struct cell *t )
 	if (is_in_timer_list2(&t->uas.response.retr_timer)) remove_retr=1; 
 	else for (i=0; i<t->nr_of_outgoings; i++)
 		if (is_in_timer_list2(&t->uac[i].request.retr_timer)
-			|| is_in_timer_list2(&t->uac[i].local_cancel.fr_timer)) {
+			|| is_in_timer_list2(&t->uac[i].local_cancel.retr_timer)) {
 				remove_retr=1;
 				break;
 		}

@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.42 2002/08/17 02:45:50 jku Exp $
+ * $Id: t_lookup.c,v 1.43 2002/08/28 09:06:34 jku Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -620,10 +620,10 @@ int t_newtran( struct sip_msg* p_msg )
 	lret = t_lookup_request( p_msg, 1 /* leave locked if not found */ );
 	/* on error, pass the error in the stack ... */
 	if (lret==0) return E_BAD_TUPEL;
+	/* transaction not found, it's a new request;
+	   establish a new transaction (unless it is an ACK) */
 	if (lret<0) {
 		new_cell=0;
-		/* transaction not found, it's a new request;
-		   establish a new transaction (unless it is an ACK) */
 		if ( p_msg->REQ_METHOD!=METHOD_ACK ) {
 			/* add new transaction */
 			new_cell = build_cell( p_msg ) ;
@@ -684,16 +684,16 @@ int t_newtran( struct sip_msg* p_msg )
 		}
 
 		return ret;
+	} 
+
+	/* transaction found, it's a retransmission  or hbh ACK */
+	if (p_msg->REQ_METHOD==METHOD_ACK) {
+		t_release_transaction(T);
 	} else {
-		/* transaction found, it's a retransmission  or hbh ACK */
-		if (p_msg->REQ_METHOD==METHOD_ACK) {
-			t_release_transaction(T);
-		} else {
-			t_retransmit_reply(T);
-		}
-		/* things are done -- return from script */
-		return 0;
+		t_retransmit_reply(T);
 	}
+	/* things are done -- return from script */
+	return 0;
 
 }
 
