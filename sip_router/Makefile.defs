@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.43 2002/02/13 20:33:53 andrei Exp $
+# $Id: Makefile.defs,v 1.44 2002/02/13 21:02:19 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -78,9 +78,6 @@ endif
 
 ifeq ($(ARCH), sparc64)
 	DEFS+= -DFAST_LOCK
-ifeq($(OS), SunOs)
-	CFLAGS+= -mv8 -Wa,-xarch=v8plus
-endif
 endif
 
 
@@ -140,6 +137,9 @@ ifeq  ($(OS), SunOS)
 	else
 		LDFLAGS=-g $(PROFILE)
 		MOD_LDFLAGS=-g -G
+	endif
+	ifeq ($(ARCH), sparc64)
+		CFLAGS+= -mv8 -Wa,-xarch=v8plus
 	endif
 
 YACC=yacc
