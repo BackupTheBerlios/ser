@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.175 2004/02/06 18:56:49 bogdan Exp $
+ * $Id: main.c,v 1.176 2004/02/06 23:00:04 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -115,7 +115,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.175 2004/02/06 18:56:49 bogdan Exp $";
+static char id[]="@(#) $Id: main.c,v 1.176 2004/02/06 23:00:04 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -700,7 +700,7 @@ static void sig_usr(int signo)
 					break;
 			case SIGCHLD:
 #ifndef 			STOP_JIRIS_CHANGES
-					LOG(L_INFO, "INFO: SIGCHLD received: "
+					DBG("SIGCHLD received: "
 						"we do not worry about grand-children\n");
 #else
 					exit(0); /* terminate if one child died */
