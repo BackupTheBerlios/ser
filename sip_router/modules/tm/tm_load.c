@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.17 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: tm_load.c,v 1.18 2004/01/22 14:28:50 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -43,6 +43,10 @@ int load_tm( struct tm_binds *tmb)
 	if (!( tmb->register_tmcb=(register_tmcb_f) 
 		find_export("register_tmcb", NO_SCRIPT, 0)) ) {
 		LOG(L_ERR, LOAD_ERROR "'register_tmcb' not found\n");
+		return -1;
+	}
+	if (!( tmb->t_newtran=(tnewtran_f)find_export("t_newtran", 0, 0)) ) {
+		LOG(L_ERR, LOAD_ERROR "'t_newtran' not found\n");
 		return -1;
 	}
 	if (!( tmb->t_relay_to_tcp=find_export(T_RELAY_TO_TCP, 2, 0)) ) {

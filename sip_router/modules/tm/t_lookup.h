@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.12 2003/11/26 16:04:27 bogdan Exp $
+ * $Id: t_lookup.h,v 1.13 2004/01/22 14:28:50 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -83,6 +83,7 @@ void set_t(struct cell *t);
 #define T_IS_LOCAL     "t_is_local"
 
 typedef int (*tislocal_f)(struct sip_msg*);
+typedef int (*tnewtran_f)(struct sip_msg*);
 typedef int (*tget_ti_f)(struct sip_msg*, unsigned int*, unsigned int*);
 typedef int (*tlookup_ident_f)(struct cell**, unsigned int, unsigned int);
 

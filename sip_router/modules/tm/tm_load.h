@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.18 2003/12/05 14:29:13 bogdan Exp $
+ * $Id: tm_load.h,v 1.19 2004/01/22 14:28:50 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -78,6 +78,7 @@ struct tm_binds {
 	cmd_function     t_relay_to_udp;
 	cmd_function     t_relay_to_tcp;
 	cmd_function     t_relay;
+	tnewtran_f       t_newtran;
 	treply_f         t_reply;
 	treply_wb_f      t_reply_with_body;
 	tislocal_f       t_is_local;
