@@ -1,5 +1,5 @@
 /*
- * $Id: group.h,v 1.4 2002/08/09 11:17:14 janakj Exp $
+ * $Id: group.h,v 1.5 2002/08/25 21:58:02 janakj Exp $
  *
  * Check, if a username matches those in digest credentials
  * or if a user is member of a group
@@ -24,9 +24,9 @@ int is_in_group(struct sip_msg* _msg, char* _group, char* _str2);
 
 
 /*
- * Check if user specified in credentials is in a table
+ * Check if username in specified header field is in a table
  */
-int is_user_in(struct sip_msg* _msg, char* _table, char* _s);
+int is_user_in(struct sip_msg* _msg, char* _hf, char* table);
 
 
 #endif /* GROUP_H */
