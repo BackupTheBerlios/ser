@@ -1,12 +1,13 @@
 /*
- * $Id: common.c,v 1.2 2002/08/22 12:53:52 jku Exp $
+ * $Id: common.c,v 1.3 2002/08/25 22:27:29 janakj Exp $
  *
  * Common stuff
  */
 
 #include "common.h"
-#include <string.h> /* memchr */
+#include <string.h> 
 #include "../../dprint.h"
+#include "../../ut.h"      /* q_memchr */
 
 
 /*
@@ -48,8 +49,8 @@ int get_user(str* _s)
 	
 	LOG(L_ERR, "get_user2(): %.*s\n", _s->len, _s->s);
 
-	at = memchr(_s->s, '@', _s->len);
-	dc = memchr(_s->s, ':', _s->len);
+	at = q_memchr(_s->s, '@', _s->len);
+	dc = q_memchr(_s->s, ':', _s->len);
 	if (at) {
 		if ((dc) && (dc < at)) {
 			_s->len = dc - _s->s;
