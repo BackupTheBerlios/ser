@@ -1,5 +1,5 @@
 /*
- * $Id: digest.h,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: digest.h,v 1.5 2003/03/05 15:59:28 janakj Exp $
  *
  * Digest credentials parser interface
  *
@@ -51,7 +51,6 @@ typedef struct auth_body {
 	struct hdr_field* authorized;
 	dig_cred_t digest;           /* Parsed digest credentials */
 	unsigned char stale;         /* Flag is set if nonce is stale */
-	int nonce_retries;           /* How many times the nonce was used */
 } auth_body_t;
 
 

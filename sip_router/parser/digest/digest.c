@@ -1,5 +1,5 @@
 /*
- * $Id: digest.c,v 1.7 2003/03/05 10:43:11 janakj Exp $
+ * $Id: digest.c,v 1.8 2003/03/05 15:59:28 janakj Exp $
  *
  * Digest credentials parser interface
  *
@@ -49,7 +49,6 @@ static inline int new_credentials(struct hdr_field* _h)
 		
 	init_dig_cred(&(b->digest));
 	b->stale = 0;
-	b->nonce_retries = 0;
 	b->authorized = 0;
 
 	_h->parsed = (void*)b;
