@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.47 2004/04/29 15:39:39 andrei Exp $
+ * $Id: globals.h,v 1.48 2004/05/03 10:29:57 andrei Exp $
  *
  * global variables
  *
@@ -51,6 +51,7 @@ extern unsigned short port_no;
 extern int uid;
 extern int gid;
 char* pid_file;
+char* pgid_file;
 extern int own_pgid; /* whether or not we have our own pgid (and it's ok
 >--->--->--->--->--->--->--->--->--->--->--- to use kill(0, sig) */
 
