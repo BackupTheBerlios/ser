@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.121 2002/08/28 19:01:24 ric Exp $
+# $Id: Makefile.defs,v 1.122 2002/09/04 10:54:54 jku Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -102,18 +102,17 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 -DSHM_MEM  -DSHM_MMAP \
 	 -DADAPTIVE_WAIT -DADAPTIVE_WAIT_LOOPS=1024 \
 	 -DUSE_IPV6 \
-	 -DEXTRA_DEBUG \
-	 -DDBG_QM_MALLOC \
-	 #-DF_MALLOC \
+	 -DF_MALLOC \
+	 #-DEXTRA_DEBUG \
+	 #-DDBG_QM_MALLOC \
 	 #-DVQ_MALLOC  
 	 #-DCONTACT_BUG
 	 #-DDBG_LOCK
 	 #-DNO_DEBUG \
-	 #-DADAPTIVE_WAIT -DADAPTIVE_WAIT_LOOPS=0 \
 	 #-DNOSMP \
-	 #-DEXTRA_DEBUG 
-	 #-DUSE_SHM_MEM
-	 #-DSTATS 
+	 #-DEXTRA_DEBUG \
+	 #-DUSE_SHM_MEM \
+	 #-DSTATS \
 	 #-DWITH_SNMP_MOD \
 	 #-DNO_LOG
 
