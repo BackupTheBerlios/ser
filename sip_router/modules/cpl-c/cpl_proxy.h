@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_proxy.h,v 1.17 2004/01/23 15:33:51 bogdan Exp $
+ * $Id: cpl_proxy.h,v 1.18 2004/05/17 11:01:30 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -466,7 +466,9 @@ static inline char *run_proxy( struct cpl_interpreter *intr )
 			} else if (i==0) {
 				LOG(L_ERR,"ERROR:cpl-c:run_proxy: processed INVITE is a "
 					"retransmission!\n");
-				goto runtime_error;
+				/* instead of generating an error is better just to break the
+				 * script by returning EO_SCRIPT */
+				return EO_SCRIPT;
 			}
 		}
 
