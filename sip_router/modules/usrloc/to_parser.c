@@ -1,5 +1,5 @@
 /*
- * $Id: to_parser.c,v 1.6 2002/03/08 17:58:17 janakj Exp $
+ * $Id: to_parser.c,v 1.7 2002/04/12 00:36:01 janakj Exp $
  */
 
 #include "utils.h"
@@ -38,6 +38,3 @@ void get_username(str* _s)
 	} 
 	return;
 }
-
-
-

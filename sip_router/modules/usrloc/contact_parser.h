@@ -1,9 +1,9 @@
 /* 
- * $Id: contact_parser.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: contact_parser.h,v 1.4 2002/04/12 00:36:01 janakj Exp $ 
  */
 
-#ifndef __CONTACT_PARSER_H__
-#define __CONTACT_PARSER_H__
+#ifndef CONTACT_PARSER_H
+#define CONTACT_PARSER_H
 
 #include <time.h>
 #include "location.h"

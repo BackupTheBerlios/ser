@@ -1,12 +1,12 @@
 /* 
- * $Id: c_elem.c,v 1.7 2002/03/25 11:08:50 janakj Exp $ 
+ * $Id: c_elem.c,v 1.8 2002/04/12 00:36:01 janakj Exp $ 
  */
 
 #include "c_elem.h"
 #include <stdlib.h>
 #include <stdio.h>   /* remove */
 #include "utils.h"
-#include "../../dprint.h"
+#include "log.h"
 #include "../../mem/mem.h"
 #include "sh_malloc.h"
 
@@ -19,7 +19,7 @@ c_elem_t* create_element(location_t* _loc)
 
 	ptr = (c_elem_t*)sh_malloc(sizeof(c_elem_t));
 	if (!ptr) {
-		LOG(L_ERR, "create_element(): No memory left\n");
+		ERR("No memory left");
 		return NULL;
 	}
 
@@ -56,12 +56,11 @@ void print_element(c_elem_t* _el)
 {
 #ifdef PARANOID
 	if (!_el) {
-		LOG(L_ERR, "print_element(): Invalid _el parameter value\n");
+		ERR("Invalid _el parameter value");
 		return;
 	}
 #endif
 
-	LOG(L_ERR, "usr_loc: Nothing to print right now\n");
-	LOG(L_ERR, "usr_loc: location:\n");
+	INFO("location:");
 	print_location(ELEM_LOC(_el));
 }

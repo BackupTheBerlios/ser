@@ -1,11 +1,10 @@
 /* 
- * $Id: utils.c,v 1.5 2002/03/01 11:01:27 janakj Exp $ 
+ * $Id: utils.c,v 1.6 2002/04/12 00:36:01 janakj Exp $ 
  */
 
 #include <ctype.h>
 #include "utils.h"
 #include <string.h>
-#include "../../dprint.h"
 
 
 /*

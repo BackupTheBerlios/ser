@@ -1,9 +1,9 @@
 /* 
- * $Id: c_slot.h,v 1.5 2002/03/25 11:08:50 janakj Exp $ 
+ * $Id: c_slot.h,v 1.6 2002/04/12 00:36:01 janakj Exp $ 
  */
 
-#ifndef __C_SLOT_H__
-#define __C_SLOT_H__
+#ifndef C_SLOT_H
+#define C_SLOT_H
 
 #include "c_elem.h"
 #include "cache.h"
@@ -20,7 +20,6 @@ typedef struct c_slot {
 	} ll;
 
 	struct cache* cache;           /* Cache we belong to */
-	fl_lock_t lock;                /* Cache slot lock */
 } c_slot_t;
 
 
@@ -35,9 +34,6 @@ typedef struct c_slot {
 
 /* Cache we belong to */
 #define SLOT_CACHE(slot) ((slot)->cache)
-
-/* Collision slot lock */
-#define SLOT_LOCK(slot) ((slot)->lock)
 
 
 /*

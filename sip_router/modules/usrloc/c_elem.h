@@ -1,9 +1,9 @@
 /* 
- * $Id: c_elem.h,v 1.5 2002/03/25 11:08:50 janakj Exp $ 
+ * $Id: c_elem.h,v 1.6 2002/04/12 00:36:01 janakj Exp $ 
  */
 
-#ifndef __C_ELEM_H__
-#define __C_ELEM_H__
+#ifndef C_ELEM_H
+#define C_ELEM_H
 
 #include "location.h"
 #include "c_slot.h"

@@ -1,11 +1,11 @@
 /* 
- * $Id: c_slot.c,v 1.6 2002/03/25 21:26:20 janakj Exp $ 
+ * $Id: c_slot.c,v 1.7 2002/04/12 00:36:01 janakj Exp $ 
  */
 
 #include "c_slot.h"
 #include "c_elem.h"
 #include "utils.h"
-#include "../../dprint.h"
+#include "log.h"
 
 
 /*
@@ -14,12 +14,8 @@
 int init_slot(cache_t* _c, c_slot_t* _slot)
 {
 #ifdef PARANOID
-	if (!_slot) {
-		LOG(L_ERR, "init_slot(): Invalid _slot parameter value\n");
-		return FALSE;
-	}
-	if (!_c) {
-		LOG(L_ERR, "init_slot(): Invalid _c parameter value\n");
+	if ((!_slot) || (!_c)) {
+		ERR("Invalid parameter value");
 		return FALSE;
 	}
 #endif
@@ -28,7 +24,6 @@ int init_slot(cache_t* _c, c_slot_t* _slot)
 	SLOT_LAST_ELEM(_slot) = NULL;
 	SLOT_CACHE(_slot) = _c;
 
-	init_lock(SLOT_LOCK(_slot));
 	return TRUE;
 }
 
@@ -41,7 +36,7 @@ void deinit_slot(c_slot_t* _slot)
 	c_elem_t* ptr;
 #ifdef PARANOID
 	if (!_slot) {
-		LOG(L_ERR, "deinit_slot(): Invalid _slot parameter value\n");
+		ERR("Invalid _slot parameter value");
 		return;
 	}
 #endif
