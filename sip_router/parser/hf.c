@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.5 2002/08/12 12:12:33 janakj Exp $ 
+ * $Id: hf.c,v 1.6 2002/08/15 08:13:30 jku Exp $ 
  */
 
 #include "hf.h"
@@ -74,3 +74,13 @@ void free_hdr_field_lst(struct hdr_field* hf)
 		pkg_free(foo);
 	}
 }
+
+void dump_hdr_field( struct hdr_field* hf )
+{
+	LOG(L_ERR, "DEBUG: dump_hdr_field: type=%d, name=%.*s, "
+		"body=%.*s, parsed=%p, next=%p\n",
+		hf->type, hf->name.len, hf->name.s,
+		hf->body.len, hf->body.s,
+		hf->parsed, hf->next );
+}
+

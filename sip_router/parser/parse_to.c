@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.7 2002/07/11 12:47:51 andrei Exp $
+ * $Id: parse_to.c,v 1.8 2002/08/15 08:13:30 jku Exp $
  */
 
 #include "parse_to.h"
@@ -216,7 +216,7 @@ static /*inline*/ char* parse_to_param(char *buffer, char *end,
 				{
 					case PARA_VALUE_QUOTED:
 						break;
-#ifdef PINGTEL_TAG_HACK
+#ifndef NO_PINGTEL_TAG_HACK
 					case TAG3:
 						param->type = TAG_PARAM;
 						param->name.len = 3;

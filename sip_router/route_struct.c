@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.14 2002/05/28 19:01:38 andrei Exp $
+ * $Id: route_struct.c,v 1.15 2002/08/15 08:13:29 jku Exp $
  *
  * route structures helping functions
  */
@@ -221,6 +221,30 @@ void print_action(struct action* a)
 					break;
 			case EXEC_T:
 					DBG("exec(");
+					break;
+			case REVERT_URI_T:
+					DBG("revert_uri(");
+					break;
+			case STRIP_T:
+					DBG("strip(");
+					break;
+			case APPEND_BRANCH_T:
+					DBG("append_branch(");
+					break;
+			case PREFIX_T:
+					DBG("prefix(");
+					break;
+			case LEN_GT_T:
+					DBG("len_gt(");
+					break;
+			case SETFLAG_T:
+					DBG("setflag(");
+					break;
+			case RESETFLAG_T:
+					DBG("resetflag(");
+					break;
+			case ISFLAGSET_T:
+					DBG("isflagset(");
 					break;
 			case SET_HOST_T:
 					DBG("sethost(");

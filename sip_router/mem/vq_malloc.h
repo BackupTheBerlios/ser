@@ -1,4 +1,4 @@
-/* $Id: vq_malloc.h,v 1.2 2002/01/11 03:32:19 jku Exp $
+/* $Id: vq_malloc.h,v 1.3 2002/08/15 08:13:29 jku Exp $
  *
  */
 
@@ -113,6 +113,7 @@ struct vqm_block{
 struct vqm_block* vqm_malloc_init(char* address, unsigned int size);
 
 #ifdef DBG_QM_MALLOC
+void vqm_debug_frag(struct vqm_block* qm, struct vqm_frag* f);
 void* vqm_malloc(struct vqm_block*, unsigned int size, char* file, char* func, 
 					unsigned int line);
 void  vqm_free(struct vqm_block*, void* p, char* file, char* func, 

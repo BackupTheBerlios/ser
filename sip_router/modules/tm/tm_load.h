@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.1 2002/05/13 01:15:41 jku Exp $
+ * $Id: tm_load.h,v 1.2 2002/08/15 08:13:30 jku Exp $
  */
 
 #ifndef _TM_BIND_H
@@ -7,20 +7,30 @@
 
 #include "../../sr_module.h"
 #include "t_hooks.h"
+#include "uac.h"
+#include "t_fwd.h"
+#include "t_reply.h"
+
+/* export not usable from scripts */
+#define NO_SCRIPT	-1
+
+#define T_RELAY_TO "t_relay_to"
+#define T_RELAY "t_relay"
+#define T_UAC "t_uac"
+#define T_REPLY "t_reply"
+#define T_REPLY_UNSAFE "t_reply_unsafe"
+#define T_FORWARD_NONACK "t_forward_nonack"
+
+
 
 struct tm_binds {
 	register_tmcb_f	register_tmcb;
-
-/*
-	cmd_function	t_isflagset;
-	cmd_function	t_setflag;
-	cmd_function	t_resetflag;
-*/
-
 	cmd_function	t_relay_to;
 	cmd_function 	t_relay;
-	cmd_function	t_fork_to_uri;
-	cmd_function	t_fork_on_no_response;
+	tuac_f			t_uac;
+	treply_f		t_reply;
+	treply_f		t_reply_unsafe;
+	tfwd_f			t_forward_nonack;
 };
 
 

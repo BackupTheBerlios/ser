@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.14 2002/05/26 21:38:02 andrei Exp $
+ * $Id: globals.h,v 1.15 2002/08/15 08:13:29 jku Exp $
  *
  * global variables
  *
@@ -44,8 +44,10 @@ extern int children_no;
 extern int dont_fork;
 extern int check_via;
 extern int received_dns;
-extern int loop_checks;
+extern int syn_branch;
 extern int process_no;
+extern int sip_warning;
+extern int server_signature;
 /*
  * debug & log_stderr moved to dprint.h*/
 
@@ -56,5 +58,14 @@ extern int cfg_errors;
 extern unsigned int msg_no;
 
 extern unsigned int shm_mem_size;
+
+/* FIFO server config */
+char extern *fifo; /* FIFO name */
+extern int fifo_mode;
+
+extern int *pids;
+extern int process_no;
+
+extern int reply_to_via;
 
 #endif

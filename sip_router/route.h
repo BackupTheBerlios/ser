@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.5 2002/05/13 01:15:40 jku Exp $
+ * $Id: route.h,v 1.6 2002/08/15 08:13:29 jku Exp $
  */
 
 #ifndef route_h
@@ -19,6 +19,8 @@
 
 /* main "script table" */
 extern struct action* rlist[RT_NO];
+/* main reply route table */
+extern struct action* reply_rlist[RT_NO];
 
 
 void push(struct action* a, struct action** head);

@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.3 2002/08/12 12:12:54 janakj Exp $ 
+ * $Id: hf.h,v 1.4 2002/08/15 08:13:30 jku Exp $ 
  */
 
 #ifndef HF_H
@@ -9,7 +9,7 @@
 
 
 /* Header types and flags */
-#define HDR_EOH                 -1   /* End of header found */
+#define HDR_EOH         		-1   /* End of header found */
 #define HDR_ERROR                0   /* Error while parsing */
 #define HDR_VIA                  1   /* Via header field */
 #define HDR_VIA1                 1   /* First Via header field */
@@ -60,5 +60,6 @@ void clean_hdr_field(struct hdr_field* hf);
  */
 void free_hdr_field_lst(struct hdr_field* hf);
 
+void dump_hdr_field( struct hdr_field* hf );
 
 #endif /* HF_H */

@@ -1,6 +1,9 @@
 /*
- * $Id: acc.h,v 1.2 2002/05/13 01:15:40 jku Exp $
+ * $Id: acc.h,v 1.3 2002/08/15 08:13:29 jku Exp $
  */
 
-void acc_reply_report(  struct cell* t , struct sip_msg *msg );
-void acc_ack_report(  struct cell* t , struct sip_msg *msg );
+int acc_request( struct sip_msg *rq, char* comment, char *foo);
+void acc_missed_report( struct cell* t, struct sip_msg *reply,
+	unsigned int code );
+void acc_reply_report(  struct cell* t , struct sip_msg *reply);
+void acc_ack_report(  struct cell* t , struct sip_msg *ack );

@@ -1,5 +1,5 @@
 /*
- * $Id: file_copyright.txt,v 1.1 2002/07/14 21:06:17 andrei Exp $
+ * $Id: file_copyright.txt,v 1.2 2002/08/15 08:13:30 jku Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus 
  *
@@ -9,6 +9,11 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
+ *
+ *  For a license to use the ser software under conditions
+ *  other than those described here, or to purchase support for this
+ *  software, please contact iptel.org by e-mail at the following addresses:
+ *     info@iptel.org
  *
  * ser is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of

@@ -1,4 +1,4 @@
-/* $Id: usrloc.c,v 1.24 2002/08/08 21:14:56 janakj Exp $
+/* $Id: usrloc.c,v 1.25 2002/08/15 08:13:30 jku Exp $
  *
  * User location support module
  *
@@ -308,9 +308,9 @@ static int child_init(int rank)
  */
 static void tr(unsigned int ticks, void* param)
 {
-	DBG("Starting cache synchronization timer");
+	DBG("Starting cache synchronization timer\n");
 	clean_cache(c, db_con);
-	DBG("Cache synchronization timer finished");
+	DBG("Cache synchronization timer finished\n");
 }
 
 
@@ -321,7 +321,7 @@ void destroy(void)
 {
 	free_cache(c);
 	if (db_con) {
-		DBG("Closing database connection");
+		DBG("Closing database connection\n");
 		db_close(db_con);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: lock.h,v 1.19 2002/03/07 19:23:48 andrei Exp $
+ * $Id: lock.h,v 1.20 2002/08/15 08:13:29 jku Exp $
  */
 
 
@@ -42,7 +42,7 @@ enum timer_groups {
 
 
 #include "h_table.h"
-#include "timer.h"
+#include "timer.h" 
 
 /* Uni*x permissions for IPC */
 #define IPC_PERMISSIONS 0666

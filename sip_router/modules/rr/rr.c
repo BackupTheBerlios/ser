@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr.c,v 1.17 2002/08/08 21:14:56 janakj Exp $
+ * $Id: rr.c,v 1.18 2002/08/15 08:13:29 jku Exp $
  */
 
 #include "rr.h"
@@ -288,7 +288,7 @@ int buildRRLine(struct sip_msg* _m, str* _l)
 	     /*	memcpy(_l->s + _l->len, _m->first_line.u.request.uri.s, _m->first_line.u.request.uri.len); */
 	     /* _l->len += _m->first_line.u.request.uri.len; */
 	
-	if (port_no != 5060) {
+	if (port_no != SIP_PORT) {
 		_l->len +=  sprintf(_l->s + _l->len, ":%d", port_no);
 	}
 	memcpy(_l->s + _l->len, ";branch=0>" CRLF,  10 + CRLF_LEN + 1);

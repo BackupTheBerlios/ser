@@ -1,5 +1,5 @@
 /*
- * $Id: flags.c,v 1.1 2002/05/13 01:15:40 jku Exp $
+ * $Id: flags.c,v 1.2 2002/08/15 08:13:29 jku Exp $
  */
 
 #include <limits.h>
@@ -16,12 +16,12 @@ int setflag( struct sip_msg* msg, flag_t flag ) {
 }
 
 int resetflag( struct sip_msg* msg, flag_t flag ) {
-	msg->flags &= ~ flag;
+	msg->flags &= ~ (1 << flag);
 	return 1;
 }
 
 int isflagset( struct sip_msg* msg, flag_t flag ) {
-	return msg->flags & (1<<flag) ? 1 : -1;
+	return (msg->flags & (1<<flag)) ? 1 : -1;
 }
 
 int flag_in_range( flag_t flag ) {

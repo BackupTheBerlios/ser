@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.h,v 1.11 2002/05/13 01:15:41 jku Exp $
+ * $Id: sip_msg.h,v 1.12 2002/08/15 08:13:29 jku Exp $
  */
 
 
@@ -7,8 +7,7 @@
 #define _SIP_MSG_H
 
 #include "../../parser/msg_parser.h"
-
-#include "sh_malloc.h"
+#include "../../mem/shm_mem.h"
 
 #define  sip_msg_free(_p_msg) shm_free( (_p_msg ))
 #define  sip_msg_free_unsafe(_p_msg) shm_free_unsafe( (_p_msg) )
