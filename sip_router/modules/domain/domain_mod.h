@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.h,v 1.4 2003/03/16 18:01:21 janakj Exp $
+ * $Id: domain_mod.h,v 1.5 2003/04/01 14:26:59 janakj Exp $
  *
  * Domain module headers
  *
@@ -51,10 +51,10 @@ struct domain_list {
 /*
  * Module parameters variables
  */
-extern char* db_url;              /* Database URL */
-extern int db_mode;               /* Database usage mode: 0 = no cache, 1 = cache */
-extern char* domain_table;        /* Domain table name */
-extern char* domain_domain_col;   /* Domain column name */
+extern char* db_url;        /* Database URL */
+extern int db_mode;         /* Database usage mode: 0 = no cache, 1 = cache */
+extern char* domain_table;  /* Domain table name */
+extern char* domain_col;    /* Domain column name */
 
 
 /*
