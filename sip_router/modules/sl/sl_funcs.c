@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.20 2002/06/10 16:41:54 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.21 2002/06/10 16:47:14 bogdan Exp $
  */
 
 #include <netinet/in.h>
@@ -120,7 +120,6 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	}
 
 	send_sock=get_send_socket(&to);
-	DBG("cucu bau\n");
 	if (send_sock!=0)
 	{
 		udp_send( send_sock,
