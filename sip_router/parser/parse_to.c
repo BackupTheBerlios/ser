@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.13 2002/12/03 11:45:52 bogdan Exp $
+ * $Id: parse_to.c,v 1.14 2002/12/09 12:07:36 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -498,6 +498,8 @@ char* parse_to(char* buffer, char *end, struct to_body *to_b)
 
 	status=START_TO;
 	to_b->error=PARSE_OK;
+	to_b->uri.len = 0;
+	to_b->uri.s= 0;
 	foo=0;
 
 	for( tmp=buffer; tmp<end; tmp++)
@@ -643,8 +645,8 @@ char* parse_to(char* buffer, char *end, struct to_body *to_b)
 					case DISPLAY_QUOTED:
 						break;
 					case URI_ENCLOSED:
-					case E_URI_ENCLOSED:
 						to_b->uri.len = tmp - to_b->uri.s;
+					case E_URI_ENCLOSED:
 						status = END;
 						foo = 0;
 						break;
