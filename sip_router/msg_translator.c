@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.108 2003/04/06 00:21:13 andrei Exp $
+ * $Id: msg_translator.c,v 1.109 2003/04/08 00:39:55 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -1160,6 +1160,9 @@ skip_clen:
 
 	/* compute new msg len and fix overlapping zones*/
 	new_len=len+lumps_len(msg, send_sock);
+#ifdef XL_DEBUG
+	LOG(L_ERR, "DEBUG: new_len(%d)=len(%d)+lumps_len\n", new_len, len);
+#endif
 
 	if (msg->new_uri.s){
 		uri_len=msg->new_uri.len;
