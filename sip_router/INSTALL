@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.12 2002/09/24 16:16:20 andrei Exp $
+$Id: INSTALL,v 1.13 2002/09/24 16:38:14 andrei Exp $
 
 ******************************************************
 * Note well: ser has not been released yet. Tarballs *
@@ -111,7 +111,9 @@ Create a tar.gz with the sources:
 
 make tar
 
+Create a tar.gz with the binary distribution:
 
+make bin
 
 Install(not done yet):
 
