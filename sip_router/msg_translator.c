@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.27 2002/01/12 02:33:31 jku Exp $
+/* $Id: msg_translator.c,v 1.28 2002/01/25 17:43:18 bogdan Exp $
  *
  */
 
@@ -470,8 +470,8 @@ error:
 
 
 
-char * build_res_buf_from_sip_res(	struct sip_msg* msg,
-									unsigned int *returned_len)
+char * build_res_buf_from_sip_res( struct sip_msg* msg,
+				unsigned int *returned_len)
 {
 	unsigned int new_len, via_len,r;
 	char* new_buf;
@@ -480,10 +480,6 @@ char * build_res_buf_from_sip_res(	struct sip_msg* msg,
 	char* orig;
 	char* buf;
 	unsigned int len;
-#ifdef DNS_IP_HACK
-	int err;
-#endif
-
 
 	orig=msg->orig;
 	buf=msg->buf;
