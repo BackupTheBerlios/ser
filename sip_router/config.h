@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.42 2003/01/23 18:58:13 andrei Exp $
+ *  $Id: config.h,v 1.43 2003/01/24 17:56:42 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -87,6 +87,9 @@
 
 #define RPORT ";rport="
 #define RPORT_LEN 7
+
+#define ID_PARAM ";i="
+#define ID_PARAM_LEN 3
 
 #define SRV_PREFIX "_sip._udp."
 #define SRV_PREFIX_LEN 10
