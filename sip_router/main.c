@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.187 2004/05/03 11:32:19 andrei Exp $
+ * $Id: main.c,v 1.188 2004/05/03 12:18:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -121,7 +121,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.187 2004/05/03 11:32:19 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.188 2004/05/03 12:18:10 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -142,6 +142,9 @@ static char flags[]=
 #endif
 #ifdef DISABLE_NAGLE
 ", DISABLE_NAGLE"
+#endif
+#ifdef USE_MCAST
+", USE_MCAST"
 #endif
 #ifdef NO_DEBUG
 ", NO_DEBUG"
@@ -348,6 +351,7 @@ int reply_to_via=0;
 
 #ifdef USE_MCAST
 int mcast_loopback = 0;
+int mcast_ttl = -1; /* if -1, don't touch it, use the default (usually 1) */
 #endif /* USE_MCAST */
 
 #if 0

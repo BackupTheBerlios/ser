@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.49 2004/05/03 11:32:19 andrei Exp $
+ * $Id: globals.h,v 1.50 2004/05/03 12:18:10 andrei Exp $
  *
  * global variables
  *
@@ -104,6 +104,7 @@ extern char* working_dir;
 
 #ifdef USE_MCAST
 extern int mcast_loopback;
+extern int mcast_ttl;
 #endif /* USE_MCAST */
 
 /*

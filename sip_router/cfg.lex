@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.55 2004/05/03 11:32:19 andrei Exp $
+ * $Id: cfg.lex,v 1.56 2004/05/03 12:18:10 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -48,6 +48,8 @@
  *  2004-03-30  added DISABLE_CORE and OPEN_FD_LIMIT (andrei)
  *  2004-04-28  added sock_mode (replaces fifo_mode), sock_user &
  *               sock_group  (andrei)
+ *  2004-05-03  applied multicast support patch from janakj
+ *              added MCAST_TTL (andrei)
  */
 
 
