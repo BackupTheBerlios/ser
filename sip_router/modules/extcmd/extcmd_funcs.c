@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd_funcs.c,v 1.10 2003/04/30 19:14:22 janakj Exp $
+ * $Id: extcmd_funcs.c,v 1.11 2003/05/23 15:59:56 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -578,7 +578,7 @@ static int get_cmd( int fd, str *cmd)
 
 
 
-
+#if 0
 static int send_void_command( int sock_fd )
 {
 	char buf[HEADER_SIZE];
@@ -595,6 +595,7 @@ static int send_void_command( int sock_fd )
 	}
 	return 1;
 }
+#endif
 
 
 

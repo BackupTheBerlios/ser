@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: sdp_mangler.c,v 1.5 2003/05/07 12:39:09 gabriel Exp $
+ * $Id: sdp_mangler.c,v 1.6 2003/05/23 15:59:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,6 +34,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
 #include <regex.h>
 
 #include "sdp_mangler.h"

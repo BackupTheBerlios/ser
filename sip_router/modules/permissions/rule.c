@@ -1,5 +1,5 @@
 /*
- * $Id: rule.c,v 1.1 2003/03/18 07:58:14 tirpi Exp $
+ * $Id: rule.c,v 1.2 2003/05/23 15:59:56 andrei Exp $
  *
  * PERMISSIONS module
  *
@@ -30,6 +30,7 @@
  
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <regex.h>
 #include "../../sr_module.h"
 #include "rule.h"

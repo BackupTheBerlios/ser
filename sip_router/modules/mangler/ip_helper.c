@@ -1,7 +1,7 @@
 /*
  * Sdp mangler module
  *
- * $Id: ip_helper.c,v 1.5 2003/05/07 12:05:08 andrei Exp $
+ * $Id: ip_helper.c,v 1.6 2003/05/23 15:59:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <sys/types.h>
 #include <netinet/in.h>
 
 /* given an ip and a mask it provides network address */
