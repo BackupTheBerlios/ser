@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.h,v 1.4 2004/03/04 12:23:05 janakj Exp $
+ * $Id: unixsock_server.h,v 1.5 2004/03/05 19:27:40 janakj Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -32,6 +32,7 @@
 
 
 #include <sys/un.h>
+#include <unistd.h>
 #include "str.h"
 
 
