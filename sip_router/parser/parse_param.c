@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.20 2004/09/01 11:56:58 janakj Exp $
+ * $Id: parse_param.c,v 1.21 2004/09/01 12:50:40 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -86,7 +86,7 @@ static inline void parse_contact_class(param_hooks_t* _h, param_t* _p)
 		if ((_p->name.len == 8) &&
 		    (!strncasecmp(_p->name.s + 1, "eceived", 7))) {
 			_p->type = P_RECEIVED;
-			_h->contact.method = _p;
+			_h->contact.received = _p;
 		}
 		break;
 	}
