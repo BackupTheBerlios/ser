@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.14 2004/08/24 08:58:29 janakj Exp $
+ * $Id: ext.c,v 1.15 2004/12/19 16:58:20 sobomax Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -337,7 +337,7 @@ static int ext_rewrite(struct sip_msg *msg, char *cmd, int type )
 				if (complete_uri( &new_val , uri, &parsed_uri )!=0 )
 					goto error;
 			}
-			if (append_branch( msg, new_val.s, new_val.len, def_qv)==-1) {
+			if (append_branch( msg, new_val.s, new_val.len, NULL, 0, def_qv)==-1) {
 				LOG(L_ERR,"ERROR:ext_rewrite : append_branch failed\n");
 				goto error;
 			}
