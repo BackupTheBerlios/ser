@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.23 2003/09/12 15:48:17 bogdan Exp $
+ * $Id: cpl_run.c,v 1.24 2003/10/20 17:38:50 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -796,10 +796,10 @@ static inline int run_default( struct cpl_interpreter *intr )
 				/* case 2 : no location modifications or signalling operations
 				 * performed, location set non-empty: (This can only happen 
 				 * for outgoing calls.) ->
-				 * Proxy the call to the addresses in the location set */
-				LOG(L_ERR,"ERROR:cpl_c:run_default: case 2 reached -"
-					"unimplemented\n");
-				return SCRIPT_RUN_ERROR;
+				 * Proxy the call to the address in the location set.
+				 * With other words, let ser to continue processing the
+				 * request as nothing happened */
+				return SCRIPT_END;
 			}
 		} else {
 			/* case 3 : location modifications performed, no signalling 
