@@ -1,5 +1,5 @@
 /*
- * $Id: db_val.c,v 1.2 2003/04/14 18:52:47 janakj Exp $
+ * $Id: db_val.c,v 1.3 2004/04/13 14:58:05 janakj Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -188,6 +188,7 @@ int str2valp(db_type_t _t, db_val_t* _v, const char* _s, int _l, void *_p)
 
 	switch(_t) {
 	case DB_INT:
+	case DB_BITMAP:
 		sprintf(dbuf, "got int %s", _s);
 		DLOG("str2valp", dbuf);
 		if (str2int(_s, &VAL_INT(_v)) < 0) {
