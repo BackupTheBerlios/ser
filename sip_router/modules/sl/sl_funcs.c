@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.32 2002/10/03 20:06:10 jiri Exp $
+ * $Id: sl_funcs.c,v 1.33 2002/10/09 13:37:35 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -249,15 +249,17 @@ int sl_filter_ACK(struct sip_msg *msg, void *bar )
 		return -1;
 	}
 
-	tag_str = &(get_to(msg)->tag_value);
-	if ( tag_str->len==TOTAG_LEN )
-	{
-		/* calculate the variable part of to-tag */	
-		calc_crc_suffix(msg);
-		/* test whether to-tag equal now */
-		if (memcmp(tag_str->s,sl_tag,TOTAG_LEN)==0) {
-			DBG("DEBUG: sl_filter_ACK : local ACK found -> dropping it! \n" );
-			return 0;
+	if (msg->to) {
+		tag_str = &(get_to(msg)->tag_value);
+		if ( tag_str->len==TOTAG_LEN )
+		{
+			/* calculate the variable part of to-tag */	
+			calc_crc_suffix(msg);
+			/* test whether to-tag equal now */
+			if (memcmp(tag_str->s,sl_tag,TOTAG_LEN)==0) {
+				DBG("DEBUG: sl_filter_ACK : local ACK found -> dropping it! \n" );
+				return 0;
+			}
 		}
 	}
 
