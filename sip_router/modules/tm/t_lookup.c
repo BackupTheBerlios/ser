@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.7 2002/01/15 17:36:44 bogdan Exp $
+ * $Id: t_lookup.c,v 1.8 2002/01/24 22:59:50 bogdan Exp $
  *
  */
 
@@ -228,10 +228,6 @@ struct cell* t_lookupOriginalT(  struct s_table* hash_table , struct sip_msg* p_
    }
 
    /* no transaction found */
-   T = 0;
-   return 0;
-
-
    return 0;
 }
 
