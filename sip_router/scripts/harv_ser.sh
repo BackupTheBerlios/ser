@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.33 2003/04/11 11:41:08 jiri Exp $
+# $Id: harv_ser.sh,v 1.34 2003/04/15 06:31:29 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -113,6 +113,7 @@ BEGIN {
 	ua_sipsak=0;
 	ua_fxsgw=0;
 	ua_sxdesign=0;
+	ua_dlink=0;
 	ua_xx=0;
 
 	server_cisco=0
@@ -313,6 +314,10 @@ ua==0 && /User-Agent:.*SX Des/ {
 }
 ua==0 && /User-Agent:.*SIPimp\.org/ {
 	ua_sipimp++
+	ua=1
+}
+ua==0 && /User-Agent:.*D-Link/ {
+	ua_dlink++
 	ua=1
 }
 
@@ -734,6 +739,7 @@ END {
 	print "sipsak: " ua_sipsak
 	print "FXSGW: " ua_fxsgw
 	print "SXDesing: " ua_sxdesign
+	print "D-link: " ua_dlink
 	print "UFO: " ua_xx
 
 	print "## Servers"
