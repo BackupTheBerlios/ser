@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.7 2003/02/28 14:12:26 jiri Exp $
+ * $Id: loose.c,v 1.8 2003/03/16 18:06:13 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,8 +45,8 @@
 #include "../../mem/mem.h"
 #include "../../parser/parse_uri.h"
 #include "../../globals.h"
-#include "utils.h"
 #include "common.h"
+#include "utils.h"
 #include "rr_mod.h"
 
 

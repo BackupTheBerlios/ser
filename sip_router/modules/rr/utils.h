@@ -1,7 +1,7 @@
 /* 
  * Route & Record-Route module, helper functions
  *
- * $Id: utils.h,v 1.9 2002/11/19 17:05:57 janakj Exp $ 
+ * $Id: utils.h,v 1.10 2003/03/16 18:06:13 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,7 +27,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -38,10 +37,4 @@
  */
 char* find_not_quoted(str* _s, char _c);
 
-
-/*
- * Extract username part from URI
- */
-int get_username(str* _s);
-
-#endif
+#endif /* UTILS_H */
