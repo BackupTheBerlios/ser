@@ -1,6 +1,6 @@
 /*
  *
- * $Id: ul_fifo.c,v 1.27 2004/01/12 00:10:51 janakj Exp $
+ * $Id: ul_fifo.c,v 1.28 2004/01/23 22:32:08 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -146,8 +146,8 @@ static inline int add_contact(udomain_t* _d, str* _u, str* _c, time_t _e, float 
 	int res;
 	str cid;
 	
-	if (_e == 0) {
-		LOG(L_ERR, "fifo_add_contact(): expires == 0, giving up\n");
+	if (_e == 0 && !(_f & FL_PERMANENT)) {
+		LOG(L_ERR, "fifo_add_contact(): expires == 0 and not persistent contact, giving up\n");
 		return -1;
 	}
 

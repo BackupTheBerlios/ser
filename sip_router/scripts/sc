@@ -1,6 +1,6 @@
 #!/bin/sh  
 #
-# $Id: sc,v 1.79 2004/01/12 00:11:45 janakj Exp $
+# $Id: sc,v 1.80 2004/01/23 22:32:08 janakj Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -65,7 +65,7 @@ LAST_LINE='tail -1'
 VERIFY_ACL=1
 ACL_GROUPS="local ld int voicemail free-pstn prepaid"
 
-VERSION='$Revision: 1.79 $'
+VERSION='$Revision: 1.80 $'
 #### SQL names
 
 # Usr Loc Table
@@ -440,7 +440,8 @@ usrloc() {
 
 			check_alias "$SERUSER@$SERDOMAIN"
 
-			fifo_cmd ul_add "$USRLOC_TABLE" "$SERUSER@$SERDOMAIN" "$2" "0" "1.00" "0" "1"
+			# 128 means FL_PERSISTENT is on
+			fifo_cmd ul_add "$USRLOC_TABLE" "$SERUSER@$SERDOMAIN" "$2" "0" "1.00" "0" "128"
 			exit $?
 			;;
 		rm)
