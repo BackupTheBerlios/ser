@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.56 2003/01/29 19:24:10 jiri Exp $
+ * $Id: udp_server.c,v 1.57 2003/02/10 15:49:40 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,6 +27,7 @@
  * History
  * --------
  * 2003-01-28 packet zero-termination moved to receive_msg (jiri)
+ * 2003-02-10 undoed the above changes (andrei)
  */
 
 
@@ -317,8 +318,8 @@ int udp_rcv_loop()
 				continue; /* goto skip;*/
 			else goto error;
 		}
-		/*debugging, make print* msg work */
-		/* buf[len+1]=0; */ /* zero-termination moved to receive_msg */
+		/* we must 0-term the messages, receive_msg expects it */
+		buf[len+1]=0; /* no need to save the previous char */
 
 #ifndef NO_ZERO_CHECKS
 		if (len==0) {

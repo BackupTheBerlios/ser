@@ -1,4 +1,4 @@
-$Id: TODO,v 1.31 2003/02/07 17:02:15 andrei Exp $
+$Id: TODO,v 1.32 2003/02/10 15:49:40 andrei Exp $
 
 ( - todo, x - done)
 
@@ -70,4 +70,5 @@ x generic locking lib
 - convert tm to use new locking lib
 - tcp disable nagle & other socket stuff (close()?)
 - force add rport (setflag(rport)???)
+- kill all the fprintf
 
