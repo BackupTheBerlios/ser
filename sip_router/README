@@ -1,4 +1,4 @@
-$Id: README,v 1.4 2001/10/26 20:28:55 andrei Exp $
+$Id: README,v 1.5 2002/07/15 14:34:57 andrei Exp $
 
 [ under construction :) ]
 
@@ -42,8 +42,8 @@ Configuration files:
 		Rvalues:
 			- string
 			- integer
-			- ipv4 address
-			- netv4 address
+			- ipv4 or ipv6 address
+			- netv4 or netv6 address
 			
 	Commands:
 		- forward
