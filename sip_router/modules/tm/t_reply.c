@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.67 2003/11/11 19:37:16 bogdan Exp $
+ * $Id: t_reply.c,v 1.68 2003/11/24 17:39:51 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -909,7 +909,7 @@ enum rps relay_reply( struct cell *t, struct sip_msg *p_msg, int branch,
 			   structure
 			*/
 			if (branch!=relay) {
-				free_via_lump(&relayed_msg->add_rm);
+				free_via_clen_lump(&relayed_msg->add_rm);
 			}
 		}
 		update_reply_stats( relayed_code );

@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.52 2003/07/08 12:39:13 andrei Exp $
+ * $Id: t_fwd.c,v 1.53 2003/11/24 17:39:51 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -103,7 +103,7 @@ char *print_uac_request( struct cell *t, struct sip_msg *i_req,
 		other branches  and for  shmem i_req they would mix up
 	 	shmem with pkg_mem
 	*/
-	free_via_lump(&i_req->add_rm);
+	free_via_clen_lump(&i_req->add_rm);
 
 	shbuf=(char *)shm_malloc(*len);
 	if (!shbuf) {
