@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.5 2002/02/11 17:56:22 andrei Exp $*
+/* $Id: shm_mem.h,v 1.6 2002/02/12 20:45:43 andrei Exp $*
  *
  * shared mem stuff
  */
@@ -50,7 +50,7 @@
 #ifdef FAST_LOCK
 #include "../fastlock.h"
 	
-	extern lock_t* mem_lock;
+	extern fl_lock_t* mem_lock;
 #else
 extern  int shm_semid;
 #endif
