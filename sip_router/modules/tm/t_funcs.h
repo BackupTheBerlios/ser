@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.28 2002/02/26 00:04:05 jku Exp $
+ * $Id: t_funcs.h,v 1.29 2002/02/26 18:44:32 bogdan Exp $
  */
 
 
@@ -157,7 +157,7 @@ int  t_add_transaction( struct sip_msg* p_msg  );
  *      -1 - transaction wasn't found
  *       1 - transaction found
  */
-int t_check( struct sip_msg* , int *branch );
+int t_check( struct sip_msg* , int *branch , int* is_cancel);
 
 
 
@@ -167,7 +167,7 @@ int t_check( struct sip_msg* , int *branch );
  *      -1 - error during forward
  */
 int t_forward( struct sip_msg* p_msg , unsigned int dst_ip ,
-				unsigned int dst_port);
+										unsigned int dst_port);
 
 
 
@@ -249,7 +249,7 @@ int t_forward_ack( struct sip_msg* p_msg , unsigned int dest_ip_param ,
 
 
 struct cell* t_lookupOriginalT(  struct s_table* hash_table , struct sip_msg* p_msg );
-int t_reply_matching( struct sip_msg* , unsigned int*  );
+int t_reply_matching( struct sip_msg* , unsigned int* , unsigned int* );
 int t_store_incoming_reply( struct cell* , unsigned int , struct sip_msg* );
 int  t_lookup_request( struct sip_msg* p_msg , int leave_new_locked );
 int t_all_final( struct cell * );
@@ -284,6 +284,7 @@ inline int static send_ack( struct cell *t, int branch,
 	memcpy( & srb->to, & t->ack_to, sizeof (struct sockaddr_in));
 	srb->tolen = sizeof (struct sockaddr_in);
 	srb->my_T = t;
+	srb->branch = branch;
 	srb->retr_buffer = (char *) srb + sizeof( struct retrans_buff );
 	srb->bufflen = len;
 	LOCK_ACK( t );
