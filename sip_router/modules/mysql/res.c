@@ -1,5 +1,5 @@
 /* 
- * $Id: res.c,v 1.2 2003/11/17 22:49:50 janakj Exp $ 
+ * $Id: res.c,v 1.3 2004/01/26 12:46:15 janakj Exp $ 
  *
  * MySQL module result related functions
  *
@@ -32,7 +32,7 @@
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 #include "row.h"
-#include "con_mysql.h"
+#include "my_con.h"
 #include "res.h"
 
 
