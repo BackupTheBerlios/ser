@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.26 2003/08/19 17:53:46 andrei Exp $
+/*$Id: textops.c,v 1.27 2003/08/20 13:36:38 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -287,6 +287,10 @@ static int subst_f(struct sip_msg* msg, char*  subst, char* ignored)
 	ret=-1;
 	if ((lst=subst_run(se, begin, msg))==0) goto error; /* not found */
 	for (rpl=lst; rpl; rpl=rpl->next){
+		DBG(" %s: subst_f: replacing at offset %d [%.*s] with [%.*s]\n",
+				exports.name, rpl->offset+off,
+				rpl->size, rpl->offset+off+msg->buf,
+				rpl->rpl.len, rpl->rpl.s);
 		if ((l=del_lump(&msg->add_rm, rpl->offset+off, rpl->size, 0))==0)
 			goto error;
 		/* hack to avoid re-copying rpl, possible because both 
