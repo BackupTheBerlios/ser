@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.11 2004/09/27 03:11:07 jiri Exp $
+ * $Id: dset.c,v 1.12 2004/09/27 03:16:55 jiri Exp $
  *
  * destination set
  *
@@ -36,6 +36,7 @@
 #include "hash_func.h"
 #include "error.h"
 #include "dset.h"
+#include "mem/mem.h"
 
 #define CONTACT "Contact: "
 #define CONTACT_LEN (sizeof(CONTACT) - 1)
