@@ -1,5 +1,5 @@
 /* 
- * $Id $
+ * $Id: stats.c,v 1.7 2002/09/20 15:10:50 jiri Rel $
  *
  * Stats reporting code. It reports through SIG_USR1 and if loaded
  * through the SNMP module
