@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.19 2001/11/07 19:52:42 jku Exp $
+ * $Id: main.c,v 1.20 2001/11/08 05:16:56 andrei Exp $
  */
 
 #include <stdio.h>
@@ -33,8 +33,8 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.19 2001/11/07 19:52:42 jku Exp $";
-static char version[]="ser 0.8.3";
+static char id[]="@(#) $Id: main.c,v 1.20 2001/11/08 05:16:56 andrei Exp $";
+static char version[]="ser 0.8.3.1";
 static char flags[]="NOCR:"
 #ifdef NOCR
 "On"
@@ -169,12 +169,10 @@ int daemonize(char*  name)
 	}
 	
 	/* close any open file descriptors */
-	
 	for (r=0;r<MAX_FD; r++){
 		if ((r==3) && log_stderr)  continue;
 		close(r);
 	}
-	
 	return  0;
 
 error:
@@ -191,6 +189,7 @@ int main_loop()
 
 	/* one "main" process and n children handling i/o */
 
+
 	if (dont_fork){
 		/* only one address */
 		if (udp_init(addresses[0],port_no)==-1) goto error;
@@ -198,6 +197,8 @@ int main_loop()
 		udp_rcv_loop();
 	}else{
 		for(r=0;r<addresses_no;r++){
+			/* create the listening socket (for each address)*/
+			if (udp_init(addresses[r], port_no)==-1) goto error;
 			for(i=0;i<children_no;i++){
 				if ((pid=fork())<0){
 					LOG(L_CRIT,  "main_loop: Cannot fork\n");
@@ -205,16 +206,17 @@ int main_loop()
 				}
 				if (pid==0){
 					/* child */
-					if (udp_init(addresses[r], port_no)==-1) goto error;
 					return udp_rcv_loop();
 				}
 			}
+			close(udp_sock); /*parent*/
 		}
 	}
 		
 	for(;;){
-		/* debug:  instead of select */
-		sleep(1);
+		/* debug:  instead of doing something usefull */
+		/* (placeholder for timers, etc.) */
+		sleep(10);
 	}
 	
 	return 0;
