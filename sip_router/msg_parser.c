@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.46 2002/03/01 23:21:25 andrei Exp $
+ * $Id: msg_parser.c,v 1.47 2002/03/02 02:20:00 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -174,9 +174,10 @@ char* parse_first_line(char* buffer, unsigned int len, struct msg_start * fl)
 error:
 	LOG(L_INFO, "ERROR:parse_first_line: bad %s first line\n",
 		(fl->type==SIP_REPLY)?"reply(status)":"request");
+	LOG(L_INFO, "ERROR: at line 0 char %d\n", offset);
 error1:
 	fl->type=SIP_INVALID;
-	LOG(L_INFO, "ERROR: at line 0 char %d\n", offset);
+	LOG(L_INFO, "ERROR:parse_first_line: bad message\n");
 	/* skip  line */
 	nl=eat_line(buffer,len);
 	return nl;
@@ -677,7 +678,7 @@ error:
 int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 {
 
-	char *tmp, *bar;
+	char *tmp;
 	char* rest;
 	char* first_via;
 	char* second_via;
@@ -717,6 +718,7 @@ int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 			break;
 		default:
 			DBG("unknown type %d\n",fl->type);
+			goto error;
 	}
 	msg->unparsed=tmp;
 	/*find first Via: */

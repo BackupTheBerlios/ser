@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname.c,v 1.6 2002/02/26 00:04:05 jku Exp $
+ * $Id: parse_hname.c,v 1.7 2002/03/02 02:20:00 andrei Exp $
  *
  * header name parsing automaton:
 
@@ -50,7 +50,6 @@ char* parse_hname1(char* p, char* end, struct hdr_field* hdr)
 
 	char* t;
 	register int state;
-	int i;
 	int err;
 	err=0;
 

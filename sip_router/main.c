@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.66 2002/03/01 23:21:25 andrei Exp $
+ * $Id: main.c,v 1.67 2002/03/02 02:20:00 andrei Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.66 2002/03/01 23:21:25 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.67 2002/03/02 02:20:00 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -591,8 +591,8 @@ int main(int argc, char** argv)
 					printf("flags: %s\n", flags );
 					print_ct_constants();
 					printf("%s\n",id);
-					printf("%s compiled on %s at %s with %s\n", __FILE__,
-							__DATE__, __TIME__, COMPILER );
+					printf("%s compiled on %s with %s\n", __FILE__,
+							compiled, COMPILER );
 					
 					exit(0);
 					break;

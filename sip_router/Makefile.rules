@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.8 2002/02/25 20:37:15 andrei Exp $
+# $Id: Makefile.rules,v 1.9 2002/03/02 02:20:00 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -39,7 +39,7 @@ static: $(objs)
 
 .PHONY: clean
 clean:
-	-@rm -f $(objs) $(NAME) 2>/dev/null
+	-@rm -f $(objs) $(NAME) $(objs:.o=.il) 2>/dev/null
 	-@for r in $(modules) $(static_modules_path) "" ; do \
 		if [ -n "$$r" ]; then \
 			echo "module $$r" ; \

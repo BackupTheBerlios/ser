@@ -1,8 +1,10 @@
-/* $Id: f_malloc.c,v 1.4 2002/02/20 21:07:31 andrei Exp $
+/* $Id: f_malloc.c,v 1.5 2002/03/02 02:20:00 andrei Exp $
  *
  */
 
 #if !defined(q_malloc) && !(defined VQ_MALLOC) 
+
+#include <string.h>
 
 #include "f_malloc.h"
 #include "../dprint.h"
@@ -87,7 +89,6 @@ struct fm_block* fm_malloc_init(char* address, unsigned int size)
 	char* end;
 	struct fm_block* qm;
 	unsigned int init_overhead;
-	int h;
 	
 	/* make address and size multiple of 8*/
 	start=(char*)ROUNDUP((unsigned int) address);
@@ -261,7 +262,7 @@ void fm_status(struct fm_block* qm)
 	int h;
 	int size;
 
-	LOG(L_INFO, "fm_status (%x):\n", qm);
+	LOG(L_INFO, "fm_status (%p):\n", qm);
 	if (!qm) return;
 
 	LOG(L_INFO, " heap size= %d\n", qm->size);

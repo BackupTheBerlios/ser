@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.h,v 1.1 2002/02/14 16:29:53 bogdan Exp $
+ * $Id: data_lump_rpl.h,v 1.2 2002/03/02 02:20:00 andrei Exp $
  *
  */
 
@@ -17,8 +17,8 @@ struct lump_rpl
 
 struct lump_rpl* build_lump_rpl( char* , int );
 
-int add_lump_rpl(struct sip_msg * , struct lump_rpl* );
+void add_lump_rpl(struct sip_msg * , struct lump_rpl* );
 
-int free_lump_rpl(struct lump_rpl* );
+void free_lump_rpl(struct lump_rpl* );
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.10 2001/10/24 12:43:39 andrei Exp $
+ * $Id: route_struct.c,v 1.11 2002/03/02 02:20:00 andrei Exp $
  *
  * route structures helping functions
  */
@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <string.h>
 
 #include "dprint.h"
 

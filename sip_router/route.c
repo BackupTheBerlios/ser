@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.16 2002/01/23 18:10:41 andrei Exp $
+ * $Id: route.c,v 1.17 2002/03/02 02:20:00 andrei Exp $
  *
  * SIP routing engine
  *
@@ -273,8 +273,6 @@ static int comp_ip(unsigned a, void* param, int op, int subtype)
 	}
 	return ret;
 	
-error:
-	return -1;
 }
 
 

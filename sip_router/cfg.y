@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.21 2002/03/01 23:21:25 andrei Exp $
+ * $Id: cfg.y,v 1.22 2002/03/02 02:20:00 andrei Exp $
  *
  *  cfg grammar
  */
@@ -24,6 +24,7 @@
 #include <dmalloc.h>
 #endif
 
+extern int yylex();
 void yyerror(char* s);
 char* tmp;
 void* f_tmp;

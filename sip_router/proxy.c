@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.9 2002/03/01 23:21:25 andrei Exp $
+ * $Id: proxy.c,v 1.10 2002/03/02 02:20:00 andrei Exp $
  *
  * proxy list & assoc. functions
  *
@@ -139,7 +139,6 @@ void free_hostent(struct hostent *dst)
 struct proxy_l* add_proxy(char* name, unsigned short port)
 {
 	struct proxy_l* p;
-	struct hostent* he;
 	
 	if ((p=find_proxy(name, port))!=0) return p;
 	if ((p=mk_proxy(name, port))==0) goto error;
@@ -234,8 +233,6 @@ error:
 struct proxy_l* mk_proxy_from_ip(unsigned int ip, unsigned short port)
 {
 	struct proxy_l* p;
-	struct hostent* he;
-	int err;
 
 	p=(struct proxy_l*) malloc(sizeof(struct proxy_l));
 	if (p==0){

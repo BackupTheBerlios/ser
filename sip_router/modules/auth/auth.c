@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.11 2002/03/01 12:06:03 janakj Exp $
+ * $Id: auth.c,v 1.12 2002/03/02 02:20:00 andrei Exp $
  */
 
 #include "auth.h"
@@ -147,6 +147,7 @@ static int send_resp(struct sip_msg* _m, int code, char* _reason, char* _hdr, in
 	}
 
 	udp_send(buf, len, (struct sockaddr*)&to, sizeof(struct sockaddr_in));
+	pkg_free(buf);
 	return 1;
 }
 

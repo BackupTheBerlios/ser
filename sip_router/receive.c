@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.27 2002/02/27 21:30:43 bogdan Exp $
+ *$Id: receive.c,v 1.28 2002/03/02 02:20:00 andrei Exp $
  */
 
 #include <string.h>
@@ -96,12 +96,13 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 			LOG(L_ERR, "ERROR: receive_msg: no via found in reply\n");
 			goto error;
 		}
-		/*
+#if 0
 		if ((msg->via2==0) || (msg->via2->error!=VIA_PARSE_OK)){
-			/* no second via => error? /
+			/* no second via => error? */
 			LOG(L_ERR, "ERROR: receive_msg: no 2nd via found in reply\n");
 			goto error;
-		}*/
+		}
+#endif
 		/* check if via1 == us */
 
 #ifdef STATS

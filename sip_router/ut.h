@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.7 2002/03/02 00:23:13 andrei Exp $
+ *$Id: ut.h,v 1.8 2002/03/02 02:20:00 andrei Exp $
  *
  * - various general purpose functions
  */
@@ -24,7 +24,9 @@
 
 #define trim_r( _mystr ) \
 	do{	static char _c; \
-		while( ((_mystr).len) && ((_c=(_mystr).s[(_mystr).len-1]))==0 || _c=='\r' || _c=='\n') \
+		while( ((_mystr).len) && ( ((_c=(_mystr).s[(_mystr).len-1]))==0 ||\
+									_c=='\r' || _c=='\n' ) \
+				) \
 			(_mystr).len--; \
 	}while(0)
 

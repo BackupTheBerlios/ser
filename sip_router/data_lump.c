@@ -1,4 +1,4 @@
-/* $Id: data_lump.c,v 1.6 2002/01/07 04:39:49 jku Exp $
+/* $Id: data_lump.c,v 1.7 2002/03/02 02:20:00 andrei Exp $
  *
  */
 
@@ -7,6 +7,7 @@
 #include "mem/mem.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
