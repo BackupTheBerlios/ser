@@ -1,6 +1,9 @@
-$Id: TODO,v 1.75 2003/10/20 17:10:13 andrei Exp $
+$Id: TODO,v 1.76 2003/10/21 23:28:46 andrei Exp $
 
 ( - todo, x - done)
+
+- fix aliases for tls_port (add_them?)
+- fix check_sel_op -- add proto for uri proto checks
 
 - alias support fot tcp/tls port numbers
 - warning builder set_advertised address support

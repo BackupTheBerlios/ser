@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.58 2003/10/14 14:49:42 andrei Exp $
+ * $Id: cfg.y,v 1.59 2003/10/21 23:28:46 andrei Exp $
  *
  *  cfg grammar
  *
@@ -551,7 +551,7 @@ assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
 		| ALIAS EQUAL  id_lst { 
 							for(lst_tmp=$3; lst_tmp; lst_tmp=lst_tmp->next)
 								add_alias(lst_tmp->s, strlen(lst_tmp->s), 
-											lst_tmp->port);
+											lst_tmp->port, lst_tmp->proto);
 							  }
 		| ALIAS  EQUAL error  { yyerror(" hostname expected"); }
 		| ADVERTISED_ADDRESS EQUAL listen_id {

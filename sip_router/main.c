@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.168 2003/10/12 15:09:08 andrei Exp $
+ * $Id: main.c,v 1.169 2003/10/21 23:28:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -112,7 +112,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.168 2003/10/12 15:09:08 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.169 2003/10/21 23:28:46 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1601,7 +1601,7 @@ try_again:
 		/* check if we got the official name */
 		if (strcasecmp(he->h_name, sock_info[r].name.s)!=0){
 			if (add_alias(sock_info[r].name.s, sock_info[r].name.len,
-							sock_info[r].port_no)<0){
+							sock_info[r].port_no, 0)<0){
 				LOG(L_ERR, "ERROR: main: add_alias failed\n");
 			}
 			/* change the oficial name */
@@ -1616,7 +1616,7 @@ try_again:
 		}
 		/* add the aliases*/
 		for(h=he->h_aliases; h && *h; h++)
-			if (add_alias(*h, strlen(*h), sock_info[r].port_no)<0){
+			if (add_alias(*h, strlen(*h), sock_info[r].port_no, 0)<0){
 				LOG(L_ERR, "ERROR: main: add_alias failed\n");
 			}
 		hostent2ip_addr(&sock_info[r].address, he, 0); /*convert to ip_addr 
@@ -1643,11 +1643,11 @@ try_again:
 				}else{
 					/* add the aliases*/
 					if (add_alias(he->h_name, strlen(he->h_name),
-									sock_info[r].port_no)<0){
+									sock_info[r].port_no, 0)<0){
 						LOG(L_ERR, "ERROR: main: add_alias failed\n");
 					}
 					for(h=he->h_aliases; h && *h; h++)
-						if (add_alias(*h,strlen(*h),sock_info[r].port_no)<0){
+						if (add_alias(*h,strlen(*h),sock_info[r].port_no,0)<0){
 							LOG(L_ERR, "ERROR: main: add_alias failed\n");
 						}
 				}
@@ -1680,7 +1680,7 @@ try_again:
 								 sock_info[r].name.len)!=0))
 					)
 					add_alias(sock_info[t].name.s, sock_info[t].name.len,
-								sock_info[t].port_no);
+								sock_info[t].port_no, 0);
 						
 				/* free space*/
 				pkg_free(sock_info[t].name.s);

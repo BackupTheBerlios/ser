@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.22 2003/07/01 20:23:51 andrei Exp $
+ *  $Id: forward.h,v 1.23 2003/10/21 23:28:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,7 +55,7 @@
 
 struct socket_info* get_send_socket(union sockaddr_union* su, int proto);
 struct socket_info* get_out_socket(union sockaddr_union* to, int proto);
-int check_self(str* host, unsigned short port);
+int check_self(str* host, unsigned short port, unsigned short proto);
 int forward_request( struct sip_msg* msg,  struct proxy_l* p, int proto);
 int update_sock_struct_from_via( union sockaddr_union* to,
 								 struct sip_msg* msg,

@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.39 2003/10/12 15:09:08 andrei Exp $
+ * $Id: route.c,v 1.40 2003/10/21 23:28:46 andrei Exp $
  *
  * SIP routing engine
  *
@@ -376,7 +376,7 @@ inline static int check_self_op(int op, str* s, unsigned short p)
 {
 	int ret;
 	
-	ret=check_self(s, p);
+	ret=check_self(s, p, 0);
 	switch(op){
 		case EQUAL_OP:
 			break;

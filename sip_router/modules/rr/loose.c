@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.27 2003/10/20 17:10:13 andrei Exp $
+ * $Id: loose.c,v 1.28 2003/10/21 23:28:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -216,7 +216,7 @@ static inline int is_myself(str* _host, unsigned short _port)
 		return 0;
 	}
 #endif
-	ret = check_self(_host, _port ? _port : SIP_PORT);
+	ret = check_self(_host, _port ? _port : SIP_PORT, 0);/* match all protos*/
 	if (ret < 0) return 0;
 	else return ret;
 }
