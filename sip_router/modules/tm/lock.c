@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.20 2002/01/11 03:32:19 jku Exp $
+ * $Id: lock.c,v 1.21 2002/01/11 23:10:46 jku Exp $
  */
 
 
@@ -194,7 +194,7 @@ inline int _unlock( ser_lock_t s )
 #endif
 {
 #ifdef DBG_LOCK
-	DBG("DEBUG: lock : entered from %s, %s:%d\n", file, function, line );
+	DBG("DEBUG: unlock : entered from %s, %s:%d\n", file, function, line );
 #endif
 	return change_semaphore( s, +1 );
 }
