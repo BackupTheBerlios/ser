@@ -1,5 +1,5 @@
 /*
- * $Id: im.c,v 1.1 2002/09/25 07:04:26 bogdan Exp $
+ * $Id: im.c,v 1.2 2002/09/25 19:20:26 andrei Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -34,7 +34,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <error.h>
+#include <errno.h>
 
 #include "../../sr_module.h"
 #include "../../error.h"

@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.33 2002/09/19 12:23:52 jku Exp $
+ *  $Id: config.h,v 1.34 2002/09/25 19:20:26 andrei Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,7 +36,7 @@
 /* default sip port if none specified */
 #define SIP_PORT 5060
 
-#define CFG_FILE "/etc/ser/ser.cfg"
+#define CFG_FILE CFG_DIR "ser.cfg"
 
 
 /* maximum number of addresses on which we will listen */

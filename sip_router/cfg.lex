@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.23 2002/09/10 10:40:54 jku Exp $
+ * $Id: cfg.lex,v 1.24 2002/09/25 19:20:26 andrei Rel $
  *
  * scanner for cfg files
  */
@@ -106,6 +106,8 @@ FIFO fifo
 FIFO_MODE fifo_mode
 SERVER_SIGNATURE server_signature
 REPLY_TO_VIA reply_to_via
+USER		"user"|"uid"
+GROUP		"group"|"gid"
 
 LOADMODULE	loadmodule
 MODPARAM        modparam
@@ -200,6 +202,8 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{SYN_BRANCH}	{ count(); yylval.strval=yytext; return SYN_BRANCH; }
 <INITIAL>{MEMLOG}	{ count(); yylval.strval=yytext; return MEMLOG; }
 <INITIAL>{SIP_WARNING}	{ count(); yylval.strval=yytext; return SIP_WARNING; }
+<INITIAL>{USER}		{ count(); yylval.strval=yytext; return USER; }
+<INITIAL>{GROUP}	{ count(); yylval.strval=yytext; return GROUP; }
 <INITIAL>{FIFO}	{ count(); yylval.strval=yytext; return FIFO; }
 <INITIAL>{FIFO_MODE}	{ count(); yylval.strval=yytext; return FIFO_MODE; }
 <INITIAL>{SERVER_SIGNATURE}	{ count(); yylval.strval=yytext; return SERVER_SIGNATURE; }

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.sources,v 1.10 2002/08/15 12:20:16 janakj Exp $
+# $Id: Makefile.sources,v 1.11 2002/09/25 19:20:26 andrei Rel $
 #
 # common Makefile variables 
 # (source files, objs, etc)
@@ -11,7 +11,9 @@
 # defines: sources, objs, depends
 #
 
-sources=$(filter-out $(auto_gen), $(wildcard *.c) $(wildcard mem/*.c) $(wildcard parser/*.c) $(wildcard parser/digest/*.c) $(wildcard parser/contact/*.c) $(wildcard db/*.c) ) $(auto_gen)
+sources=$(filter-out $(auto_gen), $(wildcard *.c) $(wildcard mem/*.c) \
+		$(wildcard parser/*.c) $(wildcard parser/digest/*.c) \
+		$(wildcard parser/contact/*.c) $(wildcard db/*.c) ) $(auto_gen)
 objs=$(sources:.c=.o)
 extra_objs=
 depends=$(sources:.c=.d)

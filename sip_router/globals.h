@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.21 2002/09/20 09:29:07 andrei Exp $
+ * $Id: globals.h,v 1.22 2002/09/25 19:20:26 andrei Rel $
  *
  * global variables
  *
@@ -74,6 +74,8 @@ extern int syn_branch;
 /* extern int process_no; */
 extern int sip_warning;
 extern int server_signature;
+extern char* user;
+extern char* group;
 /*
  * debug & log_stderr moved to dprint.h*/
 
