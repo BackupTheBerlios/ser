@@ -1,13 +1,13 @@
 /*
  *
- * $Id: ul_fifo.c,v 1.5 2002/08/27 13:31:25 janakj Exp $
+ * $Id: ul_fifo.c,v 1.6 2002/08/27 21:32:25 janakj Exp $
  *
  */
 
 #include "../../fifo_server.h"
 #include "../../dprint.h"
 #include "ul_fifo.h"
-#include <strings.h>
+#include <string.h>
 #include <stdio.h>
 #include "dlist.h"
 #include "udomain.h"
