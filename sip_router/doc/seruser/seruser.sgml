@@ -1,4 +1,4 @@
-<!-- $Id: seruser.sgml,v 1.30 2003/02/27 21:26:30 jiri Exp $ -->
+<!-- $Id: seruser.sgml,v 1.31 2003/03/24 12:12:44 janakj Exp $ -->
 <!-- DOCTYPE Book SYSTEM "/usr/share/sgml/docbook/dtd-4.2/docbook.dtd" [ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN" [ 
 
@@ -46,7 +46,7 @@
 	    <author>
 		<firstname>Jan</firstname>
 		<surname>Janak</surname>
-		<email>J.Janak@sh.cvut.cz</email>
+		<email>jan@iptel.org</email>
 	    </author>
 	    <author>
 		<firstname>Yacine</firstname>
@@ -101,7 +101,7 @@
 	    This documentation is continuously updated. For the latest  
 	    version visit our site at 
 	    <ulink url="http://www.iptel.org/ser/">http://www.iptel.org/ser</ulink>.
-	    $Revision: 1.30 $.
+	    $Revision: 1.31 $.
 	</releaseinfo>
     </bookinfo>
 
