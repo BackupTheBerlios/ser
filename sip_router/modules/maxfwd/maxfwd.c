@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.7 2002/03/01 10:50:56 janakj Exp $
+ * $Id: maxfwd.c,v 1.8 2002/03/02 05:18:54 bogdan Exp $
  *
  * MAXFWD module
  *
@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "../../sr_module.h"
 #include "../../dprint.h"
@@ -97,7 +98,7 @@ static int fixup_maxfwd_header(void** param, int param_no)
 			return 0;
 		}else{
 			LOG(L_ERR, "MAXFWD module:fixup_maxfwd_header: bad  number <%s>\n",
-					*param);
+					(char*)(*param));
 			return E_UNSPEC;
 		}
 	}

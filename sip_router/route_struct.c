@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.11 2002/03/02 02:20:00 andrei Exp $
+ * $Id: route_struct.c,v 1.12 2002/03/02 05:18:54 bogdan Exp $
  *
  * route structures helping functions
  */
@@ -304,7 +304,7 @@ void print_action(struct action* a)
 					print_action((struct action*)t->p1.data);
 					break;
 			case CMDF_ST:
-					DBG("f_ptr<%x>",t->p1.data);
+					DBG("f_ptr<%p>",t->p1.data);
 					break;
 			default:
 					DBG("type<%d>", t->p1_type);

@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.6 2002/03/01 10:51:35 janakj Exp $
+/*$Id: textops.c,v 1.7 2002/03/02 05:18:54 bogdan Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -84,7 +84,6 @@ static int search_f(struct sip_msg* msg, char* key, char* str2)
 
 static int search_append_f(struct sip_msg* msg, char* key, char* str)
 {
-	char* s;
 	struct lump* l;
 	regmatch_t pmatch;
 
@@ -119,12 +118,12 @@ static int fixup_regex(void** param, int param_no)
 {
 	regex_t* re;
 
-	DBG("module - fixing %s\n", *param);
+	DBG("module - fixing %s\n", (char*)(*param));
 	if (param_no!=1) return 0;
 	if ((re=malloc(sizeof(regex_t)))==0) return E_OUT_OF_MEM;
 	if (regcomp(re, *param, REG_EXTENDED|REG_ICASE|REG_NEWLINE) ){
 		free(re);
-		LOG(L_ERR, "ERROR: %s : bad re %s\n", my_exports.name, *param);
+		LOG(L_ERR, "ERROR: %s : bad re %s\n",my_exports.name,(char*)(*param));
 		return E_BAD_RE;
 	}
 	/* free string */
