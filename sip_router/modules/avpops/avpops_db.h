@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_db.h,v 1.2 2004/11/15 10:19:39 ramona Exp $
+ * $Id: avpops_db.h,v 1.3 2004/11/17 19:29:32 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -27,6 +27,7 @@
  * History:
  * ---------
  *  2004-10-04  first version (ramona)
+ *  2004-11-11  added support for db schemes for avp_db_load (ramona)
  */
 
 
