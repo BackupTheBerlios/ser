@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2003/11/06 21:22:07 bogdan Exp $
+# $Id: Makefile,v 1.5 2004/03/06 20:43:06 sobomax Exp $
 #
 # print example module makefile
 #
@@ -8,7 +8,7 @@
 include ../../Makefile.defs
 auto_gen=
 NAME=nathelper.so
-LIBS=
+LIBS=-lmd
 
 include ../../Makefile.modules
 
