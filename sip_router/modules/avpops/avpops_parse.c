@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_parse.c,v 1.2 2004/11/05 12:05:19 ramona Exp $
+ * $Id: avpops_parse.c,v 1.3 2004/11/07 23:13:29 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -370,6 +370,8 @@ struct fis_param* parse_check_value(char *s)
 		flags |= AVPOPS_OP_LT;
 	} else if (strncasecmp(s,"gt",2)==0) {
 		flags |= AVPOPS_OP_GT;
+	} else if (strncasecmp(s,"re",2)==0) {
+		flags |= AVPOPS_OP_RE;
 	} else {
 		LOG(L_ERR,"ERROR:avpops:parse_check_value: unknown operation "
 			"<%.*s>\n",2,s);

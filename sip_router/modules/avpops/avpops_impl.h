@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.h,v 1.1 2004/11/01 16:48:44 ramona Exp $
+ * $Id: avpops_impl.h,v 1.2 2004/11/07 23:13:29 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -67,6 +67,7 @@
 #define AVPOPS_OP_EQ        (1<<16)
 #define AVPOPS_OP_LT        (1<<17)
 #define AVPOPS_OP_GT        (1<<18)
+#define AVPOPS_OP_RE        (1<<19)
 
 /* flags for flags    24..31 */
 #define AVPOPS_FLAG_ALL     (1<<24)
