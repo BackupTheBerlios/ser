@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.12 2004/11/19 11:34:23 andrei Exp $
+ * $Id: t_fifo.c,v 1.13 2004/11/22 22:51:17 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -457,10 +457,10 @@ int fixup_t_write( void** param, int param_no)
 					"<%s>\n",s);
 				return E_CFG;
 			}
-			*param=(void*)twi;
 		} else {
 			twi->action.len = strlen(twi->action.s);
 		}
+		*param=(void*)twi;
 	}
 
 	return 0;
