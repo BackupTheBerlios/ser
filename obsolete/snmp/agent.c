@@ -1,5 +1,5 @@
 /*
- * $Id: agent.c,v 1.1 2002/08/28 19:02:59 ric Exp $
+ * $Id: agent.c,v 1.2 2002/08/29 20:13:30 ric Exp $
  *
  * SNMP Module: SNMP Agent initialization code and MIB initialization code 
  */
@@ -11,8 +11,19 @@
 #include "../../config.h"
 
 #define SER_SNMP_NAME "ser_snmp"
+#define SUB_AGENT 1
 
 static int init_sip_mibs();
+
+/* XXX: We need these functions to allow for runtime discovery of where the
+ * master agent is waiting for agentx connections. It's sort of a hack,
+ * to get around some problems in the net-snmp library. If those problems
+ * get fixed, then we should be able to get rid of these
+ * (as of 5.0.4 they haven't been fixed)
+ */
+extern void init_agentx_config();
+extern int subagent_pre_init();
+extern void init_subagent();
 
 /*********************** The subagent **************************/
 
@@ -21,32 +32,65 @@ static int *serIndex=NULL;
 
 static int agent_pid = -1;
 
-/* - If you want the agent to try to reconnect to the master agent, set
+/* 
+ * - If you want the agent to try to reconnect to the master agent, set
  * agentxPingInterval <seconds>
  * in ser_snmp.conf
+ * - If you want the agent to use something different than /var/agentx/master
+ * for agentx connections, set
+ * agentx <path or socket>	(path -> /var/agentx/master, socket-> tcp:20001)
+ * in ser_snmp.conf (look at snmpcmd(1) for details on transport
+ * specifications -> section AGENT SPECIFICATION)
  */
 int ser_init_snmp()
 {
 	int port, port_len = 15; /* more than enough... > strlen("udp:<port>") */
 	char port_spec[port_len];
-	int master = 0;
 
 	snmp_disable_stderrlog();
 
-	/* first try to be an agentx */
-	netsnmp_ds_set_boolean(NETSNMP_DS_APPLICATION_ID, 
-		NETSNMP_DS_AGENT_ROLE, 1);
-
-
-	/* initialize the agent library */
+	/* 
+	 * Initialize library and read config file. Note that init_agent()
+	 * won't try to open a connection to the master agent. We
+	 * check its return value even though (at time of writing) it's
+	 * only dependent on the subagent functions, which won't be
+	 * called.
+	 */
 	if(init_agent(SER_SNMP_NAME) != 0) {
-		LOG(L_WARN, "snmp_mod: Couldn't initialize as subagent. "
+		LOG(L_ERR, "snmp_mod: Couldn't initialize SNMP agent library\n");
+		return -1;
+	}
+	/* 
+	 * register config parameters we may use. For example:
+	 * - agentxsocket
+	 * - agentxPingInterval
+	 */
+	init_agentx_config();
+	subagent_pre_init();
+
+	/* Read the config files and finish init of snmp lib */
+	init_snmp(SER_SNMP_NAME);
+
+	/* 
+	 * now comes the interesting part. First we try to be a subagent
+	 * (the next call changes the behavior of the second call to
+	 * subagent_pre_init()). If that fails, then we try to be a
+	 * master agent. If that fails, then we die :)
+	 */
+	netsnmp_ds_set_boolean(NETSNMP_DS_APPLICATION_ID, 
+		NETSNMP_DS_AGENT_ROLE, SUB_AGENT);
+	
+	if(subagent_pre_init() == 0) {
+		/* ok, running as subagent, cool, cool */
+		init_subagent();
+		LOG(L_DBG, "snmp_mod: Running as agentx subagent\n");
+	} else {
+		/* eeks... try master way then ... */
+		LOG(L_INFO, "snmp_mod: Couldn't initialize as subagent. "
 			"Trying now as master agent\n");
 		/* deactivate agentx stuff */
 		netsnmp_ds_set_boolean(NETSNMP_DS_APPLICATION_ID, 
 			NETSNMP_DS_AGENT_ROLE, 0);
-
-		init_snmp(SER_SNMP_NAME);
 
 		/* Set the port from the default port setting in snmp.conf. 
 		 * If you want us to be able to run as non-root, just
@@ -68,16 +112,13 @@ int ser_init_snmp()
 					"use a priviledged port %d\n", port);
 				LOG(L_ERR, "snmp_mod ERROR: set defaultPort in "
 					"snmp.conf to a non-priviledged port or run as root\n");
-			} /* else?? */
+			}
 			return -1;
 		}
 		LOG(L_DBG, "snmp_mod: Running as master agent\n");
-		master=1;
 	}
-	if(!master)
-		init_snmp(SER_SNMP_NAME);
-	
-	/* initialize the mib code and fill the tree. */
+
+	/* initialize the mib code */
 	if(init_sip_mibs() == -1) {
 		LOG(L_ERR, "snmpd_mod ERROR: Couldn't initialize SIP MIB\n");
 		return -1;
@@ -86,7 +127,7 @@ int ser_init_snmp()
 	return 0;
 }
 
-/* Rudimentary control mechanism. */
+/* control mechanism for the agent */
 static int keep_running;
 
 static inline void stop_agent(int s)
@@ -179,7 +220,9 @@ int ser_snmp_stop()
 static int init_sip_mibs()
 {
 	const char *func = "snmp_mod";
-	const char* ourName = "sip_proxy";
+	/* Look at section 4.2 of SIP MIB draft for meaning of this
+	 * name */
+	const char* ourName = "sip_proxy_redirect_registrar";
 
 	/* init application (network-services) MIB */
 	init_branch(applTable);
@@ -228,7 +271,7 @@ int fill_sip_mibs()
 {
 	const char *func = "snmp_mod";
 
-	/* fill the sip info */
+	/* fill the sip info. Note that most of this is dummy stuff */
 	add_branch(sipCommonCfgTable, ())
 
 	/* the end.. */
