@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.2 2002/08/08 17:14:45 ssi Exp $ 
+ * $Id: hf.c,v 1.3 2002/08/09 11:23:36 janakj Exp $ 
  */
 
 #include "hf.h"
@@ -9,6 +9,7 @@
 #include "../dprint.h"
 #include "../mem/mem.h"
 #include "parse_def.h"
+#include "digest/digest.h" /* free_credentials */
 
 
 /* 
@@ -29,6 +30,11 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_CSEQ:
 			free_cseq(hf->parsed);
+			break;
+
+                case HDR_AUTHORIZATION:
+		case HDR_PROXYAUTH:
+			free_credentials((auth_body_t**)(&(hf->parsed));
 			break;
 
 		case HDR_FROM:

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.12 2002/08/08 21:14:56 janakj Exp $
+ * $Id: msg_parser.c,v 1.13 2002/08/09 11:23:36 janakj Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -187,6 +187,11 @@ int parse_headers(struct sip_msg* msg, int flags, int next)
 
 	end=msg->buf+msg->len;
 	tmp=msg->unparsed;
+	
+	if (next) {
+		orig_flag = msg->parsed_flag;
+		msg->parsed_flag &= ~flags;
+	}
 
 	if (next) {
 		orig_flag = msg->parsed_flag;
