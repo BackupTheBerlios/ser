@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.5 2003/04/30 17:49:29 janakj Exp $
+ * $Id: notify.c,v 1.6 2003/05/08 17:02:55 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -280,8 +280,8 @@ static inline int send_xpidf_notify(struct presentity* _p, struct watcher* _w)
 	}
 
 	switch(_p->state) {
-	case PS_OFFLINE: st = XPIDF_ST_CLOSED; break;
-	default: st = XPIDF_ST_OPEN; break;
+	case PS_ONLINE: st = XPIDF_ST_OPEN; break;
+	default: st = XPIDF_ST_CLOSED; break;
 	}
 
 	if (xpidf_add_address(&body, BUF_LEN - body.len, &parsed.uri, st) < 0) {
