@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.c,v 1.11 2004/11/05 14:21:00 bogdan Exp $
+ * $Id: ip_tree.c,v 1.12 2004/12/01 10:58:23 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -87,6 +87,7 @@ static gen_lock_set_t* init_lock_set(int *size)
 {
 	gen_lock_set_t *lset;
 
+	lset=0; /* kill warnings */
 	for( ; *size ; *size=((*size)>>1) ) {
 		LOG(L_INFO,"INFO:pike:init_lock_set: probing %d set size\n",*size);
 		/* create a lock set */
