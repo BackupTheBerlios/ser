@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.45 2004/03/08 14:05:46 andrei Exp $
+ * $Id: globals.h,v 1.46 2004/03/30 09:44:19 andrei Exp $
  *
  * global variables
  *
@@ -144,5 +144,9 @@ extern char **my_argv;
 extern str default_global_address;
 /* pre-ser ports */
 extern str default_global_port;
+
+/* core dump and file limits */
+extern int disable_core_dump;
+extern int open_files_limit;
 
 #endif

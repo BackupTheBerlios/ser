@@ -1,5 +1,5 @@
 /*
- * $Id: daemonize.h,v 1.1 2004/03/08 14:05:46 andrei Exp $
+ * $Id: daemonize.h,v 1.2 2004/03/30 09:44:19 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,8 @@
 
 int daemonize(char* name);
 int do_suid();
+int increase_open_fds(int target);
+int set_core_dump(int enable, int size);
 
 
 #endif

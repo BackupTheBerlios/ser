@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.51 2004/02/26 18:00:49 andrei Exp $
+ * $Id: tcp_main.c,v 1.52 2004/03/30 09:44:19 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -1228,7 +1228,7 @@ void tcp_main_loop()
 				bytes=recv_all(pt[r].unix_sock, response, sizeof(response));
 				if (bytes==0){
 					/* EOF -> bad, child has died */
-					LOG(L_CRIT, "BUG: tcp_main_loop: dead child %d\n", r);
+					LOG(L_INFO, "INFO: tcp_main_loop: dead child %d\n", r);
 					/* don't listen on it any more */
 					FD_CLR(pt[r].unix_sock, &master_set);
 					/*exit(-1);*/
