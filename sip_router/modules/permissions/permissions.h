@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.h,v 1.1 2003/03/18 07:58:13 tirpi Exp $
+ * $Id: permissions.h,v 1.2 2003/09/03 17:13:57 andrei Exp $
  *
  * PERMISSIONS module
  *
@@ -27,14 +27,19 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
+/*
+ * History:
+ * --------
+ *  2003-09-03  replaced /usr/local/et/ser/ with CFG_DIR (andrei)
+ */
  
 #ifndef PERMISSIONS_H
 #define PERMISSIONS_H 1
 
 #include "../../sr_module.h"
 
-#define ALLOW_FILE "/etc/ser/permissions.allow"
-#define DENY_FILE "/etc/ser/permissions.deny"
+#define ALLOW_FILE CFG_DIR "permissions.allow"
+#define DENY_FILE  CFG_DIR "permissions.deny"
 
 int mod_init(void);
 void mod_exit(void);
