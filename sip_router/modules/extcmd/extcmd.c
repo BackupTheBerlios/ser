@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd.c,v 1.5 2003/03/16 20:27:23 janakj Exp $
+ * $Id: extcmd.c,v 1.6 2003/03/19 22:39:37 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -120,7 +120,7 @@ static int extcmd_init(void)
 	DBG("EXTCMD - initializing\n");
 
 	/* import the TM auto-loading function */
-	if ( !(load_tm=(load_tm_f)find_export("load_tm", NO_SCRIPT))) {
+	if ( !(load_tm=(load_tm_f)find_export("load_tm", NO_SCRIPT, 0))) {
 		LOG(L_ERR, "ERROR: extcmd: global_init: cannot import load_tm\n");
 		goto error;
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: test_handler.c,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: test_handler.c,v 1.3 2003/03/19 22:39:37 janakj Exp $
  *
  * SNMP Module
  * 
@@ -52,7 +52,7 @@ int test_globalHandler()
 	}
 	h->on_get = handle_transTable;
 
-	reg = find_export("snmp_register_table", 2);
+	reg = find_export("snmp_register_table", 2, 0);
 	if(!reg) {
 		LOG(L_ERR, "%s: couldn't find registration function!!\n", func);
 		return -1;
@@ -64,7 +64,7 @@ int test_globalHandler()
 	}
 
 	/* now add the rows. We just need to pass indexes for the transactions */
-	reg = find_export("snmp_register_row", 2);
+	reg = find_export("snmp_register_row", 2, 0);
 	if(!reg) {
 		LOG(L_ERR, "%s: couldn't find registration function!!\n", func);
 		return -1;

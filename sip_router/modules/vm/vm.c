@@ -1,5 +1,5 @@
 /*
- * $Id: vm.c,v 1.12 2003/03/18 17:48:19 janakj Exp $
+ * $Id: vm.c,v 1.13 2003/03/19 22:39:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -477,7 +477,7 @@ static int init_tmb()
 {
 	load_tm_f _load_tm;
 
-	if(!(_load_tm=(load_tm_f)find_export("load_tm",NO_SCRIPT)) ){
+	if(!(_load_tm=(load_tm_f)find_export("load_tm",NO_SCRIPT, 0)) ){
 	    LOG(L_ERR,"ERROR: vm_start: could not find export `load_tm'\n");
 	    return -1;
 	}

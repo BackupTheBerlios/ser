@@ -1,5 +1,5 @@
 /*
- * $Id: vm_fifo.c,v 1.3 2003/03/06 17:43:17 jiri Exp $
+ * $Id: vm_fifo.c,v 1.4 2003/03/19 22:39:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -160,7 +160,7 @@ int fifo_vm_reply( FILE* stream, char *response_file )
     sb.s[sb.len]='\0';
     
 #ifdef _OBSO /* load just on start up */
-    if (!(load_tm = (load_tm_f)find_export("load_tm",NO_SCRIPT))){
+    if (!(load_tm = (load_tm_f)find_export("load_tm",NO_SCRIPT, 0))){
 	LOG(L_ERR,"ERROR: fifo_t_reply: could not load 'load_tm'. module tm should be loaded !\n");
 	goto error01;
     }
@@ -398,7 +398,7 @@ int fifo_uac_dlg( FILE *stream, char *response_file )
 
 #ifdef _OBSO
 
-    if (!(load_tm = (load_tm_f)find_export("load_tm",NO_SCRIPT))){
+    if (!(load_tm = (load_tm_f)find_export("load_tm",NO_SCRIPT, 0))){
 	LOG(L_ERR,"ERROR: fifo_t_reply: could not load 'load_tm'. module tm should be loaded !\n");
 	return 1;
     }

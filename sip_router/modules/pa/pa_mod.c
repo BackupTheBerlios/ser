@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.5 2003/03/18 16:41:30 janakj Exp $
+ * $Id: pa_mod.c,v 1.6 2003/03/19 22:39:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,7 +80,7 @@ static int mod_init(void)
 	fprintf(stderr, "Presence Agent - initializing\n");
 
 	/* import the TM auto-loading function */
-	if ( !(load_tm=(load_tm_f)find_export("load_tm", NO_SCRIPT))) {
+	if ( !(load_tm=(load_tm_f)find_export("load_tm", NO_SCRIPT, 0))) {
 		LOG(L_ERR, "Can't import tm\n");
 		return -1;
 	}

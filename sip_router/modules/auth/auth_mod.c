@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.35 2003/03/19 18:40:09 andrei Exp $ 
+ * $Id: auth_mod.c,v 1.36 2003/03/19 22:39:37 janakj Exp $ 
  *
  * Digest Authentication Module
  *
@@ -156,7 +156,7 @@ static int mod_init(void)
 {
 	printf("auth module - initializing\n");
 	
-	sl_reply = find_export("sl_send_reply", 2);
+	sl_reply = find_export("sl_send_reply", 2, 0);
 
 	if (!sl_reply) {
 		LOG(L_ERR, "auth:mod_init(): This module requires sl module\n");
