@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.34 2001/12/04 19:00:49 andrei Exp $
+ * $Id: main.c,v 1.35 2001/12/05 17:09:06 bogdan Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.34 2001/12/04 19:00:49 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.35 2001/12/05 17:09:06 bogdan Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -463,7 +463,24 @@ int main(int argc, char** argv)
 				strerror(errno));
 		goto error;
 	}
-	
+
+	/*init mallocs (before parsing cfg !)*/
+#ifdef PKG_MALLOC
+	/*init mem*/
+	mem_block=qm_malloc_init(mem_pool, PKG_MEM_POOL_SIZE);
+	if (mem_block==0){
+		LOG(L_CRIT, "could not initialize memory pool\n");
+		goto error;
+	}
+#endif
+
+#ifdef SHM_MEM
+	if (shm_mem_init()==-1) {
+		LOG(L_CRIT, "could not initialize shared memory pool, exiting...\n");
+		goto error;
+	}
+#endif
+
 	yyin=cfg_stream;
 	if ((yyparse()!=0)||(cfg_errors)){
 		fprintf(stderr, "ERROR: bad config file (%d errors)\n", cfg_errors);
@@ -540,22 +557,7 @@ int main(int argc, char** argv)
 		if ( daemonize(argv[0]) <0 ) goto error;
 	}
 
-#ifdef PKG_MALLOC
-	/*init mem*/
-	mem_block=qm_malloc_init(mem_pool, PKG_MEM_POOL_SIZE);
-	if (mem_block==0){
-		LOG(L_CRIT, "could not initialize memory pool\n");
-		goto error;
-	}
-#endif
-	
-#ifdef SHM_MEM
-	if (shm_mem_init()==-1) {
-		LOG(L_CRIT, "could not initialize shared memory pool, exiting...\n");
-		goto error;
-	}
-#endif
-	
+
 	return main_loop();
 
 
