@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.57 2004/01/18 04:23:12 jiri Exp $
+ *  $Id: config.h,v 1.58 2004/01/18 04:25:13 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -190,6 +190,10 @@
 #define VERSION_TABLE "version"
 #define VERSION_COLUMN "version"
 #define TABLENAME_COLUMN "table_name"
+
+/* minimum packet size; smaller packets will be dropped silently */
+#define MIN_UDP_PACKET        32
+
 
 
 #endif
