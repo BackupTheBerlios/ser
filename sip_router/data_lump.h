@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump.h,v 1.6 2003/04/01 15:43:41 andrei Exp $
+ * $Id: data_lump.h,v 1.7 2003/04/01 15:54:16 andrei Exp $
  *
  * adding/removing headers or any other data chunk from a message
  *
@@ -127,6 +127,11 @@ struct lump* insert_subst_lump_after(struct lump* after,  enum lump_subst subst,
 struct lump* insert_subst_lump_before(struct lump* before,enum lump_subst subst,
 									int type);
 
+/* conditional lumps */
+struct lump* insert_cond_lump_after(struct lump* after, enum lump_conditions c,
+									int type);
+struct lump* insert_cond_lump_before(struct lump* after, enum lump_conditions c,
+									int type);
 
 /* removes an already existing header */
 struct lump* del_lump(struct lump** list, int offset, int len, int type);
