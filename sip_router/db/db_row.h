@@ -1,5 +1,5 @@
 /* 
- * $Id: db_row.h,v 1.1 2002/07/24 14:45:10 janakj Exp $ 
+ * $Id: db_row.h,v 1.2 2002/08/12 11:23:17 janakj Exp $ 
  */
 
 #ifndef DB_ROW_H
@@ -29,4 +29,4 @@ int convert_row(db_con_t* _h, struct db_res* _res, db_row_t* _r);
 int free_row(db_row_t* _r);
 
 
-#endif
+#endif /* DB_ROW_H */

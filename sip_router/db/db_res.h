@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.h,v 1.1 2002/07/24 14:45:10 janakj Exp $ 
+ * $Id: db_res.h,v 1.2 2002/08/12 11:23:17 janakj Exp $ 
  */
 
 #ifndef DB_RES_H
@@ -50,4 +50,4 @@ int convert_result(db_con_t* _h, db_res_t* _r);
 int free_result(db_res_t* _r);
 
 
-#endif
+#endif /* DB_RES_H */

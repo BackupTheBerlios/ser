@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.h,v 1.3 2002/08/08 17:25:32 janakj Exp $ 
+ * $Id: db_val.h,v 1.4 2002/08/12 11:23:17 janakj Exp $ 
  */
 
 #ifndef DB_VAL_H
@@ -65,4 +65,4 @@ int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l);
 int val2str(db_val_t* _v, char* _s, int* _len);
 
 
-#endif
+#endif /* DB_VAL_H */

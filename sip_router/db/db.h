@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.3 2002/07/24 14:45:10 janakj Exp $
+ * $Id: db.h,v 1.4 2002/08/12 11:23:17 janakj Exp $
  */
 
 #ifndef DB_H
@@ -128,4 +128,4 @@ extern db_func_t dbf;
 int bind_dbmod(void);
  
 
-#endif
+#endif /* DB_H */

@@ -1,5 +1,5 @@
 /* 
- * $Id: db_key.h,v 1.1 2002/07/24 14:45:10 janakj Exp $ 
+ * $Id: db_key.h,v 1.2 2002/08/12 11:23:17 janakj Exp $ 
  */
 
 #ifndef DB_KEY_H
@@ -12,4 +12,4 @@
 typedef const char* db_key_t;
 
 
-#endif
+#endif /* DB_KEY_H */
