@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.51 2003/07/07 15:06:23 andrei Exp $
+ * $Id: t_fwd.c,v 1.52 2003/07/08 12:39:13 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -194,11 +194,11 @@ int add_uac( struct cell *t, struct sip_msg *request, str *uri, str* next_hop,
 		proto=get_proto(proto, proxy->proto);
 	}else {
 		proxy=uri2proxy( next_hop ? next_hop : uri, proto );
-		proto=proxy->proto; /* uri2proxy will fix it for us */
 		if (proxy==0)  {
 			ret=E_BAD_ADDRESS;
 			goto error;
 		}
+		proto=proxy->proto; /* uri2proxy will fix it for us */
 		temp_proxy=1;
 	}
 
