@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.63 2003/10/19 17:54:33 bogdan Exp $
+# $Id: sc,v 1.64 2003/10/19 19:11:57 bogdan Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.63 $'
+VERSION='$Revision: 1.64 $'
 #### SQL names
 
 # Usr Loc Table
@@ -73,7 +73,7 @@ USER_COLUMN=username
 CALLID_COLUMN=callid
 
 # subscriber table
-if [ -z "SUB_TABLE" ] ; then
+if [ -z "$SUB_TABLE" ] ; then
 	SUB_TABLE=subscriber
 fi
 REALM_COLUMN=domain
