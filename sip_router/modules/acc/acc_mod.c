@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.34 2004/02/13 18:21:34 bogdan Exp $
+ * $Id: acc_mod.c,v 1.35 2004/05/09 14:57:56 janakj Exp $
  * 
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,6 +42,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "../../sr_module.h"
 #include "../../dprint.h"
@@ -414,7 +415,10 @@ static inline void acc_preparse_req(struct sip_msg *rq)
 	 */
 	parse_headers(rq, HDR_CALLID| HDR_FROM| HDR_TO, 0 );
 	parse_from_header(rq);
-	parse_orig_ruri(rq);
+
+	if (strchr(log_fmt, 'p') || strchr(log_fmt, 'D')) {
+		parse_orig_ruri(rq);
+	}
 }
 
 
