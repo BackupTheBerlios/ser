@@ -1,4 +1,4 @@
-/*$Id: print.c,v 1.12 2003/03/16 20:27:24 janakj Exp $
+/*$Id: print.c,v 1.13 2003/04/30 17:51:24 janakj Exp $
  *
  * Example ser module, it will just print its string parameter to stdout
  *
@@ -38,6 +38,8 @@
 
 #include "../../sr_module.h"
 #include <stdio.h>
+
+MODULE_VERSION
 
 static int print_f(struct sip_msg*, char*,char*);
 static int mod_init(void);
