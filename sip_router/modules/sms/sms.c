@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.21 2002/09/20 17:22:28 bogdan Exp $
+ * $Id: sms.c,v 1.22 2002/09/23 11:29:41 bogdan Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -534,7 +534,7 @@ int global_init()
 
 	/* import the TM auto-loading function */
 	if ( !(load_tm=(load_tm_f)find_export("load_tm", NO_SCRIPT))) {
-		LOG(L_ERR, "ERROR: acc: mod_init: can't import load_tm\n");
+		LOG(L_ERR, "ERROR: sms: global_init: can't import load_tm\n");
 		goto error;
 	}
 	/* let the auto-loading function load all TM stuff */

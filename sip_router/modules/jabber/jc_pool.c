@@ -1,5 +1,5 @@
 /*
- * $Id: jc_pool.c,v 1.10 2002/09/20 17:48:52 bogdan Exp $
+ * $Id: jc_pool.c,v 1.11 2002/09/23 11:29:57 bogdan Rel $
  *
  * JABBER module - Jabber connections pool
  *
@@ -391,7 +391,7 @@ int jab_send_sip_msg(str *to, str *from, str *contact, str *msg)
 	}
 	str_hdr.s = buf1;
 
-	return tmb.t_uac( &msg_type, to, &str_hdr , msg, &tfrom, 0 );
+	return tmb.t_uac( &msg_type, to, &str_hdr , msg, &tfrom, 0 , 0, 0);
 }
 
 /**

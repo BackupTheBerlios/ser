@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.11 2002/09/20 17:48:52 bogdan Exp $
+ * $Id: jabber.c,v 1.12 2002/09/23 11:29:57 bogdan Exp $
  *
  * JABBER module
  *
@@ -166,7 +166,7 @@ static int mod_init(void)
 
 	/* import the TM auto-loading function */
 	if ( !(load_tm=(load_tm_f)find_export("load_tm", NO_SCRIPT))) {
-		LOG(L_ERR, "ERROR: acc: mod_init: can't import load_tm\n");
+		LOG(L_ERR, "ERROR: jabber: mod_init: can't import load_tm\n");
 		return -1;
 	}
 	/* let the auto-loading function load all TM stuff */
