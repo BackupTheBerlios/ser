@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.21 2004/08/24 09:00:35 janakj Exp $
+ * $Id: pike_funcs.c,v 1.22 2004/10/19 17:28:16 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -95,6 +95,11 @@ int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 	/* first lock the proper tree branch and mark the IP with one more hit*/
 	lock_tree_branch( ip->u.addr[0] );
 	node = mark_node( ip->u.addr, ip->len, &father, &flags);
+	if (node==0) {
+		/* even if this is an error case, we return true in script to avoid
+		 * considering the IP as marked (bogdan) */
+		return 1;
+	}
 
 	DBG("DEBUG:pike_check_req: src IP [%s]; hits=[%d,%d],[%d,%d] flags=%d\n",
 		ip_addr2a( ip ),
@@ -131,11 +136,11 @@ int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 			assert( node->hits[CURR_POS] && node->kids ); /* debug */
 		}
 	}
-	//print_timer_list( timer ); /* debug*/
+	/*print_timer_list( timer );*/ /* debug*/
 	lock_release(timer_lock);
 
 	unlock_tree_branch( ip->u.addr[0] );
-	//print_tree( 0 ); /* debug */
+	/*print_tree( 0 );*/ /* debug */
 
 	if (flags&RED_NODE) {
 		LOG(L_WARN,"DEBUG:pike_check_req: ALARM - TOO MANY HITS on "
@@ -165,9 +170,9 @@ void clean_routine(unsigned int ticks , void *param)
 	/* get the expired elements */
 	lock_get( timer_lock );
 	check_and_split_timer( timer, ticks, &head, mask);
-	//print_timer_list(timer); /* debug */
+	/*print_timer_list(timer);*/ /* debug */
 	lock_release( timer_lock );
-	//print_tree( 0 );
+	/*print_tree( 0 );*/  /*debug*/
 
 	/* got something back? */
 	if ( is_list_empty(&head) )
