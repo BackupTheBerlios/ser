@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.12 2002/09/23 11:29:57 bogdan Exp $
+ * $Id: jabber.c,v 1.13 2002/09/24 16:37:18 andrei Rel $
  *
  * JABBER module
  *
@@ -32,8 +32,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <sys/ipc.h>
 #include <sys/types.h>
+#include <sys/ipc.h>
 #include <unistd.h>
 #include <fcntl.h>
 

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.58 2002/09/24 03:45:57 jiri Exp $
+ * $Id: h_table.h,v 1.59 2002/09/24 16:37:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,7 +33,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <arpa/inet.h>
 
 #include "../../parser/msg_parser.h"
 #include "../../types.h"

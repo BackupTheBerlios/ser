@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.30 2002/09/19 12:23:54 jku Exp $
+ * $Id: sl_funcs.c,v 1.31 2002/09/24 16:37:18 andrei Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,8 +26,6 @@
  */
 
 
-#include <netinet/in.h>
-#include <netdb.h>
 #include "../../globals.h"
 #include "../../forward.h"
 #include "../../dprint.h"

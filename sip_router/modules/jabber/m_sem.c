@@ -1,5 +1,5 @@
 /*
- * $Id: m_sem.c,v 1.2 2002/09/19 12:23:53 jku Exp $
+ * $Id: m_sem.c,v 1.3 2002/09/24 16:37:18 andrei Rel $
  *
  * JABBER module
  *
@@ -30,6 +30,7 @@
 
 
 #include <stdio.h>
+#include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
 
