@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_lib.c,v 1.6 2003/06/02 15:41:21 dcm Exp $
+ * $Id: dbt_lib.c,v 1.7 2003/09/15 00:45:41 jiri Exp $
  *
  * DBText library
  *
@@ -83,7 +83,7 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 	dbt_cache_p _dcache=NULL;;
 	if(!_cachesem)
 	{
-		DBG("DBT:dbt_cache_get_db: dbtext cache not initialized!\n");
+		LOG(L_ERR, "DBT:dbt_cache_get_db: dbtext cache not initialized!\n");
 		return NULL;
 	}
 	if(!_s || !_s->s || _s->len<=0)
@@ -112,7 +112,7 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 	}
 	if(!dbt_is_database(_s))
 	{
-		DBG("DBT:dbt_cache_get_db: database [%.*s] does not exists!\n", 
+		LOG(L_ERR, "DBT:dbt_cache_get_db: database [%.*s] does not exists!\n", 
 				_s->len, _s->s);
 		goto done;
 	}
@@ -121,14 +121,14 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 	_dcache = (dbt_cache_p)shm_malloc(sizeof(dbt_cache_t));
 	if(!_dcache)
 	{
-		DBG("DBT:dbt_cache_get_db: no memory.\n");
+		LOG(L_ERR, "DBT:dbt_cache_get_db: no memory for dbt_cache_t.\n");
 		goto done;
 	}
 	
 	_dcache->dbp = (dbt_db_p)shm_malloc(sizeof(dbt_db_t));
 	if(!_dcache->dbp)
 	{
-		DBG("DBT:dbt_cache_get_db: no memory!\n");
+		LOG(L_ERR, "DBT:dbt_cache_get_db: no memory for dbt_db_t!\n");
 		shm_free(_dcache);
 		goto done;
 	}
@@ -136,7 +136,7 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 	_dcache->dbp->name.s = (char*)shm_malloc(_s->len*sizeof(char));
 	if(!_dcache->dbp->name.s)
 	{
-		DBG("DBT:dbt_cache_get_db: no memory!!\n");
+		LOG(L_ERR, "DBT:dbt_cache_get_db: no memory for s!!\n");
 		shm_free(_dcache->dbp);
 		shm_free(_dcache);
 		_dcache = NULL;
@@ -149,7 +149,7 @@ dbt_cache_p dbt_cache_get_db(str *_s)
 	
 	if(!lock_init(&_dcache->sem))
 	{
-		DBG("DBT:dbt_cache_get_db: no sems!\n");
+		LOG(L_ERR, "DBT:dbt_cache_get_db: no sems!\n");
 		shm_free(_dcache->dbp->name.s);
 		shm_free(_dcache->dbp);
 		shm_free(_dcache);
