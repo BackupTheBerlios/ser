@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.32 2002/02/27 10:33:14 jku Exp $
+ * $Id: tm.c,v 1.33 2002/03/01 10:51:46 janakj Exp $
  *
  * TM module
  *
@@ -94,7 +94,8 @@ static struct module_exports nm_exports= {
 	(response_function) t_on_reply_received,
 #endif
 	(destroy_function) tm_shutdown,
-	w_onbreak
+	w_onbreak,
+	0  /* per-child init function */
 };
 
 
