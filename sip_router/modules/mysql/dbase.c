@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.17 2002/12/02 09:17:45 janakj Exp $ 
+ * $Id: dbase.c,v 1.18 2003/07/02 20:44:13 bogdan Exp $ 
  *
  * MySQL module core functions
  *
@@ -144,7 +144,9 @@ static inline int submit_query(db_con_t* _h, const char* _s)
 		return -1;
 	}
 #endif
-	DBG("submit_query(): %s\n", _s);
+	/* screws up the terminal when the query contains a BLOB :-( (by bogdan)
+	 * DBG("submit_query(): %s\n", _s);
+	 */
 	if (mysql_query(CON_CONNECTION(_h), _s)) {
 		LOG(L_ERR, "submit_query(): %s\n", mysql_error(CON_CONNECTION(_h)));
 		return -2;
