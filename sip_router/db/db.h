@@ -1,3 +1,7 @@
+/*
+ * $Id: db.h,v 1.2 2002/07/09 09:16:05 janakj Exp $
+ */
+
 #ifndef __DB_H__
 #define __DB_H__
 
@@ -5,8 +9,6 @@
 
 /*
  * Generic database interface
- *
- * $id$
  */
 
 
