@@ -1,5 +1,5 @@
 /**
- * $Id: dispatcher.c,v 1.2 2004/08/24 08:58:27 janakj Exp $
+ * $Id: dispatcher.c,v 1.3 2004/11/09 17:50:26 andrei Exp $
  *
  * dispatcher module -- stateless load balancing
  *
@@ -137,7 +137,7 @@ void destroy(void)
 
 static int ds_fixup(void** param, int param_no)
 {
-	int n;
+	long n;
 	int err;
 	if(param_no==1 || param_no==2)
 	{

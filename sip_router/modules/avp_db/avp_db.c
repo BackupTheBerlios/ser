@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.1 2004/11/01 10:27:04 janakj Exp $
+ * $Id: avp_db.c,v 1.2 2004/11/09 17:50:26 andrei Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -335,7 +335,7 @@ static int load_avp(struct sip_msg* msg, char* attr, char* _dummy)
 
 static int load_avp_fixup(void** param, int param_no)
 {
-	int id = 0;
+	long id = 0;
 
 	if (param_no == 1) {
 		if (!strcasecmp(*param, "caller_uuid")) {

@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.280 2004/11/09 15:15:11 andrei Exp $
+# $Id: Makefile.defs,v 1.281 2004/11/09 17:50:26 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -479,7 +479,7 @@ ifeq			($(CC_SHORTVER), 3.0)
 					CPU ?= athlon64
 					CFLAGS+=-minline-all-stringops \
 							-falign-loops \
-							-mcpu=$(CPU) \
+							#-mcpu=$(CPU) \ # not working on all x86_64 gccs
 							#-mcpu=athlon
 else
 ifeq			($(CC_SHORTVER), 2.9x) #older gcc version (2.9[1-5])

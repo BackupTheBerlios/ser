@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.5 2004/11/01 13:37:24 janakj Exp $
+ * $Id: avp.c,v 1.6 2004/11/09 17:50:26 andrei Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -115,7 +115,7 @@ static int set_iattr(struct sip_msg* msg, char* attr, char* nr)
 {
 	int_str name, value;
 
-	value.n = (int)nr;
+	value.n = (int)(long)nr;
 	name.s = (str*)attr;
 
 	if (add_avp(AVP_NAME_STR, name, value) != 0) {

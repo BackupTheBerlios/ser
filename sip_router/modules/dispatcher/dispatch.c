@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.c,v 1.3 2004/09/01 17:06:52 janakj Exp $
+ * $Id: dispatch.c,v 1.4 2004/11/09 17:50:26 andrei Exp $
  *
  * dispatcher module
  * 
@@ -496,8 +496,8 @@ int ds_select_dst(struct sip_msg *msg, char *set, char *alg)
 		return -1;
 	}
 	
-	s = (int)set;
-	a = (int)alg;
+	s = (int)(long)set;
+	a = (int)(long)alg;
 
 	/* get the index of the set */
 	si = _ds_index;
