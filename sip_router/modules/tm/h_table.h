@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.33 2001/12/06 12:21:13 bogdan Exp $
+ * $Id: h_table.h,v 1.34 2001/12/06 13:12:53 bogdan Exp $
  */
 
 
@@ -29,6 +29,10 @@ struct timer;
 /* always use a power of 2 for hash table size */
 #define TABLE_ENTRIES  256
 #define MAX_FORK           20
+
+
+#define T_UNDEFINED 	( (struct cell*) -1 )
+#define T_NULL		( (struct cell*) 0 )
 
 
 /* timer list: includes head, tail and protection semaphore */

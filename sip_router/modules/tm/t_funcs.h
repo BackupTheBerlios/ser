@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.19 2001/12/05 22:14:30 jku Exp $
+ * $Id: t_funcs.h,v 1.20 2001/12/06 13:12:53 bogdan Exp $
  */
 
 
@@ -26,8 +26,6 @@ struct cell;
 #include "lock.h"
 #include "sip_msg.h"
 
-#define T_UNDEFINED 	( (struct cell*) -1 )
-#define T_NULL		( (struct cell*) 0 )
 
 /* already defined in msg_parser.h
 #define get_cseq( p_msg)    ((struct cseq_body*)p_msg->cseq->parsed)
