@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.9 2002/05/16 19:12:14 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.10 2002/05/22 15:20:13 bogdan Exp $
  */
 
 #include <netinet/in.h>
@@ -70,6 +70,12 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	{
 		LOG(L_ERR, "ERROR: sl_send_reply: cannot lookup reply dst: %s\n",
 			msg->via1->host.s );
+		goto error;
+	}
+	/* To header is needed (tag param in particular)*/
+	if (parse_headers(msg,HDR_TO)==-1 || msg->to==0)
+	{
+		LOG(L_ERR, "ERROR: sl_send_reply: cannot find/parse To\n");
 		goto error;
 	}
 	/* to:tag is added only for INVITEs without To tag in order

@@ -1,5 +1,5 @@
 /*
- * $Id: mf_funcs.c,v 1.11 2002/05/15 13:43:49 bogdan Exp $
+ * $Id: mf_funcs.c,v 1.12 2002/05/22 15:20:13 bogdan Exp $
  */
 
 #include <stdlib.h>
@@ -35,7 +35,8 @@ int is_maxfwd_present( struct sip_msg* msg , str *foo)
 	}
 
 	/* if header is present, trim to get only the string containing numbers */
-	foo->len = msg->maxforwards->body.len;
+	trim_len( foo->len , foo->s , msg->maxforwards->body );
+	/*foo->len = msg->maxforwards->body.len;
 	foo->s   = msg->maxforwards->body.s;
 	while (foo->len &&((c=foo->s[0])==0||c==' '||c=='\n'||c=='\r'||c=='\t'))
 	{
@@ -44,7 +45,7 @@ int is_maxfwd_present( struct sip_msg* msg , str *foo)
 	}
 	while(foo->len && ((c=foo->s[foo->len-1])==0||c==' '||c=='\n'||c=='\r'
 	||c=='\t') )
-		foo->len--;
+		foo->len--;*/
 
 	/* convert from string to number */
 	x = str2s( (unsigned char*)foo->s,foo->len,&err);
