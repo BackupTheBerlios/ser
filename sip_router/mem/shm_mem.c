@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.11 2002/05/09 18:39:18 jku Exp $
+/* $Id: shm_mem.c,v 1.12 2002/05/09 18:40:54 jku Exp $
  *
  * Shared memory functions
  */
@@ -89,7 +89,7 @@ void* _shm_resize( void* p , unsigned int s)
 	#ifdef __SUNPRO_C
 		/*no warning support on Sun cc */
 	#else
-		#ifdef 0
+		#ifdef _NO_NO_NO
 			#warning shm_resize performs suboptimally without VQ_MALLOC!
 		#endif
 	#endif
