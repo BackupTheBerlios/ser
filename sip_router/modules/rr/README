@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.2 2002/11/14 14:01:41 janakj Exp $
+# $Id: README,v 1.3 2003/01/19 22:00:30 jiri Exp $
 #
 # Route & Record-Route module
 #
@@ -10,7 +10,14 @@ Module depends on: None
 Exported Parameters:
 -------------------
 
-The module exports no parameters.
+Name:	append_fromtag
+Type:	int
+Default: 1 (yes)
+Desc:	if turned on, request's from-tag is appended to 
+		record-route; that's useful for understanding whether
+		subsequent requests (such as BYE) come from caller
+		(route's from-tag==BYE's from-tag) or callee
+		(route's from-tag==BYE's to-tag)
 
 
 Exported Functions:

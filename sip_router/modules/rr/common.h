@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: common.h,v 1.1 2002/11/14 14:01:41 janakj Exp $
+ * $Id: common.h,v 1.2 2003/01/19 22:00:30 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,9 +36,15 @@
 #include "../../str.h"
 
 #define RR_PREFIX "Record-Route: <sip:"
-#define RR_PREFIX_LEN 19
+#define RR_PREFIX_LEN (sizeof(RR_PREFIX)-1)
+#define RR_LR_TERM ";lr>\r\n"
+#define RR_LR_TERM_LEN (sizeof(RR_LR_TERM)-1)
+#define RR_SR_TERM ">\r\n"
+#define RR_SR_TERM_LEN (sizeof(RR_SR_TERM)-1)
 
-#define MAX_RR_LEN 100
+#define RR_FROMTAG ";ftag="
+#define RR_FROMTAG_LEN (sizeof(RR_FROMTAG)-1)
+
 
 extern char rr_hash[MD5_LEN];
 
@@ -86,12 +92,14 @@ int rewrite_RURI(struct sip_msg* _m, str* _s);
 int remove_TMRoute(struct sip_msg* _m, struct hdr_field* _route, str* _uri);
 
 
+#ifdef _OBSOL /* static now */
 /*
  * Builds Record-Route line
  * Returns 0 on success, negative number on a failure
  * if _lr is set to 1, ;lr parameter will be used
  */
 int build_RR(struct sip_msg* _m, str* _l, int _lr);
+#endif
 
 
 /*
