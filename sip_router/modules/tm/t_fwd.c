@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.11 2002/03/25 16:26:34 bogdan Exp $
+ * $Id: t_fwd.c,v 1.12 2002/04/02 16:11:49 bogdan Exp $
  *
  */
 
@@ -80,13 +80,16 @@ int t_forward_nonack( struct sip_msg* p_msg , unsigned int dest_ip_param ,
 		}
 	}/* end special case CANCEL*/
 
+#ifndef USE_SYNONIM
+	if ( add_branch_label( T_source, T->uas.request , branch )==-1)
+		goto error;
+#endif
+
 	DBG("DEBUG: t_forward_nonack: nr_forks=%d\n",nr_forks);
 	for(branch=0;branch<nr_forks+1;branch++)
 	{
 		DBG("DEBUG: t_forward_nonack: branch = %d\n",branch);
 		/*generates branch param*/
-		//if ( add_branch_label( T_source, T->uas.request , branch )==-1)
-		//	goto error;
 		if ( add_branch_label( T_source, p_msg , branch )==-1)
 			goto error;
 		/* remove all the HDR_VIA type lumps */

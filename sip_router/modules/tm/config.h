@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.6 2002/03/25 16:26:34 bogdan Exp $
+ * $Id: config.h,v 1.7 2002/04/02 16:11:49 bogdan Exp $
  *
  */
 
@@ -38,6 +38,7 @@
    replaced by a subsequent, longer message
 */
 #define REPLY_OVERBUFFER_LEN 160
+#define TAG_OVERBUFFER_LEN 32
 
 /* character which separates individual parts of MPLS-ized branch */
 #ifdef BRUT_HACK
