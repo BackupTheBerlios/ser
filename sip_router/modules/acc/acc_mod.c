@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.9 2002/10/22 19:24:20 kozlik Exp $
+ * $Id: acc_mod.c,v 1.10 2002/10/24 15:30:24 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -108,7 +108,7 @@ int missed_flag = 2;
 int report_ack = 1;
 
 /* log to syslog too*/
-int usesyslog = 0;
+int usesyslog = 1;
 
 /* ------------- Callback handlers --------------- */
 
