@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.48 2003/04/07 06:36:56 jiri Exp $
+ *  $Id: config.h,v 1.49 2003/05/07 08:19:57 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -125,7 +125,7 @@
    avoid terror of excessively huge messages; they are
    useless anyway
 */
-#define BUF_SIZE 3040
+#define BUF_SIZE 65535
 
 /* forwarding  -- Via buffer dimensioning */
 #define MAX_VIA_LINE_SIZE	240
