@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.22 2004/06/08 10:55:30 andrei Exp $
+ * $Id: pa_mod.c,v 1.23 2004/08/16 21:41:44 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -46,9 +46,7 @@
 #include "location.h"
 #include "pa_mod.h"
 
-
 MODULE_VERSION
-
 
 static int pa_mod_init(void);  /* Module initialization function */
 static int pa_child_init(int _rank);  /* Module child init function */
