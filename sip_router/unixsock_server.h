@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.h,v 1.3 2004/03/03 20:41:52 janakj Exp $
+ * $Id: unixsock_server.h,v 1.4 2004/03/04 12:23:05 janakj Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -129,7 +129,7 @@ int unixsock_read_lineset(str* lineset, str* source);
 /*
  * Return the address of the sender
  */
-struct sockaddr_un* unixsock_sender_address(void);
+struct sockaddr_un* unixsock_sender_addr(void);
 
 
 #endif /* _UNIXSOCK_SERVER_H */
