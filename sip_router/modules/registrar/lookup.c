@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.4 2002/09/02 20:33:54 janakj Exp $
+ * $Id: lookup.c,v 1.5 2002/09/05 18:00:13 janakj Exp $
  *
  * Lookup contacts in usrloc
  */
@@ -102,6 +102,7 @@ int lookup(struct sip_msg* _m, char* _t, char* _s)
 		ptr = ptr->next;
 	} else {
 		     /* All contacts expired */
+		ul_unlock_udomain((udomain_t*)_t);
 		return -7;
 	}
 	
