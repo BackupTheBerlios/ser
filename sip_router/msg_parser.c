@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.22 2001/11/29 19:27:45 jku Exp $
+ * $Id: msg_parser.c,v 1.23 2001/11/30 01:03:02 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -948,16 +948,22 @@ void free_sip_msg(struct sip_msg* msg)
 }
 
 
+#if 0
+/* it's a macro now*/
 /* make sure all HFs needed for transaction identification have been
    parsed; return 0 if those HFs can't be found
 */
 int check_transaction_quadruple( struct sip_msg* msg )
 {
    return 
+	(parse_headers(msg, HDR_FROM|HDR_TO|HDR_CALLID|HDR_CSEQ)!=-1 &&
+	 msg->from && msg->to && msg->callid && msg->cseq);
+  /* replaced by me ( :) andrei)
    ( (msg->from || (parse_headers( msg, HDR_FROM)!=-1 && msg->from)) &&
    (msg->to|| (parse_headers( msg, HDR_TO)!=-1 && msg->to)) &&
    (msg->callid|| (parse_headers( msg, HDR_CALLID)!=-1 && msg->callid)) &&
    (msg->cseq|| (parse_headers( msg, HDR_CSEQ)!=-1 && msg->cseq)) ) ? 1 : 0;
+  */
 
 }
-
+#endif

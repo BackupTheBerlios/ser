@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.9 2001/11/29 00:32:49 jku Exp $
+# $Id: Makefile,v 1.10 2001/11/30 01:03:02 andrei Exp $
 #
 # print example module makefile
 #
@@ -13,7 +13,7 @@ depends= $(sources:.c=.d)
 NAME=tm.so
 
 SHLIB_LD_FLAGS= -shared
-LIBS= -lpthread
+LIBS= #-lpthread
 
 ifeq ($(ARCH), SunOS)
 LDFLAGS=-O2 -G

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.32 2001/11/29 12:49:49 jku Exp $
+ * $Id: main.c,v 1.33 2001/11/30 01:03:02 andrei Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.32 2001/11/29 12:49:49 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.33 2001/11/30 01:03:02 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -300,7 +300,7 @@ static void sig_usr(int signo)
 		pkg_status();
 #endif
 #ifdef SHM_MEM
-		sh_status();
+		shm_status();
 #endif
 		DPrint("INT received, program terminates\n");
 		DPrint("Thank you for flying ser\n");
@@ -317,7 +317,7 @@ static void sig_usr(int signo)
 		pkg_status();
 #endif
 #ifdef SHM_MEM
-		sh_status();
+		shm_status();
 #endif
 	}
 }
