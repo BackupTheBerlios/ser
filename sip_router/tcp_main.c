@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.38 2003/08/19 14:32:55 andrei Exp $
+ * $Id: tcp_main.c,v 1.39 2003/08/21 10:57:23 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -1005,6 +1005,11 @@ void destroy_tcp()
 	if(tcpconn_id_hash){
 		shm_free(tcpconn_id_hash);
 		tcpconn_id_hash=0;
+	}
+	
+	if(connection_id){
+		shm_free(connection_id);
+		connection_id=0;
 	}
 }
 
