@@ -1,5 +1,5 @@
 /* 
- * $Id: my_con.c,v 1.1 2004/01/26 12:46:15 janakj Exp $
+ * $Id: my_con.c,v 1.2 2004/08/03 17:22:06 janakj Exp $
  *
  *
  * Copyright (C) 2001-2004 iptel.org
@@ -27,6 +27,7 @@
  */
 
 #include <string.h>
+#include <time.h>
 #include "my_con.h"
 #include "../../mem/mem.h"
 #include "../../dprint.h"
@@ -68,6 +69,8 @@ struct my_con* new_connection(struct my_id* id)
 		mysql_close(ptr->con);
 		goto err;
 	}
+
+	ptr->timestamp = time(0);
 
 	ptr->id = id;
 	return ptr;
