@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.45 2004/09/01 17:06:26 janakj Exp $
+ * $Id: msg_parser.h,v 1.46 2004/09/04 10:30:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -67,8 +67,10 @@
 enum request_method { METHOD_UNDEF=0, METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_ACK=4, 
 	METHOD_BYE=8, METHOD_OTHER=16 };
 
-#define FL_FORCE_RPORT 1 /* force rport */
-#define FL_FORCE_ACTIVE 2 /* force active SDP */
+#define FL_FORCE_RPORT 1   /* force rport */
+#define FL_FORCE_ACTIVE 2  /* force active SDP */
+#define FL_SDP_IP_AFS 4    /* SDP IP rewritten */
+#define FL_SDP_PORT_AFS 8  /* SDP port rewritten */
 
 
 #define IFISMETHOD(methodname,firstchar)                                  \
