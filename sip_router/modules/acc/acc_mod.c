@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.22 2003/04/27 18:17:23 jiri Exp $
+ * $Id: acc_mod.c,v 1.23 2003/04/29 21:02:59 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -162,6 +162,7 @@ static param_export_t params[] = {
 	{"radius_config",		STR_PARAM, &radius_config		},
 	{"radius_flag",				INT_PARAM, &radius_flag			},
 	{"radius_missed_flag",		INT_PARAM, &radius_missed_flag		},
+	{"service_type", 		INT_PARAM, &service_type },
 #endif
 	/* db-specific */
 #ifdef SQL_ACC

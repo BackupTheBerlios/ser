@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.13 2003/04/27 01:35:59 jiri Exp $
+ * $Id: acc.c,v 1.14 2003/04/29 21:02:59 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -62,6 +62,7 @@ static int rad_attr[] = {PW_USER_NAME,
 	PW_CALLING_STATION_ID, PW_CALLED_STATION_ID,
 	PW_SIP_TRANSLATED_REQ_URI, PW_ACCT_SESSION_ID, PW_SIP_TO_TAG, 
 	PW_SIP_FROM_TAG, PW_SIP_CSEQ };
+int service_type=SIP_SERVICE_TYPE;
 #endif
 
 
@@ -536,7 +537,7 @@ int acc_rad_request( struct sip_msg *rq, struct hdr_field *to,
 		LOG(L_ERR, "ERROR: acc_rad_request: add STATUS_TYPE\n");
 		goto error;
 	}
-	av_type=SIP_SERVICE_TYPE;
+	av_type=service_type;
 	if (!rc_avpair_add(&send, PW_SERVICE_TYPE, &av_type,0)) {
 		LOG(L_ERR, "ERROR: acc_rad_request: add STATUS_TYPE\n");
 		goto error;

@@ -1,5 +1,5 @@
 /*
- * $Id: acc.h,v 1.7 2003/04/05 14:05:18 jiri Exp $
+ * $Id: acc.h,v 1.8 2003/04/29 21:02:59 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -92,6 +92,9 @@
 #define A_EOL_LEN (sizeof(A_EOL)-1)
 
 
+#ifdef RAD_ACC
+extern int service_type;
+#endif
 
 
 int acc_log_request( struct sip_msg *rq, struct hdr_field *to,
