@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.8 2003/01/28 16:46:44 andrei Exp $
+ * $Id: tcp_main.c,v 1.9 2003/01/28 19:35:03 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -284,6 +284,7 @@ no_id:
 			response[1]=CONN_NEW;
 			n=write(unix_tcp_sock, response, sizeof(response));
 			n=send_fd(unix_tcp_sock, &c, sizeof(c), c->s);
+			fd=c->s;
 			goto send_it;
 		}
 get_fd:
