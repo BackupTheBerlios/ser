@@ -1,11 +1,12 @@
 /*
- * $Id: parser_f.c,v 1.3 2001/10/06 22:17:53 jku Exp $
+ * $Id: parser_f.c,v 1.4 2001/11/16 00:20:54 andrei Exp $
  *
  * parser helper  functions
  *
  */
 
 #include  "parser_f.h"
+#include "ut.h"
 
 /* returns pointer to next line or after the end of buffer */
 char* eat_line(char* buffer, unsigned int len)
@@ -17,7 +18,7 @@ char* eat_line(char* buffer, unsigned int len)
  		  as I do not care about CR
 	*/
 #ifdef NOCR
-	nl=(char *)memchr( buffer, '\n', len );
+	nl=(char *)q_memchr( buffer, '\n', len );
 	if ( nl ) { 
 		c=* nl;
 		if ( nl + 1 < buffer+len)  nl++;
