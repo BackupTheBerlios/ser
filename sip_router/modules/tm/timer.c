@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.42 2003/03/06 17:43:17 jiri Exp $
+ * $Id: timer.c,v 1.43 2003/03/13 11:05:18 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -280,7 +280,7 @@ inline static void retransmission_handler( void *attr)
 			DBG("DEBUG: retransmission_handler : "
 				"request resending (t=%p, %.9s ... )\n", 
 				r_buf->my_T, r_buf->buffer);
-			if (SEND_BUFFER( r_buf )<=0) {
+			if (SEND_BUFFER( r_buf )==-1) {
 				reset_timer( &r_buf->fr_timer );
 				fake_reply(r_buf->my_T, r_buf->branch, 503 );
 				return;
