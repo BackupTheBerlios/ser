@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.39 2004/09/24 01:29:29 jiri Exp $ 
+ * $Id: udomain.c,v 1.40 2004/11/14 22:30:32 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -312,10 +312,11 @@ int preload_udomain(db_con_t* _c, udomain_t* _d)
 			received.s  = (char*)VAL_STRING(ROW_VALUES(row) + 10);
 			if (received.s) {
 				received.len = strlen(received.s);
+				rec = &received;
 			} else {
 				received.len = 0;
+				rec = 0;
 			}
-			rec = &received;
 		} else {
 			rec = 0;
 		}

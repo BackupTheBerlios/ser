@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.13 2004/09/27 03:32:15 jiri Exp $
+ * $Id: dset.c,v 1.14 2004/11/14 22:30:32 janakj Exp $
  *
  * destination set
  *
@@ -166,10 +166,13 @@ int append_branch(struct sip_msg* msg, char* uri, int uri_len, char* dst_uri, in
 	branches[nr_branches].len = uri_len;
 	branches[nr_branches].q = q;
 	
-	if (dst_uri) {
-		memcpy(branches[nr_branches].dst_uri, dst_uri, dst_uri_len);
-		branches[nr_branches].dst_uri[dst_uri_len] = 0;
-		branches[nr_branches].dst_uri_len = dst_uri_len;
+ 	if (dst_uri && dst_uri_len) {
+  		memcpy(branches[nr_branches].dst_uri, dst_uri, dst_uri_len);
+  		branches[nr_branches].dst_uri[dst_uri_len] = 0;
+  		branches[nr_branches].dst_uri_len = dst_uri_len;
+ 	} else {
+ 		branches[nr_branches].dst_uri[0] = '\0';
+ 		branches[nr_branches].dst_uri_len = 0;
 	}
 
 	nr_branches++;
