@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.h,v 1.8 2002/11/14 14:33:16 janakj Exp $
+ * $Id: dlist.h,v 1.9 2003/04/30 22:20:09 sobomax Exp $
  *
  * List of registered domains
  *
@@ -80,6 +80,10 @@ int synchronize_all_udomains(void);
  */
 int preload_all_udomains(void);
 
+/*
+ * Get contacts to all registered users
+ */
+int get_all_ucontacts(void *, int);
 
 /*
  * Find a particular domain
