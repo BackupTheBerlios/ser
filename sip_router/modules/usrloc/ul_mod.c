@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.41 2004/09/14 12:43:37 janakj Exp $
+ * $Id: ul_mod.c,v 1.42 2004/09/19 20:22:51 andrei Exp $
  *
  * Usrloc module interface
  *
@@ -241,12 +241,13 @@ static int mod_init(void)
 			LOG(L_ERR, "ERROR: mod_init(): Can't bind database module\n");
 			return -1;
 		}
+		if (!DB_CAPABILITY(ul_dbf, DB_CAP_ALL)) {
+			LOG(L_ERR, "usrloc:mod_init: Database module does not implement"
+						" all functions needed by the module\n");
+			return -1;
+		}
 	}
 
-	if (!DB_CAPABILITY(ul_dbf, DB_CAP_ALL)) {
-		LOG(L_ERR, "usrloc:mod_init: Database module does not implement all functions needed by the module\n");
-		return -1;
-	}
 
 	return 0;
 }

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.130 2004/09/06 14:53:41 andrei Exp $
+# $Id: Makefile,v 1.131 2004/09/19 20:22:51 andrei Exp $
 #
 # sip_router makefile
 #
@@ -48,7 +48,7 @@ skip_modules?=
 exclude_modules?= 			cpl ext extcmd \
 							postgres snmp \
 							im \
-							jabber \
+							jabber mysql \
 							cpl-c \
 							auth_radius group_radius uri_radius \
 							pa

@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.37 2004/09/01 11:22:27 janakj Exp $ 
+ * $Id: udomain.c,v 1.38 2004/09/19 20:22:51 andrei Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -165,6 +165,7 @@ void free_udomain(udomain_t* _d)
 		shm_free(_d->table);
 	}
 	unlock_udomain(_d);
+	lock_destroy(&_d->lock);/* destroy the lock (required for SYSV sems!)*/
 
         shm_free(_d);
 }
