@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.13 2005/02/24 03:39:07 jamey Exp $
+ * $Id: watcher.h,v 1.14 2005/04/04 14:24:31 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,6 +42,9 @@ typedef enum doctype {
 	DOC_XPIDF = MIMETYPE(APPLICATION,XPIDFXML),
 	DOC_LPIDF = MIMETYPE(APPLICATION,LPIDFXML),
 	DOC_PIDF =  MIMETYPE(APPLICATION,PIDFXML),
+#ifdef SUBTYPE_XML_MSRTC_PIDF
+	DOC_MSRTC_PIDF =  MIMETYPE(APPLICATION,XML_MSRTC_PIDF),
+#endif
 	DOC_WINFO = MIMETYPE(APPLICATION,WATCHERINFOXML),
 //	DOC_XCAP_CHANGE = (1 << 4),
 //	DOC_LOCATION = (1 << 5),
