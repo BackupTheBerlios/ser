@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.c,v 1.6 2001/11/15 23:39:36 andrei Exp $
+ * $Id: proxy.c,v 1.7 2001/12/05 22:04:37 jku Exp $
  *
  * proxy list & assoc. functions
  *
@@ -12,6 +12,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <sys/socket.h>
 
 #ifdef DNS_IP_HACK
 #include "ut.h"
