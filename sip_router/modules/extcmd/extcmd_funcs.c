@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd_funcs.c,v 1.7 2003/02/25 17:30:30 bogdan Exp $
+ * $Id: extcmd_funcs.c,v 1.8 2003/02/28 21:58:24 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -422,6 +422,7 @@ int send_sip_req(str* msg_type, str *msg, int client_fd)
 	/* send the message */
 	ret = tmb.t_uac_dlg(  msg_type,   /* request type */
 			0,                        /* Real destination */
+			PROTO_UDP,
 			&to,                      /* Request-URI */
 			&to,                      /* To */
 			&from,                    /* From */
