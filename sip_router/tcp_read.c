@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.12 2003/02/20 18:13:22 andrei Exp $
+ * $Id: tcp_read.c,v 1.13 2003/02/20 19:50:31 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -44,6 +44,7 @@
 #include <sys/socket.h>
 
 #include <unistd.h>
+#include <stdlib.h> /* for abort() */
 
 
 #include "dprint.h"

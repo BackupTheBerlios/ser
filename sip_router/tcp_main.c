@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.13 2003/02/20 18:30:15 andrei Exp $
+ * $Id: tcp_main.c,v 1.14 2003/02/20 19:50:31 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -803,7 +803,7 @@ int tcp_init_children()
 	
 	/* fork children & create the socket pairs*/
 	for(r=0; r<tcp_children_no; r++){
-		if (socketpair(AF_LOCAL, SOCK_STREAM, 0, sockfd)<0){
+		if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockfd)<0){
 			LOG(L_ERR, "ERROR: tcp_main: socketpair failed: %s\n",
 					strerror(errno));
 			goto error;
