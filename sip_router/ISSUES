@@ -1,5 +1,5 @@
 #
-# $Id: ISSUES,v 1.7 2002/10/15 15:23:47 andrei Exp $
+# $Id: ISSUES,v 1.8 2002/10/22 20:37:43 andrei Exp $
 #
 
 This is a collection of issues which have shown up
@@ -31,7 +31,7 @@ Desc: local domain mismatch resulting in infinite loops
 BugId: n/a
 Reason: aliases do not support reverse DNS lookups yet
 Workaround: Start ser with "alias=hostname" in config file
-CVS status: not fixed
+CVS status: fixed
 ---------------------------------------------------------------
 Desc: sendto problems on FreeBSD
       (when using tm sendto fails because of bad sockaddr len passed
