@@ -1,4 +1,4 @@
-/* $Id: lock_alloc.h,v 1.2 2003/03/17 16:49:31 andrei Exp $ */
+/* $Id: lock_alloc.h,v 1.3 2003/03/19 18:41:58 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -60,7 +60,7 @@ Implements: (see also locking.h)
 #if defined(FAST_LOCK) || defined(USE_PTHREAD_MUTEX) || defined(USE_POSIX_SEM)
 /* simple locks*/
 #define lock_alloc() shm_malloc(sizeof(gen_lock_t))
-#define lock_dealloc(lock) shm_free(lock)
+#define lock_dealloc(lock) shm_free((void*)lock)
 /* lock sets */
 
 inline static lock_set_t* lock_set_alloc(int n)
@@ -82,7 +82,7 @@ inline static lock_set_t* lock_set_alloc(int n)
 
 /*simple locks*/
 #define lock_alloc() shm_malloc(sizeof(gen_lock_t))
-#define lock_dealloc(lock) shm_free(lock)
+#define lock_dealloc(lock) shm_free((void*)lock)
 /* lock sets */
 
 inline static lock_set_t* lock_set_alloc(int n)

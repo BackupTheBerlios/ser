@@ -1,5 +1,5 @@
 /*
- * $Id: flags.c,v 1.4 2002/11/26 15:29:51 andrei Exp $
+ * $Id: flags.c,v 1.5 2003/03/19 18:41:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -23,6 +23,11 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+/*
+ * History:
+ * --------
+ *  2003-03-19  replaced all mallocs/frees w/ pkg_malloc/pkg_free (andrei)
  */
 
 
@@ -75,11 +80,12 @@ static int fixup_t_flag(void** param, int param_no)
 	DBG("DEBUG: fixing flag: %s\n", (char *) (*param));
 
 	if (param_no!=1) {
-		LOG(L_ERR, "ERROR: TM module: only parameter #1 for flags can be fixed\n");
+		LOG(L_ERR, "ERROR: TM module: only parameter #1 for flags can be"
+					" fixed\n");
 		return E_BUG;
 	};
 
-	if ( !(code = malloc( sizeof( unsigned int) )) ) return E_OUT_OF_MEM;
+	if ( !(code =pkg_malloc( sizeof( unsigned int) )) ) return E_OUT_OF_MEM;
 
 	*code = 0;
 	c = *param;
@@ -121,14 +127,14 @@ static int fixup_t_flag(void** param, int param_no)
 	}
 
 	/* free string */
-	free( *param );
+	pkg_free( *param );
 	/* fix now */
 	*param = code;
 	
 	return 0;
 
 error:
-	free( code );
+	pkg_free( code );
 	return E_CFG;
 }
 
