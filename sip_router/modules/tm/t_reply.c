@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.33 2002/09/25 20:23:42 jiri Exp $
+ * $Id: t_reply.c,v 1.34 2002/09/25 21:36:28 jiri Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -269,7 +269,8 @@ int t_retransmit_reply( struct cell *t )
 	   not yet, don't try to retransmit
 	*/
 	if (!t->uas.response.send_sock) {
-		LOG(L_ERR, "ERROR: no resolved dst to retransmit\n");
+		LOG(L_WARN, "WARNING: t_retransmit_reply: "
+			"no resolved dst to retransmit\n");
 		return -1;
 	}
 
