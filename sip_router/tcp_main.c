@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.50 2003/12/11 14:02:32 andrei Exp $
+ * $Id: tcp_main.c,v 1.51 2004/02/26 18:00:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -93,6 +93,7 @@
 #include "sr_module.h"
 #include "tcp_server.h"
 #include "tcp_init.h"
+#include "tsend.h"
 #ifdef USE_TLS
 #include "tls/tls_server.h"
 #endif
@@ -236,6 +237,7 @@ end:
 
 
 
+#if 0
 /* blocking write even on non-blocking sockets 
  * if TCP_TIMEOUT will return with error */
 static int tcp_blocking_write(struct tcp_connection* c, int fd, char* buf,
@@ -303,6 +305,7 @@ error:
 end:
 		return initial_len;
 }
+#endif
 
 
 
@@ -754,7 +757,8 @@ send_it:
 		n=tls_blocking_write(c, fd, buf, len);
 	else
 #endif
-		n=tcp_blocking_write(c, fd, buf, len);
+		/* n=tcp_blocking_write(c, fd, buf, len); */
+		n=tsend_stream(fd, buf, len, tcp_send_timeout*1000); 
 	lock_release(&c->write_lock);
 	DBG("tcp_send: after write: c= %p n=%d fd=%d\n",c, n, fd);
 	DBG("tcp_send: buf=\n%.*s\n", (int)len, buf);

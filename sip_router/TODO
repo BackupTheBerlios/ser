@@ -1,7 +1,8 @@
-$Id: TODO,v 1.83 2003/12/03 20:21:54 andrei Exp $
+$Id: TODO,v 1.84 2004/02/26 18:00:49 andrei Exp $
 
 ( - todo, x - done)
 
+- [doc] document force_rport()
 - [fifo] fix fgets error handling (it does not set errno always,
    , right now kills all ser if interrupted by a signal on ?solaris?)
 - [mem] make shm_realloc be fragmentation friendly: call shm_compact_frags
