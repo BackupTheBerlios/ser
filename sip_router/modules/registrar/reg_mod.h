@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.15 2004/09/01 17:31:56 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.16 2004/11/04 18:26:01 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -45,8 +45,8 @@ extern int nat_flag;
 extern int min_expires;
 extern int max_expires;
 extern int received_avp;
+extern int use_domain;
 extern str realm_prefix;
-
 extern float def_q;
 
 extern str rcv_param;

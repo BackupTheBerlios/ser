@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.17 2004/08/24 09:00:37 janakj Exp $
+ * $Id: common.c,v 1.18 2004/11/04 18:26:01 janakj Exp $
  *
  * Common stuff
  *
@@ -77,20 +77,22 @@ int extract_aor(str* _uri, str* _a)
 
 	user_len = _a->len;
 
-	aor_buf[_a->len] = '@';
-	/* ** stripping patch ** -jiri
-	memcpy(aor_buf + _a->len + 1, puri.host.s, puri.host.len);
-	_a->len += 1 + puri.host.len;
-	*/
-	if (realm_prefix.len && realm_prefix.len < puri.host.len &&
-			(memcmp(realm_prefix.s, puri.host.s, realm_prefix.len) == 0)) {
-		memcpy(aor_buf + _a->len + 1, puri.host.s + realm_prefix.len, puri.host.len - realm_prefix.len);
-		_a->len += 1 + puri.host.len - realm_prefix.len;
-	} else {
-		 memcpy(aor_buf + _a->len + 1, puri.host.s, puri.host.len);
-		 _a->len += 1 + puri.host.len;
+	if (use_domain) {
+		aor_buf[_a->len] = '@';
+		     /* ** stripping patch ** -jiri
+			memcpy(aor_buf + _a->len + 1, puri.host.s, puri.host.len);
+			_a->len += 1 + puri.host.len;
+		     */
+		if (realm_prefix.len && realm_prefix.len < puri.host.len &&
+		    (memcmp(realm_prefix.s, puri.host.s, realm_prefix.len) == 0)) {
+			memcpy(aor_buf + _a->len + 1, puri.host.s + realm_prefix.len, puri.host.len - realm_prefix.len);
+			_a->len += 1 + puri.host.len - realm_prefix.len;
+		} else {
+			memcpy(aor_buf + _a->len + 1, puri.host.s, puri.host.len);
+			_a->len += 1 + puri.host.len;
+		}
+		     /* end of stripping patch */
 	}
-	/* end of stripping patch */
 
 	if (case_sensitive) {
 		tmp.s = _a->s + user_len + 1;

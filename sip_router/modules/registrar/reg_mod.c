@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.c,v 1.26 2004/10/04 13:19:21 janakj Exp $
+ * $Id: reg_mod.c,v 1.27 2004/11/04 18:26:01 janakj Exp $
  *
  * Registrar module interface
  *
@@ -64,6 +64,7 @@ int min_expires     = 60;             /* Minimum expires the phones are allowed 
 			               * use 0 to switch expires checking off */
 int max_expires     = 0;              /* Minimum expires the phones are allowed to use in seconds,
 			               * use 0 to switch expires checking off */
+int use_domain = 0;
 char* realm_pref    = "";   /* Realm prefix to be removed */
 str realm_prefix;
 
@@ -108,6 +109,7 @@ static param_export_t params[] = {
 	{"max_expires",     INT_PARAM, &max_expires    },
         {"received_param",  STR_PARAM, &rcv_param      },
 	{"received_avp",    INT_PARAM, &rcv_avp.n      },
+	{"use_domain",      INT_PARAM, &use_domain     },
 	{0,0,0}
 };
 
