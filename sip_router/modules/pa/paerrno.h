@@ -1,7 +1,7 @@
 /*
  * Presence Agent, error reporting
  *
- * $Id: paerrno.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: paerrno.h,v 1.2 2003/04/06 20:28:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,7 @@
 
 #ifndef PAERRNO_H
 #define PAERRNO_H
+
 
 typedef enum paerr {
 	PA_OK,            /* Everything went OK */

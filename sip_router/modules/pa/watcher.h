@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.2 2003/01/14 22:49:40 janakj Exp $
+ * $Id: watcher.h,v 1.3 2003/04/06 20:28:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -37,24 +37,17 @@
 
 typedef enum doctype {
 	DOC_XPIDF = 0,
-	DOC_LPIDF
+	DOC_LPIDFf
 } doctype_t;
 		
 
 
 typedef struct watcher {
-	str from;               /* Watcher's URI */
-	str contact;            /* Watcher's contact */
+	str uri;                /* Uri of the watcher */
+	
 	time_t expires;         /* Absolute expiry time */
 	doctype_t accept;       /* Type of document accepted by the watcher */
 	struct watcher* next;   /* Next watcher in the list */
-	struct {
-		int cseq;
-		str callid;
-		str from_tag;
-		str to;
-	} dialog;
-
 } watcher_t;
  
 

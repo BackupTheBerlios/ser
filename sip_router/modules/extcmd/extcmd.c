@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd.c,v 1.7 2003/04/06 14:05:35 andrei Exp $
+ * $Id: extcmd.c,v 1.8 2003/04/06 20:28:12 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -183,8 +183,8 @@ int extcmd_child_init(int rank)
 {
 	int foo;
 
-	/* only the child 0 will fork */
-	if (rank==0) {
+	/* only the child 1 will fork */
+	if (rank==1) {
 		/* creats a process that listen for connetions */
 		if ( (foo=fork())<0 ) {
 			LOG(L_ERR,"ERROR: extcmd_child_init: cannot fork \n");

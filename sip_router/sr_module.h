@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.15 2003/03/19 23:46:09 janakj Exp $
+/* $Id: sr_module.h,v 1.16 2003/04/06 20:28:12 janakj Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -55,9 +55,14 @@ typedef enum {
 	INT_PARAM,  /* Integer parameter type */
 } modparam_t;       /* Allowed types of parameters */
 
-
 #define REQUEST_ROUTE 1         /* Function can be used in request route blocks */
 #define REPLY_ROUTE 2           /* Function can be used in reply route blocks */
+
+/* Macros - used as rank in child_init function */
+#define PROC_MAIN      0  /* Main ser process */
+#define PROC_TIMER    -1  /* Timer attendant process */
+#define PROC_FIFO     -2  /* FIFO attendant process */
+#define PROC_TCP_MAIN -4  /* TCP main process */
 
 struct cmd_export_ {
 	char* name;             /* null terminated command name */

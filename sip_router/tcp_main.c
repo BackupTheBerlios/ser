@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.21 2003/04/06 14:05:35 andrei Exp $
+ * $Id: tcp_main.c,v 1.22 2003/04/06 20:28:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -947,8 +947,8 @@ int tcp_init_children()
 			bind_address=0; /* force a SEGFAULT if someone uses a non-init.
 							   bind address on tcp */
 			bind_idx=0;
-			if (init_child(r+children_no) < 0) {
-				LOG(L_ERR, "init_child failed\n");
+			if (init_child(r+children_no+1) < 0) {
+				LOG(L_ERR, "init_children failed\n");
 				goto error;
 			}
 			tcp_receive_loop(sockfd[1]);

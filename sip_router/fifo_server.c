@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.36 2003/03/29 02:30:35 jiri Exp $
+ * $Id: fifo_server.c,v 1.37 2003/04/06 20:28:12 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -540,7 +540,7 @@ int open_fifo_server()
 		close(sockfd[0]);
 		unix_tcp_sock=sockfd[1];
 #endif
-		if (init_child(process_no) < 0 ) {
+		if (init_child(PROC_FIFO) < 0 ) {
 			LOG(L_ERR, "ERROR: open_uac_fifo: init_child failed\n");
 			return -1;
 		}

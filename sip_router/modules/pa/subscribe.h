@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: subscribe.h,v 1.2 2003/04/06 20:28:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,7 +34,7 @@
 
 
 #define DOCUMENT_TYPE "application/cpim-pidf+xml"
-#define DOCUMENT_TYPE_LEN 25
+#define DOCUMENT_TYPE_LEN (sizeof(DOCUMENT_TYPE) - 1)
 
 
 /*
