@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.15 2004/12/03 19:09:31 andrei Exp $
+ * $Id: dset.c,v 1.16 2005/02/01 13:21:09 janakj Exp $
  *
  * destination set
  *
@@ -68,7 +68,7 @@ struct branch
 static struct branch branches[MAX_BRANCHES - 1];
 
 /* how many of them we have */
-static unsigned int nr_branches = 0;
+unsigned int nr_branches = 0;
 
 /* branch iterator */
 static int branch_iterator = 0;

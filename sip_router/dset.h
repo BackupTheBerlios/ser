@@ -1,5 +1,5 @@
 /*
- * $Id: dset.h,v 1.7 2004/09/27 03:11:08 jiri Exp $
+ * $Id: dset.h,v 1.8 2005/02/01 13:21:09 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG FOKUS
  *
@@ -31,6 +31,9 @@
 #include "qvalue.h"
 
 struct sip_msg;
+
+extern unsigned int nr_branches;
+
 
 /* 
  * Add a new branch to current transaction 
