@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.263 2004/07/17 19:11:45 andrei Exp $
+# $Id: Makefile.defs,v 1.264 2004/07/19 13:45:50 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -45,7 +45,7 @@ export makefile_defs
 VERSION = 0
 PATCHLEVEL = 8
 SUBLEVEL =   13
-EXTRAVERSION = -dev-35
+EXTRAVERSION = -dev-36-malloc
 
 RELEASE=$(VERSION).$(PATCHLEVEL).$(SUBLEVEL)$(EXTRAVERSION)
 OS = $(shell uname -s | sed -e s/SunOS/solaris/ | tr "[A-Z]" "[a-z]")
@@ -282,8 +282,8 @@ DEFS+= $(extra_defs) \
 	 -DUSE_TCP \
 	 -DDISABLE_NAGLE \
 	 -DF_MALLOC \
-	# -DDBG_F_MALLOC \
 	# -DDBG_QM_MALLOC \
+	# -DDBG_F_MALLOC \
 	 #-DF_MALLOC \
 	 #-DNO_DEBUG \
 	 #-DNO_LOG
