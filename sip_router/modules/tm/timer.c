@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.57 2004/11/01 14:09:09 janakj Exp $
+ * $Id: timer.c,v 1.58 2004/11/19 11:34:23 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -641,6 +641,7 @@ static void insert_timer_unsafe( struct timer *timer_list, struct timer_link *tl
 
 
 
+#if 0  /* not used anymore */
 /* put a new cell into a list nr. list_id */
 static void add_timer_unsafe( struct timer *timer_list, struct timer_link *tl,
 	unsigned int time_out )
@@ -667,7 +668,7 @@ static void add_timer_unsafe( struct timer *timer_list, struct timer_link *tl,
 #endif
 	DBG("DEBUG: add_timer_unsafe[%d]: %p\n",timer_list->id,tl);
 }
-
+#endif
 
 
 
