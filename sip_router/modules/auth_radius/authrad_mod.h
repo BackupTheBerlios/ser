@@ -1,7 +1,7 @@
 /*
- * $Id: auth_mod.h,v 1.1 2003/03/05 09:57:35 janakj Exp $
+ * $Id: authrad_mod.h,v 1.1 2003/03/07 18:18:00 janakj Exp $
  *
- * Digest Authentication Module
+ * Digest Authentication - Radius support
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,27 +28,18 @@
  */
 
 
-#ifndef AUTH_MOD_H
-#define AUTH_MOD_H
+#ifndef AUTHRAD_MOD_H
+#define AUTHRAD_MOD_H
 
-#include "defs.h"
-#include "../../str.h"
-#include "../../parser/digest/digest.h" /* auth_body_t */
-#include "../../parser/msg_parser.h"    /* struct sip_msg */
+#include "../auth/api.h"
 
+
+extern pre_auth_f pre_auth_func;
+extern post_auth_f post_auth_func;
 
 /*
- * Module parameters variables
+ * Module parameter variables
  */
-
 extern char* radius_config; /* radiusclient configuration file */
-extern str secret;          /* secret phrase used to generate nonce */
-extern int nonce_expire;    /* nonce expire interval */
-extern int retry_count;     /* How many time a client can retry */
  
-
-/* Stateless reply function pointer */
-extern int (*sl_reply)(struct sip_msg* _m, char* _str1, char* _str2);
-
-
-#endif /* AUTH_MOD_H */
+#endif /* AUTHRAD_MOD_H */

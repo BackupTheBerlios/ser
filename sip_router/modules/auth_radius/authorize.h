@@ -1,7 +1,7 @@
 /*
- * $Id: authorize.h,v 1.1 2003/03/05 09:57:35 janakj Exp $
+ * $Id: authorize.h,v 1.2 2003/03/07 18:15:09 janakj Exp $
  *
- * Authorize related functions
+ * Digest authentication - Radius support
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,11 +45,5 @@ int radius_proxy_authorize(struct sip_msg* _msg, char* _realm, char* _s2);
  * Authorize using WWW-Authorization header field
  */
 int radius_www_authorize(struct sip_msg* _msg, char* _realm, char* _s2);
-
-
-/*
- * Remove used credentials
- */
-int consume_credentials(struct sip_msg* _msg, char* _s1, char* _s2);
 
 #endif /* AUTHORIZE_H */
