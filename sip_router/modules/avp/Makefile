@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2004/09/27 03:11:08 jiri Exp $
+# $Id: Makefile,v 1.2 2004/10/01 05:43:00 jih Exp $
 #
 # print example module makefile
 #
@@ -8,7 +8,13 @@
 include ../../Makefile.defs
 auto_gen=
 NAME=avp.so
+
+# Comment the next two line and uncomment the following two if you want
+# to enable Radius support
+DEFS+= -DWITH_DB_SUPPORT
 LIBS=
+#DEFS+= -DWITH_RADIUS_SUPPORT
+#LIBS=-L$(LOCALBASE)/lib -lradiusclient
 
 ifeq ($(MAKELEVEL), 0)
 # make called directly in the module dir!
