@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.1 2002/08/28 10:30:33 jku Exp $
+# $Id: ser_mysql.sh,v 1.2 2002/08/28 12:36:54 jku Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -237,7 +237,7 @@ CREATE TABLE pending (
 
 
 CREATE TABLE phonebook (
-  id int(10) unsigned NOT NULL default '0',
+  id int(10) unsigned NOT NULL increment,
   user varchar(50) NOT NULL default '',
   fname varchar(32) NOT NULL default '',
   lname varchar(32) NOT NULL default '',
