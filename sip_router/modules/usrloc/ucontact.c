@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.30 2004/09/01 11:22:27 janakj Exp $ 
+ * $Id: ucontact.c,v 1.31 2004/10/04 13:19:43 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -501,6 +501,10 @@ int db_insert_ucontact(ucontact_t* _c)
 	char* dom;
 	db_key_t keys[12];
 	db_val_t vals[12];
+	
+	if ((_c->flags & FL_MEM) != FL_MEM) {
+		return 0;
+	}
 
 	keys[0] = user_col.s;
 	keys[1] = contact_col.s;
@@ -612,6 +616,9 @@ int db_update_ucontact(ucontact_t* _c)
 	db_key_t keys2[9];
 	db_val_t vals2[9];
 
+	if ((_c->flags & FL_MEM) != FL_MEM) {
+		return 0;
+	}
 
 	keys1[0] = user_col.s;
 	keys1[1] = contact_col.s;
@@ -714,6 +721,10 @@ int db_delete_ucontact(ucontact_t* _c)
 	char* dom;
 	db_key_t keys[3];
 	db_val_t vals[3];
+
+	if ((_c->flags & FL_MEM) != FL_MEM) {
+		return 0;
+	}
 
 	keys[0] = user_col.s;
 	keys[1] = contact_col.s;

@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.15 2004/09/01 11:22:27 janakj Exp $ 
+ * $Id: ucontact.h,v 1.16 2004/10/04 13:19:43 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -66,6 +66,7 @@ typedef enum flags {
 	FL_SUBSCRIBE   = 1 << 5,     /* Contact supports SUBSCRIBE and NOTIFY */
 	FL_N_SUBSCRIBE = 1 << 6,     /* Contact doesn't support SUBSCRIBE and NOTIFY */
 	FL_PERMANENT   = 1 << 7,     /* Permanent contact (does not expire) */
+	FL_MEM         = 1 << 8,     /* Update memory only -- used for REGISTER replication */
 	FL_ALL         = 0xFFFFFFFF  /* All flags set */
 } flags_t;
 
