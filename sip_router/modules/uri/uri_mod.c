@@ -1,5 +1,5 @@
 /* 
- * $Id: uri_mod.c,v 1.18 2004/04/14 16:12:33 jih Exp $ 
+ * $Id: uri_mod.c,v 1.19 2004/05/03 16:57:01 jih Exp $ 
  *
  * Various URI related functions
  *
@@ -34,6 +34,7 @@
  *  2003-04-05: default_uri #define used (jiri)
  *  2004-03-20: has_totag introduced (jiri)
  *  2004-04-14: uri_param and add_uri_param introduced (jih)
+ *  2004-05-03: tel2sip introduced (jih)
  */
 
 
@@ -64,6 +65,7 @@ static cmd_export_t cmds[] = {
 	{"uri_param",      uri_param_1,    1, str_fixup, REQUEST_ROUTE},
 	{"uri_param",      uri_param_2,    2, uri_fixup, REQUEST_ROUTE},
 	{"add_uri_param",  add_uri_param,  1, str_fixup, REQUEST_ROUTE},
+	{"tel2sip",        tel2sip,        0, 0,         REQUEST_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
