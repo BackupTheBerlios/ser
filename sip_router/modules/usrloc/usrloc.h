@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.h,v 1.12 2004/03/16 14:52:31 bogdan Exp $
+ * $Id: usrloc.h,v 1.13 2004/03/17 16:50:36 bogdan Exp $
  *
  * Convenience usrloc header file
  *
@@ -36,6 +36,7 @@
 #include "udomain.h"
 #include "urecord.h"
 #include "ucontact.h"
+#include "ul_callback.h"
 
 
 typedef struct usrloc_api {
@@ -57,6 +58,7 @@ typedef struct usrloc_api {
 
 	register_watcher_t   register_watcher;
 	unregister_watcher_t unregister_watcher;
+	register_ulcb_t      register_ulcb;
 } usrloc_api_t;
 
 
