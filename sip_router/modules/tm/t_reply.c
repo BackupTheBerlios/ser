@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.26 2002/08/28 21:24:28 jku Exp $
+ * $Id: t_reply.c,v 1.27 2002/09/03 03:49:17 jku Exp $
  *
  */
 
@@ -640,7 +640,10 @@ enum rps t_should_relay_response( struct cell *Trans , int new_code,
 	/* if final response sent out, allow only INVITE 2xx  */
 	if ( Trans->uas.status >= 200 ) {
 		if (new_code>=200 && new_code < 300  && 
+#ifdef _BUG_FIX /* t may be local, in which case there is no request */
 			Trans->uas.request->REQ_METHOD==METHOD_INVITE) {
+#endif
+			Trans->is_invite ) {
 			DBG("DBG: t_should_relay: 200 INV after final sent\n");
 			*should_store=0;
 			Trans->uac[branch].last_received=new_code;
