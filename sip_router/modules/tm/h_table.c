@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.79 2003/03/29 01:38:12 jiri Exp $
+ * $Id: h_table.c,v 1.80 2003/03/29 23:58:57 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,6 +26,7 @@
  *
  * History
  * -------
+ * 2003-03-30  set_kr for requests only (jiri)
  * 2003-03-16  removed _TOTAG (jiri)
  * 2003-03-06  200/INV to-tag list deallocation added;
  *             setting "kill_reason" moved in here -- it is moved
@@ -60,10 +61,6 @@ static struct s_table*  tm_table;
 
 void set_kr( enum kill_reason _kr )
 {
-	if (kr!=0 && _kr!=0) {
-			DBG("DEBUG: set_kr: kill reason reset: "
-					"old=%d update=%d\n", kr, _kr );
-	}
 	kr|=_kr;
 }
 enum kill_reason get_kr() {
