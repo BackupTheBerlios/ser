@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.72 2002/10/21 03:08:20 jiri Exp $
+ * $Id: h_table.c,v 1.73 2002/12/03 20:24:27 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -90,7 +90,7 @@ void free_cell( struct cell* dead_cell )
 		sip_msg_free_unsafe( dead_cell->uas.request );
 	if ( dead_cell->uas.response.buffer )
 		shm_free_unsafe( dead_cell->uas.response.buffer );
-#ifdef TOTAG
+#ifdef _TOTAG
 	if (dead_cell->uas.to_tag.s)
 		shm_free_unsafe(dead_cell->uas.to_tag.s);
 #endif

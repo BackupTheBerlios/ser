@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.39 2002/11/15 20:24:55 jiri Exp $
+ *  $Id: config.h,v 1.40 2002/12/03 20:24:27 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -82,8 +82,8 @@
 #define RECEIVED   ";received="
 #define RECEIVED_LEN 10
 
-#define TOTAG ";tag="
-#define TOTAG_LEN (sizeof(TOTAG)-1)
+#define TOTAG_TOKEN ";tag="
+#define TOTAG_TOKEN_LEN (sizeof(TOTAG_TOKEN)-1)
 
 #define SRV_PREFIX "_sip._udp."
 #define SRV_PREFIX_LEN 10
