@@ -1,7 +1,7 @@
 /*
  * Presence Agent, common functions
  *
- * $Id: common.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: common.h,v 1.2 2003/04/01 15:43:31 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,15 +32,6 @@
 #define COMMON_H
 
 #include "../../str.h"
-
-
-char* find_not_quoted(str* _s, char _c);
-
-
-/*
- * Extract username part from a URI
- */
-int extract_username(str* _s);
 
 
 /*
