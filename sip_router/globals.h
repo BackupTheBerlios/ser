@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.15 2002/08/15 08:13:29 jku Exp $
+ * $Id: globals.h,v 1.16 2002/09/03 23:31:10 janakj Exp $
  *
  * global variables
  *
@@ -67,5 +67,7 @@ extern int *pids;
 extern int process_no;
 
 extern int reply_to_via;
+
+extern int is_main;
 
 #endif

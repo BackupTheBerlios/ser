@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.101 2002/08/29 16:08:56 jku Exp $
+ * $Id: main.c,v 1.102 2002/09/03 23:31:10 janakj Exp $
  */
 
 #include <stdio.h>
@@ -48,7 +48,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.101 2002/08/29 16:08:56 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.102 2002/09/03 23:31:10 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -258,7 +258,7 @@ extern FILE* yyin;
 extern int yyparse();
 
 
-static int is_main=0; /* flag = is this the  "main" process? */
+int is_main=0; /* flag = is this the  "main" process? */
 
 char* pid_file = 0; /* filename as asked by use */
 
