@@ -1,5 +1,5 @@
 /*
- * $Id: sub_list.h,v 1.2 2002/09/19 12:23:53 jku Rel $
+ * $Id: sub_list.h,v 1.3 2003/09/04 13:09:34 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,15 +29,14 @@
 #define _CPL_SUB_LIST_H
 
 struct node {
-	unsigned char  *offset;
-	char           *name;
-	struct node    *next;
+	char         *offset;
+	char         *name;
+	struct node  *next;
 };
 
 
-struct node*   append_to_list(struct node *head, unsigned char *offdet,
-																char *name);
-unsigned char* search_the_list(struct node *head, char *name);
-void           delete_list(struct node *head );
+struct node*  append_to_list(struct node *head, char *offdet, char *name);
+char*         search_the_list(struct node *head, char *name);
+void          delete_list(struct node *head );
 
 #endif

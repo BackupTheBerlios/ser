@@ -1,5 +1,5 @@
 /*
- * $Id: sub_list.c,v 1.4 2003/09/01 17:44:12 bogdan Exp $
+ * $Id: sub_list.c,v 1.5 2003/09/04 13:09:34 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,8 +34,7 @@
 #include "../../mem/mem.h"
 #include "sub_list.h"
 
-struct node*   append_to_list(struct node *head, unsigned char *offset,
-																char *name)
+struct node*   append_to_list(struct node *head, char *offset, char *name)
 {
 	struct node *new_node;
 
@@ -52,7 +51,7 @@ struct node*   append_to_list(struct node *head, unsigned char *offset,
 
 
 
-unsigned char* search_the_list(struct node *head, char *name)
+char* search_the_list(struct node *head, char *name)
 {
 	struct node *n;
 
