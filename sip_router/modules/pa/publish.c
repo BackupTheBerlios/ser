@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.13 2004/06/08 10:55:30 andrei Exp $
+ * $Id: publish.c,v 1.14 2004/08/23 16:53:59 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -182,12 +182,13 @@ static int publish_presentity_pidf(struct sip_msg* _m, struct pdomain* _d, struc
      double x=0, y=0, radius=0;
      time_t expires = act_time + default_expires;
      double priority = default_priority;
+     int prescaps = 0;
      int flags = 0;
      int changed = 0;
      int ret = 0;
 
      flags = parse_pidf(body, &contact, &basic, &status, &location, &site, &floor, &room, &x, &y, &radius, 
-			&packet_loss, &priority, &expires);
+			&packet_loss, &priority, &expires, &prescaps);
      if (contact.len) {
 	  find_presence_tuple(&contact, presentity, &tuple);
 	  if (!tuple && new_tuple_on_publish) {
@@ -299,6 +300,11 @@ static int publish_presentity_pidf(struct sip_msg* _m, struct pdomain* _d, struc
 	  if (site.len && floor.len && room.len && changed) {
 	       location_package_location_add_user(_d, &site, &floor, &room, presentity);
 	  }
+     if (flags & PARSE_PIDF_PRESCAPS) {
+       if (tuple->prescaps != prescaps)
+	 changed = 1;
+       tuple->prescaps = prescaps;
+     }
 
      changed = 1;
      if (changed)

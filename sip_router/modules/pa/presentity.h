@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.14 2004/08/05 12:28:19 jamey Exp $
+ * $Id: presentity.h,v 1.15 2004/08/23 16:53:59 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -37,6 +37,13 @@
 #include "hslot.h"
 #include "pstate.h"
 
+enum prescaps {
+	PRESCAP_AUDIO = (1 << 0),
+	PRESCAP_VIDEO = (1 << 1),
+	PRESCAP_TEXT = (1 << 2),
+	PRESCAP_APPLICATION = (1 << 3)
+};
+extern const char *prescap_names[];
 
 #define TUPLE_STATUS_STR_LEN 128
 #define TUPLE_LOCATION_LOC_LEN 128
@@ -77,6 +84,7 @@ typedef struct presence_tuple {
 	str id;
 	str contact;
 	str status;
+	enum prescaps prescaps;
 	double priority;
 	time_t expires;
 	pstate_t state;

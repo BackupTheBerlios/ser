@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.18 2004/08/05 12:28:19 jamey Exp $
+ * $Id: notify.c,v 1.19 2004/08/23 16:53:59 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,6 +38,7 @@
 #include "pa_mod.h"
 #include "lpidf.h"
 #include "xpidf.h"
+#include "presentity.h"
 #include "pidf.h"
 #include "common.h"
 #include "paerrno.h"
@@ -440,7 +441,8 @@ static int send_pidf_notify(struct presentity* _p, struct watcher* _w)
 		if (pidf_add_location(&body, BUF_LEN - body.len,
 				      &tuple->location.loc,
 				      &tuple->location.site, &tuple->location.floor, &tuple->location.room,
-				      tuple->location.x, tuple->location.y, tuple->location.radius) < 0) {
+				      tuple->location.x, tuple->location.y, tuple->location.radius, 
+				      tuple->prescaps) < 0) {
 			LOG(L_ERR, "send_pidf_notify(): pidf_add_location failed\n");
 			return -4;
 		}
