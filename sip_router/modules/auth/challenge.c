@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.6 2002/12/09 00:21:45 janakj Exp $
+ * $Id: challenge.c,v 1.7 2002/12/17 18:03:30 janakj Exp $
  *
  * Challenge related functions
  *
@@ -139,12 +139,6 @@ static inline int challenge(struct sip_msg* _msg, str* _realm, int _qop,
 		build_auth_hf(0, 0, _realm, auth_hf, &auth_hf_len, _qop, _challenge_msg);
 	}
 	
-#ifdef REALM_HACK
-	if (_realm == &uri.host) {
-		free_uri(&uri);
-	}
-#endif
-
 	if (send_resp(_msg, _code, _message, auth_hf, auth_hf_len) == -1) {
 		LOG(L_ERR, "challenge(): Error while sending response\n");
 		return -1;

@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.12 2002/12/10 12:31:28 janakj Exp $
+ * $Id: authorize.c,v 1.13 2002/12/17 18:03:30 janakj Exp $
  *
  * Authorize related functions
  *
@@ -391,11 +391,6 @@ static inline int authorize(struct sip_msg* _m, str* _realm, char* _table, int _
 	}
 
  err:
-#ifdef REALM_HACK
-	if (_realm == &uri.host) {
-		free_uri(&uri);
-	}
-#endif
 	return ret;
 }
 
