@@ -1,5 +1,5 @@
 /*
- * $Id: im_funcs.h,v 1.6 2002/09/19 12:23:53 jku Exp $
+ * $Id: im_funcs.h,v 1.7 2002/09/20 12:04:20 bogdan Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -34,6 +34,7 @@
 #include "../../parser/msg_parser.h"
 
 int im_extract_body(struct sip_msg * , str *);
-int im_send_message(str *uri, str *to, str *from, str *contact, str *msg);
+int im_check_content_type(struct sip_msg * );
+int im_get_body_len( struct sip_msg* );
 
 #endif
