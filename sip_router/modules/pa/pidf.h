@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.h,v 1.11 2004/08/24 08:58:32 janakj Exp $
+ * $Id: pidf.h,v 1.12 2004/08/24 22:11:43 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -53,12 +53,15 @@ int pidf_add_presentity(str* _b, int _l, str* _uri);
 /*
  * Create start of pidf tuple
  */
-int start_pidf_tuple(str* _b, str *_id, int _l);
+int pidf_start_tuple(str* _b, str *_id, int _l);
 
 /*
  * Add a contact address with given status and priority
  */
-int pidf_add_contact(str* _b, int _l, str* _addr, pidf_status_t _st, double priority);
+int pidf_add_contact(str* _b, int _l, str* _addr, double priority);
+
+int pidf_start_status(str *_b, int _l, pidf_status_t _st);
+int pidf_end_status(str *_b, int _l);
 
 /*
  * Add location information
@@ -69,7 +72,7 @@ int pidf_add_location(str* _b, int _l, str *_loc, str *_site, str *_floor, str *
 /*
  * End of pidf tuple
  */
-int end_pidf_tuple(str* _b, int _l);
+int pidf_end_tuple(str* _b, int _l);
 
 /*
  * End the document
