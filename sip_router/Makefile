@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.16 2001/10/24 21:58:38 andrei Exp $
+# $Id: Makefile,v 1.17 2001/10/24 22:02:56 andrei Exp $
 #
 # sip_router makefile
 #
@@ -53,6 +53,7 @@ ifeq ($(ARCH), FreeBSD)
 
 MAKE=gmake
 YACC=yacc
+LIBS= -lfl  #dlopen is in libc
 
 endif
 ifneq (,$(findstring CYGWIN, $(ARCH)))
