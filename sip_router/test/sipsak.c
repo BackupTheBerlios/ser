@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.18 2002/05/29 03:19:23 noh Exp $
+ * $Id: sipsak.c,v 1.19 2002/05/31 03:18:08 noh Exp $
  */
 
 /* sipsak written by nils ohlmeier (ohlmeier@fokus.gmd.de).
@@ -437,7 +437,7 @@ void shoot(char *buff)
 		add_via(buff);
 	}
 	else if (flood){
-		if (namebeg==-1) namebeg=65535;
+		if (namebeg==-1) namebeg=2147483647;
 		nretries=namebeg;
 		namebeg=1;
 		create_msg(buff, REQ_FLOOD);
