@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.26 2003/09/19 08:27:12 janakj Exp $ 
+ * $Id: udomain.c,v 1.27 2003/11/28 23:48:48 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -218,16 +218,16 @@ int preload_udomain(udomain_t* _d)
 	urecord_t* r;
 	ucontact_t* c;
 
-	columns[0] = user_col;
-	columns[1] = contact_col;
-	columns[2] = expires_col;
-	columns[3] = q_col;
-	columns[4] = callid_col;
-	columns[5] = cseq_col;
-	columns[6] = replicate_col;
-	columns[7] = state_col;
-	columns[8] = flags_col;
-	columns[9] = domain_col;
+	columns[0] = user_col.s;
+	columns[1] = contact_col.s;
+	columns[2] = expires_col.s;
+	columns[3] = q_col.s;
+	columns[4] = callid_col.s;
+	columns[5] = cseq_col.s;
+	columns[6] = replicate_col.s;
+	columns[7] = state_col.s;
+	columns[8] = flags_col.s;
+	columns[9] = domain_col.s;
 	
 	memcpy(b, _d->name->s, _d->name->len);
 	b[_d->name->len] = '\0';

@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.26 2003/09/19 08:27:12 janakj Exp $ 
+ * $Id: urecord.c,v 1.27 2003/11/28 23:48:48 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -428,8 +428,8 @@ int db_delete_urecord(urecord_t* _r)
 	db_val_t vals[2];
 	char* dom;
 
-	keys[0] = user_col;
-	keys[1] = domain_col;
+	keys[0] = user_col.s;
+	keys[1] = domain_col.s;
 	vals[0].type = DB_STR;
 	vals[0].nul = 0;
 	vals[0].val.str_val.s = _r->aor.s;

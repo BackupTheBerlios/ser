@@ -1,5 +1,5 @@
 /* 
- * $Id: del_list.c,v 1.5 2003/03/12 12:49:19 janakj Exp $
+ * $Id: del_list.c,v 1.6 2003/11/28 23:48:48 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -67,8 +67,8 @@ int process_del_list(str* _d)
 	db_key_t keys[2];
 	db_val_t vals[2];
 
-	keys[0] = user_col;
-	keys[1] = contact_col;
+	keys[0] = user_col.s;
+	keys[1] = contact_col.s;
 	
 	if (del_root) {
 	     /* FIXME */
