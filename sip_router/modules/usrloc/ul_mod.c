@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.20 2003/03/18 17:48:19 janakj Exp $
+ * $Id: ul_mod.c,v 1.21 2003/03/31 09:38:59 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -137,10 +137,10 @@ struct module_exports exports = {
  */
 static int mod_init(void)
 {
-	printf("usrloc module - initializing\n");
+	DBG("usrloc - initializing\n");
 
 	     /* Register cache timer */
-	register_timer(timer, NULL, timer_interval);
+	register_timer(timer, 0, timer_interval);
 
 	     /* Initialize fifo interface */
 	init_ul_fifo();
