@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.h,v 1.2 2004/11/07 23:13:29 ramona Exp $
+ * $Id: avpops_impl.h,v 1.3 2004/11/15 10:19:39 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -37,6 +37,8 @@
 #include "../../str.h"
 #include "../../usr_avp.h"
 #include "../../parser/msg_parser.h"
+
+#include "avpops_db.h"
 
 
 
@@ -85,9 +87,10 @@ struct fis_param
 
 struct db_param
 {
-	struct fis_param a;     /* attribute */
-	str              sa;     /* attribute as str (for db queries) */
-	str              table;  /* table name */
+	struct fis_param a;        /* attribute */
+	str              sa;       /* attribute as str (for db queries) */
+	char             *table;   /* DB table/scheme name */
+	struct db_scheme *scheme;  /* DB scheme name */
 };
 
 

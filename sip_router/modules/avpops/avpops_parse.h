@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_parse.h,v 1.1 2004/11/01 16:48:44 ramona Exp $
+ * $Id: avpops_parse.h,v 1.2 2004/11/15 10:19:39 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -36,17 +36,21 @@
 #include "../../str.h"
 #include "../../usr_avp.h"
 #include "avpops_impl.h"
+#include "avpops_db.h"
 
 
 char *parse_avp_attr(char *start, struct fis_param *attr,  char end);
 
-int   parse_avp_db(char *s, struct db_param *dbp);
+int   parse_avp_db(char *s, struct db_param *dbp, int allow_scheme);
 
 int   parse_avp_aliases(char *s, char c1, char c2);
 
 struct fis_param*  parse_check_value(char *s);
 
 struct fis_param* parse_intstr_value(char *p, int len);
+
+int parse_avp_db_scheme( char *s, struct db_scheme *scheme);
+
 
 #endif
 
