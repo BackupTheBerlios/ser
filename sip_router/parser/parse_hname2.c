@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname2.c,v 1.6 2002/07/25 12:13:43 janakj Exp $
+ * $Id: parse_hname2.c,v 1.7 2002/07/30 16:31:33 janakj Exp $
  */
 
 
@@ -281,7 +281,7 @@ char* parse_hname2(char* begin, char* end, struct hdr_field* hdr)
 /*
  * Create synonym-less (precalculated) hash table
  */
-void init_htable(void)
+void init_hfname_parser(void)
 {
 	int i, j, k;
 
