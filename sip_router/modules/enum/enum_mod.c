@@ -1,4 +1,5 @@
-/* enum_mod.c v 0.2 2002/12/27
+/*
+ * $Id: enum_mod.c,v 1.3 2003/03/16 18:05:06 janakj Exp $
  *
  * Enum module
  *

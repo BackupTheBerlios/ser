@@ -1,4 +1,5 @@
-/* enum.c v 0.3 2003/1/19
+/*
+ * $Id: enum.c,v 1.7 2003/03/16 18:05:06 janakj Exp $
  *
  * Enum and E164 related functions
  *

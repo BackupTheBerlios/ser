@@ -1,4 +1,5 @@
-/* enum_mod.h v 0.2 2002/12/27
+/*
+ * $Id: enum_mod.h,v 1.2 2003/03/16 18:05:06 janakj Exp $
  *
  * Enum module headers
  *
