@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr.c,v 1.18 2002/08/15 08:13:29 jku Exp $
+ * $Id: rr.c,v 1.19 2002/09/11 15:08:25 andrei Exp $
  */
 
 #include "rr.h"
@@ -267,21 +267,21 @@ int buildRRLine(struct sip_msg* _m, str* _l)
 		*(_l->s + _l->len++) = '@';
 	}
 
-	switch(sock_info->address.af) {
+	switch(bind_address->address.af) {
 	case AF_INET:
-		memcpy(_l->s + _l->len, sock_info->address_str.s, sock_info->address_str.len);
-		_l->len += sock_info->address_str.len;
+		memcpy(_l->s + _l->len, bind_address->address_str.s, bind_address->address_str.len);
+		_l->len += bind_address->address_str.len;
 		break;
 
 	case AF_INET6:
 		_l->s[_l->len++] = '[';
-		memcpy(_l->s + _l->len, sock_info->address_str.s, sock_info->address_str.len);
-		_l->len += sock_info->address_str.len;
+		memcpy(_l->s + _l->len, bind_address->address_str.s, bind_address->address_str.len);
+		_l->len += bind_address->address_str.len;
 		_l->s[_l->len++] = ']';
 		break;
 
 	default:
-		LOG(L_ERR, "buildRRLine(): Unsupported PF type: %d\n", sock_info->address.af);
+		LOG(L_ERR, "buildRRLine(): Unsupported PF type: %d\n", bind_address->address.af);
 		break;
 	}
 

@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.62 2002/09/10 13:49:23 andrei Exp $
+ * $Id: forward.c,v 1.63 2002/09/11 15:08:25 andrei Exp $
  */
 
 
@@ -37,7 +37,7 @@
 
 
 /* returns a socket_info pointer to the sending socket or 0 on error
- * params: destination socke_union pointer
+ * params: destination socket_union pointer
  */
 struct socket_info* get_send_socket(union sockaddr_union* to)
 {
