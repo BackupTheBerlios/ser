@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.38 2002/12/29 08:35:07 jiri Exp $
+# $Id: sc,v 1.39 2003/01/25 15:16:16 janakj Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -32,7 +32,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.38 $'
+VERSION='$Revision: 1.39 $'
 #### SQL names
 
 # Usr Loc Table
@@ -46,7 +46,7 @@ REALM_COLUMN=realm
 HA1_COLUMN=HA1
 HA1B_COLUMN=HA1B
 PASSWORD_COLUMN=password
-SUBSCRIBER_COLUMN='user_id'
+SUBSCRIBER_COLUMN='user'
 EMAIL_COLUMN=email_address
 SUB_CREATED_COLUMN=datetime_created
 SUB_MODIFIED_COLUMN=datetime_modified
