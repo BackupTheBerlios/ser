@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.13 2003/06/23 10:46:59 janakj Exp $ 
+ * $Id: authdb_mod.c,v 1.14 2003/07/03 23:05:41 jiri Exp $
  *
  * Digest Authentication Module
  *
@@ -174,7 +174,7 @@ static int mod_init(void)
 
 static void destroy(void)
 {
-	db_close(db_handle);
+	if (db_handle) db_close(db_handle);
 }
 
 
