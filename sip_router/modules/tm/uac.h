@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.10 2002/12/07 20:09:51 janakj Exp $
+ * $Id: uac.h,v 1.11 2003/01/14 15:00:01 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -58,6 +58,12 @@ int uac_child_init( int rank );
 typedef int (*tuac_f)(str *msg_type, str *dst, str *headers,str *body,
 	str *from, transaction_cb completion_cb, void *cbp,
 	struct dialog *dlg );
+
+typedef int (*tuacdlg_f)(str* msg_type, str* dst, str* ruri, str* to,
+			 str* from, str* totag, str* fromtag, int cseq,
+			 str* callid, str* headers, str* body,
+			 transaction_cb completion_cb, void* cbp
+			 );
 
 /* transactional UAC; look for an example of usage at fifo_uac */
 int t_uac( 

@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.3 2002/09/19 12:23:55 jku Rel $
+ * $Id: tm_load.h,v 1.4 2003/01/14 15:00:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -41,6 +41,7 @@
 #define T_RELAY_TO "t_relay_to"
 #define T_RELAY "t_relay"
 #define T_UAC "t_uac"
+#define T_UAC_DLG "t_uac_dlg"
 #define T_REPLY "t_reply"
 #define T_REPLY_UNSAFE "t_reply_unsafe"
 #define T_FORWARD_NONACK "t_forward_nonack"
@@ -52,6 +53,7 @@ struct tm_binds {
 	cmd_function	t_relay_to;
 	cmd_function 	t_relay;
 	tuac_f			t_uac;
+	tuacdlg_f               t_uac_dlg;
 	treply_f		t_reply;
 	treply_f		t_reply_unsafe;
 	tfwd_f			t_forward_nonack;

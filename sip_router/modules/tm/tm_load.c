@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.3 2002/09/19 12:23:55 jku Rel $
+ * $Id: tm_load.c,v 1.4 2003/01/14 15:00:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -49,6 +49,10 @@ int load_tm( struct tm_binds *tmb)
 	}
 	if (!(tmb->t_uac=(tuac_f)find_export(T_UAC, NO_SCRIPT)) ) {
 		LOG( L_ERR, LOAD_ERROR "'t_uac' not found\n");
+		return -1;
+	}
+	if (!(tmb->t_uac_dlg=(tuacdlg_f)find_export(T_UAC_DLG, NO_SCRIPT)) ) {
+		LOG( L_ERR, LOAD_ERROR "'t_uac_dlg' not found\n");
 		return -1;
 	}
 	if (!(tmb->t_reply=(treply_f)find_export(T_REPLY, 2)) ) {
