@@ -1,5 +1,5 @@
 /*
- * $Id: jcpli.c,v 1.4 2002/09/19 12:23:53 jku Rel $
+ * $Id: jcpli.c,v 1.5 2003/05/07 12:05:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -40,6 +40,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>

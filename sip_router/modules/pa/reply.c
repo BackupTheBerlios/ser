@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.4 2003/04/30 17:49:29 janakj Exp $
+ * $Id: reply.c,v 1.5 2003/05/07 12:05:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -107,7 +107,7 @@ int send_reply(struct sip_msg* _m)
 	int code;
 	char* msg = MSG_200; /* makes gcc shut up */
 
-	struct lump_rpl* p, *ei;
+	struct lump_rpl  *ei;
 
 	code = codes[paerrno];
 	switch(code) {
@@ -121,7 +121,7 @@ int send_reply(struct sip_msg* _m)
 		add_lump_rpl(_m, ei);
 	}
 
-	if (tmb.t_reply(_m, (char*)code, msg) == -1) {
+	if (tmb.t_reply(_m, code, msg) == -1) {
 		LOG(L_ERR, "send_reply(): Error while sending %d %s\n", code, msg);
 		return -1;
 	} else return 0;	
