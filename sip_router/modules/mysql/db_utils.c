@@ -1,5 +1,5 @@
 /* 
- * $Id: db_utils.c,v 1.3 2002/03/05 14:38:46 janakj Exp $ 
+ * $Id: db_utils.c,v 1.4 2002/03/05 22:56:18 janakj Exp $ 
  */
 
 #include "db_utils.h"
@@ -23,7 +23,7 @@ int time2mysql(time_t _time, char* _result, int _res_len)
 	       }
 	     */
 
-	t = gmtime(&_time);
+	t = localtime(&_time);
 	return strftime(_result, _res_len, "%Y-%m-%d %H:%M:%S", t);
 }
 

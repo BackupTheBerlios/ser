@@ -1,5 +1,5 @@
 /* 
- * $Id: contact.c,v 1.5 2002/03/05 14:36:03 janakj Exp $ 
+ * $Id: contact.c,v 1.6 2002/03/05 22:55:40 janakj Exp $ 
  */
 
 #include <stdio.h>
@@ -17,17 +17,14 @@
  */
 void print_contact(contact_t* _c)
 {
-	char* t;
 #ifdef PARANOID
 	if (!_c) {
 		LOG(L_ERR, "print_contact(): Invalid parameter value\n");
 		return;
 	}
 #endif
-	t = ctime(&(_c->expires));
-	t[strlen(t) - 1] = '\0';
-	DBG("    Contact=\"%s\" expires=\"%s\" q=%-3.2f, Call-ID=%s CSeq=%d\n",
-	       _c->c.s, t, _c->q, _c->callid, _c->cseq);
+	DBG("    Contact=\"%s\" expires=%d q=%-3.2f, Call-ID=%s CSeq=%d\n",
+	       _c->c.s, (unsigned int)_c->expires, _c->q, _c->callid, _c->cseq);
 }
 
 

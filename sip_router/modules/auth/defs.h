@@ -1,5 +1,5 @@
 /* 
- * $Id: defs.h,v 1.5 2002/03/05 14:36:50 janakj Exp $ 
+ * $Id: defs.h,v 1.6 2002/03/05 22:55:31 janakj Exp $ 
  */
 
 #ifndef __DEFS_H__
@@ -13,7 +13,10 @@
 
 
 #define DB_URL "sql://csps:47csps11@dbhost/csps107"
-#define DB_TABLE "auth"
+#define DB_TABLE "subscriber"
+#define SUBS_USER_COL "user_id"
+#define SUBS_REALM_COL "realm"
+#define SUBS_HA1_COL "ha1"
 
 #define NONCE_SECRET "4e9rhygt90ofw34e8hiof09tg"
 #define NONCE_SECRET_LEN 25
