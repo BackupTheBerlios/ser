@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_nonsig.c,v 1.6 2003/11/28 13:56:37 bogdan Exp $
+ * $Id: cpl_nonsig.c,v 1.7 2004/02/03 10:26:28 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -126,6 +126,7 @@ static inline void write_log( struct cpl_cmd *cmd)
 		LOG(L_ERR,"ERROR:cpl_c:write_log: writing to log file [%s] : %s\n",
 			file, strerror(errno) );
 	}
+	close (fd);
 
 	shm_free( cmd->s1.s );
 }
