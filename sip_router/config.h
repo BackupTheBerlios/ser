@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.34 2002/09/25 19:20:26 andrei Rel $
+ *  $Id: config.h,v 1.35 2002/10/17 10:22:06 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -65,7 +65,7 @@
 		"(" VERSION " (" ARCH "/" OS"))"
 #define USER_AGENT_LEN (sizeof(USER_AGENT)-1)
 
-#define SERVER_HDR "Server: Sip EXpress router"\
+#define SERVER_HDR "Server: Sip EXpress router "\
 		"(" VERSION " (" ARCH "/" OS"))"
 #define SERVER_HDR_LEN (sizeof(SERVER_HDR)-1)
 
