@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.20 2003/01/21 12:40:16 dcm Exp $
+# $Id: ser_mysql.sh,v 1.21 2003/01/22 16:49:19 dcm Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -377,12 +377,12 @@ CREATE TABLE config (
 
 CREATE TABLE silo(
 	mid INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	src_addr VARCHAR(128),
-	dst_addr VARCHAR(128),
+	src_addr VARCHAR(128) NOT NULL DEFAULT "",
+	dst_addr VARCHAR(128) NOT NULL DEFAULT "",
 	inc_time INTEGER NOT NULL DEFAULT 0,
-	exp_time INTEGER NOT NULL,
+	exp_time INTEGER NOT NULL DEFAULT 0,
 	ctype VARCHAR(32) NOT NULL DEFAULT "text/plain",
-	body BLOB NOT NULL
+	body BLOB NOT NULL DEFAULT ""
 ) $TABLE_TYPE ;
 
 
