@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.18 2002/11/14 14:56:16 janakj Exp $
+ * $Id: msg_parser.h,v 1.19 2002/11/28 16:14:53 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -206,6 +206,26 @@ inline static int char_msg_val( struct sip_msg *msg, char *cv )
 		MDStringArray( cv, src, 7 );
 	}
 	return 1;
+}
+
+
+/* returns a pointer to the begining of the msg's body
+ */
+inline static char* get_body(struct sip_msg *msg)
+{
+	int offset;
+
+	if ( parse_headers(msg,HDR_EOH, 0)==-1 )
+		return 0;
+
+	if ( strncmp(CRLF,msg->unparsed,CRLF_LEN)==0 )
+		offset = CRLF_LEN;
+	else if (*(msg->unparsed)=='\n' || *(msg->unparsed)=='\r' )
+		offset = 1;
+	else
+		return 0;
+
+	return msg->unparsed + offset;
 }
 
 #endif

@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.8 2002/09/19 12:23:55 jku Rel $ 
+ * $Id: hf.c,v 1.9 2002/11/28 16:14:53 bogdan Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -59,7 +59,7 @@ void clean_hdr_field(struct hdr_field* hf)
 			free_cseq(hf->parsed);
 			break;
 
-                case HDR_AUTHORIZATION:
+		case HDR_AUTHORIZATION:
 		case HDR_PROXYAUTH:
 			free_credentials((auth_body_t**)(&(hf->parsed)));
 			break;
@@ -78,6 +78,10 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_CONTACT:
 			free_contact((contact_body_t**)(&(hf->parsed)));
+			break;
+
+		case HDR_CONTENTLENGTH:
+		case HDR_CONTENTTYPE:
 			break;
 
 		default:
