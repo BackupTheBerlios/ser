@@ -1,5 +1,5 @@
 /* 
- * $Id: val.c,v 1.9 2005/02/24 19:37:11 janakj Exp $ 
+ * $Id: val.c,v 1.10 2005/02/25 16:31:45 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -160,6 +160,8 @@ static inline int time2str(time_t _v, char* _s, int* _l)
  */
 int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l)
 {
+	static str dummy_string = {"", 0};
+	
 	if (!_v) {
 		LOG(L_ERR, "str2val: Invalid parameter value\n");
 		return -1;
@@ -167,6 +169,13 @@ int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l)
 
 	if (!_s) {
 		memset(_v, 0, sizeof(db_val_t));
+			/* Initialize the string pointers to a dummy empty
+			 * string so that we do not crash when the NULL flag
+			 * is set but the module does not check it properly
+			 */
+		VAL_STRING(_v) = dummy_string.s;
+		VAL_STR(_v) = dummy_string;
+		VAL_BLOB(_v) = dummy_string;
 		VAL_TYPE(_v) = _t;
 		VAL_NULL(_v) = 1;
 		return 0;
