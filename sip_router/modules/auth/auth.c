@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.17 2002/03/08 01:09:35 janakj Exp $
+ * $Id: auth.c,v 1.18 2002/03/08 01:13:30 janakj Exp $
  */
 
 #include "auth.h"
@@ -444,7 +444,7 @@ int check_from(struct sip_msg* _msg, char* _str1, char* _str2)
 
 	if (!user.len) return -1;
 
-	/* FIXME */
+	/* FIXME !! */
 	if (!strncasecmp(user.s, cred.username.s,
 			(user.len < cred.username.len) ? (cred.username.len) : (user.len))) {
 		DBG("check_from(): auth id and From username are equal\n");
@@ -453,5 +453,4 @@ int check_from(struct sip_msg* _msg, char* _str1, char* _str2)
 		DBG("check_from(): auth id and From username differ\n");
 		return -1;
 	}
-
 }
