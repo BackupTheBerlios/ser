@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.13 2002/12/11 13:05:15 janakj Exp $
+ * $Id: group.c,v 1.14 2002/12/11 13:47:15 janakj Exp $
  *
  * Checks if a username matche those in digest credentials
  * or is member of a group
@@ -188,7 +188,7 @@ int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp)
 	db_use_table(db_handle, grp_table);
 	if (db_query(db_handle, keys, 0, vals, col, (grp_use_domain && (hf_type != 4)) ? (3): (2), 1, 0, &res) < 0) {
 		LOG(L_ERR, "is_user_in(): Error while querying database\n");
-		free_uri(&puri);
+		if (hf_type != 4) free_uri(&puri);
 		return -5;
 	}
 	
@@ -196,13 +196,13 @@ int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp)
 		DBG("is_user_in(): User is not in group \'%.*s\'\n", 
 		    ((str*)_grp)->len, ((str*)_grp)->s);
 		db_free_query(db_handle, res);
-		free_uri(&puri);
+		if (hf_type != 4) free_uri(&puri);
 		return -6;
 	} else {
 		DBG("is_user_in(): User is in group \'%.*s\'\n", 
 		    ((str*)_grp)->len, ((str*)_grp)->s);
 		db_free_query(db_handle, res);
-		free_uri(&puri);
+		if (hf_type != 4) free_uri(&puri);
 		return 1;
 	}
 }
