@@ -1,5 +1,5 @@
 /*
- * $Id: rule.c,v 1.3 2003/10/22 14:15:55 janakj Exp $
+ * $Id: rule.c,v 1.4 2003/11/04 01:54:54 jiri Exp $
  *
  * PERMISSIONS module
  *
@@ -164,7 +164,7 @@ void free_expression(expression *e)
 
 	if (e->next) free_expression(e->next);
 	regfree(e->reg_value);
-	free(e);
+	pkg_free(e);
 }
 
 
