@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.5 2002/05/31 01:59:07 jku Exp $
+ * $Id: msg_parser.h,v 1.6 2002/06/06 17:39:58 bogdan Exp $
  */
 
 #ifndef msg_parser_h
@@ -216,7 +216,6 @@ struct sip_msg{
 	char* orig; /* original message copy */
 	char* buf;  /* scratch pad, holds a modfied message,
 				   via, etc. point into it */
-				   
 	unsigned int len; /* message len (orig) */
 
 	/* modifications */
