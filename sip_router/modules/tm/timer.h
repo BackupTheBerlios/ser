@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.23 2002/01/28 23:30:56 jku Exp $
+ * $Id: timer.h,v 1.24 2002/02/21 22:15:03 andrei Exp $
  */
 
 #ifndef _TIMER_H
@@ -46,7 +46,7 @@ typedef struct  timer
 {
    struct timer_link first_tl;
    struct timer_link last_tl;
-   ser_lock_t             mutex;
+   ser_lock_t*         mutex;
    enum lists id;
    void                      (*timeout_handler)(void*);
 } timer_type;
