@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.21 2002/11/20 13:22:51 dcm Exp $
+ * $Id: jabber.c,v 1.22 2002/11/27 13:21:24 dcm Exp $
  *
  * JABBER module
  *
@@ -675,7 +675,7 @@ void xjab_check_workers(int mpid)
 		if(n==jwl->workers[i].pid)
 		{
 			DBG("XJAB:%d:xjab_check_workers: create a new worker\n", mpid);
-			xj_wlist_send_info(jwl, i);
+			xj_wlist_clean_jobs(jwl, i, 1);
 			xj_wlist_set_pid(jwl, -1, i);
 			if ( (stat=fork())<0 )
 			{
