@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.2 2004/02/26 17:58:33 andrei Exp $
+/* $Id: socket_info.c,v 1.3 2004/04/29 15:39:39 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -492,7 +492,7 @@ static int fix_socket_list(struct socket_info **list)
 						 l->name.s, l->address_str.s);
 #endif
 				/* add the name to the alias list*/
-				if ((!(l->flags&& SI_IS_IP)) && (
+				if ((!(l->flags& SI_IS_IP)) && (
 						(l->name.len!=si->name.len)||
 						(strncmp(l->name.s, si->name.s, si->name.len)!=0))
 					)

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.46 2004/03/30 09:44:19 andrei Exp $
+ * $Id: globals.h,v 1.47 2004/04/29 15:39:39 andrei Exp $
  *
  * global variables
  *
@@ -93,6 +93,11 @@ extern int sip_warning;
 extern int server_signature;
 extern char* user;
 extern char* group;
+extern char* sock_user;
+extern char* sock_group;
+extern int sock_uid;
+extern int sock_gid;
+extern int sock_mode;
 extern char* chroot_dir;
 extern char* working_dir;
 

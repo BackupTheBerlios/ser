@@ -1,5 +1,5 @@
 /*
- * $Id: daemonize.c,v 1.2 2004/03/30 09:44:19 andrei Exp $
+ * $Id: daemonize.c,v 1.3 2004/04/29 15:39:39 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -166,14 +166,18 @@ error:
 
 int do_suid()
 {
-	if (gid&&(setgid(gid)<0)){
-		LOG(L_CRIT, "cannot change gid to %d: %s\n", gid, strerror(errno));
-		goto error;
+	if (gid){
+		if(setgid(gid)<0){
+			LOG(L_CRIT, "cannot change gid to %d: %s\n", gid, strerror(errno));
+			goto error;
+		}
 	}
 	
-	if(uid&&(setuid(uid)<0)){
-		LOG(L_CRIT, "cannot change uid to %d: %s\n", uid, strerror(errno));
-		goto error;
+	if(uid){
+		if(setuid(uid)<0){
+			LOG(L_CRIT, "cannot change uid to %d: %s\n", uid, strerror(errno));
+			goto error;
+		}
 	}
 	return 0;
 error:
