@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_base.c,v 1.6 2003/11/04 12:54:57 dcm Exp $
+ * $Id: dbt_base.c,v 1.7 2003/11/06 21:03:55 bogdan Exp $
  *
  * DBText module core functions
  *
@@ -113,6 +113,10 @@ void dbt_close(db_con_t* _h)
 	if (DBT_CON_RESULT(_h)) 
 		dbt_result_free(DBT_CON_RESULT(_h));
 	
+	//if (DBT_CON_CONNECTION(_h)) {
+	//	 
+	//}
+	
 	pkg_free(_h);
     return;
 }
@@ -191,6 +195,7 @@ int dbt_query(db_con_t* _h, db_key_t* _k, db_op_t* _op, db_val_t* _v,
 
 	lock_get(&_tbc->sem);
 	_dtp = _tbc->dtp;
+
 	if(!_dtp || _dtp->nrcols < _nc)
 	{
 		DBG("DBT:db_query: table not loaded!\n");
@@ -427,6 +432,7 @@ int dbt_delete(db_con_t* _h, db_key_t* _k, db_op_t* _o, db_val_t* _v, int _n)
 
 	lock_get(&_tbc->sem);
 	_dtp = _tbc->dtp;
+
 	if(!_dtp)
 	{
 		DBG("DBT:db_delete: table does not exist!!\n");
@@ -442,8 +448,6 @@ int dbt_delete(db_con_t* _h, db_key_t* _k, db_op_t* _o, db_val_t* _v, int _n)
 		lock_release(&_tbc->sem);
 		return 0;
 	}
-
-	//////////////////??????????????????????????
 
 	lkey = dbt_get_refs(_dtp, _k, _n);
 	if(!lkey)
@@ -523,6 +527,7 @@ int dbt_update(db_con_t* _h, db_key_t* _k, db_op_t* _o, db_val_t* _v,
 
 	lock_get(&_tbc->sem);
 	_dtp = _tbc->dtp;
+
 	if(!_dtp || _dtp->nrcols < _un)
 	{
 		DBG("DBT:dbt_update: table not loaded or more values"
