@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.12 2003/07/06 13:39:23 sobomax Exp $
+/*$Id: nathelper.c,v 1.13 2003/07/06 13:43:09 sobomax Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -561,6 +561,9 @@ get_rtpp_port(str *callid, int create)
 	addr.sun_family = AF_LOCAL;
 	strncpy(addr.sun_path, "/var/run/rtpproxy.sock",
 	    sizeof(addr.sun_path) - 1);
+#if !defined(__linux__)
+	addr.sun_len = strlen(addr.sun_path);
+#endif
 
 	fd = socket(AF_LOCAL, SOCK_STREAM, 0);
 	if (fd < 0) {
