@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.8 2003/11/11 14:51:38 janakj Exp $
+ * $Id: dlist.c,v 1.9 2004/04/14 15:54:29 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,7 @@
 #include "paerrno.h"
 #include <string.h>
 #include "ptime.h"
+#include "presentity.h"
 
 /*
  * List of all registered domains
@@ -152,6 +153,7 @@ static inline int new_dlist(str* _n, dlist_t** _d)
  */
 int register_pdomain(const char* _n, pdomain_t** _d)
 {
+	pdomain_t *pdomain;
 	dlist_t* d;
 	str s;
 
@@ -168,14 +170,16 @@ int register_pdomain(const char* _n, pdomain_t** _d)
 		return -1;
 	} 
 
-	     /* Preload domain with data from database if we are gonna
-	      * to use database
-	      */
-
+	pdomain = d->d;
 	d->next = root;
 	root = d;
 	
-	*_d = d->d;
+	*_d = pdomain;
+
+	/* Preload domain with data from database if we are gonna
+	 * to use database
+	 */
+
 	return 0;
 }
 

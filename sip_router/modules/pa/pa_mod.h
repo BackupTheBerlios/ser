@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.6 2004/04/01 17:48:25 jamey Exp $
+ * $Id: pa_mod.h,v 1.7 2004/04/14 15:54:29 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -52,5 +52,12 @@ extern int use_bsearch;
 extern int use_location_package;
 extern int new_watcher_pending;
 extern int callback_update_db;
+extern int callback_lock_pdomain;
+extern int new_tuple_on_publish;
+
+/*
+ * compare two str's
+ */
+int str_strcmp(const str *stra, const str *strb);
 
 #endif /* PA_MOD_H */

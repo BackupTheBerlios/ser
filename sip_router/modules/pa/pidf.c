@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.c,v 1.7 2004/04/01 17:48:25 jamey Exp $
+ * $Id: pidf.c,v 1.8 2004/04/14 15:54:29 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -189,7 +189,7 @@ int start_pidf_tuple(str* _b, int _l)
 	     CRLF_L
 	    ) > _l) {
 		paerrno = PA_SMALL_BUFFER;
-		LOG(L_ERR, "start_pidf_tuple(): Buffer too small\n");
+		LOG(L_ERR, "start_pidf_tuple(): Buffer too small: _l=%d\n", _l);
 		return -1;
 	}
 
