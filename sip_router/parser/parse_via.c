@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.16 2003/04/26 20:28:46 jiri Exp $ 
+ * $Id: parse_via.c,v 1.17 2003/06/18 22:17:02 jiri Exp $ 
  *
  * via parsing automaton
  * 
@@ -1762,6 +1762,7 @@ parse_again:
 								pkg_free(param);
 								goto error;
 							default:
+								pkg_free(param);
 								LOG(L_ERR, "ERROR: parse_via after"
 										" parse_via_param: invalid"
 										" char <%c> on state %d\n",
