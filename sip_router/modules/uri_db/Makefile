@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2004/04/14 13:38:24 janakj Exp $
+# $Id: Makefile,v 1.2 2004/04/23 11:26:44 janakj Exp $
 #
 # Various URI checks
 #
@@ -7,7 +7,7 @@
 
 include ../../Makefile.defs
 auto_gen=
-NAME=uri.so
+NAME=uri_db.so
 LIBS=
 
 include ../../Makefile.modules
