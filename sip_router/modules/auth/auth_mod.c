@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.44 2004/01/21 19:12:28 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.45 2004/01/21 19:18:44 janakj Exp $ 
  *
  * Digest Authentication Module
  *
@@ -49,7 +49,6 @@
 #include "api.h"
 
 MODULE_VERSION
-
 
 #define RAND_SECRET_LEN 32
 
