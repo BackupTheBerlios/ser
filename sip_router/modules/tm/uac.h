@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.6 2002/09/19 12:23:55 jku Exp $
+ * $Id: uac.h,v 1.7 2002/09/21 17:13:01 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -53,7 +53,8 @@ void uac_child_init( int rank );
 void generate_callid();
 
 typedef int (*tuac_f)(str *msg_type, str *dst, str *headers,str *body,
-	str *from, transaction_cb completion_cb );
+	str *from, transaction_cb completion_cb, void *cbp,
+	struct dialog *dlg );
 
 /* transactional UAC; look for an example of usage at fifo_uac */
 int t_uac( 
