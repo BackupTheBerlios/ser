@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.h,v 1.3 2003/06/23 15:38:48 bogdan Exp $
+ * $Id: cpl_db.h,v 1.4 2003/06/24 14:28:32 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,8 +28,11 @@
 #ifndef _CPL_DB_H
 #define _CPL_DB_H
 
+#include "../../db/db.h"
 
-int write_to_db(char *usr, char *bin_s, int bin_len, char *xml_s, int xml_len);
+
+int write_to_db(db_con_t *db_con, char *usr, str *xml, str *bin);
 int get_user_script( db_con_t *db_hdl, str *user, str *script);
+
 
 #endif
