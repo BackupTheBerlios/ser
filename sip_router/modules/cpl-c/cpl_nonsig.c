@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_nonsig.c,v 1.4 2003/09/01 17:44:12 bogdan Exp $
+ * $Id: cpl_nonsig.c,v 1.5 2003/10/21 16:03:21 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -238,7 +238,7 @@ void cpl_aux_process( int cmd_out, char *log_dir)
 
 	/* set the path for logging */
 	strcpy( file, log_dir);
-	file_ptr = file + sizeof(log_dir);
+	file_ptr = file + strlen(log_dir);
 	*(file_ptr++) = '/';
 
 	while(1) {
