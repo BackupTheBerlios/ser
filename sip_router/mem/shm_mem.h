@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.22 2004/08/24 08:58:23 janakj Exp $*
+/* $Id: shm_mem.h,v 1.23 2004/11/10 21:51:24 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -91,8 +91,9 @@
 
 int shm_mem_init(); /* calls shm_getmem & shm_mem_init_mallocs */
 int shm_getmem();   /* allocates the memory (mmap or sysv shmap) */
-int shm_mem_init_mallocs(void* mempool, int size); /* initialized the mallocs
-													  & the lock */
+int shm_mem_init_mallocs(void* mempool, unsigned long size); /* initialize
+																the mallocs
+																& the lock */
 void shm_mem_destroy();
 
 

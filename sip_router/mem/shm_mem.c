@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.29 2004/09/19 20:22:51 andrei Exp $
+/* $Id: shm_mem.c,v 1.30 2004/11/10 21:51:24 andrei Exp $
  *
  * Shared memory functions
  *
@@ -178,7 +178,7 @@ int shm_getmem()
 
 
 
-int shm_mem_init_mallocs(void* mempool, int pool_size)
+int shm_mem_init_mallocs(void* mempool, unsigned long pool_size)
 {
 	/* init it for malloc*/
 	shm_block=shm_malloc_init(mempool, pool_size);

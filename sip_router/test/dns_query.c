@@ -1,5 +1,5 @@
 /*
- * $Id: dns_query.c,v 1.5 2004/08/24 09:01:29 janakj Exp $
+ * $Id: dns_query.c,v 1.6 2004/11/10 21:51:24 andrei Exp $
  *
  * tests for ../resolver.c
  *
@@ -47,12 +47,12 @@ int log_stderr=1;
 int debug=0;
 int pids[1];
 int process_no=0;
-int shm_mem_size=0;
+long shm_mem_size=0;
 char mem_pool[1024*1024];
 struct qm_block* mem_block;
 
 
-static char* id="$Id: dns_query.c,v 1.5 2004/08/24 09:01:29 janakj Exp $";
+static char* id="$Id: dns_query.c,v 1.6 2004/11/10 21:51:24 andrei Exp $";
 static char* version="dns_query 0.1";
 static char* help_msg="\
 Usage: dns_query  [-t type] [-hV] -n host\n\

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.193 2004/09/19 20:22:51 andrei Exp $
+ * $Id: main.c,v 1.194 2004/11/10 21:51:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -124,7 +124,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.193 2004/09/19 20:22:51 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.194 2004/11/10 21:51:24 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -322,7 +322,7 @@ int process_no = 0;
 int cfg_errors=0;
 
 /* shared memory (in MB) */
-unsigned int shm_mem_size=SHM_MEM_SIZE * 1024 * 1024;
+unsigned long shm_mem_size=SHM_MEM_SIZE * 1024 * 1024;
 
 /* export command-line to anywhere else */
 int my_argc;
@@ -1120,7 +1120,7 @@ int main(int argc, char** argv)
 										optarg);
 						goto error;
 					};
-					LOG(L_INFO, "ser: shared memory allocated: %d MByte\n",
+					LOG(L_INFO, "ser: shared memory: %ld bytes\n",
 									shm_mem_size );
 					break;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.51 2004/08/24 08:45:10 janakj Exp $
+ * $Id: globals.h,v 1.52 2004/11/10 21:51:24 andrei Exp $
  *
  * global variables
  *
@@ -116,7 +116,7 @@ extern int mcast_ttl;
 extern int cfg_errors;
 extern unsigned int msg_no;
 
-extern unsigned int shm_mem_size;
+extern unsigned long shm_mem_size;
 
 /* FIFO server config */
 char extern *fifo; /* FIFO name */
