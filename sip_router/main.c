@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.121 2002/10/15 15:12:31 andrei Exp $
+ * $Id: main.c,v 1.122 2002/10/22 20:37:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,7 +80,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.121 2002/10/15 15:12:31 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.122 2002/10/22 20:37:29 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -1233,8 +1233,24 @@ int main(int argc, char** argv)
 		if 	(	(sock_info[r].address_str.len==sock_info[r].name.len)&&
 				(strncasecmp(sock_info[r].address_str.s, sock_info[r].name.s,
 						 sock_info[r].address_str.len)==0)
-			)	sock_info[r].is_ip=1;
-		else sock_info[r].is_ip=0;
+			){
+				sock_info[r].is_ip=1;
+				/* do rev. dns on it (for aliases)*/
+				he=rev_resolvehost(&sock_info[r].address);
+				if (he==0){
+					DPrint("WARNING: could not rev. resolve %s\n",
+							sock_info[r].name.s);
+				}else{
+					/* add the aliases*/
+					if (add_alias(he->h_name, strlen(he->h_name))<0){
+						LOG(L_ERR, "ERROR: main: add_alias failed\n");
+					}
+					for(h=he->h_aliases; h && *h; h++)
+						if (add_alias(*h, strlen(*h))<0){
+							LOG(L_ERR, "ERROR: main: add_alias failed\n");
+						}
+				}
+		}else{ sock_info[r].is_ip=0; };
 			
 		if (sock_info[r].port_no==0) sock_info[r].port_no=port_no;
 		port_no_str_len=snprintf(port_no_str, MAX_PORT_LEN, ":%d", 

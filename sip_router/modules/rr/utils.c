@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.c,v 1.8 2002/09/19 12:23:54 jku Rel $ 
+ * $Id: utils.c,v 1.9 2002/10/22 20:37:29 andrei Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -112,20 +112,6 @@ char* trim(char* _s)
 	return trim_trailing(_s);
 }
 
-
-/* 
- * Eat linear white space 
- *
- * PARAMS : char* _b : input buffer
- * RETURNS: char*    : points after skipped WS
- */
-char* eat_lws(char* _b)
-{
-	while ((*_b == ' ') || (*_b == '\t')) _b++;
-	while ((*_b == '\r') || (*_b == '\n')) _b++;
-	while ((*_b == ' ') || (*_b == '\t')) _b++;
-	return _b;
-}
 
 
 /* Substitute CR LF characters in field body with spaces */

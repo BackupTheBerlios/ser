@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.h,v 1.6 2002/09/19 12:23:54 jku Rel $ 
+ * $Id: utils.h,v 1.7 2002/10/22 20:37:29 andrei Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -60,11 +60,6 @@ char* trim_trailing(char* _s);
  */
 char* trim(char* _s);
 
-
-/*
- * Eat linear white space
- */
-char* eat_lws(char* _b);
 
 
 /*

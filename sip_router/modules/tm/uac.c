@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.13 2002/10/21 03:08:20 jiri Exp $
+ * $Id: uac.c,v 1.14 2002/10/22 20:37:29 andrei Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -155,8 +155,7 @@ int uac_child_init( int rank )
 			sock_info[bind_idx].address_str.len,
 			sock_info[bind_idx].address_str.s );
 	if (callid_suffix_len==-1) {
-		LOG(L_ERR, "ERROR: uac_child_init: 
-			buffer too small\n");
+		LOG(L_ERR, "ERROR: uac_child_init: buffer too small\n");
 		return -1;
 	}
 	DBG("DEBUG: callid_suffix: %s\n", callid_suffix );

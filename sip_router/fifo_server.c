@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.24 2002/10/03 21:04:16 jiri Exp $
+ * $Id: fifo_server.c,v 1.25 2002/10/22 20:37:29 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -145,6 +145,8 @@ retry:
 			retry_cnt++;
 			if (retry_cnt<4) goto retry;
 		}
+		/* interrupted by signal or ... */
+		if ((errno==EINTR)||(errno==EAGAIN)) goto retry;
 		kill(0, SIGTERM);
 	}
 	/* if we did not read whole line, our buffer is too small

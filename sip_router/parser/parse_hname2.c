@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname2.c,v 1.9 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_hname2.c,v 1.10 2002/10/22 20:37:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -194,14 +194,15 @@ char* parse_hname2(char* begin, char* end, struct hdr_field* hdr)
 	register char* p;
 	register int val;
 
-	p = begin;
-	val = READ(p);
-	hdr->name.s = begin;
-
 	if ((end - begin) < 4) {
 		hdr->type = HDR_ERROR;
 		return begin;
 	}
+
+	p = begin;
+	val = READ(p);
+	hdr->name.s = begin;
+
 
 	switch(val) {
 	FIRST_QUATERNIONS;
