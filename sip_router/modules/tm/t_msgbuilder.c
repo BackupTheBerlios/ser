@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.5 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_msgbuilder.c,v 1.6 2002/08/19 19:46:15 jku Exp $
  *
  * message printing
  */
@@ -22,11 +22,6 @@
 			memcpy((_d),(_s),(_len));\
 			(_d) += (_len);\
 		}while(0);
-#define append_str( _p, _str ) \
-		do { \
-			memcpy((_p), (_str).s, (_str).len); \
-			(_p)+=(_str).len; \
-		} while(0);
 
 
 /* Build a local request based on a previous request; main

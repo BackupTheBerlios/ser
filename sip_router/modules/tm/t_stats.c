@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.2 2002/08/16 21:12:29 jku Exp $
+ * $Id: t_stats.c,v 1.3 2002/08/19 19:46:15 jku Exp $
  *
  */
 
@@ -27,7 +27,7 @@ int print_stats(  FILE *f )
 	fprintf(f, "Time:\n----------------\n");
 	fprintf(f, "Now: %s", ctime(&now));
 	fprintf(f, "Up since: %s", ctime(&acc_stats->up_since));
-	fprintf(f, "Up time: %.f [sec]\n", difftime(now, acc_stats->up_since));
+	fprintf(f, "Up time: %.0f [sec]\n", difftime(now, acc_stats->up_since));
 	fprintf(f, "\nCurrent values:\n----------------\n");
 	fprintf(f, "# of transactions: %d\n", 
 		cur_stats->transactions );
