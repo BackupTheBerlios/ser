@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.12 2001/10/11 17:13:05 andrei Exp $
+# $Id: Makefile,v 1.13 2001/10/11 23:03:42 andrei Exp $
 #
 # sip_router makefile
 #
@@ -12,7 +12,7 @@ $(yacc_f)
 objs= $(sources:.c=.o)
 depends= $(sources:.c=.d)
 
-NAME=sip_router
+NAME=ser
 
 # compile-time options
 # NOCR disables seeking for CRs -- breaks standard but is fast
@@ -29,7 +29,7 @@ ARCH = $(shell uname -s)
 ifeq ($(ARCH), Linux)
 
 CC=gcc
-CFLAGS=-O2 -Wcast-align #-Wmissing-prototypes  -Wall
+CFLAGS=-O2 -Wcast-align #-Wmissing-prototypes 
 LEX=flex
 YACC=bison
 YACC_FLAGS=-d -b cfg
