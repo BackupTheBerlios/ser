@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.59 2004/11/01 14:09:09 janakj Exp $
+ * $Id: t_funcs.h,v 1.60 2004/12/03 19:09:33 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -115,12 +115,12 @@ int send_pr_buffer( struct retr_buf *rb, void *buf, int len);
 /*
  * Get the FR_{INV}_TIMER from corresponding AVP
  */
-int avp2timer(int* timer, int_str param);
+int avp2timer(unsigned int* timer, int_str param);
 
 
 static void inline _set_fr_retr( struct retr_buf *rb, int retr )
 {
-	int timer;
+	unsigned int timer;
 
 	if (retr) {
 		rb->retr_list=RT_T1_TO_1;

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2004/11/01 13:03:50 janakj Exp $
+# $Id: Makefile,v 1.2 2004/12/03 19:09:32 andrei Exp $
 #
 # print example module makefile
 #
@@ -11,8 +11,8 @@ NAME=avp_radius.so
 
 # Comment the next two line and uncomment the following two if you want
 # to enable Radius support
-DEFS+= -DWITH_RADIUS_SUPPORT
-LIBS=-L$(LOCALBASE)/lib -lradiusclient
+DEFS+= -DWITH_RADIUS_SUPPORT -I$(LOCALBASE)/include
+LIBS=-L$(LOCALBASE)/lib -L/usr/pkg/lib -lradiusclient
 
 ifeq ($(MAKELEVEL), 0)
 # make called directly in the module dir!

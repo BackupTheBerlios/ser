@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.c,v 1.13 2004/12/03 17:05:29 janakj Exp $
+ * $Id: data_lump_rpl.c,v 1.14 2004/12/03 19:09:31 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -101,7 +101,7 @@ error:
 
 
 
-inline void free_lump_rpl(struct lump_rpl* lump)
+void free_lump_rpl(struct lump_rpl* lump)
 {
 	if (lump) {
 		if (!((lump->flags)&LUMP_RPL_NOFREE) && ((lump->flags)&LUMP_RPL_NODUP)

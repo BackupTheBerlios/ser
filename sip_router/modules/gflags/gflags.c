@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.4 2004/09/09 21:00:45 jiri Exp $
+/*$Id: gflags.c,v 1.5 2004/12/03 19:09:32 andrei Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour 
@@ -70,7 +70,7 @@ static int fixup_str2int( void** param, int param_no);
 static int mod_init(void);
 
 static int initial=0;
-static int *gflags; 
+static unsigned int *gflags; 
 
 static cmd_export_t cmds[]={
 	{"set_gflag", /* action name as in scripts */
@@ -119,7 +119,7 @@ static int fixup_str2int( void** param, int param_no)
 	}
 
 
-	param_str.s=(unsigned char*) *param;
+	param_str.s=(char*) *param;
 	param_str.len=strlen(param_str.s);
 
 	if (str2int(&param_str, myint )<0) {

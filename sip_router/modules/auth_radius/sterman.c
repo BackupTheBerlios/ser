@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.11 2004/10/05 10:13:45 sobomax Exp $
+ * $Id: sterman.c,v 1.12 2004/12/03 19:09:32 andrei Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -34,6 +34,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <alloca.h>
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 #include "../auth/api.h"

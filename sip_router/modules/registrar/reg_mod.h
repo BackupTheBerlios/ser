@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.17 2004/11/14 22:21:31 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.18 2004/12/03 19:09:33 andrei Exp $ 
  *
  * registrar module interface
  *
@@ -50,7 +50,7 @@ extern str realm_prefix;
 extern float def_q;
 
 extern str rcv_param;
-extern int_str rcv_avp;
+extern int rcv_avp_no;
 extern int max_contacts;
 extern int retry_after;
 

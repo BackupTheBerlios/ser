@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.h,v 1.7 2004/11/17 21:09:26 andrei Exp $
+ * $Id: t_fifo.h,v 1.8 2004/12/03 19:09:33 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,7 +42,7 @@ extern int tm_unix_tx_timeout;
 
 int fixup_t_write( void** param, int param_no);
 
-int parse_tw_append( modparam_t type, param_func_param_t param_val);
+int parse_tw_append( modparam_t type, void* val);
 
 int init_twrite_lines();
 

@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.36 2004/11/14 22:21:31 janakj Exp $
+ * $Id: save.c,v 1.37 2004/12/03 19:09:33 andrei Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -173,9 +173,11 @@ static inline int insert(struct sip_msg* _m, contact_t* _c, udomain_t* _d, str* 
 	str callid;
 	unsigned int flags;
 	str* recv;
+	int_str rcv_avp;
 	int_str val;
 	int num;
 
+	rcv_avp.n=rcv_avp_no;
 	if (isflagset(_m, nat_flag) == 1) flags = FL_NAT;
 	else flags = FL_NONE;
 
@@ -316,8 +318,10 @@ static inline int update(struct sip_msg* _m, urecord_t* _r, contact_t* _c, str* 
 	qvalue_t q;
 	unsigned int fl;
 	str* recv;
+	int_str rcv_avp;
 	int_str val;
-
+	
+	rcv_avp.n=rcv_avp_no;
 	fl = (isflagset(_m, nat_flag) == 1);
 
 	if (max_contacts) {

@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.c,v 1.16 2004/08/25 17:37:03 andrei Exp $
+ * $Id: unixsock_server.c,v 1.17 2004/12/03 19:09:31 andrei Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -82,7 +82,7 @@ static struct unixsock_cmd* cmd_list = 0;
 static char reply_buf[UNIXSOCK_BUF_SIZE];
 static str reply_pos;
 static struct sockaddr_un reply_addr;
-static int reply_addr_len;
+static unsigned int reply_addr_len;
 
 static time_t up_since;
 static char up_since_ctime[MAX_CTIME_LEN];

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.172 2004/11/01 14:09:08 janakj Exp $
+ * $Id: t_funcs.c,v 1.173 2004/12/03 19:09:33 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -347,7 +347,7 @@ void init_avp_params(void)
 /*
  * Get the FR_{INV}_TIMER from corresponding AVP
  */
-int avp2timer(int* timer, int_str param)
+int avp2timer(unsigned int* timer, int_str param)
 {
 	struct usr_avp *avp;
 	int_str val_istr;

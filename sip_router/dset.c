@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.14 2004/11/14 22:30:32 janakj Exp $
+ * $Id: dset.c,v 1.15 2004/12/03 19:09:31 andrei Exp $
  *
  * destination set
  *
@@ -186,7 +186,8 @@ int append_branch(struct sip_msg* msg, char* uri, int uri_len, char* dst_uri, in
  */
 char* print_dset(struct sip_msg* msg, int* len) 
 {
-	int cnt, i, qlen;
+	int cnt, i;
+	unsigned int qlen;
 	qvalue_t q;
 	str uri;
 	char* p, *qbuf;

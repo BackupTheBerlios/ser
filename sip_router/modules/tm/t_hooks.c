@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.15 2004/08/24 09:00:42 janakj Exp $
+ * $Id: t_hooks.c,v 1.16 2004/12/03 19:09:33 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -84,7 +84,7 @@ void destroy_tmcb_lists()
 }
 
 
-inline int insert_tmcb(struct tmcb_head_list *cb_list, int types,
+static inline int insert_tmcb(struct tmcb_head_list *cb_list, int types,
 									transaction_cb f, void *param )
 {
 	struct tm_callback *cbp;

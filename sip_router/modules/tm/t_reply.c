@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.97 2004/11/17 23:26:03 andrei Exp $
+ * $Id: t_reply.c,v 1.98 2004/12/03 19:09:33 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1208,7 +1208,7 @@ int reply_received( struct sip_msg  *p_msg )
 	struct cell *t;
 	str next_hop;
 	struct usr_avp **backup_list;
-	int timer;
+	unsigned int timer;
 
 	/* make sure we know the associated transaction ... */
 	if (t_check( p_msg  , &branch )==-1)

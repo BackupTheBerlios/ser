@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.c,v 1.4 2004/11/09 17:50:26 andrei Exp $
+ * $Id: dispatch.c,v 1.5 2004/12/03 19:09:32 andrei Exp $
  *
  * dispatcher module
  * 
@@ -403,7 +403,7 @@ unsigned int ds_get_hash(str *x, str *y)
 	}
 	h=((h)+(h>>11))+((h>>13)+(h>>23));
 
-	return (h)?(h<0)?-h:h:1;
+	return (h)?h:1;
 }
 
 /**
