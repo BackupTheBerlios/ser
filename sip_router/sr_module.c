@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.33 2003/06/29 20:19:35 jiri Exp $
+/* $Id: sr_module.c,v 1.34 2003/08/20 18:21:12 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -170,7 +170,7 @@ static inline int version_control(void *handle, char *path)
 	}
 	if (strcmp(VERSION,*m_ver)==0)
 		return 1;
-	LOG(L_ERR, "ERRO: module version mismatch for %s; "
+	LOG(L_ERR, "ERROR: module version mismatch for %s; "
 		"core: %s; module: %s\n", path, VERSION, *m_ver );
 	return 0;
 }

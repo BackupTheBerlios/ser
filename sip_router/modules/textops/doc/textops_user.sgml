@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2003/08/19 17:53:46 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2003/08/20 18:21:12 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -163,6 +163,36 @@ replace("ser", "Sip Express Router");
 ...
 # replace the uri in to: with the message uri (just an example)
 if ( subst('/^To:(.*)sip:[^@]*@[a-zA-Z0-9.]+(.*)$/t:\1\u\2/ig') ) {};
+...
+</programlisting>
+	    </example>
+	</section>
+
+	<section>
+	    <title>
+		<function moreinfo="none">subst_uri('/re/repl/flags')</function>
+	    </title>
+	    <para>
+		Runs the re substitution on the message uri (like subst but works
+		 only on the uri)
+	    </para>
+	    <para>Meaning of the parameters is as follows:</para>
+	    <itemizedlist>
+		<listitem>
+		    <para><emphasis>'/re/repl/flags'</emphasis> - sed like regular 
+				expression. flags can be a combination of i (case insensitive),
+				g (global) or s (match newline don't treat it as end of line).
+		    </para>
+		</listitem>
+	    </itemizedlist>
+	    <example>
+		<title><function>subst</function> usage</title>
+		<programlisting format="linespecific">
+...
+# adds 3463 prefic to numeric uris, and save the original uri (\0 match)
+# as a parameter: orig_uri (just an example)
+if (subst_uri('/^sip:([0-9]+)@(.*)$/sip:3463\1@\2;orig_uri=\0/i')){$
+
 ...
 </programlisting>
 	    </example>

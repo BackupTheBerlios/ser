@@ -1,4 +1,4 @@
-$Id: TODO,v 1.62 2003/08/20 13:36:38 andrei Exp $
+$Id: TODO,v 1.63 2003/08/20 18:21:12 andrei Exp $
 
 ( - todo, x - done)
 
@@ -11,6 +11,8 @@ $Id: TODO,v 1.62 2003/08/20 13:36:38 andrei Exp $
 - port receive.c pre_script_cb fix from stable
 - extend alias to include port numbers :
     something like alias= foo1.bar:5080 foo2.bar foo3.bar:*
+- extend listen and alias to include port numbers and protocol:
+       tcp foo.bar:5063, udp foo.bar:5062, foo2.bar
 
 release:
 - change tcp timeouts to 2 or 3 min?

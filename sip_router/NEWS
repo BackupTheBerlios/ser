@@ -1,7 +1,14 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.15 2003/06/03 03:10:09 jiri Exp $
+$Id: NEWS,v 1.16 2003/08/20 18:21:12 andrei Exp $
+
+0.8.12 changes
+
+texops:
+ - subst('s/re/repl/flags') support
+
+
 
 ***********************************************
 * Changes introduced in 0.8.11
