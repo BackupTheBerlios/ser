@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.3 2002/08/26 19:03:25 jku Exp $
+ * $Id: fifo_server.h,v 1.4 2002/08/30 22:10:50 jku Exp $
  *
  */
 
@@ -13,6 +13,7 @@
 /* core FIFO command set */
 #define FIFO_PRINT "print"
 #define FIFO_UPTIME "uptime"
+#define FIFO_VERSION "version"
 
 typedef int (fifo_cmd)( FILE *fifo_stream, char *response_file );
 
