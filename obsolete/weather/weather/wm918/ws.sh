@@ -2,24 +2,35 @@
 
 loop=5
 max_speed=30
-dst_sip_addr="sip:gh@iptel.org"
+SIP_DST="sip:pocketpc@192.168.0.33"
 alarm=0
+SER_FIFO="/tmp/ser_fifo"
+SIP_FROM="sip:meteo@iptel.org"
+CMD="./wx200d-1.2/wx200 --gust --C"
 
 while [ 0 ]
 do
-	line=`wx200 --gust --C fesarius.fokus.gmd.de`
+	line=`$CMD`
 	echo "wind info: " $line
 	speed=`echo $line | cut -d\  -f1 | sed -e 's/\.//' `
 	echo "speed = "$speed
 	if [ $speed -gt $max_speed ] && [ $alarm -eq 0 ]
 	then
 		echo "Very strong wind!! -> sending alert message!"
-		cmd=":t_uac_from:bash\nMESSAGE\nsip:meteo@iptel.org\n"
-		cmd=$cmd$dst_sip_addr"\nContent-Type: text/plain\n"
-		cmd=$cmd"Contact: iptel.org:9\n"
-		cmd=$cmd"\nIptel.org weather center: WARNING!!\n"
-		cmd=$cmd"Very strong winds in the area: "$line".\n.\n\n"
-		echo -e $cmd > /tmp/fifo
+		cat > $SER_FIFO << EOF
+:t_uac_from:null
+MESSAGE
+$SIP_FROM
+$SIP_DST
+Content-Type: text/plain
+Contact: $SIP_FROM
+
+Iptel.org weather center: WARNING!
+Very strong winds in the area: $line
+.
+
+
+EOF
 		alarm=1
 	fi
 	if [ $speed -lt $max_speed ] && [ $alarm -eq 1 ]
@@ -30,7 +41,4 @@ do
 	
 	sleep $loop
 done
-
-
-
 
