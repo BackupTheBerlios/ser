@@ -1,3 +1,7 @@
+#
+# $Id: README,v 1.2 2002/09/05 21:40:16 jku Exp $
+#
+
 This example shows how an external application,
 weather station, can easily trigger SIP events
 via ser's textual FIFO interface. The poll utility
