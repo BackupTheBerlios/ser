@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.14 2002/08/12 10:49:05 janakj Exp $
+ * $Id: msg_parser.c,v 1.15 2002/08/12 12:11:24 janakj Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -127,6 +127,7 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 	        case HDR_PROXYREQUIRE:
 	        case HDR_UNSUPPORTED:
 	        case HDR_ALLOW:
+	        case HDR_EVENT:
 		case HDR_OTHER:
 			/* just skip over it */
 			hdr->body.s=tmp;
@@ -290,6 +291,10 @@ int parse_headers(struct sip_msg* msg, int flags, int next)
 		        case HDR_ALLOW:
 				if (msg->allow==0) msg->allow = hf;
 				msg->parsed_flag|=HDR_ALLOW;
+				break;
+			case HDR_EVENT:
+				if (msg->allow==0) msg->event = hf;
+				msg->parsed_flag|=HDR_EVENT;
 				break;
 			case HDR_VIA:
 				msg->parsed_flag|=HDR_VIA;
