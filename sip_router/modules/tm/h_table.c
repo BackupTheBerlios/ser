@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.48 2002/01/28 23:30:56 jku Exp $
+ * $Id: h_table.c,v 1.49 2002/01/31 15:27:55 bogdan Exp $
  */
 
 #include "hash_func.h"
@@ -110,7 +110,10 @@ struct s_table* init_hash_table()
 
    /* inits the entrys */
    for(  i=0 ; i<TABLE_ENTRIES; i++ )
+   {
       init_entry_lock( hash_table , (hash_table->entrys)+i );
+      hash_table->entrys[i].next_label = rand();
+   }
 
    /* inits the timers*/
    for(  i=0 ; i<NR_OF_TIMER_LISTS ; i++ )
