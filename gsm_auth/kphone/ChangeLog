@@ -1,0 +1,48 @@
+KPhone with GSM authentication support
+======================================
+
+[05.08.2003]
+- http://www.iptel.org/~dcm/ser-gsm/kphone-3.11.1-gsm.tgz has support for
+  authenticating the INVITE and MESSAGE requests using GSM schema
+- http://www.iptel.org/~dcm/ser-gsm/auth_gsm.1.cfg is a sample of how
+  to challenge SIP requests for GSM authentication 
+
+[04.08.2003]
+- http://www.iptel.org/~dcm/ser-gsm/kphone-3.11.0-gsm.tgz integrates now a
+  configure file that detects the existence of pcsc-lite library in system
+- you have o use: ./configure --enable-gsm_auth. 
+- if the pcsc-lite library is installed in a specific directory, not as
+  usually (/lib, /usr/lib, /usr/local/lib) you can try: ./configure
+  --enable-gsm_auth --with-pcsclite-dir='/path/to/pcsclite' -- it should work,
+  I haven't tested yet
+- if the pcsc-lite library isn't found the configure prints a message and
+  exits.
+- when use simple ./configure the gsm_auth support is disabled and kphone is
+  compiled as it is in the official release 3.11
+- if everything works ok with configure, then you can compile with 'make' (the
+  visible issue while compiling is the flag -DWITH_GSM_AUTH)
+
+[01.08.2003]
+
+This version supports SIP registration with GSM authentication.
+
+You have to ungzip/untar the archive, then run ./configure and make. A version
+of configure that checks the existence of pcsc-lite library is upcoming. Now it
+assumes that the library is already installed in your computer (usually in
+/usr/local/lib -- be sure this path is in ld.so.conf in order to be found by
+linker).
+
+You may run kphone from source directory (./kphone/kphone) or do make install
+and type kphone in any console.
+
+When KPhone prompts for password you must introduce the PIN for GSM sim. Be
+aware: if you introduce a wrong PIN code you must restart KPhone. It will block
+for I don't know what reason even the timeout for SIM card operations is 5
+seconds -- I will try to find a workaround for that.
+
+You can use SER with GSM authentication request to test KPhone. Don't challenge
+something else than REGISTER for moment, for the other methods GSM
+authentication is still work in progress.
+
+GSM authentication schema used in KPhone is described in "readme.txt".
+
