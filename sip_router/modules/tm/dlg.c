@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.12 2003/07/08 16:38:51 dcm Exp $
+ * $Id: dlg.c,v 1.13 2003/10/13 21:41:18 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -321,7 +321,7 @@ static inline int get_route_set(struct sip_msg* _m, rr_t** _rs, unsigned char _o
 
 			p = (rr_t*)ptr->parsed;
 			while(p) {
-				if (shm_duplicate_rr(_m, &t, p) < 0) {
+				if (shm_duplicate_rr(&t, p) < 0) {
 					LOG(L_ERR, "get_route_set(): Error while duplicating rr_t\n");
 					goto error;
 				}

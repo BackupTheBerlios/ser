@@ -1,5 +1,5 @@
 /*
- * $Id: parse_rr.h,v 1.7 2003/04/10 12:38:18 janakj Exp $
+ * $Id: parse_rr.h,v 1.8 2003/10/13 21:40:21 janakj Exp $
  *
  * Route & Record-Route Parser
  *
@@ -79,13 +79,13 @@ void print_rr(FILE* _o, rr_t* _r);
 /*
  * Duplicate a single rr_t structure using pkg_malloc
  */
-int duplicate_rr(struct sip_msg* _m, rr_t** _new, rr_t* _r);
+int duplicate_rr(rr_t** _new, rr_t* _r);
 
 
 /*
  * Duplicate a single rr_t structure using pkg_malloc
  */
-int shm_duplicate_rr(struct sip_msg* _m, rr_t** _new, rr_t* _r);
+int shm_duplicate_rr(rr_t** _new, rr_t* _r);
 
 
 #endif /* PARSE_RR_H */
