@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.10 2004/08/24 08:58:32 janakj Exp $
+ * $Id: pa_mod.h,v 1.11 2005/04/04 14:22:17 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -57,6 +57,7 @@ extern char *place_table;
 extern int use_bsearch;
 extern int use_location_package;
 extern int new_watcher_pending;
+extern int watcherinfo_notify;
 extern int callback_update_db;
 extern int callback_lock_pdomain;
 extern int new_tuple_on_publish;
