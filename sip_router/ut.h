@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.9 2002/04/29 14:54:16 janakj Exp $
+ *$Id: ut.h,v 1.10 2002/05/22 16:08:01 bogdan Exp $
  *
  * - various general purpose functions
  */
@@ -155,5 +155,6 @@ static inline char* q_memchr(char* p, int c, unsigned int size)
 	return 0;
 }
 	
+
 
 #endif
