@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.11 2002/09/21 08:42:21 jiri Exp $
+ * $Id: uac.c,v 1.12 2002/09/21 09:57:28 jiri Rel $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -429,7 +429,7 @@ int fifo_uac_from( FILE *stream, char *response_file )
 				sizeof(err_buf), "FIFO/UAC" ) ;
 		if (err_ret > 0 )
 		{
-			fifo_reply(response_file, err_buf );
+			fifo_reply(response_file, "%d %s", sip_error, err_buf );
 		} else {
 			fifo_reply(response_file, "500 FIFO/UAC error: %d\n",
 				ret );
