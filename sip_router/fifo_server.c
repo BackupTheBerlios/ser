@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.42 2003/10/30 20:00:23 bogdan Exp $
+ * $Id: fifo_server.c,v 1.43 2003/10/30 20:54:03 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -59,6 +59,7 @@
  *  2003-10-07  fifo security fixes: permissions, always delete old fifo,
  *               reply fifo checks -- added fifo_check (andrei)
  *  2003-10-13  addef fifo_dir for reply fifos (andrei)
+ *  2003-10-30  DB interface exported via FIFO (bogdan)
  */
 
 
