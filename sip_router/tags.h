@@ -1,5 +1,5 @@
 /*
- * $Id: tags.h,v 1.3 2003/02/19 17:16:41 andrei Exp $
+ * $Id: tags.h,v 1.4 2003/04/29 16:32:11 janakj Exp $
  *
  * - utility for generating to-tags
  *   in SER, to-tags consist of two parts: a fixed part
@@ -45,6 +45,7 @@
 #define _TAGS_H
 
 #include "parser/msg_parser.h"
+#include "globals.h"
 #include "crc.h"
 #include "str.h"
 
