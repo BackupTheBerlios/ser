@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.32 2003/05/09 13:44:47 andrei Exp $
+ * $Id: msg_parser.h,v 1.33 2003/07/03 15:41:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -124,6 +124,7 @@ struct sip_uri {
 	str headers;  
 	unsigned short port_no;
 	unsigned short proto; /* from transport */
+	int secure; /* 1 if is a sips, 0 otherwise */
 	/* parameters */
 	str transport;
 	str ttl;
@@ -131,12 +132,15 @@ struct sip_uri {
 	str maddr;
 	str method;
 	str lr;
+	str r2; /* ser specific rr parameter */
 	/* values */
 	str transport_val;
 	str ttl_val;
 	str user_param_val;
 	str maddr_val;
 	str method_val;
+	str lr_val; /* lr value placeholder for lr=on a.s.o*/
+	str r2_val;
 };
 
 

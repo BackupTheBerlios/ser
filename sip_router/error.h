@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.9 2003/04/11 16:58:29 andrei Exp $
+ * $Id: error.h,v 1.10 2003/07/03 15:41:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,7 +42,7 @@
 #define E_BAD_TUPEL		-9
 /* script programming error */
 #define E_SCRIPT		-10
-/* error in exceution of external tools */
+/* error in excecution of external tools */
 #define E_EXEC			-11
 /* too many branches demanded */
 #define E_TOO_MANY_BRANCHES -12
