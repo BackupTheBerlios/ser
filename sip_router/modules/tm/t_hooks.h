@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.13 2003/04/30 18:50:58 janakj Exp $
+ * $Id: t_hooks.h,v 1.14 2003/07/08 15:24:27 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,7 +45,7 @@ struct cell;
 #define TMCB_E2EACK TMCB_E2EACK_IN
 #define TMCB_REPLY_IN TMCB_RESPONSE_IN
 #define TMCB_REQUEST_OUT TMCB_REQUEST_FWDED
-#define TMCB_ON_NEGATIVE_TMCB_ON_FAILURE
+#define TMCB_ON_NEGATIVE TMCB_ON_FAILURE
 
 typedef enum { 
 		/* input events */
