@@ -1,4 +1,4 @@
-/*$Id: nathelper.c,v 1.9 2003/05/26 15:24:45 andrei Exp $
+/*$Id: nathelper.c,v 1.10 2003/06/23 19:32:01 sobomax Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -511,7 +511,7 @@ timer(unsigned int ticks, void *param)
 			LOG(L_ERR, "ERROR: nathelper::timer: can't resolve_hos\n");
 			continue;
 		}
-		hostent2su(&to, he, 0, htons(curi.port_no));
+		hostent2su(&to, he, 0, curi.port_no);
 		send_sock = get_send_socket(&to, curi.proto);
 		if (send_sock == NULL) {
 			LOG(L_ERR, "ERROR: nathelper::timer: can't get sending socket\n");
