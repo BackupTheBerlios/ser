@@ -1,5 +1,5 @@
 /*
- * $Id: msfuncs.h,v 1.6 2002/12/05 09:16:59 dcm Exp $
+ * $Id: msfuncs.h,v 1.7 2003/05/20 16:47:37 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
 #ifndef _MSFUNCS_H_
 #define _MSFUNCS_H_
 
+#include <time.h>
 #include "../../str.h"
 
 #define CT_TYPE		1
@@ -56,7 +57,7 @@ int m_extract_content_type(char*, int, t_content_type*, int);
 int m_build_headers(str *buf, str ctype, str contact);
 
 /** build MESSAGE body */
-int m_build_body(str *body, int date, str msg);
+int m_build_body(str *body, time_t date, str msg);
 
 #endif
 

@@ -1,5 +1,5 @@
 /*
- * $Id: msfuncs.c,v 1.9 2003/01/23 19:16:06 dcm Exp $
+ * $Id: msfuncs.c,v 1.10 2003/05/20 16:47:37 dcm Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -193,7 +193,7 @@ error:
  *         - body->s MUST be allocated
  * #return: 0 OK ; -1 error
  * */
-int m_build_body(str *body, int date, str msg)
+int m_build_body(str *body, time_t date, str msg)
 {
 	char *p;
 	
@@ -206,7 +206,7 @@ int m_build_body(str *body, int date, str msg)
 	strncpy(p, "[Offline message - ", 19);
 	p += 19;
 	
-	strncpy(p, ctime((const time_t*)(&date)), 24);
+	strncpy(p, ctime(&date), 24);
 	p += 24;
 
 	/**
