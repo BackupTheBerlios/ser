@@ -1,18 +1,11 @@
 /* 
- * $Id: parser_f.h,v 1.5 2001/11/29 23:03:29 jku Exp $
+ * $Id: parser_f.h,v 1.6 2001/12/05 23:00:09 jku Exp $
  */
 
 #ifndef parser_f_h
 #define parser_f_h
 
 char* eat_line(char* buffer, unsigned int len);
-
-/* macro now
-int is_empty(char* buffer, unsigned int len);
-*/
-
-/* MACROEATER no more optional */
-/* #ifdef MACROEATER */
 
 /* turn the most frequently called functions into macros */
 
@@ -49,17 +42,5 @@ int is_empty(char* buffer, unsigned int len);
       ((_p<(pend )) && (*_p=='\r' || *_p=='\n')) ? 1 : 0;			\
   } )
 
-
-/*
-#else
-
-
-char* eat_space(char* buffer, unsigned int len);
-char* eat_token(char* buffer, unsigned int len);
-char* eat_token2(char* buffer, unsigned int len, char delim);
-
-#endif
-*/
-/* EoMACROEATER */
 
 #endif

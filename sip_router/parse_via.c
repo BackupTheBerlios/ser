@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.8 2001/12/04 00:29:18 andrei Exp $ 
+ * $Id: parse_via.c,v 1.9 2001/12/05 23:00:08 jku Exp $ 
  *
  * via parsing automaton
  * 
@@ -16,7 +16,6 @@
  */
 
 
-#ifndef OLD_PARSER
 
 #include <stdlib.h>
 #include "dprint.h"
@@ -1736,4 +1735,3 @@ error:
 }
 
 
-#endif
