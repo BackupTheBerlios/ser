@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.14 2003/07/03 23:05:41 jiri Exp $
+ * $Id: authdb_mod.c,v 1.15 2003/09/15 19:47:02 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -83,10 +83,12 @@ int (*sl_reply)(struct sip_msg* _msg, char* _str1, char* _str2);
 char* db_url           = DEFAULT_RODB_URL;
 char* user_column      = "username";
 char* domain_column    = "domain";
+char* rpid_column      = "rpid";
 char* pass_column      = "ha1";
 char* pass_column_2    = "ha1b";
 int   calc_ha1         = 0;
 int   use_domain       = 1;    /* Use also domain when looking up a table row */
+int   use_rpid         = 0;    /* Fetch Remote-Party-ID */
 
 db_con_t* db_handle;   /* Database connection handle */
 
@@ -108,10 +110,12 @@ static param_export_t params[] = {
 	{"db_url",            STR_PARAM, &db_url       },
 	{"user_column",       STR_PARAM, &user_column  },
 	{"domain_column",     STR_PARAM, &domain_column},
+	{"rpid_column",       STR_PARAM, &rpid_column  },
 	{"password_column",   STR_PARAM, &pass_column  },
 	{"password_column_2", STR_PARAM, &pass_column_2},
 	{"calculate_ha1",     INT_PARAM, &calc_ha1     },
 	{"use_domain",        INT_PARAM, &use_domain   },
+	{"use_rpid",          INT_PARAM, &use_rpid     },
 	{0, 0, 0}
 };
 
