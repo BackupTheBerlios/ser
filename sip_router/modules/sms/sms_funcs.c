@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.52 2003/01/24 18:34:10 bogdan Exp $
+ * $Id: sms_funcs.c,v 1.53 2003/02/25 17:30:09 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -107,7 +107,7 @@ struct tm_binds tmb;
 
 
 
-
+#if 0
 inline int add_contact(struct sip_msg* msg , str* user)
 {
 	struct lump_rpl *lump;
@@ -143,7 +143,7 @@ inline int add_contact(struct sip_msg* msg , str* user)
 	pkg_free(buf);
 	return 1;
 }
-
+#endif
 
 
 
@@ -226,11 +226,13 @@ int push_on_network(struct sip_msg *msg, int net)
 	}
 	from = (struct to_body*)msg->from->parsed;
 
+#if 0
 	/* adds contact header into reply */
 	if (add_contact(msg,&(uri.user))==-1) {
 		LOG(L_ERR,"ERROR:sms_push_on_net:can't build contact for reply\n");
 		goto error;
 	}
+#endif
 
 	/*-------------BUILD AND FILL THE SMS_MSG STRUCTURE --------------------*/
 	/* computes the amount of memory needed */
