@@ -1,4 +1,4 @@
-/* $Id: mem.h,v 1.4 2002/09/19 12:23:53 jku Rel $
+/* $Id: mem.h,v 1.5 2003/03/10 22:24:14 andrei Exp $
  *
  * memory related stuff (malloc & friends)
  * 
@@ -26,6 +26,12 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+/*
+ * History:
+ * --------
+ *  2003-03-10  __FUNCTION__ is a gcc-ism, defined it to "" for sun cc
+ *               (andrei)
+ */
 
 
 
@@ -50,6 +56,9 @@
 
 
 #	ifdef DBG_QM_MALLOC
+#ifdef __SUNPRO_C
+		#define __FUNCTION__ ""  /* gcc specific */
+#endif
 #		ifdef VQ_MALLOC
 #			define pkg_malloc(s) vqm_malloc(mem_block, (s),__FILE__, \
 				__FUNCTION__, __LINE__)

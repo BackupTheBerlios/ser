@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.c,v 1.4 2003/02/20 18:13:22 andrei Exp $
+ * $Id: parse_content.c,v 1.5 2003/03/10 22:24:14 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -41,11 +41,11 @@
  */
 typedef struct type_node_s {
 	char c;                      /* char contained by this node */
-	unsigned char final;         /* says what to be done if the mached string
+	char final;                 /* says what to be done if the matched string
 	                              * ends at this node: -1-> dead end (unknown
 	                              * type) or the index of the sub-type that
-	                              * follows (for types) or the  final type (for
-	                              * sub-types)*/
+	                              * follows (for types) or the  final type 
+	                              * (for sub-types)*/
 	unsigned char nr_sons;       /* the number of sub-nodes */
 	int next;                    /* the next sibling node */
 }type_node_t;

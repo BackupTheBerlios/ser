@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.15 2003/03/06 16:22:10 andrei Exp $*
+/* $Id: shm_mem.h,v 1.16 2003/03/10 22:24:14 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -87,6 +87,11 @@ void shm_mem_destroy();
 
 
 #ifdef DBG_QM_MALLOC
+
+#ifdef __SUNPRO_C
+		#define __FUNCTION__ ""  /* gcc specific */
+#endif
+
 
 #define shm_malloc_unsafe(_size ) \
 	MY_MALLOC(shm_block, (_size), __FILE__, __FUNCTION__, __LINE__ )

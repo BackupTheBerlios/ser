@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.15 2003/02/25 16:58:57 andrei Exp $
+ * $Id: tcp_main.c,v 1.16 2003/03/10 22:24:14 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -515,7 +515,6 @@ static int send2child(struct tcp_connection* tcpconn)
 			idx=i;
 			min_busy=0;
 			break;
-			return 0;
 		}else if (min_busy>tcp_children[i].busy){
 			min_busy=tcp_children[i].busy;
 			idx=i;

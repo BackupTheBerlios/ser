@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.7 2003/02/28 14:12:26 jiri Exp $ 
+ * $Id: hf.h,v 1.8 2003/03/10 22:24:14 andrei Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -71,12 +71,12 @@
  * Format: name':' body 
  */
 struct hdr_field {   
-	int type;                /* Header field type */
-	str name;                /* Header field name */
-	str body;                /* Header field body */
-	int len;				 /* length from body until EoHF (incl. CRLF) */
-	void* parsed;            /* Parsed data structures */
-	struct hdr_field* next;  /* Next header field in the list */
+	int type;               /* Header field type */
+	str name;               /* Header field name */
+	str body;               /* Header field body (may not include CRLF) */
+	int len;				/* length from hdr start until EoHF (incl.CRLF) */
+	void* parsed;           /* Parsed data structures */
+	struct hdr_field* next; /* Next header field in the list */
 };
 
 
