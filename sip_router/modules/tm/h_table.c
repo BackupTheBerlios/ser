@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.37 2001/12/08 02:29:14 jku Exp $
+ * $Id: h_table.c,v 1.38 2001/12/10 15:42:45 bogdan Exp $
  */
 
 
@@ -81,16 +81,6 @@ void free_hash_table( struct s_table *hash_table )
             free_cell( p_cell );
          }
       }
-
-      /* deletes all cells from DELETE_LIST list (they are no more accessible from enrys) */
-        lock( hash_table->timers[DELETE_LIST].mutex );
-        remove_delete_list( hash_table );
-        unlock( hash_table->timers[DELETE_LIST].mutex );
-
-      /*
-      while( (tl=remove_from_timer_list_from_head( hash_table, DELETE_LIST ))!=0 )
-         free_cell( p_cell ) ;
-      */
 
       /* the mutexs for sync the lists are released*/
       for ( i=0 ; i<NR_OF_TIMER_LISTS ; i++ )
