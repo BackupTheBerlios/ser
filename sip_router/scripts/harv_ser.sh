@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.20 2003/01/23 09:37:34 jiri Exp $
+# $Id: harv_ser.sh,v 1.21 2003/01/24 15:47:05 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -105,6 +105,7 @@ BEGIN {
 	ua_tkc=0;
 	ua_eyep=0;
 	ua_sipimp=0;
+	ua_sjphone=0;
 	ua_xx=0;
 
 	server_cisco=0
@@ -265,6 +266,10 @@ ua==0 && /User-Agent:.*SIP EyeP Phone/ {
 }
 ua==0 && /User-Agent:.*EdgEAccEss/ {
 	ua_edgeaccess++
+	ua=1
+}
+ua==0 && /User-Agent:.*SJLabs-SJPhone/ {
+	ua_sjphone++
 	ua=1
 }
 ua==0 && /User-Agent:.*SIPimp\.org/ {
@@ -666,6 +671,7 @@ END {
 	print "EdgeAccess: " ua_edgeaccess
 	print "EyeP: " ua_eyep
 	print "SIPimp: " ua_sipimp
+	print "SJPhone: " ua_sjphone
 	print "UFO: " ua_xx
 
 	print "## Servers"
