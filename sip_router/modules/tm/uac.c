@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.48 2004/03/30 16:20:06 janakj Exp $
+ * $Id: uac.c,v 1.49 2004/04/01 17:06:07 bogdan Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -182,6 +182,8 @@ int t_uac(str* method, str* headers, str* body, dlg_t* dialog,
 	if(!dialog->hooks.next_hop && w_calculate_hooks(dialog)<0)
 		goto error2;
 
+	DBG("DEBUG:tm:t_uac: next_hop=<%.*s>\n",dialog->hooks.next_hop->len,
+			dialog->hooks.next_hop->s);
 	send_sock = uri2sock(dialog->hooks.next_hop, &to_su, PROTO_NONE);
 	if (!send_sock) {
 		ret=ser_error;
@@ -329,6 +331,7 @@ int request(str* m, str* ruri, str* to, str* from, str* h, str* b, transaction_c
 		dialog->rem_target.len = ruri->len;
 		dialog->hooks.request_uri = &dialog->rem_target;
 	}
+	w_calculate_hooks(dialog);
 
 	res = t_uac(m, h, b, dialog, c, cp);
 	dialog->rem_target.s = 0;
