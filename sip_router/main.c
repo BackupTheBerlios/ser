@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.39 2001/12/06 21:38:14 andrei Exp $
+ * $Id: main.c,v 1.40 2001/12/06 23:43:46 andrei Exp $
  */
 
 #include <stdio.h>
@@ -42,7 +42,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.39 2001/12/06 21:38:14 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.40 2001/12/06 23:43:46 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]=
 "STATS:"
@@ -330,11 +330,14 @@ static void sig_usr(int signo)
 		if (is_main)
 			destroy_modules();
 #ifdef PKG_MALLOC
+		LOG(L_INFO, "Memory status (pkg):\n");
 		pkg_status();
 #endif
 #ifdef SHM_MEM
-		if (is_main)
+		if (is_main){
+			LOG(L_INFO, "Memory status (shm):\n");
 			shm_status();
+		}
 #endif
 #ifdef SHM_MEM
 		if (is_main)
@@ -346,9 +349,11 @@ static void sig_usr(int signo)
 		dump_all_statistic();
 #endif
 #ifdef PKG_MALLOC
+		LOG(L_INFO, "Memory status (pkg):\n");
 		pkg_status();
 #endif
 #ifdef SHM_MEM
+		LOG(L_INFO, "Memory status (shm):\n");
 		shm_status();
 #endif
 	}

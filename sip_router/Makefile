@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.49 2001/12/06 21:38:14 andrei Exp $
+# $Id: Makefile,v 1.50 2001/12/06 23:43:46 andrei Exp $
 #
 # sip_router makefile
 #
@@ -35,7 +35,7 @@ NAME=ser
 #                  twice, trying to free a pointer alloc'ed with a different
 #                  malloc etc.)
 DEFS=-DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM \
-	 -DPKG_MALLOC -DDBG_QM_MALLOC 
+	 -DPKG_MALLOC -DNO_DEBUG -DDBG_QM_MALLOC 
 #-DEXTRA_DEBUG
 # -DUSE_SHM_MEM
 #-DNO_DEBUG 
