@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.10 2004/04/27 14:53:22 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.11 2004/04/27 21:59:33 jiri Exp $ 
  *
  * registrar module interface
  *
@@ -42,6 +42,9 @@ extern int case_sensitive;
 extern int desc_time_order;
 extern int nat_flag;
 extern int min_expires;
+extern str realm_prefix;
+
+extern float def_q;
 
 usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.51 2004/01/22 16:53:28 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.52 2004/04/27 21:59:33 jiri Exp $ 
  *
  * Digest Authentication Module
  *
@@ -107,6 +107,12 @@ str rpid_prefix;
 char* rpid_suffix_param = ";party=calling;id-type=subscriber;screen=yes";
 str rpid_suffix;
 
+/*
+ * head of auto-generated realm to be stripped if present
+ */
+static char *realm_prefix_param= 0;
+str realm_prefix;
+
 
 /*
  * Exported functions 
@@ -132,6 +138,7 @@ static param_export_t params[] = {
 	{"nonce_expire", INT_PARAM, &nonce_expire     },
 	{"rpid_prefix",  STR_PARAM, &rpid_prefix_param},
 	{"rpid_suffix",  STR_PARAM, &rpid_suffix_param},
+	{"realm_prefix",  STR_PARAM, &realm_prefix_param},
 	{0, 0, 0}
 };
 
@@ -209,6 +216,10 @@ static int mod_init(void)
 
 	rpid_suffix.s = rpid_suffix_param;
 	rpid_suffix.len = strlen(rpid_suffix.s);
+
+
+	realm_prefix.s=realm_prefix_param;
+	realm_prefix.len=strlen(realm_prefix_param);
 
 	return 0;
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: api.h,v 1.3 2003/04/28 22:03:15 janakj Exp $
+ * $Id: api.h,v 1.4 2004/04/27 21:59:33 jiri Exp $
  *
  * Digest Authentication Module
  *
@@ -63,5 +63,7 @@ auth_result_t pre_auth(struct sip_msg* _m, str* _realm, int _hftype, struct hdr_
 typedef auth_result_t (*post_auth_f)(struct sip_msg* _m, struct hdr_field* _h, str* _rpid);
 
 auth_result_t post_auth(struct sip_msg* _m, struct hdr_field* _h, str* _rpid);
+
+void strip_realm(str *_realm);
 
 #endif /* API_H */
