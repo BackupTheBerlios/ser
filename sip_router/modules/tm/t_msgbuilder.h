@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.4 2002/09/19 12:23:55 jku Exp $
+ * $Id: t_msgbuilder.h,v 1.5 2002/09/19 21:43:21 jiri Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -75,7 +75,7 @@ char *build_local(struct cell *Trans, unsigned int branch,
 
 char *build_uac_request(  str msg_type, str dst, str from,
 	str headers, str body, int branch,
-	struct cell *t, int *len);
+	struct cell *t, unsigned int *len);
 
 int t_calc_branch(struct cell *t,
 	int b, char *branch, int *branch_len);

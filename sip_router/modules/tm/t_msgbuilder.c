@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.10 2002/09/19 21:34:58 jiri Exp $
+ * $Id: t_msgbuilder.c,v 1.11 2002/09/19 21:43:21 jiri Rel $
  *
  * message printing
  *
@@ -169,7 +169,7 @@ error:
 
 char *build_uac_request(  str msg_type, str dst, str from,
     	str headers, str body, int branch, 
-		struct cell *t, int *len)
+		struct cell *t, unsigned int *len)
 {
 	char *via;
 	unsigned int via_len;

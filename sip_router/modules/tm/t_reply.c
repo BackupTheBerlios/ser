@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.30 2002/09/19 12:23:55 jku Exp $
+ * $Id: t_reply.c,v 1.31 2002/09/19 21:43:21 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -803,7 +803,7 @@ enum rps t_should_relay_response( struct cell *Trans , int new_code,
 }
 
 char *build_ack(struct sip_msg* rpl,struct cell *trans,int branch,
-	int *ret_len)
+	unsigned int *ret_len)
 {
 	str to;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.2 2002/09/19 12:23:55 jku Exp $
+ * $Id: t_reply.h,v 1.3 2002/09/19 21:43:21 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -104,7 +104,7 @@ void set_final_timer( /* struct s_table *h_table,*/ struct cell *t );
 void cleanup_uac_timers( struct cell *t );
 
 char *build_ack( struct sip_msg* rpl, struct cell *trans, int branch ,
-	int *ret_len);
+	unsigned int *ret_len);
 
 void on_negative_reply( struct cell* t, struct sip_msg* msg,
 	int code, void *param  );
