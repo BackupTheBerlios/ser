@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.31 2003/03/19 18:40:09 andrei Exp $
+ * $Id: uac.c,v 1.32 2003/03/31 14:11:15 jiri Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -281,8 +281,8 @@ static struct socket_info *uri2sock( str *uri, union sockaddr_union *to_su,
  *           'headers' parameter
  * - cb ..   callback to be called when transaction completes; if none
  *           present, no callback will be called
- * - cbp ..  callback parameter -- value passed to callback function
- *           when called
+ * - cbp ..  callback parameter -- value stored in transaction context
+ *           
  *
  */
 int t_uac_dlg(str* msg,                     /* Type of the message - MESSAGE, OPTIONS etc. */

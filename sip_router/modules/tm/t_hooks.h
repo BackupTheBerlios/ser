@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.9 2003/03/29 01:38:12 jiri Exp $
+ * $Id: t_hooks.h,v 1.10 2003/03/31 14:11:15 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -142,6 +142,10 @@ typedef enum {
 	note that callbacks MUST be installed before forking
     (callback lists do not live in shmem and have no access
 	protection), i.e., at best from mod_init functions.
+
+	also, note: the callback param is currently not used;
+	if whoever wishes to use a callback parameter, use
+	trans->cbp
 */
 
 typedef void (transaction_cb) ( struct cell* t, struct sip_msg* msg, 
