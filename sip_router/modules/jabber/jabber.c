@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.44 2003/05/09 11:23:40 dcm Exp $
+ * $Id: jabber.c,v 1.45 2003/05/12 15:35:59 dcm Exp $
  *
  * XJAB module
  *
@@ -98,6 +98,7 @@ db_con_t** db_con;
 
 char *db_url   = "sql://root@127.0.0.1/sip_jab";
 char *db_table = "jusers";
+char *registrar=NULL; //"sip:registrar@iptel.org";
 
 int nrw = 2;
 int max_jobs = 10;
@@ -155,6 +156,7 @@ static param_export_t params[] = {
 	{"aliases",    STR_PARAM, &jaliases  },
 	{"proxy",      STR_PARAM, &proxy     },
 	{"jdomain",    STR_PARAM, &jdomain   },
+	{"registrar",  STR_PARAM, &registrar },
 	{"jport",      INT_PARAM, &jport     },
 	{"workers",    INT_PARAM, &nrw       },
 	{"max_jobs",   INT_PARAM, &max_jobs  },
