@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.15 2002/09/03 10:25:12 jku Exp $
+ *$Id: ut.h,v 1.16 2002/09/05 18:03:15 andrei Exp $
  *
  * - various general purpose functions
  */
@@ -91,49 +91,6 @@ error_digits:
 	return 0;
 error_char:
 	DBG("str2s: ERROR: unexpected char %c in %.*s\n", *str, (int)len, init);
-	if (err) *err=1;
-	return 0;
-}
-
-
-
-/* converts a str to an ipv4 address, returns the address and sets *err
- * if error and err!=null
- */
-static inline unsigned int str2ip(unsigned char* str, unsigned int len,
-		int * err)
-{
-	unsigned int ret;
-	int i;
-	unsigned char *limit;
-	unsigned char *init;
-
-	/*init*/
-	ret=i=0;
-	limit=str+len;
-	init=str;
-
-	for(;str<limit ;str++){
-		if (*str=='.'){
-				i++;
-				if (i>3) goto error_dots;
-		}else if ( (*str <= '9' ) && (*str >= '0') ){
-				((unsigned char*)&ret)[i]=((unsigned char*)&ret)[i]*10+
-											*str-'0';
-		}else{
-				//error unknown char
-				goto error_char;
-		}
-	}
-	if (err) *err=0;
-	return ret;
-
-error_dots:
-	DBG("str2ip: ERROR: too many dots in [%.*s]\n", (int)len, init);
-	if (err) *err=1;
-	return 0;
-error_char:
-	DBG("str2ip: WARNING: unexpected char %c in %.*s\n", *str,(int)len, init);
 	if (err) *err=1;
 	return 0;
 }
