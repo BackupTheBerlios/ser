@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.c,v 1.10 2004/02/23 10:45:06 janakj Exp $
+ * $Id: permissions.c,v 1.11 2004/04/25 15:13:25 janakj Exp $
  *
  * PERMISSIONS module
  *
@@ -254,7 +254,7 @@ static char* get_plain_uri(const str* uri)
 static int check_routing(struct sip_msg* msg, int idx) 
 {
 	struct hdr_field *from;
-	int len;
+	int len, q;
 	static char from_str[EXPRESSION_LENGTH+1];
 	static char ruri_str[EXPRESSION_LENGTH+1];
 	char* uri_str;
@@ -331,7 +331,7 @@ static int check_routing(struct sip_msg* msg, int idx)
 
  check_branches:
 	init_branch_iterator();
-	while((branch.s = next_branch(&branch.len))) {
+	while((branch.s = next_branch(&branch.len, &q))) {
 		uri_str = get_plain_uri(&branch);
 		if (!uri_str) {
 			LOG(L_ERR, "check_uri(): Error while extracting plain URI\n");

@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.57 2004/02/23 04:34:34 jiri Exp $
+ * $Id: t_fwd.c,v 1.58 2004/04/25 15:13:25 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -403,7 +403,7 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 	str current_uri;
 	branch_bm_t	added_branches;
 	int first_branch;
-	int i;
+	int i, q;
 	struct cell *t_invite;
 	int success_branch;
 	int try_new;
@@ -444,7 +444,7 @@ int t_forward_nonack( struct cell *t, struct sip_msg* p_msg ,
 	} else try_new=0;
 
 	init_branch_iterator();
-	while((current_uri.s=next_branch( &current_uri.len))) {
+	while((current_uri.s=next_branch( &current_uri.len, &q))) {
 		try_new++;
 		branch_ret=add_uac( t, p_msg, &current_uri, 
 				    (p_msg->dst_uri.len) ? (&p_msg->dst_uri) : &current_uri, 
