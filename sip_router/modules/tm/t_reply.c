@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.88 2004/03/30 16:20:06 janakj Exp $
+ * $Id: t_reply.c,v 1.89 2004/04/23 15:17:30 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -433,12 +433,22 @@ static int _reply( struct cell *trans, struct sip_msg* p_msg,
 	unsigned int code, char * text, int lock )
 {
 	unsigned int len;
-	char * buf;
+	char * buf, *dset;
 	struct bookmark bm;
+	int dset_len;
 
 	if (code>=200) set_kr(REQ_RPLD);
 	/* compute the buffer in private memory prior to entering lock;
 	 * create to-tag if needed */
+
+	/* if that is a redirection message, dump current message set to it */
+	if (code>=300 && code<400) {
+		dset=print_dset(p_msg, &dset_len);
+		if (dset) {
+			add_lump_rpl(p_msg, dset, dset_len, LUMP_RPL_HDR);
+		}
+	}
+
 	if (code>=180 && p_msg->to 
 				&& (get_to(p_msg)->tag_value.s==0 
 			    || get_to(p_msg)->tag_value.len==0)) {
