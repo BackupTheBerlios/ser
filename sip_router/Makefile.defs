@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.35 2002/02/07 03:37:13 jku Exp $
+# $Id: Makefile.defs,v 1.36 2002/02/08 14:29:34 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -53,7 +53,7 @@ ARCH = $(shell uname -s)
 
 DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 -DDNS_IP_HACK  -DPKG_MALLOC -DSHM_MEM  -DSHM_MMAP \
-	 -DUSE_SYNONIM \
+	 -DUSE_SYNONIM -DVQ_MALLOC\
 	 #-DFAST_LOCK -Di386
 	 #-DBRUT_HACK #-DEXTRA_DEBUG #-DSTATIC_TM
 	#-DEXTRA_DEBUG -DBRUT_HACK \
@@ -68,8 +68,8 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 #-DNO_LOG
 
 PROFILE=  -pg #set this if you want profiling
-mode = debug
-#mode = release
+#mode = debug
+mode = release
 
 # platform dependent settings
 
