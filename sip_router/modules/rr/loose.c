@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.11 2003/03/31 09:39:48 janakj Exp $
+ * $Id: loose.c,v 1.12 2003/03/31 11:01:24 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -439,8 +439,8 @@ static inline int route_after_strict(struct sip_msg* _m)
 			      * filed, it is it's offset + it's len and also plus one
 			      * because it is terminated by >
 			      */
-			offset = prev->nameaddr.uri.s + prev->nameaddr.uri.len + 1 - _m->buf;
-			len = hdr->body.s + hdr->body.len - (prev->nameaddr.uri.s + prev->nameaddr.uri.len + 1);
+			offset = prev->nameaddr.name.s + prev->nameaddr.len - _m->buf;
+			len = hdr->body.s + hdr->body.len - (prev->nameaddr.name.s + prev->nameaddr.len);
 			if (_m->buf[offset + len] != '\0') len++; /* FIXME: Is this necessary, yes it is  */
 		}
 
