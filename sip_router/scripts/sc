@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.56 2003/05/28 20:23:42 jiri Exp $
+# $Id: sc,v 1.57 2003/05/31 18:45:11 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.56 $'
+VERSION='$Revision: 1.57 $'
 #### SQL names
 
 # Usr Loc Table
@@ -142,6 +142,9 @@ usage:
  $CMD start .............................. start ser
  $CMD stop ............................... stop ser
  $CMD restart ............................ restart ser
+
+           * miscellaneous *
+ $CMD cisco_restart <uri> ................ restart a Cisco phone
 
 
    Commands labeled with (*) will prompt for a MySQL password.
@@ -750,6 +753,16 @@ case $1 in
 	fifo)
 		shift
 		fifo_cmd "$@"
+		;;
+
+	cisco_restart)
+		if [ "$#" -ne 2 ] ; then	
+			usage
+			exit 1
+		fi
+		fifo_cmd t_uac_dlg NOTIFY "$2" "." "From: sip:daemon@$SIP_DOMAIN" \
+			"To: <$2>" "Event: check-sync" "Contact: <sip:daemon@!!>" "." "." |
+			head -1
 		;;
 
 	version)
