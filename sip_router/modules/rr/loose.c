@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.24 2003/06/25 14:14:05 janakj Exp $
+ * $Id: loose.c,v 1.25 2003/06/29 19:19:52 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -234,7 +234,7 @@ static inline int find_next_route(struct sip_msg* _m, struct hdr_field** _hdr)
 		return -1;
 	}
 
-	if (_m->last_header->type != HDR_ROUTE) {
+	if ((_m->last_header->type != HDR_ROUTE) || (_m->last_header == *_hdr)) {
 		DBG("fnr(): No next Route HF found\n");
 		return 1;
 	}
