@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.16 2002/11/04 17:05:32 andrei Exp $
+ * $Id: fastlock.h,v 1.17 2002/11/11 21:34:53 andrei Exp $
  *
  * 
  *
@@ -35,10 +35,13 @@
 #ifndef fastlock_h
 #define fastlock_h
 
-
+#ifdef HAVE_SCHED_YIELD
 #include <sched.h>
-
-
+#else
+#include <unistd.h>
+	/* fake sched_yield */
+	#define sched_yield()	sleep(0)
+#endif
 
 
 typedef  volatile int fl_lock_t;

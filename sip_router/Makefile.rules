@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.11 2002/09/25 19:20:26 andrei Rel $
+# $Id: Makefile.rules,v 1.12 2002/11/11 21:34:53 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -18,7 +18,7 @@
 	$(CC) $(CFLAGS) $(DEFS) -c $< -o $@
 
 %.d: %.c $(ALLDEP)
-	@set -e; $(MKDEP) $< \
+	@set -e; $(MKDEP) $(DEFS) $< \
 	|  sed 's#\($*\)\.o[ :]*#\1.o $@ : #g' > $@; \
 	[ -s $@ ] || rm -f $@
 

@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.21 2002/11/04 17:05:32 andrei Exp $
+/* $Id: sr_module.c,v 1.22 2002/11/11 21:34:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -167,7 +167,12 @@ int load_module(char* path)
 	struct sr_module* t;
 	
 #ifndef RTLD_NOW
+/* for openbsd */
 #define RTLD_NOW DL_LAZY
+#endif
+#ifndef DLSYM_PREFIX
+/* define it to null */
+#define DLSYM_PREFIX
 #endif
 	handle=dlopen(path, RTLD_NOW); /* resolve all symbols now */
 	if (handle==0){
@@ -184,7 +189,7 @@ int load_module(char* path)
 		}
 	}
 	/* launch register */
-	exp = (struct module_exports*)dlsym(handle, "exports");
+	exp = (struct module_exports*)dlsym(handle, DLSYM_PREFIX "exports");
 	if ( (error =(char*)dlerror())!=0 ){
 		LOG(L_ERR, "ERROR: load_module: %s\n", error);
 		goto error1;

@@ -1,4 +1,4 @@
-/* $Id: data_lump.c,v 1.9 2002/09/19 12:23:52 jku Rel $
+/* $Id: data_lump.c,v 1.10 2002/11/11 21:34:53 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -38,6 +38,9 @@
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
 #endif
+
+/* WARNING: all lump add/insert operations excpect a pkg_malloc'ed char* 
+ * pointer the will be DEALLOCATED when the sip_msg is destroyed! */
 
 
 /* adds a header to the end
