@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname2.h,v 1.1 2002/07/08 17:14:39 janakj Exp $
+ * $Id: parse_hname2.h,v 1.2 2002/07/25 12:13:43 janakj Exp $
  */
 
 #ifndef PARSE_HNAME2_H
@@ -9,7 +9,7 @@
 
 
 /*
- * Yet another parse_hname - Ultra Fast version :-)
+ * Fast 32-bit header field name parser
  */
 char* parse_hname2(char* begin, char* end, struct hdr_field* hdr);
 
