@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/sh  
 #
-# $Id: sc,v 1.77 2003/12/17 23:17:27 jiri Exp $
+# $Id: sc,v 1.78 2004/01/11 19:21:27 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -67,9 +67,9 @@ ACL_GROUPS="local ld int voicemail free-pstn prepaid"
 
 # expiration time for alias table
 FOREVER='2020-05-28 21:32:15'
-FOREVER_REL=1073741823
+FOREVER_REL=1003741823
 
-VERSION='$Revision: 1.77 $'
+VERSION='$Revision: 1.78 $'
 #### SQL names
 
 # Usr Loc Table
