@@ -1,7 +1,8 @@
-$Id: TODO,v 1.67 2003/08/25 12:19:52 andrei Exp $
+$Id: TODO,v 1.68 2003/08/25 13:21:19 andrei Exp $
 
 ( - todo, x - done)
 
+- add BUG checks for  fd > 0 && fd <= maxfd to all selects?
 x tcp_main_loop: BUG cases should "conitnue;"
 - change len_gt into and expr (e.g msg:len).
 - sipit: uri == myself doesn't match tls port = 5061
