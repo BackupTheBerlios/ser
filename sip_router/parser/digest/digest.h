@@ -1,5 +1,5 @@
 /*
- * $Id: digest.h,v 1.2 2002/08/12 12:20:08 janakj Exp $
+ * $Id: digest.h,v 1.3 2002/09/04 20:06:27 janakj Exp $
  *
  * Digest credentials parser interface
  */
@@ -23,9 +23,6 @@ typedef struct auth_body {
 	      * which credentials are authorized and they will simply
 	      * look into 
 	      * sip_msg->{authorization,proxy_auth}->parsed->authorized
-	      * If the pointer contains 0, then the hook itself contains
-	      * authorized credentials, otherwise they are in hdr_field
-	      * the pointer points to.
 	      */
 	struct hdr_field* authorized;
 	dig_cred_t digest;           /* Parsed digest credentials */
