@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.2 2002/09/19 12:23:55 jku Exp $
+ * $Id: t_cancel.c,v 1.3 2002/09/20 12:07:11 andrei Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -71,7 +71,7 @@ void cancel_uacs( struct cell *t, branch_bm_t cancel_bm )
 void cancel_branch( struct cell *t, int branch )
 {
 	char *cancel;
-	int len;
+	unsigned int len;
 	struct retr_buf *crb, *irb;
 
 	crb=&t->uac[branch].local_cancel;

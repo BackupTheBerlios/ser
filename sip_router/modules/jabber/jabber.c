@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.9 2002/09/19 12:23:53 jku Exp $
+ * $Id: jabber.c,v 1.10 2002/09/20 12:07:11 andrei Exp $
  *
  * JABBER module
  *
@@ -44,6 +44,7 @@
 #include "../../mem/shm_mem.h"
 #include "../../mem/mem.h"
 #include "../../globals.h"
+#include "../../parser/parse_uri.h"
 
 #include "sip2jabber.h"
 #include "jc_pool.h"

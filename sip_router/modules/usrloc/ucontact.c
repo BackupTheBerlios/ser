@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.7 2002/09/19 12:23:55 jku Exp $ 
+ * $Id: ucontact.c,v 1.8 2002/09/20 12:07:11 andrei Rel $ 
  *
  * Usrloc contact structure
  *
@@ -296,8 +296,10 @@ int st_flush_ucontact(ucontact_t* _c)
 int db_insert_ucontact(ucontact_t* _c)
 {
 	char b[256];
-	db_key_t keys[] = {user_col, contact_col, expires_col, q_col, callid_col, cseq_col};
-	db_val_t vals[] = {{DB_STR,     0, {.str_val = {_c->aor->s, _c->aor->len}}},
+	db_key_t keys[] = {user_col, contact_col, expires_col, q_col, callid_col,
+						cseq_col};
+	db_val_t vals[] = {
+			  {DB_STR,      0, {.str_val = {_c->aor->s, _c->aor->len}}},
 			  {DB_STR,      0, {.str_val = {_c->c.s, _c->c.len}}},
 			  {DB_DATETIME, 0, {.time_val = _c->expires}},
 			  {DB_DOUBLE,   0, {.double_val = _c->q}},
