@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.69 2005/02/03 13:22:14 sobomax Exp $
+/* $Id: nathelper.c,v 1.70 2005/02/03 13:54:38 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -342,6 +342,7 @@ child_init(int rank)
 	struct addrinfo hints, *res;
 
 	if (rtpproxy_disable == 0) {
+		mypid = getpid();
 		if (umode != 0) {
 			cp = strrchr(rtpproxy_sock, ':');
 			if (cp != NULL) {
@@ -380,7 +381,6 @@ child_init(int rank)
 	} else {
 		rtpproxy_disable_tout = -1;
 	}
-	mypid = getpid();
 
 	return 0;
 }
