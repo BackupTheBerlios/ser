@@ -1,5 +1,5 @@
 /*
- * $Id: rpid.h,v 1.1 2003/04/28 22:03:15 janakj Exp $
+ * $Id: rpid.h,v 1.2 2003/10/01 21:07:40 janakj Exp $
  *
  * Remote-Party-ID related functions
  *
@@ -42,6 +42,12 @@
  * Append RPID header field to the message
  */
 int append_rpid_hf(struct sip_msg* _m, char* _s1, char* _s2);
+
+
+/*
+ * Append RPID header field to the message with parameters
+ */
+int append_rpid_hf_p(struct sip_msg* _m, char* _prefix, char* _suffix);
 
 
 /*
