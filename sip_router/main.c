@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.115 2002/09/20 09:29:07 andrei Exp $
+ * $Id: main.c,v 1.116 2002/09/20 12:47:15 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -78,7 +78,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.115 2002/09/20 09:29:07 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.116 2002/09/20 12:47:15 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -415,6 +415,10 @@ void handle_sigs()
 				
 			/* first of all, kill the children also */
 			kill(0, SIGTERM);
+
+			     /* Wait for all the children to die */
+			while(wait(0) > 0);
+
 			destroy_modules();
 #ifdef PKG_MALLOC
 			LOG(memlog, "Memory status (pkg):\n");
