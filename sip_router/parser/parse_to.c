@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.14 2002/12/09 12:07:36 bogdan Exp $
+ * $Id: parse_to.c,v 1.15 2003/03/30 20:33:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -33,10 +33,6 @@
 #include "msg_parser.h"
 #include "../ut.h"
 #include "../mem/mem.h"
-
-enum {
-	TAG_PARAM = 400, GENERAL_PARAM
-};
 
 
 enum {
