@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: common.h,v 1.6 2003/03/31 09:39:48 janakj Exp $
+ * $Id: common.h,v 1.7 2003/04/01 06:35:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -58,9 +58,6 @@ extern char rr_hash[MD5_LEN];
  * Generate hash string that will be inserted in RR
  */
 void generate_hash(void);
-
-
-int generate_rr_suffix(void);
 
 
 /*
