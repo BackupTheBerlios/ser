@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_nameaddr.c,v 1.6 2003/04/28 22:08:52 janakj Exp $
+ * $Id: parse_nameaddr.c,v 1.7 2004/02/09 14:25:04 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -39,7 +39,7 @@
 
 /*
  * Parse name-addr part, the given string can be longer,
- * it will be updated to point right behind the name-addr part
+ * parsing will stop when closing > is found
  */
 int parse_nameaddr(str* _s, name_addr_t* _a)
 {
