@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.h,v 1.1 2004/03/02 16:07:14 janakj Exp $
+ * $Id: unixsock_server.h,v 1.2 2004/03/03 15:36:55 janakj Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -60,19 +60,39 @@ void close_unixsock_server(void);
 /*
  * Register a new command
  */
-int unixsock_register_cmd(str* name, unixsock_f* f);
+int unixsock_register_cmd(char* name, unixsock_f* f);
 
 
 /*
- * add a text to the reply
+ * Reset the reply buffer -- start to write
+ * at the beginning
  */
-int unixsock_add_to_reply(const char* buf, size_t len);
+void unixsock_reply_reset(void);
+
+
+/*
+ * Add ASCIIZ to the reply buffer
+ */
+int unixsock_reply_asciiz(char* str);
+
+
+/*
+ * Add a string represented by str structure
+ * to the reply buffer
+ */
+int unixsock_reply_str(str* s);
+
+
+/*
+ * Printf-like reply function
+ */
+int unixsock_reply_printf(char* fmt, ...);
 
 
 /*
  * Send the reply
  */
-ssize_t unixsock_send_reply(void);
+ssize_t unixsock_reply_send(void);
 
 
 /*
