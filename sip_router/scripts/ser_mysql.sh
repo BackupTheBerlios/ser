@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.35 2003/04/13 21:47:39 jiri Exp $
+# $Id: ser_mysql.sh,v 1.36 2003/04/13 21:48:18 jiri Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -102,9 +102,6 @@ ser_backup() # par: <database name>
 		echo "ser backup dump failed"
 		exit 1
 	fi
-#XX
-	ser_drop $1_bak 
-#XX
 	sql_query <<EOF
 	create database $1_bak;
 EOF
