@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.49 2002/05/31 01:59:06 jku Exp $
+/* $Id: msg_translator.c,v 1.50 2002/06/07 15:03:38 noh Exp $
  *
  */
 
@@ -63,7 +63,7 @@ int check_address(struct ip_addr* ip, char *name, int resolver)
 		DBG("check_address: doing dns lookup\n");
 		/* try all names ips */
 		he=resolvehost(name);
-		if (ip->af==he->h_addrtype){
+		if (he && ip->af==he->h_addrtype){
 			for(i=0;he && he->h_addr_list[i];i++){
 				if ( memcmp(&he->h_addr_list[i], ip->u.addr, ip->len)==0)
 					return 0;
