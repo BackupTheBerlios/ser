@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.17 2003/10/13 21:48:19 janakj Exp $
+ * $Id: reply.c,v 1.18 2003/11/03 16:17:23 janakj Exp $
  *
  * Send a reply
  *
@@ -62,7 +62,7 @@ void build_contact(ucontact_t* _c)
 	l = 0;
 	lastgoodend = b;
 	while(_c) {
-		if (_c->expires > act_time) {
+		if (_c->expires > act_time && (_c->state < CS_ZOMBIE_N)) {
 			if (l + 10 >= MAX_CONTACT_BUFFER)
 				break;
 			memcpy(b + l, "Contact: <", 10);
