@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.28 2002/01/15 21:29:27 andrei Exp $
+ * $Id: msg_parser.h,v 1.29 2002/01/16 10:57:02 janakj Exp $
  */
 
 #ifndef msg_parser_h
@@ -157,6 +157,7 @@ struct sip_msg{
 	struct hdr_field* cseq;
 	struct hdr_field* from;
 	struct hdr_field* contact;
+	struct hdr_field* route;    /* janakj, was missing here */
 	char* eoh; /* pointer to the end of header (if found) or null */
 
 	char* unparsed; /* here we stopped parsing*/
