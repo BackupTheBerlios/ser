@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.h,v 1.20 2004/08/24 08:58:24 janakj Exp $
+ * $Id: auth_mod.h,v 1.21 2005/01/31 17:52:12 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -46,6 +46,7 @@ extern int nonce_expire;      /* nonce expire interval */
 extern str rpid_prefix;       /* Remote-Party-ID prefix */
 extern str rpid_suffix;       /* Remote-Party-ID suffix */
 extern str realm_prefix;      /* strip off auto-generated realm */
+extern str rpid_avp;          /* The name of AVP containing the rpid value */
 
 
 /* Stateless reply function pointer */

@@ -1,5 +1,5 @@
 /*
- * $Id: rpid.h,v 1.3 2004/08/24 08:58:24 janakj Exp $
+ * $Id: rpid.h,v 1.4 2005/01/31 17:52:13 janakj Exp $
  *
  * Remote-Party-ID related functions
  *
@@ -54,12 +54,6 @@ int append_rpid_hf_p(struct sip_msg* _m, char* _prefix, char* _suffix);
  * Check if SIP URI in rpid contains an e164 user part
  */
 int is_rpid_user_e164(struct sip_msg* _m, char* _s1, char* _s2);
-
-
-/*
- * Store rpid
- */
-void save_rpid(str* _rpid);
 
 
 #endif /* RPID_H */
