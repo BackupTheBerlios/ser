@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.6 2002/07/08 17:14:39 janakj Exp $
+ * $Id: parse_to.c,v 1.7 2002/07/11 12:47:51 andrei Exp $
  */
 
 #include "parse_to.h"
@@ -44,8 +44,9 @@ enum {
 
 
 
-static inline char* parse_to_param(char *buffer, char *end, struct to_body *to_b,
-				   int *returned_status)
+static /*inline*/ char* parse_to_param(char *buffer, char *end,
+					struct to_body *to_b,
+					int *returned_status)
 {
 	struct to_param *param;
 	int status;

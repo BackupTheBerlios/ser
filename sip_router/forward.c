@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.54 2002/07/08 17:53:33 janakj Exp $
+ * $Id: forward.c,v 1.55 2002/07/11 12:47:51 andrei Exp $
  */
 
 
@@ -207,8 +207,14 @@ int forward_reply(struct sip_msg* msg)
 					sock_info[r].name.len, sock_info[r].name.s
 				);
 			if ( (msg->via1->host.len==sock_info[r].name.len) && 
+	#ifdef USE_IPV6
+					(strncasecmp(msg->via1->host.s, sock_info[r].name.s,
+								 sock_info[r].name.len)==0) /*slower*/
+	#else
 					(memcmp(msg->via1->host.s, sock_info[r].name.s, 
-										sock_info[r].name.len)==0) )
+										sock_info[r].name.len)==0)
+	#endif
+					)
 				break;
 		}
 		if (r==sock_no){
