@@ -1,9 +1,10 @@
-# $Id: Makefile,v 1.94 2002/10/22 20:37:29 andrei Exp $
+# $Id: Makefile,v 1.95 2002/11/11 22:36:41 andrei Exp $
 #
 # sip_router makefile
 #
 # WARNING: requires gmake (GNU Make)
-#  Arch supported: Linux, FreeBSD, SunOS (tested on Solaris 8), WinNT (cygwin)
+#  Arch supported: Linux, FreeBSD, SunOS (tested on Solaris 8), OpenBSD (3.2),
+#  limited WinNT (cygwin) support
 
 auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 

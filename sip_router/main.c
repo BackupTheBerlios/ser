@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.125 2002/11/04 17:05:32 andrei Exp $
+ * $Id: main.c,v 1.126 2002/11/11 22:36:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,9 +80,9 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.125 2002/11/04 17:05:32 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.126 2002/11/11 22:36:41 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
-static char compiled[]= __TIME__ __DATE__ ;
+static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
 "STATS:"
 #ifdef STATS
@@ -758,7 +758,9 @@ int add_interfaces(char* if_name, int family, unsigned short port)
 	int ret;
 
 #ifdef HAVE_SOCKADDR_SA_LEN
-	#define MAX(a,b) ( ((a)>(b))?(a):(b))
+	#ifndef MAX
+		#define MAX(a,b) ( ((a)>(b))?(a):(b))
+	#endif
 #endif
 	/* ipv4 or ipv6 only*/
 	s=socket(family, SOCK_DGRAM, 0);
