@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity state definitions
  *
- * $Id: pstate.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: pstate.h,v 1.2 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,12 +31,13 @@
 #define PSTATE_H
 
 typedef enum pstate {
-	PS_ONLINE,    /* Presentity is online */
-	PS_OFFLINE,   /* Presentity is offline */
-	PS_AWAY,      /* Presentity is away */
-	PS_XAWAY,     /* Presentity is extended-away */
-	PS_DND,       /* Do Not Disturb */
-	PS_TYPING     /* Presentity is typing a message */
+	PS_UNKNOWN = 0, /* State of presentity is unknown */
+	PS_ONLINE,      /* Presentity is online */
+	PS_OFFLINE,     /* Presentity is offline */
+	PS_AWAY,        /* Presentity is away */
+	PS_XAWAY,       /* Presentity is extended-away */
+	PS_DND,         /* Do Not Disturb */
+	PS_TYPING       /* Presentity is typing a message */
 } pstate_t;
 
 #endif /* PSTATE_H */

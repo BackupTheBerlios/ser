@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.4 2003/04/28 22:08:03 janakj Exp $
+ * $Id: dlist.c,v 1.5 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,11 +30,11 @@
 
 #include "dlist.h"
 #include "../../dprint.h"
-#include "paerrno.h"
-#include <string.h>
 #include "../../mem/shm_mem.h"
 #include "../../sr_module.h"
 #include "../../ut.h"
+#include "paerrno.h"
+#include <string.h>
 #include "ptime.h"
 
 /*

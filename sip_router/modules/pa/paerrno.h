@@ -1,7 +1,7 @@
 /*
  * Presence Agent, error reporting
  *
- * $Id: paerrno.h,v 1.2 2003/04/06 20:28:12 janakj Exp $
+ * $Id: paerrno.h,v 1.3 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -48,6 +48,7 @@ typedef enum paerr {
 	PA_FROM_ERROR,    /* Error while parsing From header */
 	PA_SMALL_BUFFER,  /* Buffer too small */
 	PA_UNSUPP_DOC,    /* Unsupported presence document format */
+	PA_INTERNAL_ERROR /* Internal server error */
 } paerr_t;
 
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: reply.h,v 1.2 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,12 +32,9 @@
 
 #include "../../parser/msg_parser.h"
 
-
 /*
  * Send a reply
  */
 int send_reply(struct sip_msg* _m);
-
-
 
 #endif /* REPLY_H */

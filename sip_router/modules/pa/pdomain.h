@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.h,v 1.3 2003/03/11 14:53:25 andrei Exp $
+ * $Id: pdomain.h,v 1.4 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -51,7 +51,7 @@ typedef struct pdomain {
 	struct presentity* first;   /* First presentity in the domain */
 	struct presentity* last;    /* Last presentity in the domain */
 	struct hslot* table;        /* Hash table for fast lookup */
-	gen_lock_t lock;             /* Lock for the domain */
+	gen_lock_t lock;            /* Lock for the domain */
 	int users;                  /* Number of registered presentities */
 	int expired;                /* Number of expired presentities */
 	register_watcher_t reg;     /* Register watcher function */
@@ -104,7 +104,7 @@ void unlock_pdomain(pdomain_t* _d);
 /*
  * Find a presentity in domain
  */
-int find_presentity(pdomain_t* _d, str* _to, struct presentity** _p);
+int find_presentity(pdomain_t* _d, str* _uri, struct presentity** _p);
 
 /*
  * Add a presentity to domain

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.h,v 1.2 2003/04/06 20:28:12 janakj Exp $
+ * $Id: subscribe.h,v 1.3 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,11 +31,6 @@
 #define SUBSCRIBE_H
 
 #include "../../parser/msg_parser.h"
-
-
-#define DOCUMENT_TYPE "application/cpim-pidf+xml"
-#define DOCUMENT_TYPE_LEN (sizeof(DOCUMENT_TYPE) - 1)
-
 
 /*
  * Handle a subscribe Request

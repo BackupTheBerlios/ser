@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.h,v 1.1 2002/11/14 14:29:48 janakj Exp $
+ * $Id: notify.h,v 1.2 2003/04/30 17:49:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -26,7 +26,6 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-
 
 #ifndef NOTIFY_H
 #define NOTIFY_H
