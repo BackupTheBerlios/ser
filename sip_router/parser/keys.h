@@ -1,5 +1,5 @@
 /* 
- * $Id: keys.h,v 1.6 2003/08/05 11:13:01 bogdan Exp $ 
+ * $Id: keys.h,v 1.7 2003/08/05 17:14:27 janakj Exp $ 
  *
  * Fast 32-bit Header Field Name Parser -- keys
  *
@@ -29,6 +29,7 @@
  * History:
  * --------
  * 2003-05-01 _acce_ macro added (janakj)
+ * 2003-05-01 Macros for Accept-Disposition added (janakj)
  */
 
 #ifndef KEYS_H
@@ -105,13 +106,13 @@
 #define _ect1_ 0x3a746365   /* "ect:" */
 #define _user_ 0x72657375   /* "user" */
 #define __age_ 0x6567612d   /* "-age" */
-#define _purp_ 0x70727570   /* "purp" */
-#define _ose2_ 0x2065736f   /* "ose " */
-#define _ose1_ 0x3a65736f   /* "ose:" */
-#define _acti_ 0x69746361   /* "acti" */
 #define _disp_ 0x70736964   /* "disp" */
 #define _osit_ 0x7469736f   /* "osit" */
 #define _ion2_ 0x206e6f69   /* "ion " */
 #define _ion1_ 0x3a6e6f69   /* "ion:" */
+
+#define _pt_d_ 0x64617470   /* "pt-d" */
+#define _ispo_ 0x6f707369   /* "ispo" */
+#define _siti_ 0x69746973   /* "siti" */
 
 #endif /* KEYS_H */

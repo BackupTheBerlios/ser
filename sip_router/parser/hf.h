@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.10 2003/08/05 11:13:01 bogdan Exp $ 
+ * $Id: hf.h,v 1.11 2003/08/05 17:14:27 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -69,10 +69,9 @@
 #define HDR_PRIORITY           (1 << 23)  /* Priority header field */
 #define HDR_SUBJECT            (1 << 24)  /* Subject header field */
 #define HDR_USERAGENT          (1 << 25)  /* User-Agent header field */
-#define HDR_CONTENTPURPOSE     (1 << 26)  /* Content-Purpose header field */
-#define HDR_CONTENTACTION      (1 << 27)  /* Content-Action header field */
-#define HDR_CONTENTDISPOSITION (1 << 28)  /* Content-Disposition header field */
-#define HDR_OTHER              (1 << 29)  /* Some other header field */
+#define HDR_ACCEPTDISPOSITION  (1 << 26)  /* Accept-Disposition header field */
+#define HDR_CONTENTDISPOSITION (1 << 27)  /* Content-Disposition header field */
+#define HDR_OTHER              (1 << 28)  /* Some other header field */
 
 
 /* 
