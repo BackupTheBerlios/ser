@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.24 2002/05/13 15:43:30 janakj Exp $
+ * $Id: auth.c,v 1.25 2002/05/13 20:09:06 jku Exp $
  */
 
 #include "auth.h"
@@ -54,7 +54,11 @@ static inline void build_auth_hf(char* _realm, char* _buf, int* _len, int _qop, 
 	nonce[NONCE_LEN] = '\0';
 
 	*_len = snprintf(_buf, AUTH_HF_LEN,
-			 "%s: Digest realm=\"%s\", nonce=\"%s\"%s%s, algorithm=MD5\r\n", 
+			 "%s: Digest realm=\"%s\", nonce=\"%s\"%s%s"
+			 #ifdef PRINT_MD5
+			 ", algorithm=MD5"
+			 #endif
+			 "\r\n", 
 			 _hf_name, 
 			 _realm, 
 			 nonce,

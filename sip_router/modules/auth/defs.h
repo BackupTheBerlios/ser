@@ -1,5 +1,5 @@
 /* 
- * $Id: defs.h,v 1.8 2002/05/10 00:54:56 janakj Exp $ 
+ * $Id: defs.h,v 1.9 2002/05/13 20:09:06 jku Exp $ 
  */
 #ifndef __DEFS_H__
 #define __DEFS_H__
@@ -25,5 +25,8 @@
 
 #define USER_DOMAIN_HACK
 #define ACK_CANCEL_HACK
+
+/* print algorithm name in challenge explicitely */
+#define PRINT_MD5
 
 #endif
