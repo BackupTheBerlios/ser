@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.91 2002/09/26 12:16:17 andrei Exp $
+# $Id: Makefile,v 1.92 2002/09/26 12:17:12 andrei Rel $
 #
 # sip_router makefile
 #
@@ -180,6 +180,7 @@ install-doc: $(doc-prefix)/$(doc-dir)
 	$(INSTALL-DOC) README $(doc-prefix)/$(doc-dir)
 	$(INSTALL-DOC) README.cfg $(doc-prefix)/$(doc-dir)
 	$(INSTALL-DOC) INSTALL $(doc-prefix)/$(doc-dir)
+	$(INSTALL-DOC) README-MODULES $(doc-prefix)/$(doc-dir)
 
 install-man: $(man-prefix)/$(man-dir)/man8 $(man-prefix)/$(man-dir)/man5
 	$(INSTALL-MAN)  ser.8 $(man-prefix)/$(man-dir)/man8
