@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.14 2003/07/07 20:53:21 andrei Exp $
+ * $Id: tm_load.h,v 1.15 2003/09/26 16:23:08 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -59,6 +59,7 @@
 #define T_ADDBLIND           "t_add_blind"
 #define T_REPLY_UNSAFE       "t_reply_unsafe"
 #define T_FORWARD_NONACK     "t_forward_nonack"
+#define T_FORWARD_NONACK_URI "t_forward_nonack_uri"
 #define T_FORWARD_NONACK_UDP "t_forward_nonack_udp"
 #define T_FORWARD_NONACK_TCP "t_forward_nonack_tcp"
 #define T_FORWARD_NONACK_TLS "t_forward_nonack_tls"
