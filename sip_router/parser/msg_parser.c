@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.21 2002/11/28 16:14:53 bogdan Exp $
+ * $Id: msg_parser.c,v 1.22 2002/12/10 19:41:44 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -485,7 +485,7 @@ int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 	
 error:
 	/* more debugging, msg->orig is/should be null terminated*/
-	LOG(L_ERR, "ERROR: parse_msg: message=<%s>\n", msg->orig);
+	LOG(L_ERR, "ERROR: parse_msg: message=<%.*s>\n", (int)msg->len, msg->orig);
 	return -1;
 }
 

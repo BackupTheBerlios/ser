@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.3 2002/09/25 19:17:41 jiri Rel $
+ * $Id: pt.h,v 1.4 2002/12/10 19:41:44 andrei Exp $
  *
  * Process Table
  *
@@ -60,7 +60,14 @@ inline static int process_count()
 		/* timer process */
 		+ (timer_list ? 1 : 0 )
 		/* fifo server */
-		+((fifo==NULL || strlen(fifo)==0) ? 0 : 1 );
+		+((fifo==NULL || strlen(fifo)==0) ? 0 : 1 )
+#ifdef USE_TCP
+		+ 1/* tcp main */ + tcp_children_no + 
+		(timer_list ? 0: 1) /* add the timer proc. if not already taken
+							   into account */
+#endif
+		
+		;
 }
 
 
