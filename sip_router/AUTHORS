@@ -1,4 +1,4 @@
-# $Id: AUTHORS,v 1.2 2002/09/26 20:42:24 andrei Rel $
+# $Id: AUTHORS,v 1.3 2002/11/01 16:59:46 janakj Exp $
 # The format of this file was inspired by the Linux kernel CREDITS file.
 # 
 # Authors and contributors are listed alphabetically (first name).
@@ -24,8 +24,9 @@ D:
 
 N: Jan Janak
 C: janakj
-E:
-D:
+E: J.Janak@sh.cvut.cz
+W: http://iptel.org/~janakj
+P: 8A64E087   813E 7C15 7041 9B31 9E20  E0AB CF57 6A73 8A64 E087     
 
 N: Jiri Kuthan
 C: jiri
