@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.c,v 1.15 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_db.c,v 1.16 2004/09/14 12:25:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -44,9 +44,17 @@ int cpl_db_bind(char* db_url)
 {
 	if (bind_dbmod(db_url, &cpl_dbf )) {
 		LOG(L_CRIT, "ERROR:cpl_db_bind: cannot bind to database module! "
-		"Did you forget to load a database module ?\n");
+		    "Did you forget to load a database module ?\n");
 		return -1;
 	}
+	
+	     /* CPL module uses all database functions */
+	if (!DB_CAPABILITY(cpl_dbf, DB_CAP_ALL)) {
+		LOG(L_CRIT, "ERROR:cpl_db_bind: Database modules does not "
+		    "provide all functions needed by cpl-c module\n");
+		return -1;
+	}
+
 	return 0;
 }
 
