@@ -1,5 +1,5 @@
 /*
- * $Id: name_alias.h,v 1.4 2003/03/19 18:41:58 andrei Exp $
+ * $Id: name_alias.h,v 1.5 2003/08/20 12:58:26 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -56,7 +56,11 @@ static inline int grep_aliases(char* name, int len, unsigned short port)
 	struct  host_alias* a;
 	
 	for(a=aliases;a;a=a->next)
+#ifdef USE_TLS
+		if ((a->alias.len==len) && ((a->port==0) || (port==0) || (port==tls_port_no) ||
+#else
 		if ((a->alias.len==len) && ((a->port==0) || (port==0) || 
+#endif
 				(a->port==port)) && (strncasecmp(a->alias.s, name, len)==0))
 			return 1;
 	return 0;
