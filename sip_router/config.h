@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.52 2003/07/04 14:46:40 andrei Exp $
+ *  $Id: config.h,v 1.53 2003/08/23 21:17:39 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -143,7 +143,7 @@
 #define MAX_RPORT_SIZE		13
 
 /* maximum number of branches per transaction */
-#define MAX_BRANCHES    4
+#define MAX_BRANCHES    12
 
 /* maximum length of a FIFO server command */
 #define MAX_FIFO_COMMAND 512
