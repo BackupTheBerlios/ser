@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.32 2002/01/28 23:30:56 jku Exp $
+ * $Id: msg_parser.h,v 1.33 2002/01/31 19:16:36 bogdan Exp $
  */
 
 #ifndef msg_parser_h
@@ -31,8 +31,11 @@
 #define HDR_OTHER       65536 /*unknown header type*/
 
 /* maximum length of values appended to Via-branch parameter */
-#define	MAX_BRANCH_PARAM_LEN	32
-
+#ifdef USE_SYNONIM
+#define MAX_BRANCH_PARAM_LEN  22
+#else
+#define MAX_BRANCH_PARAM_LEN  48
+#endif
 /* via param types
  * WARNING: keep in sync w/ FIN_*, GEN_PARAM and PARAM_ERROR from via_parse.c*/
 enum{

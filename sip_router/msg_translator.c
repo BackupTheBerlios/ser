@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.28 2002/01/25 17:43:18 bogdan Exp $
+/* $Id: msg_translator.c,v 1.29 2002/01/31 19:16:36 bogdan Exp $
  *
  */
 
@@ -149,7 +149,7 @@ char* via_builder( struct sip_msg *msg , unsigned int *len )
 		/* jku: branch parameter */
 		memcpy(line_buf+via_len, MY_BRANCH, MY_BRANCH_LEN );
 		via_len+=MY_BRANCH_LEN;
-		/* loop checks ? */
+		/* loop checks ?
 		if (loop_checks) {
 
 			if (check_transaction_quadruple( msg )) {
@@ -166,10 +166,10 @@ char* via_builder( struct sip_msg *msg , unsigned int *len )
 
 			} else DBG("DEBUG: via_builder: required HFs for "
 					"loop checking missing\n");
-		}
+		}  */
 		//DBG("DEBUG: XXX will add branch now: %s (%d)\n", msg->add_to_branch_s, msg->add_to_branch_len );
 		/* someone wants me to add something to branch here ? */
-		memcpy(line_buf+via_len, msg->add_to_branch_s,
+		memcpy(line_buf+via_len-1, msg->add_to_branch_s,
 				msg->add_to_branch_len );
 		via_len+=msg->add_to_branch_len;
 

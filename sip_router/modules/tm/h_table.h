@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.41 2002/01/28 23:30:56 jku Exp $
+ * $Id: h_table.h,v 1.42 2002/01/31 19:16:36 bogdan Exp $
  */
 
 
@@ -100,6 +100,10 @@ typedef struct cell
 	   good if a need to forward ACK later on
 	*/
 	struct sockaddr_in ack_to;
+#ifndef	USE_SYNONIM
+	/* MD5checksum */
+	char md5[32];
+#endif
 
 #ifdef	EXTRA_DEBUG
 	/* scheduled for deletion ? */
