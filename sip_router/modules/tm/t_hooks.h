@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.11 2003/04/04 03:21:59 jiri Exp $
+ * $Id: t_hooks.h,v 1.12 2003/04/26 12:56:05 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -89,7 +89,8 @@ typedef enum {
  *    value FAKED_REPLY (like other reply callbacks) which
  *    indicates a psedo_reply caused by a timer. Check for
  *    this value before derefing -- you will cause a segfault
- *    otherwise.
+ *    otherwise. Check for t->uas.request validity too if you
+ *    need it ... locally initiated UAC transactions set it to 0.
  *
  *    Also note, that reply callbacks are not called if a transaction
  *    is dropped silently. That's the case when noisy_ctimer is
