@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.26 2003/10/03 07:19:41 andrei Exp $
+ * $Id: route_struct.c,v 1.27 2003/10/29 17:41:27 andrei Exp $
  *
  * route structures helping functions
  *
@@ -323,6 +323,9 @@ void print_action(struct action* a)
 					break;
 			case SET_ADV_PORT_T:
 					DBG("set_advertised_port(");
+					break;
+			case FORCE_TCP_ALIAS_T:
+					DBG("force_tcp_alias(");
 					break;
 			default:
 					DBG("UNKNOWN(");

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.39 2003/10/26 19:17:43 bogdan Exp $
+ * $Id: globals.h,v 1.40 2003/10/29 17:41:27 andrei Exp $
  *
  * global variables
  *
@@ -70,6 +70,7 @@ extern int children_no;
 #ifdef USE_TCP
 extern int tcp_children_no;
 extern int tcp_disable;
+extern int tcp_accept_aliases;
 #endif
 #ifdef USE_TLS
 extern int tls_disable;

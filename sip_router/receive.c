@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.45 2003/10/03 07:19:41 andrei Exp $
+ *$Id: receive.c,v 1.46 2003/10/29 17:41:27 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -52,6 +52,8 @@
 #include "ip_addr.h"
 #include "script_cb.h"
 #include "dset.h"
+
+#include "tcp_server.h" /* for tcpconn_add_alias */
 
 
 #ifdef DEBUG_DMALLOC
@@ -129,6 +131,22 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 			goto error;
 		}
 		/* check if neccesarry to add receive?->moved to forward_req */
+		/* check for the alias stuff */
+#ifdef USE_TCP
+		if (msg->via1->alias && tcp_accept_aliases && 
+				(((rcv_info->proto==PROTO_TCP) && !tcp_disable)
+#ifdef USE_TLS
+					|| ((rcv_info->proto==PROTO_TLS) && !tls_disable)
+#endif
+				)
+			){
+			if (tcpconn_add_alias(rcv_info->proto_reserved1, msg->via1->port,
+									rcv_info->proto)!=0){
+				LOG(L_ERR, " ERROR: receive_msg: tcp alias failed\n");
+				/* continue */
+			}
+		}
+#endif
 
 		/* exec routing script */
 		DBG("preparing to run routing scripts...\n");

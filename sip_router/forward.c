@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.92 2003/10/24 20:23:58 andrei Exp $
+ * $Id: forward.c,v 1.93 2003/10/29 17:41:27 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -39,7 +39,7 @@
  *  2003-04-03  added su_setport (andrei)
  *  2003-04-04  update_sock_struct_from_via now differentiates between
  *               local replies  & "normal" replies (andrei)
- *  2003-04-12  update_sock_struct_form via uses also FL_FORCE_RPORT for
+ *  2003-04-12  update_sock_struct_from via uses also FL_FORCE_RPORT for
  *               local replies (andrei)
  *  2003-08-21  check_self properly handles ipv6 addresses & refs   (andrei)
  *  2003-10-21  check_self updated to handle proto (andrei)
