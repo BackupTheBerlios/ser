@@ -1,5 +1,5 @@
 /* 
- * $Id: cache.c,v 1.4 2002/03/01 10:50:28 janakj Exp $ 
+ * $Id: cache.c,v 1.5 2002/03/01 12:05:55 janakj Exp $ 
  */
 
 #include "cache.h"
@@ -331,6 +331,7 @@ int cache_update(cache_t* _c, c_elem_t* _el, location_t* _loc)
 		return FALSE;
 	}
 #endif
+	cache_use_table(_c);
 	if (update_location(_c->db_con, _el->loc, _loc) == FALSE) {
 		LOG(L_ERR, "cache_update(): Error while updating location\n");
 		return FALSE;

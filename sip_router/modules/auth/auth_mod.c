@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.4 2002/03/01 10:50:35 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.5 2002/03/01 12:06:03 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -13,6 +13,8 @@
 
 void destroy(void);
 
+
+int child_init(int rank);
 
 static struct module_exports auth_exports = {"auth", 
 					     (char*[]) { 
@@ -32,11 +34,24 @@ static struct module_exports auth_exports = {"auth",
 					     NULL, /* response function */
 					     destroy, /* destroy function */
 					     NULL,  /* oncancel function */
-					     0
+					     child_init
 };
 
 
 db_con_t* db_handle;
+
+int child_init(int rank)
+{
+	db_handle = db_init(DB_URL);
+	if (!db_handle) {
+		LOG(L_ERR, "auth:init_child(): Unable to connect database\n");
+		return -1;
+	}
+	return 0;
+
+}
+
+
 
 #ifdef STATIC_AUTH
 struct module_exports* auth_mod_register()
@@ -44,21 +59,18 @@ struct module_exports* auth_mod_register()
 struct module_exports* mod_register()
 #endif
 {
-	LOG(L_ERR, "auth module - registering\n");
 	auth_init();
+
+	LOG(L_ERR, "auth module - registering\n");
 	
 	     /* Find a database module */
 	if (bind_dbmod()) {
 		LOG(L_ERR, "mod_register(): Unable to bind database module\n");
 	}
-	db_handle = db_init(DB_URL);
-	if (!db_handle) {
-		LOG(L_ERR, "auth:init_child(): Unable to connect database\n");
-		return -1;
-	}
 
 	return &auth_exports;
 }
+
 
 
 void destroy(void)
