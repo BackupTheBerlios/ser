@@ -1,5 +1,5 @@
 /*
- * $Id: vm_fifo.c,v 1.6 2003/07/03 12:17:56 rco Exp $
+ * $Id: vm_fifo.c,v 1.7 2003/09/28 17:11:49 rco Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -145,7 +145,6 @@ int fifo_vm_reply( FILE* stream, char *response_file )
 		fifo_reply(response_file, "400 fifo_t_reply: while reading new headers");
 		return -1;
     }
-    trim_r(snh);
     snh.s[snh.len]='\0';
     DBG("DEBUG: fifo_t_reply: new headers: %.*s\n", snh.len, snh.s);
 
