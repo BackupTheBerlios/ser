@@ -1,5 +1,5 @@
 /*
- * $Id: checks.c,v 1.4 2002/06/12 21:26:25 janakj Exp $
+ * $Id: checks.c,v 1.5 2002/06/12 22:27:27 janakj Exp $
  */
 
 #include "checks.h"
@@ -8,7 +8,7 @@
 #include <string.h>
 #include "utils.h"
 #include "auth.h"
-
+#include "defs.h"
 
 static inline void get_username(str* _s)
 {
