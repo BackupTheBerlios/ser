@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.23 2005/02/01 13:19:51 janakj Exp $
+ * $Id: authorize.c,v 1.24 2005/02/11 13:15:40 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -183,7 +183,7 @@ static int generate_avps(db_res_t* result)
 			continue;
 		}
 		
-		iname.s = &credentials[i];
+		iname.s = &credentials[i - 1];
 		value.len = strlen(value.s);
 		ivalue.s = &value;
 
