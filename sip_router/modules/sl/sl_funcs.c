@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.18 2002/06/10 16:34:38 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.19 2002/06/10 16:40:22 bogdan Exp $
  */
 
 #include <netinet/in.h>
@@ -71,10 +71,6 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 {
 	char               *buf;
 	unsigned int       len;
-
-/* changes after introduction of v6; -jiri
-	struct sockaddr_in to;
-*/
 	union sockaddr_union to;
 	str suffix_source[3];
 	struct socket_info* send_sock;
