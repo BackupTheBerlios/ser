@@ -1,5 +1,5 @@
 /*
- * $Id: api.c,v 1.5 2003/04/28 22:03:15 janakj Exp $
+ * $Id: api.c,v 1.6 2004/02/06 23:12:38 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -171,7 +171,7 @@ auth_result_t pre_auth(struct sip_msg* _m, str* _realm, int _hftype, struct hdr_
 	}
 
 	if (check_nonce(&c->digest.nonce, &secret) != 0) {
-		LOG(L_ALERT, "pre_auth(): Invalid nonce value received, very suspicious !\n");
+		DBG("pre_auth(): Invalid nonce value received\n");
 		return NOT_AUTHORIZED;
 	}
 
