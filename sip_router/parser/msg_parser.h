@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.36 2003/08/20 11:25:00 andrei Exp $
+ * $Id: msg_parser.h,v 1.37 2003/10/03 07:19:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -228,6 +228,8 @@ struct sip_msg {
 	      * reached 
 	      */
 	flag_t flags;	
+	str set_global_address;
+	str set_global_port;
 };
 
 /* pointer to a fakes message which was never received ;

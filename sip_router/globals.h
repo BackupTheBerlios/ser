@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.34 2003/07/06 14:13:05 andrei Exp $
+ * $Id: globals.h,v 1.35 2003/10/03 07:19:41 andrei Exp $
  *
  * global variables
  *
@@ -128,5 +128,10 @@ extern int mhomed;
 /* command-line arguments */
 extern int my_argc;
 extern char **my_argv;
+
+/* pre-set addresses */
+extern str default_global_address;
+/* pre-ser ports */
+extern str default_global_port;
 
 #endif
