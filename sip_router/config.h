@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.55 2003/11/03 13:03:56 janakj Exp $
+ *  $Id: config.h,v 1.56 2003/11/28 23:49:41 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -181,7 +181,15 @@
 #define PATH_MAX_GUESS	1024
 
 #define DEFAULT_DB_URL "mysql://ser:heslo@localhost/ser"
+#define DEFAULT_DB_URL_LEN (sizeof(DEFAULT_DB_URL) - 1)
+
 #define DEFAULT_RODB_URL "mysql://serro:47serro11@localhost/ser"
+#define DEFAULT_RODB_URL_LEN (sizeof(DEFAULT_RODB_URL) - 1)
+
+/* table holdin versions of other ser tables */
+#define VERSION_TABLE "version"
+#define VERSION_COLUMN "version"
+#define TABLENAME_COLUMN "table_name"
 
 
 #endif
