@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.11 2003/04/06 20:25:51 janakj Exp $
+ * $Id: ext.c,v 1.12 2004/05/04 17:00:14 sobomax Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -48,6 +48,8 @@
 #include "../../mem/shm_mem.h"
 #include "my_exec.h"
 #include "config.h"
+
+MODULE_VERSION
 
 #define MAX_BUFFER_LEN 1024
 
