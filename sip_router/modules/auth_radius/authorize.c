@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.13 2005/02/01 09:57:36 janakj Exp $
+ * $Id: authorize.c,v 1.14 2005/02/01 13:19:51 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -103,15 +103,6 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, int _hftype)
 	
 	if (parse_uri(uri->s, uri->len, &puri) < 0) {
 		LOG(L_ERR, "authorize(): Error while parsing From/To URI\n");
-		return -1;
-	}
-
-	if (puri.host.len != cred->digest.realm.len) {
-		DBG("authorize(): Credentials realm and URI host do not match\n");   
-		return -1;
-	}
-	if (strncasecmp(puri.host.s, cred->digest.realm.s, puri.host.len) != 0) {
-		DBG("authorize(): Credentials realm and URI host do not match\n");
 		return -1;
 	}
 

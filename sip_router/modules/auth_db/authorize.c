@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.22 2005/01/31 17:54:02 janakj Exp $
+ * $Id: authorize.c,v 1.23 2005/02/01 13:19:51 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -81,8 +81,11 @@ static inline int get_ha1(struct username* _username, str* _domain,
 	VAL_STR(vals).s = _username->user.s;
 	VAL_STR(vals).len = _username->user.len;
 
-	VAL_STR(vals + 1).s = _domain->s;
-	VAL_STR(vals + 1).len = _domain->len;
+	if (_username->domain.len) {
+		VAL_STR(vals + 1) = _username->domain;
+	} else {
+		VAL_STR(vals + 1) = *_domain;
+	}
 
 	n = (use_domain ? 2 : 1);
 	nc = 1 + credentials_n;

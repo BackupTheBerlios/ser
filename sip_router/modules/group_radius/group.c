@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.9 2004/12/15 17:49:13 andrei Exp $
+ * $Id: group.c,v 1.10 2005/02/01 13:19:51 janakj Exp $
  *
  * Group membership checking over Radius
  *
@@ -172,7 +172,7 @@ int radius_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 		domain = puri.host;
 	} else {
 		user = cred->username.user;
-		domain = cred->realm;
+		domain = *GET_REALM(cred);
 	}
 		
 

@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.14 2004/09/14 12:43:37 janakj Exp $
+ * $Id: group.c,v 1.15 2005/02/01 13:19:51 janakj Exp $
  *
  * Group membership
  *
@@ -170,7 +170,7 @@ int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp)
 		VAL_STR(vals + 2) = puri.host;
 	} else {
 		VAL_STR(vals) = c->digest.username.user;
-		VAL_STR(vals + 2) = c->digest.realm;
+		VAL_STR(vals + 2) = *(GET_REALM(&c->digest));
 	}
 	
 	VAL_TYPE(vals) = VAL_TYPE(vals + 1) = VAL_TYPE(vals + 2) = DB_STR;
