@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.5 2001/11/23 03:06:59 andrei Exp $
+# $Id: Makefile,v 1.6 2001/11/23 03:10:03 andrei Exp $
 #
 # print example module makefile
 #
@@ -7,7 +7,7 @@
 
 auto_gen=
 sources= $(filter-out $(auto_gen), $(wildcard *.c)) $(auto_gen) 
-objs= msg_cloner.o tm.o #$(sources:.c=.o)
+objs= $(sources:.c=.o)
 depends= $(sources:.c=.d)
 
 NAME=tm.so
