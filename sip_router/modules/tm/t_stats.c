@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.7 2002/09/19 12:23:55 jku Exp $
+ * $Id: t_stats.c,v 1.8 2002/09/21 08:42:21 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -91,6 +91,7 @@ int static fifo_stats( FILE *pipe, char *response_file )
 			response_file, strerror(errno) );
 		return -1;
 	}
+	fputs( "200 ok\n", file);
 	print_stats( file );
 	fclose(file);
 	

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: sl_stats.c,v 1.5 2002/09/19 12:23:54 jku Exp $
+ * $Id: sl_stats.c,v 1.6 2002/09/21 08:42:21 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -102,6 +102,7 @@ int static sl_stats_cmd( FILE *pipe, char *response_file )
 		LOG(L_ERR, "ERROR: sl_stats: file not opened\n");
 		return -1;
 	}
+	fputs( "200 ok\n", reply_file);
 	print_sl_stats( reply_file );
 	fclose(reply_file);
 	return 1;
