@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.1 2003/04/08 01:25:35 lgfausak Exp $ 
+ * $Id: db_mod.c,v 1.2 2003/07/30 16:29:00 lgfausak Exp $ 
  *
  * Postgres module interface
  *
@@ -37,6 +37,7 @@
 #include "../../sr_module.h"
 #include "dbase.h"
 
+MODULE_VERSION
 
 static int mod_init(void);
 
