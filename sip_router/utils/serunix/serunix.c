@@ -1,5 +1,5 @@
 /*
- * $Id: serunix.c,v 1.2 2004/09/06 14:53:41 andrei Exp $
+ * $Id: serunix.c,v 1.3 2005/02/11 13:07:02 janakj Exp $
  *
  * Copyright (C) 2004 FhG FOKUS
  *
@@ -26,6 +26,7 @@
  *
  */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -57,7 +58,7 @@ int main(int argc, char** argv)
 {
 	int sock, len, from_len;
 	struct sockaddr_un from, to;
-	char* name, *s;
+	char* name;
 	static char buffer[BUF_SIZE];
 
 	if (argc != 2) {
