@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.89 2003/11/27 15:52:15 bogdan Exp $
+ * $Id: tm.c,v 1.90 2003/12/02 15:32:08 bogdan Exp $
  *
  * TM module
  *
@@ -542,11 +542,10 @@ static int t_check_status(struct sip_msg* msg, char *regexp, char *foo)
 			break;
 		case MODE_ONFAILURE:
 			/* use the status of the winning reply */
-			lowest_status=999;
-			for ( n=0; n<t->nr_of_outgoings ; n++ ) {
-				if ( t->uac[n].last_received<lowest_status ) {
-					lowest_status = t->uac[n].last_received;
-				}
+			if (t_pick_branch( -1, 0, t, &lowest_status)<0 ) {
+				LOG(L_CRIT,"BUG:t_check_status: t_pick_branch failed to get "
+					" a final response in MODE_ONFAILURE\n");
+				return -1;
 			}
 			status = int2str( lowest_status , 0);
 			break;
