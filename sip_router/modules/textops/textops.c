@@ -1,4 +1,5 @@
-/*$Id: textops.c,v 1.33 2003/11/22 13:25:46 andrei Exp $
+/*
+ * $Id: textops.c,v 1.34 2004/04/28 18:49:36 jiri Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -489,6 +490,7 @@ static int append_hf_helper(struct sip_msg* msg, str *str1, str *str2)
 	s = (char*)pkg_malloc(len);
 	if (!s) {
 		LOG(L_ERR, "append_hf(): No memory left\n");
+		return -1;
 	}
 
 	memcpy(s, str1->s, str1->len);
