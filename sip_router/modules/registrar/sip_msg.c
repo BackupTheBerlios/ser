@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.2 2002/09/19 12:23:54 jku Rel $
+ * $Id: sip_msg.c,v 1.3 2003/01/18 14:22:31 janakj Exp $
  *
  * SIP message related functions
  *
@@ -223,9 +223,12 @@ int calc_contact_expires(struct sip_msg* _m, cparam_t* _ep, int* _e)
 		*_e = get_expires_hf(_m);
 	} else {
 		if (atoi(&_ep->body, _e) < 0) {
-			rerrno = R_INV_EXP; /* Invalid expires parameter */
-			LOG(L_ERR, "calc_contact_expires(): Invalid expires parameter\n");
-			return -1;
+			*_e = 3600;
+			     /*
+			       rerrno = R_INV_EXP;
+			       LOG(L_ERR, "calc_contact_expires(): Invalid expires parameter\n");
+			       return -1;
+			     */
 		}
 		     /* Convert to absolute value */
 		if (*_e != 0) *_e += act_time;
