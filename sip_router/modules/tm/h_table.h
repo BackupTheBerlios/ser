@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.70 2003/03/29 01:38:12 jiri Exp $
+ * $Id: h_table.h,v 1.71 2003/04/07 06:36:56 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -225,6 +225,8 @@ typedef struct cell
 
 	/* the route to take if no final positive reply arrived */
 	unsigned int on_negative;
+	/* the onreply_route to be processed if registered to do so */
+	unsigned int on_reply;
 	/* set to one if you want to disallow silent transaction
 	   dropping when C timer hits
 	*/

@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.35 2003/04/06 14:05:35 andrei Exp $
+ * $Id: uac.c,v 1.36 2003/04/07 06:36:56 jiri Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -322,6 +322,9 @@ int t_uac_dlg(str* msg,                     /* Type of the message - MESSAGE, OP
 				|| !to || !to->s ) {
 		LOG(L_ERR, "ERROR: t_uac_dlg: invalid parameters\n");
 		ser_error = ret = E_INVALID_PARAMS;
+#ifdef XL_DEBUG
+		abort();
+#endif
 		goto done;
 	}
 

@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.7 2002/09/19 12:23:52 jku Rel $
+ * $Id: route.h,v 1.8 2003/04/07 06:36:56 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -44,7 +44,8 @@
 /* main "script table" */
 extern struct action* rlist[RT_NO];
 /* main reply route table */
-extern struct action* reply_rlist[RT_NO];
+extern struct action* onreply_rlist[RT_NO];
+extern struct action* failure_rlist[RT_NO];
 
 
 void push(struct action* a, struct action** head);
