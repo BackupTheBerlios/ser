@@ -1,7 +1,7 @@
 /*
- * $Id: sterman.h,v 1.3 2003/04/28 22:04:33 janakj Exp $
+ * $Id: rpid.h,v 1.1 2003/04/28 22:03:15 janakj Exp $
  *
- * Digest Authentication - Radius support
+ * Remote-Party-ID related functions
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -27,24 +27,33 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * History:
- * -------
- * 2003-03-09: Based on auth_mod.h from radius_authorize (janakj)
+ * --------
+ * 2003-04-28 rpid contributed by Juha Heinanen added (janakj)
  */
 
-#ifndef STERMAN_H
-#define STERMAN_H
+#ifndef RPID_H
+#define RPID_H
 
+#include "../../parser/msg_parser.h"
 #include "../../str.h"
-#include "../../parser/digest/digest_parser.h"
 
 
 /*
- * This function creates and submits radius authentication request as per
- * draft-sterman-aaa-sip-00.txt.  In addition, _user parameter is included
- * in the request as value of a SER specific attribute type SIP-URI-User,
- * which can be be used as a check item in the request.  Service type of
- * the request is Authenticate-Only.
+ * Append RPID header field to the message
  */
-int radius_authorize_sterman(dig_cred_t* _cred, str* _method, str* _user, str* _rpid); 
+int append_rpid_hf(struct sip_msg* _m, char* _s1, char* _s2);
 
-#endif /* STERMAN_H */
+
+/*
+ * Check if SIP URI in rpid contains an e164 user part
+ */
+int is_rpid_user_e164(struct sip_msg* _m, char* _s1, char* _s2);
+
+
+/*
+ * Store rpid
+ */
+void save_rpid(str* _rpid);
+
+
+#endif /* RPID_H */

@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.16 2003/04/26 22:17:17 jiri Exp $
+ * $Id: challenge.c,v 1.17 2003/04/28 22:03:15 janakj Exp $
  *
  * Challenge related functions
  *
@@ -120,7 +120,7 @@ static inline char *build_auth_hf(int _retries, int _stale, str* _realm,
 	memcpy(p, CRLF, CRLF_LEN ); p+=CRLF_LEN;
 	*p=0; /* zero terminator, just in case */
 	
-	DBG("build_auth_hf(): \'%s\'\n", hf);
+	DBG("build_auth_hf(): '%s'\n", hf);
 	return hf;
 }
 

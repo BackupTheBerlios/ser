@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.8 2003/04/27 18:17:23 jiri Exp $ 
+ * $Id: authrad_mod.c,v 1.9 2003/04/28 22:04:33 janakj Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -112,8 +112,8 @@ static int mod_init(void)
 		return -2;
 	}
 
-	pre_auth_func = (pre_auth_f)find_export("~pre_auth", 0, 0);
-	post_auth_func = (post_auth_f)find_export("~post_auth", 0, 0);
+	pre_auth_func = (pre_auth_f)find_export("pre_auth", 0, 0);
+	post_auth_func = (post_auth_f)find_export("post_auth", 0, 0);
 
 	if (!(pre_auth_func && post_auth_func)) {
 		LOG(L_ERR, "auth_radius: This module requires auth module\n");

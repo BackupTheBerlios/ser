@@ -1,5 +1,5 @@
 /*
- * $Id: ser_radius.h,v 1.3 2003/03/13 00:02:04 janakj Exp $
+ * $Id: ser_radius.h,v 1.4 2003/04/28 22:04:33 janakj Exp $
  *
  * Digest Authentication - Radius support
  * Definitions not found in radiusclient.h
@@ -47,6 +47,7 @@
 #define PW_SIP_METHOD                   209     /* int */
 #define PW_SIP_REQ_URI                  210     /* string */
 #define PW_SIP_CC                       212     /* string */
+#define PW_SIP_RPID                     213     /* string */
 
 #define PW_DIGEST_REALM		        1063	/* string */
 #define	PW_DIGEST_NONCE		        1064	/* string */
