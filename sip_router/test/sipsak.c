@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.33 2002/08/07 18:23:33 noh Exp $
+ * $Id: sipsak.c,v 1.34 2002/08/11 18:32:44 noh Exp $
  *
  * Copyright (C) 2002-2003 Fhg Fokus
  *
@@ -63,7 +63,7 @@ bouquets and brickbats to farhan@hotfoon.com
 #include <arpa/inet.h>
 #include <sys/poll.h>
 
-#define SIPSAK_VERSION "v0.6"
+#define SIPSAK_VERSION "v0.6.5"
 #define RESIZE		1024
 #define BUFSIZE		4096
 #define FQDN_SIZE   200
@@ -660,6 +660,9 @@ void shoot(char *buff)
 					perror("send failure");
 					exit( 1 );
 				}
+			}
+			else {
+				dontsend = 0;
 			}
 
 			/* in flood we are only interested in sending so skip the rest */
