@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.16 2003/09/11 19:44:16 bogdan Exp $
+ * $Id: reply.c,v 1.17 2003/10/13 21:48:19 janakj Exp $
  *
  * Send a reply
  *
@@ -44,7 +44,7 @@
 
 #define MAX_CONTACT_BUFFER 1024
 
-#define E_INFO "Warning: "
+#define E_INFO "P-Registrar-Error: "
 #define E_INFO_LEN (sizeof(E_INFO) - 1)
 
 static char b[MAX_CONTACT_BUFFER];
