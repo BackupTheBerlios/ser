@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.20 2003/03/16 18:07:32 janakj Exp $ 
+ * $Id: udomain.c,v 1.21 2003/04/03 20:32:45 calrissian Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -275,7 +275,7 @@ int preload_udomain(udomain_t* _d)
 			  * we also store zombies in database so we have to restore
 			  * the correct state
 		      */
-		if (state == 1)
+		if (state >= CS_ZOMBIE_N)
 			c->state = CS_ZOMBIE_S;
 		else
 			c->state = CS_SYNC;
