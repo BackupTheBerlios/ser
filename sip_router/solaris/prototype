@@ -1,4 +1,4 @@
-# $Id: prototype,v 1.3 2003/06/01 20:30:14 andrei Exp $
+# $Id: prototype,v 1.4 2003/06/02 15:13:52 andrei Exp $
 i pkginfo=pkginfo
 d none etc 0755 bin bin
 d none etc/ser 0755 bin bin
@@ -55,7 +55,6 @@ f none doc/ser/README.group 0644 bin bin
 f none doc/ser/README.jabber 0644 bin bin
 f none doc/ser/README.maxfwd 0644 bin bin
 f none doc/ser/README.msilo 0644 bin bin
-f none doc/ser/README.mysql 0644 bin bin
 f none doc/ser/README.nathelper 0644 bin bin
 f none doc/ser/README.pa 0644 bin bin
 f none doc/ser/README.permissions 0644 bin bin

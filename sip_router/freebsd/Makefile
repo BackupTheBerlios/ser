@@ -4,14 +4,14 @@
 #
 # $FreeBSD$
 #
-# $Id: Makefile,v 1.4 2003/06/01 20:30:14 andrei Exp $
+# $Id: Makefile,v 1.5 2003/06/02 15:13:51 andrei Exp $
 #
 
 
 PORTNAME= ser
-PORTVERSION= 0.8.10
+PORTVERSION= 0.8.11pre29
 CATEGORIES= net
-MASTER_SITES= ftp://ftp.berlios.de/pub/ser/0.8.10/src/
+MASTER_SITES= ftp://ftp.berlios.de/pub/ser/0.8.11pre29/src/
 
 MAINTAINER= pelinescu-onciul@fokus.fraunhofer.de
 
@@ -23,7 +23,7 @@ MANCOMPRESSED= no
 USE_GMAKE= yes
 # we override the DISTFILE NAME
 DISTNAME= ${PORTNAME}-${PORTVERSION}_src
-WRKSRC= ${WRKDIR}/sip_router
+WRKSRC= ${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 pre-fetch:
 	@echo "DEBUG: distfile=${DISTFILE}, distname=${DISTNAME}, w=${WRKSRC}"
