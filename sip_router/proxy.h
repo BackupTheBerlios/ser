@@ -1,5 +1,5 @@
 /*
- * $Id: proxy.h,v 1.1 2001/09/20 17:17:26 andrei Exp $
+ * $Id: proxy.h,v 1.2 2001/09/21 15:24:24 andrei Exp $
  *
  */
 
@@ -26,6 +26,8 @@ struct proxy_l{
 };
 
 extern struct proxy_l* proxies;
+
+struct proxy_l* add_proxy(char* name, unsigned short port);
 
 
 #endif

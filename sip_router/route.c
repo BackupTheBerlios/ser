@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.5 2001/09/20 17:17:26 andrei Exp $
+ * $Id: route.c,v 1.6 2001/09/21 15:24:24 andrei Exp $
  *
  * SIP routing engine
  *
@@ -15,8 +15,8 @@
 #include <netdb.h>
 
 #include "route.h"
-#include "cfg_parser.h"
 #include "dprint.h"
+#include "proxy.h"
 
 /* main routing list */
 struct route_elem* rlist[RT_NO];
@@ -150,7 +150,7 @@ int fix_expr(struct expr* exp)
 int fix_actions(struct action* a)
 {
 	struct action *t;
-	struct proxy* p;
+	struct proxy_l* p;
 	char *tmp;
 	
 	for(t=a; t!=0; t=t->next){

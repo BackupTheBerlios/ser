@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.2 2001/09/06 02:24:00 andrei Exp $
+ *  $Id: forward.h,v 1.3 2001/09/21 15:24:24 andrei Exp $
  */
 
 
@@ -8,15 +8,14 @@
 
 #include "msg_parser.h"
 #include "route.h"
+#include "proxy.h"
 
 
 int check_address(unsigned long ip, char *name, int resolver);
 
-int forward_request(char * orig, char* buf, unsigned int len,
-					 struct sip_msg* msg,  struct route_elem* re,
+int forward_request( struct sip_msg* msg,  struct proxy_l* p,
 					 unsigned long source_ip);
 
-int forward_reply(char * orig, char* buf, unsigned int len, 
-					struct sip_msg* msg);
+int forward_reply( struct sip_msg* msg);
 
 #endif

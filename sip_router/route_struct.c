@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.3 2001/09/20 17:17:26 andrei Exp $
+ * $Id: route_struct.c,v 1.4 2001/09/21 15:24:24 andrei Exp $
  *
  * route structures helping functions
  */
@@ -234,7 +234,7 @@ void print_action(struct action* a)
 					printf("%d",t->p1.number);
 					break;
 			case IP_ST:
-					print_ip(t->p1.data);
+					print_ip(t->p1.number);
 					break;
 			default:
 					printf("type<%d>", t->p1_type);
