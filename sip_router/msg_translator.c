@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.64 2002/08/15 08:13:29 jku Exp $
+ * $Id: msg_translator.c,v 1.65 2002/09/06 10:24:25 jku Exp $
  *
  */
 
@@ -465,6 +465,13 @@ char * build_req_buf_from_sip_req( struct sip_msg* msg,
 	/* copy the rest of the message */
 	memcpy(new_buf+offset, orig+s_offset, len-s_offset);
 	new_buf[new_len]=0;
+
+#ifdef DBG_MSG_QA
+	if (new_buf[new_len-1]==0) {
+		LOG(L_ERR, "ERROR: build_req_buf_from_sip_req: 0 in the end\n");
+		abort();
+	}
+#endif
 
 	*returned_len=new_len;
 	return new_buf;
