@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.87 2002/09/24 18:50:36 andrei Exp $
+# $Id: Makefile,v 1.88 2002/09/24 21:54:52 andrei Exp $
 #
 # sip_router makefile
 #
@@ -94,6 +94,10 @@ bin:
 	$(MAKE) install prefix=tmp/ser/usr/local
 	$(TAR) -C tmp/ser/ -zcf ../$(NAME)-$(RELEASE)_$(OS)_$(ARCH).tar.gz .
 	rm -rf tmp/ser
+
+.PHONY: deb
+deb:
+	dpkg-buildpackage -rfakeroot -pgpg -sgpg
 
 .PHONY: sunpkg
 sunpkg:
