@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.99 2002/08/28 13:48:50 jku Exp $
+ * $Id: main.c,v 1.100 2002/08/28 19:00:08 ric Exp $
  */
 
 #include <stdio.h>
@@ -48,7 +48,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.99 2002/08/28 13:48:50 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.100 2002/08/28 19:00:08 ric Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -460,6 +460,16 @@ int main_loop()
 {
 	int r, i;
 	pid_t pid;
+#ifdef WITH_SNMP_MOD
+	int (*snmp_start)();
+
+	/* initialize snmp module */
+	snmp_start = (int(*)())find_export("snmp_start", 0);
+	if(snmp_start)
+		if(snmp_start() == -1)
+			LOG(L_ERR, "ERROR: Couldn't start snmp agent\n");
+#endif
+		
 
 	/* one "main" process and n children handling i/o */
 
@@ -906,10 +916,7 @@ int main(int argc, char** argv)
 		goto error;
 	}
 
-#ifdef STATS
-	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
-#endif
-	
+
 
 	print_rl();
 
@@ -1047,6 +1054,10 @@ int main(int argc, char** argv)
 		goto error;
 	};
 
+#ifdef STATS
+	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
+#endif
+	
 	return main_loop();
 
 
