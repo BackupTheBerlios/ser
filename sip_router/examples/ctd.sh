@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ctd.sh,v 1.7 2003/04/11 20:03:10 jiri Exp $
+# $Id: ctd.sh,v 1.8 2003/04/11 20:09:54 jiri Exp $
 #
 # Usage: ctd.sh $FROM $TARGET
 # 
@@ -26,7 +26,7 @@
 # Limitations: 
 # ------------
 # it only works with UACs supporting REFER; it has been tested 
-# with Cisco 7960 and Mitel 5055; Windows Messenger does not
+# with Cisco 7960, Mitel 5055 and Pingtel; Windows Messenger does not
 # support REFER. Never tested on solaris. Dialog parser 
 # over-simplified (see inline) but  quite functional 
 # (if there is something to be fixed, it is richness of SIP 
