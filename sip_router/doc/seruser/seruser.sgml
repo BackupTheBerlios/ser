@@ -1,5 +1,5 @@
 <!DOCTYPE Book SYSTEM "/usr/share/sgml/docbook/dtd-4.2/docbook.dtd" -->
-<!-- $Id: seruser.sgml,v 1.5 2002/09/26 16:46:56 jiri Exp $ -->
+<!-- $Id: seruser.sgml,v 1.6 2002/09/26 16:52:55 jiri Exp $ -->
 <!-- DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN" -->
     
 
@@ -634,7 +634,7 @@ if (uri=~"@bat\.iptel\.org") {
 		    <title>Stateful UA</title>
 		    <programlisting format="linespecific">
 #
-# $Id: seruser.sgml,v 1.5 2002/09/26 16:46:56 jiri Exp $
+# $Id: seruser.sgml,v 1.6 2002/09/26 16:52:55 jiri Exp $
 #
 # this example shows usage of ser as user agent
 # server which does some functionality (in this
@@ -723,7 +723,7 @@ route{
 		    <title>Redirect Server</title>
 		    <programlisting format="linespecific">
 #
-# $Id: seruser.sgml,v 1.5 2002/09/26 16:46:56 jiri Exp $
+# $Id: seruser.sgml,v 1.6 2002/09/26 16:52:55 jiri Exp $
 #
 # this example shows use of ser as stateless redirect server
 #
@@ -779,7 +779,7 @@ route{
 		    <title>Executing External Script</title>
 		    <programlisting format="linespecific">
 #
-# $Id: seruser.sgml,v 1.5 2002/09/26 16:46:56 jiri Exp $
+# $Id: seruser.sgml,v 1.6 2002/09/26 16:52:55 jiri Exp $
 #
 # this example shows use of ser as stateless redirect server
 # which rewrites URIs using an exernal utility
@@ -1066,8 +1066,16 @@ HOWTO
 - serving multiple domains
 - ACLs
 - and other operational guidelines
+- outbound hints
 
 PROGRAMMING TM
+
+ACCOMPANYING utils:
+- ngrep
+- harvest
+- nscd
+- sipsak
+- serweb
 
 follow the mysql pattern, tehy have a very nice documentation
 -->
