@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.5 2002/09/19 12:23:53 jku Rel $
+/* $Id: q_malloc.h,v 1.6 2002/11/08 16:16:09 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -33,11 +33,14 @@
 
 
 /* defs*/
-
-#define ROUNDTO		16 /* size we round to, must be = 2^n  and also
-						 sizeof(qm_frag)+sizeof(qm_frag_end)
-						 must be mutliple of ROUNDTO!
-					   */
+#ifdef DBG_QM_MALLOC
+	#define ROUDNTO		 4 /* minimum possible ROUNDTO ->heavy debugging*/
+#else
+	#define ROUNDTO		16 /* size we round to, must be = 2^n  and also
+							 sizeof(qm_frag)+sizeof(qm_frag_end)
+							 must be mutliple of ROUNDTO!
+						   */
+#endif
 #define MIN_FRAG_SIZE	ROUNDTO
 
 

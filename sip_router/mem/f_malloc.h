@@ -1,6 +1,6 @@
-/* $Id: f_malloc.h,v 1.3 2002/09/19 12:23:53 jku Rel $
+/* $Id: f_malloc.h,v 1.4 2002/11/08 16:16:09 andrei Exp $
  *
- * simple, very fast, & dummy malloc library
+ * simple, very fast, malloc library
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
