@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.4 2004/03/03 16:03:53 janakj Exp $
+ * $Id: t_fifo.c,v 1.5 2004/03/04 12:23:42 janakj Exp $
  *
  * transaction maintenance functions
  *
@@ -110,7 +110,7 @@ int init_twrite_sock(void)
 	     /* Turn non-blocking mode on */
 	flags = fcntl(sock, F_GETFL);
 	if (flags == -1){
-		LOG(L_ERR, "init_twrite_sock: fnctl failed: %s\n",
+		LOG(L_ERR, "init_twrite_sock: fcntl failed: %s\n",
 		    strerror(errno));
 		close(sock);
 		return -1;
