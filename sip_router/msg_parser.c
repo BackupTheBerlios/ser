@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.32 2002/01/16 10:57:02 janakj Exp $
+ * $Id: msg_parser.c,v 1.33 2002/01/22 15:57:34 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -249,7 +249,8 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 		case HDR_FROM:
 		case HDR_CALLID:
 		case HDR_CONTACT:
-	        case HDR_ROUTE:   /* janakj, HDR_ROUTE was missing here */
+		case HDR_ROUTE:   /* janakj, HDR_ROUTE was missing here */
+		case HDR_MAXFORWARDS:
 		case HDR_OTHER:
 			/* just skip over it */
 			hdr->body.s=tmp;
