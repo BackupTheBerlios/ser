@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.117 2004/11/17 23:26:03 andrei Exp $
+ * $Id: tm.c,v 1.118 2004/12/16 17:39:47 andrei Exp $
  *
  * TM module
  *
@@ -269,7 +269,7 @@ static param_export_t params[]={
 	{"restart_fr_on_each_reply", INT_PARAM, &restart_fr_on_each_reply        },
 	{"fr_timer_avp",        STR_PARAM, &fr_timer_param.s                     },
 	{"fr_inv_timer_avp",    STR_PARAM, &fr_inv_timer_param.s                 },
-	{"tw_append",           STR_PARAM|USE_FUNC_PARAM, parse_tw_append        },
+	{"tw_append",           STR_PARAM|USE_FUNC_PARAM, (void*)parse_tw_append },
 	{0,0,0}
 };
 

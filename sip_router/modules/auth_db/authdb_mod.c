@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.21 2004/10/25 18:22:08 sobomax Exp $
+ * $Id: authdb_mod.c,v 1.22 2004/12/16 17:39:47 andrei Exp $
  *
  * Digest Authentication Module
  *
@@ -115,7 +115,7 @@ str *avps_str        = NULL;
 int avps_int_n       = 0;
 int avps_str_n       = 0;
 int calc_ha1         = 0;
-int use_domain       = 1;    /* Use also domain when looking up a table row */
+int use_domain       = 0;    /* Use also domain when looking up a table row */
 
 
 

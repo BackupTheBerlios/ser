@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.18 2004/12/08 19:06:12 andrei Exp $
+/* $Id: q_malloc.h,v 1.19 2004/12/16 17:39:47 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -43,7 +43,7 @@
 
 /* defs*/
 #ifdef DBG_QM_MALLOC
-#ifdef __CPU_sparc64
+#if defined(__CPU_sparc64) || defined(__CPU_sparc)
 /* tricky, on sun in 32 bits mode long long must be 64 bits aligned
  * but long can be 32 bits aligned => malloc should return long long
  * aligned memory */

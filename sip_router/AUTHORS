@@ -1,4 +1,4 @@
-# $Id: AUTHORS,v 1.12 2004/03/05 18:42:14 janakj Exp $
+# $Id: AUTHORS,v 1.13 2004/12/16 17:39:46 andrei Exp $
 # The format of this file was inspired by the Linux kernel CREDITS file.
 # 
 # Authors and contributors are listed alphabetically (first name).
@@ -22,12 +22,28 @@ C: dcm
 E: mierla@fokus.fraunhofer.de
 D:
 
+N: Gabriel Vasile
+C: gabriel
+E:
+D:
+
+N: Greg Fausak
+C: lgfausak
+E:
+D:
+
 N: Jan Janak
 C: janakj
 E: jan@iptel.org
 W: http://iptel.org/~janakj
 P: F8190A31   FCC0 3F4A 1ACB 84C2 505C  573E CC03 B08E F819 0A31
 D:
+
+N: Jamey Hicks
+C: jamey
+E: 
+D:
+
 
 N: Jiri Kuthan
 C: jiri

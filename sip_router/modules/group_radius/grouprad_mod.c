@@ -1,5 +1,5 @@
 /* 
- * $Id: grouprad_mod.c,v 1.9 2004/12/04 20:55:23 janakj Exp $ 
+ * $Id: grouprad_mod.c,v 1.10 2004/12/16 17:39:47 andrei Exp $ 
  *
  * Group membership - module interface
  *
@@ -58,7 +58,7 @@ static int hf_fixup(void** param, int param_no); /* Header field fixup */
  * Module parameter variables
  */
 static char* radius_config = "/usr/local/etc/radiusclient/radiusclient.conf";
-int use_domain = 1;  /* By default we use domain */
+int use_domain = 0;  /* By default we use domain */
 
 
 /*

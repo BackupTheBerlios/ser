@@ -1,15 +1,16 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.37 2004/12/13 13:52:35 dcm Exp $
+$Id: NEWS,v 1.38 2004/12/16 17:39:46 andrei Exp $
 
 0.8.99-dev changes
 
 
 new archs:
  - mips2/cobalt experimental support
- - x86_64 experimental support
+ - x86_64 support
  - OS X (darwin) support
+ - sparc32 single cpu highly experimental support
 
 modules:
  - enum - support for more than one NAPTR
@@ -47,7 +48,7 @@ modules:
 
 new modules:
  - avp / avp_db / avp_radius - load and check avps per caller or callee
- - avopos - flexible module for operations with avps and database, introducing
+ - avpops - flexible module for operations with avps and database, introducing
    a pseudo-varible support in SER configuration file
  - cpl-c - implementation of Call Processing Language
  - dispatcher - implements a dispatcher for incoming requests using hashes
