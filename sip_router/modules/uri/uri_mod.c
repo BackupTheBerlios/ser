@@ -1,5 +1,5 @@
 /* 
- * $Id: uri_mod.c,v 1.12 2003/04/27 18:17:25 jiri Exp $ 
+ * $Id: uri_mod.c,v 1.13 2003/10/24 20:37:39 janakj Exp $ 
  *
  * Various URI related functions
  *
@@ -138,7 +138,7 @@ static int mod_init(void)
 {
 	DBG("uri - initializing\n");
 
-	if (bind_dbmod()) {
+	if (bind_dbmod(db_url)) {
 		LOG(L_ERR, "uri:mod_init(): No database module found\n");
 		return -1;
 	}

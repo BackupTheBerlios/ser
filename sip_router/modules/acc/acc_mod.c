@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.27 2003/09/11 21:53:36 janakj Exp $
+ * $Id: acc_mod.c,v 1.28 2003/10/24 20:37:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -282,7 +282,7 @@ static int mod_init( void )
 		return -1;
 
 #ifdef SQL_ACC
-	if (bind_dbmod()) {
+	if (bind_dbmod(db_url)) {
 		LOG(L_ERR, "ERROR: acc: init_child bind_db failed..."
 				"did you load a database module?\n");
 		return -1;

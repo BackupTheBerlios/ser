@@ -1,5 +1,5 @@
 /*
- * $Id: dbtext.c,v 1.7 2003/10/08 13:07:21 janakj Exp $
+ * $Id: dbtext.c,v 1.8 2003/10/24 20:37:39 janakj Exp $
  *
  * DBText module interface
  *
@@ -42,6 +42,7 @@
 #include "../../sr_module.h"
 #include "dbtext.h"
 #include "dbt_lib.h"
+#include "dbt_api.h"
 
 MODULE_VERSION
 

@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.30 2003/08/05 11:14:41 bogdan Exp $
+ * $Id: msilo.c,v 1.31 2003/10/24 20:37:39 janakj Exp $
  *
  * MSILO module
  *
@@ -203,7 +203,7 @@ static int mod_init(void)
 	DBG("MSILO: initializing ...\n");
 
 	/* binding to mysql module  */
-	if (bind_dbmod())
+	if (bind_dbmod(db_url))
 	{
 		DBG("MSILO: ERROR: Database module not found\n");
 		return -1;

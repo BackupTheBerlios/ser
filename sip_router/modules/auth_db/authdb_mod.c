@@ -1,5 +1,5 @@
 /* 
- * $Id: authdb_mod.c,v 1.15 2003/09/15 19:47:02 janakj Exp $
+ * $Id: authdb_mod.c,v 1.16 2003/10/24 20:37:39 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -152,7 +152,7 @@ static int mod_init(void)
 	DBG("auth_db module - initializing\n");
 	
 	     /* Find a database module */
-	if (bind_dbmod()) {
+	if (bind_dbmod(db_url)) {
 		LOG(L_ERR, "mod_init(): Unable to bind database module\n");
 		return -1;
 	}

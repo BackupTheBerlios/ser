@@ -1,7 +1,7 @@
 /*
- * $Id: vm.c,v 1.31 2003/10/16 04:17:54 jiri Exp $
+ * $Id: vm.c,v 1.32 2003/10/24 20:37:39 janakj Exp $
  *
- * $Id: vm.c,v 1.31 2003/10/16 04:17:54 jiri Exp $
+ * $Id: vm.c,v 1.32 2003/10/24 20:37:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -155,7 +155,7 @@ static int vm_mod_init(void)
 		return -1;
 	}
 
-	if (bind_dbmod()) {
+	if (bind_dbmod(vm_db_url)) {
 		LOG(L_ERR, "ERROR: vm_mod_init: unable to bind db\n");
 		return -1;
 	}
