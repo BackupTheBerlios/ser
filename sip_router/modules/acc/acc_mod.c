@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.3 2002/05/13 01:15:40 jku Exp $
+ * $Id: acc_mod.c,v 1.4 2002/05/26 17:59:31 jku Exp $
  */
 
 #include <stdio.h>
@@ -14,6 +14,7 @@
 #include "../../parser/msg_parser.h"
 
 #include "acc_mod.h"
+#include "acc.h"
 #include "../tm/tm_load.h"
 
 struct tm_binds tmb;
