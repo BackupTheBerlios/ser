@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.47 2004/02/13 18:21:34 bogdan Exp $
+ * $Id: uac.c,v 1.48 2004/03/30 16:20:06 janakj Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -91,7 +91,7 @@ int uac_init(void)
 	 * on no matter the protocol */
 	si=bind_address?bind_address:get_first_socket();
 	if (si==0){
-		LOG(L_CRIT, "BUG: child_init_callid: null socket list\n");
+		LOG(L_CRIT, "BUG: uac_init: null socket list\n");
 		return -1;
 	}
 
@@ -320,7 +320,7 @@ int request(str* m, str* ruri, str* to, str* from, str* h, str* b, transaction_c
 	generate_fromtag(&fromtag, &callid);
 
 	if (new_dlg_uac(&callid, &fromtag, DEFAULT_CSEQ, from, to, &dialog) < 0) {
-		LOG(L_ERR, "req_outside(): Error while creating temorary dialog\n");
+		LOG(L_ERR, "request(): Error while creating temorary dialog\n");
 		goto err;
 	}
 

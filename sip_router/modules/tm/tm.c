@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.110 2004/03/30 15:18:03 janakj Exp $
+ * $Id: tm.c,v 1.111 2004/03/30 16:20:06 janakj Exp $
  *
  * TM module
  *
@@ -632,7 +632,7 @@ inline static int _w_t_forward_nonack(struct sip_msg* msg, char* proxy,
 		}
 		return t_forward_nonack(t, msg, ( struct proxy_l *) proxy, proto );
 	} else {
-		DBG("DEBUG: t_forward_nonack: no transaction found\n");
+		DBG("DEBUG: forward_nonack: no transaction found\n");
 		return -1;
 	}
 }
@@ -773,7 +773,7 @@ inline static int _w_t_relay_to( struct sip_msg  *p_msg ,
 			return -1;
 		}
 		if (t_forward_nonack(t, p_msg, proxy, PROTO_NONE)<=0 ) {
-			LOG(L_ERR, "ERROR: failure_route: t_relay_to failed\n");
+			LOG(L_ERR, "ERROR: w_t_relay_to: t_relay_to failed\n");
 			return -1;
 		}
 		return 1;
