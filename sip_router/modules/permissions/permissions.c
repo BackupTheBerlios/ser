@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.c,v 1.6 2003/10/22 18:47:38 janakj Exp $
+ * $Id: permissions.c,v 1.7 2003/11/17 14:11:48 janakj Exp $
  *
  * PERMISSIONS module
  *
@@ -402,6 +402,8 @@ static int single_fixup(void** param, int param_no)
 	strcpy(buffer + param_len, deny_suffix);
 	tmp = buffer;
 	ret |= load_fixup(&tmp, 2);
+
+	*param = tmp;
 
 	pkg_free(buffer);
 	return ret;
