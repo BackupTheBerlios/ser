@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.9 2003/04/11 18:20:33 janakj Exp $
+ * $Id: ul_mod.h,v 1.10 2003/09/19 08:27:12 janakj Exp $
  *
  * Usrlocation module interface
  *
@@ -58,6 +58,7 @@ extern char* callid_col;
 extern char* cseq_col;
 extern char* method_col;
 extern char* replicate_col;
+extern char* flags_col;
 extern char* state_col;
 extern char* db_url;
 extern int   timer_interval;

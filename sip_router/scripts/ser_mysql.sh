@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.43 2003/09/15 21:20:48 janakj Exp $
+# $Id: ser_mysql.sh,v 1.44 2003/09/19 08:27:46 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -289,9 +289,7 @@ CREATE TABLE aliases (
   last_modified timestamp(14) NOT NULL,
   replicate int(10) unsigned default NULL,
   state tinyint(1) unsigned default NULL,
-  flags set("NAT", "INVITE", "!INVITE", 
-                   "MESSAGE", "!MESSAGE", 
-		   "SUBSCRIBE", "!SUBSCRIBE") NOT NULL default '',
+  flags int(11) NOT NULL default '0',
   PRIMARY KEY($USERCOL, domain, contact)
 ) $TABLE_TYPE;
 
@@ -334,21 +332,6 @@ CREATE TABLE grp (
 #
 # Table structure for table 'location' -- that is persistent UsrLoc
 #
-
-# Description of flags column
-# - "NAT" means that the contact is behind a NAT
-# - "INVITE" means that the contact accepts INVITE 
-#   and related messages ("BYE, ACK, CANCEL...")
-# - "!INVITE" means that the contact does NOT accept
-#   INVITE and related messages
-# - "MESSAGE" means that the contact accepts MESSAGE
-# - "!MESSAGE" means that the contact does NOT accept
-#   MESSAGE
-# - "SUBSCRIBE" means that the contact accepts SUBSCRIBE
-#   and NOTIFY
-# - "!SUBSCRIBE" means that the contact does NOT accept
-#   SUBSCRIBE and NOTIFY
-
 CREATE TABLE location (
   $USERCOL varchar(64) NOT NULL default '',
   domain varchar(128) NOT NULL default '',
@@ -360,9 +343,7 @@ CREATE TABLE location (
   last_modified timestamp(14) NOT NULL,
   replicate int(10) unsigned default NULL,
   state tinyint(1) unsigned default NULL,
-  flags set("NAT", "INVITE", "!INVITE",
-            "MESSAGE", "!MESSAGE",
-            "SUBSCRIBE", "!SUBSCRIBE") NOT NULL default '',				 
+  flags int(11) NOT NULL default '0',
   PRIMARY KEY($USERCOL, domain, contact)
 ) $TABLE_TYPE;
 
