@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.18 2001/11/23 09:29:00 andrei Exp $
+ * $Id: msg_parser.c,v 1.19 2001/11/23 10:02:56 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -920,11 +920,11 @@ void free_hdr_field_lst(struct hdr_field* hf)
 void free_sip_msg(struct sip_msg* msg)
 {
 	if (msg->new_uri.s) { pkg_free(msg->new_uri.s); msg->new_uri.len=0; }
-	if (msg->headers) 	  free_hdr_field_lst(msg->headers);
+	if (msg->headers)     free_hdr_field_lst(msg->headers);
 	if (msg->add_rm)      free_lump_list(msg->add_rm);
 	if (msg->repl_add_rm) free_lump_list(msg->repl_add_rm);
-	free(msg->orig);
-	free(msg->buf);
+	pkg_free(msg->orig);
+	pkg_free(msg->buf);
 }
 
 
