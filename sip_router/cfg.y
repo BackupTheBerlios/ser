@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.37 2002/11/26 15:29:51 andrei Exp $
+ * $Id: cfg.y,v 1.38 2002/12/04 13:03:42 andrei Exp $
  *
  *  cfg grammar
  */
@@ -151,9 +151,9 @@ struct id_list* lst_tmp;
 
 
 /*non-terminals */
-%type <expr> exp, exp_elem /*, condition*/
-%type <action> action, actions, cmd, if_cmd, stm
-%type <ipaddr> ipv4, ipv6, ip
+%type <expr> exp exp_elem /*, condition*/
+%type <action> action actions cmd if_cmd stm
+%type <ipaddr> ipv4 ipv6 ip
 %type <ipnet> ipnet
 %type <strval> host
 %type <strval> listen_id
@@ -582,7 +582,7 @@ host:	ID				{ $$=$1; }
 						  	$$[strlen($1)+1+strlen($3)]=0;
 						  }
 						  free($1); free($3);
-						};
+						}
 	| host DOT error { $$=0; free($1); yyerror("invalid hostname"); }
 	;
 
