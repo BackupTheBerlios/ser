@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.33 2003/07/03 19:40:02 andrei Exp $
+ * $Id: globals.h,v 1.34 2003/07/06 14:13:05 andrei Exp $
  *
  * global variables
  *
@@ -81,11 +81,7 @@ extern int tcp_disable;
 #endif
 #ifdef USE_TLS
 extern int tls_disable;
-extern int tls_verify_cert;
-extern int tls_require_cert;
-extern char* tls_cert_file;
-extern char* tls_pkey_file;
-extern char* tls_ca_file;
+extern unsigned short tls_port_no;
 #endif
 extern int dont_fork;
 extern int check_via;
