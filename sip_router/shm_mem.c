@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.2 2001/12/11 02:14:00 andrei Exp $
+/* $Id: shm_mem.c,v 1.3 2001/12/11 04:25:44 andrei Exp $
  *
  * Shared memory functions
  */
@@ -65,13 +65,13 @@ int shm_mem_init()
 	}
 	
 #ifdef SHM_MMAP
-	fd=open("/dev/zero", O_RDONLY);
+	fd=open("/dev/zero", O_RDWR);
 	if (fd==-1){
 		LOG(L_CRIT, "ERROR: shm_mem_init: could not open /dev/zero: %s\n",
 				strerror(errno));
 		return -1;
 	}
-	shm_mempool=mmap(0, SHM_MEM_SIZE, PROT_READ|PROT_WRITE, MAP_PRIVATE,
+	shm_mempool=mmap(0, SHM_MEM_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED,
 						fd ,0);
 	/* close /dev/zero */
 	close(fd);
