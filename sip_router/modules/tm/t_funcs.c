@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.141 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_funcs.c,v 1.142 2002/08/20 01:16:25 jku Exp $
  *
  * transaction maintenance functions
  */
@@ -14,6 +14,7 @@
 #include "t_funcs.h"
 #include "t_fwd.h"
 #include "t_lookup.h"
+#include "config.h"
 
 /* pointer to the big table where all the transaction data
    lives
@@ -201,6 +202,10 @@ int t_relay_to( struct sip_msg  *p_msg , struct proxy_l *proxy,
 	int reply_ret;
 	/* struct hdr_field *hdr; */
 	struct cell *t;
+#ifdef ACK_FORKING_HACK
+	str ack_uri;
+	str backup_uri;
+#endif
 
 	ret=0;
 
@@ -238,8 +243,30 @@ int t_relay_to( struct sip_msg  *p_msg , struct proxy_l *proxy,
 			ret=forward_request( p_msg , proxy ) ;
 			free_proxy( proxy );	
 			free( proxy );
+#ifdef ACK_FORKING_HACK
+			backup_uri=p_msg->new_uri;
+			init_branch_iterator();
+			while((ack_uri.s=next_branch(&ack_uri.len))) {
+				p_msg->new_uri=ack_uri;
+				proxy=uri2proxy(ack_uri);
+				if (proxy==0) continue;
+				forward_request(p_msg, proxy);
+				free_proxy( proxy );	
+				free( proxy );
+			}
+			p_msg->new_uri=backup_uri;
+#endif
 		} else {
 			ret=forward_request( p_msg , proxy ) ;
+#ifdef ACK_FORKING_HACK
+			backup_uri=p_msg->new_uri;
+			init_branch_iterator();
+			while((ack_uri.s=next_branch(&ack_uri.len))) {
+				p_msg->new_uri=ack_uri;
+				forward_request(p_msg, proxy);
+			}
+			p_msg->new_uri=backup_uri;
+#endif
 		}
 		goto done;
 	}
