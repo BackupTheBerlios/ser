@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.93 2003/10/29 17:41:27 andrei Exp $
+ * $Id: forward.c,v 1.94 2004/07/17 19:02:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -536,7 +536,7 @@ int forward_reply(struct sip_msg* msg)
 		|| (msg->via2==0) || (msg->via2->error!=PARSE_OK))
 	{
 		/* no second via => error */
-		LOG(L_ERR, "ERROR: forward_msg: no 2nd via found in reply\n");
+		LOG(L_ERR, "ERROR: forward_reply: no 2nd via found in reply\n");
 		goto error;
 	}
 

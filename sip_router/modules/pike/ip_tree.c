@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.c,v 1.8 2004/05/12 12:28:48 bogdan Exp $
+ * $Id: ip_tree.c,v 1.9 2004/07/17 19:02:18 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -42,14 +42,14 @@
 static struct ip_tree*  root = 0;
 
 
-inline struct ip_node* get_tree_branch(unsigned char b)
+static inline struct ip_node* prv_get_tree_branch(unsigned char b)
 {
 	return root->entries[b].node;
 }
 
 
 /* locks a tree branch */
-inline void lock_tree_branch(unsigned char b)
+static inline void prv_lock_tree_branch(unsigned char b)
 {
 	lock_get( root->entries[b].lock);
 }
@@ -57,9 +57,24 @@ inline void lock_tree_branch(unsigned char b)
 
 
 /* unlocks a tree branch */
-inline void unlock_tree_branch(unsigned char b)
+static inline void prv_unlock_tree_branch(unsigned char b)
 {
 	lock_release( root->entries[b].lock);
+}
+
+
+/* wrapper functions */
+struct ip_node* get_tree_branch(unsigned char b)
+{
+	return prv_get_tree_branch(b);
+}
+void lock_tree_branch(unsigned char b)
+{
+	prv_lock_tree_branch(b);
+}
+void unlock_tree_branch(unsigned char b)
+{
+	prv_unlock_tree_branch(b);
 }
 
 
@@ -349,12 +364,12 @@ void print_tree(  FILE *f )
 
 	DBG("DEBUG:pike:print_tree: printing IP tree\n");
 	for(i=0;i<MAX_IP_BRANCHES;i++) {
-		if (get_tree_branch(i)==0)
+		if (prv_get_tree_branch(i)==0)
 			continue;
-		lock_tree_branch(i);
-		if (get_tree_branch(i))
-			print_node( get_tree_branch(i), 0, f);
-		unlock_tree_branch(i);
+		prv_lock_tree_branch(i);
+		if (prv_get_tree_branch(i))
+			print_node( prv_get_tree_branch(i), 0, f);
+		prv_unlock_tree_branch(i);
 	}
 }
 

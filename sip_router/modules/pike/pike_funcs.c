@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.19 2004/05/26 19:11:59 bogdan Exp $
+ * $Id: pike_funcs.c,v 1.20 2004/07/17 19:02:18 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -73,7 +73,7 @@ int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 {
 	struct ip_node *node;
 	struct ip_node *father;
-	char flags;
+	unsigned char flags;
 	struct ip_addr* ip;
 
 

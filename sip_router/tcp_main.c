@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.54 2004/07/05 15:19:14 andrei Exp $
+ * $Id: tcp_main.c,v 1.55 2004/07/17 19:02:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -184,7 +184,7 @@ static int tcp_blocking_connect(int fd, const struct sockaddr *servaddr,
 	struct timeval timeout;
 	int ticks;
 	int err;
-	int err_len;
+	unsigned int err_len;
 	
 again:
 	n=connect(fd, servaddr, addrlen);

@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.18 2004/07/02 16:16:14 danp Exp $
+/* $Id: mediaproxy.c,v 1.19 2004/07/17 19:02:18 andrei Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -270,7 +270,7 @@ strcasefind(const char *haystack, size_t len, const char *needle, size_t nlen)
 static inline void
 ltrim(str *string)
 {
-    while (string->len>0 && isspace(*(string->s))) {
+    while (string->len>0 && isspace((int)*(string->s))) {
         string->len--;
         string->s++;
     }
@@ -283,7 +283,7 @@ rtrim(str *string)
     char *ptr;
 
     ptr = string->s + string->len - 1;
-    while (string->len>0 && (*ptr==0 || isspace(*ptr))) {
+    while (string->len>0 && (*ptr==0 || isspace((int)*ptr))) {
         string->len--;
         ptr--;
     }
@@ -957,7 +957,7 @@ readall(int fd, void *buf, size_t count)
     int len, total;
 
     for (len=0, total=0; count-total>0; total+=len) {
-        len = uread(fd, buf+total, count-total);
+        len = uread(fd, (char*)buf+total, count-total);
         if (len == -1) {
             return -1;
         }

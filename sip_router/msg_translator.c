@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.135 2003/11/20 21:01:10 andrei Exp $
+ * $Id: msg_translator.c,v 1.136 2004/07/17 19:02:18 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -393,7 +393,7 @@ char* id_builder(struct sip_msg* msg, unsigned int *id_len)
 
 
 
-char* clen_builder(struct sip_msg* msg, unsigned int *clen_len, int diff)
+char* clen_builder(struct sip_msg* msg, int *clen_len, int diff)
 {
 	char* buf;
 	int len;

@@ -1,4 +1,4 @@
-# $Id: cvs-commit-rules.txt,v 1.1 2004/07/07 11:12:53 andrei Exp $
+# $Id: cvs-commit-rules.txt,v 1.2 2004/07/17 19:02:18 andrei Exp $
 #
 # SER cvs commit rules
 
@@ -8,7 +8,8 @@
 Exceptions:
  a. compilation (this includes warning) fixes
  b. bug fixes
- c. small changes due to a new release in the very near future (allowed only for the release manager)
+ c. api changes (some external functions definitions change)
+ d. small changes due to a new release in the very near future (allowed only for the release manager)
 
 
 2. Code requirements
