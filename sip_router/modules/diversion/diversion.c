@@ -1,5 +1,5 @@
 /* 
- * $Id: diversion.c,v 1.1 2004/11/15 13:53:55 janakj Exp $
+ * $Id: diversion.c,v 1.2 2004/11/15 14:19:43 janakj Exp $
  *
  * Diversion Header Field Support
  *
@@ -66,7 +66,7 @@ static int mod_init(void);
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"add_diversion",    add_diversion,    1, str_fixup, REQUEST_ROUTE},
+	{"add_diversion",    add_diversion,    1, str_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
