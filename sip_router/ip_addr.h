@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.15 2002/11/29 21:12:24 andrei Exp $
+/* $Id: ip_addr.h,v 1.16 2002/12/09 18:40:42 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -241,7 +241,7 @@ static inline int init_su( union sockaddr_union* su,
 
 
 
-/* inits a struct sockaddr_union from a struct hostent, an address index int
+/* inits a struct sockaddr_union from a struct hostent, an address index in
  * the hostent structure and a port no.
  * WARNING: no index overflow  checks!
  * returns 0 if ok, -1 on error (unknown address family) */
