@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.9 2002/03/02 02:20:00 andrei Exp $
+# $Id: Makefile.rules,v 1.10 2002/08/14 16:38:52 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -51,7 +51,7 @@ clean:
 .PHONY: distclean
 .PHONY: realclean
 proper realclean distclean: clean 
-	-@rm -f $(depends) 2>/dev/null
+	-@rm -f $(depends) $(auto_gen) 2>/dev/null
 	-@for r in $(modules) "" ; do \
 		if [ -n "$$r" ]; then \
 			 $(MAKE) -C $$r proper ; \
@@ -60,7 +60,7 @@ proper realclean distclean: clean
 
 .PHONY: mantainer-cleaan
 mantainer-clean: distclean
-	-rm -f $(auto_gen) TAGS tags *.dbg .*.swp
+	-rm -f TAGS tags *.dbg .*.swp
 	-@for r in $(modules) "" ; do \
 		if [ -n "$$r" ]; then \
 			$(MAKE) -C $$r mantainer-clean; \
