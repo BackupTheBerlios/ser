@@ -1,4 +1,4 @@
-/* $Id: locking_test.c,v 1.2 2002/02/13 18:28:09 andrei Exp $ */
+/* $Id: locking_test.c,v 1.3 2002/02/13 19:38:08 andrei Exp $ */
 
 
 #include <stdio.h>
@@ -7,8 +7,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
-//#include <sys/types.h>
-//#include <fcntl.h>
+#include <sys/types.h>
+#include <fcntl.h>
 
 #ifdef FLOCK
 #include <sys/file.h>
@@ -101,7 +101,7 @@ static int semid=-1;
 
 
 
-static char *id="$Id: locking_test.c,v 1.2 2002/02/13 18:28:09 andrei Exp $";
+static char *id="$Id: locking_test.c,v 1.3 2002/02/13 19:38:08 andrei Exp $";
 static char *version="locking_test 0.1-"
 #ifdef NO_LOCK
  "nolock"
