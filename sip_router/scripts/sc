@@ -1,23 +1,37 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.39 2003/01/25 15:16:16 janakj Exp $
+# $Id: sc,v 1.40 2003/01/27 19:11:47 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
 
 # ser's FIFO server
-SER_FIFO=/tmp/ser_fifo
+if [ -z "$SER_FIFO" ]; then
+	SER_FIFO=/tmp/ser_fifo
+fi
 # period in which stats are reprinted
-WATCH_PERIOD=2
+if [ -z "$WATCH_PERIOD" ] ; then
+	WATCH_PERIOD=2
+fi
 
 # SQL config
-SQL_DB=ser
-SQL_HOST=localhost
-SQL_USER=ser
+if [ -z "$SQL_DB" ] ; then
+	SQL_DB=ser
+fi
+if [ -z "$SQL_HOST" ] ; then
+	SQL_HOST=localhost
+fi
+if [ -z "$SQL_USER" ] ; then
+	SQL_USER=ser
+fi
 
 # the read-only user for whom password may be stored here
-RO_USER=serro
-RO_PW=47serro11
+if [ -z "$RO_USER" ] ; then
+	RO_USER=serro
+fi
+if [ -z "$RO_PW" ] ; then
+	RO_PW=47serro11
+fi
 
 # binaries
 GENHA1='gen_ha1'
@@ -32,7 +46,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.39 $'
+VERSION='$Revision: 1.40 $'
 #### SQL names
 
 # Usr Loc Table
