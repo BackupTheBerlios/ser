@@ -1,5 +1,5 @@
 /*
- * $Id: parser_f.c,v 1.1 2001/09/03 21:27:11 andrei Exp $
+ * $Id: parser_f.c,v 1.2 2001/09/05 18:55:40 andrei Exp $
  *
  * parser helper  functions
  *
@@ -7,7 +7,7 @@
 
 #include  "parser_f.h"
 
-/* returns pointer to next line or end of buffer */
+/* returns pointer to next line or after the end of buffer */
 char* eat_line(char* buffer, unsigned int len)
 {
 	char* nl;
@@ -24,7 +24,7 @@ char* eat_line(char* buffer, unsigned int len)
 
 
 
-/* returns pointer to first non  white char or to the end  of the buffer */
+/* returns pointer to first non  white char or after the end  of the buffer */
 char* eat_space(char* buffer, unsigned int len)
 {
 	char* p;

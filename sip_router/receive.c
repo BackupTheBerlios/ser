@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.1 2001/09/04 01:41:39 andrei Exp $
+ *$Id: receive.c,v 1.2 2001/09/05 18:55:40 andrei Exp $
  */
 
 #include <string.h>
@@ -21,7 +21,7 @@ int receive_msg(char* buf, unsigned int len)
 	orig=(char*) malloc(len);
 	if (orig==0){
 		DPrint("ERROR: memory allocation failure\n");
-		goto error;
+		goto error1;
 	}
 	memcpy(orig, buf, len);
 	
@@ -74,7 +74,8 @@ skip:
 	free(orig);
 	return 0;
 error:
+	free(orig);
+error1:
 	return -1;
-
 }
 
