@@ -1,5 +1,5 @@
 /*
- * $Id: uri.c,v 1.4 2002/12/02 09:18:05 janakj Exp $
+ * $Id: uri.c,v 1.5 2003/04/01 15:48:20 janakj Exp $
  *
  * URI related functions
  *
@@ -29,7 +29,7 @@
 
 
 #include "uri.h"
-#include "common.h"
+#include "../../parser/parser_f.h"
 
 
 /*

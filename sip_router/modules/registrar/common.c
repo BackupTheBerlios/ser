@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.12 2003/02/14 13:23:12 janakj Exp $
+ * $Id: common.c,v 1.13 2003/04/01 15:48:20 janakj Exp $
  *
  * Common stuff
  *
@@ -41,53 +41,6 @@
 #include "common.h"
 #include "rerrno.h"
 #include "reg_mod.h"
-
-
-/*
- * Find a character occurence that is not quoted
- */
-char* find_not_quoted(str* _s, char _c)
-{
-	int quoted = 0, i;
-	
-	for(i = 0; i < _s->len; i++) {
-		if (!quoted) {
-			if (_s->s[i] == '\"') quoted = 1;
-			else if (_s->s[i] == _c) return _s->s + i;
-		} else {
-			if ((_s->s[i] == '\"') && (_s->s[i - 1] != '\\')) quoted = 0;
-		}
-	}
-	return 0;
-}
-
-
-/*
- * Extract username part from URI
- */
-int get_username(str* _s)
-{
-	char* at, *dcolon, *dc;
-	dcolon = find_not_quoted(_s, ':');
-
-	if (dcolon == 0) return -1;
-
-	_s->s = dcolon + 1;
-	_s->len -= dcolon - _s->s + 1;
-	
-	at = q_memchr(_s->s, '@', _s->len);
-	dc = q_memchr(_s->s, ':', _s->len);
-	if (at) {
-		if ((dc) && (dc < at)) {
-			_s->len = dc - _s->s;
-			return 0;
-		}
-		
-		_s->len = at - _s->s;
-		return 0;
-	} else return -2;
-}
-
 
 #define MAX_AOR_LEN 256
 
