@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.128 2002/09/10 10:02:46 andrei Exp $
+# $Id: Makefile.defs,v 1.129 2002/09/10 10:50:16 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -247,8 +247,9 @@ ifeq	($(ARCH), sparc64)
 ifeq		($(CC_NAME), gcc)
 				#common stuff
 				CFLAGS=-O9 -funroll-loops  $(PROFILE) -Winline\
-					-Wmissing-prototypes -Wall\
-					-Wcast-align \
+					-Wall\
+					#-Wcast-align \
+					#-Wmissing-prototypes 
 				#if gcc 3.0
 ifeq			($(CC_SHORTVER), 3.0)
 					#use 32bit for now
