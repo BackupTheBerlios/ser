@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sercheck,v 1.4 2002/04/15 22:34:24 jku Exp $
+# $Id: sercheck,v 1.5 2002/06/04 15:46:35 jku Exp $
 #
 # use to check whether all ser processes are running; if not, restart
 # and issue an alert; run from cron daemon for best results :-)
@@ -20,6 +20,17 @@ CH=`grep "^children" $ETC | awk -F= ' { print $2 } '`
 ALL=`expr $CH + 1`
 TMP=/tmp/seralert.$$
 
+
+if [ $PROCCNT -ne $ALL ] ; then 
+	# try again first -- it might have been a temporary
+	# failure during 'sr restart'
+
+	# two seconds longer failure is not too bad...UAs will
+	# just retransmit and user are used to longer call
+	# set-up times from GSM...
+	sleep 2 
+	PROCCNT=`ps -C sr --no-headers -o pid | wc -l`
+fi
 
 if [ $PROCCNT -ne $ALL ] ; then 
 
