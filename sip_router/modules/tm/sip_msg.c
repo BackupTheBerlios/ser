@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.46 2002/03/01 22:23:53 bogdan Exp $
+ * $Id: sip_msg.c,v 1.47 2002/03/02 04:51:55 bogdan Exp $
  */
 
 
@@ -413,5 +413,8 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg )
 
 	return new_msg;
 }
+
+
+
 
 

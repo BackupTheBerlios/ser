@@ -1,5 +1,5 @@
 /*
- * $Id: lock.h,v 1.16 2002/02/21 20:04:53 andrei Exp $
+ * $Id: lock.h,v 1.17 2002/03/02 04:51:55 bogdan Exp $
  */
 
 
@@ -75,6 +75,8 @@ static int change_semaphore( ser_lock_t s  , int val );
 
 int init_cell_lock( struct cell *cell );
 int init_entry_lock( struct s_table* hash_table, struct entry *entry );
+int init_timerlist_lock( struct s_table* hash_table, enum lists timerlist_id);
+
 
 int release_cell_lock( struct cell *cell );
 int release_entry_lock( struct entry *entry );

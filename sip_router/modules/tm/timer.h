@@ -1,11 +1,10 @@
 /*
- * $Id: timer.h,v 1.25 2002/03/01 02:35:04 bogdan Exp $
+ * $Id: timer.h,v 1.26 2002/03/02 04:51:55 bogdan Exp $
  */
 
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "lock.h"
 
 
 
@@ -29,6 +28,7 @@ enum lists
 extern int timer_group[NR_OF_TIMER_LISTS];
 struct timer;
 
+#include "lock.h"
 
 
 /* all you need to put a cell in a timer list

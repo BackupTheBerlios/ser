@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.8 2002/03/01 23:21:25 andrei Exp $*
+/* $Id: shm_mem.h,v 1.9 2002/03/02 04:51:55 bogdan Exp $*
  *
  * shared mem stuff
  */
@@ -171,6 +171,12 @@ inline static void* shm_malloc(unsigned int size)
 	 return p; 
 }
 
+
+#ifdef DBG_QM_MALLOC
+void* _shm_resize( void*, unsigned int, char*, char*, unsigned int);
+#else
+void* _shm_resize( void*, unsigned int);
+#endif
 
 
 #define shm_free_unsafe( _p ) MY_FREE(shm_block, (_p))
