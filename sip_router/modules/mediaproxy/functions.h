@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.2 2004/04/04 22:48:35 danp Exp $
+/* $Id: functions.h,v 1.3 2004/08/06 11:32:25 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -107,7 +107,7 @@ FixContact(struct sip_msg* msg, char* str1, char* str2)
     struct lump* anchor;
     struct sip_uri uri;
     char *newip, *buf;
-    int len, offset;
+    int len, newiplen, offset;
     Bool asymmetric;
 
     if (!getContactURI(msg, &uri, &contact))
@@ -115,6 +115,14 @@ FixContact(struct sip_msg* msg, char* str1, char* str2)
 
     if (uri.proto != PROTO_UDP && uri.proto != PROTO_NONE)
         return -1;
+
+    newip = ip_addr2a(&msg->rcv.src_ip);
+    newiplen = strlen(newip);
+
+    /* Don't do anything if the IP's are the same. Return success. */
+    if (newiplen==uri.host.len && memcmp(uri.host.s, newip, newiplen)==0) {
+        return 1;
+    }
 
     if (uri.port.len == 0)
         uri.port.s = uri.host.s + uri.host.len;
@@ -133,9 +141,7 @@ FixContact(struct sip_msg* msg, char* str1, char* str2)
         after.len = contact->uri.s + contact->uri.len - after.s;
     }
 
-    newip = ip_addr2a(&msg->rcv.src_ip);
-
-    len = beforeHost.len + strlen(newip) + after.len + 20;
+    len = beforeHost.len + newiplen + after.len + 20;
 
     // first try to alloc mem. if we fail we don't want to have the lump
     // deleted and not replaced. at least this way we keep the original.
