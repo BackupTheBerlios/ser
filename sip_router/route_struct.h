@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.25 2003/10/29 17:41:27 andrei Exp $
+ * $Id: route_struct.h,v 1.26 2004/02/06 18:56:49 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -72,7 +72,8 @@ enum { FORWARD_T=1, SEND_T, DROP_T, LOG_T, ERROR_T, ROUTE_T, EXEC_T,
 		FORCE_RPORT_T,
 		SET_ADV_ADDR_T,
 		SET_ADV_PORT_T,
-		FORCE_TCP_ALIAS_T
+		FORCE_TCP_ALIAS_T,
+		LOAD_AVP_T
 };
 enum { NOSUBTYPE=0, STRING_ST, NET_ST, NUMBER_ST, IP_ST, RE_ST, PROXY_ST,
 		EXPR_ST, ACTIONS_ST, CMDF_ST, MODFIXUP_ST, URIHOST_ST, URIPORT_ST,

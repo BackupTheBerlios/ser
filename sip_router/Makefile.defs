@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.249 2003/11/26 11:43:39 andrei Exp $
+# $Id: Makefile.defs,v 1.250 2004/02/06 18:56:49 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -280,8 +280,7 @@ DEFS+= $(extra_defs) \
 	 -DUSE_IPV6 \
 	 -DUSE_TCP \
 	 -DDISABLE_NAGLE \
-	# -DDBG_QM_MALLOC \
-	# -DF_MALLOC \
+	 -DF_MALLOC \
 	# -DDBG_F_MALLOC \
 	# -DDBG_QM_MALLOC \
 	 #-DF_MALLOC \

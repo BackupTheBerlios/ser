@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.25 2004/01/26 13:10:35 janakj Exp $ 
+ * $Id: dbase.c,v 1.26 2004/02/06 18:56:49 bogdan Exp $ 
  *
  * MySQL module core functions
  *
@@ -330,6 +330,8 @@ int db_query(db_con_t* _h, db_key_t* _k, db_op_t* _op,
 	if (_o) {
 		off += snprintf(sql_buf + off, SQL_BUF_LEN - off, "order by %s", _o);
 	}
+
+	DBG("query=\"%s\"\n",sql_buf);
 
 	if (submit_query(_h, sql_buf) < 0) {
 		LOG(L_ERR, "submit_query(): Error while submitting query\n");

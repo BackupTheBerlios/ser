@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.41 2003/11/29 21:15:32 andrei Exp $
+ * $Id: globals.h,v 1.42 2004/02/06 18:56:49 bogdan Exp $
  *
  * global variables
  *
@@ -106,6 +106,9 @@ char extern *fifo; /* FIFO name */
 extern int fifo_mode;
 char extern *fifo_dir; /* dir. where  reply fifos are allowed */
 extern char *fifo_db_url;  /* db url used by db_fifo interface */
+
+/* AVP configuration */
+extern char *avp_db_url;  /* db url used by user preferences (AVPs) */
 
 /* moved to pt.h
 extern int *pids;
