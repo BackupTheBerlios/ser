@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.56 2004/02/17 18:49:40 bogdan Exp $
+ * $Id: t_funcs.h,v 1.57 2004/02/23 17:30:06 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -155,11 +155,6 @@ void cleanup_localcancel_timers( struct cell *t );
 
 int t_relay_to( struct sip_msg  *p_msg ,
 	struct proxy_l *proxy, int proto, int replicate ) ;
-
-int t_write_req(struct sip_msg* msg,
-	char* vm_fifo, char* action);
-
-int init_twrite_lines();
 
 #endif
 

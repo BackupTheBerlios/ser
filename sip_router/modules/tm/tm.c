@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.97 2004/02/18 16:24:31 bogdan Exp $
+ * $Id: tm.c,v 1.98 2004/02/23 17:30:06 bogdan Exp $
  *
  * TM module
  *
@@ -92,7 +92,6 @@
 
 #include "sip_msg.h"
 #include "h_table.h"
-#include "t_funcs.h"
 #include "t_hooks.h"
 #include "tm_load.h"
 #include "ut.h"
@@ -104,6 +103,7 @@
 #include "t_stats.h"
 #include "callid.h"
 #include "t_cancel.h"
+#include "t_fifo.h"
 
 MODULE_VERSION
 
