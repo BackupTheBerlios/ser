@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.9 2003/01/21 13:53:48 jiri Exp $
+ * $Id: t_msgbuilder.h,v 1.10 2003/01/23 14:14:10 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,6 +29,8 @@
 
 #ifndef _MSGBUILDER_H
 #define _MSGBUILDER_H
+
+#include "../../ip_addr.h"
 
 #include "defs.h"
 
@@ -96,7 +98,8 @@ char *build_uac_request_dlg(str* msg,            /* Method */
 	                    str* body,           /* Body of the message */
 	                    int branch,         /* Branch */
 	                    struct cell *t,
-	                    unsigned int *len
+	                    unsigned int *len,
+						struct socket_info *send_sock
 	                   );
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.21 2003/01/23 12:31:20 jiri Exp $
+ * $Id: uac.c,v 1.22 2003/01/23 14:14:10 jiri Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -498,7 +498,8 @@ int t_uac_dlg(str* msg,                     /* Type of the message - MESSAGE, OP
 				    body, 
 				    branch,
 				    new_cell,
-				    &req_len);
+				    &req_len,
+					send_sock);
 	if (!buf) {
 		ret = E_OUT_OF_MEM;
 		LOG(L_ERR, "ERROR: t_uac: short of req shmem\n");
