@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.119 2003/09/03 15:03:22 andrei Exp $
+# $Id: Makefile,v 1.120 2003/09/03 17:14:29 andrei Exp $
 #
 # sip_router makefile
 #
@@ -107,7 +107,11 @@ export PREFIX LOCALBASE
 #export INSTALL INSTALL-CFG INSTALL-BIN INSTALL-MODULES INSTALL-DOC INSTALL-MAN 
 #export INSTALL-TOUCH
 
-
+ifneq ($(TLS),)
+	tar_extra_args+=
+else
+	tar_extra_args+=--exclude=$(notdir $(CURDIR))/tls* 
+endif
 # include the common rules
 include Makefile.rules
 
@@ -162,9 +166,9 @@ tar:
 		--exclude=$(notdir $(CURDIR))/test* \
 		--exclude=$(notdir $(CURDIR))/tmp* \
 		--exclude=$(notdir $(CURDIR))/debian/ser* \
-		--exclude=$(notdir $(CURDIR))/tls* \
 		--exclude=$(notdir $(CURDIR))/ser_tls* \
 		--exclude=CVS* \
+		--exclude=.cvsignore \
 		--exclude=*.[do] \
 		--exclude=*.so \
 		--exclude=*.il \
@@ -172,6 +176,10 @@ tar:
 		--exclude=*.gz \
 		--exclude=*.bz2 \
 		--exclude=*.tar \
+		--exclude=*.patch \
+		--exclude=.\#* \
+		--exclude=*.swp \
+		${tar_extra_args} \
 		-cf - $(notdir $(CURDIR)) | \
 			(mkdir -p tmp/_tar1; mkdir -p tmp/_tar2 ; \
 			    cd tmp/_tar1; $(TAR) -xf - ) && \
