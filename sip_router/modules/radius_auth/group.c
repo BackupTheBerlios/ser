@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.4 2002/09/19 12:23:54 jku Rel $
+ * $Id: group.c,v 1.5 2002/11/28 17:09:33 janakj Exp $
  *
  * Checks if a username matche those in digest credentials
  * or is member of a group
@@ -318,7 +318,7 @@ int is_in_group(struct sip_msg* _msg, char* _group, char* _str2)
 	VAL_STR(vals + 1).len = ((str*)_group)->len;
 	
 	db_use_table(db_handle, grp_table);
-	if (db_query(db_handle, keys, vals, col, 2, 1, 0, &res) < 0) {
+	if (db_query(db_handle, keys, 0, vals, col, 2, 1, 0, &res) < 0) {
 		LOG(L_ERR, "is_in_group(): Error while querying database\n");
 		return -1;
 	}
@@ -492,7 +492,7 @@ int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp)
 	VAL_STR(vals + 1).len = ((str*)_grp)->len;
 	
 	db_use_table(db_handle, grp_table);
-	if (db_query(db_handle, keys, vals, col, 2, 1, 0, &res) < 0) {
+	if (db_query(db_handle, keys, 0, vals, col, 2, 1, 0, &res) < 0) {
 		LOG(L_ERR, "is_user_in(): Error while querying database\n");
 		return -5;
 	}
