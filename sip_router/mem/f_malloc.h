@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.5 2002/11/25 20:29:44 andrei Exp $
+/* $Id: f_malloc.h,v 1.6 2003/02/24 16:47:23 andrei Exp $
  *
  * simple, very fast, malloc library
  *
@@ -34,7 +34,7 @@
 
 /* defs*/
 
-#define ROUNDTO		8 /* size we round to, must be = 2^n, and
+#define ROUNDTO		sizeof(void*) /* size we round to, must be = 2^n, and
                       sizeof(fm_frag) must be multiple of ROUNDTO !*/
 #define MIN_FRAG_SIZE	ROUNDTO
 
