@@ -1,6 +1,6 @@
 #!/bin/sh  
 #
-# $Id: sc,v 1.80 2004/01/23 22:32:08 janakj Exp $
+# $Id: sc,v 1.81 2004/04/01 17:52:17 jamey Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -65,7 +65,7 @@ LAST_LINE='tail -1'
 VERIFY_ACL=1
 ACL_GROUPS="local ld int voicemail free-pstn prepaid"
 
-VERSION='$Revision: 1.80 $'
+VERSION='$Revision: 1.81 $'
 #### SQL names
 
 # Usr Loc Table
@@ -158,6 +158,10 @@ parameter usage:
  ul rm <username> ................... delete user's UsrLoc entries
  ul add <username> <uri> ............ introduce a permanent UrLoc entry
  showdb [<username>] ................ show online users flushed in DB
+
+           * pa *
+ pa pres <p_uri> <pstate>............ set pstate for a presentity
+ pa loc <p_uri> <loc>................ set location for a presentity
 
            * domains *
  domain show ........................ show list of served domains
@@ -456,6 +460,44 @@ usrloc() {
 
             ;;
 
+		*)
+			usage
+			exit 1
+			;;
+	esac
+}
+
+presence_agent() {
+	if [ "$#" -lt 4 ] ; then
+		echo "pa: too few parameters"
+		# usage
+		# exit 1
+	fi
+
+	shift
+	case $1 in 
+		loc)
+			shift
+			# check_uri "$1"
+			if [ "$?" -ne "0" ] ; then
+				echo "$1 is not a valid URI"
+				exit 1
+			fi
+
+			fifo_cmd pa_location "registrar" "$1" "$2"
+			exit $?
+			;;
+		pres)
+			shift
+			# check_uri "$1"
+			if [ "$?" -ne "0" ] ; then
+				echo "$1 is not a valid URI"
+				exit 1
+			fi
+
+			fifo_cmd pa_presence "registrar" "$1" "$2"
+			exit $?
+			;;
 		*)
 			usage
 			exit 1
@@ -889,6 +931,10 @@ case $1 in
 
 	alias|ul)
 		usrloc "$@"
+		;;
+
+	pa)
+		presence_agent "$@"
 		;;
 
         rpid)
