@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.93 2004/10/01 17:19:19 andrei Exp $
+ * $Id: t_reply.c,v 1.94 2004/11/01 14:09:09 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1202,6 +1202,7 @@ int reply_received( struct sip_msg  *p_msg )
 	struct cell *t;
 	str next_hop;
 	struct usr_avp **backup_list;
+	int timer;
 
 	/* make sure we know the associated transaction ... */
 	if (t_check( p_msg  , &branch )==-1)
@@ -1306,12 +1307,19 @@ int reply_received( struct sip_msg  *p_msg )
 			/* invite: change FR to longer FR_INV, do not
 			   attempt to restart retransmission any more
 			*/
-			set_timer( & uac->request.fr_timer,
-				FR_INV_TIMER_LIST );
+
+			if (!avp2timer(&timer, fr_inv_timer_avp)) {
+				DBG("reply_received: FR_INV_TIMER = %d\n", timer);
+				set_timer( & uac->request.fr_timer,
+					   FR_INV_TIMER_LIST, &timer );
+			} else {
+				set_timer( & uac->request.fr_timer,
+					   FR_INV_TIMER_LIST, 0 );
+			}
 		} else {
-			/* non-invite: restart retransmissions (slow now) */
+			     /* non-invite: restart retransmissions (slow now) */
 			uac->request.retr_list=RT_T2;
-			set_timer(  & uac->request.retr_timer, RT_T2 );
+			set_timer(  & uac->request.retr_timer, RT_T2, 0 );
 		}
 	} /* provisional replies */
 

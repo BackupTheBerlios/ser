@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.36 2004/08/24 09:00:43 janakj Exp $
+ * $Id: timer.h,v 1.37 2004/11/01 14:09:09 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -110,10 +110,10 @@ struct timer_link  *check_and_split_time_list( struct timer*, int);
 
 void reset_timer( struct timer_link* tl );
 /* determine timer length and put on a correct timer list */
-void set_timer( struct timer_link *new_tl, enum lists list_id );
+void set_timer( struct timer_link *new_tl, enum lists list_id, unsigned int* ext_timeout );
 /* similar to set_timer, except it allows only one-time
    timer setting and all later attempts are ignored */
-void set_1timer( struct timer_link *new_tl, enum lists list_id );
+void set_1timer( struct timer_link *new_tl, enum lists list_id, unsigned int* ext_timeout );
 /*void unlink_timers( struct cell *t );*/
 void timer_routine(unsigned int, void*);
 
