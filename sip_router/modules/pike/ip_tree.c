@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.c,v 1.4 2002/09/20 12:33:51 bogdan Rel $
+ * $Id: ip_tree.c,v 1.5 2002/11/20 18:59:57 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -66,6 +66,7 @@ struct ip_node *split_node(struct ip_node* dad, unsigned char byte)
 	new_node = (struct ip_node*)ip_malloc(sizeof(struct ip_node));
 	if (!new_node)
 		return 0;
+	memset( new_node, 0, sizeof(struct ip_node));
 	new_node->byte = byte;
 	new_node->leaf_hits = 0;
 	new_node->hits = (dad->hits)/2;
