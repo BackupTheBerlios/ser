@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.15 2001/10/24 19:17:54 andrei Exp $
+# $Id: Makefile,v 1.16 2001/10/24 21:58:38 andrei Exp $
 #
 # sip_router makefile
 #
@@ -45,7 +45,8 @@ ifeq  ($(ARCH), SunOS)
 
 MAKE=gmake
 YACC=yacc
-LIBS=$(LIBS) -L/usr/local/lib -lxnet # or -lnsl -lsocket or -lglibc ?
+LDFLAGS=-O2
+LIBS+=-L/usr/local/lib -lxnet # or -lnsl -lsocket or -lglibc ?
 
 endif
 ifeq ($(ARCH), FreeBSD)

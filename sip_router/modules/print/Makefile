@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2001/10/24 19:17:54 andrei Exp $
+# $Id: Makefile,v 1.2 2001/10/24 21:58:38 andrei Exp $
 #
 # print example module makefile
 #
@@ -12,8 +12,12 @@ depends= $(sources:.c=.d)
 
 NAME=print.so
 
-LDFLAGS=-Wl,-O2 -shared
+LDFLAGS=-O2 -shared
 LIBS=
+
+ifeq ($(ARCH), SunOS)
+LDFLAGS=-O2 -G
+endif
 
 #implicit rules
 %.o:%.c $(ALLDEP)
