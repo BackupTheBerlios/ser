@@ -1,4 +1,4 @@
-$Id: TODO,v 1.46 2003/04/15 20:39:37 andrei Exp $
+$Id: TODO,v 1.47 2003/05/13 17:21:35 andrei Exp $
 
 ( - todo, x - done)
 
@@ -34,6 +34,8 @@ x fix bind_address for tcp (in some  way)
 - tcp_destroy (called on ser exit)
 - BUG:?? ipv6 only and try to send to ipv4 => getsendsocket=>0 (send_ipv6=0)
   the reverse is also true
+- SUBST lumps for replies (involves setting the send_socket in forward_reply, 
+  before build_res_from_res, & adding it to buid_res_from_res).
 
 
 High priority:
