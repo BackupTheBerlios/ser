@@ -1,11 +1,17 @@
 /*
- *$Id: ut.h,v 1.14 2002/08/15 08:13:29 jku Exp $
+ *$Id: ut.h,v 1.15 2002/09/03 10:25:12 jku Exp $
  *
  * - various general purpose functions
  */
 
 #ifndef ut_h
 #define ut_h
+
+
+#include <sys/types.h>
+#include <sys/time.h>
+#include <unistd.h>
+
 
 #include "dprint.h"
 
@@ -225,6 +231,14 @@ inline static int string2hex(
 
 	}
 	return orig_len-len;
+}
+
+inline static void sleep_us( unsigned int nusecs )
+{
+	struct timeval tval;
+	tval.tv_sec=nusecs/100000;
+	tval.tv_usec=nusecs%1000000;
+	select(0, NULL, NULL, NULL, &tval );
 }
 
 #endif
