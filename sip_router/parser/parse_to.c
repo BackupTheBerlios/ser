@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.8 2002/08/15 08:13:30 jku Exp $
+ * $Id: parse_to.c,v 1.9 2002/08/27 22:26:07 jku Exp $
  */
 
 #include "parse_to.h"
@@ -422,7 +422,7 @@ static /*inline*/ char* parse_to_param(char *buffer, char *end,
 
 
 endofheader:
-#ifdef PINGTEL_TAG_HACK
+#ifndef NO_PINGTEL_TAG_HACK
 	if (param->type==TAG_PARAM 
 	&& (saved_status==S_EQUAL||saved_status==S_PARA_VALUE) ) {
 			saved_status = E_PARA_VALUE;
