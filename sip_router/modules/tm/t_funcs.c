@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.88 2002/01/15 17:36:44 bogdan Exp $
+ * $Id: t_funcs.c,v 1.89 2002/01/22 19:23:12 bogdan Exp $
  *
  */
 

@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.24 2002/01/15 22:34:51 andrei Exp $
+ * $Id: sip_msg.c,v 1.25 2002/01/22 19:23:12 bogdan Exp $
  */
 
 
@@ -38,8 +38,6 @@ struct sip_msg* sip_msg_cloner_1( struct sip_msg *org_msg )
     new_msg->repl_add_rm=NULL;
     new_msg->orig=NULL;
     new_msg->buf=NULL;
-
-
 
     /* the original message - orig ( char*  type) */
     new_msg->orig = (char*)sh_malloc( new_msg->len+1 );
@@ -175,6 +173,12 @@ struct sip_msg* sip_msg_cloner_1( struct sip_msg *org_msg )
 		break;
 	    case HDR_CONTACT :
 		new_msg->contact = new_hdr;
+		break;
+	    case HDR_MAXFORWARD :
+		new_msg->maxforward = new_hdr;
+		break;
+	    case HDR_ROUTE :
+		new_msg->route = new_hdr;
 		break;
 	    default :
 		break;
