@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.14 2004/09/14 12:43:37 janakj Exp $
+ * $Id: pdt.c,v 1.15 2005/01/21 23:05:29 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -350,10 +350,13 @@ static int mod_init(void)
 
 error:
 	free_double_hash(hash);
+	hash = 0;
 error2:
 	pdt_dbf.close(db_con);
+	db_con = 0;
 error1:	
 	shm_free(next_code);
+	next_code = 0;
 	lock_destroy(&l);
 	return -1;
 }	
