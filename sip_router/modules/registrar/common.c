@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.9 2003/01/14 23:32:52 janakj Exp $
+ * $Id: common.c,v 1.10 2003/02/13 21:01:56 janakj Exp $
  *
  * Common stuff
  *
@@ -85,16 +85,6 @@ int get_username(str* _s)
 
 #define MAX_AOR_LEN 256
 char aor_buf[MAX_AOR_LEN];
-
-
-static inline void strlower(str* _s)
-{
-	int i;
-
-	for(i = 0; i < _s->len; i++) {
-		_s->s[i] = tolower(_s->s[i]);
-	}
-}
 
 
 /*
