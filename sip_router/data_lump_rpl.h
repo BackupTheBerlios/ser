@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.h,v 1.6 2003/11/11 19:34:35 bogdan Exp $
+ * $Id: data_lump_rpl.h,v 1.7 2003/12/18 22:45:23 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -44,6 +44,7 @@
 #define LUMP_RPL_BODY    (1<<2)
 #define LUMP_RPL_NODUP   (1<<3)
 #define LUMP_RPL_NOFREE  (1<<4)
+#define LUMP_RPL_SHMEM   (1<<5)
 
 struct lump_rpl
 {
@@ -57,5 +58,7 @@ struct lump_rpl* add_lump_rpl(struct sip_msg *, char *, int , int );
 void free_lump_rpl(struct lump_rpl* );
 
 void unlink_lump_rpl(struct sip_msg *, struct lump_rpl* );
+
+void del_nonshm_lump_rpl(  struct lump_rpl ** );
 
 #endif

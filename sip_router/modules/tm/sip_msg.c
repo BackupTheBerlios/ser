@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.80 2003/12/09 15:09:43 bogdan Exp $
+ * $Id: sip_msg.c,v 1.81 2003/12/18 22:45:23 bogdan Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -679,8 +679,8 @@ do { \
 	{
 		*(rpl_lump_anchor)=(struct lump_rpl*)p;
 		p+=ROUND4(sizeof( struct lump_rpl ));
-		(*rpl_lump_anchor)->flags =
-			rpl_lump->flags&(~(LUMP_RPL_NODUP|LUMP_RPL_NOFREE));
+		(*rpl_lump_anchor)->flags = LUMP_RPL_SHMEM |
+			(rpl_lump->flags&(~(LUMP_RPL_NODUP|LUMP_RPL_NOFREE)));
 		(*rpl_lump_anchor)->text.len = rpl_lump->text.len;
 		(*rpl_lump_anchor)->text.s=p;
 		p+=ROUND4(rpl_lump->text.len);
