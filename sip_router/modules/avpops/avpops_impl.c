@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.c,v 1.8 2005/02/23 17:16:02 andrei Exp $
+ * $Id: avpops_impl.c,v 1.9 2005/02/26 15:29:03 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -783,7 +783,7 @@ int ops_pushto_avp ( struct sip_msg* msg, struct fis_param* dst,
 			{
 				/* if is not the first modification, push the current uri as
 				 * branch */
-				if (append_branch( msg, 0, 0, 0, 0, 0)!=1 )
+				if (append_branch( msg, 0, 0, 0, 0, Q_UNSPECIFIED, 0)!=1 )
 				{
 					LOG(L_ERR,"ERROR:avpops:pushto_avp: append_branch action"
 						" failed\n");

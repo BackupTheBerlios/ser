@@ -1,5 +1,5 @@
 /*
- * $Id: dset.h,v 1.8 2005/02/01 13:21:09 janakj Exp $
+ * $Id: dset.h,v 1.9 2005/02/26 15:29:03 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG FOKUS
  *
@@ -28,6 +28,7 @@
 #ifndef _DSET_H
 #define _DSET_H
 
+#include "ip_addr.h"
 #include "qvalue.h"
 
 struct sip_msg;
@@ -38,7 +39,8 @@ extern unsigned int nr_branches;
 /* 
  * Add a new branch to current transaction 
  */
-int append_branch(struct sip_msg* msg, char* uri, int uri_len, char* dst_uri, int dst_uri_len, qvalue_t q);
+int append_branch(struct sip_msg* msg, char* uri, int uri_len, char* dst_uri, int dst_uri_len, 
+		  qvalue_t q, struct socket_info* force_socket);
 
 
 /* 
@@ -50,7 +52,7 @@ void init_branch_iterator(void);
 /*
  * Get the next branch in the current transaction
  */
-char* next_branch(int* len, qvalue_t* q, char** dst_uri, int* dst_len);
+char* next_branch(int* len, qvalue_t* q, char** dst_uri, int* dst_len, struct socket_info** force_socket);
 
 
 /*

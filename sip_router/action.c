@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.67 2005/02/25 14:19:57 andrei Exp $
+ * $Id: action.c,v 1.68 2005/02/26 15:29:03 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -285,7 +285,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 			}
 			ret=append_branch( msg, a->p1.string, 
 					   a->p1.string ? strlen(a->p1.string):0,
-					   0, 0, a->p2.number);
+					   0, 0, a->p2.number, 0);
 			break;
 
 		/* jku begin: is_length_greater_than */

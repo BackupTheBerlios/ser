@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.16 2005/02/23 17:16:06 andrei Exp $
+ * $Id: xl_lib.c,v 1.17 2005/02/26 15:29:04 janakj Exp $
  *
  * XLOG module
  *
@@ -239,7 +239,7 @@ static int xl_get_branch(struct sip_msg *msg, str *res, str *hp, int hi)
 
 
 	init_branch_iterator();
-	branch.s = next_branch(&branch.len, &q, 0, 0);
+	branch.s = next_branch(&branch.len, &q, 0, 0, 0);
 	if (!branch.s) {
 		return xl_get_null(msg, res, hp, hi);
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.30 2005/02/17 15:56:15 janakj Exp $
+ * $Id: lookup.c,v 1.31 2005/02/26 15:29:04 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -116,7 +116,7 @@ int lookup(struct sip_msg* _m, char* _t, char* _s)
 
 	while(ptr) {
 		if (VALID_CONTACT(ptr, act_time)) {
-			if (append_branch(_m, ptr->c.s, ptr->c.len, ptr->received.s, ptr->received.len, ptr->q) == -1) {
+			if (append_branch(_m, ptr->c.s, ptr->c.len, ptr->received.s, ptr->received.len, ptr->q, 0) == -1) {
 				LOG(L_ERR, "lookup(): Error while appending a branch\n");
 				     /* Return 1 here so the function succeeds even if appending of
 				      * a branch failed

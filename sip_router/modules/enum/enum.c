@@ -1,5 +1,5 @@
 /*
- * $Id: enum.c,v 1.18 2004/12/03 19:09:32 andrei Exp $
+ * $Id: enum.c,v 1.19 2005/02/26 15:29:03 janakj Exp $
  *
  * Enum and E164 related functions
  *
@@ -444,7 +444,7 @@ int enum_query_2(struct sip_msg* _msg, char* _suffix, char* _service)
 				q = q - 10;
 				curr_prio = priority;
 			}
-			if (append_branch(_msg, result.s, result.len, 0, 0, q) == -1) {
+			if (append_branch(_msg, result.s, result.len, 0, 0, q, 0) == -1) {
 				goto done;
 			}
 		}
