@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.15 2002/12/12 21:42:33 andrei Exp $
+ * $Id: t_msgbuilder.c,v 1.16 2002/12/13 11:54:03 calrissian Exp $
  *
  * message printing
  *
@@ -100,7 +100,7 @@ char *build_local(struct cell *Trans,unsigned int branch,
 	if (!Trans->local) {
 		for ( hdr=Trans->uas.request->headers ; hdr ; hdr=hdr->next )
 			 if (hdr->type==HDR_ROUTE)
-				len+=((hdr->body.s+hdr->body.len ) - hdr->name.s ) + 
+				*len+=((hdr->body.s+hdr->body.len ) - hdr->name.s ) + 
 					CRLF_LEN ;
 	}
 
