@@ -1,5 +1,5 @@
 /* 
- * $Id: parser_f.h,v 1.1 2002/05/13 01:15:41 jku Exp $
+ * $Id: parser_f.h,v 1.2 2002/08/12 12:19:36 janakj Exp $
  */
 
 #ifndef parser_f_h
@@ -41,4 +41,4 @@ inline static int is_empty_end(char* p, char* pend )
 }
 
 
-#endif
+#endif /* parser_f_h */

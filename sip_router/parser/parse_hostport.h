@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hostport.h,v 1.1 2002/07/08 17:14:39 janakj Exp $
+ * $Id: parse_hostport.h,v 1.2 2002/08/12 12:17:12 janakj Exp $
  */
 
 #ifndef PARSE_HOSTPORT_H
@@ -9,4 +9,4 @@
 
 char* parse_hostport(char* buf, str* host, short int* port);
 
-#endif
+#endif /* PARSE_HOSTPORT_H */
