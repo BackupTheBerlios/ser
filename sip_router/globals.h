@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.28 2003/04/02 15:51:03 andrei Exp $
+ * $Id: globals.h,v 1.29 2003/04/12 19:26:15 andrei Exp $
  *
  * global variables
  *
@@ -77,6 +77,9 @@ extern int sip_warning;
 extern int server_signature;
 extern char* user;
 extern char* group;
+extern char* chroot_dir;
+extern char* working_dir;
+
 /*
  * debug & log_stderr moved to dprint.h*/
 
