@@ -1,5 +1,5 @@
 /*
- * $Id: dbexample.c,v 1.7 2002/11/28 16:53:03 janakj Exp $
+ * $Id: dbexample.c,v 1.8 2003/03/10 16:06:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -120,9 +120,9 @@ struct module_exports* mod_register()
 	     /*
 	      * Column names of table location
 	      */
-	db_key_t keys1[] = {"user", "contact", "q", "expire", "opaque" };
-	db_key_t keys2[] = {"user", "q"};
-	db_key_t keys3[] = {"user", "contact"};
+	db_key_t keys1[] = {"username", "contact", "q", "expire", "opaque" };
+	db_key_t keys2[] = {"username", "q"};
+	db_key_t keys3[] = {"username", "contact"};
 	db_key_t keys4[] = {"contact", "q"};
 
 	db_val_t vals1[] = { 
