@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.46 2002/06/04 12:12:33 bogdan Exp $
+ * $Id: forward.c,v 1.47 2002/06/10 16:34:38 bogdan Exp $
  */
 
 
@@ -110,7 +110,7 @@ int forward_request( struct sip_msg* msg, struct proxy_l * p)
 	DBG("Sending:\n%s.\n", buf);
 	DBG("orig. len=%d, new_len=%d\n", msg->len, len );
 	
-	if (udp_send( send_sock, buf, len,  to, 
+	if (udp_send(send_sock, buf, len,  to,
 							sizeof(union sockaddr_union))==-1){
 			ser_error=E_SEND;
 			p->errors++;

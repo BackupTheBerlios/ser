@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.17 2002/06/04 12:12:33 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.18 2002/06/10 16:34:38 bogdan Exp $
  */
 
 #include <netinet/in.h>
@@ -128,8 +128,8 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	{
 		udp_send( send_sock,
 			buf, len,
-			/* v6; -jiri (struct sockaddr*) */ &(to),
-			sizeof(struct sockaddr_in));
+			/* v6; (union sockaddr_union*) */ &(to),
+			sizeof(union sockaddr_union));
 		*(sl_timeout) = get_ticks() + SL_RPL_WAIT_TIME;
 	}
 	pkg_free(buf);
