@@ -1,6 +1,6 @@
-# $Id: Makefile,v 1.1 2001/12/18 00:28:14 janakj Rel $
+# $Id: Makefile,v 1.2 2003/02/26 14:02:19 janakj Exp $
 #
-# print example module makefile
+# auth example module makefile
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
