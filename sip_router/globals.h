@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.17 2002/09/10 10:47:47 jku Exp $
+ * $Id: globals.h,v 1.18 2002/09/10 15:58:19 jku Exp $
  *
  * global variables
  *
@@ -51,7 +51,7 @@ extern int server_signature;
 /*
  * debug & log_stderr moved to dprint.h*/
 
-extern process_bm_t process_bit;
+/* extern process_bm_t process_bit; */
 extern int *pids;
 
 extern int cfg_errors;
