@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.60 2004/12/03 19:09:33 andrei Exp $
+ * $Id: t_funcs.h,v 1.61 2005/02/01 14:08:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -130,6 +130,10 @@ static void inline _set_fr_retr( struct retr_buf *rb, int retr )
 	if (!avp2timer(&timer, fr_timer_avp)) {
 		DBG("_set_fr_retr: FR_TIMER = %d\n", timer);
 		set_timer(&rb->fr_timer, FR_TIMER_LIST, &timer);
+		     /* Automatically enable noisy_ctimer for the
+		      * transaction
+		      */
+		rb->my_T->flags |= T_NOISY_CTIMER_FLAG;
 	} else {
 		set_timer(&rb->fr_timer, FR_TIMER_LIST, 0);
 	}
