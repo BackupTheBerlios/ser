@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump.h,v 1.2 2002/09/19 12:23:52 jku Rel $
+ * $Id: data_lump.h,v 1.3 2003/01/19 01:37:45 jiri Exp $
  *
  * adding/removing headers or any other data chunk from a message
  *
@@ -33,6 +33,7 @@
 
 
 enum { LUMP_NOP=0, LUMP_DEL, LUMP_ADD };
+enum { LUMPFLAG_NONE=0, LUMPFLAG_DUPED=1, LUMPFLAG_SHMEM=2 };
 
 struct lump{
 	int type; /* VIA, OTHER, UNSPEC(=0), ... */
@@ -51,6 +52,8 @@ struct lump{
 							  the current one */
 	
 	struct lump* next;
+
+	int flags; /* additional hints for use from TM's shmem */
 };
 
 /*
@@ -96,5 +99,10 @@ struct lump* anchor_lump(struct lump** list, int offset, int len, int type);
 void free_lump(struct lump* l);
 /*frees an entire lump list, recursively */
 void free_lump_list(struct lump* lump_list);
+
+/* duplicates a lump list shallowly in pkg-mem */
+struct lump* dup_lump_list( struct lump *l );
+/* frees a shallowly duplicated lump list */
+void free_duped_lump_list(struct lump* l);
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.56 2002/11/28 16:16:33 bogdan Exp $
+ * $Id: sip_msg.c,v 1.57 2003/01/19 01:37:45 jiri Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -58,6 +58,7 @@
 	{\
 		(_new) = (struct lump*)(_ptr);\
 		memcpy( (_new), (_old), sizeof(struct lump) );\
+		(_new)->flags|=LUMPFLAG_SHMEM; \
 		(_ptr)+=ROUND4(sizeof(struct lump));\
 		if ( (_old)->op==LUMP_ADD) {\
 			(_new)->u.value = (char*)(_ptr);\
