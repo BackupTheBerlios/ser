@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.36 2003/04/13 21:48:18 jiri Exp $
+# $Id: ser_mysql.sh,v 1.37 2003/05/06 15:23:52 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -50,7 +50,7 @@ usage: $COMMAND create
        $COMMAND backup (dumps current database to stdout)
 	   $COMMAND restore <file> (restores tables from a file)
        $COMMAND copy <new_db> (creates a new db from an existing one)
-       $COMMAND reinstalls (updates to a new SER database)
+       $COMMAND reinstall (updates to a new SER database)
 
        if you want to manipulate database as other MySql user than
        root, want to change database name from default value "$DBNAME",
