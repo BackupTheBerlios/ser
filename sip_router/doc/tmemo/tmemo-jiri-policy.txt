@@ -1,4 +1,4 @@
-$Id: tmemo-jiri-policy.txt,v 1.1 2003/02/24 14:14:15 jiri Exp $
+$Id: tmemo-jiri-policy.txt,v 1.2 2003/02/24 18:23:23 jiri Exp $
 
 Recollection of Messages on Policy
 ==================================
@@ -22,6 +22,14 @@ a BYE from 0123@foo to 0321@foo? Well, I think so, to avoid relaying
 domains. The question then is what realm should we use? We don't know
 it any longer, and we don't want to keep sessions. Keeping it with
 record-routing might be an option.
+
+Juha:
+yes, the proxy would not know the realm unless it keeps dialog state.
+more that authentication, i'm worried about accounting.  if my policy is
+to account dialogs (calls) that are initiated by my own users, how do i
+know when i see a bye, if it terminates such a call or a call initiated
+by non-local party?
+
 
 Mike Graff, serusers
 --------------------
