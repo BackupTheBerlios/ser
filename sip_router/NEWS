@@ -1,7 +1,7 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.33 2004/10/08 13:19:07 andrei Exp $
+$Id: NEWS,v 1.34 2004/10/19 13:40:05 andrei Exp $
 
 0.8.99-dev changes
 
@@ -41,6 +41,9 @@ core:
  - new parts:
        UNIX domain socket server implemented
  - changes: 
+    - added from_uri & to_uri: behave exactly like uri but use the
+	   "From:"/"To:" uris
+       (e.g.: if (from_uri==myself) ..., if (to_uri=~"^sip:test@")... )
     - config: better escape support in strings (e.g. \", \<cr>, \x0a, \012)
     - bad network addresses are now automatically fixed
       (e.g. 192.168.1.80/27 => 192.168.1.64/27)

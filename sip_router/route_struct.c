@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.30 2004/08/24 08:45:10 janakj Exp $
+ * $Id: route_struct.c,v 1.31 2004/10/19 13:40:05 andrei Exp $
  *
  * route structures helping functions
  *
@@ -145,6 +145,12 @@ void print_expr(struct expr* exp)
 				break;
 			case URI_O:
 				DBG("uri");
+				break;
+			case FROM_URI_O:
+				DBG("from_uri");
+				break;
+			case TO_URI_O:
+				DBG("to_uri");
 				break;
 			case SRCIP_O:
 				DBG("srcip");

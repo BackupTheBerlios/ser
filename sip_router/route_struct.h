@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.28 2004/08/24 08:45:10 janakj Exp $
+ * $Id: route_struct.h,v 1.29 2004/10/19 13:40:05 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -55,7 +55,7 @@
 enum { EXP_T=1, ELEM_T };
 enum { AND_OP=1, OR_OP, NOT_OP };
 enum { EQUAL_OP=10, MATCH_OP, GT_OP, LT_OP, GTE_OP, LTE_OP, DIFF_OP, NO_OP };
-enum { METHOD_O=1, URI_O, SRCIP_O, SRCPORT_O,
+enum { METHOD_O=1, URI_O, FROM_URI_O, TO_URI_O, SRCIP_O, SRCPORT_O,
 	   DSTIP_O, DSTPORT_O, PROTO_O, AF_O, MSGLEN_O, DEFAULT_O, ACTION_O,
 	   NUMBER_O};
 
