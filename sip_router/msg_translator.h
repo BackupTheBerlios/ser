@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.15 2002/12/12 21:46:38 andrei Exp $
+/*$Id: msg_translator.h,v 1.16 2003/01/20 01:18:50 jiri Exp $
  * 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -33,6 +33,10 @@
 #define MY_HF_SEP_LEN 2
 
 #define BRANCH_SEPARATOR '.'
+#define WARNING "Warning: 392 "
+#define WARNING_LEN (sizeof(WARNING)-1)
+#define WARNING_PHRASE " \"Noisy feedback tells: "
+#define WARNING_PHRASE_LEN (sizeof(WARNING_PHRASE)-1)
 
 #include "parser/msg_parser.h"
 #include "ip_addr.h"
