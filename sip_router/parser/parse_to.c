@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.19 2004/09/27 04:02:25 jiri Exp $
+ * $Id: parse_to.c,v 1.20 2004/10/10 19:33:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -601,14 +601,8 @@ char* parse_to(char* buffer, char *end, struct to_body *to_b)
 				switch (status)
 				{
 					case DISPLAY_QUOTED:
-						switch (*(tmp+1))
-						{
-							case '\n':
-							case '\r':
-								break;
-							default:
-								tmp++;
-						}
+						tmp++; /* jump over next char */
+						break;
 					default:
 						LOG( L_ERR , "ERROR: parse_to : unexpected char [%c] "
 							"in status %d: <<%.*s>> .\n",
