@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.10 2001/12/06 20:43:05 andrei Exp $ 
+ * $Id: parse_via.c,v 1.11 2002/01/07 04:39:49 jku Exp $ 
  *
  * via parsing automaton
  * 
@@ -21,7 +21,7 @@
 #include "dprint.h"
 #include "msg_parser.h"
 #include "ut.h"
-#include "mem.h"
+#include "mem/mem.h"
 
 
 

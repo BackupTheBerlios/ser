@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.57 2001/12/18 00:32:02 janakj Exp $
+# $Id: Makefile,v 1.58 2002/01/07 04:39:49 jku Exp $
 #
 # sip_router makefile
 #
@@ -11,7 +11,7 @@ auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 include Makefile.sources
 
 exclude_modules=CVS usrloc mysql auth
-static_modules=
+static_modules=tm
 static_modules_path=$(addprefix modules/, $(static_modules))
 extra_sources=$(wildcard $(addsuffix /*.c, $(static_modules_path)))
 extra_objs=$(extra_sources:.c=.o)

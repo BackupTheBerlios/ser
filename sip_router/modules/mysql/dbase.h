@@ -1,3 +1,7 @@
+/* 
+ * $Id: dbase.h,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ */
+
 #ifndef __DBASE_H__
 #define __DBASE_H__
 

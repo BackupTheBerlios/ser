@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.16 2001/12/06 20:43:05 andrei Exp $
+ * $Id: action.c,v 1.17 2002/01/07 04:39:49 jku Exp $
  */
 
 
@@ -15,7 +15,7 @@
 #include "msg_parser.h"
 #include "ut.h"
 #include "sr_module.h"
-#include "mem.h"
+#include "mem/mem.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>

@@ -1,3 +1,7 @@
+/* 
+ * $Id: location.h,v 1.2 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #ifndef __LOCATION_H__
 #define __LOCATION_H__
 

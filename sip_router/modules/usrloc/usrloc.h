@@ -1,3 +1,7 @@
+/* 
+ * $Id: usrloc.h,v 1.2 2002/01/07 04:39:56 jku Exp $ 
+ */
+
 #ifndef __USRLOC_H__
 #define __USRLOC_H__
 

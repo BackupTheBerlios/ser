@@ -1,3 +1,9 @@
+/* 
+ * $Id: db_con.c,v 1.3 2002/01/07 04:39:51 jku Exp $ 
+ */
+
+
+
 #include "db_con.h"
 #include "defs.h"
 #include "../../mem.h"

@@ -1,3 +1,7 @@
+/* 
+ * $Id: sipdate.c,v 1.2 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #include "sipdate.h"
 
 

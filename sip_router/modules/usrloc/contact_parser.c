@@ -1,3 +1,7 @@
+/* 
+ * $Id: contact_parser.c,v 1.2 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

@@ -1,3 +1,7 @@
+/* 
+ * $Id: timer_dirty.h,v 1.2 2002/01/07 04:39:56 jku Exp $ 
+ */
+
 #ifndef __TIMER_DIRTY__
 #define __TIMER_DIRTY__
 

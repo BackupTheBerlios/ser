@@ -1,3 +1,7 @@
+/* 
+ * $Id: db_mod.c,v 1.3 2002/01/07 04:39:51 jku Exp $ 
+ */
+
 #include "../../sr_module.h"
 #include "dbase.h"
 #include <stdio.h>

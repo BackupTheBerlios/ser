@@ -1,3 +1,7 @@
+/* 
+ * $Id: base64.c,v 1.2 2002/01/07 04:39:51 jku Exp $ 
+ */
+
 /*
  * FILE:   base64.c
  * AUTHOR: Colin Perkins

@@ -1,3 +1,7 @@
+/* 
+ * $Id: db_utils.h,v 1.2 2002/01/07 04:39:52 jku Exp $ 
+ */
+
 #ifndef __DB_UTILS_H__
 #define __DB_UTILS_H__
 

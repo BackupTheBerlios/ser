@@ -1,3 +1,7 @@
+/* 
+ * $Id: dbcon_mysql.h,v 1.3 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #ifndef __DBCON_MYSQL_H__
 #define __DBCON_MYSQL_H__
 

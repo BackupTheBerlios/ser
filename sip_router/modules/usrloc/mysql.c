@@ -1,3 +1,7 @@
+/* 
+ * $Id: mysql.c,v 1.2 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #include "mysql.h"
 #include "dbcon_mysql.h"
 #include "../../dprint.h"

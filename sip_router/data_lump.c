@@ -1,10 +1,10 @@
-/* $Id: data_lump.c,v 1.5 2001/11/23 09:29:00 andrei Exp $
+/* $Id: data_lump.c,v 1.6 2002/01/07 04:39:49 jku Exp $
  *
  */
 
 #include "data_lump.h"
 #include "dprint.h"
-#include "mem.h"
+#include "mem/mem.h"
 
 #include <stdlib.h>
 

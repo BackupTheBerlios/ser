@@ -1,15 +1,17 @@
 /*
- * $Id: hash_func.h,v 1.4 2001/12/05 22:14:30 jku Exp $
+ * $Id: hash_func.h,v 1.5 2002/01/07 04:39:53 jku Exp $
  */
 
 
 #ifndef _HASH_H
 #define _HASH_H
 
-#include "globals.h"
 #include "../../str.h"
 #include "h_table.h"
 
-int hash( str  call_id, str cseq_nr );
+int new_hash( str  call_id, str cseq_nr );
+int old_hash( str  call_id, str cseq_nr );
+
+#define hash( cid, cseq) new_hash( cid, cseq )
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.26 2001/12/08 14:20:09 andrei Exp $
+ * $Id: msg_parser.h,v 1.27 2002/01/07 04:39:49 jku Exp $
  */
 
 #ifndef msg_parser_h
@@ -84,7 +84,7 @@ struct msg_start{
 			str version;
 			str status;
 			str reason;
-			unsigned short statusclass, statuscode;
+			unsigned short /* statusclass,*/ statuscode;
 		}reply;
 	}u;
 };

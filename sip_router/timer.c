@@ -1,13 +1,14 @@
 /*
- * $Id: timer.c,v 1.4 2001/12/11 04:25:44 andrei Exp $
+ * $Id: timer.c,v 1.5 2002/01/07 04:39:50 jku Exp $
  */
 
 #include "timer.h"
 #include "dprint.h"
 #include "error.h"
 #include "config.h"
+#include "mem/mem.h"
 #ifdef SHM_MEM
-#include "shm_mem.h"
+#include "mem/shm_mem.h"
 #endif
 
 #include <stdlib.h>

@@ -1,3 +1,7 @@
+/* 
+ * $Id: utils.c,v 1.2 2002/01/07 04:39:56 jku Exp $ 
+ */
+
 #include <ctype.h>
 #include "utils.h"
 #include <string.h>

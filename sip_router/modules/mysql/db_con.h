@@ -1,10 +1,15 @@
+/* 
+ * $Id: db_con.h,v 1.3 2002/01/07 04:39:51 jku Exp $ 
+ */
+
+
 #ifndef __DB_CON_H__
 #define __DB_CON_H__
 
 /*
  * Database connection data type for database module
  *
- * $Id: db_con.h,v 1.2 2002/01/03 15:19:40 janakj Exp $
+ * $Id: db_con.h,v 1.3 2002/01/07 04:39:51 jku Exp $
  */
 
 #include <mysql/mysql.h>

@@ -1,9 +1,9 @@
-/* $Id: q_malloc.h,v 1.4 2001/12/11 07:45:30 andrei Exp $
+/* $Id: q_malloc.h,v 1.1 2002/01/07 04:39:50 jku Exp $
  *
  * simple & fast malloc library
  */
 
-#ifndef q_malloc_h
+#if !defined(q_malloc_h) && !defined(VQ_MALLOC)
 #define q_malloc_h
 
 

@@ -1,3 +1,7 @@
+/* 
+ * $Id: db_utils.c,v 1.2 2002/01/07 04:39:52 jku Exp $ 
+ */
+
 #include "db_utils.h"
 #include <string.h>
 #include "utils.h"

@@ -1,3 +1,7 @@
+/* 
+ * $Id: contact.h,v 1.2 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #ifndef __CONTACT_H__
 #define __CONTACT_H__
 

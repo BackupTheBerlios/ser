@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.c,v 1.1 2001/11/23 18:06:20 andrei Exp $
+ * $Id: parse_fline.c,v 1.2 2002/01/07 04:39:49 jku Exp $
  * 
  * sip first line parsing automaton
  * 
@@ -1123,7 +1123,7 @@ char* parse_fline(char* buffer, char* end, struct msg_start* fl)
 skip:
 	if (fl->type==SIP_REPLY){
 		fl->u.reply.statuscode=stat;
-		fl->u.reply.statusclass=stat/100;
+		/* fl->u.reply.statusclass=stat/100; */
 	}
 	return tmp;
 	

@@ -1,3 +1,9 @@
+/* 
+ * $Id: auth.c,v 1.2 2002/01/07 04:39:50 jku Exp $ 
+ */
+
+
+
 #include "auth.h"
 #include <stdlib.h>
 #include "../../sr_module.h"

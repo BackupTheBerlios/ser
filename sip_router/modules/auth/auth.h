@@ -1,3 +1,9 @@
+/* 
+ * $Id: auth.h,v 1.2 2002/01/07 04:39:51 jku Exp $ 
+ */
+
+
+
 #ifndef __AUTH_H__
 #define __AUTH_H__
 

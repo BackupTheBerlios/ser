@@ -1,3 +1,7 @@
+/* 
+ * $Id: db_res.c,v 1.3 2002/01/07 04:39:51 jku Exp $ 
+ */
+
 #include "db_res.h"
 #include "defs.h"
 #include <stdlib.h>

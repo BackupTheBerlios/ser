@@ -1,3 +1,7 @@
+/* 
+ * $Id: dbcon_mysql.c,v 1.3 2002/01/07 04:39:55 jku Exp $ 
+ */
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>

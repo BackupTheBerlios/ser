@@ -1,3 +1,7 @@
+/* 
+ * $Id: c_elem.c,v 1.2 2002/01/07 04:39:54 jku Exp $ 
+ */
+
 #include "c_elem.h"
 #include <stdlib.h>
 #include <stdio.h>   /* remove */
