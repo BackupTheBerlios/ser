@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_sig.c,v 1.1 2003/07/02 20:09:43 bogdan Exp $
+ * $Id: cpl_sig.c,v 1.2 2003/07/02 20:47:05 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,8 +28,11 @@
 
 #include "../../action.h"
 #include "../../dset.h"
+#include "../tm/tm_load.h"
 #include "loc_set.h"
 #include "cpl_sig.h"
+
+extern struct tm_binds cpl_tmb;
 
 
 int cpl_proxy_to_loc_set( struct cpl_interpreter *inter )
@@ -67,7 +70,13 @@ int cpl_proxy_to_loc_set( struct cpl_interpreter *inter )
 		loc = loc->next;
 	}
 
-	return 0;
+	/* do t_relay*/
+	if (cpl_tmb.t_relay( inter->msg, 0, 0)==-1) {
+		LOG(L_ERR,"ERROR:cpl_c:cpl_proxy_to_loc_set: t_relay failed\n");
+		goto runtime_error;
+	}
+
+	return SCRIPT_END;
 runtime_error:
 	return SCRIPT_RUN_ERROR;
 }

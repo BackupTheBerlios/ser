@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.9 2003/07/02 20:09:43 bogdan Exp $
+ * $Id: cpl_run.c,v 1.10 2003/07/02 20:47:05 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -679,9 +679,10 @@ script_error:
 
 static inline int run_default( struct cpl_interpreter *intr )
 {
-	if (!intr->flags&CPL_PROXY_DONE) {
+	DBG("---> flag = %x\n",intr->flags);
+	if (!(intr->flags&CPL_PROXY_DONE)) {
 		/* no signalling operations */
-		if ( !intr->flags&CPL_LOC_SET_MODIFIED ) {
+		if ( !(intr->flags&CPL_LOC_SET_MODIFIED) ) {
 			/*  no location modifications */
 			if (intr->loc_set==0 ) {
 				/* case 1 : no location modifications or signalling operations
