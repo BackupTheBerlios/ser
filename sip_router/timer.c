@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.10 2003/03/29 02:30:35 jiri Exp $
+ * $Id: timer.c,v 1.11 2003/04/03 18:06:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -94,7 +94,9 @@ void destroy_timer()
 
 
 /*register a periodic timer;
- * ret: <0 on error*/
+ * ret: <0 on error
+ * Hint: if you need it in a module, register it from mod_init or it 
+ * won't work otherwise*/
 int register_timer(timer_function f, void* param, unsigned int interval)
 {
 	struct sr_timer* t;

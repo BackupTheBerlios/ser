@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.79 2003/04/02 18:20:34 andrei Exp $
+ * $Id: forward.c,v 1.80 2003/04/03 18:06:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -36,6 +36,7 @@
  *               calls to msg_send (andrei)
  *  2003-03-19  replaced all mallocs/frees w/ pkg_malloc/pkg_free (andrei)
  *  2003-04-02  fixed get_send_socket for tcp fwd to udp (andrei)
+ *  2003-04-03  added su_setport (andrei)
  */
 
 

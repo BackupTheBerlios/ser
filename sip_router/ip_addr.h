@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.24 2003/03/10 22:24:14 andrei Exp $
+/* $Id: ip_addr.h,v 1.25 2003/04/03 18:06:53 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -254,6 +254,26 @@ static inline short su_getport(union sockaddr_union* su)
 			LOG(L_CRIT,"su_get_port: BUG: unknown address family %d\n",
 						su->s.sa_family);
 			return 0;
+	}
+}
+
+
+
+/* sets the port number */
+static inline void su_setport(union sockaddr_union* su, unsigned short port)
+{
+	switch(su->s.sa_family){
+		case AF_INET:
+			su->sin.sin_port=port;
+			break;
+#ifdef USE_IPV6
+		case AF_INET6:
+			 su->sin6.sin6_port=port;
+			 break;
+#endif
+		default:
+			LOG(L_CRIT,"su_set_port: BUG: unknown address family %d\n",
+						su->s.sa_family);
 	}
 }
 

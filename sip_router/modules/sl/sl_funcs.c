@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.42 2003/03/29 01:38:11 jiri Exp $
+ * $Id: sl_funcs.c,v 1.43 2003/04/03 18:06:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -130,6 +130,7 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	to.sin_family = AF_INET; */
 
 	if (reply_to_via) {
+		/* FIXME */
 		if (update_sock_struct_from_via(  &(to),  msg->via1 )==-1)
 		{
 			LOG(L_ERR, "ERROR: sl_send_reply: "
