@@ -1,5 +1,5 @@
 #
-# $Id: README,v 1.4 2002/07/08 12:03:56 janakj Exp $
+# $Id: README,v 1.5 2002/08/12 11:34:42 janakj Exp $
 #
 
 Module depends on: mysql - Used as interface to database
@@ -174,3 +174,13 @@ Desc:   Checks if the username given in credentials and username in
         From header field are equal
 	Call after *_authorize, otherwise the username is unverified.
 
+
+Name:   consume_credentials
+Params: -
+Desc:   Removes previously authorized credentials from the message.
+        The function must be called after {www,proxy}_authorize.
+
+
+Name:   is_user_in
+Params: -
+Desc:   Checks, if the user is in specified table
