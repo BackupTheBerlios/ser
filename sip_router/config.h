@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.58 2004/01/18 04:25:13 jiri Exp $
+ *  $Id: config.h,v 1.59 2004/04/25 21:00:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -186,9 +186,9 @@
 #define DEFAULT_RODB_URL "mysql://serro:47serro11@localhost/ser"
 #define DEFAULT_RODB_URL_LEN (sizeof(DEFAULT_RODB_URL) - 1)
 
-/* table holdin versions of other ser tables */
+/* table holding versions of other ser tables */
 #define VERSION_TABLE "version"
-#define VERSION_COLUMN "version"
+#define VERSION_COLUMN "table_version"
 #define TABLENAME_COLUMN "table_name"
 
 /* minimum packet size; smaller packets will be dropped silently */
