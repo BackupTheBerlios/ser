@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.1 2002/08/15 08:13:30 jku Exp $
+ * $Id: t_msgbuilder.h,v 1.2 2002/08/19 19:56:06 jku Exp $
  *
  */
 
@@ -37,11 +37,14 @@
 		memcpy((_d),(_s),(_len));\
 		(_d) += (_len);\
 	}while(0);
-#define append_str( _p, _str ) \
-	do { \
+
+#ifdef _OBSO
+#define append_str(_p,_str) \
+	do{ \
 		memcpy((_p), (_str).s, (_str).len); \
 		(_p)+=(_str).len); \
 	} while(0);
+#endif
 
 char *build_local(struct cell *Trans, unsigned int branch,
 	unsigned int *len, char *method, int method_len, str *to);
