@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.132 2003/10/20 17:10:13 andrei Exp $
+ * $Id: msg_translator.c,v 1.133 2003/10/30 22:54:13 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -218,15 +218,11 @@ static int check_via_address(struct ip_addr* ip, str *name,
 /* check if IP address in Via != source IP address of signaling */
 int received_test( struct sip_msg *msg )
 {
-	char backup;
 	int rcvd;
 
-	/* zero-terminate hostname temporarily in case DNS resolver is used */
-	backup = msg->via1->host.s[msg->via1->host.len];
 	rcvd=msg->via1->received
 			|| check_via_address(&msg->rcv.src_ip, &msg->via1->host,
 							msg->via1->port, received_dns);
-	msg->via1->host.s[msg->via1->host.len] = backup;
 	return rcvd;
 }
 
