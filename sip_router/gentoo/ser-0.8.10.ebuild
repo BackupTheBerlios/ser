@@ -1,6 +1,6 @@
 # Copyright 1999-2002 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ser-0.8.10.ebuild,v 1.1 2002/11/13 02:31:33 calrissian Exp $
+# $Id: ser-0.8.10.ebuild,v 1.2 2002/11/14 03:45:48 calrissian Exp $
 
 DESCRIPTION="SIP Express Router"
 
@@ -53,10 +53,16 @@ src_install () {
 		doc-dir=${P} || die
 	exeinto /etc/init.d
 	newexe gentoo/ser.init ser
+	# fix what the Makefile don't do
 	exeinto /usr/sbin
 	newexe scripts/harv_ser.sh harv_ser.sh
-#	exeinto /usr/bin
-#	newexe utils/gen_ha1/gen_ha1 gen_ha1
+	rm ${D}/usr/sbin/gen_ha1
+	if [ "`use mysql`" ]; then
+		exeinto /usr/bin
+		newexe utils/gen_ha1/gen_ha1 gen_ha1
+	else
+		rm ${D}/usr/sbin/ser_mysql.sh
+	fi
 }
 
 pkg_prerm () {
