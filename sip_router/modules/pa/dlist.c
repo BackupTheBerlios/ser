@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.3 2003/03/19 22:39:37 janakj Exp $
+ * $Id: dlist.c,v 1.4 2003/04/28 22:08:03 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,6 +34,7 @@
 #include <string.h>
 #include "../../mem/shm_mem.h"
 #include "../../sr_module.h"
+#include "../../ut.h"
 #include "ptime.h"
 
 /*
@@ -127,7 +128,7 @@ static inline int new_dlist(str* _n, dlist_t** _d)
 			return -6;
 		}
 	} else {
-		LOG(L_ERR, "new_dlist(): Unknown module to bind: %.*s\n", _n->len, _n->s);
+		LOG(L_ERR, "new_dlist(): Unknown module to bind: %.*s\n", _n->len, ZSW(_n->s));
 			return -7;
 	}
 

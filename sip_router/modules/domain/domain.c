@@ -1,5 +1,5 @@
 /* 
- * $Id: domain.c,v 1.12 2003/04/02 08:18:50 jih Exp $
+ * $Id: domain.c,v 1.13 2003/04/28 22:05:33 janakj Exp $
  *
  * Domain table related functions
  *
@@ -67,13 +67,13 @@ int is_domain_local(str* _host)
 		}
 
 		if (RES_ROW_N(res) == 0) {
-			DBG("is_local(): Realm \'%.*s\' is not local\n", 
-			    _host->len, _host->s);
+			DBG("is_local(): Realm '%.*s' is not local\n", 
+			    _host->len, ZSW(_host->s));
 			db_free_query(db_handle, res);
 			return -1;
 		} else {
-			DBG("is_local(): Realm \'%.*s\' is local\n", 
-			    _host->len, _host->s);
+			DBG("is_local(): Realm '%.*s' is local\n", 
+			    _host->len, ZSW(_host->s));
 			db_free_query(db_handle, res);
 			return 1;
 		}

@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.11 2003/03/13 16:30:27 janakj Exp $
+ * $Id: lookup.c,v 1.12 2003/04/28 22:08:03 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -34,6 +34,7 @@
 
 #include "lookup.h"
 #include <string.h>
+#include "../../ut.h"
 #include "../../dset.h"
 #include "../../str.h"
 #include "../../config.h"
@@ -103,7 +104,7 @@ int lookup(struct sip_msg* _m, char* _t, char* _s)
 	}
 	
 	if (res > 0) {
-		DBG("lookup(): \'%.*s\' Not found in usrloc\n", aor.len, aor.s);
+		DBG("lookup(): '%.*s' Not found in usrloc\n", aor.len, ZSW(aor.s));
 		ul_unlock_udomain((udomain_t*)_t);
 		return -3;
 	}

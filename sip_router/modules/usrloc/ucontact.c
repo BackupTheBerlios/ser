@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.17 2003/03/13 22:13:06 janakj Exp $ 
+ * $Id: ucontact.c,v 1.18 2003/04/28 22:08:03 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -120,15 +120,15 @@ void print_ucontact(FILE* _f, ucontact_t* _c)
 	}
 
 	fprintf(_f, "~~~Contact(%p)~~~\n", _c);
-	fprintf(_f, "domain : \'%.*s\'\n", _c->domain->len, _c->domain->s);
-	fprintf(_f, "aor    : \'%.*s\'\n", _c->aor->len, _c->aor->s);
-	fprintf(_f, "Contact: \'%.*s\'\n", _c->c.len, _c->c.s);
+	fprintf(_f, "domain : '%.*s'\n", _c->domain->len, ZSW(_c->domain->s));
+	fprintf(_f, "aor    : '%.*s'\n", _c->aor->len, ZSW(_c->aor->s));
+	fprintf(_f, "Contact: '%.*s'\n", _c->c.len, ZSW(_c->c.s));
 	if (t > _c->expires)
 		fprintf(_f, "Expires: -%u\n", (unsigned int)(t - _c->expires));
 	else
 		fprintf(_f, "Expires: %u\n", (unsigned int)(_c->expires - t));
 	fprintf(_f, "q      : %10.2f\n", _c->q);
-	fprintf(_f, "Call-ID: \'%.*s\'\n", _c->callid.len, _c->callid.s);
+	fprintf(_f, "Call-ID: '%.*s'\n", _c->callid.len, ZSW(_c->callid.s));
 	fprintf(_f, "CSeq   : %d\n", _c->cseq);
 	fprintf(_f, "replic : %u\n", _c->replicate);
 	fprintf(_f, "State  : %s\n", st);

@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.11 2002/11/14 14:33:16 janakj Exp $
+ * $Id: dlist.c,v 1.12 2003/04/28 22:08:03 janakj Exp $
  *
  * List of registered domains
  *
@@ -31,6 +31,7 @@
 #include "dlist.h"
 #include <string.h>            /* strlen, memcmp */
 #include <stdio.h>             /* printf */
+#include "../../ut.h"
 #include "../../mem/shm_mem.h"
 #include "../../dprint.h"
 #include "udomain.h"           /* new_udomain, free_udomain */
@@ -142,8 +143,8 @@ int register_udomain(const char* _n, udomain_t** _d)
 	      */
 	if (db_mode != NO_DB) {
 		if (preload_udomain(d->d) < 0) {
-			LOG(L_ERR, "register_udomain(): Error while preloading domain \'%.*s\'\n",
-			    s.len, s.s);
+			LOG(L_ERR, "register_udomain(): Error while preloading domain '%.*s'\n",
+			    s.len, ZSW(s.s));
 			
 			free_udomain(d->d);
 			shm_free(d->name.s);

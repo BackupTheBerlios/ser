@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.11 2003/03/13 14:15:36 janakj Exp $
+ * $Id: reply.c,v 1.12 2003/04/28 22:08:03 janakj Exp $
  *
  * Send a reply
  *
@@ -33,6 +33,7 @@
  */
 
 #include <stdio.h>
+#include "../../ut.h"
 #include "../../parser/msg_parser.h"
 #include "../../data_lump_rpl.h"
 #include "rerrno.h"
@@ -103,7 +104,7 @@ void build_contact(ucontact_t* _c)
 	}
 
 	if (_c) {
-		DBG("build_contact(): Created Contact HF: %.*s\n", l, b);
+		DBG("build_contact(): Created Contact HF: %.*s\n", l, ZSW(b));
 	}
 }
 

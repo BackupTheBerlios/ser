@@ -1,6 +1,6 @@
 /*
  *
- * $Id: ul_fifo.c,v 1.20 2003/04/04 15:10:04 janakj Exp $
+ * $Id: ul_fifo.c,v 1.21 2003/04/28 22:08:03 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -67,8 +67,8 @@ static int print_ul_stats(FILE *reply_file)
 	ptr = root;
 	while(ptr) {
 
-		fprintf(reply_file, "\'%.*s\' %d %d\n",
-			ptr->d->name->len, ptr->d->name->s,
+		fprintf(reply_file, "'%.*s' %d %d\n",
+			ptr->d->name->len, ZSW(ptr->d->name->s),
 			ptr->d->users,
 			ptr->d->expired
 			);
@@ -278,21 +278,21 @@ static int ul_add(FILE* pipe, char* response_file)
 		if (add_contact(d, &user, &contact, exp_i, q_f, rep_i) < 0) {
 			unlock_udomain(d);
 			LOG(L_ERR, "ul_add(): Error while adding contact ('%.*s','%.*s') in table '%.*s'\n",
-			    user.len, user.s, contact.len, contact.s, table.len, table.s);
+			    user.len, ZSW(user.s), contact.len, ZSW(contact.s), table.len, ZSW(table.s));
 			fifo_reply(response_file, "500 Error while adding contact\n"
 				   " ('%.*s','%.*s') in table '%.*s'\n",
-				   user.len, user.s, contact.len, contact.s, table.len, table.s);
+				   user.len, ZSW(user.s), contact.len, ZSW(contact.s), table.len, ZSW(table.s));
 			return 1;
 		}
 		unlock_udomain(d);
 		
 		fifo_reply(response_file, "200 Added to table\n"
 				"('%.*s','%.*s') to '%.*s'\n",
-			   user.len, user.s, contact.len, contact.s, table.len, table.s);
+			   user.len, ZSW(user.s), contact.len, ZSW(contact.s), table.len, ZSW(table.s));
 		return 1;
 	} else {
 		fifo_reply(response_file, "400 Table '%.*s' not found in memory, use save(\"%.*s\") or lookup(\"%.*s\") in the configuration script first\n", 
-			table.len, table.s, table.len, table.s, table.len, table.s);
+			table.len, ZSW(table.s), table.len, ZSW(table.s), table.len, ZSW(table.s));
 		return 1;
 	}
 }
@@ -450,7 +450,7 @@ static inline int print_contacts(FILE* _o, ucontact_t* _c)
 				fputs( "200 OK\n", _o);
 			}
 			fprintf(_o, "<%.*s>;q=%-3.2f;expires=%d\n",
-				_c->c.len, _c->c.s,
+				_c->c.len, ZSW(_c->c.s),
 				_c->q, (int)(_c->expires - act_time));
 		}
 

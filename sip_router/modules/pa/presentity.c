@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.2 2003/01/14 22:49:40 janakj Exp $
+ * $Id: presentity.c,v 1.3 2003/04/28 22:08:03 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,6 +28,7 @@
  */
 
 #include "presentity.h"
+#include "../../ut.h"
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
 #include "paerrno.h"
@@ -87,7 +88,7 @@ void print_presentity(FILE* _f, presentity_t* _p)
 	watcher_t* ptr;
 
 	fprintf(_f, "...Presentity...\n");
-	fprintf(_f, "to: \'%.*s\'\n", _p->to.len, _p->to.s);
+	fprintf(_f, "to: '%.*s'\n", _p->to.len, ZSW(_p->to.s));
 	
 	if (_p->watchers) {
 		ptr = _p->watchers;
