@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.10 2003/03/06 17:43:17 jiri Exp $
+ * $Id: t_lookup.h,v 1.11 2003/10/30 11:56:44 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -69,6 +69,7 @@ int t_unref( struct sip_msg *p_msg);
  */
 int t_check( struct sip_msg* , int *branch );
 
+typedef struct cell * (*tgett_f)(void);
 struct cell *get_t();
 
 /* use carefully or better not at all -- current transaction is 

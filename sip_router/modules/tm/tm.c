@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.86 2003/09/26 16:23:08 bogdan Exp $
+ * $Id: tm.c,v 1.87 2003/10/30 11:56:44 jiri Exp $
  *
  * TM module
  *
@@ -211,6 +211,8 @@ static cmd_export_t cmds[]={
 	{"dlg_request_uas",    (cmd_function)dlg_request_uas,   NO_SCRIPT,     0, 0},
 	{"free_dlg",           (cmd_function)free_dlg,          NO_SCRIPT,     0, 0},
 	{"print_dlg",          (cmd_function)print_dlg,         NO_SCRIPT,     0, 0},
+
+	{T_GETT,				(cmd_function)get_t,			NO_SCRIPT,		0,0},
 	{0,0,0,0,0}
 };
 

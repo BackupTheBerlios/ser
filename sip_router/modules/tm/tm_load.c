@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.15 2003/09/26 16:23:08 bogdan Exp $
+ * $Id: tm_load.c,v 1.16 2003/10/30 11:56:44 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -131,6 +131,9 @@ int load_tm( struct tm_binds *tmb)
 		LOG( L_ERR, LOAD_ERROR "'print_dlg' not found\n");
 		return -1;
 	}
-
+	if (!(tmb->t_gett=(tgett_f)find_export(T_GETT,NO_SCRIPT,0))) {
+		LOG( L_ERR, LOAD_ERROR "'" T_GETT "' not found\n");
+		return -1;
+	}
 	return 1;
 }

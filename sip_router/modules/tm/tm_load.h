@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.15 2003/09/26 16:23:08 bogdan Exp $
+ * $Id: tm_load.h,v 1.16 2003/10/30 11:56:44 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -68,6 +68,7 @@
 #define T_IS_LOCAL           "t_is_local"
 #define T_REQUEST_WITHIN     "request_within"
 #define T_REQUEST_OUTSIDE    "request_outside"
+#define T_GETT				 "t_gett"
 
 
 
@@ -94,6 +95,8 @@ struct tm_binds {
 	dlg_request_uas_f  dlg_request_uas;
 	free_dlg_f         free_dlg;
 	print_dlg_f        print_dlg;
+
+	tgett_f			t_gett;
 };
 
 
