@@ -1,9 +1,9 @@
 /*
- * $Id: parse_fline.h,v 1.2 2002/07/08 17:53:33 janakj Exp $
+ * $Id: parse_fline.h,v 1.3 2002/08/12 12:15:49 janakj Exp $
  */
 
-#ifndef PARSE_FLINE
-#define PARSE_FLINE
+#ifndef PARSE_FLINE_H
+#define PARSE_FLINE_H
 
 #include "../str.h"
 
@@ -53,4 +53,4 @@ char* parse_first_line(char* buffer, unsigned int len, struct msg_start * fl);
 char* parse_fline(char* buffer, char* end, struct msg_start* fl);
 
 
-#endif
+#endif /* PARSE_FLINE_H */
