@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.32 2004/08/24 08:45:10 janakj Exp $
+ *$Id: ut.h,v 1.33 2005/02/02 19:10:49 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -100,7 +100,7 @@ static char fourbits2char[16] = { '0', '1', '2', '3', '4', '5',
 /* converts a str to an u. short, returns the u. short and sets *err on
  * error and if err!=null
   */
-static inline unsigned short str2s(char* s, unsigned int len,
+static inline unsigned short str2s(const char* s, unsigned int len,
 									int *err)
 {
 	unsigned short ret;
