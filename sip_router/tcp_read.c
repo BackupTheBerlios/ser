@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.22 2003/07/04 14:27:33 andrei Exp $
+ * $Id: tcp_read.c,v 1.23 2003/07/04 20:12:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -529,6 +529,7 @@ again:
 		
 		
 	end_req:
+		
 		return resp;
 }
 
@@ -540,6 +541,7 @@ void release_tcpconn(struct tcp_connection* c, long state, int unix_sock)
 	
 		DBG( "releasing con %p, state %ld, fd=%d, id=%d\n",
 				c, state, c->fd, c->id);
+		DBG(" extra_data %p\n", c->extra_data);
 		/* release req & signal the parent */
 		if (c->fd!=-1) close(c->fd);
 		/* errno==EINTR, EWOULDBLOCK a.s.o todo */
