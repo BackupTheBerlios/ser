@@ -1,5 +1,5 @@
 /*
- * $Id: sipsak.c,v 1.31 2002/07/25 03:21:10 noh Exp $
+ * $Id: sipsak.c,v 1.32 2002/07/26 21:29:42 noh Exp $
  *
  * Copyright (C) 2002-2003 Fhg Fokus
  *
@@ -1052,13 +1052,13 @@ void print_help() {
 #endif
 	printf("\n\n"
 		" shoot : sipsak [-f filename] -s sip:uri\n"
-		" trace : sipsak -T [-f filename] -s sip:uri\n"
+		" trace : sipsak -T -s sip:uri\n"
 		" USRLOC: sipsak -U [-b number] -e number [-x number] -s sip:uri\n"
 		" flood : sipsak -F [-c number] -s sip:uri\n"
 		" random: sipsak -R [-t number] -s sip:uri\n\n"
 		" additional parameter in every mode:\n"
 		"                [-d] [-i] [-l port] [-m number] [-n] [-r port] [-v] "
-			"[-w]\n"
+			"[-V] [-w]\n"
 		"   -h           displays this help message\n"
 		"   -V           prints version string only\n"
 		"   -f filename  the file which contains the SIP message to send\n"
