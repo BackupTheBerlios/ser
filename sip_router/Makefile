@@ -1,9 +1,9 @@
-# $Id: Makefile,v 1.86 2002/09/24 16:16:20 andrei Exp $
+# $Id: Makefile,v 1.87 2002/09/24 18:50:36 andrei Exp $
 #
 # sip_router makefile
 #
 # WARNING: requires gmake (GNU Make)
-#  Arch supported: Linux, FreeBSD, SunOS (tested on Solaris 6), WinNT (cygwin)
+#  Arch supported: Linux, FreeBSD, SunOS (tested on Solaris 8), WinNT (cygwin)
 
 auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 
@@ -94,6 +94,21 @@ bin:
 	$(MAKE) install prefix=tmp/ser/usr/local
 	$(TAR) -C tmp/ser/ -zcf ../$(NAME)-$(RELEASE)_$(OS)_$(ARCH).tar.gz .
 	rm -rf tmp/ser
+
+.PHONY: sunpkg
+sunpkg:
+	mkdir -p tmp/ser
+	mkdir -p tmp/ser_sun_pkg
+	$(MAKE) install prefix=tmp/ser
+	(cd solaris; \
+	pkgmk -r ../tmp/ser/ -o -d ../tmp/ser_sun_pkg/ -v "$(RELEASE)" ; \
+	cd ..)
+	cat /dev/null > ../$(NAME)-$(RELEASE)-$(OS)-$(ARCH)-local
+	pkgtrans -s tmp/ser_sun_pkg/ ../$(NAME)-$(RELEASE)-$(OS)-$(ARCH)-local \
+		IPTELser
+	gzip -9 ../$(NAME)-$(RELEASE)-$(OS)-$(ARCH)-local
+	rm -rf tmp/ser
+	rm -rf tmp/ser_sun_pkg
 
 
 install: all mk-install-dirs install-cfg install-bin install-modules \

@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.13 2002/09/24 16:38:14 andrei Exp $
+$Id: INSTALL,v 1.14 2002/09/24 18:50:36 andrei Exp $
 
 ******************************************************
 * Note well: ser has not been released yet. Tarballs *
@@ -115,7 +115,11 @@ Create a tar.gz with the binary distribution:
 
 make bin
 
-Install(not done yet):
+Create a solaris package:
+
+make sunpkg
+
+Install:
 
 make prefix=/usr/local  install
 
