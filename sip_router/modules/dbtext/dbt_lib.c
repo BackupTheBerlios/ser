@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_lib.c,v 1.9 2003/11/17 13:19:24 dcm Exp $
+ * $Id: dbt_lib.c,v 1.10 2004/01/20 15:53:47 dcm Exp $
  *
  * DBText library
  *
@@ -306,7 +306,7 @@ tbl_cache_p dbt_db_get_table(dbt_cache_p _dc, str *_s)
 	_dtp = dbt_load_file(_s, &(_dc->dbp->name));
 
 #ifdef DBT_EXTRA_DEBUG
-	DBG("DTB:dbt_db_get_table: ---------------\n");
+	DBG("DTB:dbt_db_get_table: %.*s\n", _s->len, _s->s);
 	dbt_print_table(_dtp, NULL);
 #endif
 
