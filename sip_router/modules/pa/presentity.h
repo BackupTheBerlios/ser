@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.6 2003/12/19 22:56:42 jamey Exp $
+ * $Id: presentity.h,v 1.7 2003/12/22 16:10:03 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -39,6 +39,7 @@
 
 typedef struct presentity {
 	str uri;                 /* URI of presentity */
+	int event_package;       /* parsed event package */
 	pstate_t state;          /* State of presentity */
 	str      location;       /* Physical location of presentity */
 	watcher_t* watchers;     /* List of watchers */
@@ -88,6 +89,22 @@ int remove_watcher(presentity_t* _p, watcher_t* _w);
  */
 int notify_watchers(presentity_t* _p);
 
+
+/*
+ * Add a watcher to the winfo watcher list
+ */
+int add_winfo_watcher(presentity_t* _p, str* _uri, time_t _e, doctype_t _a, dlg_t* _dlg, struct watcher** _w);
+
+
+/*
+ * Remove a watcher from the winfo watcher list
+ */
+int remove_winfo_watcher(presentity_t* _p, watcher_t* _w);
+
+/*
+ * Notify all winfo watchers in the list
+ */
+int notify_winfo_watchers(presentity_t* _p);
 
 /*
  * Print a presentity, just for debugging

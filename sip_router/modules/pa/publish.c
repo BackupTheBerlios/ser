@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.4 2003/12/19 22:56:42 jamey Exp $
+ * $Id: publish.c,v 1.5 2003/12/22 16:10:03 jamey Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -93,22 +93,6 @@ static int parse_hfs(struct sip_msg* _m)
 	return 0;
 }
 
-
-/*
- * Check if a message received has been constructed properly
- */
-static int check_message(struct sip_msg* _m)
-{
-	if (_m->event) {
-		if (((event_t*)(_m->event->parsed))->parsed != EVENT_PRESENCE) {
-			paerrno = PA_EVENT_UNSUPP;
-			LOG(L_ERR, "check_message(): Unsupported event package\n");
-			return -1;
-		}
-	}
-
-	return 0;
-}
 
 /*
  * Create a new presentity but no watcher list
