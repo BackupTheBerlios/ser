@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.11 2003/05/21 16:42:34 andrei Exp $
+/* $Id: q_malloc.h,v 1.12 2003/06/30 10:04:02 andrei Exp $
  *
  * simple & fast malloc library
  *
@@ -135,6 +135,12 @@ void  qm_free(struct qm_block*, void* p, char* file, char* func,
 				unsigned int line);
 #else
 void  qm_free(struct qm_block*, void* p);
+#endif
+#ifdef DBG_QM_MALLOC
+void* qm_realloc(struct qm_block*, void* p, unsigned int size,
+				char* file, char* func, unsigned int line);
+#else
+void* qm_realloc(struct qm_block*, void* p, unsigned int size);
 #endif
 
 void  qm_status(struct qm_block*);
