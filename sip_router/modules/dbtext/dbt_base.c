@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_base.c,v 1.7 2003/11/06 21:03:55 bogdan Exp $
+ * $Id: dbt_base.c,v 1.8 2003/11/07 19:43:40 bogdan Exp $
  *
  * DBText module core functions
  *
@@ -112,10 +112,6 @@ void dbt_close(db_con_t* _h)
 	}
 	if (DBT_CON_RESULT(_h)) 
 		dbt_result_free(DBT_CON_RESULT(_h));
-	
-	//if (DBT_CON_CONNECTION(_h)) {
-	//	 
-	//}
 	
 	pkg_free(_h);
     return;
