@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.4 2001/09/21 20:24:13 andrei Exp $
+ * $Id: cfg.lex,v 1.5 2001/09/21 20:47:18 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -80,7 +80,7 @@ LBRACE		\{
 RBRACE		\}
 LBRACK		\[
 RBRACK		\]
-COMMA		,
+COMMA		","
 DOT			\.
 CR			\n
 

@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.7 2001/09/21 20:24:13 andrei Exp $
+ * $Id: route.c,v 1.8 2001/09/21 20:47:18 andrei Exp $
  *
  * SIP routing engine
  *
@@ -241,7 +241,7 @@ static int comp_ip(unsigned a, void* param, int op, int subtype)
 			if (ret==1) break;
 			/* 2: (slow) rev dns the address
 			 * and compare with all the aliases */
-			he=gethostbyaddr(&a, sizeof(a), AF_INET);
+			he=gethostbyaddr((char*)&a, sizeof(a), AF_INET);
 			if (he==0){
 				LOG(L_DBG, "comp_ip: could not rev_resolve %x\n", a);
 				ret=0;
