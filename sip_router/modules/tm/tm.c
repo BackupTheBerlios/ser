@@ -1,4 +1,4 @@
-/*$Id: tm.c,v 1.9 2001/11/30 01:03:02 andrei Exp $
+/*$Id: tm.c,v 1.10 2001/12/02 16:06:44 bogdan Exp $
  *
  * TM module
  *
@@ -160,9 +160,6 @@ static int t_forward_uri(struct sip_msg* msg, char* str, char* str2)
 
 static int w_t_forward(struct sip_msg* msg, char* str, char* str2)
 {
-	DBG("TM module: w_t_forward entered\n");
-	DBG("TM module: w_t_forward params: %x %d\n", 
-			 str, (unsigned int)str2);
 	return t_forward(msg, (unsigned int) str, (unsigned int) str2);
 }
 
