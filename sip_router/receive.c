@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.36 2002/09/19 12:23:52 jku Rel $
+ *$Id: receive.c,v 1.37 2002/10/03 20:06:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -96,7 +96,11 @@ int receive_msg(char* buf, unsigned int len, union sockaddr_union* src_su)
 	DBG("After parse_msg...\n");
 
 	/* execute pre-script callbacks, if any; -jiri */
-	exec_pre_cb(msg);
+	/* if some of the callbacks said not to continue with
+	   script processing, don't do so
+	*/
+	if (exec_pre_cb(msg)==0) goto error;
+
 	/* ... and clear branches from previous message */
 	clear_branches();
 

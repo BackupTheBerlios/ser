@@ -1,5 +1,5 @@
 /*
- * $Id: script_cb.h,v 1.2 2002/09/19 12:23:52 jku Rel $
+ * $Id: script_cb.h,v 1.3 2002/10/03 20:06:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -44,7 +44,7 @@ struct script_cb{
 };
 
 int register_script_cb( cb_function f, callback_t t, void *param );
-void exec_pre_cb( struct sip_msg *msg);
+int exec_pre_cb( struct sip_msg *msg);
 void exec_post_cb( struct sip_msg *msg);
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: script_cb.c,v 1.2 2002/09/19 12:23:52 jku Rel $
+ * $Id: script_cb.c,v 1.3 2002/10/03 20:06:10 jiri Exp $
  *
  * Script callbacks -- they add the ability to register callback
  * functions which are always called when script for request
@@ -67,10 +67,15 @@ int register_script_cb( cb_function f, callback_t t, void *param )
 	return 1;
 }
 
-void exec_pre_cb( struct sip_msg *msg)
+int exec_pre_cb( struct sip_msg *msg)
 {
 	struct script_cb *i;
-	for (i=pre_cb; i; i=i->next) i->cbf(msg, i->param);
+	for (i=pre_cb; i; i=i->next) {
+		/* stop on error */
+		if (i->cbf(msg, i->param)==0)
+			return 0;
+	}
+	return 1;
 }
 
 void exec_post_cb( struct sip_msg *msg)

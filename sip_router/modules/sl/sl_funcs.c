@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.31 2002/09/24 16:37:18 andrei Rel $
+ * $Id: sl_funcs.c,v 1.32 2002/10/03 20:06:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -228,7 +228,7 @@ int sl_reply_error(struct sip_msg *msg )
     -1 : error
     1  : is not an ACK  or a non-local ACK
 */
-int sl_filter_ACK(struct sip_msg *msg )
+int sl_filter_ACK(struct sip_msg *msg, void *bar )
 {
 	str *tag_str;
 

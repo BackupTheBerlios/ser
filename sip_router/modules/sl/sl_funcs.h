@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.h,v 1.10 2002/09/19 12:23:54 jku Rel $
+ * $Id: sl_funcs.h,v 1.11 2002/10/03 20:06:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -40,7 +40,7 @@
 int sl_startup();
 int sl_shutdown();
 int sl_send_reply(struct sip_msg*,int,char*);
-int sl_filter_ACK(struct sip_msg* );
+int sl_filter_ACK(struct sip_msg*, void *bar );
 int sl_reply_error(struct sip_msg *msg );
 
 

@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.19 2002/09/20 09:29:07 andrei Rel $
+/* $Id: sr_module.c,v 1.20 2002/10/03 20:06:10 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -60,6 +60,10 @@ struct sr_module* modules=0;
         extern struct module_exports* usrloc_exports();
 #endif
 
+#ifdef STATIC_SL
+        extern struct module_exports* sl_exports();
+#endif
+
 
 /* initializes statically built (compiled in) modules*/
 int register_builtin_modules()
@@ -94,6 +98,11 @@ int register_builtin_modules()
 	
 #ifdef STATIC_USRLOC
 	ret=register_module(usrloc_exports, "built-in", 0);
+	if (ret<0) return ret;
+#endif
+
+#ifdef STATIC_SL
+	ret=register_module(sl_exports, "built-in", 0);
 	if (ret<0) return ret;
 #endif
 	
