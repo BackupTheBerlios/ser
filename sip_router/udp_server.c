@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.49 2002/09/10 13:49:23 andrei Exp $
+ * $Id: udp_server.c,v 1.50 2002/09/10 14:37:13 andrei Exp $
  */
 
 #include <stdlib.h>
@@ -323,8 +323,7 @@ qa_passed:
 #endif
 
 /* which socket to use? main socket or new one? */
-int udp_send(struct socket_info *source, char *buf, unsigned len,
-				union sockaddr_union*  to)
+int udp_send(struct socket_info *source, char *buf, unsigned len, union sockaddr_union*  to)
 {
 
 	int n;
