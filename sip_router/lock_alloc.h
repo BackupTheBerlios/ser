@@ -1,4 +1,4 @@
-/* $Id: lock_alloc.h,v 1.1 2003/03/06 16:22:10 andrei Exp $ */
+/* $Id: lock_alloc.h,v 1.2 2003/03/17 16:49:31 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -29,7 +29,8 @@
  *   ser locking library
  *   WARNING: don't include this directly include instead locking.h!
  *
- *  2002-03-06  created by andrei (contains parts of the original locking.h)
+ *  2003-03-06  created by andrei (contains parts of the original locking.h)
+ *  2003-03-17  fixed cast warning in shm_free (forced to void*) (andrei)
  *
 Implements: (see also locking.h)
 
@@ -75,7 +76,7 @@ inline static lock_set_t* lock_set_alloc(int n)
 	return ls;
 }
 
-#define lock_set_dealloc(lock_set) shm_free(lock_set)
+#define lock_set_dealloc(lock_set) shm_free((void*)lock_set)
 
 #elif defined USE_SYSV_SEM
 
@@ -96,7 +97,7 @@ inline static lock_set_t* lock_set_alloc(int n)
 }
 
 
-#define lock_set_dealloc(lock_set) shm_free(lock_set)
+#define lock_set_dealloc(lock_set) shm_free((void*)lock_set)
 
 
 #else
