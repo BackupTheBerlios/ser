@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.114 2003/04/13 23:15:43 jiri Exp $
+ * $Id: msg_translator.c,v 1.115 2003/04/14 18:51:58 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -712,6 +712,7 @@ skip_before:
 			}
 		}
 skip_after:
+		; /* to make gcc 3.* happy */
 	}
 	return new_len;
 }
