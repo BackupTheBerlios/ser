@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.c,v 1.1 2001/09/03 21:27:11 andrei Exp $
+ * $Id: dprint.c,v 1.2 2001/12/12 23:59:36 andrei Exp $
  *
  * debug print 
  *
@@ -14,6 +14,7 @@ void dprint(char * format, ...)
 {
 	va_list ap;
 
+	fprintf(stderr, "%2d(%d) ", process_no, pids[process_no]);
 	va_start(ap, format);
 	vfprintf(stderr,format,ap);
 	fflush(stderr);
