@@ -1,5 +1,5 @@
 /* 
- * $Id: db_row.c,v 1.9 2002/08/12 11:33:17 janakj Exp $ 
+ * $Id: db_row.c,v 1.10 2002/08/12 14:36:23 janakj Exp $ 
  *
  * MySQL module row related functions
  */
@@ -39,7 +39,6 @@ int convert_row(db_con_t* _h, db_res_t* _res, db_row_t* _r)
 			return -3;
 		}
 	}
-	pkg_free(lengths);
 	return 0;
 }
 
