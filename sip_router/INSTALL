@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.17 2002/09/26 16:34:29 andrei Rel $
+$Id: INSTALL,v 1.18 2002/10/02 11:18:03 jiri Exp $
 
 
 Installation Notes
@@ -238,7 +238,6 @@ your box.
     - loadmodule "/usr/lib/ser/modules/mysql.so"
     - loadmodule "/usr/lib/ser/modules/auth.so"
     - modparam("usrloc", "db_mode", 2)
-    - modparam("auth", "secret", "alsdkhglaksdhfkloiwr")
     - modparam("auth", "calculate_ha1", yes)
     - if (!www_authorize("iptel.org", "subscriber")) {
         www_challenge("iptel.org", "0"); 
