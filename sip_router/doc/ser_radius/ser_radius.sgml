@@ -1,4 +1,4 @@
-<!-- $Id: ser_radius.sgml,v 1.1 2003/09/12 01:31:58 janakj Exp $ -->
+<!-- $Id: ser_radius.sgml,v 1.2 2003/09/12 01:43:51 janakj Exp $ -->
 <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.2//EN" [
 
 <!ENTITY ser "<acronym>SIP</acronym> Express Router">
@@ -29,8 +29,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/09/12 01:31:58 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/09/12 01:43:51 $</date>
 	    </revision>
 	</revhistory>
     </bookinfo>
@@ -187,8 +187,7 @@ acctserver      localhost
 		used by &ser is not included in the source tarball of &ser;, so far it is in
 		unstable branch of the <ulink url="http://iptel.org/ser/cvs">CVS</ulink> only, but
 		it will be included in one of future releases. Meanwhile you can get it from <ulink
-		url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/sip_router/etc/dictionary.ser?rev=HEAD">the
-		CVS</ulink>.
+		url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/sip_router/etc/dictionary.ser?rev=HEAD">here</ulink>.
 	    </simpara>
 	    <simpara>
 		Download the file and put it into <filename
