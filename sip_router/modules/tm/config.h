@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.15 2002/09/19 12:23:55 jku Exp $
+ * $Id: config.h,v 1.16 2002/09/19 21:26:12 jiri Rel $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -30,9 +30,12 @@
 #ifndef _TM_CONFIG_H
 #define _TM_CONFIG_H
 
+#ifdef _OBSOLETED
+/* moved to hash.h */
 /* always use a power of 2 for hash table size */
 #define T_TABLE_POWER    12
 #define TABLE_ENTRIES    (1 << (T_TABLE_POWER))
+#endif
 
 /* this is where table size is defined now -- sort of
    ugly, core should not be bothered by TM table size,
