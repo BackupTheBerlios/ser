@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_loader.c,v 1.10 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_loader.c,v 1.11 2004/12/08 20:43:23 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -153,8 +153,10 @@ int load_file( char *filename, str *xml)
 	}
 	xml->s[xml->len] = 0;
 
+	close(fd);
 	return 1;
 error:
+	if (fd!=-1) close(fd);
 	if (xml->s) pkg_free( xml->s);
 	return -1;
 }
