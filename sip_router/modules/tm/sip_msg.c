@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.19 2001/12/07 00:55:09 jku Exp $
+ * $Id: sip_msg.c,v 1.20 2001/12/13 21:54:43 bogdan Exp $
  */
 
 
@@ -9,7 +9,7 @@
 
 
 
-struct sip_msg* sip_msg_cloner( struct sip_msg *org_msg )
+struct sip_msg* sip_msg_cloner_1( struct sip_msg *org_msg )
 {
     struct sip_msg   *new_msg=0;
     struct hdr_field  *header, *last_hdr, *new_hdr;
@@ -441,7 +441,7 @@ void sh_free_hdr_field_lst(struct hdr_field* hf)
 
 
 /*only the content*/
-void sip_msg_free(struct sip_msg* msg)
+void sip_msg_free_1(struct sip_msg* msg)
 {
    if (!msg) return;
 
@@ -464,3 +464,21 @@ void sip_msg_free(struct sip_msg* msg)
    sh_free(msg);
    DBG("DEBUG: sip_msg_free : done\n");
 }
+
+
+/******************************* New fuctions ************************************/
+
+
+struct sip_msg*  sip_msg_cloner_2( struct sip_msg *org_msg )
+{
+}
+
+
+
+
+
+
+
+
+
+

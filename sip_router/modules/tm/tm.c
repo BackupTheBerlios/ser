@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.20 2001/12/13 19:26:04 bogdan Exp $
+ * $Id: tm.c,v 1.21 2001/12/13 21:54:43 bogdan Exp $
  *
  * TM module
  *
@@ -44,7 +44,7 @@ static struct module_exports nm_exports= {
 			},
 	(cmd_function[]){
 					t_add_transaction,
-					t_check,
+					w_t_check,
 					w_t_forward,
 					w_t_forward_def,
 					t_forward_uri,

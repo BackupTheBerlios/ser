@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.h,v 1.4 2001/12/05 22:14:30 jku Exp $
+ * $Id: sip_msg.h,v 1.5 2001/12/13 21:54:43 bogdan Exp $
  */
 
 
@@ -10,9 +10,17 @@
 
 #include "sh_malloc.h"
 
+#define sip_msg_cloner(p_msg) \
+    sip_msg_cloner_1(p_msg)
 
-struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg );
-void                     sip_msg_free( struct sip_msg *org_msg );
+#define sip_msg_free(p_msg) \
+    sip_msg_free_1(p_msg)
+
+
+struct sip_msg*  sip_msg_cloner_1( struct sip_msg *org_msg );
+struct sip_msg*  sip_msg_cloner_2( struct sip_msg *org_msg );
+void                     sip_msg_free_1( struct sip_msg *org_msg );
+void                     sip_msg_free_2( struct sip_msg *org_msg );
 
 char*   translate_pointer( char* new_buf , char *org_buf , char* p);
 struct via_body* via_body_cloner( char* new_buf , char *org_buf , struct via_body *org_via);
