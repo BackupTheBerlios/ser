@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.51 2001/12/07 00:09:42 bogdan Exp $
+# $Id: Makefile,v 1.52 2001/12/07 00:10:13 bogdan Exp $
 #
 # sip_router makefile
 #
@@ -36,7 +36,6 @@ NAME=ser
 #                  malloc etc.)
 DEFS=-DNOCR -DMACROEATER -DDNS_IP_HACK  -DSHM_MEM \
 	 -DPKG_MALLOC #-DDBG_QM_MALLOC
->>>>>>> 1.50
 #-DEXTRA_DEBUG
 # -DUSE_SHM_MEM
 #-DNO_DEBUG 
