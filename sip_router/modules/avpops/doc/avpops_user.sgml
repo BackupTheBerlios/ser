@@ -4,8 +4,8 @@
 	<chapterinfo>
 	<revhistory>
 		<revision>
-			<revnumber>$Revision: 1.1 $</revnumber>
-			<date>$Date: 2004/11/01 16:52:04 $</date>
+			<revnumber>$Revision: 1.2 $</revnumber>
+			<date>$Date: 2004/11/06 18:54:14 $</date>
 		</revision>
 	</revhistory>
 	</chapterinfo>
@@ -272,7 +272,8 @@ modparam("avpops","type_column","type")
 				identifying the AVPs. Parameter syntax:
 				<itemizedlist>
 					<listitem><para><emphasis>
-					source = (sip_uri)['/'('username'|'domain')]) | (avp_alias)
+					source = (sip_uri)['/'('username'|'domain')]) |
+							(avp_alias) | str_value
 					</emphasis></para></listitem>
 					<listitem><para><emphasis>
 					sip_uri = '$from' | '$to' | '$ruri'
