@@ -1,0 +1,396 @@
+
+GSM Authentication Module
+
+Daniel-Constantin Mierla
+
+   FhG FOKUS
+
+Edited by
+
+Daniel-Constantin Mierla
+
+   Copyright © 2003, 2004 by FhG FOKUS
+     _________________________________________________________
+
+   Table of Contents
+   1. User's Guide
+
+        1.1. Overview
+        1.2. Dependencies
+
+              1.2.1. SER Modules
+              1.2.2. External Libraries or Applications
+
+        1.3. Exported Parameters
+
+              1.3.1. service_tip (int)
+              1.3.2. radius_config (string)
+
+        1.4. Exported Functions
+
+              1.4.1. gsm_www_authorize(realm)
+              1.4.2. gsm_proxy_authorize(realm)
+
+        1.5. Installation & Running
+
+              1.5.1. Radius client setup
+              1.5.2. SER config file
+
+   2. Developer's Guide
+   3. Frequently Asked Questions
+     _________________________________________________________
+
+Chapter 1. User's Guide
+
+1.1. Overview
+
+   The  module  offers  methods to authenticate SIP UAs using GSM
+   authentication mechanism adapted to fit in SIP specifications.
+
+   GSM authentication schema is presented in next picture.
+
+   Example 1-1. GSM Authentication Schema
+...
+
+SIP Client                                       SIP Server (SER)
+  |                                                     |
+  |  REGISTER (schema, realm, no other credentials)     |
+  |----------------------1----------------------------->|
+  |                                                     |
+  |       401/407 (challenge with schema and realm)     |
+  |<---------------------2---------------------------|
+  |                                                     |
+  |   REGISTER (schema, IMSI as username + realm)       |
+  |----------------------3----------------------------->|
+  |                                                     |
+  |   401/407 (schema, realm and challenge number)      |
+  |<---------------------4---------------------------|
+  |                                                     |
+  | REGISTER(schema,IMSI,realm,challenge,GSM response)  |
+  |----------------------5----------------------------->|
+  |                                                     |
+  |    200 if OK or 403 if not                          |
+  |<---------------------6---------------------------|
+  |                                                     |
+
+
+Mapping GSM attributes over WWW-Digest attributes:
+- authentication schema: GSM
+- realm: realm for authentication
+- username: IMSI
+- nonce: challenge number
+- response: GSM authentiaction response
+
+No special headers were defined - the challenge and the response are
+carried by the same headers used for WWW-Digest authentication.
+* WWW-Authenticate header: carries the challenge attributes for WWW-GSM
+authentication within SIP "401 Unauthorized" reply.
+* Authorization header: carries WWW-GSM response within SIP requests
+* Proxy-Authenticate header: carries the challenge attributes for
+Proxy-GSM authentication within SIP "407 Proxy Authentication Required"
+reply
+* Proxy-Authorization header: carries Proxy-GSM response within SIP
+requests
+
+...
+
+   SER  passes all authentication attributes (for SIP requests #3
+   and   #4)   to   a   RADIUS  server  (tested  with  FreeRADIUS
+   (http://www.freeradius.org  to  whom  I  have  developed a GSM
+   authentication  module)  than  can  verify the valadity of GSM
+   authentication attributes.
+
+   If  there  is  no  GSM response (SIP request #3) RADIUS server
+   generate  a  challenge  that  will  be sent back to SIP client
+   within   a   "401  Unauthorized  /  407  Proxy  Authentication
+   Required"  SIP reply. When all credentials are present, RADIUS
+   server  ckecks  if  the challenge is valid and if the response
+   matches  the  value  computed by it. If all credentials maches
+   then it returns success and the SIP server will send back "200
+   OK"  reply.  Otherwise,  it returns failure and the SIP client
+   will  receive  "403 Forbidden". When somthing is wrong (unable
+   to  perform a step of GSM authentication process either in SIP
+   server  side  or  RADIUS  server  side) a "500 Internal Server
+   Error" reply is sent to SIP client.
+     _________________________________________________________
+
+1.2. Dependencies
+
+1.2.1. SER Modules
+
+   The following modules must be loaded before this module:
+
+     * auth - used for basic authentication functions.
+     _________________________________________________________
+
+1.2.2. External Libraries or Applications
+
+   The  following  libraries  or  applications  must be installed
+   before running SER with this module loaded:
+
+     * radiusclient-   client   library   for   RADIUS   protocol
+       (http://www.mcs.de/~lf/radius/).
+     _________________________________________________________
+
+1.3. Exported Parameters
+
+1.3.1. service_tip (int)
+
+   This  is  the value of the Service-Type radius attribute to be
+   used.  It must have same value as "service_type" configuration
+   option of "rlm_gsm" module of "FreeRADIUS" server. If you need
+   to change it you must do it for both servers.
+
+   Default value is "23 (PW_GSM_AUTH)". 
+
+   Example 1-2. Set param_name parameter
+...
+modparam("auth_gsm", "service_type", 20)
+...
+     _________________________________________________________
+
+1.3.2. radius_config (string)
+
+   This  is  the  location  of  the  configuration file of radius
+   client library.
+
+   Default value is
+   "/usr/local/etc/radiusclient/radiusclient.conf". 
+
+   Example 1-3. Set radius_config parameter
+...
+modparam("auth_gsm", "radius_config", "/etc/radiusclient.conf")
+...
+     _________________________________________________________
+
+1.4. Exported Functions
+
+1.4.1. gsm_www_authorize(realm)
+
+   This   function  performs  sanity  checks  over  the  received
+   credentials  and  then  pass  them  along to the RADIUS server
+   which  will verify the credentials and return whether they are
+   valid or not.
+
+   If  the SIP message has no credentials the function generate a
+   challenge  specifying  the authentication schema (GSM) without
+   sending any request to RADIUS server.
+
+   Meaning of the parameters is as follows:
+
+     * realm  -  Realm  is  a  opaque  string that the user agent
+       should  present to the user so he can decide what username
+       and password to use. Usualy this is domain of the host the
+       server  is  running on. If an empty string "" is used then
+       the  server  will generate it from the request. In case of
+       REGISTER  requests  To  header  field  domain will be used
+       (because   this  header  field  represents  a  user  being
+       registered),  for  all  other  messages  From header field
+       domain will be used.
+
+   Example 1-4. gsm_www_authorize usage
+...
+if (!gsm_www_authorize("iptel.org")) {
+    break;
+};
+...
+     _________________________________________________________
+
+1.4.2. gsm_proxy_authorize(realm)
+
+   The     function     performs     similar     operations    to
+   "gsm_www_authorize" but for proxy authentication as defined in
+   SIP RFC (3261).
+
+   Meaning of the parameters is as follows:
+
+     * realm - same meaning as for "gsm_www_authorize" method.
+
+   Example 1-5. gsm_proxy_authorize usage
+...
+if (!gsm_proxy_authorize("iptel.org")) {
+    break;
+};
+...
+     _________________________________________________________
+
+1.5. Installation & Running
+
+1.5.1. Radius client setup
+
+   You   must   set   proper   value   for   RADIUS   server   in
+   radiusclient.conf  --  default  is localhost. More inforamtion
+   you will find out in comments inside radiusclient.conf.
+
+   In dictionary file of your radius client be sure you have next
+   lines:
+ATTRIBUTE   User-Name       1   string
+ATTRIBUTE   Password        2   string
+ATTRIBUTE   CHAP-Password   3   string
+ATTRIBUTE   CHAP-Challenge  60  string
+ATTRIBUTE   User-Realm      223 string
+
+   In  servers  file  of  your  radius client be sure you set the
+   address  of  RADIUS server and the secret key for that server.
+   The  same secret key must be in one of clients or clients.conf
+   config files of the RADIUS server.
+     _________________________________________________________
+
+1.5.2. SER config file
+
+   Next picture displays a sample usage of auth_gsm module.
+
+   Example 1-6. SER config script - sample auth_gsm usage
+...
+#
+# configuration for auth_gsm module testing
+#
+# $ID$
+#
+
+# - debug mode
+debug=9          # debug level (cmd line: -dddddddddd)
+fork=no
+log_stderror=yes  # (cmd line: -E)
+
+# - daemon mode
+#debug=3          # debug level (cmd line: -dddddddddd)
+#fork=yes          # (cmd. line: -D)
+#log_stderror=no   # (cmd line: -E)
+
+
+children=2
+check_via=no      # (cmd. line: -v)
+dns=off           # (cmd. line: -r)
+rev_dns=off       # (cmd. line: -R)
+port=5060
+
+listen=10.1.1.10
+
+# for more info: sip_router -h
+
+# ------------------ module loading ----------------------------------
+
+loadmodule "../sip_router/modules/print/print.so"
+loadmodule "../sip_router/modules/textops/textops.so"
+
+loadmodule "../sip_router/modules/sl/sl.so"
+loadmodule "../sip_router/modules/maxfwd/maxfwd.so"
+loadmodule "../sip_router/modules/tm/tm.so"
+loadmodule "../sip_router/modules/registrar/registrar.so"
+loadmodule "../sip_router/modules/usrloc/usrloc.so"
+loadmodule "../sip_router/modules/auth/auth.so"
+loadmodule "../sip_router/modules/auth_gsm/auth_gsm.so"
+
+# ----------------- setting module-specific parameters ---------------
+
+# -- registrar params --
+
+modparam("registrar", "default_expires", 120)
+
+# -- registrar params --
+
+modparam("usrloc", "db_mode", 0)
+
+# -- tm params --
+
+modparam("tm", "fr_timer", 10 )
+modparam("tm", "fr_inv_timer", 15 )
+modparam("tm", "wt_timer", 10 )
+
+# -- auth_gsm params --
+
+#modparam("auth_gsm", "service_type", "23")
+
+route{
+    if ( !mf_process_maxfwd_header("10") )
+    {
+        sl_send_reply("483","To Many Hops");
+        drop();
+    };
+
+    if (uri=~"[@:\.]alpha\.org([;:].*)*" |
+            uri=~"[@:\.]10\.1\.1\.10([;:].*)*")
+    {
+        # for testing purposes, simply okay all REGISTERs
+        if (method=="REGISTER")
+        {
+            if (!gsm_www_authorize("alpha.org" /* realm */ ))
+            {
+                break;
+            };
+            save("location");
+            break;
+        };
+        # challenge INVITEs and MESSAGEs intended for my domain
+        if (method=="INVITE" | method=="MESSAGE")
+        {
+            if (!gsm_proxy_authorize("alpha.org" /* realm */ ))
+            {
+                break;
+            };
+        };
+
+
+        # native SIP destinations are handled using our USRLOC DB
+        if(uri=~"[@:\.]alpha\.org([;:].*)*"
+            && !lookup("location"))
+        {
+            sl_send_reply("404", "Not found");
+            break;
+        };
+        t_relay();
+        break;
+    };
+
+    # challenge INVITEs and MESSAGEs intended for other domains
+    if (method=="INVITE" | method=="MESSAGE")
+    {
+        if (!gsm_proxy_authorize("alpha.org" /*realm */ ))
+        {
+            break;
+        };
+    };
+    # forward anything else
+    t_relay();
+}
+
+
+...
+     _________________________________________________________
+
+Chapter 2. Developer's Guide
+
+   The  module  does  not provide any sort of API to use in other
+   SER modules.
+     _________________________________________________________
+
+Chapter 3. Frequently Asked Questions
+
+   3.1. Where can I find more about SER?
+   3.2. Where can I post a question about this module?
+   3.3. How can I report a bug?
+
+   3.1. Where can I find more about SER?
+
+   Take a look at http://iptel.org/ser.
+
+   3.2. Where can I post a question about this module?
+
+   First  at  all  check if your question was already answered on
+   one of our mailing lists:
+
+     * http://mail.iptel.org/mailman/listinfo/serusers
+     * http://mail.iptel.org/mailman/listinfo/serdev
+
+   E-mails  regarding  any  stable  version  should  be  sent  to
+   <serusers@iptel.org> and e-mail regarding development versions
+   or CVS snapshots should be send to <serdev@iptel.org>.
+
+   If   you   want   to   keep  the  mail  private,  send  it  to
+   <serhelp@iptel.org>.
+
+   3.3. How can I report a bug?
+
+   Please      follow     the     guidelines     provided     at:
+   http://iptel.org/ser/bugs
