@@ -1,5 +1,5 @@
 /*
- * $Id: parse_contact.c,v 1.3 2003/03/25 22:33:56 janakj Exp $
+ * $Id: parse_contact.c,v 1.4 2003/04/10 12:38:18 janakj Exp $
  *
  * Contact header field body parser
  *
@@ -31,7 +31,6 @@
  *  2003-03-25 Adapted to use new parameter parser (janakj)
  */
 
-#include <stdio.h>           /* printf */
 #include <string.h>          /* memset */
 #include "../hf.h"     
 #include "../../mem/mem.h"   /* pkg_malloc, pkg_free */
@@ -115,10 +114,10 @@ void free_contact(contact_body_t** _c)
 /*
  * Print structure, for debugging only
  */
-void print_contact(contact_body_t* _c)
+void print_contact(FILE* _o, contact_body_t* _c)
 {
-	printf("===Contact body===\n");
-	printf("star: %d\n", _c->star);
-	print_contacts(_c->contacts);
-	printf("===/Contact body===\n");
+	fprintf(_o, "===Contact body===\n");
+	fprintf(_o, "star: %d\n", _c->star);
+	print_contacts(_o, _c->contacts);
+	fprintf(_o, "===/Contact body===\n");
 }

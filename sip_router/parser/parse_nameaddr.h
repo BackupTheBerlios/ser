@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_nameaddr.h,v 1.2 2003/03/31 10:27:36 janakj Exp $
+ * $Id: parse_nameaddr.h,v 1.3 2003/04/10 12:38:18 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,6 +32,7 @@
 #ifndef PARSE_NAMEADDR_H
 #define PARSE_NAMEADDR_H
 
+#include <stdio.h>
 #include "../str.h"
 
 /*
@@ -54,7 +55,7 @@ int parse_nameaddr(str* _s, name_addr_t* _a);
 /*
  * Print a name-addr structure, just for debugging
  */
-void print_nameaddr(name_addr_t* _a);
+void print_nameaddr(FILE* _o, name_addr_t* _a);
 
 
 #endif /* PARSE_NAMEADDR_H */

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_contact.h,v 1.3 2003/03/25 22:33:56 janakj Exp $
+ * $Id: parse_contact.h,v 1.4 2003/04/10 12:38:18 janakj Exp $
  *
  * Contact header field body parser
  *
@@ -35,6 +35,7 @@
 #ifndef PARSE_CONTACT_H
 #define PARSE_CONTACT_H
 
+#include <stdio.h>
 #include "../hf.h"
 #include "../../str.h"
 #include "contact.h"
@@ -61,7 +62,7 @@ void free_contact(contact_body_t** _c);
 /*
  * Print structure, for debugging only
  */
-void print_contact(contact_body_t* _c);
+void print_contact(FILE* _o, contact_body_t* _c);
 
 
 #endif /* PARSE_CONTACT_H */

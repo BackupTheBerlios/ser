@@ -1,5 +1,5 @@
 /*
- * $Id: contact.h,v 1.3 2003/03/25 22:33:56 janakj Exp $
+ * $Id: contact.h,v 1.4 2003/04/10 12:38:18 janakj Exp $
  *
  * Contact datatype
  *
@@ -35,6 +35,7 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
+#include <stdio.h>
 #include "../../str.h"
 #include "../parse_param.h"
 
@@ -68,7 +69,7 @@ void free_contacts(contact_t** _c);
 /*
  * Print list of contacts, just for debugging
  */
-void print_contacts(contact_t* _c);
+void print_contacts(FILE* _o, contact_t* _c);
 
 
 #endif /* CONTACT_H */

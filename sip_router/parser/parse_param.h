@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.6 2003/04/07 20:47:12 janakj Exp $
+ * $Id: parse_param.h,v 1.7 2003/04/10 12:38:18 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -35,6 +35,8 @@
 
 #ifndef PARSE_PARAM_H
 #define PARSE_PARAM_H
+
+#include <stdio.h>
 
 
 /*
@@ -129,12 +131,10 @@ void free_params(param_t* _p);
 void shm_free_params(param_t* _p);
 
 
-
-
 /*
  * Print linked list of parameters, just for debugging
  */
-void print_params(param_t* _p);
+void print_params(FILE* _o, param_t* _p);
 
 
 /*

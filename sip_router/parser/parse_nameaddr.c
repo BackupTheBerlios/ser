@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_nameaddr.c,v 1.3 2003/03/31 10:27:36 janakj Exp $
+ * $Id: parse_nameaddr.c,v 1.4 2003/04/10 12:38:18 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,7 +29,6 @@
  * 2003-03-24 Created by janakj
  */
 
-#include <stdio.h>
 #include <string.h>
 #include "../dprint.h"
 #include "parse_nameaddr.h"
@@ -79,10 +78,10 @@ int parse_nameaddr(str* _s, name_addr_t* _a)
 /*
  * Print a name-addr structure, just for debugging
  */
-void print_nameaddr(name_addr_t* _a)
+void print_nameaddr(FILE* _o, name_addr_t* _a)
 {
-	printf("---name-addr---\n");
-	printf("name: '%.*s'\n", _a->name.len, _a->name.s);
-	printf("uri : '%.*s'\n", _a->uri.len, _a->uri.s);
-	printf("---/name-addr---\n");
+	fprintf(_o, "---name-addr---\n");
+	fprintf(_o, "name: '%.*s'\n", _a->name.len, _a->name.s);
+	fprintf(_o, "uri : '%.*s'\n", _a->uri.len, _a->uri.s);
+	fprintf(_o, "---/name-addr---\n");
 }
