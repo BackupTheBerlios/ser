@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.6 2002/09/19 12:23:53 jku Rel $
+ * $Id: acc.c,v 1.7 2002/10/15 04:02:27 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -53,7 +53,7 @@ int acc_request( struct sip_msg *rq, char * comment, char  *foo)
 	   
 	if ( parse_headers(rq, HDR_FROM | HDR_CALLID, 0)==-1 
 				|| !(rq->from && rq->callid) ) {
-		LOG(L_ERR, "ERROR: acc_missed: From not dounf\n");
+		LOG(L_ERR, "ERROR: acc_missed: From not found\n");
 		return -1;
 	}
 	LOG( log_level,
