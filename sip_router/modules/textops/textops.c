@@ -1,10 +1,11 @@
-/*$Id: textops.c,v 1.10 2002/08/31 10:26:32 janakj Exp $
+/*$Id: textops.c,v 1.11 2002/08/31 18:20:49 jku Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
  * search_insert("key", "txt") -  insert "txt" before "key"
  * replace("txt1", "txt2")
  * search("txt")
+ * append_hf("P-foo: bar\r\n");
  *
  * 
  */
