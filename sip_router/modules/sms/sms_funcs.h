@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.h,v 1.18 2002/10/15 15:36:22 bogdan Exp $
+ * $Id: sms_funcs.h,v 1.19 2002/10/25 12:28:19 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -59,6 +59,10 @@
 #define TIME_LEN   8          /* xx-xx-xx */
 #define DATE_LEN   TIME_LEN
 
+#define NO_REPORT  0
+#define SMS_REPORT 1
+#define CDS_REPORT 2
+
 struct network {
 	char name[MAX_CHAR_BUF+1];
 	char smsc[MAX_CHAR_BUF+1];
@@ -108,7 +112,7 @@ extern int    max_sms_parts;
 extern str    domain;
 extern int    *queued_msgs;
 extern int    use_contact;
-extern int    use_sms_report;
+extern int    sms_report_type;
 extern struct tm_binds tmb;
 extern struct im_binds imb;
 

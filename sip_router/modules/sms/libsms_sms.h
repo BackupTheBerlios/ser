@@ -1,5 +1,5 @@
 /*
- * $Id: libsms_sms.h,v 1.3 2002/09/19 12:23:54 jku Rel $
+ * $Id: libsms_sms.h,v 1.4 2002/10/25 12:28:19 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -42,6 +42,8 @@ int getsms( struct incame_sms *sms, struct modem *mdm, int sim);
 int check_memory( struct modem *mdm, int flag);
 
 void swapchars(char* string, int len);
+
+int cds2sms(struct incame_sms *sms, struct modem *mdm, char *s, int s_len);
 
 #endif
 

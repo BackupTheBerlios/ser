@@ -1,5 +1,5 @@
 /*
- * $Id: sms_report.h,v 1.3 2002/09/20 17:22:28 bogdan Rel $
+ * $Id: sms_report.h,v 1.4 2002/10/25 12:28:19 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -37,7 +37,7 @@
 int    init_report_queue();
 void   destroy_report_queue();
 void   add_sms_into_report_queue(int id, struct sms_msg *sms, char *, int );
-int    relay_report_to_queue(int id, char *phone, int status);
+int    relay_report_to_queue(int id, char *phone, int status, int *old_status);
 void   check_timeout_in_report_queue();
 str*   get_error_str(int status);
 void   remove_sms_from_report_queue(int id);
