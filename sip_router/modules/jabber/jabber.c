@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.50 2003/08/05 11:14:28 bogdan Exp $
+ * $Id: jabber.c,v 1.51 2003/11/03 13:03:57 janakj Exp $
  *
  * XJAB module
  *
@@ -98,7 +98,7 @@ db_con_t** db_con;
 
 /** parameters */
 
-char *db_url   = "sql://root@127.0.0.1/sip_jab";
+char *db_url   = "mysql://root@127.0.0.1/sip_jab";
 char *db_table = "jusers";
 char *registrar=NULL; //"sip:registrar@iptel.org";
 

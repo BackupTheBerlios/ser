@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.20 2003/10/29 12:33:21 dcm Exp $ 
+ * $Id: dbase.c,v 1.21 2003/11/03 13:03:57 janakj Exp $ 
  *
  * MySQL module core functions
  *
@@ -48,7 +48,7 @@ static char sql_buf[SQL_BUF_LEN];
  * returns 1 on success, 0 otherwise
  * _h is a handle used in communication with database
  *
- * URL is in form sql://user:password@host:port/database
+ * URL is in form mysql://user:password@host:port/database
  */
 static inline int connect_db(db_con_t* _h, const char* _db_url)
 {

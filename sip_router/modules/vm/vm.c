@@ -1,7 +1,7 @@
 /*
- * $Id: vm.c,v 1.32 2003/10/24 20:37:39 janakj Exp $
+ * $Id: vm.c,v 1.33 2003/11/03 13:03:58 janakj Exp $
  *
- * $Id: vm.c,v 1.32 2003/10/24 20:37:39 janakj Exp $
+ * $Id: vm.c,v 1.33 2003/11/03 13:03:58 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -87,7 +87,7 @@ static int vm_init_child(int rank);
 
 struct tm_binds _tmb;
 
-char* vm_db_url = "sql://ser:heslo@localhost/ser";    /* Database URL */
+char* vm_db_url = "mysql://ser:heslo@localhost/ser";    /* Database URL */
 char* email_column = "email_address";
 char* subscriber_table = "subscriber" ;
 

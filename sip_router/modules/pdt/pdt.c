@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.6 2003/10/29 20:23:50 ramona Exp $
+ * $Id: pdt.c,v 1.7 2003/11/03 13:03:58 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -72,7 +72,7 @@ db_con_t *db_con = NULL;
 
 
 /** parameters */
-char *db_url = "sql://root@127.0.0.1/pdt";
+char *db_url = "mysql://root@127.0.0.1/pdt";
 char *db_table = "domains";
 
 /** pstn prefix */

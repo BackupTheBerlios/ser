@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/07/14 21:03:05 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/11/03 13:03:56 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -371,12 +371,12 @@ modparam("acc", "radius_missed_flag", 3)
 		SQL address -- database specific.
 	    </para>
 	    <para>
-		Default value is <quote>sql://ser:heslo@localhost/ser</quote>
+		Default value is <quote>mysql://ser:heslo@localhost/ser</quote>
 	    </para>
 	    <example>
 		<title>db_url example</title>
 		<programlisting format="linespecific">
-modparam("acc", "db_url", "sql://user:password@localhost/ser")
+modparam("acc", "db_url", "mysql://user:password@localhost/ser")
 </programlisting>
 	    </example>
 	</section>

@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.54 2003/10/14 14:49:42 andrei Exp $
+ *  $Id: config.h,v 1.55 2003/11/03 13:03:56 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -180,8 +180,8 @@
 /* maximum path length */
 #define PATH_MAX_GUESS	1024
 
-#define DEFAULT_DB_URL "sql://ser:heslo@localhost/ser"
-#define DEFAULT_RODB_URL "sql://serro:47serro11@localhost/ser"
+#define DEFAULT_DB_URL "mysql://ser:heslo@localhost/ser"
+#define DEFAULT_RODB_URL "mysql://serro:47serro11@localhost/ser"
 
 
 #endif

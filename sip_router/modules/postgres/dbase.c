@@ -1,5 +1,5 @@
 /*
- * $Id: dbase.c,v 1.1 2003/04/08 01:25:35 lgfausak Exp $
+ * $Id: dbase.c,v 1.2 2003/11/03 13:03:58 janakj Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -115,7 +115,7 @@ static int connect_db(db_con_t* _h, const char* _db_url)
 
 	/*
 	** get the connection parameters parsed from the db_url string
-	** it looks like: sql://username:userpass@dbhost:dbport/dbname
+	** it looks like: postgres://username:userpass@dbhost:dbport/dbname
 	** username/userpass : name and password for the database
 	** dbhost :            the host name or ip address hosting the database
 	** dbport :            the port to connect to database on

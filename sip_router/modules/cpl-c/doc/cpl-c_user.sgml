@@ -4,8 +4,8 @@
 	<chapterinfo>
 	<revhistory>
 		<revision>
-			<revnumber>$Revision: 1.2 $</revnumber>
-			<date>$Date: 2003/09/15 15:16:59 $</date>
+			<revnumber>$Revision: 1.3 $</revnumber>
+			<date>$Date: 2003/11/03 13:03:57 $</date>
 		</revision>
 	</revhistory>
 	</chapterinfo>
@@ -83,7 +83,7 @@
 				<title>Set <varname>cpl_db</varname> parameter</title>
 				<programlisting format="linespecific">
 ...
-modparam("cpl_c","cpl_db","sql://user:passwd@host/database")
+modparam("cpl_c","cpl_db","mysql://user:passwd@host/database")
 ...
 				</programlisting>
 			</example>
