@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.44 2004/03/09 12:12:57 sobomax Exp $
+/* $Id: nathelper.c,v 1.45 2004/03/09 12:15:00 sobomax Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -160,7 +160,7 @@ static int force_rtp_proxy2_f(struct sip_msg *, char *, char *);
 static void timer(unsigned int, void *);
 inline static int fixup_str2int(void**, int);
 static int mod_init(void);
-static int child_init(int rank);
+static int child_init(int);
 
 static usrloc_api_t ul;
 
