@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.50 2002/10/21 19:21:50 jiri Exp $
+ * $Id: t_lookup.c,v 1.51 2002/12/12 21:42:33 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -724,7 +724,7 @@ int init_rb( struct retr_buf *rb, struct sip_msg *msg )
 			return 0;
 		}
 	}
-	send_sock=get_send_socket(&rb->to);
+	send_sock=get_send_socket(&rb->to, msg->rcv.proto);
 	if (send_sock==0) {
 		LOG(L_ERR, "ERROR: init_rb: cannot fwd to af %d "
 			"no socket\n", rb->to.s.sa_family);

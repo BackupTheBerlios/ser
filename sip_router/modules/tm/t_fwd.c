@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.32 2002/10/21 19:21:50 jiri Exp $
+ * $Id: t_fwd.c,v 1.33 2002/12/12 21:42:33 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -79,7 +79,7 @@ char *print_uac_request( struct cell *t, struct sip_msg *i_req,
 	callback_event( TMCB_REQUEST_OUT, t, i_req, -i_req->REQ_METHOD);
 
 	/* ... and build it now */
-	buf=build_req_buf_from_sip_req( i_req, len, send_sock );
+	buf=build_req_buf_from_sip_req( i_req, len, send_sock, i_req->rcv.proto );
 #ifdef DBG_MSG_QA
 	if (buf[*len-1]==0) {
 		LOG(L_ERR, "ERROR: print_uac_request: sanity check failed\n");
@@ -173,7 +173,7 @@ int add_uac( struct cell *t, struct sip_msg *request, str *uri,
 	hostent2su( &to, &proxy->host, proxy->addr_idx, 
 		proxy->port ? htons(proxy->port):htons(SIP_PORT));
 
-	send_sock=get_send_socket( &to );
+	send_sock=get_send_socket( &to , request->rcv.proto);
 	if (send_sock==0) {
 		LOG(L_ERR, "ERROR: add_uac: can't fwd to af %d "
 			" (no corresponding listening socket)\n",
