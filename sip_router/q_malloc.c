@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.3 2001/12/04 18:10:50 andrei Exp $
+/* $Id: q_malloc.c,v 1.4 2001/12/05 21:09:01 bogdan Exp $
  *
  */
 
@@ -170,6 +170,7 @@ void* qm_malloc(struct qm_block* qm, unsigned int size)
 			f->file=file;
 			f->func=func;
 			f->line=line;
+	DBG("qm_malloc(%x, %d) returns address %x\n", qm, size,(char*)f+sizeof(struct qm_frag) );
 #endif
 			return (char*)f+sizeof(struct qm_frag);
 		}
