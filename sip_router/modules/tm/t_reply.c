@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.48 2003/03/06 17:43:17 jiri Exp $
+ * $Id: t_reply.c,v 1.49 2003/03/07 16:40:03 dcm Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -670,7 +670,7 @@ static int _reply_light( struct cell *trans, char* buf, unsigned int len,
 
 error3:
 #ifdef _TOTAG
-	if (totag) {
+	if (to_tag) {
 		shm_free(trans->uas.to_tag.s);
 		trans->uas.to_tag.s=0;
 	}
