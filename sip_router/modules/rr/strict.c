@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, strict routing support
  *
- * $Id: strict.c,v 1.2 2002/12/02 09:18:25 janakj Exp $
+ * $Id: strict.c,v 1.3 2003/03/27 20:44:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,6 +31,7 @@
 #include "strict.h"
 #include "common.h"
 #include "../../dprint.h"
+#include "../../parser/parse_rr.h"
 
 
 /*
@@ -38,18 +39,24 @@
  */
 int strict_route(struct sip_msg* _m, char* _s1, char* _s2)
 {
-	str first_uri;
+	str* uri;
+	int ret;
 	
-	if (find_first_route(_m) == 0) {
-		if (parse_first_route(_m->route,  &first_uri) < 0) {
-			LOG(L_ERR, "strict_route(): Error while parsing Route HF\n");
-			return -1;
-		}
-		if (rewrite_RURI(_m, &first_uri) < 0) {
+	ret = find_first_route(_m);
+	if (ret < 0) {
+		LOG(L_ERR, "strict_route(): Error in find_first_route\n");
+		return -1;
+	}
+
+	if (!ret) {
+		print_rr(_m->route->parsed);
+
+		uri = &((rr_t*)_m->route->parsed)->nameaddr.uri;
+		if (rewrite_RURI(_m, uri) < 0) {
 			LOG(L_ERR, "strict_route(): Error while rewriting request URI\n");
 			return -2;
 		}
-		if (remove_TMRoute(_m, _m->route, &first_uri) < 0) {
+		if (remove_first_route(_m, _m->route) < 0) {
 			LOG(L_ERR, "strict_route(): Error while removing the topmost Route URI\n");
 			return -3;
 		}
