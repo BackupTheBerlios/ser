@@ -1,4 +1,4 @@
-/* $Id: udp_flood.c,v 1.4 2003/11/11 15:32:36 andrei Exp $ */
+/* $Id: udp_flood.c,v 1.5 2003/11/18 17:53:50 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -41,7 +41,7 @@
 #include <arpa/inet.h>
 
 
-static char *id="$Id: udp_flood.c,v 1.4 2003/11/11 15:32:36 andrei Exp $";
+static char *id="$Id: udp_flood.c,v 1.5 2003/11/18 17:53:50 andrei Exp $";
 static char *version="udp_flood 0.1";
 static char* help_msg="\
 Usage: udp_flood -f file -d address -p port -c count [-v]\n\
@@ -67,7 +67,7 @@ int main (int argc, char** argv)
 	char c;
 	int n,r;
 	char* tmp;
-	char* buf[BUF_SIZE];
+	char buf[BUF_SIZE];
 	struct hostent* he;
 	struct sockaddr_in addr;
 	
