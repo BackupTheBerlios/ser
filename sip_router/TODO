@@ -1,9 +1,10 @@
-$Id: TODO,v 1.1 2001/10/04 10:35:09 andrei Exp $
+$Id: TODO,v 1.2 2001/10/04 10:35:57 andrei Exp $
 
 - better Via parsing (handle ' ' in uri, eg: foo.bar : 1234 ; received=) and
  ipv6 addresses ([fec0:aa::01]).
 
 High priority:
+- if () {} else {}
 - reply ("response line")
 - default route ?
 - add To-tag
