@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.47 2002/05/28 19:01:38 andrei Exp $
+/* $Id: msg_translator.c,v 1.48 2002/05/30 12:14:55 bogdan Exp $
  *
  */
 
@@ -188,11 +188,12 @@ char * warning_builder( struct sip_msg *msg, unsigned int *returned_len)
 	{
 		memcpy(buf+fix_len,"Warning: 392 ",13);
 		fix_len +=13;
-		memcpy(buf+fix_len,names[0],names_len[0]);
-		fix_len += names_len[0];
+		memcpy(buf+fix_len, sock_info[0].name.s,sock_info[0].name.len);
+		fix_len += sock_info[0].name.len;
 		//*(buf+fix_len++) = ':';
-		memcpy(buf+fix_len,port_no_str,port_no_str_len);
-		fix_len += port_no_str_len;
+		memcpy(buf+fix_len,sock_info[0].port_no_str.s,
+			sock_info[0].port_no_str.len);
+		fix_len += sock_info[0].port_no_str.len;
 		memcpy(buf+fix_len, " \"Noisy feedback tells: ",24);
 		fix_len += 24;
 	}
