@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.1 2001/12/06 18:28:30 andrei Exp $
+ * $Id: timer.c,v 1.2 2001/12/06 18:32:54 andrei Exp $
  */
 
 #include "timer.h"
@@ -66,4 +66,11 @@ void timer_ticker()
 			t->timer_f(jiffies, t->t_param);
 		}
 	}
+}
+
+
+
+unsigned int get_ticks()
+{
+	return jiffies;
 }

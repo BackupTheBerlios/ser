@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.1 2001/12/06 18:28:30 andrei Exp $
+ * $Id: timer.h,v 1.2 2001/12/06 18:32:54 andrei Exp $
  *
  *
  * timer related functions
@@ -32,6 +32,7 @@ extern struct sr_timer* timer_list;
 /*register a periodic timer;
  * ret: <0 on errror*/
 int register_timer(timer_function f, void* param, unsigned int interval);
+unsigned int get_ticks();
 void timer_ticker();
 
 #endif
