@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.120 2002/09/30 18:38:37 andrei Exp $
+ * $Id: main.c,v 1.121 2002/10/15 15:12:31 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -80,7 +80,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.120 2002/09/30 18:38:37 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.121 2002/10/15 15:12:31 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -310,10 +310,6 @@ int daemonize(char*  name)
 
 	p=-1;
 
-	if (log_stderr==0)
-		openlog(name, LOG_PID|LOG_CONS, LOG_LOCAL1 /*LOG_DAEMON*/);
-		/* LOG_CONS, LOG_PERRROR ? */
-
 
 	if (chroot_dir&&(chroot(chroot_dir)<0)){
 		LOG(L_CRIT, "Cannot chroot to %s: %s\n", chroot_dir, strerror(errno));
@@ -388,9 +384,13 @@ int daemonize(char*  name)
 	
 	/* close any open file descriptors */
 	for (r=0;r<MAX_FD; r++){
-			if ((r==3) && log_stderr)  continue;
+			if ((r==2) && log_stderr)  continue;
 			close(r);
 	}
+	
+	if (log_stderr==0)
+		openlog(name, LOG_PID|LOG_CONS, LOG_LOCAL1 /*LOG_DAEMON*/);
+		/* LOG_CONS, LOG_PERRROR ? */
 	return  0;
 
 error:
