@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.20 2003/07/01 17:43:40 andrei Exp $
+ * $Id: tcp_read.c,v 1.21 2003/07/02 20:26:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -399,14 +399,14 @@ int tcp_read_req(struct tcp_connection* con)
 #ifdef USE_TLS
 		if (con->type==PROTO_TLS){
 			if (con->state==S_CONN_ACCEPT){
-				if (tls_accept(con)!=0){
+				if (tls_accept(con, 0)!=0){
 					resp=CONN_ERROR;
 					goto end_req;
 				}
 				if(con->state!=S_CONN_OK) goto end_req; /* not enough data */
 			}
 			if(con->state==S_CONN_CONNECT){
-				if (tls_connect(con)!=0){
+				if (tls_connect(con, 0)!=0){
 					resp=CONN_ERROR;
 					goto end_req;
 				}

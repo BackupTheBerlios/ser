@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.52 2003/07/01 20:23:51 andrei Exp $
+ * $Id: action.c,v 1.53 2003/07/02 20:26:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -105,6 +105,9 @@ int do_action(struct action* a, struct sip_msg* msg)
 		case FORWARD_T:
 #ifdef USE_TCP
 		case FORWARD_TCP_T:
+#endif
+#ifdef USE_TLS
+		case FORWARD_TLS_T:
 #endif
 		case FORWARD_UDP_T:
 

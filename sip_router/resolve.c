@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.13 2003/02/19 17:16:41 andrei Exp $*/
+/* $Id: resolve.c,v 1.14 2003/07/02 20:26:49 andrei Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -494,6 +494,11 @@ struct hostent* sip_resolvehost(str* name, unsigned short* port, int proto)
 					break;
 				case PROTO_TCP:
 					memcpy(tmp, SRV_TCP_PREFIX, SRV_PREFIX_LEN);
+					memcpy(tmp+SRV_PREFIX_LEN, name->s, name->len);
+					tmp[SRV_PREFIX_LEN + name->len] = '\0';
+					break;
+				case PROTO_TLS:
+					memcpy(tmp, SRV_TLS_PREFIX, SRV_PREFIX_LEN);
 					memcpy(tmp+SRV_PREFIX_LEN, name->s, name->len);
 					tmp[SRV_PREFIX_LEN + name->len] = '\0';
 					break;

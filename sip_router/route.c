@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.36 2003/05/23 15:03:38 andrei Exp $
+ * $Id: route.c,v 1.37 2003/07/02 20:26:49 andrei Exp $
  *
  * SIP routing engine
  *
@@ -158,6 +158,7 @@ static int fix_actions(struct action* a)
 	for(t=a; t!=0; t=t->next){
 		switch(t->type){
 			case FORWARD_T:
+			case FORWARD_TLS_T:
 			case FORWARD_TCP_T:
 			case FORWARD_UDP_T:
 			case SEND_T:

@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.50 2003/06/30 10:04:02 andrei Exp $
+ *  $Id: config.h,v 1.51 2003/07/02 20:26:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -106,6 +106,7 @@
 
 #define SRV_UDP_PREFIX "_sip._udp."
 #define SRV_TCP_PREFIX "_sip._tcp."
+#define SRV_TLS_PREFIX "_sip._tls."
 #define SRV_PREFIX_LEN 10
 
 /*used only if PKG_MALLOC is defined*/
