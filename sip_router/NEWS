@@ -1,7 +1,7 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.27 2004/05/03 12:18:10 andrei Exp $
+$Id: NEWS,v 1.28 2004/07/05 17:35:31 dcm Exp $
 
 0.8.13 changes
 
@@ -17,6 +17,10 @@ modules:
    sends a message using unix socket interface instead of FIFO interface.
  - TM contains new config variable - unix_tx_timeout -- it specifies the
    transmit timeout of t_write_sock
+ - msilo - explicit multidomain support -- recipient's user ID is stored in
+   the columns username and domain -- r_uri column kept for compatibility
+   reasons (will be removed in future) but not filled by this version of
+   module
 new modules:
  - answer server options requests [options]
 core:
