@@ -1,8 +1,8 @@
 /* 
- * $Id: db_row.c,v 1.6 2002/03/05 14:38:46 janakj Exp $ 
+ * $Id: db_row.c,v 1.7 2002/07/24 14:45:59 janakj Exp $ 
  */
 
-#include "db_row.h"
+#include "../../db/db_row.h"
 #include "defs.h"
 #include <mysql/mysql.h>
 #include "../../dprint.h"
@@ -27,7 +27,7 @@ int convert_row(db_con_t* _h, db_res_t* _res, db_row_t* _r)
 	}
 
 	for(i = 0; i < RES_COL_N(_res); i++) {
-		if (str2val(RES_TYPES(_res)[i], &(ROW_VALUES(_r)[i]), CON_ROW(_h)[i]) == FALSE) {
+		if (str2val(RES_TYPES(_res)[i], &(ROW_VALUES(_r)[i]), ((MYSQL_ROW)CON_ROW(_h))[i]) == FALSE) {
 			LOG(L_ERR, "convert_row(): Error while converting value\n");
 			free_row(_r);
 			return FALSE;

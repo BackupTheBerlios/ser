@@ -1,8 +1,8 @@
 /* 
- * $Id: db_val.c,v 1.6 2002/05/10 01:00:09 janakj Exp $ 
+ * $Id: db_val.c,v 1.7 2002/07/24 14:45:59 janakj Exp $ 
  */
 
-#include "db_val.h"
+#include "../../db/db_val.h"
 #include "defs.h"
 #include <stdlib.h>
 #include <stdio.h>

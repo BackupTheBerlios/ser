@@ -1,10 +1,10 @@
 /* 
- * $Id: db_con.c,v 1.5 2002/03/05 14:38:46 janakj Exp $ 
+ * $Id: db_con.c,v 1.6 2002/07/24 14:45:59 janakj Exp $ 
  */
 
 
 
-#include "db_con.h"
+#include "../../db/db_con.h"
 #include "defs.h"
 #include "../../dprint.h"
 #include "../../mem/mem.h"

@@ -1,9 +1,9 @@
 /* 
- * $Id: db_res.h,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: db_res.h,v 1.1 2002/07/24 14:45:10 janakj Exp $ 
  */
 
-#ifndef __DB_RES_H__
-#define __DB_RES_H__
+#ifndef DB_RES_H
+#define DB_RES_H
 
 #include "db_row.h"
 #include "db_key.h"
@@ -12,6 +12,7 @@
 
 
 struct db_row;
+
 
 typedef struct db_res {
 	struct {
@@ -23,11 +24,13 @@ typedef struct db_res {
 	int n;                     /* Number of rows */
 } db_res_t;
 
+
 #define RES_NAMES(re) ((re)->col.names)
 #define RES_TYPES(re) ((re)->col.types)
 #define RES_COL_N(re) ((re)->col.n)
 #define RES_ROWS(re)  ((re)->rows)
 #define RES_ROW_N(re) ((re)->n)
+
 
 /*
  * Create a new result structure 

@@ -1,9 +1,9 @@
 /* 
- * $Id: db_val.h,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: db_val.h,v 1.1 2002/07/24 14:45:10 janakj Exp $ 
  */
 
-#ifndef __DB_VAL_H__
-#define __DB_VAL_H__
+#ifndef DB_VAL_H
+#define DB_VAL_H
 
 #include <time.h>
 
@@ -51,9 +51,11 @@ typedef struct {
  */
 int str2val(db_type_t _t, db_val_t* _v, const char* _s);
 
+
 /*
  * Convert given type to string
  */
 int val2str(db_val_t* _v, char* _s, int* _len);
+
 
 #endif

@@ -1,12 +1,13 @@
 /* 
- * $Id: db_res.c,v 1.6 2002/03/05 14:38:46 janakj Exp $ 
+ * $Id: db_res.c,v 1.7 2002/07/24 14:45:59 janakj Exp $ 
  */
 
-#include "db_res.h"
+#include "../../db/db_res.h"
 #include "defs.h"
 #include <stdlib.h>
 #include "../../dprint.h"
 #include "../../mem/mem.h"
+#include <mysql/mysql.h>
 
 
 static int get_columns  (db_con_t* _h, db_res_t* _r);

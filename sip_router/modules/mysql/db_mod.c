@@ -1,10 +1,10 @@
 /* 
- * $Id: db_mod.c,v 1.6 2002/04/03 21:54:15 janakj Exp $ 
+ * $Id: db_mod.c,v 1.7 2002/07/24 14:45:59 janakj Exp $ 
  */
 
 #include "../../sr_module.h"
-#include "dbase.h"
 #include <stdio.h>
+#include "dbase.h"
 
 
 static int mod_init(void);
