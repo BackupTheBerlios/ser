@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.17 2001/11/12 21:45:10 jku Exp $
+ * $Id: cfg.y,v 1.18 2001/11/20 06:26:49 jku Exp $
  *
  *  cfg grammar
  */
@@ -18,6 +18,7 @@
 #include "route.h"
 #include "dprint.h"
 #include "sr_module.h"
+
 
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
@@ -73,6 +74,7 @@ void* f_tmp;
 %token DNS
 %token REV_DNS
 %token PORT
+%token STAT
 %token CHILDREN
 %token CHECK_VIA
 %token LOADMODULE
@@ -147,6 +149,7 @@ assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
 		| REV_DNS EQUAL NUMBER { received_dns|= ($3)?DO_REV_DNS:0; }
 		| REV_DNS EQUAL error { yyerror("boolean value expected"); }
 		| PORT EQUAL NUMBER   { port_no=$3; }
+		| STAT EQUAL STRING { stat_file=$3; }
 		| MAXBUFFER EQUAL NUMBER { maxbuffer=$3; }
 		| MAXBUFFER EQUAL error { yyerror("number expected"); }
 		| PORT EQUAL error    { yyerror("number expected"); } 
