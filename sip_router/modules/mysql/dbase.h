@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.h,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: dbase.h,v 1.4 2002/02/24 17:11:42 janakj Exp $ 
  */
 
 #ifndef __DBASE_H__
@@ -39,7 +39,7 @@ void db_close (db_con_t* _h);
  */
 int db_query (db_con_t* _h, db_key_t* _k, 
 	      db_val_t* _v, db_key_t* _c, int _n, int _nc,
-	      db_res_t** _r);
+	      db_key_t _o, db_res_t** _r);
 
 int db_free_query (db_con_t* _h, db_res_t* _r);
 

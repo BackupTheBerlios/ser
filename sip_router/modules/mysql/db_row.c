@@ -1,12 +1,12 @@
 /* 
- * $Id: db_row.c,v 1.3 2002/01/07 04:39:52 jku Exp $ 
+ * $Id: db_row.c,v 1.4 2002/02/24 17:11:42 janakj Exp $ 
  */
 
 #include "db_row.h"
 #include "defs.h"
 #include <mysql/mysql.h>
-#include "../../mem.h"
 #include "../../dprint.h"
+#include "../../mem/mem.h"
 
 
 int convert_row(db_con_t* _h, db_res_t* _res, db_row_t* _r)
