@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.148 2002/10/24 12:43:31 jiri Exp $
+# $Id: Makefile.defs,v 1.149 2002/10/24 15:03:41 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -149,7 +149,7 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 	 #-DNO_LOG
 
 #PROFILE=  -pg #set this if you want profiling
-mode = debug
+#mode = debug
 ifeq ($(mode),)
 	mode = release
 endif

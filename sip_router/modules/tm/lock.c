@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.38 2002/09/25 20:23:42 jiri Rel $
+ * $Id: lock.c,v 1.39 2002/10/24 15:03:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -310,7 +310,7 @@ error:
 void lock_cleanup()
 {
 	/* must check if someone uses them, for now just leave them allocated*/
-	if (timer_group_lock) shm_free(timer_group_lock);
+	if (timer_group_lock) shm_free((void*)timer_group_lock);
 }
 
 #else
