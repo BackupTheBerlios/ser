@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.22 2003/05/09 00:19:04 janakj Exp $
+ * $Id: loose.c,v 1.23 2003/06/05 21:07:51 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -445,7 +445,7 @@ static inline int find_last_route(struct sip_msg* _m, struct hdr_field** _h, rr_
 		return -1;
 	}
 
-	ptr = _m->route->next;
+	ptr = _m->route;
 	last = 0;
 
 	while(ptr) {
