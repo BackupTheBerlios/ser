@@ -1,5 +1,5 @@
 /* 
- * $Id: usrloc.h,v 1.2 2002/01/07 04:39:56 jku Exp $ 
+ * $Id: usrloc.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
  */
 
 #ifndef __USRLOC_H__
@@ -9,7 +9,6 @@
  * User location module
  */
 
-#include "dbase.h"
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
@@ -17,7 +16,5 @@
 #include "contact_parser.h"
 
 #define BUF_SIZE 256
-
-
 
 #endif

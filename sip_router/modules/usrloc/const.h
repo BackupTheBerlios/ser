@@ -1,12 +1,19 @@
 /* 
- * $Id: const.h,v 1.2 2002/01/07 04:39:54 jku Exp $ 
+ * $Id: const.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
  */
 
 #ifndef __CONST_H__
 #define __CONST_H__
 
-
+/*
+ * Default expiration value of bindings
+ */
 #define DEFAULT_EXPIRES 3600
 
+
+/*
+ * Length of buffer for contacts
+ */
+#define MAX_CONTACT_LEN 1024
 
 #endif

@@ -1,9 +1,9 @@
 /* 
- * $Id: utils.h,v 1.2 2002/01/07 04:39:56 jku Exp $ 
+ * $Id: utils.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
  */
 
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef UTILS_H
+#define UTILS_H
 
 #include "../../msg_parser.h"
 
@@ -21,22 +21,52 @@
 #define SUCCESS 1
 #define FAILURE 0
 
+/*
+ * Remove any leading white chars
+ */
+char* trim_leading(char* _s);
 
+/*
+ * Remove any trailing white chars
+ */
+char* trim_trailing(char* _s);
+
+/*
+ * Remove all leading and trailing white chars
+ */
 char* trim(char* _s);
+
+
+/*
+ * Eat linear white space
+ */
 char* eat_lws(char* _b);
+
+
+/*
+ * Substitute \r or \n with spaces
+ */
 struct hdr_field* remove_crlf(struct hdr_field* _hf);
 
+/*
+ * Convert string to lower case
+ */
 char* strlower(char* _s, int len);
+
+/*
+ * Convert string to upper case
+ */
 char* strupper(char* _s, int len);
 
-
-void mutex_down(int id);
-void mutex_up  (int id);
-
-
-char* parse_to(char* _to);
-
+/*
+ * Find a character that is not quoted
+ */
 char* find_not_quoted(char* _b, char c);
+
+/*
+ * Skip the name part of a URL if any
+ */
 char* eat_name(char* _b);
+
 
 #endif
