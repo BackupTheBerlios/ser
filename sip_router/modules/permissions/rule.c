@@ -1,5 +1,5 @@
 /*
- * $Id: rule.c,v 1.4 2003/11/04 01:54:54 jiri Exp $
+ * $Id: rule.c,v 1.5 2003/11/05 21:04:47 jiri Exp $
  *
  * PERMISSIONS module
  *
@@ -34,6 +34,7 @@
 #include <regex.h>
 #include "../../mem/mem.h"
 #include "../../sr_module.h"
+#include "../../mem/mem.h"
 #include "rule.h"
 
 
