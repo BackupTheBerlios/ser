@@ -1,5 +1,5 @@
 /*
- * $Id: nhelpr_funcs.c,v 1.6 2003/12/01 19:40:18 janakj Exp $
+ * $Id: nhelpr_funcs.c,v 1.7 2004/03/22 22:02:16 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -181,7 +181,7 @@ int extract_body(struct sip_msg *msg, str *body )
 		goto error;
 	}
 	
-	DBG("DEBUG:extract_body:=|%.*s|\n",body->len,body->s);
+	/*DBG("DEBUG:extract_body:=|%.*s|\n",body->len,body->s);*/
 
 	return 1;
 error:
