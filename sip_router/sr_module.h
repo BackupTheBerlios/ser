@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.19 2003/10/24 21:03:14 janakj Exp $
+/* $Id: sr_module.h,v 1.20 2004/03/02 15:19:47 janakj Exp $
  *
  * modules/plugin strtuctures declarations
  *
@@ -65,6 +65,7 @@ typedef enum {
 #define PROC_TIMER    -1  /* Timer attendant process */
 #define PROC_FIFO     -2  /* FIFO attendant process */
 #define PROC_TCP_MAIN -4  /* TCP main process */
+#define PROC_UNIXSOCK -5  /* Unix domain socket server processes */
 
 #define MODULE_VERSION char *module_version=VERSION;
 
