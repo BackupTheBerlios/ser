@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.7 2003/02/19 17:16:41 andrei Exp $
+ * $Id: tm_load.h,v 1.8 2003/02/19 18:46:54 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -48,6 +48,8 @@
 #define T_RELAY_TO_UDP "t_relay_to_udp"
 #define T_RELAY_TO_TCP "t_relay_to_tcp"
 #define T_RELAY "t_relay"
+#define T_RELAY_UDP "t_relay_udp"
+#define T_RELAY_TCP "t_relay_tcp"
 #ifndef DEPRECATE_OLD_STUFF
 #	define T_UAC "t_uac"
 #endif
