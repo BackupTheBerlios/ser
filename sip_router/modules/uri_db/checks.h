@@ -1,5 +1,5 @@
 /*
- * $Id: checks.h,v 1.1 2004/04/14 13:38:24 janakj Exp $
+ * $Id: checks.h,v 1.2 2004/06/08 10:55:31 andrei Exp $
  *
  * Various URI checks
  *
@@ -57,5 +57,10 @@ int check_from(struct sip_msg* _msg, char* _str1, char* _str2);
  */
 int does_uri_exist(struct sip_msg* _msg, char* _table, char* _s2);
 
+
+int uridb_db_init(char* db_url);
+int uridb_db_bind(char* db_url);
+void uridb_db_close();
+int uridb_db_ver(char* db_url, str* name);
 
 #endif /* CHECKS_H */

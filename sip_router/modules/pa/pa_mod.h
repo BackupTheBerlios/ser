@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.8 2004/06/04 15:29:26 jamey Exp $
+ * $Id: pa_mod.h,v 1.9 2004/06/08 10:55:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,6 +32,7 @@
 
 #include "../../parser/msg_parser.h"
 #include "../tm/tm_load.h"
+#include "../../db/db.h"
 
 extern int default_expires;
 extern double default_priority;
@@ -39,6 +40,10 @@ extern int timer_interval;
 
 /* TM bind */
 extern struct tm_binds tmb;
+
+/* DB module bind */
+extern db_func_t pa_dbf;
+extern db_con_t* pa_db;
 
 /* PA database */
 extern int use_db;

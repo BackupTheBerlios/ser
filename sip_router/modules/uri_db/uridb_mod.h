@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.h,v 1.1 2004/04/14 13:38:24 janakj Exp $
+ * $Id: uridb_mod.h,v 1.2 2004/06/08 10:55:31 andrei Exp $
  *
  * Various URI related functions
  *
@@ -41,7 +41,6 @@
 /*
  * Module parameters variables
  */
-extern str db_url;                    /* Database URL */
 extern str uri_table;                 /* Name of URI table */
 extern str uri_user_col;              /* Name of username column in URI table */
 extern str uri_domain_col;            /* Name of domain column in URI table */
@@ -51,6 +50,5 @@ extern str subscriber_user_col;       /* Name of user column in subscriber table
 extern str subscriber_domain_col;     /* Name of domain column in subscriber table */
 extern int use_uri_table;             /* Whether or not should be uri table used */
 extern int use_domain;                /* Should does_uri_exist honor the domain part ? */
-extern db_con_t* db_handle;           /* Database connection handle */
 
 #endif /* URI_MOD_H */

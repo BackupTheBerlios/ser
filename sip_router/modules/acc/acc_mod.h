@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.12 2003/12/17 15:43:11 sobomax Exp $
+ * $Id: acc_mod.h,v 1.13 2004/06/08 10:55:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -30,6 +30,7 @@
  * ---------
  * 2003-04-04  grand acc cleanup (jiri)
  * 2003-11-04  multidomain support for mysql introduced (jiri)
+ * 2004-06-06  removed db_url, db_handle (andrei)
  */
 
 
@@ -67,9 +68,7 @@ extern int db_flag;
 extern int db_missed_flag;
 extern int db_localtime;
 
-extern db_con_t* db_handle; /* Database connection handle */
 
-extern char *db_url;
 extern char *db_table_acc;
 extern char *db_table_mc;
 

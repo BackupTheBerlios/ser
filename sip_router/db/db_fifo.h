@@ -1,5 +1,5 @@
 /*
- * $Id: db_fifo.h,v 1.3 2003/10/30 20:54:03 bogdan Exp $
+ * $Id: db_fifo.h,v 1.4 2004/06/08 10:55:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,8 +35,7 @@
 #define db_fifo_cmd  db_fifo
 #define FIFO_DB      "DB"
 
-extern db_con_t*   fifo_db_con;
-
+int init_db_fifo(char* db_url);
 int db_fifo( FILE *fifo_stream, char *response_file );
 
 

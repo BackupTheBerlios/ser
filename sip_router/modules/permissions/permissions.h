@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.h,v 1.5 2004/01/23 22:06:27 janakj Exp $
+ * $Id: permissions.h,v 1.6 2004/06/08 10:55:31 andrei Exp $
  *
  * PERMISSIONS module
  *
@@ -61,7 +61,6 @@ extern char* source_col;    /* Name of source address column */
 extern char* proto_col;     /* Name of protocol column */
 extern char* from_col;      /* Name of from pattern column */
 
-extern db_con_t* db_handle;
 
 #define DISABLE_CACHE 0
 #define ENABLE_CACHE 1

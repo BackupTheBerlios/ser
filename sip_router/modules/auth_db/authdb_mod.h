@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.h,v 1.5 2003/11/29 00:35:51 janakj Exp $
+ * $Id: authdb_mod.h,v 1.6 2004/06/08 10:55:29 andrei Exp $
  *
  * Digest Authentication - Database support
  *
@@ -41,7 +41,6 @@
  * Module parameters variables
  */
 
-extern str db_url;          /* Database URL */
 extern str user_column;     /* 'username' column name */
 extern str domain_column;   /* 'domain' column name */
 extern str rpid_column;     /* 'rpid' column name */
@@ -53,7 +52,6 @@ extern str pass_column_2;   /* Column containg HA1 string constructed
 extern int calc_ha1;          /* if set to 1, ha1 is calculated by the server */
 extern int use_domain;        /* If set to 1 then the domain will be used when selecting a row */
 extern int use_rpid;          /* If set to 1 then rpid will be fetched from rpid_column */
-extern db_con_t* db_handle;   /* Database connection handle */
 
 extern pre_auth_f pre_auth_func;
 extern post_auth_f post_auth_func;

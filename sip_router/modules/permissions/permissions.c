@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.c,v 1.11 2004/04/25 15:13:25 janakj Exp $
+ * $Id: permissions.c,v 1.12 2004/06/08 10:55:31 andrei Exp $
  *
  * PERMISSIONS module
  *
@@ -64,7 +64,6 @@ char* source_col = "src_ip";       /* Name of source address column */
 char* proto_col = "proto";         /* Name of protocol column */
 char* from_col = "from_pattern";   /* Name of from pattern column */
 
-db_con_t* db_handle = 0;
 
 /*
  * By default we check all branches
