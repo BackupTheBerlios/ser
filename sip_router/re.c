@@ -1,5 +1,5 @@
 /* 
- * $Id: re.c,v 1.4 2003/08/20 13:36:38 andrei Exp $
+ * $Id: re.c,v 1.5 2003/08/20 14:17:57 andrei Exp $
  *
  * regexp and regexp substitutions implementations
  * 
@@ -422,7 +422,7 @@ struct replace_lst* subst_run(struct subst_expr* se, char* input,
 				LOG(L_ERR, "ERROR: subst_run: out of mem (crt)\n");
 				goto error;
 			}
-			memset(*crt, sizeof(struct replace_lst), 0);
+			memset(*crt, 0, sizeof(struct replace_lst));
 			if (pmatch[0].rm_so==-1){
 				LOG(L_ERR, "ERROR: subst_run: unknown offset?\n");
 				goto error;

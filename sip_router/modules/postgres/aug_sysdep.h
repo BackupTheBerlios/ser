@@ -1,5 +1,5 @@
 /*
- * $Id: aug_sysdep.h,v 1.1 2003/04/08 01:25:35 lgfausak Exp $
+ * $Id: aug_sysdep.h,v 1.2 2003/08/20 14:17:57 andrei Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -40,10 +40,10 @@
 **
 **
 **                      $RCSfile: aug_sysdep.h,v $
-**                     $Revision: 1.1 $
+**                     $Revision: 1.2 $
 **
-**             Last change $Date: 2003/04/08 01:25:35 $
-**           Last change $Author: lgfausak $
+**             Last change $Date: 2003/08/20 14:17:57 $
+**           Last change $Author: andrei $
 **                        $State: Exp $
 **                       $Locker:  $
 **
@@ -324,7 +324,7 @@ typedef unsigned int augUInt32;
 */
 
 #ifndef AUG_CONFIGURATION
-error: os/cpu/compiler combination not configured in $Source: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/postgres/Attic/aug_sysdep.h,v $ $Revision: 1.1 $
+error: os/cpu/compiler combination not configured in $Source: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/postgres/Attic/aug_sysdep.h,v $ $Revision: 1.2 $
 #endif
 
 #endif /* AUG_SYSDEP_H */
