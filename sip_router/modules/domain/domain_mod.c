@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.12 2003/04/27 18:17:23 jiri Exp $
+ * $Id: domain_mod.c,v 1.13 2003/10/08 21:31:55 janakj Exp $
  *
  * Domain module
  *
@@ -151,6 +151,7 @@ static int mod_init(void)
 		}
 			
 		db_close(db_handle);
+		db_handle = 0;
 	}
 
 	return 0;
