@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.36 2002/05/26 21:38:02 andrei Exp $
+ * $Id: udp_server.c,v 1.37 2002/06/10 16:41:54 bogdan Exp $
  */
 
 #include <stdlib.h>
@@ -234,7 +234,12 @@ int udp_send(struct socket_info *source, char *buf, unsigned len,
 {
 
 	int n;
-
+	DBG("*******udp_send send on sock %d\n",source->socket);
+	DBG("*******tolen = %d\n",tolen);
+	//DBG("*******sa_len = %d\n",to->s.sa_len);
+	DBG("*******sa_family = %d\n",to->s.sa_family);
+	DBG("*******sa_data = [%.*s]\n",14,to->s.sa_data);
+	DBG("*******udp_send done\n");
 
 again:
 	n=sendto(source->socket, buf, len, 0, &to->s, tolen);
