@@ -1,1679 +1,2570 @@
-Only in kphone-3.11-gsm: .configure.in.swp
-diff kphone-3.11/Makefile.in kphone-3.11-gsm/Makefile.in
-105a106
-> LIBPCSCLITE = @LIBPCSCLITE@
-148a150,151
-> PCSCLITE_INCLUDES = @PCSCLITE_INCLUDES@
-> PCSCLITE_LDFLAGS = @PCSCLITE_LDFLAGS@
-Common subdirectories: kphone-3.11/admin and kphone-3.11-gsm/admin
-diff kphone-3.11/configure kphone-3.11-gsm/configure
+diff -r kphone-3.11-gsm/configure kphone-3.11/configure
 12c12
-< ac_default_prefix=/usr
----
-> ac_default_prefix=/usr/local
-13a14
-> ac_default_prefix=${KDEDIR:-/usr/local/kde}
-60a62,65
-> ac_help="$ac_help
->   --enable-gsm_auth    enable GSM authentication (default is NO)"
-> ac_help="$ac_help
->   --with-pcsclite-dir=DIR       where the root of pcsc-lite is installed "
-619c624
-< echo "configure:621: checking host system type" >&5
----
-> echo "configure:625: checking host system type" >&5
-640c645
-< echo "configure:642: checking target system type" >&5
----
-> echo "configure:646: checking target system type" >&5
-658c663
-< echo "configure:660: checking build system type" >&5
----
-> echo "configure:664: checking build system type" >&5
-717c722
-< echo "configure:719: checking for a BSD compatible install" >&5
----
-> echo "configure:723: checking for a BSD compatible install" >&5
-774c779
-< echo "configure:776: checking for -p flag to install" >&5
----
-> echo "configure:780: checking for -p flag to install" >&5
-797c802
-< echo "configure:799: checking whether build environment is sane" >&5
----
-> echo "configure:803: checking whether build environment is sane" >&5
-835c840
-< echo "configure:837: checking whether ${MAKE-make} sets \${MAKE}" >&5
----
-> echo "configure:841: checking whether ${MAKE-make} sets \${MAKE}" >&5
-862c867
-< PACKAGE=kphone
----
-> PACKAGE=kphone-3.11
-864c869
-< VERSION="3.0"
----
-> VERSION="2.2alpha1"
-881c886
-< echo "configure:883: checking for working aclocal" >&5
----
-> echo "configure:887: checking for working aclocal" >&5
-894c899
-< echo "configure:896: checking for working autoconf" >&5
----
-> echo "configure:900: checking for working autoconf" >&5
-907c912
-< echo "configure:909: checking for working automake" >&5
----
-> echo "configure:913: checking for working automake" >&5
-920c925
-< echo "configure:922: checking for working autoheader" >&5
----
-> echo "configure:926: checking for working autoheader" >&5
-933c938
-< echo "configure:935: checking for working makeinfo" >&5
----
-> echo "configure:939: checking for working makeinfo" >&5
-1039c1044
-< echo "configure:1041: checking for a C-Compiler" >&5
----
-> echo "configure:1045: checking for a C-Compiler" >&5
-1045c1050
-< echo "configure:1047: checking for $ac_word" >&5
----
-> echo "configure:1051: checking for $ac_word" >&5
-1074c1079
-< echo "configure:1076: checking for $ac_word" >&5
----
-> echo "configure:1080: checking for $ac_word" >&5
-1122c1127
-< echo "configure:1124: checking for $ac_word" >&5
----
-> echo "configure:1128: checking for $ac_word" >&5
-1151c1156
-< echo "configure:1153: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
----
-> echo "configure:1157: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
-1162c1167
-< #line 1164 "configure"
----
-> #line 1168 "configure"
-1167c1172
-< if { (eval echo configure:1169: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:1173: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-1193c1198
-< echo "configure:1195: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
----
-> echo "configure:1199: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
-1198c1203
-< echo "configure:1200: checking whether we are using GNU C" >&5
----
-> echo "configure:1204: checking whether we are using GNU C" >&5
-1207c1212
-< if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1209: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+< ac_default_prefix=/usr/local
+---
+> ac_default_prefix=/usr
+14d13
+< ac_default_prefix=${KDEDIR:-/usr/local/kde}
+62,65d60
+< ac_help="$ac_help
+<   --enable-gsm_auth    enable GSM authentication (default is NO)"
+< ac_help="$ac_help
+<   --with-pcsclite-dir=DIR       where the root of pcsc-lite is installed "
+624c619
+< echo "configure:625: checking host system type" >&5
+---
+> echo "configure:621: checking host system type" >&5
+645c640
+< echo "configure:646: checking target system type" >&5
+---
+> echo "configure:642: checking target system type" >&5
+663c658
+< echo "configure:664: checking build system type" >&5
+---
+> echo "configure:660: checking build system type" >&5
+722c717
+< echo "configure:723: checking for a BSD compatible install" >&5
+---
+> echo "configure:719: checking for a BSD compatible install" >&5
+779c774
+< echo "configure:780: checking for -p flag to install" >&5
+---
+> echo "configure:776: checking for -p flag to install" >&5
+802c797
+< echo "configure:803: checking whether build environment is sane" >&5
+---
+> echo "configure:799: checking whether build environment is sane" >&5
+840c835
+< echo "configure:841: checking whether ${MAKE-make} sets \${MAKE}" >&5
+---
+> echo "configure:837: checking whether ${MAKE-make} sets \${MAKE}" >&5
+867c862
+< PACKAGE=kphone-3.11
+---
+> PACKAGE=kphone
+869c864
+< VERSION="2.2alpha1"
+---
+> VERSION="3.0"
+886c881
+< echo "configure:887: checking for working aclocal" >&5
+---
+> echo "configure:883: checking for working aclocal" >&5
+899c894
+< echo "configure:900: checking for working autoconf" >&5
+---
+> echo "configure:896: checking for working autoconf" >&5
+912c907
+< echo "configure:913: checking for working automake" >&5
+---
+> echo "configure:909: checking for working automake" >&5
+925c920
+< echo "configure:926: checking for working autoheader" >&5
+---
+> echo "configure:922: checking for working autoheader" >&5
+938c933
+< echo "configure:939: checking for working makeinfo" >&5
+---
+> echo "configure:935: checking for working makeinfo" >&5
+1044c1039
+< echo "configure:1045: checking for a C-Compiler" >&5
+---
+> echo "configure:1041: checking for a C-Compiler" >&5
+1050c1045
+< echo "configure:1051: checking for $ac_word" >&5
+---
+> echo "configure:1047: checking for $ac_word" >&5
+1079c1074
+< echo "configure:1080: checking for $ac_word" >&5
+---
+> echo "configure:1076: checking for $ac_word" >&5
+1127c1122
+< echo "configure:1128: checking for $ac_word" >&5
+---
+> echo "configure:1124: checking for $ac_word" >&5
+1156c1151
+< echo "configure:1157: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+---
+> echo "configure:1153: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+1167c1162
+< #line 1168 "configure"
+---
+> #line 1164 "configure"
+1172c1167
+< if { (eval echo configure:1173: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:1169: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+1198c1193
+< echo "configure:1199: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+---
+> echo "configure:1195: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+1203c1198
+< echo "configure:1204: checking whether we are using GNU C" >&5
+---
+> echo "configure:1200: checking whether we are using GNU C" >&5
+1212c1207
+< if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1213: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
 ---
-> if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1213: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
-1228c1233
-< echo "configure:1230: checking whether ${CC-cc} accepts -g" >&5
+> if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1209: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+1233c1228
+< echo "configure:1234: checking whether ${CC-cc} accepts -g" >&5
 ---
-> echo "configure:1234: checking whether ${CC-cc} accepts -g" >&5
-1264c1269
-< echo "configure:1266: checking whether ${CC-cc} accepts -pg" >&5
+> echo "configure:1230: checking whether ${CC-cc} accepts -g" >&5
+1269c1264
+< echo "configure:1270: checking whether ${CC-cc} accepts -pg" >&5
 ---
-> echo "configure:1270: checking whether ${CC-cc} accepts -pg" >&5
-1310c1315
-< echo "configure:1312: checking how to run the C preprocessor" >&5
+> echo "configure:1266: checking whether ${CC-cc} accepts -pg" >&5
+1315c1310
+< echo "configure:1316: checking how to run the C preprocessor" >&5
 ---
-> echo "configure:1316: checking how to run the C preprocessor" >&5
-1325c1330
-< #line 1327 "configure"
+> echo "configure:1312: checking how to run the C preprocessor" >&5
+1330c1325
+< #line 1331 "configure"
 ---
-> #line 1331 "configure"
-1331c1336
-< { (eval echo configure:1333: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+> #line 1327 "configure"
+1336c1331
+< { (eval echo configure:1337: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ---
-> { (eval echo configure:1337: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-1342c1347
-< #line 1344 "configure"
+> { (eval echo configure:1333: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+1347c1342
+< #line 1348 "configure"
 ---
-> #line 1348 "configure"
-1348c1353
-< { (eval echo configure:1350: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+> #line 1344 "configure"
+1353c1348
+< { (eval echo configure:1354: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ---
-> { (eval echo configure:1354: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-1372c1377
-< echo "configure:1374: checking for a C++-Compiler" >&5
+> { (eval echo configure:1350: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+1377c1372
+< echo "configure:1378: checking for a C++-Compiler" >&5
 ---
-> echo "configure:1378: checking for a C++-Compiler" >&5
-1378c1383
-< echo "configure:1380: checking for $ac_word" >&5
+> echo "configure:1374: checking for a C++-Compiler" >&5
+1383c1378
+< echo "configure:1384: checking for $ac_word" >&5
 ---
-> echo "configure:1384: checking for $ac_word" >&5
-1407c1412
-< echo "configure:1409: checking for $ac_word" >&5
+> echo "configure:1380: checking for $ac_word" >&5
+1412c1407
+< echo "configure:1413: checking for $ac_word" >&5
 ---
-> echo "configure:1413: checking for $ac_word" >&5
-1436c1441
-< echo "configure:1438: checking for $ac_word" >&5
+> echo "configure:1409: checking for $ac_word" >&5
+1441c1436
+< echo "configure:1442: checking for $ac_word" >&5
 ---
-> echo "configure:1442: checking for $ac_word" >&5
-1465c1470
-< echo "configure:1467: checking for $ac_word" >&5
+> echo "configure:1438: checking for $ac_word" >&5
+1470c1465
+< echo "configure:1471: checking for $ac_word" >&5
 ---
-> echo "configure:1471: checking for $ac_word" >&5
-1494c1499
-< echo "configure:1496: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
+> echo "configure:1467: checking for $ac_word" >&5
+1499c1494
+< echo "configure:1500: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
 ---
-> echo "configure:1500: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
-1510c1515
-< #line 1512 "configure"
+> echo "configure:1496: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) works" >&5
+1515c1510
+< #line 1516 "configure"
 ---
-> #line 1516 "configure"
-1515c1520
-< if { (eval echo configure:1517: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+> #line 1512 "configure"
+1520c1515
+< if { (eval echo configure:1521: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
 ---
-> if { (eval echo configure:1521: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-1541c1546
-< echo "configure:1543: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
+> if { (eval echo configure:1517: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+1546c1541
+< echo "configure:1547: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
 ---
-> echo "configure:1547: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
-1546c1551
-< echo "configure:1548: checking whether we are using GNU C++" >&5
+> echo "configure:1543: checking whether the C++ compiler ($CXX $CXXFLAGS $LDFLAGS) is a cross-compiler" >&5
+1551c1546
+< echo "configure:1552: checking whether we are using GNU C++" >&5
 ---
-> echo "configure:1552: checking whether we are using GNU C++" >&5
-1555c1560
-< if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1557: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+> echo "configure:1548: checking whether we are using GNU C++" >&5
+1560c1555
+< if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1561: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
 ---
-> if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1561: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
-1574c1579
-< echo "configure:1576: checking whether ${CXX-g++} accepts -g" >&5
+> if { ac_try='${CXX-g++} -E conftest.C'; { (eval echo configure:1557: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+1579c1574
+< echo "configure:1580: checking whether ${CXX-g++} accepts -g" >&5
 ---
-> echo "configure:1580: checking whether ${CXX-g++} accepts -g" >&5
-1607c1612
-< echo "configure:1609: checking whether ${CXX-g++} accepts -pg" >&5
+> echo "configure:1576: checking whether ${CXX-g++} accepts -g" >&5
+1612c1607
+< echo "configure:1613: checking whether ${CXX-g++} accepts -pg" >&5
 ---
-> echo "configure:1613: checking whether ${CXX-g++} accepts -pg" >&5
-1630c1635
-< echo "configure:1632: checking whether $CXX supports -fno-exceptions" >&5
+> echo "configure:1609: checking whether ${CXX-g++} accepts -pg" >&5
+1635c1630
+< echo "configure:1636: checking whether $CXX supports -fno-exceptions" >&5
 ---
-> echo "configure:1636: checking whether $CXX supports -fno-exceptions" >&5
-1664c1669
-< echo "configure:1666: checking whether $CXX supports -fno-check-new" >&5
+> echo "configure:1632: checking whether $CXX supports -fno-exceptions" >&5
+1669c1664
+< echo "configure:1670: checking whether $CXX supports -fno-check-new" >&5
 ---
-> echo "configure:1670: checking whether $CXX supports -fno-check-new" >&5
-1703c1708
-< echo "configure:1705: checking whether $CXX supports -Wno-long-long" >&5
+> echo "configure:1666: checking whether $CXX supports -fno-check-new" >&5
+1708c1703
+< echo "configure:1709: checking whether $CXX supports -Wno-long-long" >&5
 ---
-> echo "configure:1709: checking whether $CXX supports -Wno-long-long" >&5
-1735c1740
-< echo "configure:1737: checking whether $CXX supports -Wnon-virtual-dtor" >&5
+> echo "configure:1705: checking whether $CXX supports -Wno-long-long" >&5
+1740c1735
+< echo "configure:1741: checking whether $CXX supports -Wnon-virtual-dtor" >&5
 ---
-> echo "configure:1741: checking whether $CXX supports -Wnon-virtual-dtor" >&5
-1767c1772
-< echo "configure:1769: checking whether $CXX supports -fno-builtin" >&5
+> echo "configure:1737: checking whether $CXX supports -Wnon-virtual-dtor" >&5
+1772c1767
+< echo "configure:1773: checking whether $CXX supports -fno-builtin" >&5
 ---
-> echo "configure:1773: checking whether $CXX supports -fno-builtin" >&5
-1812c1817
-< echo "configure:1814: checking whether $CXX supports -fexceptions" >&5
+> echo "configure:1769: checking whether $CXX supports -fno-builtin" >&5
+1817c1812
+< echo "configure:1818: checking whether $CXX supports -fexceptions" >&5
 ---
-> echo "configure:1818: checking whether $CXX supports -fexceptions" >&5
-1847c1852
-< echo "configure:1849: checking whether $CXX supports -frtti" >&5
+> echo "configure:1814: checking whether $CXX supports -fexceptions" >&5
+1852c1847
+< echo "configure:1853: checking whether $CXX supports -frtti" >&5
 ---
-> echo "configure:1853: checking whether $CXX supports -frtti" >&5
-1936c1941
-< echo "configure:1938: checking how to run the C++ preprocessor" >&5
+> echo "configure:1849: checking whether $CXX supports -frtti" >&5
+1941c1936
+< echo "configure:1942: checking how to run the C++ preprocessor" >&5
 ---
-> echo "configure:1942: checking how to run the C++ preprocessor" >&5
-1953c1958
-< #line 1955 "configure"
+> echo "configure:1938: checking how to run the C++ preprocessor" >&5
+1958c1953
+< #line 1959 "configure"
 ---
-> #line 1959 "configure"
-1958c1963
-< { (eval echo configure:1960: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+> #line 1955 "configure"
+1963c1958
+< { (eval echo configure:1964: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ---
-> { (eval echo configure:1964: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-2019c2024
-< echo "configure:2021: checking whether $CXX supports -frepo" >&5
+> { (eval echo configure:1960: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+2024c2019
+< echo "configure:2025: checking whether $CXX supports -frepo" >&5
 ---
-> echo "configure:2025: checking whether $CXX supports -frepo" >&5
-2054c2059
-< echo "configure:2056: checking whether $CXX supports -instances=explicit" >&5
+> echo "configure:2021: checking whether $CXX supports -frepo" >&5
+2059c2054
+< echo "configure:2060: checking whether $CXX supports -instances=explicit" >&5
 ---
-> echo "configure:2060: checking whether $CXX supports -instances=explicit" >&5
-2214c2219
-< echo "configure:2216: checking for ld used by GCC" >&5
+> echo "configure:2056: checking whether $CXX supports -instances=explicit" >&5
+2219c2214
+< echo "configure:2220: checking for ld used by GCC" >&5
 ---
-> echo "configure:2220: checking for ld used by GCC" >&5
-2244c2249
-< echo "configure:2246: checking for GNU ld" >&5
+> echo "configure:2216: checking for ld used by GCC" >&5
+2249c2244
+< echo "configure:2250: checking for GNU ld" >&5
 ---
-> echo "configure:2250: checking for GNU ld" >&5
-2247c2252
-< echo "configure:2249: checking for non-GNU ld" >&5
+> echo "configure:2246: checking for GNU ld" >&5
+2252c2247
+< echo "configure:2253: checking for non-GNU ld" >&5
 ---
-> echo "configure:2253: checking for non-GNU ld" >&5
-2282c2287
-< echo "configure:2284: checking if the linker ($LD) is GNU ld" >&5
+> echo "configure:2249: checking for non-GNU ld" >&5
+2287c2282
+< echo "configure:2288: checking if the linker ($LD) is GNU ld" >&5
 ---
-> echo "configure:2288: checking if the linker ($LD) is GNU ld" >&5
-2299c2304
-< echo "configure:2301: checking for $LD option to reload object files" >&5
+> echo "configure:2284: checking if the linker ($LD) is GNU ld" >&5
+2304c2299
+< echo "configure:2305: checking for $LD option to reload object files" >&5
 ---
-> echo "configure:2305: checking for $LD option to reload object files" >&5
-2311c2316
-< echo "configure:2313: checking for BSD-compatible nm" >&5
+> echo "configure:2301: checking for $LD option to reload object files" >&5
+2316c2311
+< echo "configure:2317: checking for BSD-compatible nm" >&5
 ---
-> echo "configure:2317: checking for BSD-compatible nm" >&5
-2349c2354
-< echo "configure:2351: checking whether ln -s works" >&5
+> echo "configure:2313: checking for BSD-compatible nm" >&5
+2354c2349
+< echo "configure:2355: checking whether ln -s works" >&5
 ---
-> echo "configure:2355: checking whether ln -s works" >&5
-2370c2375
-< echo "configure:2372: checking how to recognise dependant libraries" >&5
+> echo "configure:2351: checking whether ln -s works" >&5
+2375c2370
+< echo "configure:2376: checking how to recognise dependant libraries" >&5
 ---
-> echo "configure:2376: checking how to recognise dependant libraries" >&5
-2558c2563
-< echo "configure:2560: checking for ${ac_tool_prefix}file" >&5
+> echo "configure:2372: checking how to recognise dependant libraries" >&5
+2563c2558
+< echo "configure:2564: checking for ${ac_tool_prefix}file" >&5
 ---
-> echo "configure:2564: checking for ${ac_tool_prefix}file" >&5
-2620c2625
-< echo "configure:2622: checking for file" >&5
+> echo "configure:2560: checking for ${ac_tool_prefix}file" >&5
+2625c2620
+< echo "configure:2626: checking for file" >&5
 ---
-> echo "configure:2626: checking for file" >&5
-2691c2696
-< echo "configure:2693: checking for $ac_word" >&5
+> echo "configure:2622: checking for file" >&5
+2696c2691
+< echo "configure:2697: checking for $ac_word" >&5
 ---
-> echo "configure:2697: checking for $ac_word" >&5
-2723c2728
-< echo "configure:2725: checking for $ac_word" >&5
+> echo "configure:2693: checking for $ac_word" >&5
+2728c2723
+< echo "configure:2729: checking for $ac_word" >&5
 ---
-> echo "configure:2729: checking for $ac_word" >&5
-2758c2763
-< echo "configure:2760: checking for $ac_word" >&5
+> echo "configure:2725: checking for $ac_word" >&5
+2763c2758
+< echo "configure:2764: checking for $ac_word" >&5
 ---
-> echo "configure:2764: checking for $ac_word" >&5
-2790c2795
-< echo "configure:2792: checking for $ac_word" >&5
+> echo "configure:2760: checking for $ac_word" >&5
+2795c2790
+< echo "configure:2796: checking for $ac_word" >&5
 ---
-> echo "configure:2796: checking for $ac_word" >&5
-2857,2858c2862,2863
-<   echo '#line 2859 "configure"' > conftest.$ac_ext
-<   if { (eval echo configure:2860: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
->   echo '#line 2863 "configure"' > conftest.$ac_ext
->   if { (eval echo configure:2864: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-2879c2884
-< echo "configure:2881: checking whether the C compiler needs -belf" >&5
----
-> echo "configure:2885: checking whether the C compiler needs -belf" >&5
-2892c2897
-< #line 2894 "configure"
----
-> #line 2898 "configure"
-2899c2904
-< if { (eval echo configure:2901: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:2905: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-2930c2935
-< echo "configure:2932: checking for Cygwin environment" >&5
----
-> echo "configure:2936: checking for Cygwin environment" >&5
-2935c2940
-< #line 2937 "configure"
----
-> #line 2941 "configure"
-2946c2951
-< if { (eval echo configure:2948: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:2952: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-2963c2968
-< echo "configure:2965: checking for mingw32 environment" >&5
----
-> echo "configure:2969: checking for mingw32 environment" >&5
-2968c2973
-< #line 2970 "configure"
----
-> #line 2974 "configure"
-2975c2980
-< if { (eval echo configure:2977: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:2981: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-3110c3115
-< echo "configure:3112: checking for object suffix" >&5
----
-> echo "configure:3116: checking for object suffix" >&5
-3116c3121
-< if { (eval echo configure:3118: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:3122: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-3136c3141
-< echo "configure:3138: checking for executable suffix" >&5
----
-> echo "configure:3142: checking for executable suffix" >&5
-3146c3151
-<   if { (eval echo configure:3148: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; }; then
----
->   if { (eval echo configure:3152: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; }; then
-3192c3197
-< echo "configure:3194: checking for $ac_word" >&5
----
-> echo "configure:3198: checking for $ac_word" >&5
-3226c3231
-< echo "configure:3228: checking for $ac_word" >&5
----
-> echo "configure:3232: checking for $ac_word" >&5
-3271c3276
-< echo "configure:3273: checking for $ac_word" >&5
----
-> echo "configure:3277: checking for $ac_word" >&5
-3324c3329
-< echo "configure:3326: checking for main in -lcompat" >&5
----
-> echo "configure:3330: checking for main in -lcompat" >&5
-3332c3337
-< #line 3334 "configure"
----
-> #line 3338 "configure"
-3339c3344
-< if { (eval echo configure:3341: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3345: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3361c3366
-< echo "configure:3363: checking for crypt in -lcrypt" >&5
----
-> echo "configure:3367: checking for crypt in -lcrypt" >&5
-3369c3374
-< #line 3371 "configure"
----
-> #line 3375 "configure"
-3380c3385
-< if { (eval echo configure:3382: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3386: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3399c3404
-< echo "configure:3401: checking for crypt in -lc" >&5
----
-> echo "configure:3405: checking for crypt in -lc" >&5
-3407c3412
-< #line 3409 "configure"
----
-> #line 3413 "configure"
-3418c3423
-< if { (eval echo configure:3420: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3424: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3437c3442
-<         echo "configure: error: you have no crypt in either libcrypt or libc.
----
->         echo "configure: warning: you have no crypt in either libcrypt or libc.
-3441c3446
-<       exit 1;
----
->       
-3455c3460
-< echo "configure:3457: checking for socklen_t" >&5
----
-> echo "configure:3461: checking for socklen_t" >&5
-3472c3477
-< #line 3474 "configure"
----
-> #line 3478 "configure"
-3485c3490
-< if { (eval echo configure:3487: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:3491: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-3493c3498
-< #line 3495 "configure"
----
-> #line 3499 "configure"
-3506c3511
-< if { (eval echo configure:3508: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:3512: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-3552c3557
-< echo "configure:3554: checking for dnet_ntoa in -ldnet" >&5
----
-> echo "configure:3558: checking for dnet_ntoa in -ldnet" >&5
-3560c3565
-< #line 3562 "configure"
----
-> #line 3566 "configure"
-3571c3576
-< if { (eval echo configure:3573: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3577: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3593c3598
-< echo "configure:3595: checking for dnet_ntoa in -ldnet_stub" >&5
----
-> echo "configure:3599: checking for dnet_ntoa in -ldnet_stub" >&5
-3601c3606
-< #line 3603 "configure"
----
-> #line 3607 "configure"
-3612c3617
-< if { (eval echo configure:3614: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3618: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3634c3639
-< echo "configure:3636: checking for inet_ntoa" >&5
----
-> echo "configure:3640: checking for inet_ntoa" >&5
-3639c3644
-< #line 3641 "configure"
----
-> #line 3645 "configure"
-3662c3667
-< if { (eval echo configure:3664: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3668: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3683c3688
-< echo "configure:3685: checking for inet_ntoa in -lnsl" >&5
----
-> echo "configure:3689: checking for inet_ntoa in -lnsl" >&5
-3691c3696
-< #line 3693 "configure"
----
-> #line 3697 "configure"
-3702c3707
-< if { (eval echo configure:3704: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3708: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3724c3729
-< echo "configure:3726: checking for connect" >&5
----
-> echo "configure:3730: checking for connect" >&5
-3729c3734
-< #line 3731 "configure"
----
-> #line 3735 "configure"
-3752c3757
-< if { (eval echo configure:3754: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3758: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3773c3778
-< echo "configure:3775: checking for connect in -lsocket" >&5
----
-> echo "configure:3779: checking for connect in -lsocket" >&5
-3781c3786
-< #line 3783 "configure"
----
-> #line 3787 "configure"
-3792c3797
-< if { (eval echo configure:3794: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3798: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3815c3820
-< echo "configure:3817: checking for remove" >&5
----
-> echo "configure:3821: checking for remove" >&5
-3820c3825
-< #line 3822 "configure"
----
-> #line 3826 "configure"
-3843c3848
-< if { (eval echo configure:3845: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3849: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3864c3869
-< echo "configure:3866: checking for remove in -lposix" >&5
----
-> echo "configure:3870: checking for remove in -lposix" >&5
-3872c3877
-< #line 3874 "configure"
----
-> #line 3878 "configure"
-3883c3888
-< if { (eval echo configure:3885: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3889: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3907c3912
-< echo "configure:3909: checking for shmat" >&5
----
-> echo "configure:3913: checking for shmat" >&5
-3912c3917
-< #line 3914 "configure"
----
-> #line 3918 "configure"
-3935c3940
-< if { (eval echo configure:3937: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3941: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3953c3958
-< echo "configure:3955: checking for shmat in -lipc" >&5
----
-> echo "configure:3959: checking for shmat in -lipc" >&5
-3961c3966
-< #line 3963 "configure"
----
-> #line 3967 "configure"
-3972c3977
-< if { (eval echo configure:3974: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:3978: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-3997c4002
-< echo "configure:3999: checking for res_init" >&5
----
-> echo "configure:4003: checking for res_init" >&5
-4002c4007
-< #line 4004 "configure"
----
-> #line 4008 "configure"
-4025c4030
-< if { (eval echo configure:4027: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4031: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4043c4048
-< echo "configure:4045: checking for res_init in -lresolv" >&5
----
-> echo "configure:4049: checking for res_init in -lresolv" >&5
-4051c4056
-< #line 4053 "configure"
----
-> #line 4057 "configure"
-4062c4067
-< if { (eval echo configure:4064: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4068: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4089c4094
-< echo "configure:4091: checking for killpg in -lucb" >&5
----
-> echo "configure:4095: checking for killpg in -lucb" >&5
-4097c4102
-< #line 4099 "configure"
----
-> #line 4103 "configure"
-4108c4113
-< if { (eval echo configure:4110: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4114: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4131c4136
-< echo "configure:4133: checking LynxOS header file wrappers" >&5
----
-> echo "configure:4137: checking LynxOS header file wrappers" >&5
-4135c4140
-< echo "configure:4137: checking for gethostbyname in -lbsd" >&5
----
-> echo "configure:4141: checking for gethostbyname in -lbsd" >&5
-4143c4148
-< #line 4145 "configure"
----
-> #line 4149 "configure"
-4154c4159
-< if { (eval echo configure:4156: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4160: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4177c4182
-< echo "configure:4179: checking size of int" >&5
----
-> echo "configure:4183: checking size of int" >&5
-4185c4190
-< #line 4187 "configure"
----
-> #line 4191 "configure"
-4196c4201
-< if { (eval echo configure:4198: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
----
-> if { (eval echo configure:4202: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
-4215c4220
-< echo "configure:4217: checking size of long" >&5
----
-> echo "configure:4221: checking size of long" >&5
-4223c4228
-< #line 4225 "configure"
----
-> #line 4229 "configure"
-4234c4239
-< if { (eval echo configure:4236: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
----
-> if { (eval echo configure:4240: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
-4253c4258
-< echo "configure:4255: checking size of char *" >&5
----
-> echo "configure:4259: checking size of char *" >&5
-4261c4266
-< #line 4263 "configure"
----
-> #line 4267 "configure"
-4272c4277
-< if { (eval echo configure:4274: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
----
-> if { (eval echo configure:4278: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
-4291c4296
-< echo "configure:4293: checking size of char" >&5
----
-> echo "configure:4297: checking size of char" >&5
-4299c4304
-< #line 4301 "configure"
----
-> #line 4305 "configure"
-4310c4315
-< if { (eval echo configure:4312: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
----
-> if { (eval echo configure:4316: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
-4331c4336
-< echo "configure:4333: checking for dlopen in -ldl" >&5
----
-> echo "configure:4337: checking for dlopen in -ldl" >&5
-4339c4344
-< #line 4341 "configure"
----
-> #line 4345 "configure"
-4350c4355
-< if { (eval echo configure:4352: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4356: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4375c4380
-< echo "configure:4377: checking for shl_unload in -ldld" >&5
----
-> echo "configure:4381: checking for shl_unload in -ldld" >&5
-4383c4388
-< #line 4385 "configure"
----
-> #line 4389 "configure"
-4394c4399
-< if { (eval echo configure:4396: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4400: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4423c4428
-< echo "configure:4425: checking for extra includes" >&5
----
-> echo "configure:4429: checking for extra includes" >&5
-4454c4459
-< echo "configure:4456: checking for extra libs" >&5
----
-> echo "configure:4460: checking for extra libs" >&5
-4486a4492,4547
-> echo $ac_n "checking for libz""... $ac_c" 1>&6
-> echo "configure:4494: checking for libz" >&5
-> if eval "test \"`echo '$''{'ac_cv_lib_z'+set}'`\" = set"; then
->   echo $ac_n "(cached) $ac_c" 1>&6
-> else
->   
-> ac_ext=c
-> # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-> ac_cpp='$CPP $CPPFLAGS'
-> ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-> ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-> cross_compiling=$ac_cv_prog_cc_cross
-> 
-> kde_save_LIBS="$LIBS"
-> LIBS="$all_libraries $USER_LDFLAGS -lz $LIBSOCKET"
-> kde_save_CFLAGS="$CFLAGS"
-> CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
-> cat > conftest.$ac_ext <<EOF
-> #line 4511 "configure"
-> #include "confdefs.h"
-> 
-> #include<zlib.h>
-> 
-> int main() {
-> return (zlibVersion() == ZLIB_VERSION); 
-> ; return 0; }
-> EOF
-> if { (eval echo configure:4520: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
->   rm -rf conftest*
->   eval "ac_cv_lib_z='-lz'"
-> else
->   echo "configure: failed program was:" >&5
->   cat conftest.$ac_ext >&5
->   rm -rf conftest*
->   eval "ac_cv_lib_z=no"
-> fi
-> rm -f conftest*
-> LIBS="$kde_save_LIBS"
-> CFLAGS="$kde_save_CFLAGS"
-> 
-> fi
-> if test ! "$ac_cv_lib_z" = no; then
->   cat >> confdefs.h <<EOF
-> #define HAVE_LIBZ 1
-> EOF
-> 
->   LIBZ="$ac_cv_lib_z"
->   
->   echo "$ac_t""$ac_cv_lib_z" 1>&6
-> else
->   { echo "configure: error: not found. Check your installation and look into config.log" 1>&2; exit 1; }
->   LIBZ=""
->   
-> fi
-> 
-> 
-4488c4549
-< echo "configure:4546: checking for X" >&5
----
-> echo "configure:4550: checking for X" >&5
-4522c4583
-< #line 4580 "configure"
----
-> #line 4584 "configure"
-4527c4588
-< { (eval echo configure:4585: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:4589: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-4596c4657
-< #line 4654 "configure"
----
-> #line 4658 "configure"
-4603c4664
-< if { (eval echo configure:4661: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4665: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4774c4835
-< echo "configure:4832: checking for IceConnectionNumber in -lICE" >&5
----
-> echo "configure:4836: checking for IceConnectionNumber in -lICE" >&5
-4782c4843
-< #line 4840 "configure"
----
-> #line 4844 "configure"
-4793c4854
-< if { (eval echo configure:4851: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4855: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4822c4883
-< echo "configure:4880: checking for libXext" >&5
----
-> echo "configure:4884: checking for libXext" >&5
-4834c4895
-< #line 4892 "configure"
----
-> #line 4896 "configure"
-4845c4906
-< if { (eval echo configure:4903: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:4907: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4933c4994
-< echo "configure:4991: checking for libpng" >&5
----
-> echo "configure:4995: checking for libpng" >&5
-4950c5011
-< #line 5008 "configure"
----
-> #line 5012 "configure"
-4963c5024
-< if { (eval echo configure:5021: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:5025: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-4993a5055,5242
-> echo $ac_n "checking for libjpeg6b""... $ac_c" 1>&6
-> echo "configure:5057: checking for libjpeg6b" >&5
-> if eval "test \"`echo '$''{'ac_cv_lib_jpeg_6b'+set}'`\" = set"; then
->   echo $ac_n "(cached) $ac_c" 1>&6
-> else
->   
-> ac_ext=c
-> # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-> ac_cpp='$CPP $CPPFLAGS'
-> ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-> ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-> cross_compiling=$ac_cv_prog_cc_cross
-> 
-> ac_save_LIBS="$LIBS"
-> LIBS="$all_libraries $USER_LDFLAGS -ljpeg6b -lm"
-> ac_save_CFLAGS="$CFLAGS"
-> CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
-> cat > conftest.$ac_ext <<EOF
-> #line 5074 "configure"
-> #include "confdefs.h"
-> /* Override any gcc2 internal prototype to avoid an error.  */
-> struct jpeg_decompress_struct;
-> typedef struct jpeg_decompress_struct * j_decompress_ptr;
-> typedef int size_t;
-> #ifdef __cplusplus
-> extern "C" {
-> #endif
->     void jpeg_CreateDecompress(j_decompress_ptr cinfo,
->                                     int version, size_t structsize);
-> #ifdef __cplusplus
-> }
-> #endif
-> /* We use char because int might match the return type of a gcc2
->     builtin and then its argument prototype would still apply.  */
-> 
-> int main() {
-> jpeg_CreateDecompress(0L, 0, 0);
-> ; return 0; }
-> EOF
-> if { (eval echo configure:5095: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
->   rm -rf conftest*
->   eval "ac_cv_lib_jpeg_6b=-ljpeg6b"
-> else
->   echo "configure: failed program was:" >&5
->   cat conftest.$ac_ext >&5
->   rm -rf conftest*
->   eval "ac_cv_lib_jpeg_6b=no"
-> fi
-> rm -f conftest*
-> LIBS="$ac_save_LIBS"
-> CFLAGS="$ac_save_CFLAGS"
-> 
-> fi
-> 
-> 
-> if eval "test ! \"`echo $ac_cv_lib_jpeg_6b`\" = no"; then
->   LIBJPEG="$ac_cv_lib_jpeg_6b"
->   echo "$ac_t""$ac_cv_lib_jpeg_6b" 1>&6
-> else
->   echo "$ac_t""no" 1>&6
->   
-> echo $ac_n "checking for libjpeg""... $ac_c" 1>&6
-> echo "configure:5118: checking for libjpeg" >&5
-> if eval "test \"`echo '$''{'ac_cv_lib_jpeg_normal'+set}'`\" = set"; then
->   echo $ac_n "(cached) $ac_c" 1>&6
-> else
->   
-> ac_ext=c
-> # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-> ac_cpp='$CPP $CPPFLAGS'
-> ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-> ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-> cross_compiling=$ac_cv_prog_cc_cross
-> 
-> ac_save_LIBS="$LIBS"
-> LIBS="$all_libraries $USER_LDFLAGS -ljpeg -lm"
-> ac_save_CFLAGS="$CFLAGS"
-> CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
-> cat > conftest.$ac_ext <<EOF
-> #line 5135 "configure"
-> #include "confdefs.h"
-> /* Override any gcc2 internal prototype to avoid an error.  */
-> struct jpeg_decompress_struct;
-> typedef struct jpeg_decompress_struct * j_decompress_ptr;
-> typedef int size_t;
-> #ifdef __cplusplus
-> extern "C" {
-> #endif
->     void jpeg_CreateDecompress(j_decompress_ptr cinfo,
->                                     int version, size_t structsize);
-> #ifdef __cplusplus
-> }
-> #endif
-> /* We use char because int might match the return type of a gcc2
->     builtin and then its argument prototype would still apply.  */
-> 
-> int main() {
-> jpeg_CreateDecompress(0L, 0, 0);
-> ; return 0; }
-> EOF
-> if { (eval echo configure:5156: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
->   rm -rf conftest*
->   eval "ac_cv_lib_jpeg_normal=-ljpeg"
-> else
->   echo "configure: failed program was:" >&5
->   cat conftest.$ac_ext >&5
->   rm -rf conftest*
->   eval "ac_cv_lib_jpeg_normal=no"
-> fi
-> rm -f conftest*
-> LIBS="$ac_save_LIBS"
-> CFLAGS="$ac_save_CFLAGS"
-> 
-> fi
-> 
-> 
-> if eval "test ! \"`echo $ac_cv_lib_jpeg_normal`\" = no"; then
->   LIBJPEG="$ac_cv_lib_jpeg_normal"
->   echo "$ac_t""$ac_cv_lib_jpeg_normal" 1>&6
-> else
->   echo "$ac_t""no" 1>&6
->   
-> 	if test -f "$kde_libraries/libjpeg.so"; then
-> 	   test -f ./libjpegkde.so || $LN_S $kde_libraries/libjpeg.so ./libjpegkde.so
-> 	   ac_cv_lib_jpeg="-L\${topdir} -ljpegkde"
-> 	else if test -f "$kde_libraries/libjpeg.sl"; then
-> 	   test -f ./libjpegkde.sl ||$LN_S $kde_libraries/libjpeg.sl ./libjpegkde.sl
-> 	   ac_cv_lib_jpeg="-L\${topdir} -ljpegkde"	
-> 	else if test -f "$kde_libraries/libjpeg.a"; then
-> 	   test -f ./libjpegkde.a || $LN_S $kde_libraries/libjpeg.a ./libjpegkde.a
-> 	   ac_cv_lib_jpeg="-L\${topdir} -ljpegkde"
->         else
-> 	  ac_cv_lib_jpeg=
-> 	fi
->       fi
->    fi
-> 
->    LIBJPEG=$ac_cv_lib_jpeg
-> 
-> fi
-> 
-> 
-> fi
-> 
-> 
-> 
-> jpeg_incdirs="/usr/include /usr/local/include $kde_extra_includes"
-> 
-> jpeg_incdir=NO
-> for i in $jpeg_incdirs;
-> do
->   for j in jpeglib.h;
->   do
->     if test -r "$i/$j"; then
->       jpeg_incdir=$i
->       break 2
->     fi
->   done
-> done
-> 
-> test "x$jpeg_incdir" = xNO && jpeg_incdir=
-> 
-> if test -n "$jpeg_incdir" && test -n "$LIBJPEG" ; then
->   cat >> confdefs.h <<EOF
-> #define HAVE_LIBJPEG 1
-> EOF
-> 
-> else
->   if test -n "$jpeg_incdir" || test -n "$LIBJPEG" ; then
->     echo "configure: warning: 
-> There is an installation error in jpeg support. You seem to have only one
-> of either the headers _or_ the libraries installed. You may need to either
-> provide correct --with-extra-... options, or the development package of
-> libjpeg6b. You can get a source package of libjpeg from http://www.ijg.org/
-> Disabling JPEG support.
-> " 1>&2
->   else
->     echo "configure: warning: libjpeg not found. disable JPEG support." 1>&2
->   fi
->   jpeg_incdir=
->   LIBJPEG=
-> fi
-> 
-> 
-> 
-> 
-> 
-> 
-5071c5320
-< echo "configure:5317: checking for Qt" >&5
----
-> echo "configure:5321: checking for Qt" >&5
-5230c5479
-< if { (eval echo configure:5476: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
----
-> if { (eval echo configure:5480: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
-5288c5537
-< echo "configure:5534: checking if Qt compiles without flags" >&5
----
-> echo "configure:5538: checking if Qt compiles without flags" >&5
-5367c5616
-< if { (eval echo configure:5613: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
----
-> if { (eval echo configure:5617: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
-5436c5685
-< echo "configure:5682: checking for moc" >&5
----
-> echo "configure:5686: checking for moc" >&5
-5502c5751
-< echo "configure:5748: checking for uic" >&5
----
-> echo "configure:5752: checking for uic" >&5
-5587c5836
-< echo "configure:5833: checking for rpath" >&5
----
-> echo "configure:5837: checking for rpath" >&5
-5616c5865
-< echo "configure:5862: checking for KDE" >&5
----
-> echo "configure:5866: checking for KDE" >&5
-5792c6041
-< echo "configure:6038: checking for KDE paths" >&5
----
-> echo "configure:6042: checking for KDE paths" >&5
-5879c6128
-< echo "configure:6125: checking for KDE headers installed" >&5
----
-> echo "configure:6129: checking for KDE headers installed" >&5
-5919c6168
-<  if { (eval echo configure:6165: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
->  if { (eval echo configure:6169: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-5956c6205
-< echo "configure:6202: checking for KDE libraries installed" >&5
----
-> echo "configure:6206: checking for KDE libraries installed" >&5
-5959c6208
-< if { (eval echo configure:6205: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
----
-> if { (eval echo configure:6209: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
-6110c6359
-< echo "configure:6356: checking for KDE headers installed" >&5
----
-> echo "configure:6360: checking for KDE headers installed" >&5
-6150c6399
-<  if { (eval echo configure:6396: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
->  if { (eval echo configure:6400: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-6187c6436
-< echo "configure:6433: checking for KDE libraries installed" >&5
----
-> echo "configure:6437: checking for KDE libraries installed" >&5
-6190c6439
-< if { (eval echo configure:6436: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
----
-> if { (eval echo configure:6440: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
-6278c6527
-< echo "configure:6524: checking for dcopidl" >&5
----
-> echo "configure:6528: checking for dcopidl" >&5
-6338c6587
-< echo "configure:6584: checking for dcopidl2cpp" >&5
----
-> echo "configure:6588: checking for dcopidl2cpp" >&5
-6398c6647
-< echo "configure:6644: checking for mcopidl" >&5
----
-> echo "configure:6648: checking for mcopidl" >&5
-6458c6707
-< echo "configure:6704: checking for kdb2html" >&5
----
-> echo "configure:6708: checking for kdb2html" >&5
-6518c6767
-< echo "configure:6764: checking for artsc-config" >&5
----
-> echo "configure:6768: checking for artsc-config" >&5
-6578c6827
-< echo "configure:6824: checking for kde-config" >&5
----
-> echo "configure:6828: checking for kde-config" >&5
-6767c7016
-< echo "configure:7013: checking for $ac_hdr that defines DIR" >&5
----
-> echo "configure:7017: checking for $ac_hdr that defines DIR" >&5
-6772c7021
-< #line 7018 "configure"
----
-> #line 7022 "configure"
-6780c7029
-< if { (eval echo configure:7026: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:7030: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-6805c7054
-< echo "configure:7051: checking for opendir in -ldir" >&5
----
-> echo "configure:7055: checking for opendir in -ldir" >&5
-6813c7062
-< #line 7059 "configure"
----
-> #line 7063 "configure"
-6824c7073
-< if { (eval echo configure:7070: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7074: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-6846c7095
-< echo "configure:7092: checking for opendir in -lx" >&5
----
-> echo "configure:7096: checking for opendir in -lx" >&5
-6854c7103
-< #line 7100 "configure"
----
-> #line 7104 "configure"
-6865c7114
-< if { (eval echo configure:7111: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7115: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-6888c7137
-< echo "configure:7134: checking for ANSI C header files" >&5
----
-> echo "configure:7138: checking for ANSI C header files" >&5
-6893c7142
-< #line 7139 "configure"
----
-> #line 7143 "configure"
-6901c7150
-< { (eval echo configure:7147: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:7151: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-6918c7167
-< #line 7164 "configure"
----
-> #line 7168 "configure"
-6936c7185
-< #line 7182 "configure"
----
-> #line 7186 "configure"
-6957c7206
-< #line 7203 "configure"
----
-> #line 7207 "configure"
-6968c7217
-< if { (eval echo configure:7214: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
----
-> if { (eval echo configure:7218: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
-6995c7244
-< echo "configure:7241: checking for $ac_hdr" >&5
----
-> echo "configure:7245: checking for $ac_hdr" >&5
-7000c7249
-< #line 7246 "configure"
----
-> #line 7250 "configure"
-7005c7254
-< { (eval echo configure:7251: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:7255: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-7035c7284
-< echo "configure:7281: checking for $ac_hdr" >&5
----
-> echo "configure:7285: checking for $ac_hdr" >&5
-7040c7289
-< #line 7286 "configure"
----
-> #line 7290 "configure"
-7045c7294
-< { (eval echo configure:7291: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:7295: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-7075c7324
-< echo "configure:7321: checking for $ac_hdr" >&5
----
-> echo "configure:7325: checking for $ac_hdr" >&5
-7080c7329
-< #line 7326 "configure"
----
-> #line 7330 "configure"
-7085c7334
-< { (eval echo configure:7331: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:7335: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-7113c7362
-< echo "configure:7359: checking whether time.h and sys/time.h may both be included" >&5
----
-> echo "configure:7363: checking whether time.h and sys/time.h may both be included" >&5
-7118c7367
-< #line 7364 "configure"
----
-> #line 7368 "configure"
-7127c7376
-< if { (eval echo configure:7373: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:7377: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-7149c7398
-< echo "configure:7395: checking for long double" >&5
----
-> echo "configure:7399: checking for long double" >&5
-7160c7409
-< #line 7406 "configure"
----
-> #line 7410 "configure"
-7168c7417
-< if { (eval echo configure:7414: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
----
-> if { (eval echo configure:7418: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
-7195c7444
-< echo "configure:7441: checking for dlopen in -ldl" >&5
----
-> echo "configure:7445: checking for dlopen in -ldl" >&5
-7203c7452
-< #line 7449 "configure"
----
-> #line 7453 "configure"
-7214c7463
-< if { (eval echo configure:7460: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7464: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7239c7488
-< echo "configure:7485: checking for shl_unload in -ldld" >&5
----
-> echo "configure:7489: checking for shl_unload in -ldld" >&5
-7247c7496
-< #line 7493 "configure"
----
-> #line 7497 "configure"
-7258c7507
-< if { (eval echo configure:7504: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7508: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7288c7537
-< echo "configure:7534: checking for $ac_hdr" >&5
----
-> echo "configure:7538: checking for $ac_hdr" >&5
-7293c7542
-< #line 7539 "configure"
----
-> #line 7543 "configure"
-7298c7547
-< { (eval echo configure:7544: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:7548: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-7370c7619
-< echo "configure:7616: checking for $ac_func" >&5
----
-> echo "configure:7620: checking for $ac_func" >&5
-7375c7624
-< #line 7621 "configure"
----
-> #line 7625 "configure"
-7398c7647
-< if { (eval echo configure:7644: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7648: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7424c7673
-< echo "configure:7670: checking for getdomainname" >&5
----
-> echo "configure:7674: checking for getdomainname" >&5
-7447c7696
-< #line 7693 "configure"
----
-> #line 7697 "configure"
-7460c7709
-< if { (eval echo configure:7706: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
----
-> if { (eval echo configure:7710: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
-7485c7734
-< echo "configure:7731: checking if getdomainname needs custom prototype" >&5
----
-> echo "configure:7735: checking if getdomainname needs custom prototype" >&5
-7507c7756
-< #line 7753 "configure"
----
-> #line 7757 "configure"
-7522c7771
-< if { (eval echo configure:7768: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7772: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7565c7814
-< echo "configure:7811: checking for gethostname" >&5
----
-> echo "configure:7815: checking for gethostname" >&5
-7586c7835
-< #line 7832 "configure"
----
-> #line 7836 "configure"
-7599c7848
-< if { (eval echo configure:7845: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7849: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7623c7872
-< echo "configure:7869: checking if gethostname needs custom prototype" >&5
----
-> echo "configure:7873: checking if gethostname needs custom prototype" >&5
-7643c7892
-< #line 7889 "configure"
----
-> #line 7893 "configure"
-7658c7907
-< if { (eval echo configure:7904: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:7908: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7708c7957
-< echo "configure:7954: checking for sys/sockio.h" >&5
----
-> echo "configure:7958: checking for sys/sockio.h" >&5
-7713c7962
-< #line 7959 "configure"
----
-> #line 7963 "configure"
-7718c7967
-< { (eval echo configure:7964: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
----
-> { (eval echo configure:7968: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-7746c7995
-< echo "configure:7992: checking for OpenSSL" >&5
----
-> echo "configure:7996: checking for OpenSSL" >&5
-7814c8063
-< #line 8060 "configure"
----
-> #line 8064 "configure"
-7821c8070
-< if { (eval echo configure:8067: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
----
-> if { (eval echo configure:8071: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
-7846c8095,8096
-<   { echo "configure: error: SSL checking failed" 1>&2; exit 1; }
----
->   have_ssl=no
->   LIBSSL="";
-7872c8122
-< echo "configure:8119: checking whether OpenSSL uses rsaref" >&5
----
-> echo "configure:8123: checking whether OpenSSL uses rsaref" >&5
-7892a8143,8334
-> 
-> 
-> 
-> LIBPCSCLITE="";
-> PCSCLITE_INCLUDES="";
-> PCSCLITE_LDFLAGS="";
-> 
-> # Check whether --enable-gsm_auth or --disable-gsm_auth was given.
-> if test "${enable_gsm_auth+set}" = set; then
->   enableval="$enable_gsm_auth"
->   :
-> fi
-> 
-> if test -z "$enable_gsm_auth"; then
->     enable_gsm_auth=no
-> fi
-> 
-> if test "$enable_gsm_auth" = yes; then
-> 
-> 
-> 
-> 
-> LIBPCSCLITE="-lpcsclite"
-> echo $ac_n "checking for pcsc-lite""... $ac_c" 1>&6
-> echo "configure:8168: checking for pcsc-lite" >&5
-> 
-> ac_pcsclite_includes=NO ac_pcsclite_libraries=NO
-> pcsclite_libraries=""
-> pcsclite_includes=""
-> # Check whether --with-pcsclite-dir or --without-pcsclite-dir was given.
-> if test "${with_pcsclite_dir+set}" = set; then
->   withval="$with_pcsclite_dir"
->     ac_pcsclite_includes="$withval"/include
->        ac_pcsclite_libraries="$withval"/lib
->     
-> fi
-> 
-> 
-> if eval "test \"`echo '$''{'ac_cv_have_pcsclite'+set}'`\" = set"; then
->   echo $ac_n "(cached) $ac_c" 1>&6
-> else
->   #try to guess pcsc-lite locations
-> 
-> pcsclite_incdirs="/usr/include /usr/local/include"
-> pcsclite_incdirs="$ac_pcsclite_includes $pcsclite_incdirs"
-> 
-> pcsclite_incdir=NO
-> for i in $pcsclite_incdirs;
-> do
->   for j in winscard.h;
->   do
->     if test -r "$i/$j"; then
->       pcsclite_incdir=$i
->       break 2
->     fi
->   done
-> done
-> 
-> ac_pcsclite_includes="$pcsclite_incdir"
-> 
-> pcsclite_libdirs="/usr/lib /usr/local/lib"
-> if test ! "$ac_pcsclite_libraries" = "NO"; then
->   pcsclite_libdirs="$ac_pcsclite_libraries $pcsclite_libdirs"
-> fi
-> 
-> test=NONE
-> pcsclite_libdir=NONE
-> for dir in $pcsclite_libdirs; do
->   try="ls -1 $dir/libpcsclite*"
->   if test=`eval $try 2> /dev/null`; then pcsclite_libdir=$dir; break; else echo "tried $dir" >&5 ; fi
-> done
-> 
-> ac_pcsclite_libraries="$pcsclite_libdir"
-> 
-> 
-> ac_ext=c
-> # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-> ac_cpp='$CPP $CPPFLAGS'
-> ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-> ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-> cross_compiling=$ac_cv_prog_cc_cross
-> 
-> 
-> ac_cflags_safe="$CFLAGS"
-> ac_ldflags_safe="$LDFLAGS"
-> ac_libs_safe="$LIBS"
-> 
-> CFLAGS="$CFLAGS -I$pcsclite_incdir $pcsclite_includes"
-> LDFLAGS="-L$pcsclite_libdir $all_libraries"
-> LIBS="$LIBS $LIBPCSCLITE"
-> 
-> ac_ext=c
-> # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
-> ac_cpp='$CPP $CPPFLAGS'
-> ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
-> ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
-> cross_compiling=$ac_cv_prog_cc_cross
-> 
-> if test "$ac_pcsclite_includes" = NO || test "$ac_pcsclite_libraries" = NO; then
->   have_pcsclite=no
->   LIBPCSCLITE="";
->   echo "PCSC-Lite library not found: try without --enable-gsm_auth"
->   exit
-> else
->   have_pcsclite=yes;
-> fi
-> 
-> 
-> fi
-> 
-> 
-> eval "$ac_cv_have_pcsclite"
-> 
-> if test "$have_pcsclite" != yes; then
->   echo "$ac_t""$have_pcsclite" 1>&6;
-> else
->   # AC_DEFINE(WITH_GSM_AUTH, , [If we are going to use GSM authentication])
->   # CFLAGS="$CFLAGS -DWITH_GSM_AUTH"
->   CPPFLAGS="$CPPFLAGS -DWITH_GSM_AUTH"
->   ac_cv_have_pcsclite="have_pcsclite=yes \
->     ac_pcsclite_includes=$ac_pcsclite_includes \
-> 	ac_pcsclite_libraries=$ac_pcsclite_libraries"
->   echo "$ac_t""libraries $ac_pcsclite_libraries, headers $ac_pcsclite_includes" 1>&6
->   
->   pcsclite_libraries="$ac_pcsclite_libraries"
->   pcsclite_includes="$ac_pcsclite_includes"
-> 
-> fi
-> 
-> if test "$pcsclite_includes" = "/usr/include" || test  "$pcsclite_includes" = "/usr/local/include" || test -z "$pcsclite_includes"; then
->  PCSCLITE_INCLUDES="";
-> else
->  PCSCLITE_INCLUDES="-I$pcsclite_includes"
-> fi
-> 
-> if test "$pcsclite_libraries" = "/usr/lib" || test "$pcsclite_libraries" = "/usr/local/lib" || test -z "$pcsclite_libraries"; then
->  PCSCLITE_LDFLAGS=""
-> else
->  PCSCLITE_LDFLAGS="-L$pcsclite_libraries"
-> fi
-> 
-> 
-> 
-> 
-> 
-> 
-> fi
-> 
-> 
-> for ac_hdr in linux/telephony.h linux/ixjuser.h
-> do
-> ac_safe=`echo "$ac_hdr" | sed 'y%./+-%__p_%'`
-> echo $ac_n "checking for $ac_hdr""... $ac_c" 1>&6
-> echo "configure:8297: checking for $ac_hdr" >&5
-> if eval "test \"`echo '$''{'ac_cv_header_$ac_safe'+set}'`\" = set"; then
->   echo $ac_n "(cached) $ac_c" 1>&6
-> else
->   cat > conftest.$ac_ext <<EOF
-> #line 8302 "configure"
-> #include "confdefs.h"
-> #include <$ac_hdr>
-> EOF
-> ac_try="$ac_cpp conftest.$ac_ext >/dev/null 2>conftest.out"
-> { (eval echo configure:8307: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
-> ac_err=`grep -v '^ *+' conftest.out | grep -v "^conftest.${ac_ext}\$"`
-> if test -z "$ac_err"; then
->   rm -rf conftest*
->   eval "ac_cv_header_$ac_safe=yes"
-> else
->   echo "$ac_err" >&5
->   echo "configure: failed program was:" >&5
->   cat conftest.$ac_ext >&5
->   rm -rf conftest*
->   eval "ac_cv_header_$ac_safe=no"
-> fi
-> rm -f conftest*
-> fi
-> if eval "test \"`echo '$ac_cv_header_'$ac_safe`\" = yes"; then
->   echo "$ac_t""yes" 1>&6
->     ac_tr_hdr=HAVE_`echo $ac_hdr | sed 'y%abcdefghijklmnopqrstuvwxyz./-%ABCDEFGHIJKLMNOPQRSTUVWXYZ___%'`
->   cat >> confdefs.h <<EOF
-> #define $ac_tr_hdr 1
-> EOF
->  
-> else
->   echo "$ac_t""no" 1>&6
-> fi
-> done
-> 
-> 
-> 
-> 
-7912c8354
-< echo "configure:8206: checking if $i should be compiled" >&5
----
-> echo "configure:8355: checking if $i should be compiled" >&5
-8036d8477
-< kphonegsm/Makefile \
-8037a8479
-> kphonegsm/Makefile \
-8196a8639,8641
-> s%@PCSCLITE_INCLUDES@%$PCSCLITE_INCLUDES%g
-> s%@PCSCLITE_LDFLAGS@%$PCSCLITE_LDFLAGS%g
-> s%@LIBPCSCLITE@%$LIBPCSCLITE%g
-8243d8687
-< kphonegsm/Makefile \
-8244a8689
-> kphonegsm/Makefile \
-diff kphone-3.11/configure.in kphone-3.11-gsm/configure.in
-3a4,5
-> # I added support for PCSC-Lite library searching used
-> #   for GSM authentication support (Daniel Mierla)
-16c18
-< AM_INIT_AUTOMAKE(kphone-1.1, "2.2alpha1") dnl searches for some needed programs
----
-> AM_INIT_AUTOMAKE(kphone-3.11, "2.2alpha1") dnl searches for some needed programs
-183a186,300
-> LIBPCSCLITE="";
-> PCSCLITE_INCLUDES="";
-> PCSCLITE_LDFLAGS="";
-> 
-> AC_ARG_ENABLE(gsm_auth, [  --enable-gsm_auth    enable GSM authentication (default is NO)])
-> if test -z "$enable_gsm_auth"; then
->     enable_gsm_auth=no
-> fi
-> 
-> if test "$enable_gsm_auth" = yes; then
-> 
-> dnl ------------------------------------------------------------------------
-> dnl Try to find the PCSC-LITE headers and libraries.
-> dnl $(PCSCLITE_LDFLAGS) will be -Lpcscliteliblocation (if needed)
-> dnl and $(PCSCLITE_INCLUDES) will be -Ipcsclitehdrlocation (if needed)
-> dnl ------------------------------------------------------------------------
-> dnl
-> AC_DEFUN(AC_PATH_PCSCLITE,
-> [
-> LIBPCSCLITE="-lpcsclite"
-> AC_MSG_CHECKING([for pcsc-lite])
-> 
-> ac_pcsclite_includes=NO ac_pcsclite_libraries=NO
-> pcsclite_libraries=""
-> pcsclite_includes=""
-> AC_ARG_WITH(pcsclite-dir,
->     [  --with-pcsclite-dir=DIR       where the root of pcsc-lite is installed ],
->     [  ac_pcsclite_includes="$withval"/include
->        ac_pcsclite_libraries="$withval"/lib
->     ])
-> 
-> AC_CACHE_VAL(ac_cv_have_pcsclite,
-> [#try to guess pcsc-lite locations
-> 
-> pcsclite_incdirs="/usr/include /usr/local/include"
-> pcsclite_incdirs="$ac_pcsclite_includes $pcsclite_incdirs"
-> AC_FIND_FILE(winscard.h, $pcsclite_incdirs, pcsclite_incdir)
-> ac_pcsclite_includes="$pcsclite_incdir"
-> 
-> pcsclite_libdirs="/usr/lib /usr/local/lib"
-> if test ! "$ac_pcsclite_libraries" = "NO"; then
->   pcsclite_libdirs="$ac_pcsclite_libraries $pcsclite_libdirs"
-> fi
-> 
-> test=NONE
-> pcsclite_libdir=NONE
-> for dir in $pcsclite_libdirs; do
->   try="ls -1 $dir/libpcsclite*"
->   if test=`eval $try 2> /dev/null`; then pcsclite_libdir=$dir; break; else echo "tried $dir" >&AC_FD_CC ; fi
-> done
-> 
-> ac_pcsclite_libraries="$pcsclite_libdir"
-> 
-> AC_LANG_SAVE
-> AC_LANG_C
-> 
-> ac_cflags_safe="$CFLAGS"
-> ac_ldflags_safe="$LDFLAGS"
-> ac_libs_safe="$LIBS"
-> 
-> CFLAGS="$CFLAGS -I$pcsclite_incdir $pcsclite_includes"
-> LDFLAGS="-L$pcsclite_libdir $all_libraries"
-> LIBS="$LIBS $LIBPCSCLITE"
-> 
-> AC_LANG_RESTORE
-> if test "$ac_pcsclite_includes" = NO || test "$ac_pcsclite_libraries" = NO; then
->   have_pcsclite=no
->   LIBPCSCLITE="";
->   echo "PCSC-Lite library not found: try without --enable-gsm_auth"
->   exit
-> else
->   have_pcsclite=yes;
-> fi
-> 
-> ])
-> 
-> eval "$ac_cv_have_pcsclite"
-> 
-> if test "$have_pcsclite" != yes; then
->   AC_MSG_RESULT([$have_pcsclite]);
-> else
->   # AC_DEFINE(WITH_GSM_AUTH, , [If we are going to use GSM authentication])
->   # CFLAGS="$CFLAGS -DWITH_GSM_AUTH"
->   CPPFLAGS="$CPPFLAGS -DWITH_GSM_AUTH"
->   ac_cv_have_pcsclite="have_pcsclite=yes \
->     ac_pcsclite_includes=$ac_pcsclite_includes \
-> 	ac_pcsclite_libraries=$ac_pcsclite_libraries"
->   AC_MSG_RESULT([libraries $ac_pcsclite_libraries, headers $ac_pcsclite_includes])
->   
->   pcsclite_libraries="$ac_pcsclite_libraries"
->   pcsclite_includes="$ac_pcsclite_includes"
-> 
-> fi
-> 
-> if test "$pcsclite_includes" = "/usr/include" || test  "$pcsclite_includes" = "/usr/local/include" || test -z "$pcsclite_includes"; then
->  PCSCLITE_INCLUDES="";
-> else
->  PCSCLITE_INCLUDES="-I$pcsclite_includes"
-> fi
-> 
-> if test "$pcsclite_libraries" = "/usr/lib" || test "$pcsclite_libraries" = "/usr/local/lib" || test -z "$pcsclite_libraries"; then
->  PCSCLITE_LDFLAGS=""
-> else
->  PCSCLITE_LDFLAGS="-L$pcsclite_libraries"
-> fi
-> 
-> AC_SUBST(PCSCLITE_INCLUDES)
-> AC_SUBST(PCSCLITE_LDFLAGS)
-> AC_SUBST(LIBPCSCLITE)
-> ])
-> 
-> AC_PATH_PCSCLITE
-> 
-> fi
-> 
-194d310
-< kphonegsm/Makefile \
-195a312
-> kphonegsm/Makefile \
-Only in kphone-3.11-gsm: configure.in.old
-Common subdirectories: kphone-3.11/dissipate2 and kphone-3.11-gsm/dissipate2
-Common subdirectories: kphone-3.11/doc and kphone-3.11-gsm/doc
-Only in kphone-3.11-gsm: gsm
-Common subdirectories: kphone-3.11/ilbc and kphone-3.11-gsm/ilbc
-Common subdirectories: kphone-3.11/kphone and kphone-3.11-gsm/kphone
-Only in kphone-3.11-gsm: kphone-3.11.kdevprj
-Only in kphone-3.11-gsm: kphone-3.11.kdevses
-Common subdirectories: kphone-3.11/kphonegsm and kphone-3.11-gsm/kphonegsm
+> echo "configure:2792: checking for $ac_word" >&5
+2862,2863c2857,2858
+<   echo '#line 2863 "configure"' > conftest.$ac_ext
+<   if { (eval echo configure:2864: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+>   echo '#line 2859 "configure"' > conftest.$ac_ext
+>   if { (eval echo configure:2860: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+2884c2879
+< echo "configure:2885: checking whether the C compiler needs -belf" >&5
+---
+> echo "configure:2881: checking whether the C compiler needs -belf" >&5
+2897c2892
+< #line 2898 "configure"
+---
+> #line 2894 "configure"
+2904c2899
+< if { (eval echo configure:2905: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:2901: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+2935c2930
+< echo "configure:2936: checking for Cygwin environment" >&5
+---
+> echo "configure:2932: checking for Cygwin environment" >&5
+2940c2935
+< #line 2941 "configure"
+---
+> #line 2937 "configure"
+2951c2946
+< if { (eval echo configure:2952: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:2948: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+2968c2963
+< echo "configure:2969: checking for mingw32 environment" >&5
+---
+> echo "configure:2965: checking for mingw32 environment" >&5
+2973c2968
+< #line 2974 "configure"
+---
+> #line 2970 "configure"
+2980c2975
+< if { (eval echo configure:2981: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:2977: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+3115c3110
+< echo "configure:3116: checking for object suffix" >&5
+---
+> echo "configure:3112: checking for object suffix" >&5
+3121c3116
+< if { (eval echo configure:3122: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:3118: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+3141c3136
+< echo "configure:3142: checking for executable suffix" >&5
+---
+> echo "configure:3138: checking for executable suffix" >&5
+3151c3146
+<   if { (eval echo configure:3152: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; }; then
+---
+>   if { (eval echo configure:3148: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; }; then
+3197c3192
+< echo "configure:3198: checking for $ac_word" >&5
+---
+> echo "configure:3194: checking for $ac_word" >&5
+3231c3226
+< echo "configure:3232: checking for $ac_word" >&5
+---
+> echo "configure:3228: checking for $ac_word" >&5
+3276c3271
+< echo "configure:3277: checking for $ac_word" >&5
+---
+> echo "configure:3273: checking for $ac_word" >&5
+3329c3324
+< echo "configure:3330: checking for main in -lcompat" >&5
+---
+> echo "configure:3326: checking for main in -lcompat" >&5
+3337c3332
+< #line 3338 "configure"
+---
+> #line 3334 "configure"
+3344c3339
+< if { (eval echo configure:3345: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3341: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3366c3361
+< echo "configure:3367: checking for crypt in -lcrypt" >&5
+---
+> echo "configure:3363: checking for crypt in -lcrypt" >&5
+3374c3369
+< #line 3375 "configure"
+---
+> #line 3371 "configure"
+3385c3380
+< if { (eval echo configure:3386: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3382: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3404c3399
+< echo "configure:3405: checking for crypt in -lc" >&5
+---
+> echo "configure:3401: checking for crypt in -lc" >&5
+3412c3407
+< #line 3413 "configure"
+---
+> #line 3409 "configure"
+3423c3418
+< if { (eval echo configure:3424: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3420: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3442c3437
+<         echo "configure: warning: you have no crypt in either libcrypt or libc.
+---
+>         echo "configure: error: you have no crypt in either libcrypt or libc.
+3446c3441
+<       
+---
+>       exit 1;
+3460c3455
+< echo "configure:3461: checking for socklen_t" >&5
+---
+> echo "configure:3457: checking for socklen_t" >&5
+3477c3472
+< #line 3478 "configure"
+---
+> #line 3474 "configure"
+3490c3485
+< if { (eval echo configure:3491: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:3487: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+3498c3493
+< #line 3499 "configure"
+---
+> #line 3495 "configure"
+3511c3506
+< if { (eval echo configure:3512: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:3508: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+3557c3552
+< echo "configure:3558: checking for dnet_ntoa in -ldnet" >&5
+---
+> echo "configure:3554: checking for dnet_ntoa in -ldnet" >&5
+3565c3560
+< #line 3566 "configure"
+---
+> #line 3562 "configure"
+3576c3571
+< if { (eval echo configure:3577: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3573: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3598c3593
+< echo "configure:3599: checking for dnet_ntoa in -ldnet_stub" >&5
+---
+> echo "configure:3595: checking for dnet_ntoa in -ldnet_stub" >&5
+3606c3601
+< #line 3607 "configure"
+---
+> #line 3603 "configure"
+3617c3612
+< if { (eval echo configure:3618: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3614: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3639c3634
+< echo "configure:3640: checking for inet_ntoa" >&5
+---
+> echo "configure:3636: checking for inet_ntoa" >&5
+3644c3639
+< #line 3645 "configure"
+---
+> #line 3641 "configure"
+3667c3662
+< if { (eval echo configure:3668: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3664: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3688c3683
+< echo "configure:3689: checking for inet_ntoa in -lnsl" >&5
+---
+> echo "configure:3685: checking for inet_ntoa in -lnsl" >&5
+3696c3691
+< #line 3697 "configure"
+---
+> #line 3693 "configure"
+3707c3702
+< if { (eval echo configure:3708: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3704: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3729c3724
+< echo "configure:3730: checking for connect" >&5
+---
+> echo "configure:3726: checking for connect" >&5
+3734c3729
+< #line 3735 "configure"
+---
+> #line 3731 "configure"
+3757c3752
+< if { (eval echo configure:3758: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3754: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3778c3773
+< echo "configure:3779: checking for connect in -lsocket" >&5
+---
+> echo "configure:3775: checking for connect in -lsocket" >&5
+3786c3781
+< #line 3787 "configure"
+---
+> #line 3783 "configure"
+3797c3792
+< if { (eval echo configure:3798: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3794: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3820c3815
+< echo "configure:3821: checking for remove" >&5
+---
+> echo "configure:3817: checking for remove" >&5
+3825c3820
+< #line 3826 "configure"
+---
+> #line 3822 "configure"
+3848c3843
+< if { (eval echo configure:3849: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3845: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3869c3864
+< echo "configure:3870: checking for remove in -lposix" >&5
+---
+> echo "configure:3866: checking for remove in -lposix" >&5
+3877c3872
+< #line 3878 "configure"
+---
+> #line 3874 "configure"
+3888c3883
+< if { (eval echo configure:3889: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3885: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3912c3907
+< echo "configure:3913: checking for shmat" >&5
+---
+> echo "configure:3909: checking for shmat" >&5
+3917c3912
+< #line 3918 "configure"
+---
+> #line 3914 "configure"
+3940c3935
+< if { (eval echo configure:3941: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3937: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+3958c3953
+< echo "configure:3959: checking for shmat in -lipc" >&5
+---
+> echo "configure:3955: checking for shmat in -lipc" >&5
+3966c3961
+< #line 3967 "configure"
+---
+> #line 3963 "configure"
+3977c3972
+< if { (eval echo configure:3978: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:3974: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4002c3997
+< echo "configure:4003: checking for res_init" >&5
+---
+> echo "configure:3999: checking for res_init" >&5
+4007c4002
+< #line 4008 "configure"
+---
+> #line 4004 "configure"
+4030c4025
+< if { (eval echo configure:4031: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4027: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4048c4043
+< echo "configure:4049: checking for res_init in -lresolv" >&5
+---
+> echo "configure:4045: checking for res_init in -lresolv" >&5
+4056c4051
+< #line 4057 "configure"
+---
+> #line 4053 "configure"
+4067c4062
+< if { (eval echo configure:4068: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4064: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4094c4089
+< echo "configure:4095: checking for killpg in -lucb" >&5
+---
+> echo "configure:4091: checking for killpg in -lucb" >&5
+4102c4097
+< #line 4103 "configure"
+---
+> #line 4099 "configure"
+4113c4108
+< if { (eval echo configure:4114: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4110: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4136c4131
+< echo "configure:4137: checking LynxOS header file wrappers" >&5
+---
+> echo "configure:4133: checking LynxOS header file wrappers" >&5
+4140c4135
+< echo "configure:4141: checking for gethostbyname in -lbsd" >&5
+---
+> echo "configure:4137: checking for gethostbyname in -lbsd" >&5
+4148c4143
+< #line 4149 "configure"
+---
+> #line 4145 "configure"
+4159c4154
+< if { (eval echo configure:4160: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4156: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4182c4177
+< echo "configure:4183: checking size of int" >&5
+---
+> echo "configure:4179: checking size of int" >&5
+4190c4185
+< #line 4191 "configure"
+---
+> #line 4187 "configure"
+4201c4196
+< if { (eval echo configure:4202: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+---
+> if { (eval echo configure:4198: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+4220c4215
+< echo "configure:4221: checking size of long" >&5
+---
+> echo "configure:4217: checking size of long" >&5
+4228c4223
+< #line 4229 "configure"
+---
+> #line 4225 "configure"
+4239c4234
+< if { (eval echo configure:4240: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+---
+> if { (eval echo configure:4236: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+4258c4253
+< echo "configure:4259: checking size of char *" >&5
+---
+> echo "configure:4255: checking size of char *" >&5
+4266c4261
+< #line 4267 "configure"
+---
+> #line 4263 "configure"
+4277c4272
+< if { (eval echo configure:4278: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+---
+> if { (eval echo configure:4274: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+4296c4291
+< echo "configure:4297: checking size of char" >&5
+---
+> echo "configure:4293: checking size of char" >&5
+4304c4299
+< #line 4305 "configure"
+---
+> #line 4301 "configure"
+4315c4310
+< if { (eval echo configure:4316: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+---
+> if { (eval echo configure:4312: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+4336c4331
+< echo "configure:4337: checking for dlopen in -ldl" >&5
+---
+> echo "configure:4333: checking for dlopen in -ldl" >&5
+4344c4339
+< #line 4345 "configure"
+---
+> #line 4341 "configure"
+4355c4350
+< if { (eval echo configure:4356: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4352: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4380c4375
+< echo "configure:4381: checking for shl_unload in -ldld" >&5
+---
+> echo "configure:4377: checking for shl_unload in -ldld" >&5
+4388c4383
+< #line 4389 "configure"
+---
+> #line 4385 "configure"
+4399c4394
+< if { (eval echo configure:4400: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4396: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4428c4423
+< echo "configure:4429: checking for extra includes" >&5
+---
+> echo "configure:4425: checking for extra includes" >&5
+4459c4454
+< echo "configure:4460: checking for extra libs" >&5
+---
+> echo "configure:4456: checking for extra libs" >&5
+4492,4547d4486
+< echo $ac_n "checking for libz""... $ac_c" 1>&6
+< echo "configure:4494: checking for libz" >&5
+< if eval "test \"`echo '$''{'ac_cv_lib_z'+set}'`\" = set"; then
+<   echo $ac_n "(cached) $ac_c" 1>&6
+< else
+<   
+< ac_ext=c
+< # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+< ac_cpp='$CPP $CPPFLAGS'
+< ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+< ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+< cross_compiling=$ac_cv_prog_cc_cross
+< 
+< kde_save_LIBS="$LIBS"
+< LIBS="$all_libraries $USER_LDFLAGS -lz $LIBSOCKET"
+< kde_save_CFLAGS="$CFLAGS"
+< CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
+< cat > conftest.$ac_ext <<EOF
+< #line 4511 "configure"
+< #include "confdefs.h"
+< 
+< #include<zlib.h>
+< 
+< int main() {
+< return (zlibVersion() == ZLIB_VERSION); 
+< ; return 0; }
+< EOF
+< if { (eval echo configure:4520: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+<   rm -rf conftest*
+<   eval "ac_cv_lib_z='-lz'"
+< else
+<   echo "configure: failed program was:" >&5
+<   cat conftest.$ac_ext >&5
+<   rm -rf conftest*
+<   eval "ac_cv_lib_z=no"
+< fi
+< rm -f conftest*
+< LIBS="$kde_save_LIBS"
+< CFLAGS="$kde_save_CFLAGS"
+< 
+< fi
+< if test ! "$ac_cv_lib_z" = no; then
+<   cat >> confdefs.h <<EOF
+< #define HAVE_LIBZ 1
+< EOF
+< 
+<   LIBZ="$ac_cv_lib_z"
+<   
+<   echo "$ac_t""$ac_cv_lib_z" 1>&6
+< else
+<   { echo "configure: error: not found. Check your installation and look into config.log" 1>&2; exit 1; }
+<   LIBZ=""
+<   
+< fi
+< 
+< 
+4549c4488
+< echo "configure:4550: checking for X" >&5
+---
+> echo "configure:4546: checking for X" >&5
+4583c4522
+< #line 4584 "configure"
+---
+> #line 4580 "configure"
+4588c4527
+< { (eval echo configure:4589: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:4585: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+4657c4596
+< #line 4658 "configure"
+---
+> #line 4654 "configure"
+4664c4603
+< if { (eval echo configure:4665: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4661: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4835c4774
+< echo "configure:4836: checking for IceConnectionNumber in -lICE" >&5
+---
+> echo "configure:4832: checking for IceConnectionNumber in -lICE" >&5
+4843c4782
+< #line 4844 "configure"
+---
+> #line 4840 "configure"
+4854c4793
+< if { (eval echo configure:4855: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4851: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4883c4822
+< echo "configure:4884: checking for libXext" >&5
+---
+> echo "configure:4880: checking for libXext" >&5
+4895c4834
+< #line 4896 "configure"
+---
+> #line 4892 "configure"
+4906c4845
+< if { (eval echo configure:4907: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:4903: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+4994c4933
+< echo "configure:4995: checking for libpng" >&5
+---
+> echo "configure:4991: checking for libpng" >&5
+5011c4950
+< #line 5012 "configure"
+---
+> #line 5008 "configure"
+5024c4963
+< if { (eval echo configure:5025: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:5021: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+5055,5242d4993
+< echo $ac_n "checking for libjpeg6b""... $ac_c" 1>&6
+< echo "configure:5057: checking for libjpeg6b" >&5
+< if eval "test \"`echo '$''{'ac_cv_lib_jpeg_6b'+set}'`\" = set"; then
+<   echo $ac_n "(cached) $ac_c" 1>&6
+< else
+<   
+< ac_ext=c
+< # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+< ac_cpp='$CPP $CPPFLAGS'
+< ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+< ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+< cross_compiling=$ac_cv_prog_cc_cross
+< 
+< ac_save_LIBS="$LIBS"
+< LIBS="$all_libraries $USER_LDFLAGS -ljpeg6b -lm"
+< ac_save_CFLAGS="$CFLAGS"
+< CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
+< cat > conftest.$ac_ext <<EOF
+< #line 5074 "configure"
+< #include "confdefs.h"
+< /* Override any gcc2 internal prototype to avoid an error.  */
+< struct jpeg_decompress_struct;
+< typedef struct jpeg_decompress_struct * j_decompress_ptr;
+< typedef int size_t;
+< #ifdef __cplusplus
+< extern "C" {
+< #endif
+<     void jpeg_CreateDecompress(j_decompress_ptr cinfo,
+<                                     int version, size_t structsize);
+< #ifdef __cplusplus
+< }
+< #endif
+< /* We use char because int might match the return type of a gcc2
+<     builtin and then its argument prototype would still apply.  */
+< 
+< int main() {
+< jpeg_CreateDecompress(0L, 0, 0);
+< ; return 0; }
+< EOF
+< if { (eval echo configure:5095: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+<   rm -rf conftest*
+<   eval "ac_cv_lib_jpeg_6b=-ljpeg6b"
+< else
+<   echo "configure: failed program was:" >&5
+<   cat conftest.$ac_ext >&5
+<   rm -rf conftest*
+<   eval "ac_cv_lib_jpeg_6b=no"
+< fi
+< rm -f conftest*
+< LIBS="$ac_save_LIBS"
+< CFLAGS="$ac_save_CFLAGS"
+< 
+< fi
+< 
+< 
+< if eval "test ! \"`echo $ac_cv_lib_jpeg_6b`\" = no"; then
+<   LIBJPEG="$ac_cv_lib_jpeg_6b"
+<   echo "$ac_t""$ac_cv_lib_jpeg_6b" 1>&6
+< else
+<   echo "$ac_t""no" 1>&6
+<   
+< echo $ac_n "checking for libjpeg""... $ac_c" 1>&6
+< echo "configure:5118: checking for libjpeg" >&5
+< if eval "test \"`echo '$''{'ac_cv_lib_jpeg_normal'+set}'`\" = set"; then
+<   echo $ac_n "(cached) $ac_c" 1>&6
+< else
+<   
+< ac_ext=c
+< # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+< ac_cpp='$CPP $CPPFLAGS'
+< ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+< ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+< cross_compiling=$ac_cv_prog_cc_cross
+< 
+< ac_save_LIBS="$LIBS"
+< LIBS="$all_libraries $USER_LDFLAGS -ljpeg -lm"
+< ac_save_CFLAGS="$CFLAGS"
+< CFLAGS="$CFLAGS $all_includes $USER_INCLUDES"
+< cat > conftest.$ac_ext <<EOF
+< #line 5135 "configure"
+< #include "confdefs.h"
+< /* Override any gcc2 internal prototype to avoid an error.  */
+< struct jpeg_decompress_struct;
+< typedef struct jpeg_decompress_struct * j_decompress_ptr;
+< typedef int size_t;
+< #ifdef __cplusplus
+< extern "C" {
+< #endif
+<     void jpeg_CreateDecompress(j_decompress_ptr cinfo,
+<                                     int version, size_t structsize);
+< #ifdef __cplusplus
+< }
+< #endif
+< /* We use char because int might match the return type of a gcc2
+<     builtin and then its argument prototype would still apply.  */
+< 
+< int main() {
+< jpeg_CreateDecompress(0L, 0, 0);
+< ; return 0; }
+< EOF
+< if { (eval echo configure:5156: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+<   rm -rf conftest*
+<   eval "ac_cv_lib_jpeg_normal=-ljpeg"
+< else
+<   echo "configure: failed program was:" >&5
+<   cat conftest.$ac_ext >&5
+<   rm -rf conftest*
+<   eval "ac_cv_lib_jpeg_normal=no"
+< fi
+< rm -f conftest*
+< LIBS="$ac_save_LIBS"
+< CFLAGS="$ac_save_CFLAGS"
+< 
+< fi
+< 
+< 
+< if eval "test ! \"`echo $ac_cv_lib_jpeg_normal`\" = no"; then
+<   LIBJPEG="$ac_cv_lib_jpeg_normal"
+<   echo "$ac_t""$ac_cv_lib_jpeg_normal" 1>&6
+< else
+<   echo "$ac_t""no" 1>&6
+<   
+< 	if test -f "$kde_libraries/libjpeg.so"; then
+< 	   test -f ./libjpegkde.so || $LN_S $kde_libraries/libjpeg.so ./libjpegkde.so
+< 	   ac_cv_lib_jpeg="-L\${topdir} -ljpegkde"
+< 	else if test -f "$kde_libraries/libjpeg.sl"; then
+< 	   test -f ./libjpegkde.sl ||$LN_S $kde_libraries/libjpeg.sl ./libjpegkde.sl
+< 	   ac_cv_lib_jpeg="-L\${topdir} -ljpegkde"	
+< 	else if test -f "$kde_libraries/libjpeg.a"; then
+< 	   test -f ./libjpegkde.a || $LN_S $kde_libraries/libjpeg.a ./libjpegkde.a
+< 	   ac_cv_lib_jpeg="-L\${topdir} -ljpegkde"
+<         else
+< 	  ac_cv_lib_jpeg=
+< 	fi
+<       fi
+<    fi
+< 
+<    LIBJPEG=$ac_cv_lib_jpeg
+< 
+< fi
+< 
+< 
+< fi
+< 
+< 
+< 
+< jpeg_incdirs="/usr/include /usr/local/include $kde_extra_includes"
+< 
+< jpeg_incdir=NO
+< for i in $jpeg_incdirs;
+< do
+<   for j in jpeglib.h;
+<   do
+<     if test -r "$i/$j"; then
+<       jpeg_incdir=$i
+<       break 2
+<     fi
+<   done
+< done
+< 
+< test "x$jpeg_incdir" = xNO && jpeg_incdir=
+< 
+< if test -n "$jpeg_incdir" && test -n "$LIBJPEG" ; then
+<   cat >> confdefs.h <<EOF
+< #define HAVE_LIBJPEG 1
+< EOF
+< 
+< else
+<   if test -n "$jpeg_incdir" || test -n "$LIBJPEG" ; then
+<     echo "configure: warning: 
+< There is an installation error in jpeg support. You seem to have only one
+< of either the headers _or_ the libraries installed. You may need to either
+< provide correct --with-extra-... options, or the development package of
+< libjpeg6b. You can get a source package of libjpeg from http://www.ijg.org/
+< Disabling JPEG support.
+< " 1>&2
+<   else
+<     echo "configure: warning: libjpeg not found. disable JPEG support." 1>&2
+<   fi
+<   jpeg_incdir=
+<   LIBJPEG=
+< fi
+< 
+< 
+< 
+< 
+< 
+< 
+5320c5071
+< echo "configure:5321: checking for Qt" >&5
+---
+> echo "configure:5317: checking for Qt" >&5
+5479c5230
+< if { (eval echo configure:5480: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+---
+> if { (eval echo configure:5476: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+5537c5288
+< echo "configure:5538: checking if Qt compiles without flags" >&5
+---
+> echo "configure:5534: checking if Qt compiles without flags" >&5
+5616c5367
+< if { (eval echo configure:5617: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+---
+> if { (eval echo configure:5613: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+5685c5436
+< echo "configure:5686: checking for moc" >&5
+---
+> echo "configure:5682: checking for moc" >&5
+5751c5502
+< echo "configure:5752: checking for uic" >&5
+---
+> echo "configure:5748: checking for uic" >&5
+5836c5587
+< echo "configure:5837: checking for rpath" >&5
+---
+> echo "configure:5833: checking for rpath" >&5
+5865c5616
+< echo "configure:5866: checking for KDE" >&5
+---
+> echo "configure:5862: checking for KDE" >&5
+6041c5792
+< echo "configure:6042: checking for KDE paths" >&5
+---
+> echo "configure:6038: checking for KDE paths" >&5
+6128c5879
+< echo "configure:6129: checking for KDE headers installed" >&5
+---
+> echo "configure:6125: checking for KDE headers installed" >&5
+6168c5919
+<  if { (eval echo configure:6169: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+>  if { (eval echo configure:6165: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+6205c5956
+< echo "configure:6206: checking for KDE libraries installed" >&5
+---
+> echo "configure:6202: checking for KDE libraries installed" >&5
+6208c5959
+< if { (eval echo configure:6209: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+---
+> if { (eval echo configure:6205: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+6359c6110
+< echo "configure:6360: checking for KDE headers installed" >&5
+---
+> echo "configure:6356: checking for KDE headers installed" >&5
+6399c6150
+<  if { (eval echo configure:6400: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+>  if { (eval echo configure:6396: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+6436c6187
+< echo "configure:6437: checking for KDE libraries installed" >&5
+---
+> echo "configure:6433: checking for KDE libraries installed" >&5
+6439c6190
+< if { (eval echo configure:6440: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+---
+> if { (eval echo configure:6436: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest; then
+6527c6278
+< echo "configure:6528: checking for dcopidl" >&5
+---
+> echo "configure:6524: checking for dcopidl" >&5
+6587c6338
+< echo "configure:6588: checking for dcopidl2cpp" >&5
+---
+> echo "configure:6584: checking for dcopidl2cpp" >&5
+6647c6398
+< echo "configure:6648: checking for mcopidl" >&5
+---
+> echo "configure:6644: checking for mcopidl" >&5
+6707c6458
+< echo "configure:6708: checking for kdb2html" >&5
+---
+> echo "configure:6704: checking for kdb2html" >&5
+6767c6518
+< echo "configure:6768: checking for artsc-config" >&5
+---
+> echo "configure:6764: checking for artsc-config" >&5
+6827c6578
+< echo "configure:6828: checking for kde-config" >&5
+---
+> echo "configure:6824: checking for kde-config" >&5
+7016c6767
+< echo "configure:7017: checking for $ac_hdr that defines DIR" >&5
+---
+> echo "configure:7013: checking for $ac_hdr that defines DIR" >&5
+7021c6772
+< #line 7022 "configure"
+---
+> #line 7018 "configure"
+7029c6780
+< if { (eval echo configure:7030: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:7026: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+7054c6805
+< echo "configure:7055: checking for opendir in -ldir" >&5
+---
+> echo "configure:7051: checking for opendir in -ldir" >&5
+7062c6813
+< #line 7063 "configure"
+---
+> #line 7059 "configure"
+7073c6824
+< if { (eval echo configure:7074: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7070: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7095c6846
+< echo "configure:7096: checking for opendir in -lx" >&5
+---
+> echo "configure:7092: checking for opendir in -lx" >&5
+7103c6854
+< #line 7104 "configure"
+---
+> #line 7100 "configure"
+7114c6865
+< if { (eval echo configure:7115: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7111: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7137c6888
+< echo "configure:7138: checking for ANSI C header files" >&5
+---
+> echo "configure:7134: checking for ANSI C header files" >&5
+7142c6893
+< #line 7143 "configure"
+---
+> #line 7139 "configure"
+7150c6901
+< { (eval echo configure:7151: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:7147: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+7167c6918
+< #line 7168 "configure"
+---
+> #line 7164 "configure"
+7185c6936
+< #line 7186 "configure"
+---
+> #line 7182 "configure"
+7206c6957
+< #line 7207 "configure"
+---
+> #line 7203 "configure"
+7217c6968
+< if { (eval echo configure:7218: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+---
+> if { (eval echo configure:7214: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+7244c6995
+< echo "configure:7245: checking for $ac_hdr" >&5
+---
+> echo "configure:7241: checking for $ac_hdr" >&5
+7249c7000
+< #line 7250 "configure"
+---
+> #line 7246 "configure"
+7254c7005
+< { (eval echo configure:7255: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:7251: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+7284c7035
+< echo "configure:7285: checking for $ac_hdr" >&5
+---
+> echo "configure:7281: checking for $ac_hdr" >&5
+7289c7040
+< #line 7290 "configure"
+---
+> #line 7286 "configure"
+7294c7045
+< { (eval echo configure:7295: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:7291: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+7324c7075
+< echo "configure:7325: checking for $ac_hdr" >&5
+---
+> echo "configure:7321: checking for $ac_hdr" >&5
+7329c7080
+< #line 7330 "configure"
+---
+> #line 7326 "configure"
+7334c7085
+< { (eval echo configure:7335: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:7331: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+7362c7113
+< echo "configure:7363: checking whether time.h and sys/time.h may both be included" >&5
+---
+> echo "configure:7359: checking whether time.h and sys/time.h may both be included" >&5
+7367c7118
+< #line 7368 "configure"
+---
+> #line 7364 "configure"
+7376c7127
+< if { (eval echo configure:7377: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:7373: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+7398c7149
+< echo "configure:7399: checking for long double" >&5
+---
+> echo "configure:7395: checking for long double" >&5
+7409c7160
+< #line 7410 "configure"
+---
+> #line 7406 "configure"
+7417c7168
+< if { (eval echo configure:7418: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+---
+> if { (eval echo configure:7414: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+7444c7195
+< echo "configure:7445: checking for dlopen in -ldl" >&5
+---
+> echo "configure:7441: checking for dlopen in -ldl" >&5
+7452c7203
+< #line 7453 "configure"
+---
+> #line 7449 "configure"
+7463c7214
+< if { (eval echo configure:7464: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7460: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7488c7239
+< echo "configure:7489: checking for shl_unload in -ldld" >&5
+---
+> echo "configure:7485: checking for shl_unload in -ldld" >&5
+7496c7247
+< #line 7497 "configure"
+---
+> #line 7493 "configure"
+7507c7258
+< if { (eval echo configure:7508: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7504: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7537c7288
+< echo "configure:7538: checking for $ac_hdr" >&5
+---
+> echo "configure:7534: checking for $ac_hdr" >&5
+7542c7293
+< #line 7543 "configure"
+---
+> #line 7539 "configure"
+7547c7298
+< { (eval echo configure:7548: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:7544: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+7619c7370
+< echo "configure:7620: checking for $ac_func" >&5
+---
+> echo "configure:7616: checking for $ac_func" >&5
+7624c7375
+< #line 7625 "configure"
+---
+> #line 7621 "configure"
+7647c7398
+< if { (eval echo configure:7648: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7644: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7673c7424
+< echo "configure:7674: checking for getdomainname" >&5
+---
+> echo "configure:7670: checking for getdomainname" >&5
+7696c7447
+< #line 7697 "configure"
+---
+> #line 7693 "configure"
+7709c7460
+< if { (eval echo configure:7710: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+---
+> if { (eval echo configure:7706: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+7734c7485
+< echo "configure:7735: checking if getdomainname needs custom prototype" >&5
+---
+> echo "configure:7731: checking if getdomainname needs custom prototype" >&5
+7756c7507
+< #line 7757 "configure"
+---
+> #line 7753 "configure"
+7771c7522
+< if { (eval echo configure:7772: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7768: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7814c7565
+< echo "configure:7815: checking for gethostname" >&5
+---
+> echo "configure:7811: checking for gethostname" >&5
+7835c7586
+< #line 7836 "configure"
+---
+> #line 7832 "configure"
+7848c7599
+< if { (eval echo configure:7849: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7845: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7872c7623
+< echo "configure:7873: checking if gethostname needs custom prototype" >&5
+---
+> echo "configure:7869: checking if gethostname needs custom prototype" >&5
+7892c7643
+< #line 7893 "configure"
+---
+> #line 7889 "configure"
+7907c7658
+< if { (eval echo configure:7908: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:7904: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+7957c7708
+< echo "configure:7958: checking for sys/sockio.h" >&5
+---
+> echo "configure:7954: checking for sys/sockio.h" >&5
+7962c7713
+< #line 7963 "configure"
+---
+> #line 7959 "configure"
+7967c7718
+< { (eval echo configure:7968: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+---
+> { (eval echo configure:7964: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+7995c7746
+< echo "configure:7996: checking for OpenSSL" >&5
+---
+> echo "configure:7992: checking for OpenSSL" >&5
+8063c7814
+< #line 8064 "configure"
+---
+> #line 8060 "configure"
+8070c7821
+< if { (eval echo configure:8071: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+---
+> if { (eval echo configure:8067: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+8095,8096c7846
+<   have_ssl=no
+<   LIBSSL="";
+---
+>   { echo "configure: error: SSL checking failed" 1>&2; exit 1; }
+8122c7872
+< echo "configure:8123: checking whether OpenSSL uses rsaref" >&5
+---
+> echo "configure:8119: checking whether OpenSSL uses rsaref" >&5
+8143,8334d7892
+< 
+< 
+< 
+< LIBPCSCLITE="";
+< PCSCLITE_INCLUDES="";
+< PCSCLITE_LDFLAGS="";
+< 
+< # Check whether --enable-gsm_auth or --disable-gsm_auth was given.
+< if test "${enable_gsm_auth+set}" = set; then
+<   enableval="$enable_gsm_auth"
+<   :
+< fi
+< 
+< if test -z "$enable_gsm_auth"; then
+<     enable_gsm_auth=no
+< fi
+< 
+< if test "$enable_gsm_auth" = yes; then
+< 
+< 
+< 
+< 
+< LIBPCSCLITE="-lpcsclite"
+< echo $ac_n "checking for pcsc-lite""... $ac_c" 1>&6
+< echo "configure:8168: checking for pcsc-lite" >&5
+< 
+< ac_pcsclite_includes=NO ac_pcsclite_libraries=NO
+< pcsclite_libraries=""
+< pcsclite_includes=""
+< # Check whether --with-pcsclite-dir or --without-pcsclite-dir was given.
+< if test "${with_pcsclite_dir+set}" = set; then
+<   withval="$with_pcsclite_dir"
+<     ac_pcsclite_includes="$withval"/include
+<        ac_pcsclite_libraries="$withval"/lib
+<     
+< fi
+< 
+< 
+< if eval "test \"`echo '$''{'ac_cv_have_pcsclite'+set}'`\" = set"; then
+<   echo $ac_n "(cached) $ac_c" 1>&6
+< else
+<   #try to guess pcsc-lite locations
+< 
+< pcsclite_incdirs="/usr/include /usr/local/include"
+< pcsclite_incdirs="$ac_pcsclite_includes $pcsclite_incdirs"
+< 
+< pcsclite_incdir=NO
+< for i in $pcsclite_incdirs;
+< do
+<   for j in winscard.h;
+<   do
+<     if test -r "$i/$j"; then
+<       pcsclite_incdir=$i
+<       break 2
+<     fi
+<   done
+< done
+< 
+< ac_pcsclite_includes="$pcsclite_incdir"
+< 
+< pcsclite_libdirs="/usr/lib /usr/local/lib"
+< if test ! "$ac_pcsclite_libraries" = "NO"; then
+<   pcsclite_libdirs="$ac_pcsclite_libraries $pcsclite_libdirs"
+< fi
+< 
+< test=NONE
+< pcsclite_libdir=NONE
+< for dir in $pcsclite_libdirs; do
+<   try="ls -1 $dir/libpcsclite*"
+<   if test=`eval $try 2> /dev/null`; then pcsclite_libdir=$dir; break; else echo "tried $dir" >&5 ; fi
+< done
+< 
+< ac_pcsclite_libraries="$pcsclite_libdir"
+< 
+< 
+< ac_ext=c
+< # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+< ac_cpp='$CPP $CPPFLAGS'
+< ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+< ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+< cross_compiling=$ac_cv_prog_cc_cross
+< 
+< 
+< ac_cflags_safe="$CFLAGS"
+< ac_ldflags_safe="$LDFLAGS"
+< ac_libs_safe="$LIBS"
+< 
+< CFLAGS="$CFLAGS -I$pcsclite_incdir $pcsclite_includes"
+< LDFLAGS="-L$pcsclite_libdir $all_libraries"
+< LIBS="$LIBS $LIBPCSCLITE"
+< 
+< ac_ext=c
+< # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+< ac_cpp='$CPP $CPPFLAGS'
+< ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+< ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+< cross_compiling=$ac_cv_prog_cc_cross
+< 
+< if test "$ac_pcsclite_includes" = NO || test "$ac_pcsclite_libraries" = NO; then
+<   have_pcsclite=no
+<   LIBPCSCLITE="";
+<   echo "PCSC-Lite library not found: try without --enable-gsm_auth"
+<   exit
+< else
+<   have_pcsclite=yes;
+< fi
+< 
+< 
+< fi
+< 
+< 
+< eval "$ac_cv_have_pcsclite"
+< 
+< if test "$have_pcsclite" != yes; then
+<   echo "$ac_t""$have_pcsclite" 1>&6;
+< else
+<   # AC_DEFINE(WITH_GSM_AUTH, , [If we are going to use GSM authentication])
+<   # CFLAGS="$CFLAGS -DWITH_GSM_AUTH"
+<   CPPFLAGS="$CPPFLAGS -DWITH_GSM_AUTH"
+<   ac_cv_have_pcsclite="have_pcsclite=yes \
+<     ac_pcsclite_includes=$ac_pcsclite_includes \
+< 	ac_pcsclite_libraries=$ac_pcsclite_libraries"
+<   echo "$ac_t""libraries $ac_pcsclite_libraries, headers $ac_pcsclite_includes" 1>&6
+<   
+<   pcsclite_libraries="$ac_pcsclite_libraries"
+<   pcsclite_includes="$ac_pcsclite_includes"
+< 
+< fi
+< 
+< if test "$pcsclite_includes" = "/usr/include" || test  "$pcsclite_includes" = "/usr/local/include" || test -z "$pcsclite_includes"; then
+<  PCSCLITE_INCLUDES="";
+< else
+<  PCSCLITE_INCLUDES="-I$pcsclite_includes"
+< fi
+< 
+< if test "$pcsclite_libraries" = "/usr/lib" || test "$pcsclite_libraries" = "/usr/local/lib" || test -z "$pcsclite_libraries"; then
+<  PCSCLITE_LDFLAGS=""
+< else
+<  PCSCLITE_LDFLAGS="-L$pcsclite_libraries"
+< fi
+< 
+< 
+< 
+< 
+< 
+< 
+< fi
+< 
+< 
+< for ac_hdr in linux/telephony.h linux/ixjuser.h
+< do
+< ac_safe=`echo "$ac_hdr" | sed 'y%./+-%__p_%'`
+< echo $ac_n "checking for $ac_hdr""... $ac_c" 1>&6
+< echo "configure:8297: checking for $ac_hdr" >&5
+< if eval "test \"`echo '$''{'ac_cv_header_$ac_safe'+set}'`\" = set"; then
+<   echo $ac_n "(cached) $ac_c" 1>&6
+< else
+<   cat > conftest.$ac_ext <<EOF
+< #line 8302 "configure"
+< #include "confdefs.h"
+< #include <$ac_hdr>
+< EOF
+< ac_try="$ac_cpp conftest.$ac_ext >/dev/null 2>conftest.out"
+< { (eval echo configure:8307: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+< ac_err=`grep -v '^ *+' conftest.out | grep -v "^conftest.${ac_ext}\$"`
+< if test -z "$ac_err"; then
+<   rm -rf conftest*
+<   eval "ac_cv_header_$ac_safe=yes"
+< else
+<   echo "$ac_err" >&5
+<   echo "configure: failed program was:" >&5
+<   cat conftest.$ac_ext >&5
+<   rm -rf conftest*
+<   eval "ac_cv_header_$ac_safe=no"
+< fi
+< rm -f conftest*
+< fi
+< if eval "test \"`echo '$ac_cv_header_'$ac_safe`\" = yes"; then
+<   echo "$ac_t""yes" 1>&6
+<     ac_tr_hdr=HAVE_`echo $ac_hdr | sed 'y%abcdefghijklmnopqrstuvwxyz./-%ABCDEFGHIJKLMNOPQRSTUVWXYZ___%'`
+<   cat >> confdefs.h <<EOF
+< #define $ac_tr_hdr 1
+< EOF
+<  
+< else
+<   echo "$ac_t""no" 1>&6
+< fi
+< done
+< 
+< 
+< 
+< 
+8354c7912
+< echo "configure:8355: checking if $i should be compiled" >&5
+---
+> echo "configure:8206: checking if $i should be compiled" >&5
+8478d8035
+< kphone/Makefile \
+8479a8037
+> kphone/Makefile \
+8639,8641d8196
+< s%@PCSCLITE_INCLUDES@%$PCSCLITE_INCLUDES%g
+< s%@PCSCLITE_LDFLAGS@%$PCSCLITE_LDFLAGS%g
+< s%@LIBPCSCLITE@%$LIBPCSCLITE%g
+8688d8242
+< kphone/Makefile \
+8689a8244
+> kphone/Makefile \
+diff -r kphone-3.11-gsm/configure.in kphone-3.11/configure.in
+4,5d3
+< # I added support for PCSC-Lite library searching used
+< #   for GSM authentication support (Daniel Mierla)
+18c16
+< AM_INIT_AUTOMAKE(kphone-3.11, "2.2alpha1") dnl searches for some needed programs
+---
+> AM_INIT_AUTOMAKE(kphone-1.1, "2.2alpha1") dnl searches for some needed programs
+186,300d183
+< LIBPCSCLITE="";
+< PCSCLITE_INCLUDES="";
+< PCSCLITE_LDFLAGS="";
+< 
+< AC_ARG_ENABLE(gsm_auth, [  --enable-gsm_auth    enable GSM authentication (default is NO)])
+< if test -z "$enable_gsm_auth"; then
+<     enable_gsm_auth=no
+< fi
+< 
+< if test "$enable_gsm_auth" = yes; then
+< 
+< dnl ------------------------------------------------------------------------
+< dnl Try to find the PCSC-LITE headers and libraries.
+< dnl $(PCSCLITE_LDFLAGS) will be -Lpcscliteliblocation (if needed)
+< dnl and $(PCSCLITE_INCLUDES) will be -Ipcsclitehdrlocation (if needed)
+< dnl ------------------------------------------------------------------------
+< dnl
+< AC_DEFUN(AC_PATH_PCSCLITE,
+< [
+< LIBPCSCLITE="-lpcsclite"
+< AC_MSG_CHECKING([for pcsc-lite])
+< 
+< ac_pcsclite_includes=NO ac_pcsclite_libraries=NO
+< pcsclite_libraries=""
+< pcsclite_includes=""
+< AC_ARG_WITH(pcsclite-dir,
+<     [  --with-pcsclite-dir=DIR       where the root of pcsc-lite is installed ],
+<     [  ac_pcsclite_includes="$withval"/include
+<        ac_pcsclite_libraries="$withval"/lib
+<     ])
+< 
+< AC_CACHE_VAL(ac_cv_have_pcsclite,
+< [#try to guess pcsc-lite locations
+< 
+< pcsclite_incdirs="/usr/include /usr/local/include"
+< pcsclite_incdirs="$ac_pcsclite_includes $pcsclite_incdirs"
+< AC_FIND_FILE(winscard.h, $pcsclite_incdirs, pcsclite_incdir)
+< ac_pcsclite_includes="$pcsclite_incdir"
+< 
+< pcsclite_libdirs="/usr/lib /usr/local/lib"
+< if test ! "$ac_pcsclite_libraries" = "NO"; then
+<   pcsclite_libdirs="$ac_pcsclite_libraries $pcsclite_libdirs"
+< fi
+< 
+< test=NONE
+< pcsclite_libdir=NONE
+< for dir in $pcsclite_libdirs; do
+<   try="ls -1 $dir/libpcsclite*"
+<   if test=`eval $try 2> /dev/null`; then pcsclite_libdir=$dir; break; else echo "tried $dir" >&AC_FD_CC ; fi
+< done
+< 
+< ac_pcsclite_libraries="$pcsclite_libdir"
+< 
+< AC_LANG_SAVE
+< AC_LANG_C
+< 
+< ac_cflags_safe="$CFLAGS"
+< ac_ldflags_safe="$LDFLAGS"
+< ac_libs_safe="$LIBS"
+< 
+< CFLAGS="$CFLAGS -I$pcsclite_incdir $pcsclite_includes"
+< LDFLAGS="-L$pcsclite_libdir $all_libraries"
+< LIBS="$LIBS $LIBPCSCLITE"
+< 
+< AC_LANG_RESTORE
+< if test "$ac_pcsclite_includes" = NO || test "$ac_pcsclite_libraries" = NO; then
+<   have_pcsclite=no
+<   LIBPCSCLITE="";
+<   echo "PCSC-Lite library not found: try without --enable-gsm_auth"
+<   exit
+< else
+<   have_pcsclite=yes;
+< fi
+< 
+< ])
+< 
+< eval "$ac_cv_have_pcsclite"
+< 
+< if test "$have_pcsclite" != yes; then
+<   AC_MSG_RESULT([$have_pcsclite]);
+< else
+<   # AC_DEFINE(WITH_GSM_AUTH, , [If we are going to use GSM authentication])
+<   # CFLAGS="$CFLAGS -DWITH_GSM_AUTH"
+<   CPPFLAGS="$CPPFLAGS -DWITH_GSM_AUTH"
+<   ac_cv_have_pcsclite="have_pcsclite=yes \
+<     ac_pcsclite_includes=$ac_pcsclite_includes \
+< 	ac_pcsclite_libraries=$ac_pcsclite_libraries"
+<   AC_MSG_RESULT([libraries $ac_pcsclite_libraries, headers $ac_pcsclite_includes])
+<   
+<   pcsclite_libraries="$ac_pcsclite_libraries"
+<   pcsclite_includes="$ac_pcsclite_includes"
+< 
+< fi
+< 
+< if test "$pcsclite_includes" = "/usr/include" || test  "$pcsclite_includes" = "/usr/local/include" || test -z "$pcsclite_includes"; then
+<  PCSCLITE_INCLUDES="";
+< else
+<  PCSCLITE_INCLUDES="-I$pcsclite_includes"
+< fi
+< 
+< if test "$pcsclite_libraries" = "/usr/lib" || test "$pcsclite_libraries" = "/usr/local/lib" || test -z "$pcsclite_libraries"; then
+<  PCSCLITE_LDFLAGS=""
+< else
+<  PCSCLITE_LDFLAGS="-L$pcsclite_libraries"
+< fi
+< 
+< AC_SUBST(PCSCLITE_INCLUDES)
+< AC_SUBST(PCSCLITE_LDFLAGS)
+< AC_SUBST(LIBPCSCLITE)
+< ])
+< 
+< AC_PATH_PCSCLITE
+< 
+< fi
+< 
+311d193
+< kphone/Makefile \
+312a195
+> kphone/Makefile \
+Only in kphone-3.11-gsm/: configure.in.old
+Only in kphone-3.11-gsm/: .configure.in.swp
+Only in kphone-3.11-gsm/dissipate2: gsmauth.cpp
+Only in kphone-3.11-gsm/dissipate2: gsmauth.h
+diff -r kphone-3.11-gsm/dissipate2/Makefile.am kphone-3.11/dissipate2/Makefile.am
+20c20
+< INCLUDES= $(all_includes) -I$(srcdir)/.. $(SSL_INCLUDES) $(PCSCLITE_INCLUDES)
+---
+> INCLUDES= $(all_includes) -I$(srcdir)/.. $(SSL_INCLUDES)
+29c29
+< 	sipvialist.cpp sipurilist.cpp extern_md5.c base64.c gsmauth.cpp
+---
+> 	sipvialist.cpp sipurilist.cpp extern_md5.c base64.c
+36c36
+< 	sipprotocol.h parameterlist.h sipurilist.h gsmauth.h
+---
+> 	sipprotocol.h parameterlist.h sipurilist.h
+38,39c38,39
+< libdissipate2_la_LDFLAGS = $(all_libraries) $(SSL_LDFLAGS) $(PCSCLITE_LDFLAGS)
+< libdissipate2_la_LIBADD  = $(LIBSSL) $(LIBPCSCLITE)
+---
+> libdissipate2_la_LDFLAGS = $(all_libraries) $(SSL_LDFLAGS)
+> libdissipate2_la_LIBADD  = $(LIBSSL)
+diff -r kphone-3.11-gsm/dissipate2/Makefile.in kphone-3.11/dissipate2/Makefile.in
+130d129
+< LIBPCSCLITE = @LIBPCSCLITE@
+174,175d172
+< PCSCLITE_INCLUDES = @PCSCLITE_INCLUDES@
+< PCSCLITE_LDFLAGS = @PCSCLITE_LDFLAGS@
+228c225
+< INCLUDES = $(all_includes) -I$(srcdir)/.. $(SSL_INCLUDES) $(PCSCLITE_INCLUDES)
+---
+> INCLUDES = $(all_includes) -I$(srcdir)/.. $(SSL_INCLUDES)
+237c234
+< 	sipvialist.cpp sipurilist.cpp extern_md5.c base64.c gsmauth.cpp
+---
+> 	sipvialist.cpp sipurilist.cpp extern_md5.c base64.c
+245c242
+< 	sipprotocol.h parameterlist.h sipurilist.h gsmauth.h
+---
+> 	sipprotocol.h parameterlist.h sipurilist.h
+248,249c245,246
+< libdissipate2_la_LDFLAGS = $(all_libraries) $(SSL_LDFLAGS) $(PCSCLITE_LDFLAGS)
+< libdissipate2_la_LIBADD = $(LIBSSL) $(LIBPCSCLITE)
+---
+> libdissipate2_la_LDFLAGS = $(all_libraries) $(SSL_LDFLAGS)
+> libdissipate2_la_LIBADD = $(LIBSSL)
+272c269
+< #>- extern_md5.lo base64.lo gsmauth.lo
+---
+> #>- extern_md5.lo base64.lo
+280c277
+< extern_md5.lo base64.lo gsmauth.lo \
+---
+> extern_md5.lo base64.lo \
+307c304
+< KDE_DIST=configure.in.in siputil.h base64.h extern_md5.h 
+---
+> KDE_DIST=configure.in.in siputil.h libdissipate2_la_meta_unload.cpp dissipate2.kdevses base64.h dissipate2.kdevprj extern_md5.h 
+315,321c312,318
+< #>- .deps/gsmauth.P .deps/headerparser.P .deps/messagesocket.P \
+< #>- .deps/mimecontenttype.P .deps/parameterlist.P .deps/sdp.P \
+< #>- .deps/sipcall.P .deps/sipclient.P .deps/sipheader.P .deps/sipmessage.P \
+< #>- .deps/sipprotocol.P .deps/sipregister.P .deps/sipstatus.P \
+< #>- .deps/siptransaction.P .deps/sipuri.P .deps/sipurilist.P \
+< #>- .deps/sipuser.P .deps/siputil.P .deps/sipvia.P .deps/sipvialist.P \
+< #>- .deps/tcpmessagesocket.P .deps/udpmessagesocket.P
+---
+> #>- .deps/headerparser.P .deps/messagesocket.P .deps/mimecontenttype.P \
+> #>- .deps/parameterlist.P .deps/sdp.P .deps/sipcall.P .deps/sipclient.P \
+> #>- .deps/sipheader.P .deps/sipmessage.P .deps/sipprotocol.P \
+> #>- .deps/sipregister.P .deps/sipstatus.P .deps/siptransaction.P \
+> #>- .deps/sipuri.P .deps/sipurilist.P .deps/sipuser.P .deps/siputil.P \
+> #>- .deps/sipvia.P .deps/sipvialist.P .deps/tcpmessagesocket.P \
+> #>- .deps/udpmessagesocket.P
+325,331c322,328
+< .deps/gsmauth.P .deps/headerparser.P .deps/messagesocket.P \
+< .deps/mimecontenttype.P .deps/parameterlist.P .deps/sdp.P \
+< .deps/sipcall.P .deps/sipclient.P .deps/sipheader.P .deps/sipmessage.P \
+< .deps/sipprotocol.P .deps/sipregister.P .deps/sipstatus.P \
+< .deps/siptransaction.P .deps/sipuri.P .deps/sipurilist.P \
+< .deps/sipuser.P .deps/siputil.P .deps/sipvia.P .deps/sipvialist.P \
+< .deps/tcpmessagesocket.P .deps/udpmessagesocket.P
+---
+> .deps/headerparser.P .deps/messagesocket.P .deps/mimecontenttype.P \
+> .deps/parameterlist.P .deps/sdp.P .deps/sipcall.P .deps/sipclient.P \
+> .deps/sipheader.P .deps/sipmessage.P .deps/sipprotocol.P \
+> .deps/sipregister.P .deps/sipstatus.P .deps/siptransaction.P \
+> .deps/sipuri.P .deps/sipurilist.P .deps/sipuser.P .deps/siputil.P \
+> .deps/sipvia.P .deps/sipvialist.P .deps/tcpmessagesocket.P \
+> .deps/udpmessagesocket.P
+333,339c330,336
+< .deps/gsmauth.P .deps/headerparser.P .deps/messagesocket.P \
+< .deps/mimecontenttype.P .deps/parameterlist.P .deps/sdp.P \
+< .deps/sipcall.P .deps/sipclient.P .deps/sipheader.P .deps/sipmessage.P \
+< .deps/sipprotocol.P .deps/sipregister.P .deps/sipstatus.P \
+< .deps/siptransaction.P .deps/sipuri.P .deps/sipurilist.P \
+< .deps/sipuser.P .deps/siputil.P .deps/sipvia.P .deps/sipvialist.P \
+< .deps/tcpmessagesocket.P .deps/udpmessagesocket.P
+---
+> .deps/headerparser.P .deps/messagesocket.P .deps/mimecontenttype.P \
+> .deps/parameterlist.P .deps/sdp.P .deps/sipcall.P .deps/sipclient.P \
+> .deps/sipheader.P .deps/sipmessage.P .deps/sipprotocol.P \
+> .deps/sipregister.P .deps/sipstatus.P .deps/siptransaction.P \
+> .deps/sipuri.P .deps/sipurilist.P .deps/sipuser.P .deps/siputil.P \
+> .deps/sipvia.P .deps/sipvialist.P .deps/tcpmessagesocket.P \
+> .deps/udpmessagesocket.P
+686c683
+< libdissipate2_la.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/generaluri.cpp $(srcdir)/headerparser.cpp $(srcdir)/messagesocket.cpp $(srcdir)/sipcall.cpp $(srcdir)/sipclient.cpp $(srcdir)/sipheader.cpp $(srcdir)/sipmessage.cpp $(srcdir)/sipstatus.cpp $(srcdir)/sipuri.cpp $(srcdir)/sipvia.cpp $(srcdir)/mimecontenttype.cpp $(srcdir)/tcpmessagesocket.cpp $(srcdir)/sdp.cpp $(srcdir)/udpmessagesocket.cpp $(srcdir)/siptransaction.cpp $(srcdir)/sipregister.cpp $(srcdir)/siputil.cpp $(srcdir)/sipprotocol.cpp $(srcdir)/sipuser.cpp $(srcdir)/parameterlist.cpp $(srcdir)/sipvialist.cpp $(srcdir)/sipurilist.cpp $(srcdir)/gsmauth.cpp libdissipate2_la_meta_unload.cpp   siptransaction.moc sipclient.moc sipcall.moc sipregister.moc 
+---
+> libdissipate2_la.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/generaluri.cpp $(srcdir)/headerparser.cpp $(srcdir)/messagesocket.cpp $(srcdir)/sipcall.cpp $(srcdir)/sipclient.cpp $(srcdir)/sipheader.cpp $(srcdir)/sipmessage.cpp $(srcdir)/sipstatus.cpp $(srcdir)/sipuri.cpp $(srcdir)/sipvia.cpp $(srcdir)/mimecontenttype.cpp $(srcdir)/tcpmessagesocket.cpp $(srcdir)/sdp.cpp $(srcdir)/udpmessagesocket.cpp $(srcdir)/siptransaction.cpp $(srcdir)/sipregister.cpp $(srcdir)/siputil.cpp $(srcdir)/sipprotocol.cpp $(srcdir)/sipuser.cpp $(srcdir)/parameterlist.cpp $(srcdir)/sipvialist.cpp $(srcdir)/sipurilist.cpp $(srcdir)/libdissipate2_la_meta_unload.cpp   siptransaction.moc sipclient.moc sipcall.moc sipregister.moc 
+690c687
+< 	for file in generaluri.cpp headerparser.cpp messagesocket.cpp sipcall.cpp sipclient.cpp sipheader.cpp sipmessage.cpp sipstatus.cpp sipuri.cpp sipvia.cpp mimecontenttype.cpp tcpmessagesocket.cpp sdp.cpp udpmessagesocket.cpp siptransaction.cpp sipregister.cpp siputil.cpp sipprotocol.cpp sipuser.cpp parameterlist.cpp sipvialist.cpp sipurilist.cpp gsmauth.cpp libdissipate2_la_meta_unload.cpp ; do \
+---
+> 	for file in generaluri.cpp headerparser.cpp messagesocket.cpp sipcall.cpp sipclient.cpp sipheader.cpp sipmessage.cpp sipstatus.cpp sipuri.cpp sipvia.cpp mimecontenttype.cpp tcpmessagesocket.cpp sdp.cpp udpmessagesocket.cpp siptransaction.cpp sipregister.cpp siputil.cpp sipprotocol.cpp sipuser.cpp parameterlist.cpp sipvialist.cpp sipurilist.cpp libdissipate2_la_meta_unload.cpp ; do \
+diff -r kphone-3.11-gsm/dissipate2/sipcall.cpp kphone-3.11/dissipate2/sipcall.cpp
+189,194c189
+< 			status == AuthenticationRequired_Connected
+< #ifdef WITH_GSM_AUTH
+< 			|| status == GsmAuthFirstPhase
+< 			|| status == GsmAuthSecondPhase
+< #endif
+< 	) {
+---
+> 			status == AuthenticationRequired_Connected ) {
+219,228c214
+< 			} else
+< #ifdef WITH_GSM_AUTH
+< 			if(status == GsmAuthFirstPhase
+< 				|| status == GsmAuthSecondPhase)
+< 			{
+< 				printf( "SipMessage: GsmAuthentication required -- phase [%d]\n", status );
+< 			}
+< 			else
+< #endif
+< 			 {
+---
+> 			} else {
+232c218
+< 		printf( "SipMessage: Authentication required\n" );
+---
+> 		printf( "SipInvite: Authentication required\n" );
+238,254c224
+< #ifdef WITH_GSM_AUTH
+< 		else if( authtype == ProxyGSMAuthenticationRequired ) {
+< 			if(call->getGsmAuth()==NULL)
+< 			{
+< 				printf( "SipMessage: no GsmAuth object'\n" );
+< 				return false;
+< 			}
+< 			call->getGsmAuth()->resetError();
+< 			proxyauthresponse = Sip::getGSMResponse( proxyauthstr, p, call->getGsmAuth()  );
+< 			if( call->getGsmAuth()->getError() == GA_ERR_WRONG_PIN
+< 				|| call->getGsmAuth()->getError() == GA_ERR_NO_PIN)
+< 			{
+< 				return false;
+< 			}
+< 		}
+< #endif
+< 		printf( "SipMessage: Proxy Auth is '%s'\n", proxyauthresponse.latin1() );
+---
+> 		printf( "SipInvite: Proxy Auth is '%s'\n", proxyauthresponse.latin1() );
+283,288c253
+< 			status == AuthenticationRequired_Connected
+< #ifdef WITH_GSM_AUTH
+< 			|| status == GsmAuthFirstPhase
+< 			|| status == GsmAuthSecondPhase
+< #endif
+< 	 ) {
+---
+> 			status == AuthenticationRequired_Connected ) {
+313,322c278
+< 			} else
+< #ifdef WITH_GSM_AUTH
+< 			if(status == GsmAuthFirstPhase
+< 				|| status == GsmAuthSecondPhase)
+< 			{
+< 				printf( "SipInvite: GsmAuthentication required -- phase [%d]\n", status );
+< 			}
+< 			else
+< #endif
+< 			 {
+---
+> 			} else {
+332,348c288
+< #ifdef WITH_GSM_AUTH
+< 		else if( authtype == ProxyGSMAuthenticationRequired ) {
+< 			if(call->getGsmAuth()==NULL)
+< 			{
+< 				printf( "SipInvite: no GsmAuth object'\n" );
+< 				return false;
+< 			}
+< 			call->getGsmAuth()->resetError();
+< 			proxyauthresponse = Sip::getGSMResponse( proxyauthstr, p, call->getGsmAuth()  );
+< 			if( call->getGsmAuth()->getError() == GA_ERR_WRONG_PIN
+< 				|| call->getGsmAuth()->getError() == GA_ERR_NO_PIN)
+< 			{
+< 				return false;
+< 			}
+< 		}
+< #endif
+< 		printf( "SipInvite: Proxy Auth is '%s' !!!\n", proxyauthresponse.latin1() );
+---
+> 		printf( "SipInvite: Proxy Auth is '%s'\n", proxyauthresponse.latin1() );
+484c424
+< 	printf( "SipCallMember: localStatusUpdated: %d -- method [%d]\n", local->getStatus().getCode(), call->getLastMethod() );
+---
+> 	printf( "SipCallMember: localStatusUpdated: %d\n", local->getStatus().getCode() );
+496,501c436
+< 			status == InviteEarlyDialog
+< #ifdef WITH_GSM_AUTH
+< 			|| (call->getLastMethod() == Sip::INVITE
+< 					&& ( status==GsmAuthFirstPhase || status==GsmAuthSecondPhase ))
+< #endif
+< 	 ) {
+---
+> 			status == InviteEarlyDialog ) {
+527,533c462
+< 				}
+< #ifdef WITH_GSM_AUTH
+< 				else if( authstrtemp.contains( "gsm " ) ) {
+< 					authtype = ProxyGSMAuthenticationRequired;
+< 				  }
+< #endif
+< 				else {
+---
+> 				} else {
+536,545d464
+< #ifdef WITH_GSM_AUTH
+< 				if(authtype == ProxyGSMAuthenticationRequired)
+< 				{
+< 					if( authstrtemp.contains( "nonce=" ) )
+< 						status = GsmAuthSecondPhase;
+< 					else
+< 						status = GsmAuthFirstPhase;
+< 				}
+< 				else
+< #endif
+551d469
+< 
+560,565c478
+< 	} else if( status == MessageRequested || status == MessageRequestedWithPassword
+< #ifdef WITH_GSM_AUTH
+< 			|| (call->getLastMethod() == Sip::MESSAGE
+< 					&& ( status==GsmAuthFirstPhase || status==GsmAuthSecondPhase ))
+< #endif
+< 	) {
+---
+> 	} else if( status == MessageRequested || status == MessageRequestedWithPassword ) {
+577,583c490
+< 				}
+< #ifdef WITH_GSM_AUTH
+< 				else if( authstrtemp.contains( "gsm " ) ) {
+< 					authtype = ProxyGSMAuthenticationRequired;
+< 				}
+< #endif
+< 				 else {
+---
+> 				} else {
+586,595d492
+< #ifdef WITH_GSM_AUTH
+< 				if(authtype == ProxyGSMAuthenticationRequired)
+< 				{
+< 					if( authstrtemp.contains( "nonce=" ) )
+< 						status = GsmAuthSecondPhase;
+< 					else
+< 						status = GsmAuthFirstPhase;
+< 				}
+< 				else
+< #endif
+619c516
+< 			if( authstrtemp.contains( "digest " ) ) {
+---
+> 			if( authstrtemp.contains( "digest" ) ) {
+621,627c518
+< 			}
+< #ifdef WITH_GSM_AUTH
+< 			else if( authstrtemp.contains( "gsm " ) ) {
+< 				authtype = ProxyGSMAuthenticationRequired;
+< 			}
+< #endif
+< 			else {
+---
+> 			} else {
+630,639d520
+< #ifdef WITH_GSM_AUTH
+< 			if(authtype == ProxyGSMAuthenticationRequired)
+< 			{
+< 				if( authstrtemp.contains( "nonce=" ) )
+< 					status = GsmAuthSecondPhase;
+< 				else
+< 					status = GsmAuthFirstPhase;
+< 			}
+< 			else
+< #endif
+652,658c533
+< 			}
+< #ifdef WITH_GSM_AUTH
+< 			else if( authstrtemp.contains( "gsm " ) ) {
+< 				authtype = ProxyGSMAuthenticationRequired;
+< 			}
+< #endif
+< 			else {
+---
+> 			} else {
+661,670d535
+< #ifdef WITH_GSM_AUTH
+< 			if(authtype == ProxyGSMAuthenticationRequired)
+< 			{
+< 				if( authstrtemp.contains( "nonce=" ) )
+< 					status = GsmAuthSecondPhase;
+< 				else
+< 					status = GsmAuthFirstPhase;
+< 			}
+< 			else
+< #endif
+697,703c562
+< 				}
+< #ifdef WITH_GSM_AUTH
+< 				else if( authstrtemp.contains( "gsm " ) ) {
+< 					authtype = ProxyGSMAuthenticationRequired;
+< 				}
+< #endif
+< 				else {
+---
+> 				} else {
+706,715d564
+< #ifdef WITH_GSM_AUTH
+< 				if(authtype == ProxyGSMAuthenticationRequired)
+< 				{
+< 					if( authstrtemp.contains( "nonce=" ) )
+< 						status = GsmAuthSecondPhase;
+< 					else
+< 						status = GsmAuthFirstPhase;
+< 				}
+< 				else
+< #endif
+728,734c577
+< 				}
+< #ifdef WITH_GSM_AUTH
+< 				else if( authstrtemp.contains( "gsm " ) ) {
+< 					authtype = ProxyGSMAuthenticationRequired;
+< 				}
+< #endif
+< 				 else {
+---
+> 				} else {
+737,746d579
+< #ifdef WITH_GSM_AUTH
+< 				if(authtype == ProxyGSMAuthenticationRequired)
+< 				{
+< 					if( authstrtemp.contains( "nonce=" ) )
+< 						status = GsmAuthSecondPhase;
+< 					else
+< 						status = GsmAuthFirstPhase;
+< 				}
+< 				else
+< #endif
+767,773c600
+< 				}
+< #ifdef WITH_GSM_AUTH
+< 				else if( authstrtemp.contains( "gsm " ) ) {
+< 					authtype = ProxyGSMAuthenticationRequired;
+< 				}
+< #endif
+< 				 else {
+---
+> 				} else {
+795,801c622
+< 				}
+< #ifdef WITH_GSM_AUTH
+< 				else if( authstrtemp.contains( "gsm " ) ) {
+< 					authtype = ProxyGSMAuthenticationRequired;
+< 				}
+< #endif
+< 				else {
+---
+> 				} else {
+927,930d747
+< #ifdef WITH_GSM_AUTH
+< 	gsmAuth = NULL;
+< 	lastMethod = Sip::BadMethod;
+< #endif
+974,976d790
+< #ifdef WITH_GSM_AUTH
+< 	lastMethod = meth;
+< #endif
+diff -r kphone-3.11-gsm/dissipate2/sipcall.h kphone-3.11/dissipate2/sipcall.h
+34,37d33
+< #ifdef WITH_GSM_AUTH
+< #include <dissipate2/gsmauth.h>
+< #endif
+< 
+84,87d79
+< #ifdef WITH_GSM_AUTH
+< 		GsmAuthFirstPhase,
+< 		GsmAuthSecondPhase,
+< #endif
+105,109c97
+< 		ProxyDigestAuthenticationRequired
+< #ifdef WITH_GSM_AUTH
+< 		,ProxyGSMAuthenticationRequired
+< #endif
+< 		 };
+---
+> 		ProxyDigestAuthenticationRequired };
+269d256
+< 
+471,476d457
+< #ifdef WITH_GSM_AUTH
+< 	void setGsmAuth(GsmAuth *ga=NULL) { gsmAuth = ga; }
+< 	GsmAuth *getGsmAuth() { return gsmAuth; }
+< 	int getLastMethod() { return lastMethod; }
+< #endif
+< 
+541,544d521
+< #ifdef WITH_GSM_AUTH
+< 	GsmAuth *gsmAuth;
+< 	int lastMethod;
+< #endif
+diff -r kphone-3.11-gsm/dissipate2/sipprotocol.cpp kphone-3.11/dissipate2/sipprotocol.cpp
+265,333d264
+< #ifdef WITH_GSM_AUTH
+< QString Sip::getGSMResponse( const QString &authstr, const QString &password, GsmAuth *gAuth )
+< {
+< 	QString gsm;
+< 	QString realm = "";
+< 	QString nonce = "";
+< 	char response[36];
+< 	const char *p = authstr.latin1();
+< 	int i = 0;
+< 	if(gAuth == NULL)
+< 		return QString::null;
+< 
+< 	while( *p )
+< 	{
+< 		while( *p && (( *p == ' ' ) || ( *p == ',' ) || (*p == '\t') ))
+< 			p++;
+< 		i = 0;
+< 		 if( !*p)
+< 		{ /* NOP */
+< 		}
+< 		else if( strncasecmp( p, "realm=\"", 7 ) == 0 )
+< 		{
+< 			p += 7;
+< 			while( *p && p[ i ] != '"' )
+< 			{
+< 				realm[ i ] = p[ i ];
+< 				i++;
+< 			}
+< 		} else if( strncasecmp( p, "nonce=\"", 7 ) == 0 ) {
+< 			p += 7;
+< 			while( *p && p[ i ] != '"' ) {
+< 				nonce[ i ] = p[ i ];
+< 				i++;
+< 			}
+< 		}
+< 		if(*p) {
+< 			if( i ) p += i; else p++;
+< 		}
+< 	}
+< 	gsm = "GSM ";
+< 	gsm += "realm=\"";
+< 	gsm += realm;
+< 	gsm += "\", username=\"";
+< 
+< 	/* get IMSI */
+< 	/***
+< 	i = gAuth->initContext(password.latin1());
+< 	if(i < 0)
+< 	      retrun QString();
+<        ***/
+< 	gAuth->retrieveIMSI(password.latin1());
+< 
+< 	gsm += QString(gAuth->getIMSI());
+< 
+< 	if( nonce != "" )
+< 	{
+< 		i = 0;
+< 		response[0] = '\0';
+< 		gAuth->getAuthResponse((char*)nonce.latin1(), (int)nonce.length(),  (char*)response, &i, password.latin1());
+< 		gsm += "\", nonce=\"";
+< 		gsm += nonce;
+< 		gsm += "\", response=\"";
+< 		gsm += QString(response);
+< 	}
+< 	gsm += "\"";
+< 	/* gAuth->OnExit(); */
+< 	return gsm;
+< }
+< #endif
+diff -r kphone-3.11-gsm/dissipate2/sipprotocol.h kphone-3.11/dissipate2/sipprotocol.h
+1,2d0
+< #include <config.h>
+< 
+41,43d38
+< #ifdef WITH_GSM_AUTH
+< #include "gsmauth.h"
+< #endif
+115,121d109
+< 
+< #ifdef WITH_GSM_AUTH
+< 	/**
+< 	 * Calculate the GSM authentication response.
+< 	 */
+< 	static QString getGSMResponse( const QString &authstr, const QString &password, GsmAuth *gAuth );
+< #endif
+diff -r kphone-3.11-gsm/dissipate2/sipregister.cpp kphone-3.11/dissipate2/sipregister.cpp
+14,16d13
+< #ifdef WITH_GSM_AUTH
+< 	gsmAuthentication = false;
+< #endif
+48,50d44
+< #ifdef WITH_GSM_AUTH
+< 	gAuth.OnExit();
+< #endif
+60,62d53
+< #ifdef WITH_GSM_AUTH
+< 	int gsm_auth_flag = 0;
+< #endif
+65,68c56
+< 		if( !username.isEmpty() &&
+< #ifndef WITH_GSM_AUTH
+< 			 !password.isEmpty() &&
+< #endif
+---
+> 		if( !username.isEmpty() && !password.isEmpty() &&
+70,81c58
+< 				rstate == AuthenticationRequiredWithNewPassword
+< #ifdef WITH_GSM_AUTH
+< 				|| rstate == GsmAuthFirstPhase
+< 				|| rstate == GsmAuthSecondPhase
+< #endif
+< 				) ) {
+< #ifdef WITH_GSM_AUTH
+< 			if(rstate == GsmAuthFirstPhase)
+< 				gsm_auth_flag = 1;
+< 			if(rstate == GsmAuthSecondPhase)
+< 				gsm_auth_flag = 2;
+< #endif
+---
+> 				rstate == AuthenticationRequiredWithNewPassword ) ) {
+87,99c64
+< 			}
+< #ifdef WITH_GSM_AUTH
+< 			 else if( authtype == GSMAuthenticationRequired ) {
+< 				 gAuth.resetError();
+< 				authresponse = Sip::getGSMResponse( authstr, password, &gAuth );
+< 				if( gAuth.getError() == GA_ERR_WRONG_PIN
+< 					 || gAuth.getError() == GA_ERR_NO_PIN)
+< 				{
+< 					return;
+< 				}
+< 			}
+< #endif
+< 			 else if( authtype == ProxyDigestAuthenticationRequired ) {
+---
+> 			} else if( authtype == ProxyDigestAuthenticationRequired ) {
+104,114d68
+< #ifdef WITH_GSM_AUTH
+< 			 else if( authtype == ProxyGSMAuthenticationRequired ) {
+< 				 gAuth.resetError();
+< 				proxyauthresponse = Sip::getGSMResponse( proxyauthstr, password, &gAuth  );
+< 				if( gAuth.getError() == GA_ERR_WRONG_PIN
+< 					|| gAuth.getError() == GA_ERR_NO_PIN)
+< 				{
+< 					return;
+< 				}
+< 			}
+< #endif
+119d72
+< 		printf( "SipRegister: RState is '%d'\n", rstate );
+128,130d80
+< #ifdef WITH_GSM_AUTH
+< 		if(gsm_auth_flag != 1)
+< #endif
+188c138
+< 			if( authstrtemp.contains( "digest " ) ) {
+---
+> 			if( authstrtemp.contains( "digest" ) ) {
+190,200c140
+< 			}
+< #ifdef WITH_GSM_AUTH
+< 			else if( authstrtemp.contains( "gsm " ) ) {
+< 				authtype = GSMAuthenticationRequired;
+< 				if( authstrtemp.contains( "nonce=" ) )
+< 					rstate = GsmAuthSecondPhase;
+< 				else
+< 					rstate = GsmAuthFirstPhase;
+< 			}
+< #endif
+< 			else {
+---
+> 			} else {
+213c153
+< 			if( authstrtemp.contains( "digest " ) ) {
+---
+> 			if( authstrtemp.contains( "digest" ) ) {
+215,226c155
+< 			}
+< #ifdef WITH_GSM_AUTH
+< 			else if( authstrtemp.contains( "gsm " ) ) {
+< 				authtype = ProxyGSMAuthenticationRequired;
+< 				if( authstrtemp.contains( "nonce=" ) )
+< 					rstate = GsmAuthSecondPhase;
+< 				else
+< 					rstate = GsmAuthFirstPhase;
+< 				
+< 			}
+< #endif
+< 			else {
+---
+> 			} else {
+diff -r kphone-3.11-gsm/dissipate2/sipregister.h kphone-3.11/dissipate2/sipregister.h
+1,2d0
+< #include <config.h>
+< 
+22c20
+<  * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,   
+---
+>  * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+67,72c65
+< 		Reconnecting
+< #ifdef WITH_GSM_AUTH
+< 		,GsmAuthFirstPhase
+< 		,GsmAuthSecondPhase
+< #endif
+< 		};
+---
+> 		Reconnecting };
+76,78d68
+< #ifdef WITH_GSM_AUTH
+< 		GSMAuthenticationRequired,
+< #endif
+81,85c71
+< #ifdef WITH_GSM_AUTH
+< 		ProxyGSMAuthenticationRequired,
+< #endif
+< 		ProxyDigestAuthenticationRequired
+< 	};
+---
+> 		ProxyDigestAuthenticationRequired };
+147,151d132
+< #ifdef WITH_GSM_AUTH
+< 	void setGSMAuthentication( bool auth ) { gsmAuthentication = auth; }
+< 	bool getGSMAuthentication( void ) { return gsmAuthentication; }
+< 	GsmAuth* getGsmAuth(void) { return &gAuth; }
+< #endif
+168,171d148
+< #ifdef WITH_GSM_AUTH
+< 	bool gsmAuthentication;
+< 	GsmAuth gAuth;
+< #endif
+Only in kphone-3.11-gsm/: gsm
+diff -r kphone-3.11-gsm/ilbc/Makefile.in kphone-3.11/ilbc/Makefile.in
+106d105
+< LIBPCSCLITE = @LIBPCSCLITE@
+150,151d148
+< PCSCLITE_INCLUDES = @PCSCLITE_INCLUDES@
+< PCSCLITE_LDFLAGS = @PCSCLITE_LDFLAGS@
+diff -r kphone-3.11-gsm/kphone/audiocontrol.cpp kphone-3.11/kphone/audiocontrol.cpp
+195c195,196
+< 
+---
+> 	KConfig *config = KGlobal::config();
+> 	config->setGroup( "Video" );
+197c198
+< 	videoSW = new QLineEdit( a->getVideoSW(), vbox );
+---
+> 	videoSW = new QLineEdit( config->readEntry( "videoSW", "/usr/local/bin/vic" ), vbox );
+199d199
+< 
+205,208d204
+< 
+< 	KConfig *config = KGlobal::config();
+< 	config->setGroup( "Video" );
+< 	videoSW->setText( config->readEntry( "videoSW", "/usr/local/bin/vic" ) );
+248d243
+< 	videoSW->setText( a->getOSSFilename() );
+diff -r kphone-3.11-gsm/kphone/callaudio.cpp kphone-3.11/kphone/callaudio.cpp
+204,211d203
+< void CallAudio::saveVideoSettings( void )
+< {
+< 	KConfig *config = KGlobal::config();
+< 	config->setGroup( "Video" );
+< 	config->writeEntry( "videoSW", getVideoSW() );
+< 	config->sync();
+< }
+< 
+216c208
+< 	setVideoSW( config->readEntry( "VideoSW" ) );
+---
+> 	setVideoSW( config->readEntry( "videoSW", "/usr/local/bin/vic"  ) );
+diff -r kphone-3.11-gsm/kphone/callaudio.h kphone-3.11/kphone/callaudio.h
+45d44
+< 	void saveVideoSettings( void );
+diff -r kphone-3.11-gsm/kphone/kphone.h kphone-3.11/kphone/kphone.h
+22c22
+< QString const KPhoneVersion = "3.11-rc2";
+---
+> QString const KPhoneVersion = "3.11";
+diff -r kphone-3.11-gsm/kphone/kphoneview.cpp kphone-3.11/kphone/kphoneview.cpp
+188,191d187
+< #ifdef WITH_GSM_AUTH
+< 			if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 				newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+250,253d245
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		c->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+342,345d333
+< #ifdef WITH_GSM_AUTH
+< 							if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 								newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+402,405d389
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		initcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+438,441d421
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		initcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+461,464d440
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+486,489d461
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+621,624d592
+< #ifdef WITH_GSM_AUTH
+< 				if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 					newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+805,808d772
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+824,827d787
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+851,854d810
+< #ifdef WITH_GSM_AUTH
+< 	if(identitiesDialog != NULL && identitiesDialog->getSipRegister() != NULL)
+< 		newcall->setGsmAuth(identitiesDialog->getSipRegister()->getGsmAuth());
+< #endif
+diff -r kphone-3.11-gsm/kphone/ksipregistrations.cpp kphone-3.11/kphone/ksipregistrations.cpp
+42,44d41
+< #ifdef WITH_GSM_AUTH
+< 	gsmAuthentication = new QCheckBox( "GSM Authentication", vbox );
+< #endif
+164,166d160
+< #ifdef WITH_GSM_AUTH
+< 	(void) new QLabel( "Password (SIM PIN when GSM auth):", vbox );
+< #else
+168d161
+< #endif
+268,277d260
+< #ifdef WITH_GSM_AUTH
+< 		str = config->readEntry( "GSMAuthentication" );
+< 		if( str == "Yes" ) {
+< 			gsmAuthentication = true;
+< 			sipreg->setGSMAuthentication( true );
+< 		} else {
+< 			gsmAuthentication = false;
+< 			sipreg->setGSMAuthentication( false );
+< 		}
+< #endif
+306,308d288
+< #ifdef WITH_GSM_AUTH
+< 		edit->setGSMAuthentication( gsmAuthentication );
+< #endif
+351,360d330
+< #ifdef WITH_GSM_AUTH
+< 	if( edit->getGSMAuthentication() ) {
+< 		gsmAuthentication = true;
+< 		config->writeEntry( "GSMAuthentication", "Yes");
+< 	} else {
+< 		gsmAuthentication = false;
+< 		config->writeEntry( "GSMAuthentication", "No");
+< 	}
+< #endif
+< 
+362a333
+> 
+433,440d403
+< #ifdef WITH_GSM_AUTH
+< 		case SipRegister::GsmAuthFirstPhase:
+< 			edit->updateState( "GSM Auth Required..." );
+< 			break;
+< 		case SipRegister::GsmAuthSecondPhase:
+< 			edit->updateState( "GSM-Auth Required..." );
+< 			break;
+< #endif
+457,462c420
+< 			sipreg->getRegisterState() != SipRegister::AuthenticationRequiredWithNewPassword
+< #ifdef WITH_GSM_AUTH
+< 			&& sipreg->getRegisterState() != SipRegister::GsmAuthFirstPhase
+< 			&& sipreg->getRegisterState() != SipRegister::GsmAuthSecondPhase
+< #endif
+< 			) {
+---
+> 			sipreg->getRegisterState() != SipRegister::AuthenticationRequiredWithNewPassword ) {
+471,474d428
+< #ifdef WITH_GSM_AUTH
+< 		case SipRegister::GSMAuthenticationRequired:
+< 			authtype = "GSM Authentication Request"; break;
+< #endif
+479,482d432
+< #ifdef WITH_GSM_AUTH
+< 		case SipRegister::ProxyGSMAuthenticationRequired:
+< 			authtype = "Proxy GSM Authentication Request"; break;
+< #endif
+486d435
+< 	QString username = sipreg->getRegisterCall()->getProxyUsername();
+487a437
+> 	QString username = sipreg->getRegisterCall()->getProxyUsername();
+492,495c442
+< 			if( authreq.getPassword().isEmpty() || authreq.getUsername().isEmpty() ) {
+< #ifdef WITH_GSM_AUTH
+< 				QMessageBox::information( parent, "Identity", "Try to access the GSM SIM without PIN!" );
+< #else
+---
+> 			if( authreq.getUsername().isEmpty() || authreq.getUsername().isEmpty() ) {
+497d443
+< #endif
+502,510d447
+< #ifdef WITH_GSM_AUTH
+< 			if(sipreg->getGsmAuth()->getError()==GA_ERR_WRONG_PIN
+< 				|| sipreg->getGsmAuth()->getError()==GA_ERR_NO_PIN)
+< 			{
+< 				authreq.setPassword( QString("") );
+< 				sipreg->getRegisterCall()->setPassword( QString("") );
+< 				QMessageBox::information( parent, "Identity", "Wrong SIM PIN provided!\n (You must to restart KPhone)" );
+< 			}
+< #endif
+diff -r kphone-3.11-gsm/kphone/ksipregistrations.h kphone-3.11/kphone/ksipregistrations.h
+1,2d0
+< #include <config.h>
+< 
+28,31d25
+< #ifdef WITH_GSM_AUTH
+< 	void setGSMAuthentication( bool newGSMAuth ) { gsmAuthentication->setChecked( newGSMAuth ); }
+< 	bool getGSMAuthentication( void ) { return gsmAuthentication->isChecked(); }
+< #endif
+62,64d55
+< #ifdef WITH_GSM_AUTH
+< 	QCheckBox *gsmAuthentication;
+< #endif
+97,99d87
+< #ifdef WITH_GSM_AUTH
+< 	SipRegister *getSipRegister() { return sipreg; }
+< #endif
+117,119d104
+< #ifdef WITH_GSM_AUTH
+< 	bool gsmAuthentication;
+< #endif
+diff -r kphone-3.11-gsm/kphone/Makefile.in kphone-3.11/kphone/Makefile.in
+111d110
+< LIBPCSCLITE = @LIBPCSCLITE@
+155,156d153
+< PCSCLITE_INCLUDES = @PCSCLITE_INCLUDES@
+< PCSCLITE_LDFLAGS = @PCSCLITE_LDFLAGS@
+293c290
+< KDE_DIST=ksipuserinfo.h dial.png hangup.png kphone.desktop kphonetimer.h dspfulldiverter.h defines.h mini-kphone.png dspoutrtp.h videocall.png lo-kphone.png kphone.h thread.h online.png kphoneview.h dspcontrol.h dspoutoss.h ksippreferences.h dspout.h audiocontrol.h large-kphone.png callaudio.h configure.in.in enter.png ksipoptions.h phonebook.png menulistview.h offline.png kcallwidget.h bhistoryline.h g711.h dspaction.h audiobuffer.h calllistview.h dspeffect.h dspdiverter.h rtpdataheader.h ksipregistrations.h 
+---
+> KDE_DIST=ksipuserinfo.h dial.png hangup.png kphone.desktop kphonetimer.h dspfulldiverter.h defines.h mini-kphone.png dspoutrtp.h lo-kphone.png kphone.h thread.h online.png kphone.kdevses kphoneview.h dspcontrol.h dspoutoss.cpp_vara dspoutoss.h ksippreferences.h kphone.kdevprj dspout.h audiocontrol.h large-kphone.png callaudio.h configure.in.in enter.png ksipoptions.h phonebook.png menulistview.h offline.png kcallwidget.h bhistoryline.h g711.h dspaction.h audiobuffer.h calllistview.h kphone dspeffect.h kphone_meta_unload.cpp video.png dspdiverter.h rtpdataheader.h dspoutoss.cpp-ori ksipregistrations.h 
+748c745
+< kphone.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/kphone.cpp $(srcdir)/kphoneview.cpp $(srcdir)/audiobuffer.cpp $(srcdir)/dspout.cpp $(srcdir)/dspoutoss.cpp $(srcdir)/dspcontrol.cpp $(srcdir)/dspaction.cpp $(srcdir)/bhistoryline.cpp $(srcdir)/menulistview.cpp $(srcdir)/dspoutrtp.cpp $(srcdir)/g711.cpp $(srcdir)/thread.cpp $(srcdir)/dspdiverter.cpp $(srcdir)/calllistview.cpp $(srcdir)/kphonetimer.cpp $(srcdir)/dspeffect.cpp $(srcdir)/kcallwidget.cpp $(srcdir)/dspfulldiverter.cpp $(srcdir)/callaudio.cpp $(srcdir)/ksipuserinfo.cpp $(srcdir)/ksipregistrations.cpp $(srcdir)/audiocontrol.cpp $(srcdir)/ksippreferences.cpp $(srcdir)/ksipoptions.cpp kphone_meta_unload.cpp   audiocontrol.moc kcallwidget.moc callaudio.moc kphone.moc calllistview.moc ksipuserinfo.moc kphonetimer.moc kphoneview.moc bhistoryline.moc ksipoptions.moc ksipregistrations.moc ksippreferences.moc menulistview.moc 
+---
+> kphone.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/kphone.cpp $(srcdir)/kphoneview.cpp $(srcdir)/audiobuffer.cpp $(srcdir)/dspout.cpp $(srcdir)/dspoutoss.cpp $(srcdir)/dspcontrol.cpp $(srcdir)/dspaction.cpp $(srcdir)/bhistoryline.cpp $(srcdir)/menulistview.cpp $(srcdir)/dspoutrtp.cpp $(srcdir)/g711.cpp $(srcdir)/thread.cpp $(srcdir)/dspdiverter.cpp $(srcdir)/calllistview.cpp $(srcdir)/kphonetimer.cpp $(srcdir)/dspeffect.cpp $(srcdir)/kcallwidget.cpp $(srcdir)/dspfulldiverter.cpp $(srcdir)/callaudio.cpp $(srcdir)/ksipuserinfo.cpp $(srcdir)/ksipregistrations.cpp $(srcdir)/audiocontrol.cpp $(srcdir)/ksippreferences.cpp $(srcdir)/ksipoptions.cpp $(srcdir)/kphone_meta_unload.cpp   audiocontrol.moc kcallwidget.moc callaudio.moc kphone.moc calllistview.moc ksipuserinfo.moc kphonetimer.moc kphoneview.moc bhistoryline.moc ksipoptions.moc ksipregistrations.moc ksippreferences.moc menulistview.moc 
+Only in kphone-3.11-gsm/: kphone-3.11.kdevprj
+Only in kphone-3.11-gsm/: kphone-3.11.kdevses
+diff -r kphone-3.11-gsm/kphonegsm/Makefile.in kphone-3.11/kphonegsm/Makefile.in
+106d105
+< LIBPCSCLITE = @LIBPCSCLITE@
+150,151d148
+< PCSCLITE_INCLUDES = @PCSCLITE_INCLUDES@
+< PCSCLITE_LDFLAGS = @PCSCLITE_LDFLAGS@
+217c214
+< DISTCLEANFILES = $(libkphonegsm_la_METASOURCES)
+---
+> DISTCLEANFILES = $(libgsm_la_METASOURCES)
+387c384
+< subdir = kphonegsm
+---
+> subdir = gsm
+394c391
+< 	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu kphonegsm/Makefile
+---
+> 	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu gsm/Makefile
+diff -r kphone-3.11-gsm/Makefile.in kphone-3.11/Makefile.in
+106d105
+< LIBPCSCLITE = @LIBPCSCLITE@
+150,151d148
+< PCSCLITE_INCLUDES = @PCSCLITE_INCLUDES@
+< PCSCLITE_LDFLAGS = @PCSCLITE_LDFLAGS@
