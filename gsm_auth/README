@@ -22,6 +22,11 @@ You have to apply the patches from 'sip_router' subdirectory and use 'auth_gsm' 
 A new module has been developed to act as a GSM authentication authority. It is made only for demo purposes. You can find it in 'freeradius/rlm_gsm/'. How to install and use it is documented in 'freeradius/rlm_gsm/rlm_gsm.txt'.
 
 
+Very good documentation and helping tools about this topic
+----------------------------------------------------------
+http://www.mah.priv.at/siptrust/doit/sim-summary.html
+
+
 Further information and contacts
 --------------------------------
 Daniel Mierla <mierla@fokus.fraunhofer.de> (FhG FOKUS/iptel.org)
