@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.c,v 1.6 2003/09/11 19:54:43 bogdan Exp $
+ * $Id: data_lump_rpl.c,v 1.7 2003/09/12 13:20:59 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -68,6 +68,11 @@ error:
 int add_lump_rpl(struct sip_msg * msg, struct lump_rpl* lump)
 {
 	struct lump_rpl *foo;
+
+	if (lump->text.s==0 || lump->text.len==0) {
+		LOG(L_ERR,"ERROR:add_lump_rpl: I won't add an empty lump!\n");
+		return -1;
+	}
 
 	if (!msg->reply_lump)
 	{
