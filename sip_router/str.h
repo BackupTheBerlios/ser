@@ -1,5 +1,5 @@
 /*
- * $Id: str.h,v 1.2 2002/09/19 12:23:53 jku Rel $
+ * $Id: str.h,v 1.3 2004/05/11 07:48:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,7 +31,7 @@
 
 
 struct _str{
-	char* s; /* null terminated string*/
+	char* s; /*string*/
 	int len; /*string len*/
 };
 
