@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.35 2003/10/03 07:19:41 andrei Exp $
+ * $Id: globals.h,v 1.36 2003/10/12 15:09:08 andrei Exp $
  *
  * global variables
  *
@@ -44,6 +44,7 @@
 
 
 extern char * cfg_file;
+extern int config_check;
 extern char *stat_file;
 extern struct socket_info sock_info[]; /* all addresses we listen/send from*/
 #ifdef USE_TCP
