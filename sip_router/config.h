@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.17 2002/02/11 12:00:21 bogdan Exp $
+ *  $Id: config.h,v 1.18 2002/02/15 01:28:12 bogdan Exp $
  */
 
 
@@ -35,6 +35,10 @@
 
 #define CONTENT_LEN "Content-Length: 0"
 #define CONTENT_LEN_LEN 17
+
+#define USER_AGENT "User-Agent: Sip EXpress router"\
+                                     "(" VERSION " (" ARCH "/" OS"))"
+ #define USER_AGENT_LEN (sizeof(USER_AGENT)-1)
 
 #define MY_BRANCH ";branch=0"
 #define MY_BRANCH_LEN 9

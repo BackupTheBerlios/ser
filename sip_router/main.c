@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.56 2002/02/14 17:41:30 andrei Exp $
+ * $Id: main.c,v 1.57 2002/02/15 01:28:12 bogdan Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.56 2002/02/14 17:41:30 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.57 2002/02/15 01:28:12 bogdan Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -140,7 +140,7 @@ void receive_stdin_loop()
 	#define BSIZE 1024
 	char buf[BSIZE+1];
 	int len;
-	
+
 	while(1){
 		len=fread(buf,1,BSIZE,stdin);
 		buf[len+1]=0;
@@ -459,7 +459,6 @@ int main(int argc, char** argv)
 
 	//memtest();
 	//hashtest();
-
 
 	/* process command line (get port no, cfg. file path etc) */
 	opterr=0;
