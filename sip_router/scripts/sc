@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.65 2003/10/30 03:01:56 jiri Exp $
+# $Id: sc,v 1.66 2003/11/03 15:32:19 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -8,7 +8,7 @@
 # --------
 # 2003-02-23 Thomas's start|stop commands checked in
 # 2003-10-30 more debugging output, less copy and paste in
-             the previous item
+#             the previous item
 #
 # To-DO:
 # -----
@@ -66,7 +66,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.65 $'
+VERSION='$Revision: 1.66 $'
 #### SQL names
 
 # Usr Loc Table
