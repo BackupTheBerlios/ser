@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.31 2002/08/15 08:13:30 jku Exp $
+ * $Id: timer.c,v 1.32 2002/08/16 21:04:58 jku Exp $
  *
  */
 
@@ -75,6 +75,8 @@
 #include "timer.h"
 #include "../../dprint.h"
 #include "lock.h"
+
+#include "t_stats.h"
 
 int timer_group[NR_OF_TIMER_LISTS] = 
 {
@@ -321,6 +323,12 @@ void set_1timer( struct s_table *hash_table,
 		/* make sure I'm not already on a list */
 		/* remove_timer_unsafe( new_tl ); */
 		add_timer_unsafe( list, new_tl, get_ticks()+timeout);
+
+		/* set_1timer is used only by WAIT -- that's why we can
+		   afford updating wait statistics; I admit its not nice
+		   but it greatly utilizes existing lock 
+		*/
+		cur_stats->waiting++;acc_stats->waiting++;
 	}
 	unlock(list->mutex);
 }

@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.28 2002/08/15 09:49:09 jku Exp $
+ *  $Id: config.h,v 1.29 2002/08/16 21:04:58 jku Exp $
  */
 
 
@@ -99,6 +99,7 @@
 #define MAX_CONSUME_BUFFER 1024
 /* where reply pipes may be opened */
 #define FIFO_DIR "/tmp/"
+#define FIFO_DIR_LEN 5
 /* max length of the text of fifo 'print' command */
 #define MAX_PRINT_TEXT 256
 
