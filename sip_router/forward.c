@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.49 2002/06/21 16:53:35 bogdan Exp $
+ * $Id: forward.c,v 1.50 2002/06/25 17:46:07 jku Exp $
  */
 
 
@@ -159,7 +159,8 @@ int update_sock_struct_from_via( union sockaddr_union* to,
 			Yes -- it happened on generating a 408 by TM; -jiri
 		*/
 		if (via->host.s[via->host.len]){
-			if (!(host_copy=pkg_malloc( via->host.len+1 ))) {
+			host_copy=pkg_malloc( via->host.len+1 );
+			if (!host_copy) {
 				LOG(L_NOTICE, "ERROR: update_sock_struct_from_via: not enough memory\n");
 				return -1;
 			}
@@ -194,7 +195,7 @@ int forward_reply(struct sip_msg* msg)
 	
 	to=0;
 	new_buf=0;
-#ifdef Bogdan
+#ifndef BOGDANS_CUTOFF
 	/*check if first via host = us */
 	if (check_via){
 		for (r=0; r<sock_no; r++)
