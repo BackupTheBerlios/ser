@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.38 2004/09/19 20:22:51 andrei Exp $ 
+ * $Id: udomain.c,v 1.39 2004/09/24 01:29:29 jiri Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -29,6 +29,9 @@
  * 2003-03-11 changed to the new locking scheme: locking.h (andrei)
  * 2003-03-12 added replication mark and zombie state (nils)
  * 2004-06-07 updated to the new DB api (andrei)
+ * 2004-08-23  hash function changed to process characters as unsigned
+ *             -> no negative results occur (jku)
+ *   
  */
 
 #include "udomain.h"
@@ -46,7 +49,7 @@
 /*
  * Hash function
  */
-static inline int hash_func(udomain_t* _d, char* _s, int _l)
+static inline int hash_func(udomain_t* _d, unsigned char* _s, int _l)
 {
 	int res = 0, i;
 	
