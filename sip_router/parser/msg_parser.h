@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.55 2005/02/25 14:19:57 andrei Exp $
+ * $Id: msg_parser.h,v 1.56 2005/02/28 15:28:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -122,7 +122,7 @@ struct sip_uri {
 };
 #endif
 
-enum _uri_type{ERROR_URI_T=0, SIP_URI_T, SIPS_URI_T, TEL_URI_T};
+enum _uri_type{ERROR_URI_T=0, SIP_URI_T, SIPS_URI_T, TEL_URI_T, TELS_URI_T};
 typedef enum _uri_type uri_type;
 
 struct sip_uri {
