@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.15 2003/04/26 22:14:15 calrissian Exp $
+ * $Id: challenge.c,v 1.16 2003/04/26 22:17:17 jiri Exp $
  *
  * Challenge related functions
  *
@@ -210,10 +210,12 @@ int consume_credentials(struct sip_msg* _m, char* _s1, char* _s2)
 	get_authorized_cred(_m->authorization, &h);
 	if (!h) {
 		get_authorized_cred(_m->proxy_auth, &h);
-		if (!h && (_m->REQ_METHOD == METHOD_ACK 
-					||  _m->REQ_METHOD == METHOD_CANCEL)) {
-			LOG(L_ERR, "consume_credentials(): No authorized "
-							"credentials found (error in scripts)\n");
+		if (!h) { 
+			if (_m->REQ_METHOD!=METHOD_ACK 
+					&& _m->REQ_METHOD==METHOD_CANCEL) {
+				LOG(L_ERR, "consume_credentials(): No authorized "
+					"credentials found (error in scripts)\n");
+			}
 			return -1;
 		}
 	}
