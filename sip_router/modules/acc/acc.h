@@ -1,5 +1,5 @@
 /*
- * $Id: acc.h,v 1.10 2003/11/03 22:09:04 jiri Exp $
+ * $Id: acc.h,v 1.11 2003/11/24 19:18:21 ramona Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -132,10 +132,19 @@ void acc_rad_reply(  struct cell* t , struct sip_msg *reply,
 	unsigned int code);
 #endif
 
+#ifdef DIAM_ACC
+int acc_diam_request( struct sip_msg *rq, struct hdr_field *to,
+		str* phrase);
+void acc_diam_missed( struct cell* t, struct sip_msg *reply,
+	unsigned int code );
+void acc_diam_ack(  struct cell* t , struct sip_msg *ack );
+void acc_diam_reply(  struct cell* t , struct sip_msg *reply,
+	unsigned int code);
+#endif
+
 inline static int skip_cancel(struct sip_msg *msg)
 {
 	return (msg->REQ_METHOD==METHOD_CANCEL) && report_cancels==0;
 }
-
 
 #endif

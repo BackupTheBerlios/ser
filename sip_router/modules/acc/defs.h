@@ -1,5 +1,5 @@
 /*
- * $Id: defs.h,v 1.5 2003/11/03 22:09:04 jiri Exp $
+ * $Id: defs.h,v 1.6 2003/11/24 19:18:21 ramona Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -53,6 +53,17 @@
 /* caution: keep consistent with definition of rad_attr */
 #ifdef RAD_ACC
 #	define RAD_ACC_FMT "FTocdrn"
+#endif
+
+#ifdef DIAM_ACC
+#	define DIAM_ACC_FMT "FTocdrn"
+/* information needed for reading messages from tcp connection */
+typedef struct rd_buf
+{
+	unsigned int first_4bytes;
+	unsigned int buf_len;
+	unsigned char *buf;
+} rd_buf_t;
 #endif
 
 

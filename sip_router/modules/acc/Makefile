@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.15 2003/11/11 15:32:36 andrei Exp $
+# $Id: Makefile,v 1.16 2003/11/24 19:18:21 ramona Exp $
 #
 # acc module makefile
 #
@@ -11,10 +11,14 @@ NAME=acc.so
 LIBS=
 
 # uncomment the next line if you wish to enable SQL accounting
-#DEFS+=-DSQL_ACC
+DEFS+=-DSQL_ACC
 
 # uncomment the next two lines if you wish to enable RADIUS accounting
-#DEFS+=-DRAD_ACC
-#LIBS=-L$(LOCALBASE)/lib -lradiusclient
+DEFS+=-DRAD_ACC
+
+# uncomment the next two lines if you wish to enable DIAMETER accounting
+#DEFS+=-DDIAM_ACC
+
+LIBS=-L$(LOCALBASE)/lib -lradiusclient
 
 include ../../Makefile.modules

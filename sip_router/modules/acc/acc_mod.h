@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.10 2003/11/03 22:09:04 jiri Exp $
+ * $Id: acc_mod.h,v 1.11 2003/11/24 19:18:21 ramona Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -56,6 +56,12 @@ extern int radius_missed_flag;
 extern int service_type;
 #endif
 
+#ifdef DIAM_ACC
+extern rd_buf_t *rb;
+extern int diameter_flag;
+extern int diameter_missed_flag;
+#endif
+
 #ifdef SQL_ACC
 extern int db_flag;
 extern int db_missed_flag;
@@ -101,6 +107,12 @@ static inline int is_rad_acc_on(struct sip_msg *rq)
 	return radius_flag && isflagset(rq, radius_flag)==1;
 }   
 #endif
+#ifdef DIAM_ACC
+static inline int is_diam_acc_on(struct sip_msg *rq)
+{   
+	return diameter_flag && isflagset(rq, diameter_flag)==1;
+}   
+#endif
     
 static inline int is_acc_on(struct sip_msg *rq)
 {   
@@ -111,6 +123,10 @@ static inline int is_acc_on(struct sip_msg *rq)
 #ifdef RAD_ACC
 	if (is_rad_acc_on(rq)) return 1;
 #endif
+#ifdef DIAM_ACC
+	if (is_diam_acc_on(rq)) return 1;
+#endif
+
 	return 0;
 }
 
@@ -131,6 +147,12 @@ static inline int is_rad_mc_on(struct sip_msg *rq)
 	return radius_missed_flag && isflagset(rq, radius_missed_flag)==1;
 }
 #endif
+#ifdef DIAM_ACC
+static inline int is_diam_mc_on(struct sip_msg *rq)
+{
+	return diameter_missed_flag && isflagset(rq, diameter_missed_flag)==1;
+}
+#endif
 
 
 static inline int is_mc_on(struct sip_msg *rq)
@@ -142,6 +164,10 @@ static inline int is_mc_on(struct sip_msg *rq)
 #ifdef RAD_ACC
 	if (is_rad_mc_on(rq)) return 1;
 #endif
+#ifdef DIAM_ACC
+	if (is_diam_mc_on(rq)) return 1;
+#endif
+
 	return 0;
 }
 
