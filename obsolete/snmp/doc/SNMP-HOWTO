@@ -1,0 +1,47 @@
+Quick instructions to install net-snmp and configure it so you can
+play with ser's snmp module:
+
+- You need net-snmp >= 5.0.0 (don't use 5.0.3, it has a bug traversing
+tables). The latest the better. You can get it from http://www.net-snmp.org
+We don't need any special compilation flags.
+
+Most basic configuration, uses SNMPv1 (for v3 some instructions are below
+but you should definitely read the instructions that come with the
+net-snmp distribution, at time of writing they're in README.snmpv3). 
+You may or may not run a snmp agent on the system (like the snmpd daemon 
+that comes from net-snmp).
+Steps:
+1. Create a $prefix/share/snmp/snmpd.conf with the following:
+rwcommunity ser	127.0.0.0/8
+master agentx
+
+This allows rw access only to localhost. Change ser for your preferred
+community name.
+
+2. If you don't want to run ser as root, create a $prefix/share/snmp/snmp.conf
+file with:
+defaultPort 9999
+
+[change 9999 with your preferred port number]. However, note that this is
+only when you run our agent as a standalone agent. If you want to have
+it as a subagent, running ser as non-root becomes more complicated. 
+Since these are simple instructions, then you'll need to see
+below for details of what needs to be done [TODO]
+
+3. Copy all the .my files from ser's distribution under modules/snmp/doc
+to $prefix/share/snmp/mibs.
+You can also copy them to ~/.snmp/mibs. However, in this case, you need
+to copy it for: 
+	-> the user that runs ser
+	-> the user that will query the agent (run snmpget/walk/set/etc)
+
+In addition, you need to do for the user which runs ser:
+export MIBS=ALL or
+setenv MIBS ALL
+This tells the snmp library that it should look at all the MIB files
+it can find (not only the ones it has for default) when trying to
+resolve SNMP's objects names. This is necessary because to make
+everybody's life easier we use object names instead of explicit
+OIDs.
+If ser fails complaining that it couldn't register SNMP objects, this
+environment variable is the most probable cause.
