@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.11 2002/04/03 21:56:04 janakj Exp $
+/* $Id: sr_module.c,v 1.12 2002/05/10 02:06:19 jku Exp $
  */
 
 #include "sr_module.h"
@@ -37,7 +37,7 @@ int register_builtin_modules()
 
 	ret=0;
 	#ifdef STATIC_TM
-		ret=register_module(tm_exports,"built-in", 0);
+		ret=register_module(tm_exports,"built-in", 0); 
 		if (ret<0) return ret;
 	#endif
 	#ifdef STATIC_MAXFWD
@@ -46,7 +46,7 @@ int register_builtin_modules()
 	#endif
 
 #ifdef STATIC_AUTH
-		ret=register_module(tm_exports, "built-in", 0);
+		ret=register_module(auth_exports, "built-in", 0); 
 		if (ret<0) return ret;
 #endif
 
