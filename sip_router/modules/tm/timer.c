@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.43 2003/03/13 11:05:18 andrei Exp $
+ * $Id: timer.c,v 1.44 2003/05/29 20:03:26 calrissian Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -395,7 +395,7 @@ inline static void wait_handler( void *attr)
 	struct cell *p_cell = (struct cell*)attr;
 
 #ifdef EXTRA_DEBUG
-	if (p_cell->damocles) {
+	if (p_cell->damocles==1) {
 		LOG( L_ERR, "ERROR: transaction %p scheduled for deletion and"
 			" called from WAIT timer\n",p_cell);
 		abort();
