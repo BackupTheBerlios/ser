@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.44 2004/08/24 09:01:25 janakj Exp $
+ * $Id: msg_parser.h,v 1.45 2004/09/01 17:06:26 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -316,5 +316,12 @@ inline static char* get_body(struct sip_msg *msg)
 
 	return msg->unparsed + offset;
 }
+
+
+/*
+ * Make a private copy of the string and assign it to dst_uri
+ */
+int set_dst_uri(struct sip_msg* msg, str* uri);
+
 
 #endif
