@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: serresponse,v 1.12 2002/09/09 22:14:24 noh Exp $
+# $Id: serresponse,v 1.13 2002/09/12 01:11:20 noh Rel $
 #
 # use to check whether ser is still responding; if not mail an alert
 #
@@ -103,10 +103,10 @@ if [ ! -e $LOCKF ] ; then
 	
 	if [ -e $TMP ] ; then
 		$MAILCOMMAND -s "serresponse failed" $NOTIFY < $TMP
+		rm -f $TMP
+		touch $LOCKF
 		for i in $SMSNUMBERS; do
 			$SMSCMD $i "serresponse failed. please check your emails for details"
 		done
-		touch $LOCKF
-		rm -f $TMP
 	fi
 fi
