@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.27 2003/04/06 22:39:04 andrei Exp $
+/* $Id: ip_addr.h,v 1.28 2003/04/10 23:51:10 andrei Exp $
  *
  * ip address family realted structures
  *
@@ -45,7 +45,7 @@
 
 #include "dprint.h"
 
-enum sip_protos { PROTO_NONE, PROTO_UDP, PROTO_TCP, PROTO_TLS };
+enum sip_protos { PROTO_NONE, PROTO_UDP, PROTO_TCP, PROTO_TLS, PROTO_SCTP };
 
 
 struct ip_addr{
