@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2003/01/31 13:54:59 rco Exp $
+# $Id: Makefile,v 1.2 2003/04/17 11:16:21 jiri Exp $
 #
 # print example module makefile
 #
@@ -6,7 +6,7 @@
 # WARNING: do not run this directly, it should be run by the master Makefile
 
 auto_gen=
-NAME=vm_mod.so
+NAME=vm.so
 LIBS=
 
 ifeq ($(MAKELEVEL), 0)
