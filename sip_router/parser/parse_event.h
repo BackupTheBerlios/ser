@@ -1,9 +1,9 @@
 /*
- * $Id: parse_event.h,v 1.2 2002/09/19 12:23:55 jku Exp $
+ * $Id: parse_event.h,v 1.3 2002/09/23 13:42:56 janakj Rel $
  *
  * Event header field body parser
  * This parser was written for Presence Agent module only.
- * it recognize presence package only, no subpackages, no parameters
+ * it recognizes presence package only, no subpackages, no parameters
  * It should be replaced by a more generic parser if subpackages or
  * parameters should be parsed too.
  *
