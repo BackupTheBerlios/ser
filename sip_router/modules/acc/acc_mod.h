@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.h,v 1.9 2003/07/10 00:03:05 jiri Exp $
+ * $Id: acc_mod.h,v 1.10 2003/11/03 22:09:04 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -29,6 +29,7 @@
  * History:
  * ---------
  * 2003-04-04  grand acc cleanup (jiri)
+ * 2003-11-04  multidomain support for mysql introduced (jiri)
  */
 
 
@@ -66,6 +67,7 @@ extern char *db_url;
 extern char *db_table_acc;
 extern char *db_table_mc;
 
+extern char* acc_domain_col;
 extern char* acc_sip_from_col;
 extern char* acc_sip_to_col;
 extern char* acc_sip_status_col;
