@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.53 2002/09/20 09:29:07 andrei Exp $
+ * $Id: udp_server.c,v 1.54 2002/09/22 10:46:45 jiri Rel $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -70,7 +70,7 @@ static int dbg_msg_qa(char *buf, int len)
 
 	/* is there a zero character inthere ? */	
 	if (memchr(buf, 0, len)) {
-		LOG(L_CRIT, "BUG: message being sent with 0 in it\n");
+		LOG(L_CRIT, "BUG: message with 0 in it\n");
 		return 0;
 	}
 
