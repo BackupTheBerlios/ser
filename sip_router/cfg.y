@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.64 2003/11/29 21:15:32 andrei Exp $
+ * $Id: cfg.y,v 1.65 2004/01/04 10:35:31 janakj Exp $
  *
  *  cfg grammar
  *
@@ -731,7 +731,7 @@ onreply_route_stm: ROUTE_ONREPLY LBRACK NUMBER RBRACK LBRACE actions RBRACE {
 												"table number");
 											YYABORT; }
 										}
-		| ROUTE_ONREPLY error { yyerror("invalid failure_route statement"); }
+		| ROUTE_ONREPLY error { yyerror("invalid onreply_route statement"); }
 	;
 /*
 rules:	rules rule { push($2, &$1); $$=$1; }
