@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.10 2001/12/02 16:01:46 jku Exp $
+/* $Id: msg_translator.c,v 1.11 2001/12/02 17:04:49 jku Exp $
  *
  */
 
@@ -195,6 +195,7 @@ char * build_req_buf_from_sip_req(	struct sip_msg* msg,
 			} else DBG("DEBUG: build_req_buf_from_sip_req: required HFs for "
 					"loop checking missing\n");
 		}
+		DBG("DEBUG: will add branch now: %s (%d)\n", msg->add_to_branch_s, msg->add_to_branch_len );
 		/* someone wants me to add something to branch here ? */
 		memcpy(line_buf+via_len, msg->add_to_branch_s,
 				msg->add_to_branch_len );
