@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.41 2004/02/22 20:10:11 calrissian Exp $
+/* $Id: nathelper.c,v 1.42 2004/02/23 14:29:16 sobomax Exp $
  *
  * Ser module, it implements the following commands:
  * fix_nated_contact() - replaces host:port in Contact field with host:port
@@ -844,7 +844,7 @@ send_rtpp_command(const struct iovec *v, int vcnt, int getreply)
 {
 	struct sockaddr_un addr;
 	int fd, len;
-	static char buf[21];
+	static char buf[64];
 
 	memset(&addr, 0, sizeof(addr));
 	addr.sun_family = AF_LOCAL;
