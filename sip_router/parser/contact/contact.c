@@ -1,5 +1,5 @@
 /*
- * $Id: contact.c,v 1.3 2003/03/25 22:33:56 janakj Exp $
+ * $Id: contact.c,v 1.4 2003/03/31 09:38:19 janakj Exp $
  *
  * Parses one Contact in Contact HF body
  *
@@ -170,7 +170,6 @@ int parse_contacts(str* _s, contact_t** _c)
 			}
 
 			c->q = hooks.contact.q;
-			c->expires = hooks.contact.expires;
 			c->expires = hooks.contact.expires;
 			c->method = hooks.contact.method;
 

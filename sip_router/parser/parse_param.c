@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.c,v 1.5 2003/03/30 20:38:29 janakj Exp $
+ * $Id: parse_param.c,v 1.6 2003/03/31 09:38:19 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -287,6 +287,8 @@ int parse_params(str* _s, pclass_t _c, param_hooks_t* _h, param_t** _p)
 		LOG(L_ERR, "parse_params(): Invalid parameter value\n");
 		return -1;
 	}
+
+	memset(_h, 0, sizeof(param_hooks_t));
 
 	while(1) {
 		t = (param_t*)pkg_malloc(sizeof(param_t));
