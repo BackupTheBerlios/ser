@@ -1,0 +1,30 @@
+GSM Authentication for SIP services
+===================================
+
+The goal of the application is to proof the concept of GSM authentication for SIP services. Here are three major parts:
+- enhance the SIP clients to be aware of SIM authentication (applied to KPhone)
+- enhance SIP servers to use GSM authentication schema (applied to SER)
+- create a prototype for a Radius server to accept GSM credentials and return a proper response (applied to FreeRadius)
+
+1. SIP Client - KPhone 3.11
+You have to apply the patches from kphone subdirectory and install the SIM reader drivers and applications. For that you need:
+    * the pcsc-lite library (http://www.linuxnet.com/middleware/files/) and pcscd demon
+    * the pcsc-perl layer on top of pcsc-lite (optional, but useful to figure things out- http://ludovic.rousseau.free.fr/softwares/pcsc-perl/pcsc-perl.html)
+    * the towitoko driver (http://www.linuxnet.com/sourcedrivers.html)
+    * the omnikey driver (http://www.omnikey.com/)
+
+Useful information about how the things were evoluting and what are the new features for KPhone can be found in 'kphone/ChangeLog'.
+
+2. SIP Server - SIP Express Router 0.8.12
+You have to apply the patches from 'sip_router' subdirectory and use 'auth_gsm' module from the same directory instead of other authentication module (like auth_db or auth_radius). The documentation about usage of this module can be found into 'sip_router/auth_gsm/README'
+
+3. Radius Server - FreeRadius 0.9.1
+A new module has been developed to act as a GSM authentication authority. It is made only for demo purposes. You can find it in 'freeradius/rlm_gsm/'. How to install and use it is documented in 'freeradius/rlm_gsm/rlm_gsm.txt'.
+
+
+Further information and contacts
+--------------------------------
+Daniel Mierla <mierla@fokus.fraunhofer.de> (FhG FOKUS/iptel.org)
+http://www.iptel.org
+http://www.iptel.org/ser
+
