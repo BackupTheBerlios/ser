@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.24 2004/04/27 14:53:23 janakj Exp $ 
+ * $Id: ucontact.c,v 1.25 2004/06/02 22:48:07 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -98,9 +98,9 @@ int new_ucontact(str* _dom, str* _aor, str* _contact, time_t _e, qvalue_t _q,
  */
 void free_ucontact(ucontact_t* _c)
 {
-		shm_free(_c->callid.s);
-		shm_free(_c->c.s);
-		shm_free(_c);
+	shm_free(_c->callid.s);
+	shm_free(_c->c.s);
+	shm_free(_c);
 }
 
 
