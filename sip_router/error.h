@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.10 2003/07/03 15:41:07 andrei Exp $
+ * $Id: error.h,v 1.11 2004/04/26 17:11:55 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -49,6 +49,12 @@
 #define E_BAD_TO	-13
 /* invalid params */
 #define E_INVALID_PARAMS -14
+
+#define E_Q_INV_CHAR    -15 /* Invalid character in q */
+#define E_Q_EMPTY       -16 /* Empty q */
+#define E_Q_TOO_BIG     -17 /* q too big (> 1) */
+#define E_Q_DEC_MISSING -18 /* Decimal part missing */
+
 
 #define E_SEND		  -477
 /* unresolveable next-hop address */

@@ -1,5 +1,5 @@
 /*
- * $Id: qvalue.h,v 1.1 2004/04/25 15:29:31 janakj Exp $
+ * $Id: qvalue.h,v 1.2 2004/04/26 17:11:55 janakj Exp $
  *
  * Handling of the q value
  *
@@ -128,5 +128,12 @@ static inline size_t print_q(char* p, qvalue_t q)
 	*p = q + '0';
 	return Q_PREFIX_LEN + 3;
 }
+
+
+/*
+ * Convert string representation of q parameter in qvalue_t
+ */
+int str2q(qvalue_t* q, char* s, int len);
+
 
 #endif /* _QVALUE_H */
