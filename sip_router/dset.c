@@ -1,5 +1,5 @@
 /*
- * $Id: dset.c,v 1.16 2005/02/01 13:21:09 janakj Exp $
+ * $Id: dset.c,v 1.17 2005/02/14 19:49:34 janakj Exp $
  *
  * destination set
  *
@@ -320,7 +320,7 @@ int rewrite_uri(struct sip_msg* _m, str* _s)
 
         buf = (char*)pkg_malloc(_s->len + 1);
         if (!buf) {
-                LOG(L_ERR, "ERROR: TOI: rewrite_uri: No memory left\n");
+                LOG(L_ERR, "ERROR: rewrite_uri: No memory left\n");
                 return -1;
         }
 
@@ -335,7 +335,7 @@ int rewrite_uri(struct sip_msg* _m, str* _s)
         _m->new_uri.s = buf;
         _m->new_uri.len = _s->len;
 
-        DBG("TOI: rewrite_uri: Rewriting Request-URI with '%.*s'\n", _s->len, 
+        DBG("rewrite_uri: Rewriting Request-URI with '%.*s'\n", _s->len, 
 																		   buf);
         return 1;
 }
