@@ -1,10 +1,12 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.17 2003/10/12 15:09:08 andrei Exp $
+$Id: NEWS,v 1.18 2003/10/25 16:06:48 calrissian Exp $
 
 0.8.12 changes
 
+new modules:
+ - answer server options requests [options]
 texops:
  - subst('s/re/repl/flags') support
 core:
