@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.79 2002/06/26 17:44:39 jku Exp $
+ * $Id: main.c,v 1.80 2002/06/26 18:52:44 jku Exp $
  */
 
 #include <stdio.h>
@@ -43,7 +43,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.79 2002/06/26 17:44:39 jku Exp $";
+static char id[]="@(#) $Id: main.c,v 1.80 2002/06/26 18:52:44 jku Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -787,9 +787,6 @@ int main(int argc, char** argv)
 		goto error;
 	}
 
-#ifdef STATS
-	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
-#endif
 
 	/*register builtin  modules*/
 	register_builtin_modules();
@@ -799,6 +796,10 @@ int main(int argc, char** argv)
 		fprintf(stderr, "ERROR: bad config file (%d errors)\n", cfg_errors);
 		goto error;
 	}
+
+#ifdef STATS
+	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
+#endif
 	
 	if (init_modules() != 0) {
 		fprintf(stderr, "ERROR: error while initializing modules\n");
