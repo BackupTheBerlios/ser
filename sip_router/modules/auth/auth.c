@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.28 2002/07/25 13:48:30 janakj Exp $
+ * $Id: auth.c,v 1.29 2002/07/30 17:46:43 janakj Exp $
  */
 
 #include "auth.h"
@@ -102,7 +102,7 @@ static int find_auth_hf(struct sip_msg* _msg, char* _realm, cred_t* _c, int _hf_
 	}
 #endif
 	switch(_hf_name) {
-	case HDR_WWWAUTH:   ptr = _msg->www_auth;   break;
+	case HDR_AUTHORIZATION: ptr = _msg->authorization; break;
 	case HDR_PROXYAUTH: ptr = _msg->proxy_auth; break;
 	}
 	
