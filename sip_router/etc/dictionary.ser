@@ -1,5 +1,5 @@
 #
-# $Id: dictionary.ser,v 1.2 2003/09/11 22:05:08 janakj Exp $
+# $Id: dictionary.ser,v 1.3 2004/12/04 18:41:03 janakj Exp $
 #
 # SIP RADIUS attributes
 #
@@ -29,6 +29,7 @@ ATTRIBUTE Sip-Translated-Req-ID        107  string     # Schulzrinne
 ATTRIBUTE Sip-Source-Ip-Address        108  ipaddr     # Schulzrinne
 ATTRIBUTE Sip-Source-Port              109  integer    # Schulzrinne
 VALUE Service-Type Sip-Session          15             # Schulzrinne
+VALUE Acct-Status-Type Failed	        15             # Proprietary
 
 ### auth_radius ###
 # Sip-Session service type is already defined in acc section
@@ -59,3 +60,5 @@ ATTRIBUTE Sip-Group                    211     string  # Proprietary
 
 ### uri_radius ###
 # Call-Check service type is already define in auth_radius
+
+
