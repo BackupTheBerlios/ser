@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.h,v 1.2 2003/06/24 18:52:48 bogdan Exp $
+ * $Id: cpl_run.h,v 1.3 2003/06/27 18:13:31 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -40,6 +40,7 @@
 
 
 struct cpl_interpreter {
+	str user;              /* user */
 	str script;            /* CPL script */
 	unsigned char *ip;     /* instruction pointer */
 	int recv_time;         /* receiving time stamp */

@@ -1,5 +1,5 @@
 /*
- * $Id: CPL_tree.h,v 1.5 2003/06/27 15:08:13 bogdan Exp $
+ * $Id: CPL_tree.h,v 1.6 2003/06/27 18:13:31 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -179,7 +179,9 @@
 
 /* attributs and values for LOG node */
 #define  NAME_ATTR                   0
+#define  MAX_NAME_SIZE               32
 #define  COMMENT_ATTR                1
+#define  MAX_COMMENT_SIZE            128
 
 /* attributs and values for SUB node */
 #define  REF_ATTR                    0
