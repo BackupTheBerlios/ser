@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.9 2002/10/21 03:08:20 jiri Exp $
+ * $Id: uac.h,v 1.10 2002/12/07 20:09:51 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -85,6 +85,26 @@ int t_uac(
 	*/
 	void *cbp,
 	struct dialog *dlg );
+
+
+/*
+ * Send a request within a dialog
+ */
+int t_uac_dlg(str* msg,                     /* Type of the message - MESSAGE, OPTIONS etc. */
+	      str* dst,                     /* Real destination (can be different than R-URI */
+	      str* ruri,                    /* Request-URI */
+	      str* to,                      /* To - including tag */
+	      str* from,                    /* From - including tag */
+	      str* totag,                   /* To tag */
+	      str* fromtag,                 /* From tag */
+	      int* cseq,                    /* CSeq */
+	      str* cid,                     /* Call-ID */
+	      str* headers,                 /* Optional headers including CRLF */
+	      str* body,                    /* Message body */
+	      transaction_cb completion_cb, /* Callback parameter */
+	      void* cbp                     /* Callback pointer */
+	      );
+
 
 int fifo_uac( FILE *stream, char *response_file );
 int fifo_uac_from( FILE *stream, char *response_file );
