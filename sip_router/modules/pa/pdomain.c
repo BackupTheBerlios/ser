@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.5 2003/04/30 17:49:29 janakj Exp $
+ * $Id: pdomain.c,v 1.6 2003/11/10 15:56:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -173,6 +173,8 @@ int timer_pdomain(pdomain_t* _d)
 		if (ptr->watchers == 0) {
 			t = ptr;
 			ptr = ptr->next;
+			remove_presentity(_d, t);
+			free_presentity(t);
 		} else {
 			ptr = ptr->next;
 		}

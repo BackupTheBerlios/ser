@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.5 2003/04/30 17:49:29 janakj Exp $
+ * $Id: watcher.c,v 1.6 2003/11/10 15:56:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -60,6 +60,7 @@ int new_watcher(str* _uri, time_t _e, doctype_t _a, dlg_t* _dlg, watcher_t** _w)
 
 	     /* Copy uri string */
 	ptr->uri.s = (char*)ptr + sizeof(watcher_t);
+	ptr->uri.len = _uri->len;
 	memcpy(ptr->uri.s, _uri->s, _uri->len);
 	
 	ptr->expires = _e; /* Expires value */

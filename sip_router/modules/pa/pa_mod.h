@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.2 2003/04/30 17:49:29 janakj Exp $
+ * $Id: pa_mod.h,v 1.3 2003/11/10 15:56:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,8 +34,9 @@
 #include "../tm/tm_load.h"
 
 extern int default_expires;
+extern int timer_interval;
 
-/** TM bind */
+/* TM bind */
 extern struct tm_binds tmb;
 
 

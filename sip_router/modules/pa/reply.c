@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.6 2003/09/11 19:44:16 bogdan Exp $
+ * $Id: reply.c,v 1.7 2003/11/10 15:56:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -25,9 +25,6 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * History:
- * 2003-09-11: updated to new build_lump_rpl() interface (bogdan)
  */
 
 #include "../../dprint.h"
@@ -120,8 +117,7 @@ int send_reply(struct sip_msg* _m)
 	}
 	
 	if (code != 200) {
-		ei = build_lump_rpl(error_info[paerrno].s, error_info[paerrno].len,
-			LUMP_RPL_HDR );
+		ei = build_lump_rpl(error_info[paerrno].s, error_info[paerrno].len, 0);
 		add_lump_rpl(_m, ei);
 	}
 
