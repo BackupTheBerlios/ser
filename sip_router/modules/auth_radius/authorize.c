@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.5 2003/03/12 15:55:23 janakj Exp $
+ * $Id: authorize.c,v 1.6 2003/03/16 17:57:44 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -82,9 +82,10 @@ static inline int authorize(struct sip_msg* _msg, str* _realm, int _hftype)
 	auth_body_t* cred;
 	str* uri;
 	struct sip_uri puri;
-	str user;
+	str user, domain;
 
-	ret = pre_auth_func(_msg, &_realm, _hftype, &h);
+	domain = *_realm;
+	ret = pre_auth_func(_msg, &domain, _hftype, &h);
 	cred = (auth_body_t*)h->parsed;
 	
 	switch(ret) {
