@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.56 2003/01/29 19:24:10 jiri Exp $
+ * $Id: t_lookup.c,v 1.57 2003/01/31 13:54:59 rco Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -929,4 +929,77 @@ int t_unref( struct sip_msg* p_msg  )
 	set_t(T_UNDEFINED);
 	return 1;
 }
+
+#ifdef VOICE_MAIL
+int t_get_trans_ident(struct sip_msg* p_msg, unsigned int* hash_index, unsigned int* label)
+{
+    struct cell* t;
+    if(t_check(p_msg,0) != 1){
+	LOG(L_ERR,"ERROR: t_get_trans_ident: no transaction found\n");
+	return -1;
+    }
+    t = get_t();
+    if(!t){
+	LOG(L_ERR,"ERROR: t_get_trans_ident: transaction found is NULL\n");
+	return -1;
+    }
+    
+    *hash_index = t->hash_index;
+    *label = t->label;
+
+    return 1;
+}
+
+int t_lookup_ident(struct sip_msg** p_msg, unsigned int hash_index, unsigned int label)
+{
+    int ret = 0;
+    struct cell* p_cell;
+
+    if(hash_index >= TABLE_ENTRIES){
+	LOG(L_ERR,"ERROR: t_lookup_ident: invalid hash_index=%u\n",hash_index);
+	return -1;
+    }
+
+    LOCK_HASH(hash_index);
+
+    /* all the transactions from the entry are compared */
+    for ( p_cell = get_tm_table()->entrys[hash_index].first_cell;
+	  p_cell; p_cell = p_cell->next_cell ) 
+    {
+	if(p_cell->label == label){
+	    ret = 1;
+	    break;
+	}
+    }
+
+    if(ret==1){
+	DBG("DEBUG: t_lookup_ident: transaction found\n");
+	*p_msg = p_cell->uas.request;
+    }
+    else
+	DBG("DEBUG: t_lookup_ident: transaction not found\n");
+    
+    UNLOCK_HASH(hash_index);
+    return ret;
+}
+
+int t_is_local(struct sip_msg* p_msg)
+{
+    struct cell* t;
+    if(t_check(p_msg,0) != 1){
+	LOG(L_ERR,"ERROR: t_is_local: no transaction found\n");
+	return -1;
+    }
+    t = get_t();
+    if(!t){
+	LOG(L_ERR,"ERROR: t_is_local: transaction found is NULL\n");
+	return -1;
+    }
+    
+    return t->local;
+}
+
+#endif
+
+
 

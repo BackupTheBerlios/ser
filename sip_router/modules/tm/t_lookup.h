@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.6 2003/01/22 22:08:30 jiri Exp $
+ * $Id: t_lookup.h,v 1.7 2003/01/31 13:54:59 rco Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -73,6 +73,20 @@ struct cell *get_t();
  * primarily set by lookup functions */
 void set_t(struct cell *t);
 
+#ifdef VOICE_MAIL
+
+#define T_GET_TI       "t_get_trans_ident"
+#define T_LOOKUP_IDENT "t_lookup_ident"
+#define T_IS_LOCAL     "t_is_local"
+
+typedef int (*tislocal_f)(struct sip_msg*);
+typedef int (*tget_ti_f)(struct sip_msg*, unsigned int*, unsigned int*);
+typedef int (*tlookup_ident_f)(struct sip_msg**, unsigned int, unsigned int);
+
+int t_is_local(struct sip_msg*);
+int t_get_trans_ident(struct sip_msg* p_msg, unsigned int* hash_index, unsigned int* label);
+int t_lookup_ident(struct sip_msg** p_msg, unsigned int hash_index, unsigned int label);
+#endif
 
 #endif
 
