@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.47 2005/02/05 09:17:04 bogdan Exp $
+ * $Id: msg_parser.c,v 1.48 2005/02/14 23:48:21 jih Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -204,6 +204,7 @@ char* get_hdr_field(char* buf, char* end, struct hdr_field* hdr)
 	        case HDR_ACCEPTDISPOSITION:
 	        case HDR_DIVERSION:
 	        case HDR_RPID:
+	        case HDR_REFER_TO:
 		case HDR_OTHER:
 			/* just skip over it */
 			hdr->body.s=tmp;
@@ -406,6 +407,10 @@ int parse_headers(struct sip_msg* msg, int flags, int next)
 		        case HDR_RPID:
 				if (msg->rpid==0) msg->rpid = hf;
 				msg->parsed_flag|=HDR_RPID;
+				break;
+		        case HDR_REFER_TO:
+				if (msg->refer_to==0) msg->refer_to = hf;
+				msg->parsed_flag|=HDR_REFER_TO;
 				break;
 			case HDR_VIA:
 				msg->parsed_flag|=HDR_VIA;

@@ -1,5 +1,5 @@
 /* 
- * $Id: keys.h,v 1.13 2004/12/28 23:41:30 sobomax Exp $ 
+ * $Id: keys.h,v 1.14 2005/02/14 23:48:21 jih Exp $ 
  *
  * Fast 32-bit Header Field Name Parser -- keys
  *
@@ -124,5 +124,8 @@
 #define _arty_ 0x79747261   /* "arty" */
 #define __id2_ 0x2064692d   /* "-id " */
 #define __id1_ 0x3a64692d   /* "-id:" */
+
+#define _refe_ 0x65666572   /* "refe" */
+#define _r_to_ 0x6f742d72   /* "r-to" */
 
 #endif /* KEYS_H */
