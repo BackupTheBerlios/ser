@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.124 2003/09/11 19:54:43 bogdan Exp $
+ * $Id: msg_translator.c,v 1.125 2003/09/11 22:26:16 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -1582,9 +1582,8 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text ,str *new_tag,
 						len+=new_tag->len-to_tag.len;
 					else
 						len+=new_tag->len+TOTAG_TOKEN_LEN/*";tag="*/;
-				} else {
-					len += hdr->len;
 				}
+				len += hdr->len;
 				break;
 			case HDR_VIA:
 				/* we always add CRLF to via*/
@@ -1652,7 +1651,7 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text ,str *new_tag,
 	memcpy( p, CRLF, CRLF_LEN );
 	p+=CRLF_LEN;
 	/* headers*/
-	for ( hdr=msg->headers ; hdr ; hdr=hdr->next )
+	for ( hdr=msg->headers ; hdr ; hdr=hdr->next ) {
 		switch (hdr->type)
 		{
 			case HDR_VIA:
@@ -1729,7 +1728,8 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text ,str *new_tag,
 			case HDR_CALLID:
 			case HDR_CSEQ:
 					append_str(p, hdr->name.s, hdr->len);
-		} /* for switch */
+		} /* end switch */
+	} /* end for */
 	/* lumps */
 	for(lump=msg->reply_lump;lump;lump=lump->next)
 		if (lump->type==LUMP_RPL_HDR){
@@ -1769,6 +1769,9 @@ char * build_res_buf_from_sip_req( unsigned int code, char *text ,str *new_tag,
 		memcpy ( p, body->text.s, body->text.len );
 		p+=body->text.len;
 	}
+
+	if (len!=p-buf)
+		LOG(L_CRIT,"BUGGGG!!!! diff len=%d p-buf=%d\n",len,p-buf);
 
 	*(p) = 0;
 	*returned_len = len;
