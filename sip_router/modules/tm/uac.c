@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.33 2003/04/02 15:51:03 andrei Exp $
+ * $Id: uac.c,v 1.34 2003/04/04 03:21:59 jiri Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -471,7 +471,7 @@ static void fifo_callback( struct cell *t, struct sip_msg *reply,
 			fifo_reply(filename, "500 fifo_callback: get_reply_status failed\n");
 			return;
 		}
-		fifo_reply(filename, "%.*s", text.len, text.s );
+		fifo_reply(filename, "%.*s\n", text.len, text.s );
 		pkg_free(text.s);
 	} else {
 		text.s=reply->first_line.u.reply.status.s;

@@ -6,7 +6,7 @@ XXX content of this file reflects a future release;
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.5 2003/02/07 17:02:15 andrei Exp $
+$Id: NEWS,v 1.6 2003/04/04 03:21:58 jiri Exp $
 
 ***********************************************
 * Changes introduced in 0.8.11
@@ -43,13 +43,19 @@ New features
 Changes to use of ser scripts
 =============================
 
+
 core
 ----
 XXX TCP
 
 acc module:
 -----------
-XXX
+- radius and sql support integrated in this module; you need to
+  recompile to enable it
+- acc_flag is now called log_flag to better reflect it relates
+  to the syslog mode (as opposed to sql/radius); for the same
+  reasons, the accounting action is now called "acc_log_request"
+- log_fmt allows now to specify what will be printed to syslog
 
 auth module:
 ------------

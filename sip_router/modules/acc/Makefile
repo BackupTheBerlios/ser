@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2002/10/24 15:26:59 jiri Exp $
+# $Id: Makefile,v 1.4 2003/04/04 03:21:58 jiri Exp $
 #
 # acc module makefile
 #
@@ -8,6 +8,7 @@
 auto_gen=
 NAME=acc.so
 LIBS=
-#DEFS+=-DSQL_ACC
+DEFS+=-DSQL_ACC
+#DEFS+=-DRAD_ACC
 
 include ../../Makefile.modules
