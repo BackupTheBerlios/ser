@@ -9,7 +9,7 @@
  * files. Look at the Radius AAA report for details.
  * 
  * @author Stelios Sidiroglou-Douskos <ssi@fokus.gmd.de>
- * $Id: acc.c,v 1.4 2002/09/04 10:54:20 ssi Exp $
+ * $Id: acc.c,v 1.5 2002/09/05 16:19:33 ssi Exp $
  */
 
 #include <radiusclient.h>
@@ -108,7 +108,7 @@ int radius_log_reply(struct cell* t, struct sip_msg* msg)
   	if (rq->first_line.type == SIP_REPLY) {
 		/* take a reply from message -- that's safe and we don't need to be
 		   worried about TM reply status being changed concurrently */
-    	av_type = msg->REPLY_STATUS;
+    	av_type = rq->REPLY_STATUS;
    		if (rc_avpair_add(&send, PW_SIP_RESPONSE_CODE, &av_type, 0) == NULL) {
       		DBG("radius_log_reply(): ERROR:PW_SIP_RESPONSE_CODE \n");
 			return(ERROR_RC);
