@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.36 2002/02/08 14:29:34 bogdan Exp $
+# $Id: Makefile.defs,v 1.37 2002/02/08 16:09:14 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -68,8 +68,8 @@ DEFS+= -DNAME='"$(NAME)"' -DVERSION='"$(RELEASE)"' -DARCH='"$(ARCH)"' \
 #-DNO_LOG
 
 PROFILE=  -pg #set this if you want profiling
-#mode = debug
-mode = release
+mode = debug
+#mode = release
 
 # platform dependent settings
 
