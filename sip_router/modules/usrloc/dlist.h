@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.h,v 1.5 2002/08/27 13:31:25 janakj Exp $
+ * $Id: dlist.h,v 1.6 2002/09/03 23:28:58 janakj Exp $
  *
  * List of registered domains
  */
@@ -48,7 +48,7 @@ void print_all_udomains(FILE* _f);
 /*
  * Called from timer
  */
-int timer_handler(void);
+int synchronize_all_udomains(void);
 
 
 /*
