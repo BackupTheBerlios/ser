@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.h,v 1.12 2003/01/27 20:49:41 jiri Exp $
+ * $Id: auth_mod.h,v 1.13 2003/02/23 20:27:19 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -47,7 +47,7 @@ extern char* user_column;     /* 'user' column name */
 extern char* domain_column;   /* 'domain' column name */
 extern char* pass_column;     /* 'password' column name */
 
-extern char* realm_column;	
+extern char* domain_column;	
 
 #ifdef USER_DOMAIN_HACK
 extern char* pass_column_2;   /* Column containg HA1 string constructed
