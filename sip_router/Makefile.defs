@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.defs,v 1.26 2002/01/31 19:16:36 bogdan Exp $
+# $Id: Makefile.defs,v 1.27 2002/01/31 20:38:18 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -73,8 +73,8 @@ mode = debug
 
 
 #common
-CC=gcc-3.0
-LD=gcc-3.0
+CC=gcc #-3.0
+LD=gcc #-3.0
 MKDEP=gcc -MM $(DEFS)
 MKTAGS=ctags-exuberant -R .
 

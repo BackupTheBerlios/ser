@@ -1,4 +1,4 @@
-/* $Id: msg_translator.c,v 1.29 2002/01/31 19:16:36 bogdan Exp $
+/* $Id: msg_translator.c,v 1.30 2002/01/31 20:38:18 bogdan Exp $
  *
  */
 
@@ -169,9 +169,11 @@ char* via_builder( struct sip_msg *msg , unsigned int *len )
 		}  */
 		//DBG("DEBUG: XXX will add branch now: %s (%d)\n", msg->add_to_branch_s, msg->add_to_branch_len );
 		/* someone wants me to add something to branch here ? */
-		memcpy(line_buf+via_len-1, msg->add_to_branch_s,
+		if ( msg->add_to_branch_len ){
+			memcpy(line_buf+via_len-1, msg->add_to_branch_s,
 				msg->add_to_branch_len );
-		via_len+=msg->add_to_branch_len;
+			via_len+=msg->add_to_branch_len-1;
+		}
 
 		memcpy(line_buf+via_len, CRLF, CRLF_LEN);
 		via_len+=CRLF_LEN;
