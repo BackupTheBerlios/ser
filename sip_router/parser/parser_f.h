@@ -1,5 +1,5 @@
 /* 
- * $Id: parser_f.h,v 1.8 2004/08/24 09:01:27 janakj Exp $
+ * $Id: parser_f.h,v 1.9 2004/12/20 18:50:27 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -41,44 +41,44 @@ char* eat_line(char* buffer, unsigned int len);
 
 /* turn the most frequently called functions into inline functions */
 
-inline static char* eat_space_end(char* p, char* pend)
+inline static char* eat_space_end(const char* p, const char* pend)
 {
 	for(;(p<pend)&&(*p==' ' || *p=='\t') ;p++);
-	return p;
+	return (char *)p;
 }
 #define SP(_c) ((_c)=='\t' || (_c)==' ')
-inline static char* eat_lws_end(char* p, char* pend)
+inline static char* eat_lws_end(const char* p, const char* pend)
 {
 	while(p<pend) {
 		if (SP(*p)) p++;
 		/* BTW--I really dislike line folding; -jiri */
 		else if (*p=='\n' && p+1<pend && SP(*(p+1))) p+=2;
-		else if (*p=='\r' && p+2<pend && *(p+1)=='\n' 
+		else if (*p=='\r' && p+2<pend && *(p+1)=='\n'
 					&& SP(*(p+2))) p+=3;
 		else break; /* no whitespace encountered */
 	}
-	return p;
+	return (char *)p;
 }
 
 
 
-inline static char* eat_token_end(char* p, char* pend)
+inline static char* eat_token_end(const char* p, const char* pend)
 {
 	for (;(p<pend)&&(*p!=' ')&&(*p!='\t')&&(*p!='\n')&&(*p!='\r'); p++);
-	return p;
+	return (char *)p;
 }
 
 
 
-inline static char* eat_token2_end(char* p, char* pend, char delim)
+inline static char* eat_token2_end(const char* p, const char* pend, char delim)
 {
 	for (;(p<pend)&&(*p!=(delim))&&(*p!='\n')&&(*p!='\r'); p++);
-	return p;
+	return (char *)p;
 }
 
 
 
-inline static int is_empty_end(char* p, char* pend )
+inline static int is_empty_end(const char* p, const char* pend )
 {
 	p=eat_space_end(p, pend );
 	return ((p<(pend )) && (*p=='\r' || *p=='\n'));
