@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.h,v 1.4 2003/08/21 14:26:03 bogdan Exp $
+ * $Id: cpl_parser.h,v 1.5 2003/09/23 00:23:36 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,7 +31,7 @@
 #include "../../str.h"
 
 int init_CPL_parser( char* DTD_filename );
-int encodeCPL(str *xml, str *bin);
+int encodeCPL(str *xml, str *bin, str *log);
 
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.28 2003/09/15 15:16:59 bogdan Exp $
+ * $Id: cpl.c,v 1.29 2003/09/23 00:23:36 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -84,7 +84,6 @@ int (*sl_reply)(struct sip_msg* _m, char* _s1, char* _s2);
 
 
 MODULE_VERSION
-
 
 
 static int cpl_invoke_script(struct sip_msg* msg, char* str, char* str2);
@@ -530,10 +529,6 @@ struct cpl_error {
 	char *err_msg;
 };
 
-
-//static int   err_code = 400;
-//static char *err_msg = "Bad request";
-
 static struct cpl_error bad_req = {400,"Bad request"};
 static struct cpl_error intern_err = {500,"Internal server error"};
 static struct cpl_error bad_cpl = {400,"Bad CPL script"};
@@ -543,9 +538,10 @@ static struct cpl_error *cpl_err = &bad_req;
 
 static inline int do_script_action(struct sip_msg *msg, int action)
 {
-	str  body;
-	str  user;
-	str  bin;
+	str  body = {0,0};
+	str  user = {0,0};
+	str  bin  = {0,0};
+	str  log  = {0,0};
 	char foo;
 
 	/* content-length (if present) */
@@ -585,7 +581,7 @@ static inline int do_script_action(struct sip_msg *msg, int action)
 			}
 			/* now compile the script and place it into database */
 			/* get the binary coding for the XML file */
-			if ( encodeCPL( &body, &bin)!=1) {
+			if ( encodeCPL( &body, &bin, &log)!=1) {
 				cpl_err = &bad_cpl;
 				goto error_1;
 			}
@@ -611,9 +607,11 @@ static inline int do_script_action(struct sip_msg *msg, int action)
 			break;
 	}
 
+	if (log.s) pkg_free( log.s );
 	user.s[user.len] = foo;
 	return 0;
 error_1:
+	if (log.s) pkg_free( log.s );
 	user.s[user.len] = foo;
 error:
 	return -1;
@@ -785,4 +783,6 @@ error:
 	/* I don't want to resturn to script execution, so I return 0 to do break */
 	return 0;
 }
+
+
 
