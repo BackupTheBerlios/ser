@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.16 2003/10/30 11:56:44 jiri Exp $
+ * $Id: tm_load.c,v 1.17 2003/12/05 14:29:13 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,7 +45,6 @@ int load_tm( struct tm_binds *tmb)
 		LOG(L_ERR, LOAD_ERROR "'register_tmcb' not found\n");
 		return -1;
 	}
-
 	if (!( tmb->t_relay_to_tcp=find_export(T_RELAY_TO_TCP, 2, 0)) ) {
 		LOG(L_ERR, LOAD_ERROR "'t_relay_to_tcp' not found\n");
 		return -1;

@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.14 2003/12/02 15:32:08 bogdan Exp $
+ * $Id: t_reply.h,v 1.15 2003/12/05 14:29:13 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -140,7 +140,6 @@ void tm_init_tags();
 
 /* selects the branch for fwd-ing the reply */
 int t_pick_branch(int inc_branch, int inc_code, struct cell *t, int *res_code);
-
 
 #endif
 

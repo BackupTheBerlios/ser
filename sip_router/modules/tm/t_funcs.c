@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.163 2003/07/07 15:06:23 andrei Exp $
+ * $Id: t_funcs.c,v 1.164 2003/12/05 14:29:13 bogdan Exp $
  *
  * transaction maintenance functions
  *
@@ -110,6 +110,8 @@ void tm_shutdown()
 	free_timer_table();
 	DBG("DEBUG: tm_shutdown : removing semaphores\n");
 	lock_cleanup();
+	DBG("DEBUG: tm_shutdown : destroing tmcb lists\n");
+	destroy_tmcb_lists();
 	free_tm_stats();
 	DBG("DEBUG: tm_shutdown : done\n");
 }

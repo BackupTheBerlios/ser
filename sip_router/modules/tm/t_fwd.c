@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.53 2003/11/24 17:39:51 andrei Exp $
+ * $Id: t_fwd.c,v 1.54 2003/12/05 14:29:13 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -39,6 +39,8 @@
  *  2003-03-30  we now watch downstream delivery and if it fails, send an
  *              error message upstream (jiri)
  *  2003-04-14  use protocol from uri (jiri)
+ *  2003-12-04  global TM callbacks switched to per transaction callbacks
+ *              (bogdan)
  */
 
 #include "defs.h"
@@ -83,8 +85,8 @@ char *print_uac_request( struct cell *t, struct sip_msg *i_req,
 	/* ... update uri ... */
 	i_req->new_uri=*uri;
 
-	/* ... give apps a chance to change things ... */
-	callback_event( TMCB_REQUEST_FWDED, t, i_req, -i_req->REQ_METHOD);
+	/* run the specific callbacks for this transaction */
+	run_trans_callbacks( TMCB_REQUEST_FWDED , t, i_req, 0, -i_req->REQ_METHOD);
 
 	/* ... and build it now */
 	buf=build_req_buf_from_sip_req( i_req, len, send_sock, proto );
