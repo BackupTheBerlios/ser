@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_via.c,v 1.4 2001/11/26 19:13:23 andrei Exp $ 
+ * $Id: parse_via.c,v 1.5 2001/11/26 19:32:07 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1572,6 +1572,8 @@ main_via:
 						if (vb->last_param)	vb->last_param->next=param;
 						else				vb->param_lst=param;
 						vb->last_param=param;
+						if (param->type==PARAM_BRANCH)
+							vb->branch=param;
 						
 						switch(state){
 							case L_PARAM:
