@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.83 2004/08/30 09:31:19 jiri Exp $
+# $Id: sc,v 1.84 2005/03/10 08:34:08 janakj Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -65,7 +65,7 @@ LAST_LINE='tail -1'
 VERIFY_ACL=1
 ACL_GROUPS="local ld int voicemail free-pstn prepaid"
 
-VERSION='$Revision: 1.83 $'
+VERSION='$Revision: 1.84 $'
 #### SQL names
 
 # Usr Loc Table
@@ -559,7 +559,7 @@ rpid() {
 		add|rm)
 		        MODE=$1;
 
-			if [ "$MODE" == "add" ] ; then
+			if [ "$MODE" = "add" ] ; then
 			    ARG_NUM=3;
 			else
 			    ARG_NUM=2;
@@ -911,7 +911,7 @@ case $1 in
 		chmod a+w $path
 		trap "rm $path;  clear; echo sc monitor ^C-ed; exit 1" 2
 		attempt=0
-		if [ "$2" == "" ]; then
+		if [ "$2" = "" ]; then
 		    loops=-1;
 		else
 		    loops=$2;
