@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.h,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: digest_parser.h,v 1.3 2002/11/18 23:24:46 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -83,12 +83,6 @@ typedef struct dig_cred {
 	struct qp qop;        /* Quality Of Protection */
 	str nc;               /* Nonce count parameter */
 } dig_cred_t;
-
-
-/*
- * Initialize digest parser
- */
-void init_digest_parser(void);
 
 
 /*

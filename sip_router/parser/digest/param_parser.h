@@ -1,5 +1,5 @@
 /*
- * $Id: param_parser.h,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: param_parser.h,v 1.3 2002/11/18 23:24:46 janakj Exp $
  *
  * 32-bit Digest parameter name parser
  *
@@ -56,12 +56,5 @@ typedef enum dig_par {
  * Parse digest parameter name
  */
 int parse_param_name(str* _s, dig_par_t* _type);
-
-
-/*
- * Initialize hash table
- */
-void init_digest_htable(void);
-
 
 #endif /* PARAM_PARSER_H */

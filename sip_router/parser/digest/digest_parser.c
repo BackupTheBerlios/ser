@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.c,v 1.5 2002/09/19 12:23:55 jku Rel $
+ * $Id: digest_parser.c,v 1.6 2002/11/18 23:24:46 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -362,12 +362,3 @@ void init_dig_cred(dig_cred_t* _c)
 	memset(_c, 0, sizeof(dig_cred_t));
 }
 
-
-/*
- * Initialize digest_parser
- */
- 
-void init_digest_parser(void)
-{
-        init_digest_htable();
-}
