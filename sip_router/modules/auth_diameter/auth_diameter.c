@@ -1,5 +1,5 @@
 /*
- * $Id: auth_diameter.c,v 1.1 2003/08/29 18:55:15 ramona Exp $ 
+ * $Id: auth_diameter.c,v 1.2 2003/11/11 19:37:16 bogdan Exp $ 
  * Digest Authentication - Diameter support
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -160,10 +160,12 @@ static int mod_child_init(int r)
 	return 0;
 }
 
+#if 0
 static void destroy(void)
 {
 	close_tcp_connection(sockfd);
 }
+#endif
 
 
 /*

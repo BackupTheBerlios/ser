@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.8 2003/11/10 16:00:37 janakj Exp $
+ * $Id: reply.c,v 1.9 2003/11/11 19:37:16 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -107,8 +107,6 @@ int send_reply(struct sip_msg* _m)
 	int code;
 	char* msg = MSG_200; /* makes gcc shut up */
 
-	struct lump_rpl  *ei;
-
 	code = codes[paerrno];
 	switch(code) {
 	case 200: msg = MSG_200; break;
@@ -117,8 +115,11 @@ int send_reply(struct sip_msg* _m)
 	}
 	
 	if (code != 200) {
-		ei = build_lump_rpl(error_info[paerrno].s, error_info[paerrno].len, LUMP_RPL_HDR);
-		add_lump_rpl(_m, ei);
+		if (add_lump_rpl( _m, error_info[paerrno].s, error_info[paerrno].len,
+		LUMP_RPL_HDR|LUMP_RPL_NODUP|LUMP_RPL_NOFREE)==0) {
+			LOG(L_ERR, "ERROR:pa:send_reply: cannot add rpl_lump hdr\n");
+			return -1;
+		}
 	}
 
 	if (tmb.t_reply(_m, code, msg) == -1) {
