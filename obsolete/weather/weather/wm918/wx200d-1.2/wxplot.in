@@ -1,0 +1,365 @@
+#!@PERL@
+
+# @(#)$Id: wxplot.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This file simplifies and automates gnuplot(1) chart generation
+
+$cmd = "/tmp/wxplot.cmd.$$";	# temporary gnuplot command file
+$tab = "/tmp/wxplot.tab.$$";	# temporary data file
+$prefix = "@prefix@";		# where the data is, from configure
+
+use POSIX qw(strftime);
+use Time::Local;
+use Getopt::Long;
+
+sub usage {
+    print "usage: $0 [options] file ...
+--help	this help and exit; otherwise gnuplot(1) the listed files as follows:
+--batch	suppress messages and interactive pause between plots
+--one	plot all files on 1 plot (slow), instead of 1 plot per file (fast)
+--cache <file>	create or read cached data file instead of a temporary one
+--terminal <terminal type>	e.g. dumb,   postscript, 'pbm color'
+--output <file or pipe>		e.g. myfile.txt, '|lpr', '|ppmtogif>myfile.gif'
+-C --celsius -F --fahrenheit	temperature format	 (default = Celsius)
+--inhg --mmhg --mbar --hpa	barometric pressure format	      (mbar)
+--mph --knots --mps --kph	wind speed format		       (mps)
+--mm --in			rain rate and total format		(mm)
+--[no]indoor	plot only specified or all  indoor variables except --no ones
+--[no]outdoor	plot only specified or all outdoor variables except --no ones
+--combine	combine indoor and outdoor temperatures onto one chart
+--[no]temps	same as --[no]temp --[no]dewpoint --[no]chill
+--[no]temp --[no]humidity --[no]dewpoint		(indoor and outdoor)
+--[no]barometer --[no]sea --[no]local				   (outdoor)
+--[no]wind --[no]direction --[no]speed --[no]gust --[no]average    (outdoor)
+--[no]chill --[no]rate --[no]rain				   (outdoor)
+--[no]timestamp --[no]grid	      (timestamp and grid are on by default)
+--[no]errorbars	       (errorbars are on by default for .day and .mon plots)
+WXPLOT: $ENV{'WXPLOT'}
+";
+    exit($_[0]);
+}
+
+unshift(@ARGV, split(' ', $opts)) if $opts = $ENV{'WXPLOT'};
+%opt = ();
+&usage(1) unless &GetOptions(\%opt,
+			     qw(help terminal=s output=s cache=s batch one
+				indoor! outdoor! C celsius F fahrenheit
+				inhg mmhg mbar hpa mm in mph knots mps kph
+				temps! temp! dewpoint! chill! humidity!
+				barometer! sea! local! combine
+				wind! direction! speed! gust! average!
+				rate! rain! timestamp! grid! errorbars!));
+&usage(0) if $opt{'help'};
+&usage(2) unless @ARGV;
+
+for (@ARGV) {
+    $_ = "@datadir@/@PACKAGE@/$_" unless m!/! || -e $_;
+    $_ .= '.tab' unless /day|mon|tab/ || -e $_;
+    $_ .= '.gz' unless /\.gz$/ || -e $_;
+    push @file, $_;
+}
+
+$tab = $opt{'cache'} || $tab;
+$opt{'fahrenheit'} = 1 if $opt{'F'};
+$opt{'celsius'} = 1 if $opt{'C'};
+$opt{'grid'} = 1 unless exists $opt{'grid'};
+$opt{'timestamp'} = 1 unless exists $opt{'timestamp'};
+$opt{'errorbars'} = 1 unless exists $opt{'errorbars'};
+$io = $opt{'indoor'} || $opt{'outdoor'};
+if (exists $opt{'wind'}) {
+    $opt{'direction'} = $opt{'wind'} unless exists $opt{'direction'};
+    $opt{'speed'} = $opt{'wind'} unless exists $opt{'speed'};
+}
+$ga = $opt{'gust'} || $opt{'average'};
+$ds = $opt{'direction'} || $opt{'speed'};
+if ($ga || $ds) {
+    if ($ga) {
+	$opt{'direction'} = 1 unless $ds || exists $opt{'direction'};
+	$opt{'speed'} = 1 unless $ds || exists $opt{'speed'};
+    } else {
+	$opt{'gust'} = 1 unless $ga || exists $opt{'gust'};
+	$opt{'average'} = 1 unless $ga || exists $opt{'average'};
+    }
+}
+if (exists $opt{'temps'}) {
+    $opt{'temp'} = $opt{'temps'} unless exists $opt{'temp'};
+    $opt{'dewpoint'} = $opt{'temps'} unless exists $opt{'dewpoint'};
+    $opt{'chill'} = $opt{'temps'} unless exists $opt{'chill'};
+}
+if (exists $opt{'barometer'}) {
+    $opt{'sea'} = $opt{'barometer'} unless exists $opt{'sea'};
+    $opt{'local'} = $opt{'barometer'} unless exists $opt{'local'};
+}
+$opt{'indoor'} = 1 unless $io || exists $opt{'indoor'};
+$opt{'outdoor'} = 1 unless $io || exists $opt{'outdoor'};
+unless (grep($opt{$_}, qw(temp humidity dewpoint barometer sea local
+			  direction speed gust average chill rate rain))) {
+    $opt{'temp'} = 1 unless exists $opt{'temp'};
+    $opt{'humidity'} = 1 unless exists $opt{'humidity'};
+    $opt{'dewpoint'} = 1 unless exists $opt{'dewpoint'};
+    $opt{'barometer'} = 1 unless exists $opt{'barometer'};
+    $opt{'direction'} = 1 unless exists $opt{'direction'};
+    $opt{'speed'} = 1 unless exists $opt{'speed'};
+    $opt{'chill'} = 1 unless exists $opt{'chill'};
+    $opt{'rate'} = 1 unless exists $opt{'rate'};
+    $opt{'rain'} = 1 unless exists $opt{'rain'};
+    $opt{'gust'} = 1 unless exists $opt{'gust'};
+    $opt{'average'} = 1 unless exists $opt{'average'};
+    $opt{'sea'} = 1 unless exists $opt{'sea'};
+    $opt{'local'} = 1 unless exists $opt{'local'};
+}
+$days = 1 if ($mons = grep(/\.mon/, @file)) || $opt{'one'};
+if ($days) {
+    for (sort @file) {
+	next unless ($year, $month, $day)
+	    = (m!\b(\d{4})(\d\d)(\d\d)?\.(day|mon|tab)(\.gz)?$!);
+	if ($mons) {
+	    if ($opt{'one'}) {
+		$xtext = 'Month';
+		$xtics .= sprintf('"%02d/%02d" %d,', $year, $month,
+				  &timelocal(0, 0, 0, 1,
+					     $month - 1, $year - 1900));
+	    } else {
+		$xtext = 'Day';
+		for $day (1..31) {
+		    $xtics{$_} .= sprintf('"%d" %d,', $day,
+				      &timelocal(0, 0, 0, $day,
+						 $month - 1, $year - 1900));
+		}
+	    }
+	} else {
+	    $xtext = 'Day';
+	    $xtics .= sprintf('"%d" %d,', $day,
+			      &timelocal(0, 0, 0, $day || 1,
+					 $month - 1, $year - 1900));
+	}
+    }
+    chop($xtics);
+    for (keys %xtics) { chop($xtics{$_}); }
+    die unless $xtics || %xtics;
+} else {
+    $xtext = 'Hour of Day';
+}
+
+if ($opt{'errorbars'} && ($errorbars = grep(!/\.tab/, @file))) {
+    $e = ' with errorbars';
+    for (2..16) {
+	$e[$_] = ':' . ($_ + 15) . ':' . ($_ + 30);
+    }
+}
+
+$init = "# -*- shell-script -*-
+#
+# This temporary gnuplot command file auto-generated by $0!" . '
+#
+# Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+#
+# (see the files README and COPYING for more details)
+
+' . ($opt{'grid'} ? 'set grid' : '') . '
+' . ($opt{'timestamp'} ? 'set time' : '') . '
+' . ($opt{'terminal'} ? "set terminal $opt{'terminal'}" : '') . '
+' . ($opt{'output'} ? "set output \"$opt{'output'}\"" : '') . '
+' . ($days ? 'set format x "%.0f"
+set xtics (_XTICS_)' : 'set xrange [0:24]
+set xtics 0,1') . '
+set xlabel "_LABEL_"
+
+temp(x) = ' . ($opt{'fahrenheit'}	? '(32 + 1.8 * x)'	 : '(x)') . '
+press(x) = ' . ($opt{'inhg'}	? '(0.029529987508 * x)' :
+		($opt{'mmhg'}	? '(0.750061682704 * x)' : '(x)')) . '
+rate(x) = ' . ($opt{'in'}		? '(0.0393700787402 * x)': '(x)') . '
+speed(x) = ' . ($opt{'mph'}	? '(2.23693629205 * x)'	 :
+		($opt{'knots'}	? '(1.94384449244 * x )' :
+		 ($opt{'kph'}	? '(3.6 * x)'		 : '(x)'))) . '
+
+';
+
+$TEMP = 'Degrees ' . ($opt{'fahrenheit'} ? 'Fahrenheit' : 'Celsius');
+$PRESS = $opt{'inhg'} ? 'Inches of Mercury' :
+    $opt{'mmhg'} ? 'Millimeters of Mercury' :
+    $opt{'hpa'} ? 'Hecto-Pascals' : 'Millibars';
+$RATE = $opt{'in'} ? 'Inches' : 'Millimeters';
+$SPEED = $opt{'mph'} ? 'Miles per Hour' :
+    $opt{'knots'} ? 'Knots' :
+    $opt{'kph'} ? 'Kilometers per Hour' : 'Meters per Second';
+$PAUSE = $opt{'batch'} ? '' : 'pause -1 "Hit return to continue"
+';
+
+if ($opt{'indoor'}) {
+    undef @TEMP;
+    push(@TEMP,
+	 "\"$tab\" thru temp(x) using 1:2$e[2] title 'Indoor Temperature'$e")
+	if $opt{'temp'};
+    push(@TEMP,
+	 "\"$tab\" thru temp(x) using 1:6$e[6] title 'Indoor Dew Point'$e")
+	if $opt{'dewpoint'};
+    push(@HUMID, "\"$tab\" using 1:4$e[4] title 'Indoor'$e")
+	if $opt{'humidity'};
+
+    $gnuplot .= 'set title "INDOOR Temperatures _DATE_"
+set ylabel "' . $TEMP . '"
+plot ' . join(', ', @TEMP) . '
+' . $PAUSE if @TEMP && !$opt{combine};
+}
+
+if ($opt{'outdoor'}) {
+    undef @TEMP unless $opt{combine};;
+    push(@TEMP, "\"$tab\" thru temp(x) using 1:3$e[3] title 'Temperature'$e")
+	if $opt{'temp'};
+    push(@TEMP, "\"$tab\" thru temp(x) using 1:7$e[7] title 'Dew Point'$e")
+	if $opt{'dewpoint'};
+    push(@TEMP, "\"$tab\" thru temp(x) using 1:14$e[14] title 'Wind Chill'$e")
+	if $opt{'chill'};
+    unshift(@HUMID, "\"$tab\" using 1:5$e[5] title 'Outdoor'$e")
+	if $opt{'humidity'};
+
+    $gnuplot .= 'set title "Temperatures _DATE_"
+set ylabel "' . $TEMP . '"
+plot ' . join(', ', @TEMP) . '
+' . $PAUSE if @TEMP;
+}
+
+$gnuplot .= 'set title "Relative Humidity _DATE_"
+set ylabel "Percent"
+set yrange [0:100]
+set ytics 0, 10
+plot ' . join(', ', @HUMID) . '
+' . $PAUSE . '
+set autoscale y
+set ytics autofreq
+' if @HUMID;
+
+if ($opt{'outdoor'}) {
+    push(@PRESS, "\"$tab\" thru press(x) using 1:9$e[9] title 'Sea Level'$e")
+	if $opt{'sea'};
+    push(@PRESS, "\"$tab\" thru press(x) using 1:8$e[8] title 'Local'$e")
+	if $opt{'local'};
+
+    $gnuplot .= 'set title "Barometric Pressure _DATE_"
+set ylabel "' . $PRESS . '"
+plot ' . join(', ', @PRESS) . '
+' . $PAUSE if @PRESS;
+
+    if ($opt{'direction'}) {
+	push(@WIND, "\"$tab\" using 1:10$e[10] title 'Gust'$e")
+	    if $opt{'gust'};
+	push(@WIND, "\"$tab\" using 1:12$e[12] title 'Average'$e")
+	    if $opt{'average'};
+
+	$gnuplot .= 'set title "Wind Direction _DATE_"
+set ylabel "Direction"
+set yrange [0:360]
+set ytics ("N" 0, "NE" 45, "E" 90, "SE" 135, "S" 180, '
+    . '"SW" 225, "W" 270, "NW" 315, "N" 360)
+plot ' . join(', ', @WIND) . '
+' . $PAUSE . '
+set autoscale y
+set ytics autofreq
+' if @WIND;
+    }
+
+    if ($opt{'speed'}) {
+	undef @WIND;
+	push(@WIND, "\"$tab\" thru speed(x) using 1:11$e[11] title 'Gust'$e")
+	    if $opt{'gust'};
+	push(@WIND, "\"$tab\" thru speed(x) using 1:13$e[13] title 'Average'$e")
+	    if $opt{'average'};
+
+	$gnuplot .= 'set title "Wind Speed _DATE_"
+set ylabel "' . $SPEED . '"
+plot ' . join(', ', @WIND) . '
+' . $PAUSE if @WIND;
+    }
+
+    $gnuplot .= 'set title "Rain Rate _DATE_"
+set ylabel "' . $RATE . ' per hour"
+plot "' . $tab . "\" thru rate(x) using 1:15$e[15] title 'Rate'$e
+" . $PAUSE if $opt{'rate'};
+
+    $gnuplot .= 'set title "Total Rain _DATE_"
+set ylabel "' . $RATE . '"
+plot "' . $tab . "\" thru rate(x) using 1:16$e[16] title 'Rain Since Reset'$e
+" . $PAUSE if $opt{'rain'};
+}
+
+&usage(3) unless $gnuplot;	# weird option combination producing no plots?
+$gnuplot = "$init$gnuplot";
+
+sub clean {			# try to cleanup if C-c
+    $SIG{'INT'} = \&clean;
+    unlink($cmd) if -e $cmd;
+    unlink($tab) if !$opt{'cache'} && -e $tab;
+    exit(1) unless $_[0] eq 'noexit';
+}
+
+sub h2hms {			# hour.fraction -> sec, min, hour
+    my($n) = @_;
+    my($h) = int($n);
+    my($m) = int(($n - $h) * 60);
+    return int(($n - $h - $m / 60) * 3600), $m, $h;
+}
+
+$xlabel = $opt{'one'} ? 'ending with' : 'in';
+$create = 1 unless -e $tab;
+$SIG{'INT'} = \&clean;
+for $file (sort @file) {	# for each file...
+    unless (($year, $month, $day)
+	    = ($file =~ m!\b(\d{4})(\d\d)(\d\d)?\.(day|mon|tab)(\.gz)?$!)) {
+	warn "$0: $file not a YYYYMMDD.(day|mon|tab)[.gz] file; skipping...\n";
+	next;
+    }
+    $date = $opt{'one'} ? 'ending ' : 'for ';
+    $date .= strftime $day ? '%B %e %Y' : '%B %Y',
+    0, 0, 12, $day || 1, $month - 1, $year - 1900;
+    open(CMD, ">$cmd") || die "$0: can't write $cmd: $!\n";
+    $commands = $gnuplot;
+    $commands =~ s/_LABEL_/$xtext $xlabel WX200 file $file/g;
+    $commands =~ s/_DATE_/$date/g;
+    $commands =~ s/_XTICS_/$xtics{$file} || $xtics/eg;
+    print CMD $commands;
+    close CMD;
+    if (!$create || open(IN, $file =~ /\.gz$/ ? "zcat $file |" : $file)) {
+	if ($create) {
+	    if (open(OUT, $opt{'one'} ? ">>$tab" : ">$tab")) {
+		print "processing $file; please wait...\n" unless $opt{'batch'};
+		if ($days) {
+		    if ($mons) {
+			while (<IN>) {
+			    s!^(\d{4})(\d\d)(\d\d)!
+				&timelocal(&h2hms(12), $3, $2 - 1, $1 - 1900)!e;
+			    print OUT;
+			}
+		    } else {
+			while (<IN>) {
+			    s!^(\S+)!
+				&timelocal(&h2hms("$1.5"),
+					   $day, $month - 1, $year - 1900)!e;
+			    print OUT;
+			}
+		    }
+		} else {
+		    print OUT while (<IN>);
+		}
+		close OUT;
+		close IN;
+	    } else {
+		warn "$0: can't write $tab: $!\n";
+	    }
+	}
+	if (!$opt{'one'} && -e $tab) {
+	    system("gnuplot $cmd");
+	    &clean('noexit');
+	}
+    } else {
+	warn "$0: can't read $file: $!\n";
+    }
+}
+if ($opt{'one'} && -e $tab) {
+    system("gnuplot $cmd");
+    &clean('noexit');
+}

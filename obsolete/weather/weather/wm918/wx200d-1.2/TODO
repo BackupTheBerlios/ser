@@ -1,0 +1,192 @@
+						-*- indented-text -*-
+
+	@(#)$Id: TODO,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+	wx200d infinite TODO list, in no particular order
+
+	If you have suggestions not listed here, or want to help,
+	please let me know!  --Tim Witham <twitham@quiknet.com>
+
+
+WANNA WRITE A CLIENT?
+=====================
+
+Just #include "wx200.h" and link with -lwx200.  For an example client,
+see wx200.c or get the gwx GTK+ client that looks like the hardware.
+Another option is to just pipe the output of wx200 to your client as
+it has several different output formats now; see --help or wx200(1).
+
+
+PORTING TO OTHER PLATFORMS
+==========================
+
+I only use Linux, so I won't be doing any porting.  But if you do and
+you don't break anything, then I'd be willing to include your port.
+
+Porting to any other unix should be trivial.  Probably almost no
+changes required especially if you use gcc.  You may need to add GNU
+getopt and use GNU make.
+
+Porting clients to other OS's is probably also trivial if your OS can
+do TCP/IP socket connections in C.  Porting the server to such a
+non-unix OS would probably require significant changes to or rewrites
+of serial.c and wx200d.c.  I believe most unix-isms are in just these
+two files.  The rest of the files should be fairly portable.
+
+
+CLIENT/SERVER PROTOCOL:
+=======================
+
+Establish a (stateless?) command protocol on the client/server
+connections; some may require forking a parallel handler for the
+connection so as to not interfere with the primary task of gathering
+and logging the data.  Example ideas:
+
+	HELP	list these commands that are available
+
+	READ	current default; continuously read data in real-time
+
+	DATE YYYYMMDD	get avg/low/hi info for given date
+
+	MON YYYYMM	get avg/low/hi info for given month
+
+	NOW	return current data from memory and close
+
+	LIST	return a list of data files available
+		(for clients that want to plot historical data)
+
+	GET	send a (compressed?) data file to client
+
+	INFO	give info about the weather station (location, etc.)
+
+	VER	return wx200d program version
+
+	QUIT	close the connection
+
+
+CLIENTS for WX200D:
+===================
+
+* check out gwx, a GTK+ client that looks just like a real WX200!
+
+* more "practical" X client that displays more information at a time,
+  similar to the software that came with the unit, or to Mike's wx.
+
+* wx200 refreshing could be improved by using ncurses.  This could
+  enable interactive unit changing by keystroke commands.
+
+* A wx200 modification could serve as a telnet gateway.  That is, it
+  would just listen for connections and return a wx200 screen.
+
+* JAVA clients to put WX200 data on the web?  Naaaa.
+
+
+WX200D TODO:
+============
+
+* complain if WX200 clock is off by some amount
+
+* does tab.c even need to keep wind chill?  It could be derived.  I
+  guess it's nice to keep all actual WX200 variables.
+
+* new "virtual" groups could be sent to clients but not logged:
+
+  + group D: station information like location, latitude, longitude,
+    sunrise/set, moonrise/set, comments.  This would be read from a
+    wx200d configuration file.
+
+  + group E: todays/this weeks/this months high/low.  Would we also
+    want to know when these things happened and keep yesterday, last
+    week and last month as well?  We also want rainfall so far today,
+    this week, etc.
+
+  + v0.7: lo/hi is no longer needed now that .day and .mon summary
+    files exist.  Instead of keeping everything in memory, the server
+    could now read requested statistics from the summary files.
+
+
+DATABASES:
+==========
+
+* support more, specifically MySQL
+
+* provide more information / utilities on using data from the DBs
+
+* volunteers?
+
+
+Tim's notes for future reference:
+=================================
+screens shown by mode scan (see user manual page 58 and byte CF.24):
+
+s=0/0/0
+s=1/0/0
+s=1/1/0
+s=1/1/1
+s=1/1/2
+s=1/1/3
+s=2/0/0
+s=2/1/0
+s=2/1/1
+s=2/1/2
+s=2/1/3
+s=3/0/0
+s=3/1/0
+s=3/1/1
+s=3/1/2
+s=3/1/3
+s=4/0/0
+s=4/0/2
+s=5/0/0
+s=5/0/0
+s=5/1/0
+s=6/0/0
+s=6/1/0
+s=7/0/0
+s=7/1/0
+s=7/1/1
+
+How to organize the virtual memories?
+
+in hi/lo + out hi/lo * day * week * mon = 12 entries = 72 bytes
+
+daily in hi/lo + out hi/lo humid, temp, dew = 12 entries = 72 bytes
+
+wind gust(6), dir(2) = 8 bytes * 3 = 24 bytes
+
+chill low = 6 bytes * 3 = 18 bytes
+
+rain = 18 bytes
+
+1f: daily highs	44 bytes includes wind hi
+2f: daily lows	42 bytes includes chill lo
+3f: weekly highs
+4f: weekly lows
+5f: monthly highs
+6f: monthly lows
+7f: rain	12 bytes is tot + day + week + mon + timestamp
+
+0f: humid highs	36 bytes	humid in
+1f: humid lows			humid out
+2f: temp highs			temp in
+3f: temp lows			temp out
+4f: dew highs			dew in
+5f: dew lows			dew out
+6f: wind	24 bytes
+7f: chill, rain	18 + 12 = 30 bytes
+
+The one on the right above would be best fit.
+
+Rain is current total, day, week, month; timestamp is time of last rain.
+To get day, week, month subtract from reference total at beginning of period.
+This will break if hardware total is reset.
+
+v0.7: the original thinking above was that the server would keep track
+of and send daily weekly monthly lows and highs and timestamps of when
+they happened.  Then it would send all this to clients in unused
+groups 1f - 7f.  Now, I think this is not practical.  Since .day and
+.mon files now exist, I think the server should instead only send this
+stuff when queried.  The summary files keep stats down to the day (for
+months) or hour (for days).  The server could read a summary file and
+populate the binary structures including "close" timestamps and return
+that day or month avg/lo/hi image instead of current conditions.

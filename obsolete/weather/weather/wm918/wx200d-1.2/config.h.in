@@ -1,0 +1,106 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+/*
+ * @(#)$Id: config.h.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+ *
+ * Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+ *
+ * (see the files README and COPYING for more details)
+ *
+ * This file is build-time configuration options for the WX200 programs
+ *
+ */
+
+
+/* Define to empty if the keyword does not work.  */
+#undef const
+
+/* Define if utime(file, NULL) sets file's timestamp to the present.  */
+#undef HAVE_UTIME_NULL
+
+/* Define as the return type of signal handlers (int or void).  */
+#undef RETSIGTYPE
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if you can safely include both <sys/time.h> and <time.h>.  */
+#undef TIME_WITH_SYS_TIME
+
+/* Define if your <sys/time.h> declares struct tm.  */
+#undef TM_IN_SYS_TIME
+
+/* Define if you have the select function.  */
+#undef HAVE_SELECT
+
+/* Define if you have the socket function.  */
+#undef HAVE_SOCKET
+
+/* Define if you have the strerror function.  */
+#undef HAVE_STRERROR
+
+/* Define if you have the strspn function.  */
+#undef HAVE_STRSPN
+
+/* Define if you have the strtol function.  */
+#undef HAVE_STRTOL
+
+/* Define if you have the <fcntl.h> header file.  */
+#undef HAVE_FCNTL_H
+
+/* Define if you have the <getopt.h> header file.  */
+#undef HAVE_GETOPT_H
+
+/* Define if you have the <libpq-fe.h> header file.  */
+#undef HAVE_LIBPQ_FE_H
+
+/* Define if you have the <sys/ioctl.h> header file.  */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define if you have the <sys/time.h> header file.  */
+#undef HAVE_SYS_TIME_H
+
+/* Define if you have the <syslog.h> header file.  */
+#undef HAVE_SYSLOG_H
+
+/* Define if you have the <termio.h> header file.  */
+#undef HAVE_TERMIO_H
+
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+
+/* Define if you have the crypt library (-lcrypt).  */
+#undef HAVE_LIBCRYPT
+
+/* Define if you have the pq library (-lpq).  */
+#undef HAVE_LIBPQ
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+
+/* default hostname for the clients to connect to ("localhost") */
+#define HOST "localhost"
+
+/* default port for the server to listen on and the clients to connect to */
+#define PORT 9753
+
+/* maximum number of simultaneous client connections allowed by the server */
+#define CONNECTIONS 128
+
+/*  place to look for WX200, if no WX200 environment var (e.g. /dev/ttyS1) */
+#define WX200 "/dev/wx200"
+
+/* where to write the daily wx200 data files */
+#undef PACKAGE_DATA_DIR
+
+/* default config for postgres support */
+#define POSTGRES_CONN 	"dbname=postgres port=5432 user=postgres password=postgres"
+
+/* default table name for postgres (the last characters could be the
+   location of wx station) */
+#define POSTGRES_TABLE  "wx_data"
+
+/* default record interval (register data every POSTGRES_INTERVAL seconds) */
+#define POSTGRES_INTERVAL 30

@@ -1,0 +1,186 @@
+.\" @(#)$Id: wx200d.5.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WX200D 5 "Jun 02, 2001" "wx200d Manual"
+.SH NAME
+wx200d \- format of log files created by wx200d
+.SH SYNOPSIS
+.B @datadir@/@PACKAGE@/YYYYMMDD.bin[.gz]
+.B @datadir@/@PACKAGE@/YYYYMMDD.tab[.gz]
+.B @datadir@/@PACKAGE@/YYYYMMDD.day
+.B @datadir@/@PACKAGE@/YYYYMM.mon
+
+.SH DESCRIPTION
+
+The files in @datadir@/@PACKAGE@ are WX200 weather data logs
+created by
+.B wx200d(8)
+or wxsum.
+
+The base filename is made up of the year, month and day of the data
+contained in the file.  This is of the form YYYYMMDD which makes it
+easy to sort the files in time order.  The extension of the file
+indicates the format of the content and can currently be one of the
+following formats.  Of course a
+.I .gz
+suffix indicates the file has been compressed with
+.B gzip(1).
+.P
+
+.TB 0.5i
+.B YYYYMMDD.bin[.gz]
+
+These files contain "abbreviated" binary WX200 data.  WX200 data
+"groups" (see wx200.txt for details) are logged directly from the
+device but only when they have changed.  This results in the smallest
+possible file that can still be used by programs that understand the
+complete WX200 serial data stream.
+.P
+
+This abbreviation is not lossy.  That is, all bits of data are
+recorded with no loss of information.  These
+.I .bin
+files can therefore be used to create
+.I .tab
+files, via
+.B wxfilter(1)
+, but not vice-versa.
+.P
+
+.TB 0.5i
+.B YYYYMMDD.tab[.gz]
+
+These files contain a tab-delimited ASCII log of the WX200 sensor
+values.  They may be conveniently plotted by
+.B wxplot(1)
+or
+.B gnuplot(1)
+or imported into spreadsheets or other systems.
+.P
+
+When any variable changes, a whole line is recorded.  The columns of
+the line are delimited by a single tab character and record the
+following WX200 sensor values in order:
+
+.TB 0.5i
+.B Time
+The hour of the day this line of data occurred.  The integer part is
+the hour in the range 0 to 23.  The fractional part is the fraction of
+the hour.  The time is recorded in this way so that this field can be
+plotted linearly on the X axis of a graph.
+
+.TB 0.5i
+.B indoor temperature
+0.0 to 50.0 degrees Celsius @ 0.1
+
+.TB 0.5i
+.B outdoor temperature
+-40.0 to 60.0 degrees Celsius @ 0.1
+
+.TB 0.5i
+.B indoor humidity
+10 to 97 percent @ 1
+
+.TB 0.5i
+.B outdoor humidity
+10 to 97 percent @ 1
+
+.TB 0.5i
+.B indoor dew point
+0 to 47 degrees Celsius @ 1
+
+.TB 0.5i
+.B outdoor dew point
+0 to 56 degrees Celsius @ 1
+
+.TB 0.5i
+.B local barometric pressure
+795 to 1050 millibars @ 1
+
+.TB 0.5i
+.B sea level pressure
+795.0 to 1050.0 millibars @ 0.1
+
+.TB 0.5i
+.B gust wind direction
+0 to 350 compass degrees @ 10
+
+.TB 0.5i
+.B gust wind speed
+0.0 to 56.0 meters per second @ 0.2
+
+.TB 0.5i
+.B average wind direction
+0 to 350 compass degrees @ 10
+
+.TB 0.5i
+.B average wind speed
+0.0 to 56.0 meters per second @ 0.2
+
+.TB 0.5i
+.B wind chill
+-85 to 60 degrees Celsius @ 1
+
+.TB 0.5i
+.B rainfall rate
+0 to 998 millimeters per hour @ 1
+
+.TB 0.5i
+.B cumulative rainfall since reset
+0 to 9999 millimeters @ 1
+
+.TB 0.5i
+.B YYYYMMDD.day
+
+These daily summary files contain hourly average, low and high for
+each variable, one line per hour.  The file format is very similar to
+the
+.I .tab
+files described above.  The difference is that after the hour
+timestamp, the group of data columns appears three times to record the
+average, low and high of each variable in that order.  The wind
+direction is the only exception to this: the three most common wind
+directions are listed in order.
+
+.TB 0.5i
+.B YYYYMM.mon
+
+These monthly summary files contain daily average, low and high for
+each variable, one line per day.  The file format is just like the
+.I .day
+files described above except that the first column is in the YYYYMMDD
+format to indicate the date of the data instead of the hour.
+
+
+.SH FILES
+@datadir@/@PACKAGE@/YYYYMMDD.bin[.gz]
+@datadir@/@PACKAGE@/YYYYMMDD.tab[.gz]
+@datadir@/@PACKAGE@/YYYYMMDD.day
+@datadir@/@PACKAGE@/YYYYMM.mon
+
+.SH LIMITATIONS
+
+Files created by versions less than 1.0 lacked the rain total column.
+The wxsum script can correct this for
+.I .day
+and
+.I .mon
+summary files if you still have the original
+.I .tab
+files available.  Otherwise, old files will not be compatible with
+.B wxplot(1).
+
+.SH SEE ALSO
+wx200d(8), wxplot(1), gnuplot(1), wxfilter(1), wxdebug(1)
+
+.SH AUTHOR
+Tim Witham <twitham@quiknet.com>
+.SH COPYRIGHT
+Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+
+wx200d is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.

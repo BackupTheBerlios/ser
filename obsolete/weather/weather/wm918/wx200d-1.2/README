@@ -1,0 +1,343 @@
+-*- text -*-
+
+wx200d - client/server weather data collector for WX200 / WM918
+
+@(#)$Id: README,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+Copyright (C) 1998 - 2002 Tim Witham <twitham@quiknet.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+	(see the file COPYING for more details)
+
+Latest official version and more should be available at:
+
+			http://wx200d.sourceforge.net/
+
+
+	#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+	# NOTE: If you have used versions less than 1.1, please see #
+	#	the section below entitled UPGRADING		    #
+	#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+
+	SUMMARY
+	=======
+
+wx200d is a weather station data collector and server daemon for the
+RadioShack WX200 (Cat. No. 63-1015), also know as the Oregon
+Scientific WM918.  The wireless WMR918/WMR968 is also now supported.
+wx200d optionally records all weather data from the station to a
+database and/or compressed files each day.  It also listens for client
+connections and tees the data out to those clients.  Clients can
+connect to wx200d from any machine and display the weather data in
+real-time or send it on to other systems.  Also included are utilities
+for generating beautiful web graphs via RRDtool.
+
+
+	NEWS
+	====
+
+Has moved to the NEWS file, complete with version history.
+Please read at least the NEWS for this version.
+
+
+	INSTALLATION
+	============
+
+* You will need perl, GNU make, and RRDtool to use all the features.
+  Basic file logging doesn't require any of these though.  Postgres
+  database support should get compiled in only if configure can detect
+  that you have the proper header file and library.
+
+* ./configure
+
+* make
+
+* make install
+
+* read the man pages, starting with wx200d(8).
+
+* link your serial device to /dev/wx200 for WX200 or WM918 hardware or
+  to /dev/wmr* for the wireless WMR918/968 hardware.  E.g.: `ln -s
+  /dev/ttyS0 /dev/wx200'.  Alternatively, you can use `-s /dev/ttyS0'
+  every time you run wx200d (where /dev/ttyS0 is the serial device
+  your hardware is connected to).  See also the -r option.
+
+* configure your system to run `wx200d' at boot time.  Here's how I do
+  it in /etc/rc.d/rc.local for example:
+
+	if [ -x /usr/local/sbin/wx200d ]; then
+	    echo -n " wx200d"
+	    /usr/local/sbin/wx200d
+	fi
+
+Just run `wx200d' by hand to get started.  Add -r if your station is a
+WMR918/968.  If you wish to log to a database, you must add more
+command line options.  See wx200d(8).
+
+
+	OPTIONAL (to add your personal weather station to wunderground.com)
+	===================================================================
+
+* this feature requires a modern Perl with the LWP module installed
+
+* apply for and get a station ID and PASSWORD at wunderground.com
+
+  http://www.wunderground.com/weatherstation/usersignup.asp
+
+* write a one-line file containing two words: YourID YourPASSWORD
+
+* There are two ways to run the /usr/local/sbin/wunderground client:
+
+  1) run continuously as a daemon (after the server is started):
+
+     /usr/local/sbin/wunderground 15 /path/to/idpasswdfile &
+
+     The number is the number of minutes between data submissions.  In
+     this mode, wind gust will be reported as the maximum seen since
+     the last report.  This is the best option if you have a full-time
+     internet connection.
+
+  2) schedule a cron job to submit data as often as you want:
+
+     0,15,30,45 * * * * /usr/local/sbin/wunderground /path/to/idpasswdfile
+
+     Since no number is given, wunderground uploads once and exits.
+     In this mode, the current wind gust speed of the station is
+     reported directly.  You may want to discard errors (2>/dev/null)
+     if you have an intermittent internet connection and don't want to
+     be bothered by email about failed submissions.
+
+
+	OPTIONAL (if you want .day and .mon summary files)
+	==================================================
+
+* set up a cron job to run make in the data directory early each day:
+
+  05 0 * * * cd /usr/local/share/wx200d && make > /dev/null
+
+
+	OPTIONAL (if you want graphical HTML/png weather charts)
+	========================================================
+
+This requires RRDtool to be installed and working correctly with your
+Perl.  See http://www.rrdtool.com/.  If you have questions about
+RRDtool, consult the excellent documentation that comes with it.  This
+has been tested with versions 1.0.33 and 1.0.35.
+
+* An RRD must be updated with detailed data in increasing time order.
+  This is done by wxrrdupdate from the .tab[.gz] data files logged by
+  wx200d.  This could take several hours if you have a lot of data:
+
+	cd /usr/local/share/wx200 && make wx200d.rrd
+
+  Some statistics are logged to stdout for each file processed:
+
+  * lines	The number of valid wx200d(5) .tab[.gz] lines used.
+  * adds	The number of data points added to the RRD.
+  * gaps	Number of unknown data gaps greater than the RRD heartbeat.
+  * upto min	Minutes duration of the widest data gap.
+  * reverse	Number of reverse time lines skipped.
+
+  To save space wx200d logs only when a variable changes.  So if only
+  one variable has changed since the last update, wxrrdupdate assumes
+  the station was up and fills in the missing data so we don't get
+  false unknowns.  If several things changed, we don't fill in and
+  will get unknowns only if more than $HEARTBEAT seconds have passed
+  and the gap is noted.  Small gaps are OK and will disappear over
+  time as the data is compressed.  Larger gaps indicate the station
+  was actually down or there was a data problem.
+
+  The reverse count is the number of data lines that went "back in
+  time" and were ignored.  This can happen when the clock changes like
+  around daylight savings time.  These numbers should be small.
+  Versions less than 1.0 (released February 2000) logged the station
+  time but rotated the files on computer time so the data could be out
+  of synch and cause large numbers of reverse time lines.  You could
+  opt to correct those files and regenerate the RRD.  You might want
+  to look at the wxsplit script to help with this task.
+
+  If you correct .tab[.gz] data files, you must remove the wx200d.rrd
+  and start over from the beginning because you can not insert old
+  data into an RRD.
+
+* Read the settings section at the top of wxrrdgraph and optionally
+  create a wx200d.pl config file in your data directory.  Local
+  barometric pressure is recorded in the RRD because it is more
+  consistent: it is actual pressure and does not change with resets on
+  the hardware station.  So you should at least set your $press local
+  barometric pressure offset in the units you choose for $baro to get
+  standard sea level pressure on your graphs.  You can adjust display
+  units for all graphs and add custom HTML $head and $tail sections.
+  This file must be valid perl; say `perl -c wx200d.pl' to check it.
+
+* After your original data is in the RRD, set up a regular cron job to
+  append new data and then regenerate the HTML/png web pages:
+
+  5,20,35,50 * * * * (cd /usr/local/share/wx200 && make wx200d.rrd \
+	&& cd html && make Temp_All.png) > /dev/null
+
+An alternate (older) graphing method requires gnuplot and ppmtogif
+(from netpbm), but DON'T BOTHER with this if you have RRDtool.
+
+- read sbin/wxplot2html and create a wxplot2html.conf if you need to
+
+- set up a cron job to run make in the html directory every morning
+  and to run wxplot2html late every hour:
+
+  25 0 * * * cd /usr/local/share/wx200d/html && make html > /dev/null
+
+  58 * * * * /usr/local/sbin/wxplot2html
+
+
+	OPTIONAL (if you have a web server)
+	===================================
+
+* link the share/wx200d/html directory to your web server's document area
+
+* You may copy wxindex to share/wx200d/html/temp.html, remove the perl
+  code to the __END__ line and edit the remaining HTML as needed.
+  This template will be used to update the wx200.html page.  If you
+  like this, you may want to link it to index.html.
+
+* Copy or link wx200 to your web server's CGI bin area.
+
+* Add your site to the WX200 web ring if it's on the internet.
+
+
+	UPGRADING
+	=========
+
+	skip all this if you don't run a version less than 1.1
+	------------------------------------------------------
+
+From 1.0 to 1.1, the location of the data directory changed.  It moved
+from /usr/local/share/wx200 to /usr/local/share/wx200d to match the
+package name like standard GNU software.  So, you may want to rename
+your current data directory to the new name before starting the new
+server.  You may want to link wx200d to wx200 for back-compatibility.
+
+The wxsum shipped with 1.0 had a bug that maximum values could go no
+lower than zero.  On cold days where temperature and wind chill never
+exceeded zero degrees Celsius, the .day and .mon summaries would
+incorrectly show a max of zero instead of the real max.  If you have
+kept your .tab.gz or .bin.gz data files, you may correct old data
+files by simply regenerating the .day and .mon summaries with the new
+wxsum from this version:
+
+	mkdir old
+	mv *day *mon old	# save old logs in case we goof
+	make
+
+Thanks to Goran Sandin <Goran.Sandin@abc.se> for reporting this bug.
+
+	skip all this if you don't run a version less than 1.0
+	------------------------------------------------------
+
+If you ran versions prior to 1.0, there are a few changes that you
+will need to consider.  If you're doing a brand new install, you can
+skip this section and read the USAGE section below.
+
+First, follow the INSTALLATION instructions above.  Note that the
+default installation paths have changed to be more standard.  I
+recommend installing to the new paths.  After you have the system
+running from the new paths, you can go back and clean up the old
+areas.
+
+cp -p your old data files into the new data area.  Update the paths in
+your cron jobs and your rc boot file.  Get the new wx200d and wx200
+running.
+
+The new rain total changes the format of the tab-delimited data files
+by simply adding the column to the end.  wxplot can still plot your
+old .tab files and will simply fail on the last missing column.
+wxplot will not be able to plot .day and .mon summary files with
+errorbars correctly since the low and high columns have shifted.  So,
+you can upgrade your old tab-delimited files if you would like them to
+work with the new wxplot.
+
+IFF you have kept your .bin.gz log files, you can regenerate the
+.tab.gz logs with the new rain total column:
+
+	mkdir old		# save old logs just in case we goof
+	mv *tab* old
+	make tabs		# rebuild .tab.gz files from .bin.gz
+
+IFF you have kept your .bin.gz or .tab.gz log files, you can
+regenerate the .day and .mon summary logs:
+
+	mkdir old		# unless you already did
+	mv *day *mon old	# save in case we goof
+	make
+
+Now the new columns have been added and wxplot can plot them!  If all
+is well, you can go back and remove the old pre-1.0 programs from the
+old paths.
+
+
+	USAGE / program summaries
+	=========================
+
+The following programs are provided.
+
+* wx200d	The daemon: run this process one time, like at boot time
+* wx200		A simple command-line/CGI client that shows all known data
+* wxstdout	A client that sends a copy of binary wx200 data to stdout
+* wxfilter	filters raw WX200 data on stdin to tab-delimited on stdout
+* wxdebug	reads wx200 data from stdin and shows the groups you want
+* wxplot	perl(1) script that plots (graphs) tab-delimited data files
+  wxsum		perl(1) script that filters .tab to .day or .day to .mon
+  wxplot2html	perl(1) script that creates web pages for a month or today
+  gnuplot.cmd	obsoleted by wxplot but may be handy if you have no perl(1)
+  wxread	reads serial port directly and sends binary data to stdout
+  wunderground	uses wx200 to upload station data to wunderground.com
+  wxrrdupdate	perl(1) script uses RRDs.pm to append .tab data to an RRD
+  wxrrdgraph	perl(1) script uses rrdcgi to plot a "matrix" of graphs
+
+* You may use the option `-h' to show command-line options for
+programs marked with * above.  Read their man pages for complete
+documentation.  Of course the perl scripts can also be read directly.
+
+You may run only one of wx200d or wxread at a time (since only one
+process should be reading the serial port).  File locking should be
+added to enforce this later.  wxread is only for debugging if you
+think wx200d has a problem.
+
+
+	PLATFORMS
+	=========
+
+wx200d was developed on Linux.  wx200d should run on any modern Linux
+and probably works on other unix's too.  I've heard it works on BSD if
+you have GNU make and GNU getopt.  I think I heard it works on Solaris
+or SGIs too.  See the TODO file for porting hints.
+
+
+	CREDITS
+	=======
+
+Have moved to the AUTHORS file.
+
+
+	DISCLAIMER
+	==========
+
+This was written by me on my own time and equipment.  My employer has
+absolutely nothing to do with it.  See also the file COPYING.
+
+Please send any comments, bug reports or suggestions to me:
+
+	Tim Witham <twitham@quiknet.com>

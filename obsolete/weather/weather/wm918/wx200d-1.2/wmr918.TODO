@@ -1,0 +1,48 @@
+@(#)$Id: wmr918.TODO,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+The extention to the wx200d made to support the WMR918 can be improved
+in many point.
+
+Here is the current list :
+
+1) wmr918util.c gets a warning on line 291 that I cannot
+   understand. But the code works fine !
+
+   Not for me!  -twitham
+
+2) The minimum, maximun and average are not provided on the WMR918
+   serial interface.They should be coded to emulate the function with
+   value, date and time.
+
+   I wonder why they took away features?  Annoying.  -twitham
+
+3) Some function are hardwired in European format (eg date)
+
+4) I do not use the time from WMR918 but from Linux. An ntp driver
+   would be nice.
+
+5) I had only one model bought in France to do my testing. The
+   original code from John Stanley <stanley@peak.org> that I did use
+   for my start plan for some other model message format.  More
+   testing would be nice.
+
+6) Get the Signal function detecting the lost of a client to work
+   under debug (gdb) would have made my life easier. Good ideas are
+   welcomed.
+
+7) Implement a Group 15 when only time has changed. Due to mix of
+   group in the WMR918 I send a full group 8 only when time as
+   changed. Would save some bamdwidth to the client.
+
+   I believe I've taken care of this one.  -twitham
+
+8) Hold write to .tab files until all groups have been received at
+   least once. Would avoid to get faulse zero after reboot.
+
+9) write am WMR918 look and feel client. But do to bad collaboration
+   from Oregon Scientific I don't know if they diservce it. Might be
+   better to a wx200 and to stick to gwx.
+
+10) Get a MySQL interface with a PHP client (I might en by doing it
+    myself if nobody takes that one).
+

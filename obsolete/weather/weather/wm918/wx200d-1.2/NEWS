@@ -1,0 +1,159 @@
+	@(#)$Id: NEWS,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+
+	NOT YET NEWS	or	NOTES ABOUT THINGS TO COME
+	============		==========================
+
+
+	NEW for 1.2	Released April 2002
+	===========	===================
+
+* Much improved weather graphs via RRDtool (http://www.rrdtool.com/)
+  Believe me, you want to install RRDtool and get this working.  See
+  README for details.  Then you can drop the old wxplot2html!
+
+* The WMR918 (and probably the WMR968) wireless station is now
+  supported (at least all the bits that are known) thanks to code
+  contributed by Dominique Le Foll.  Use -r to drive the newer
+  stations.
+
+
+	NEW for 1.1	Released August 2001
+	===========	====================
+
+* fixed wxsum bug that max temperature and wind chill in .day and .mon
+  summaries were recorded as zero when they were really negative.  See
+  README for notes on how to correct incorrect data files.
+
+* new wunderground client can contribute your weather data to
+  wunderground.com.  Requires a modern perl with the LWP module.
+
+* continous plotting of all weather variables if you have Gnome
+  gstripchart.  Simply say `gstripchart gstripchart.conf', make the
+  window bigger and wait.  Indoor variables are off by default;
+  right-click Params to turn them on.  Left-click to see current
+  values.
+
+* many new options for the wx200 client; see --help and wx200(1).
+
+* wxplot can now take simple YYYYMMDD[.tab|.day] | YYYYMM.mon
+  arguments.  If the given files do not exist, they are searched for
+  in the data directory and .tab and .gz extentions are assumed if
+  necessary.
+
+* more standardized GNU-style build/install process via automake
+
+* this causes the data path to change from share/wx200 to share/wx200d
+
+* The server can now log to a Postgres database thanks to Raul Luna
+  <rlunaro@bigfoot.com>.  If you add connections to other databases,
+  or enhancements to this one, please let me know.
+
+* You are pretty much on your own using the new database support
+  though.  Basic logging to Postgres is there.  But it is up to you to
+  figure out how to compress your data over time, generate graphs or
+  reports from your database, and so on.  These capabilities may or
+  may not get added in future versions and the table format may even
+  change.  Basically, I don't have the time or need to develop this,
+  but someone else may opt to enhance this capability.
+
+
+	NEW for 1.0	Released February 2000
+	===========	======================
+
+* standard GNU-style `./configure; make; make install' process
+
+* standard GNU-style installation paths.
+
+* new cumulative rain total column in the log files.
+
+* the server now records the computer's clock in the .tab log files
+  since it is usually more correct.  The binary stream still sends
+  the real WX200 time so client programs can notice if it is wrong.
+
+* wind directions are now rounded to the closest 10 degrees in .tab
+  files to make them a little smaller.
+
+* new wx200.h and libwx200.a public API for client programs
+
+* wx200 suppresses alarm displays by default, for a smaller display.
+  Use -a to get the old behavior.
+
+
+	NEW for 0.7	Released September 1998
+	===========	=======================
+
+* .day summary files contain average/low/high by hour
+
+* .mon summary files contain average/low/high by day
+
+* new wxsum creates the above files from .tab files
+
+* new Makefile.data can be cron'd to auto-update all data files
+
+* new wxplot2html can auto-make monthly and today's web pages
+
+* wxplot can now plot .tab, .day and .mon data files
+
+* many 0.6 bugs fixed; see ChangeLog
+
+
+	NEW for 0.6	Released February 1998
+	===========	======================
+
+* much improved plotting, please read the wxplot(1) man page
+
+	+ better organized
+	+ custom units!
+	+ any or all variables
+	+ any kind of gnuplot output (X, ascii, pbm, etc.), batch mode
+	+ WXPLOT env var for your favorite options
+	+ multi-day plots work/look better
+
+* -m and -p gone and replaced with smarter host[:port] argument
+
+* wx200 client can now output a specific variable
+
+
+	NEW for 0.5	Released February 1998
+	===========	======================
+
+* man pages!  Yes, the whole thing is properly documented!
+
+* new wxplot for graphing but only if you have perl(1) and gnuplot(1).
+
+* improved wx200d options, check `wx200d -h' or the man page.
+
+* wx200 client can now auto-refresh the display continuously.
+
+
+	NEW for 0.4	Released January 31, 1998
+	===========	=========================
+
+* -z meaning is reversed, use -z to turn off gzip'ing the logs
+
+* data logging is optional, turn off binary logs with -b
+
+* new tab-delimited ASCII logs are also optional, turn them off with -a
+
+* wxz renamed to wxfilter and produces tab-delimited text by default
+
+* new gnuplot.cmd for plotting tab-delimited log files with gnuplot
+
+* wx200 client can now run as a CGI from a web server
+
+
+	NEW for 0.3	Released January 21, 1998
+	===========	=========================
+
+See ChangeLog
+
+	NEW for 0.2	Released January 10, 1998
+	===========	=========================
+
+See ChangeLog
+
+	NEW for 0.1	Released December 17, 1997
+	===========	==========================
+
+See ChangeLog

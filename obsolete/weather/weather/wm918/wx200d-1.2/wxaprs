@@ -1,0 +1,65 @@
+#! /bin/sh
+
+# @(#)$Id: wxaprs,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 2001 Steve VK5SASF <sfraser@sierra.apana.org.au>
+
+# (see the files README and COPYING for more details)
+
+#				WXAPRS
+
+#  The --aprs option of wx200 is designed to generate weather strings
+#  that conform to the APRS protocol. APRS (c) is a method of
+#  transmission of positional, weather and telemetry information used
+#  by radio amateurs (hams).
+
+#  This script acts as a client to the wx200d server via wx200 --aprs.
+#  This together with the standard AX25 "beacon" utility, is used to
+#  send the weather packet. This script is designed to run
+#  continually, initiated as a background task from your rc.local (or
+#  similar) file.
+
+#  This assumes that the "digi_ned" package is used, but this is not
+#  essential. In fact, digi_ned is used only as a source of
+#  latitude/longtitude values and to repeat the packet on multiple
+#  ports.
+
+#  73
+#  Steve, vk5asf
+
+# if necessary, specify the host[:port] of your wx200d server here:
+#WX200D="myhost.ampr.org"
+
+# set the APRS and PORT variables to whatever matches your system:
+APRS="APRS WIDE4-4"
+PORT=pax0
+
+# if you use digi_ned, set the variable DIGI_NED
+DIGI_NED=/configs
+
+# otherwise, remove code between the #....'s  and set LAT/LONG as
+#       the variable $LAT
+
+# time between transmissions
+SLP=555
+#
+#get the LAT/Long string from digi_ned (or elsewhere?).......
+#....................
+IFS_SAVE=$IFS
+IFS=#
+set `cat $DIGI_NED/digibcon.ini`
+IFS==
+set $1
+IFS=$IFS_SAVE
+LAT=$2
+#..........................................
+#
+while  [ $SLP -eq $SLP ]
+do
+S=@`date -u +%H%M%Sz`
+W=`wx200 --aprs $WX200D`
+# I use digi_ned to echo the beacon on all the ports - you
+# may wish to use multiple "beacon" statements instead, one per port
+echo beacon -s -d "$APRS" $PORT "$S${LAT}_$W"
+sleep $SLP
+done

@@ -1,0 +1,145 @@
+#!@PERL@ -w
+
+# @(#)$Id: wxindex.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 2002 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This file creates an HTML index of only links that exist.
+# Based on an idea by Goran Sandin <Goran.Sandin@abc.se>
+
+my $i = 1;
+map { $m[$i++] = $_ } qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+opendir DIR, '.' or die $!;
+map { /(\d{4})(\d\d).html/ && push @{$year{$1}},
+      qq'<a href="$_">$m[$2]</a>' } sort grep /\d{6}\.html$/, readdir DIR;
+closedir DIR or die $!;
+if (open FILE, 'temp.html') {	# optional HTML template file
+    push @line, $_ while (<FILE>);
+} else {			# else use the built-in one below
+    push @line, $_ while (<DATA>);
+}
+for (@line) {
+    next if m'<a href="([^"]+)">' && ! -e $1 && $1 !~ /^http:/;
+    map { print "$_:\n", join(",\n", @{$year{$_}}), "\n<br>\n" }
+    sort keys %year if /<!-- wxplot here -->/;
+    s/^(Last modified: ).*/$1 . localtime/ie;
+    print;
+}
+__END__
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<!--  @(#)$Id: wxindex.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $ -->
+
+<!--  Copyright (C) 1998 - 2002 Tim Witham <twitham@quiknet.com> -->
+
+<!--  (see the files README and COPYING for more details) -->
+
+<!--  This file implements a front-end form for the wx200 CGI client -->
+
+
+<html> <head>
+<title>Weather by WX200D</title>
+</head>
+
+<body>
+
+<h1>Weather by WX200D</h1>
+
+<ul>
+
+  <li><a href="Day.html">Current and Historical Weather Graphs</a>
+      by <a href="http://www.rrdtool.com/">RRDtool</a>.
+
+  <li><a href="wx200.txt">Recent wx200 Weather Report</a>
+
+  <li><a href="day.html">Today's Wxplot Weather Graphs</a>
+
+</ul>
+
+<!-- wxplot here -->
+
+<h2>Current Conditions: WX200 CGI Gateway</h2>
+
+<form action="/cgi-bin/wx200" method="GET">
+
+Date Order:
+<select name="">
+  <option>
+  <option>--dm
+  <option>--md
+</select>
+
+Time Format:
+<select name="">
+  <option>
+  <option>--12hr
+  <option>--24hr
+</select><br>
+
+Temperature:
+<select name="">
+  <option>
+  <option>--C
+  <option>--F
+</select>
+
+Barometric Pressure:
+<select name="">
+  <option>
+  <option>--inhg
+  <option>--mmhg
+  <option>--mbar
+  <option>--hpa
+</select><br>
+
+Wind Speed:
+<select name="">
+  <option>
+  <option>--mph
+  <option>--knots
+  <option>--mps
+  <option>--kph
+</select>
+
+Rain Rate and Depth:
+<select name="">
+  <option>
+  <option>--mm
+  <option>--in
+</select><br>
+
+Optional Displays:
+<select name="">
+  <option>
+  <option>--help
+  <option>--alarms
+  <option>--tab
+  <option>--line
+  <option>--aprs
+</select><br>
+
+<input type="CHECKBOX" name="" value="--noerrors">
+Suppress error and out of range flags
+<input type="CHECKBOX" name="" value="--nounits">
+Suppress units
+<input type="CHECKBOX" name="" value="--refresh">
+Refresh every 10 seconds<br>
+
+Contact <a href="http://wx200d.sourceforge.net/">wx200d</a> at:
+<input type="TEXT" name="" size="20" value="localhost:9753"><p>
+
+<input type="SUBMIT" value="Get WX200 Weather">
+<input type="RESET" value="Reset">
+
+</form>
+
+<hr>
+<address>
+Weather by <a href="http://wx200d.sourceforge.net/">wx200d</a>
+</address>
+<!-- hhmts start -->
+Last modified: Sat Mar 30 22:25:16 PST 2002
+<!-- hhmts end -->
+</body> </html>

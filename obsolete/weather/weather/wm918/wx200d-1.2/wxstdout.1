@@ -1,0 +1,78 @@
+.\" @(#)$Id: wxstdout.1,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WXSTDOUT 1 "Feb 01, 2000" "wx200d Manual"
+.SH NAME
+wxstdout \- send a copy of binary wx200d data to stdout
+.SH SYNOPSIS
+.B wxstdout
+[-h] [[host][:port]]
+
+.SH DESCRIPTION
+
+.B wxstdout
+is an extremely simple
+.B wx200d(8)
+weather client that sends a copy of the binary WX200 data to the
+standard output.  This is not useful alone but is when combined with a
+WX200 data filter program such as
+.B wxfilter(1)
+or
+.B wxdebug(1).
+.P
+
+.B wxstdout
+connects to the given host and port.  If host or port is not
+specified, the
+.B WX200D
+environment variable is checked for the missing field(s).  Finally, if
+neither of these provide the host or port, the built-in defaults
+(localhost:9753) are used.
+.P
+
+.SH OPTIONS
+
+.TP 0.5i
+.B -h
+Display a help usage message showing these options, then exit.
+
+.SH ENVIRONMENT
+
+.TP 0.5i
+.B WX200D
+If set, the [host][:port] to contact if none is specified on the
+command line.
+
+.SH EXAMPLES
+
+.TP 0.5i
+.B wxstdout | wxfilter
+Monitor the current WX200 data in tab-delimited format.
+
+.TP 0.5i
+.B wxstdout -m foo | wxfilter
+Monitor the current tab-delimited data of the WX200 on machine foo.
+
+.TP 0.5i
+.B wxstdout | wxdebug
+Monitor the content of all WX200 data groups.
+
+.SH LIMITATIONS
+
+.SH BUGS
+Not likely.
+
+.SH SEE ALSO
+wxfilter(1), wxdebug(1), wx200d(8), wx200d(5)
+
+.SH AUTHOR
+Tim Witham <twitham@quiknet.com>
+.SH COPYRIGHT
+Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+
+wxstdout is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.

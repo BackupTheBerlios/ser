@@ -1,0 +1,94 @@
+dnl Process this file with autoconf to produce a configure script.
+
+dnl Copyright (C) 1998 - 2002 Tim Witham <twitham@quiknet.com>
+
+dnl (see the files README and COPYING for more details)
+
+AC_REVISION($Revision: 1.1 $)
+AC_INIT(wx200d.c)
+AM_INIT_AUTOMAKE(wx200d, 1.2)
+AM_CONFIG_HEADER(config.h)
+
+dnl Set PACKAGE_DATA_DIR in config.h.
+if test "x${datadir}" = 'x${prefix}/share'; then
+  if test "x${prefix}" = "xNONE"; then
+    AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR, "${ac_default_prefix}/share/${PACKAGE}")
+  else
+    AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR, "${prefix}/share/${PACKAGE}")
+  fi
+else
+  AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR, "${datadir}/${PACKAGE}")
+fi
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PATH_PROG(RANLIB, ranlib)
+
+dnl be able to tweak the first line of perl scripts
+AC_ARG_WITH(perl,
+	[  --with-perl=PATH        path to your perl interpreter [first on PATH]],
+	[with_perl=$withval],
+	[with_perl='yes'])
+
+dnl If name/path of desired PERL interpreter is specified, look for that one first
+have_perl='no'
+if test "$with_perl" != 'no'
+then
+    if test "$with_perl" != 'yes'
+    then
+	AC_CACHE_CHECK(for perl,ac_cv_path_PERL,ac_cv_path_PERL="$with_perl");
+	PERL=$ac_cv_path_PERL
+	AC_SUBST(PERL)
+	have_perl="$ac_cv_path_PERL"
+    else
+	AC_PATH_PROGS(PERL,perl perl5,/usr/bin/perl)
+	if test "$ac_cv_path_PERL"
+        then
+	  have_perl="$ac_cv_path_PERL"
+        fi
+    fi
+fi
+
+dnl Checks for libraries.
+dnl rlunaro. Check for the Postgres library
+dnl rlunaro. Please do not remove the trailing ",": I don't
+dnl rlunaro. know why, but it's important for correct working
+AC_CHECK_LIB( crypt, main, )
+AC_CHECK_LIB(pq, PQconnectdb, , , -lcrypt)
+
+dnl Checks for header files.
+
+dnl Check for the Postgres header file, can be in non-standard places
+if test -d /usr/include/pgsql
+then
+    CPPFLAGS="$CPPFLAGS -I/usr/include/pgsql" ; export CPPFLAGS
+fi
+if test -d /usr/lib/pgsql/include
+then
+    CPPFLAGS="$CPPFLAGS -I/usr/lib/pgsql/include" ; export CPPFLAGS
+fi
+if test -d /lib/pgsql/include
+then
+    CPPFLAGS="$CPPFLAGS -I/lib/pgsql/include" ; export CPPFLAGS
+fi
+AC_HEADER_STDC
+AC_CHECK_HEADERS(fcntl.h sys/ioctl.h sys/time.h syslog.h termio.h unistd.h getopt.h libpq-fe.h)
+dnl nasty hack, but how else do you see if both are set? -twitham
+AM_CONDITIONAL(POSTGRES, test "$ac_cv_lib_pq_PQconnectdb" = "yes" && test "$ac_cv_header_libpq_fe_h" = "yes")
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_HEADER_TIME
+AC_STRUCT_TM
+
+dnl Checks for library functions.
+AC_PROG_GCC_TRADITIONAL
+AC_FUNC_MEMCMP
+AC_TYPE_SIGNAL
+AC_FUNC_UTIME_NULL
+AC_CHECK_FUNCS(select socket strerror strspn strtol)
+
+AC_OUTPUT(Makefile Makefile.data wxsum wxplot wxplot2html wx200d.5
+    wx200d.8 fixtime wunderground wxrrdupdate wxrrdgraph wxindex wxvws,
+    [chmod +x wxsum wxplot wxplot2html fixtime wunderground \
+    wxrrdupdate wxrrdgraph wxindex wxvws])

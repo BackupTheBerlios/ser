@@ -1,0 +1,190 @@
+.\" @(#)$Id: wx200d.8,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2002 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WX200D 8 "Sep 09, 2001" "wx200d Manual"
+.SH NAME
+wx200d \- weather data collector and server for WX200 or WMR918
+.SH SYNOPSIS
+.B wx200d
+[-h] [-d] [-a] [-b] [-z] [-p port] [-r] [-s device] [-w path] [-g] [-c connection] [-t tablename] [-i interval]
+
+.SH DESCRIPTION
+
+.B wx200d
+is a weather station data collector and server daemon for the
+RadioShack WX200 (Cat. No. 63-1015), also known as the Oregon
+Scientific WM918.  It also supports the wireless WMR918/968.
+.B wx200d
+can record WX200 data to (optionally compressed) files in two formats.
+See
+.B wx200d(5)
+for details of these file formats.
+
+If available,
+.B wx200d
+can output data to a Postgres Database.
+
+.B wx200d
+also listens for client connections and tees the data out to those
+clients.  Clients can connect to
+.B wx200d
+from any machine and display the weather data in real-time, as-if they
+were accessing the WX200 hardware directly.
+
+.P
+.B wx200d
+should be run one time only.  Typically it should be run by a script
+like
+.I /etc/rc.local
+during the normal bootup process.
+.P
+
+.SH OPTIONS
+
+.TP 0.5i
+.B -h
+Display a help usage message showing these options, then exit.
+
+.TP 0.5i
+.B -d
+Debug mode; don't fork to be a daemon.  This makes it easy to hit C-c
+to stop the server.  This mode leaves stdout and stderr file handles
+open so you can see any error messages or output.
+
+.TP 0.5i
+.B -a
+Do not record YYYYMMDD.tab tab-delimited ASCII log files.  Without
+this option, one
+.I .tab
+file per day is created in
+.I path.
+These files are nice for plotting or for import to other systems.  Use
+this option if you never make weather plots and want to save disk
+space.
+
+.TP 0.5i
+.B -b
+Do not record YYYYMMDD.bin binary data files.  Without this option,
+one
+.I .bin
+file per day is created in
+.I path.
+These files contain all information produced by the WX200 in an
+abbreviated format.  These files can be used to create
+.I .tab
+files, see
+.B wxfilter(1).
+Use this option only if you don't care to keep detail data and want to
+save disk space.
+
+.TP 0.5i
+.B -z
+Do not
+.B gzip(1)
+the log files each day after collection.  Without this option, the
+daily log files are compressed with
+.B gzip(1).
+Use this option only if you don't want the logs compressed or if you
+don't have
+.B gzip(1).
+Using this option will require more disk space.
+
+.TP 0.5i
+.B -p <port>
+Listen for client connections on port
+.I port
+instead of the built-in default (9753).
+
+.TP 0.5i
+.B -r
+Radio mode; read wireless WMR918/968 hardware.  Otherwise, it is
+assumed to be wired WX200/WM918 hardware.
+
+.TP 0.5i
+.B -s <device>
+Read weather station data from serial port
+.I device
+instead of the built-in default (/dev/wx200).  If
+.B -r
+is used or the
+.I device
+contains the string "wmr" (e.g. /dev/wmr918), it will be read as a
+WMR918/968.  Otherwise it is assumed to be a WX200/WM918.
+
+.TP 0.5i
+.B -w <path>
+Write logs to
+.I path
+instead of the built-in default (${prefix}/share/wx200d).
+
+.TP 0.5i
+.B -g
+Enables logging to a Postgres database if Postgres libraries are
+available.
+
+.TP 0.5i
+.B -c <connection>
+Use this connection string to connect with the database
+instead of "host=localhost user=postgres password=postgres port=5432".
+
+.TP 0.5i
+.B -t <tablename>
+Use this table name to store the values in the database
+instead of "wx_data". Error values and out-of-range values will be
+stored also. If it does not exist, the table will be created.
+
+.TP 0.5i
+.B -i <interval>
+Time interval, in seconds, to log values to the database. This value
+is an integer value from 0 to 32767.
+
+.SH FILES
+${prefix}/share/wx200d/YYYYMMDD.tab[.gz]
+${prefix}/share/wx200d/YYYYMMDD.bin[.gz]
+
+.SH ENVIRONMENT
+
+.TP 0.5i
+.B WX200
+The serial device from which to read WX200 data, if
+.B -s
+is not specified.  If this variable is not set, the built-in default
+(/dev/wx200) is used.  This should be the serial device the physical
+weather station hardware is connected to, or a symbolic link to it.
+If
+.I device
+contains the string "wmr" (like a /dev/wmr918 symbolic link), it will
+be read as a WMR918/968 device.  Otherwise it is assumed to be a
+WX200/WM918.
+
+.SH LIMITATIONS
+
+The serial device must be writable (and readable) by the user running
+.B wx200d.
+Only one process should be reading the serial port at any time.
+.P
+
+If a sensor is reporting an error condition, the last successful
+number is logged, instead of zero or nothing.  This is so that the
+error won't adversely affect average, low and high calculations when
+rolled up into the summary logs.
+
+.SH BUGS
+Possibly.
+
+.SH SEE ALSO
+wx200d(5), wx200(1), wxplot(1), wxstdout(1), wxfilter(1), wxdebug(1)
+
+.SH AUTHORS
+Tim Witham <twitham@quiknet.com>
+Raul Luna <rlunaro@bigfoot.com> (Postgres Interface)
+Dominique Le Foll <dominique@le-foll.demon.co.uk> (WMR918 support)
+.SH COPYRIGHT
+Copyright (C) 1998 - 2002 Tim Witham <twitham@quiknet.com>
+
+wx200d is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.

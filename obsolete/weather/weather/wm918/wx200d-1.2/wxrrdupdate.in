@@ -1,0 +1,149 @@
+#!@PERL@ -w
+
+# @(#)$Id: wxrrdupdate.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 2001 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This file updates an RRDtool DB from wx200d(5) .tab data files.
+
+die "usage: $0 file.rrd [file.tab[.gz]]...\n"
+    unless $RRD = shift @ARGV and $RRD =~ /\.rrd$/;
+
+# ----------------------------------------------------------------------
+# settings here can be overridden in a .pl file in the same dir as
+# the .rrd file, i.e. wx200d.pl would configure wx200d.rrd.
+
+use lib qw(/usr/local/lib/perl); # path to your RRDs.pm Perl module
+$STEP = 10;			# seconds between recorded data samples
+$HEARTBEAT = 60 * 5;		# seconds before data becomes *unknown*
+1;				# return true
+# ----------------------------------------------------------------------
+# end configuration to be saved/edited in .pl file in same dir as .rrd:
+require $conf if ($conf = $RRD) =~ s/.rrd$/.pl/ and -e $conf;
+
+use Time::Local;
+use RRDs;
+
+sub create {			# create $RRD starting at given time
+  RRDs::create $RRD,
+    '-b', $_[0], '-s', $STEP,
+    "DS:intemp:GAUGE:$HEARTBEAT:0:50",
+    "DS:temp:GAUGE:$HEARTBEAT:-40:60",
+    "DS:inhumid:GAUGE:$HEARTBEAT:10:97",
+    "DS:humid:GAUGE:$HEARTBEAT:10:97",
+    "DS:indew:GAUGE:$HEARTBEAT:0:47",
+    "DS:dew:GAUGE:$HEARTBEAT:0:56",
+    "DS:press:GAUGE:$HEARTBEAT:795:1050",
+    "DS:dir:GAUGE:$HEARTBEAT:0:360",
+    "DS:speed:GAUGE:$HEARTBEAT:0:56",
+    "DS:chill:GAUGE:$HEARTBEAT:-85:60",
+    "DS:rate:GAUGE:$HEARTBEAT:0:998",
+#    "DS:rain:COUNTER:$HEARTBEAT:0:9999",
+    "DS:rain:GAUGE:$HEARTBEAT:0:9999",
+    'RRA:AVERAGE:0.5:1:720',	# all details for two hours
+    'RRA:MIN:0.5:6:1440',	# minute summary for 24 hours
+    'RRA:AVERAGE:0.5:6:1440',
+    'RRA:MAX:0.5:6:1440',
+    'RRA:MIN:0.5:90:672',	# 1/4 hour summary for a week
+    'RRA:AVERAGE:0.5:90:672',
+    'RRA:MAX:0.5:90:672',
+    'RRA:MIN:0.5:360:720',	# hour summary for 30 days or a month
+    'RRA:AVERAGE:0.5:360:720',
+    'RRA:MAX:0.5:360:720',
+    'RRA:MIN:0.5:8640:730',	# daily summary for 730 days or 2 years
+    'RRA:AVERAGE:0.5:8640:730',
+    'RRA:MAX:0.5:8640:730',
+    'RRA:MIN:0.5:60480:265',	# weekly summary for just over 5 years
+    'RRA:AVERAGE:0.5:60480:265',
+    'RRA:MAX:0.5:60480:265',
+    'RRA:MIN:0.5:241920:265',	# 4-week summary for just over 20 years
+    'RRA:AVERAGE:0.5:60480:265',
+    'RRA:MAX:0.5:60480:265';
+    die "unable to create $RRD: $err\n" if $err = RRDs::error;
+}
+
+# To save space wx200d logs only when a variable changes.  So if only
+# one variable has changed since the last update, we can assume the
+# station was up and fill in the missing data so we don't get false
+# unknowns.  If several things changed, we don't fill in and will get
+# unknowns only if more than $HEARTBEAT seconds have passed.
+BEGIN {
+    my($last, @last, $i);
+
+    sub update {		# update $RRD with given time and data
+	my($time, @data) = @_;
+	@last = @data unless @last;
+	$last = $time unless $last;
+	$i = 0;
+	if (1 >= grep $_ != $last[$i++], @data) { # one or zero change?
+	    for ($i = $last + $STEP; $i < $time; $i += $STEP) {
+	      RRDs::update $RRD, "$i:@last"; # fill in flat-lines
+		next if $err = RRDs::error and $err =~ /min.*one second step/;
+		warn "$err\n" if $err;
+		$updates++;
+	    }
+	} elsif (($i = $time - $last) > $HEARTBEAT) { # *unknown* gap?
+#	    print "gap @ $.: $i\n";
+	    $max = $i if $i > $max;
+	    $gaps++;		# note number of gaps and max size
+	}
+      RRDs::update $RRD, "$time:@data";	# add current data
+	$last = $time;
+	@last = @data;
+	return if $err = RRDs::error and $err =~ /min.*one second step/;
+	warn "$err\n" if $err;
+	$updates++;
+    }
+}
+
+sub h2hms {			# hour.fraction -> sec, min, hour
+    my($n) = @_;
+    my($h) = int($n);
+    my($m) = int(($n - $h) * 60);
+    return int(($n - $h - $m / 60) * 3600), $m, $h;
+}
+
+{
+    $last = RRDs::last $RRD;
+    if ($err = RRDs::error) {
+	warn "$err\n";
+	$last = 0;
+    }
+    $" = ':';
+    for $file (@ARGV) {
+	next unless (($year, $month, $day)
+		     = ($file =~ m!\b(\d{4})(\d\d)(\d\d)\.tab(\.gz)?$!));
+	next if timelocal(59, 59, 23, $day, $month - 1, $year - 1900) < $last;
+	$open = $file =~ /.gz$/ ? "zcat $file |" : $file;
+	open FILE, $open or die "can't read $open: $!\n";
+	$begin = 1;
+	$lines = $updates = $gaps = $max = $reverse = 0;
+	while (<FILE>) {
+	    unless (/^[-\d\s\.]+$/ and (@t = split) >= 15) {
+		warn "skipping bogus line $. in $file\n";
+		next;
+	    }
+	    @t = (@t, 0);	# need total rain column for versions < 1.0
+	    $t = shift @t;
+	    next if $t >= 24;	# trim weird goofs at end of files
+	    next if $begin && $t > 23; # trim yesterday from beginning of file
+	    $begin = 0;
+	    @d = @t[0,1,2,3,4,5,6,8,9,12,13,14]; # 6=local, 7=sea
+	    $time = timelocal(&h2hms($t), $day, $month - 1, $year - 1900);
+	    if ($time < $last) {
+		$reverse++;	# skip reverse time lines
+		next;
+	    }
+	    $last = $time;
+	    &create($time - 86500) unless -e $RRD;
+	    &update($time, @d);
+	    $lines++;
+	}
+	printf "$file: %5d lines, %5d adds, %2d gaps upto %3d min"
+	    . ($reverse ? ", %d reverse\n" : "\n"),
+	    $lines, $updates, $gaps, $max / 60, $reverse;
+	close FILE or warn "can't close $open: $!\n";
+    }
+}

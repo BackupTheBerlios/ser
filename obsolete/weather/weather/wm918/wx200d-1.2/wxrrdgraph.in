@@ -1,0 +1,270 @@
+#!@PERL@ -w
+
+# @(#)$Id: wxrrdgraph.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 2001 - 2002 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This file graphs a RRDtool DB to a matrix of .html/.png files via rrdcgi(1).
+
+die "usage: $0 /path/to/wx200d.rrd\n"
+    unless $RRD = shift @ARGV and $RRD =~ /\.rrd$/ and -s $RRD;
+
+# ----------------------------------------------------------------------
+# settings here can be overridden in a .pl file in the same dir as
+# the .rrd file, i.e. wx200d.pl would configure wx200d.rrd.
+
+# in case launced from cron, include paths where your rrdcgi/wx200 programs are:
+$prefix = "@prefix@";
+$exec_prefix = "@exec_prefix@";
+$ENV{PATH} .= ":@bindir@";
+
+$temp = 1;			# 0=C, 1=F
+$baro = 0;			# 0=in, 1=mm, 2=mb, 3=hpa
+$press = 0;			# local to sea press difference in $baro units
+$wind = 0;			# 0=mph, 1=knots, 2=m/s, 3=kph
+$rain = 1;			# 0=mm, 1=inches
+$years = 5;			# how many years to include on the `All' page
+$incolor = 'ffff00';		# indoor RGB color or 0 for no indoor lines
+$uncolor = '000000';		# color for unknown area or 0 for gaps
+$bgcolor = 'eeeeee';		# alternating (with white) background color
+$rangecolor = '000088';		# color of primary variable range area
+$varcolor = 'ff0000';		# color of primary variable average line
+$wx200 = 0;			# set to 1 to run `wx200 > wx200.txt' update
+$debug = 0;			# set to 1 to skip rrdcgi & leave unparsed HTML
+$lazy = 1;			# set to 1 to use --lazy
+$height = 200;			# graph drawing area --height in pixels
+$width = 600;			# graph drawing area --width in pixels
+$title = '@PACKAGE@';		# window title: page title is appended
+$head = "<h1>$title: %s</h1>";	# header at the top of the page: %s is page name
+$tail = '';			# footer for the page, before last-mod time
+@skip = qw();			# names of pages to NOT use, e.g. qw(All Dir);
+1;				# return true
+# ----------------------------------------------------------------------
+# end configuration to be saved/edited in .pl file in same dir as .rrd:
+require $conf if ($conf = $RRD) =~ s/.rrd$/.pl/ and -e $conf;
+
+# HTML header
+$head = qq'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<meta http-equiv="Refresh" content="%d">
+<title>$title: %s</title>
+</head>
+
+<body>
+$head
+';
+
+# HTML footer
+$tail = qq'
+$tail
+<hr>
+<a href="http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/"><img
+src="rrdtool.gif" border=0 align="right"></a>
+<address>
+Weather by <a href="http://wx200d.sourceforge.net/">@PACKAGE@</a>,
+version @VERSION@
+</address>
+Data Last Updated: <RRD::TIME::LAST $RRD "%c">
+</body> </html>
+';
+
+# these defaults apply to all graphs: options, defines, pre-plots, post-plots
+$def = [qq'--end -15 --height $height --width $width --imgformat PNG'
+	. ' --units-exponent 0 --alt-autoscale' . ($lazy ? ' --lazy' : ''), '
+CDEF:wipeout=var,UN,INF,UNKN,IF', qq'
+AREA:background#$bgcolor', qq'
+"LINE2:fvar#$varcolor:Average\\g"
+"GPRINT:fvar:MIN:(%.2lf/\\g"
+"GPRINT:fvar:AVERAGE:%.2lf\/\\g"
+"GPRINT:fvar:MAX:%.2lf)\\g"
+' . ($uncolor ? "AREA:wipeout#$uncolor" : '') . '
+"GPRINT:fvar:LAST: Last %.2lf\r"'
+	];
+
+# different weather variable graphs: name, label, options, defines, plots, func
+$var = [
+	['Temp', 'Temperatures', '--vertical-label "Degrees '
+	 . qw(Celsius Fahrenheit)[$temp] . '"',
+	 qq'
+DEF:var=$RRD:temp:AVERAGE
+DEF:mintemp=$RRD:temp:MIN
+DEF:maxtemp=$RRD:temp:MAX
+DEF:intemp=$RRD:intemp:AVERAGE
+DEF:indew=$RRD:indew:AVERAGE
+DEF:dew=$RRD:dew:AVERAGE
+DEF:minchill=$RRD:chill:MIN
+DEF:maxchill=$RRD:chill:MAX
+',
+	 qq'
+"AREA:fmaxchill#0000ff:W.Chill"
+"AREA:fmaxtemp#$rangecolor:Temperature"
+"GPRINT:fmintemp:MIN:Lo %.2lf"
+"GPRINT:fmaxtemp:MAX:Hi %.2lf"
+"AREA:fmintemp#0000ff"
+"AREA:fminchill#ffffff"
+"HRULE:' . qw(0 32)[$temp] . '#0000ff"
+' . ($incolor ? "LINE2:fintemp#$incolor:Indoor
+LINE2:findew#$incolor" : '') . '
+"LINE2:fdew#00ff00:Dew Point"',
+	 ('', ',1.8,*,32.0,+')[$temp],
+	 ],
+	['Humid', 'Relative Humidity', '--vertical-label "Percent"',
+	 qq'
+DEF:var=$RRD:humid:AVERAGE
+DEF:minhumid=$RRD:humid:MIN
+DEF:inhumid=$RRD:inhumid:AVERAGE
+DEF:maxhumid=$RRD:humid:MAX
+',
+	 qq'
+"AREA:fmaxhumid#$rangecolor:Humidity"
+"GPRINT:fminhumid:MIN:Lo %.2lf"
+"GPRINT:fmaxhumid:MAX:Hi %.2lf"
+"AREA:fminhumid#ffffff"
+' . ($incolor ? "LINE2:finhumid#$incolor:Indoor" : ''), '',
+	 ],
+	['Baro', 'Barometric Pressure', '--vertical-label "'
+	 . ('Inches of Mercury', 'Millimeters of Mercury',
+	    'Millibars', 'Hecto-Pascals')[$baro] . '"',
+	 qq'
+DEF:var=$RRD:press:AVERAGE
+DEF:minpress=$RRD:press:MIN
+DEF:maxpress=$RRD:press:MAX
+CDEF:local=var,POP,$press,0,+
+',
+	 qq'
+"AREA:fmaxpress#$rangecolor:Barometer"
+"GPRINT:fminpress:MIN:Lo %.2lf"
+"GPRINT:fmaxpress:MAX:Hi %.2lf"
+"AREA:fminpress#ffffff"
+"HRULE:' . qw(29.92 760 1013.2 1013.2)[$baro] . '#00ff00:"
+"GPRINT:local:AVERAGE:(Local Pressure + %.2lf)"',
+	 (",0.029529987508,*,$press,+", ",0.750061682704,*,$press,+",
+	  ",$press,+", ",$press,+")[$baro],
+	 ],
+	['Wind', 'Wind Speed', '--vertical-label "'
+	 . ('Miles per Hour', 'Knots',
+	    'Meters Per Second', 'Kilometers per Hour')[$wind] . '"',
+	 qq'
+DEF:var=$RRD:speed:AVERAGE
+DEF:minspeed=$RRD:speed:MIN
+DEF:maxspeed=$RRD:speed:MAX
+',
+	 qq'
+"AREA:fmaxspeed#$rangecolor:Wind Speed"
+"GPRINT:fmaxspeed:MAX:Hi %.2lf"
+"AREA:fminspeed#ffffff"',
+	 (',2.23693629205,*', ',1.94384449244,*', '', ',3.6,*')[$wind],
+	 ],
+	['Dir', 'Wind Direction',
+	 '-l 0 -u 360 --y-grid 22.5:4 --vertical-label "Compass Degrees"',
+	 qq'
+DEF:var=$RRD:dir:AVERAGE
+DEF:mindir=$RRD:dir:MIN
+DEF:maxdir=$RRD:dir:MAX
+',				# idea: calc direction "buckets": N-S-E-W
+	 qq'
+"AREA:fmaxdir#$rangecolor:Wind Direction"
+"AREA:fmindir#ffffff"', '',
+	 ],
+	['Rain', 'Total Rain', '--vertical-label "'
+	 . qw(Millimeters Inches)[$rain] . '"',
+	 qq'
+DEF:var=$RRD:rain:AVERAGE
+DEF:minrain=$RRD:rain:MIN
+DEF:maxrain=$RRD:rain:MAX
+',
+	 qq'
+CDEF:fsum=PREV,UN,0,PREV,IF,fmaxrain,fminrain,-,+
+"AREA:fmaxrain#$rangecolor:Total Rain"
+"GPRINT:fsum:LAST:%.2lf"
+"AREA:fminrain#ffffff"',
+	 ('', ',0.0393700787402,*')[$rain],
+	 ],
+	['Rate', 'Rain Rate', '--vertical-label "'
+	 . qw(Millimeters Inches)[$rain] . ' per Hour"',
+	 qq'
+DEF:var=$RRD:rate:AVERAGE
+DEF:minrate=$RRD:rate:MIN
+DEF:maxrate=$RRD:rate:MAX
+',
+	 qq'
+"AREA:fmaxrate#$rangecolor:Rain Rate"
+"GPRINT:fmaxrate:MAX:Hi %.2lf"
+"AREA:fminrate#ffffff"', '',
+	 ],
+	];
+
+# different time frames for each graph: name, label format, options, defines
+$time
+    =  [
+	['Now',  '%s Last 12 Hours',		'--start -12h',
+	 'CDEF:background=var,POP,LTIME,7200,%,3600,LE,INF,UNKN,IF'],
+	['Day',  '%s Last 2 Days',		'--start -2d',
+	 'CDEF:background=var,POP,LTIME,21600,%,10800,LE,INF,UNKN,IF'],
+	['Week', 'Hourly %s Last Week',		'--start -10d --step 3600',
+	 'CDEF:background=var,POP,LTIME,172800,%,86400,LE,INF,UNKN,IF'],
+	['Month','Daily %s Last Month',		'--start -5w --step 86400'
+	 . ' --x-grid DAY:1:WEEK:1:DAY:2:86400:%e',
+	 'CDEF:background=var,POP,NOW,TIME,-,1209600,%,604800,LE,INF,UNKN,IF'],
+	['Year', 'Weekly %s Last Year',		'--start -14mon --step 604800',
+	 'CDEF:background=var,POP,NOW,TIME,-,4838400,%,2419200,LE,INF,UNKN,IF'],
+	['All',  "%s Last $years Years",	"--start -${years}y",
+	 'CDEF:background=var,POP,NOW,TIME,-,62899200,%,31449600,LE,INF,UNKN,IF'
+	 ],
+	];
+
+$link = "Var:\n"
+    . join(" |\n", map { qq(<a href="$_->[0].html">$_->[0]</a>) }
+	   @$var) . "\n/ Time:\n"
+    . join(" |\n", map { qq(<a href="$_->[0].html">$_->[0]</a>) }
+	   reverse @$time) . "\n<br>\n";
+
+sub link {			# highlight current page in the link line
+    my $l;
+    ($l = $link) =~ s!<a href\S+>($_[0])</a>!<b>$1</b>!;
+    return $l;
+}
+
+for (@$var, @$time) {		# open the HTML files via pipe through rrdcgi
+    my($name, $label) = (@$_);
+    my $refresh = time - ((stat "$name.html")[9] || time - 60 * 60);
+    $label = sprintf $label, '';
+    open $name, $debug ? ">$name.html" : "| rrdcgi --filter - >$name.html"
+	or die "$0: can't open pipe to rrdcgi: $!\n";
+    printf { $name } $head, $refresh, $label, $label;
+}
+
+for $var (@$var) {		# build the matrix of weather variables...
+    next if grep $var->[0] eq $_, @skip;
+    $vars = $var->[3];
+    $vars =~ s/\bDEF:(\S+)=.*\n/$&CDEF:f$1=$1$var->[5]\n/g; # add functions
+
+    for $time (@$time) {	# ... and time frames...
+	next if grep $time->[0] eq $_, @skip;
+	$name = join '_', $var->[0], $time->[0];
+	$graph = sprintf(qq'<RRD::GRAPH $name.png --title="%s" ',
+			 sprintf($time->[1], $var->[1]))
+	    . join("\n",
+		   $def->[0], $var->[2], $time->[2],
+		   $vars, $def->[1], $time->[3],
+		   $def->[2], $var->[4], $def->[3]) . '>';
+	print { $var->[0] } &link($var->[0]),
+	qq'<a name=$name><a href="$time->[0].html#$name">',
+	qq'$graph</a></a><br>\n';
+	print { $time->[0] } &link($time->[0]),
+	qq'<a name=$name><a href="$var->[0].html#$name">',
+	qq'$graph</a></a><br>\n';
+    }
+}
+
+for (@$var, @$time) {
+    my($name) = (@$_);
+    print { $name } $tail;
+    close $name or warn "$0: can't close $name: $!\n";
+}
+
+system 'wx200 > wx200.txt' if $wx200; # update current conditions txt file
+
+exit 0;

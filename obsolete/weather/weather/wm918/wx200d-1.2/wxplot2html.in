@@ -1,0 +1,164 @@
+#!@PERL@
+
+# @(#)$Id: wxplot2html.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 1998 - 2002 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This file uses wxplot(1) to generate HTML/gif web charts
+
+# configuration: save and edit in a /path/to/thisprogram.conf file:
+# ================
+# wxplot2html.conf --- config file for wxplot2html	-*- perl -*-
+
+$prefix = "@prefix@";
+$exec_prefix = "@exec_prefix@";
+$ENV{'PATH'} .= ":@bindir@"; # in case launced from cron
+$ENV{'WXPLOT'} = '--fahrenheit --in --inhg --mph' unless $ENV{'WXPLOT'};
+
+# uncomment the first pbm image converter you have:
+$prg = '| ppmtogif >'; $suf = '.gif'; # from netpbm-1mar1994
+# $prg = '| convert pbm:- gif:'; $suf = '.gif'; # from ImageMagick
+# $prg = '| cjpeg >'; $suf = '.jpg'; # from jpeglib?
+# $prg = ''; $suf = '.pbm';	# last resort: no program
+
+# set default data input and html output paths here:
+%opt = ('in'	=> "@datadir@/@PACKAGE@",
+	'out'	=> "@datadir@/@PACKAGE@/html");
+
+#$indoor = 1;			# uncomment if you want indoor variables too
+#$combine = 1;			# uncomment if you want wxplot --combine
+
+# custom html footer
+$tail = '
+<address>
+Weather by <a href="http://wx200d.sourceforge.net/">wx200d</a>
+</address>
+';
+
+1;				# return true.
+# ================
+# copy above and save as /path/to/thisprogram.conf which is loaded here:
+($CONF = $1) =~ s/\.\.//g if $0 =~ /^(.*)$/;
+require $CONF if -s ($CONF = "$CONF.conf"); # .conf file in same directory
+
+use POSIX qw(strftime);
+use Getopt::Long;
+
+sub usage {
+    print "usage: $0 [options] [YYYYMM[DD]]
+--help		this help and exit; otherwise wxplot(1) the date as follows:
+--month		Plot the month of the given date, instead of just that day
+--in=$opt{'in'}		path to directory of wx200d(1) data
+--out=$opt{'out'}		path to output files
+[YYYYMM[DD]]	Date to wxplot(1), DD ignored w/--month; default is today
+";
+    exit($_[0]);
+}
+&usage(1) unless &GetOptions(\%opt,
+			     qw(help in=s out=s month));
+&usage(0) if $opt{'help'};
+
+$month = $opt{'month'};
+$ext = $month ? 'mon' : 'tab';
+
+($date = $ARGV[0] || strftime("%Y%m%d", localtime(time)))
+    =~ s!\.[^/]+$!!;
+($date) = ($date =~ m!^(......)!) if $month;
+($title = $date) =~ s!^(....)(..)(..)?!
+    strftime $3 ? '%B %e %Y' : '%B %Y', 0, 0, 12, $3 || 1, $2 - 1, $1 - 1900!e;
+
+# the wxplot headers and which base filenames they should link to:
+%map = (
+	'INDOOR Temp',	'intemp',
+	'Temperatures',	'temp',
+	'Relative Hum',	'humid',
+	'Barometric',	'baro',
+	'Wind Dir',	'dir',
+	'Wind Speed',	'speed',
+	'Rain Rate',	'rate',
+	'Total Rain',	'rain',
+	);
+
+# the base filenames to create and the wxplot options to use:
+%plot = (
+	 ($indoor && $combine	# 3 ways to do temperatures:
+	  ? ('temp',	'--temps --combine')
+	  : (($indoor
+	      ? ('intemp',	'--temps --indoor')
+	      : ()),
+	     ('temp',	'--temps --outdoor'))),
+
+	 ($indoor		# 2 ways to do humidity:
+	  ? ('humid',	'--humid')
+	  : ('humid',	'--humid --noindoor')),
+
+# these should be more straightforward:
+	 'baro',	'--baro',
+	 'dir',		'--dir --noerrorbars',
+	 'speed',	'--speed',
+	 'rate',	'--rate',
+	 'rain',	'--rain',
+	 );
+
+chdir($opt{'out'}) || die "$0: can't chdir $opt{'out'}: $!\n";
+$opts = "--batch --terminal 'pbm color' --output '$prg";
+$tmp = "/tmp/wxplot2html.tab.$$";
+unlink($tmp) if -e $tmp;
+for (keys %plot) {
+    $command = "wxplot --cache $tmp $plot{$_} $opts"
+	. ($month ? $date : '') . "$_$suf' $opt{'in'}/$date*.$ext*";
+    print `$command 2>/dev/null`;
+}
+$command = "wxplot --cache $tmp --batch --nogrid --notimestamp --terminal dumb"
+    . ($indoor ? '' : ' --noindoor') . ($combine ? ' --combine' : '')
+    . " $opt{'in'}/$date*.$ext*";
+open(PIPE, "$command 2>/dev/null |")
+    || die "$0: can't pipe from '$command': $!\n";
+$file = $month ? "$date.html" : 'day.html';
+($file2 = $file) =~ s/(\.html)$/all$1/;
+open(FILE, ">$file") || die "$0: can't write $file: $!\n";
+open(FILE2, ">$file2") || die "$0: can't write $file2: $!\n";
+$head = '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">' . "
+<html> <head>
+<title>WX200 weather on $title</title>
+</head>
+
+<body>
+<h1>WX200 weather on $title</h1>
+
+";
+
+print FILE $head;
+print FILE2 $head;
+print FILE "Click the headers for individual graphical $suf
+versions or see <a href=\"$file2\">all plots on one page</a>.
+<p>
+<pre>
+";
+
+while (<PIPE>) {
+    for $pattern (keys %map) {
+	s!^\014!<hr>\n!;
+	s!  ($pattern.*)$!'<a href="'
+	    . ($month ? $date : '') . "$map{$pattern}$suf\">$1</a>"!e
+		&& push(@plot, ($month ? $date : '') . $map{$pattern});
+    }
+    print FILE;
+}
+for (@plot) {
+    print FILE2 "<img width=640 height=480 src=\"$_$suf\" "
+	. "alt=\"$_$suf\">\n<hr>\n";
+}
+$tail .= '
+<!-- hhmts start -->
+Last Modified: ' . scalar(localtime) . '
+<!-- hhmts end -->
+</body> </html>
+';
+
+print FILE "</pre>\n<hr>\n$tail";
+print FILE2 $tail;
+unlink($tmp) if -e $tmp;
+system("wx200 > wx200.txt");

@@ -1,0 +1,700 @@
+2002-04-06  Tim Witham  <twitham@quiknet.com>
+
+	* ChangeLog, config.h.in, configure, configure.in, Makefile.am, Makefile.in, NEWS, serial.c, wx200d.8.in, wxvws.in:
+	For 1.2.
+
+2002-03-31  Tim Witham  <twitham@quiknet.com>
+
+	* aclocal.m4, config.h.in, configure, configure.in, Makefile.am, Makefile.data.in, Makefile.in, NEWS, README, wx200d.8.in, wx200d.c, wx200d.lsm, wx200.html, wxindex.in, wxplot2html.in, wxrrdgraph.in:
+	Postgres was getting tried sometimes when it wasn't completely
+	available.  I think I have this fixed now.  Replaced wx200.html with
+	an wxindex script which autogenerates the HTML index page thanks to an
+	idea by Goran.Sandin@abc.se.
+
+2002-03-30  Tim Witham  <twitham@quiknet.com>
+
+	* README, wmr918util.c, wx200d.8.in, wx200d.c:
+	Added -r and a WMR918 bug fix from Dominique.
+
+	* wxrrdgraph.in:
+	Added indoor dewpoint, calculated total rain and page refresh.
+
+2001-09-09  Timothy D. Witham  <twitham@quiknet.com>
+
+	* config.h.in, configure, Makefile.in, wmr918util.c, wx200d.c, wx200.h:
+	Applied my abbreviated binary optimization to the WMR918 code to
+	reduce binary file size and bandwidth to clients.
+
+2001-09-08  Timothy D. Witham  <twitham@quiknet.com>
+
+	* AUTHORS, config.h.in, configure, configure.in, Makefile.am, Makefile.in, parse.c, parse.h, serial.c, wmr918.h, wmr918.TODO, wmr918.txt, wmr918util.c, wx200d.c, wx200.h:
+	Merged in initial WMR918 support by Dominique Le Foll.
+
+2001-09-07  Timothy D. Witham  <twitham@quiknet.com>
+
+	* wxrrdgraph.in:
+	Added hi/lo calculations and lots of config file options.
+
+	* wx200.1, wx200.c:
+	Added missing --forecast and --trend options.  Thanks to "Dean Richard
+	Benson" <dean@visualsoft.co.uk> for the bug report.
+
+2001-09-01  Timothy D. Witham  <twitham@quiknet.com>
+
+	* Makefile.am, Makefile.in, README, wx200.html, wxrrdgraph.in, wxrrdupdate.in:
+	Graphs now have names so clicking one to switch var/time keeps the
+	same graph on screen.  Updated documentation.
+
+	* AUTHORS, wx200.1, wx200.c, wxaprs:
+	Added APRS support contributed by Steve Fraser
+	<sfraser@sierra.apana.org.au>.
+
+	* Makefile.data.in, wxrrdgraph.in, wxrrdupdate.in:
+	wxrrdupdate now fills in the gaps when just one variable changed to
+	eliminate the false unknowns.  wxrrdgraph improvements include
+	configurable local pressure offset, better wind direction labeling and
+	freeze line on temperature graphs.
+
+2001-08-29  Timothy D. Witham  <twitham@quiknet.com>
+
+	* config.h.in, configure, Makefile.in, wxrrdgraph.in:
+	Allow different units and other options in a config file for wxrrdgraph.
+
+	* config.h.in, configure, configure.in, Makefile.am, Makefile.data.in, Makefile.in, wxplot.in, wxrrdgraph.in, wxrrdupdate.in:
+	Initial wxrrdupdate and wxrrdgraph programs to support RRDtool.
+
+2001-08-21  Timothy D. Witham  <twitham@quiknet.com>
+
+	* AUTHORS, ChangeLog, config.h.in, configure, configure.in, gstripchart.conf, Makefile.in, NEWS, README, wx200.1, wx200.c, wx200d.c, wx200d.lsm, wxsum.in:
+	Added a few more options to wx200.  Final tweaks for 1.1.
+
+2001-07-08  Timothy D. Witham  <twitham@quiknet.com>
+
+	* acconfig.h, config.h.in, configure, configure.in, gstripchart.conf, Makefile.in, wx200d.c, wxplot.in:
+	Tweaks to build on Red Hat 7.1 with Postgres.
+
+2001-06-25  Timothy D. Witham  <twitham@quiknet.com>
+
+	* wxplot2html.in, wxplot.in, wxsum.in:
+	Better formating of the timestamp headers of plots.
+
+2001-06-24  Timothy D. Witham  <twitham@quiknet.com>
+
+	* ChangeLog, NEWS, README, TODO, wx200d.c, wx200d.lsm, wxsum.in:
+	Fixed wxsum bug that max temperature and wind chill in .day and .mon
+	summaries were recorded as zero when they were really negative.
+
+2001-06-17  Timothy D. Witham  <twitham@quiknet.com>
+
+	* config.h.in, configure, Makefile.in, README, TODO, wunderground.in, wx200d.lsm:
+	In daemon mode, wunderground now reports max wind gust since last report.
+
+2001-06-12  Timothy D. Witham  <twitham@quiknet.com>
+
+	* config.h.in, configure, configure.in, Makefile.am, Makefile.in, NEWS, README, wunderground.in, wx200.c:
+	Added wunderground.com support.
+
+2001-06-10  Timothy D. Witham  <twitham@quiknet.com>
+
+	* AUTHORS, ChangeLog, client.c, Makefile.in, wx200d.c:
+	Applied patch from dirkx@covalent.net to avoid addresss/port in use
+	error.
+
+	* configure.in, wx200d.c, wxdebug.c, wxfilter.c, wxstdout.c, config.h.in, configure, Makefile.in:
+	Added #include <getopt.h> to fix bug #213561.
+
+	* ChangeLog, config.h.in, configure, configure.in, Makefile.in:
+	Tossed --with-device from configure because it goes against the GNU
+	standards.
+
+	* Makefile.am, Makefile.in, NEWS, wx200.html, wxplot.1, wxplot.in:
+	wxplot now auto-looks in the data directory for the given files.
+
+	* format.c, NEWS, parse.c, README, wx200.1, wx200.c, wx200d.c, wx200.h, wx200.html, wxread.c:
+	Added a lot of options to the wx200 client based on input from "rofo".
+
+	* wx200.c:
+	Added ability to see multiple variables on one line.
+
+2001-06-09  Timothy D. Witham  <twitham@quiknet.com>
+
+	* wx200.c:
+	Added --tab tab-delimited metric output like that sent to log files.
+
+2001-06-05  Timothy D. Witham  <twitham@quiknet.com>
+
+	* ChangeLog, config.h.in, configure, Makefile.data.in, Makefile.in:
+	Updated ChangeLog, added Makefile.data.in
+
+	* acconfig.h, aclocal.m4, config.h.in, configure, configure.in, Makefile.am, Makefile.in:
+	Fixed some bugs in the new postgres detection.
+
+	* acconfig.h, aclocal.m4, AUTHORS, config.h, config.h.in, configure, configure.in, COPYING, fixtime, fixtime.in, gstripchart.conf, install-sh, Makefile.am, Makefile.data.in, Makefile.in, missing, mkinstalldirs, NEWS, pg_api.c, pg_api.h, README, serial.c, TODO, wx200.c, wx200d.5, wx200d.5.in, wx200d.8, wx200d.8.in, wx200d.c, wxplot, wxplot2html, wxplot2html.in, wxplot.in, wxsum, wxsum.in:
+	Used automake to switch to a standard GNU-style make process.
+
+2001-06-02  Timothy D. Witham  <twitham@quiknet.com>
+
+	* ChangeLog, config.h, configure, configure.in, Makefile.in, pg_api.c, pg_api.h, wx200d.8, wx200d.c:
+	Initial Postgres database support from Raul Luna <rlunaro@bigfoot.com>
+
+2001-05-27  Raul Luna <rlunaro@bigfoot.com>
+
+	* wx200d.8 : added explanation of the new options to the manual
+
+2001-05-14  Raul Luna <rlunaro@bigfoot.com>
+
+	* configure.in : changes for check if Postgres library available
+	TODO: correct detecrion of libpq library and correct detection of
+	libpq-fe.h header file.  The header file have changed its location
+	from SuSE 6.x to SuSE 7.0.
+
+2001-05-12  Raul Luna <rlunaro@bigfoot.com>
+
+	* wx200d.c, pg_api.c, pg_api.h, Makefile.in: changes for append
+	postgres support
+
+	* config.h : appended #define's for postgres support
+
+2000-09-29  Timothy D. Witham  <twitham@quiknet.com>
+
+	* Makefile.in, serial.c:
+	Switched from termio to POSIX termios based on code subbmitted by Pat
+	Jensen <patj@futureunix.net>.  This should support more OSs, e.g. BSD.
+
+2000-07-12  Timothy D. Witham  <twitham@quiknet.com>
+
+	* client.c, wxplot.1, wxplot, wxplot2html:
+	Added --combine to wxplot to combine indoor and outdoor temps on one
+	plot.  Enhanced wxplot2thml to make this a configuration option.
+	Thanks to Darren Enns for the ideas.
+
+2000-02-12  Timothy D. Witham  <twitham@quiknet.com>
+
+	* ChangeLog, wx200d.lsm, TODO:
+	Updated for 1.0.
+
+	* configure: New file.
+
+2000-02-10  Tim Witham  <twitham@quiknet.com>
+
+	* README, wxstdout.1, wxdebug.1, wxfilter.1, wx200.1, wxplot.1, wx200d.5, wx200d.8:
+	Updated for 1.0.
+
+	* Makefile.data.in, Makefile.in:
+	Switched to Makefile.in for configure script.
+
+	* configure.in: New file.
+
+	* wxstdout.c, wxread.c, wxfilter.c, unit.c:
+	Update email address / copyright header for 1.0.
+
+	* wx200.html, wx200.c: Update web page signature for 1.0.
+
+	* wxplot2html: Added rain total, removed indoor numbers.
+
+	* buffer.c, serial.c: Tweaked to work with new wx200.h.
+
+	* client.c:
+	Save connection error string in wx200error instead of sending to
+	stderr.  Let the caller decide what to do.
+
+	* wx200.txt: Fixed email address.
+
+2000-02-08  Tim Witham  <twitham@quiknet.com>
+
+	* wxplot, wxsum, tab.c:
+	Added total rain column to the tab-delimited data.
+
+2000-02-07  Tim Witham  <twitham@quiknet.com>
+
+	* parse.c, wx200d.c, wx200.h:
+	If wx200ignoreclock is non-zero, the computer's clock now overrides
+	that of the weather station's clock.  This only affects the parsed
+	data; the binary data remains unchanged.  This is so better times can
+	be logged while clients can still get the real time from the station.
+
+	* serial.h: New file.
+
+2000-01-24  Tim Witham  <twitham@quiknet.com>
+
+	* format.c:
+	Moved the global unit vars into a WX_FORMAT structure called wxformat.
+
+	* wx200.c, wxdebug.c, parse.c:
+	Moved the global section vars into a WX structure called wx.
+
+	* wx200.h:
+	Began cleaning up the namespace to make a nicer library possible.
+	Collected the global variables into structures and added WX_ prefixes
+	to the typedefs.
+
+2000-01-01  Tim Witham  <twitham@quiknet.com>
+
+	* wx200.c:
+	Removed alarms for more compact display.  Use -a to see them.
+
+	* Makefile.data:
+	Eliminated failure to build .mon files on the first run.
+
+	* wxdebug.c: Added timestamps to unknowns.
+
+	* parse.c, wx200.txt: Added Indoor Dewpoint O.R. indicator.
+
+	* wx200.c:
+	Swapped indoor and outdoor data columns to put more important outdoor
+	first and next to the labels.
+
+	* wxplot: Slight tweak to ytics for compatibility with gnuplot 3.7.
+	If this breaks with older gnuplots, just remove `autofreq'.
+
+1998-09-16  Tim Witham  <twitham@quiknet.com>
+
+	* wx200d.c:
+	D Fannin <dfannin@yahoo.com> reports <time.h> should be <sys/time.h>
+	to work on RedHat.  Either way works for me (on Slackware) so ok.
+
+Tue Sep  8 01:06:41 1998  Tim Witham  <twitham@quiknet.com>
+
+	* ChangeLog, wx200d.lsm, TODO, README, Makefile: For 0.7.
+
+	* Makefile.data:
+	Added > /dev/null to the cron job comments to reduce mail.
+
+	* wx200.1: Documented the single variable output options.
+
+	* wx200.html: Added sample header with links to wxplot2html output.
+
+	* wxplot.1: Added .day, .mon and --[no]errorbars documentation.
+
+	* wx200d.5:
+	Documented new .day and .mon files.  Added variable range and
+	resolution details.
+
+	* wx200.txt: Tweaked 2 insignificant comments.
+
+Mon Sep  7 22:59:25 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wx200d.c:
+	Use syslog(3) for error messages when a daemon.  I arbitrarily chose
+	local4 as the facility; anyone have a problem with that?
+
+Sun Sep  6 04:15:50 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wx200d.c:
+	Use utime to make sure .tab is as new as .bin for new Makefile.data.
+
+	* wxplot:
+	Added the ability to plot new .day and .mon average/low/high summary
+	files with or without errorbars.
+
+	* fixtime, Makefile.data, wxplot2html, wxsum: Initial revision
+
+	* wxdebug.c: Fixed missing 0 in the usage message.
+
+	* parse.c: Added Rain O.R., fixed bugs in the wind speed O.R. bits.
+
+	* wx200.c:
+	Changed the individual variable output option names and added the
+	missing ones to be consistent with the rest of the system.  Changed
+	strsep to strtok to be more portable.  Added version to the header.
+
+Sat Sep  5 03:42:39 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wx200.txt:
+	Synched up with Glynne's 7/3/98 which adds Rain Rate O.R. bit.
+
+Fri Sep  4 18:14:21 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wx200d.c:
+	Close .bin file before .tab file so that a make of the data directory
+	could do the Right Thing (TM), that is, re-create .tabs iff necessary.
+
+Mon May  4 00:24:49 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wxplot.1:
+	Added --cache, removed month/year boundary limitation of --one.
+
+Sun May  3 06:28:27 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wxplot: Added --cache.
+
+	* wxdebug.c: Added CF.14 to unknowns.
+
+	* wx200.h, parse.c:
+	Unknowns bytes now contain only the unknown bits, the known bits are
+	set to zero.  Fixed the wind alarm which was in the wrong units.
+
+	* wx200.txt:
+	Tweaked format of nibble column so that an ASCII sort results in all
+	bits being in order from top to bottom.  Merged Glynne's latest
+	including fixing wrong units bug on wind alarm.
+
+Sat Apr 25 18:34:18 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wxplot:
+	--one now works across month or year boundaries by converting to
+	absolute number of seconds since the epoch.  This is probably even
+	slower, but I want to be able to plot things like last 3 days.
+
+Sun Apr 19 05:29:55 1998  Tim Witham  <twitham@quiknet.com>
+
+	* wx200.c:
+	Fixed bug: NULL pointer problem when no host[:port] specified.
+
+Sat Apr  4 19:04:51 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* client.c, wx200.c, wx200.html:
+	Fixed bug: the CGI form didn't work since -m and -p went away.
+
+Thu Apr  2 07:26:05 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.txt: Added Wind Speed out of range indicators in byte CF.25.
+
+Wed Apr  1 06:09:10 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxplot:
+	Fixed bug: when using --one, lines containing negatives were removed.
+	Thanks to greg <glarson@dacmail.net> for reporting this bug.
+
+	* wxplot, wxplot.1, wxdebug.1, wx200d.5, wx200.h, wx200.c, wx200.1, unit.c, format.c:
+	Corrected spelling of farenheit to Fahrenheit.  Thanks to greg
+	<glarson@dacmail.net> for pointing out this bug.  (Duh!)  Also fixed
+	capitalization of Celsius in text areas.  The capitalization of both
+	words is still wrong in the command-line options because lowercase is
+	easier to type and more "typical" there, and in variables in the code.
+
+Sun Feb 22 07:34:52 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* README: Fixed the NEW section (oops).
+
+	* wxplot: Fixed bug: y axis label was wrong for --in.
+
+Sun Feb 22 05:43:43 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* ChangeLog, wx200d.lsm, TODO, Makefile: For 0.6.
+
+	* wxplot.1: Documented all the new options.  I think.
+
+	* wx200.c:
+	Merged "Tim Smith" <trs@AZStarNet.com>'s changes which can output just
+	one formatted value.  I'll document it later...
+
+	* wx200.c, buffer.c, wx200.h:
+	Tweaks in preparation for virtual memories.
+
+	* wx200d.c:
+	Backed out .mem file; this virtual memory stuff is going to have to
+	wait until my hardware is back from the shop. :(
+
+	* format.c: Fixed capitalization typo.
+
+	* wxplot: Ignore bogus files and lines.
+
+	* wxplot: Added --[no]grid and --[no]timestamp to do obvious things.
+
+	* wxplot:
+	Added --[no] sea, local, wind, gust, average to add or remove things.
+
+Sat Feb 21 20:05:09 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxplot: Added WXPLOT environment variable of preferred options.
+
+	* wxplot:
+	Way better plotting capabilities.  --all is now the default if no
+	options.  New --[no]indoor and --[no]outdoor options for doing only in
+	or out plots respectively.  all in or out temps now plotted on the
+	same chart instead of mixing in/out.  New --[no]temps to turn all
+	temperature vars on/off.  --one now puts a tic only at day boundaries.
+
+	* wxplot:
+	Added --batch which skips the interactive pause between plots.  Added
+	--terminal and --output which are passed to gnuplot(1) for arbitrary
+	types of output to arbitrary files or pipes.
+
+	* wxplot:
+	Fixed bug: multiple files weren't being processed unless --one.
+
+	* wxplot:
+	Added custom unit conversion options, thanks to code example from
+	"Chance C. Geurin" <cgeurin@divide.net>
+
+Fri Feb 13 04:56:15 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.c:
+	Changed wx200bufread read test to be EOF instead of negative since -2
+	is a valid return when nothing changed.
+
+	* wx200d.c:
+	Background the nightly gzip command so we don't block the server.  If
+	-DMINDEBUG, create a file every minute for faster testing of things.
+	Added .mem file though it doesn't contain anything yet.
+
+Tue Feb 10 06:34:04 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxstdout.1, wx200.1, wxstdout.c, wx200.c:
+	Tossed -m and -p in favor of new host[:port] parameter.
+
+	* wx200.h, client.c:
+	Changed wx200open to take a string of the form host[:port] or NULL.
+	If host or port is missing, we look for it in a WX200D env variable.
+	Finally, we fall back on built-in defaults from config.h.  We set new
+	global vars wx200host and wx200port to the values finally used.
+
+Sat Feb  7 18:18:16 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* ChangeLog, wx200d.lsm, TODO, README: For 0.5.
+
+	* wxdebug.1, wxfilter.1, wxstdout.1, wxplot.1, wx200.1, wx200d.5, wx200d.8:
+	Initial revision
+
+	* wx200.h: Added args to all function prototypes.
+
+	* wx200.txt:
+	Fixed bug that said O.R.'s return EE.  They don't.  EE is errors.
+
+	* wx200.c: Added last group read indicator to the top-left corner.
+
+	* wxstdout.c, wxfilter.c, wxdebug.c, wx200d.c:
+	Fixed bug: getopt case '?' wasn't handled, causing bogus options to
+	let the program continue anyway!
+
+	* wxread.c: Takes first arg of serial device (optional).
+
+	* serial.c: Added ability to pass serial device to init_serial.
+
+	* wx200d.c: Added -s and -w.
+
+	* wxdebug.c: Fixed bug in usage (0 and 1 were backwards).
+
+Wed Feb  4 04:47:52 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.html, wx200.c:
+	Added -r and --refresh which cause it to continuously refresh the
+	display of data.
+
+Mon Feb  2 06:32:45 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxplot:
+	Set the wind direction range to 0 to 360 instead of autoscaled.
+
+Sun Feb  1 06:04:24 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxplot: Added --one which is slow and won't work across month or year
+	boundaries.  Added tic for each hour instead of every 3.
+
+	* wx200.c:
+	Fixed usage to be type text/plain instead of text/html for CGI.
+
+	* wx200.c:
+	Added host and port to title and header.  Added version to footer.
+	Fixed bugs: Display had skipped Baro, making it one-off.  CGI arg
+	parsing may have overflowed if given too many args.
+
+	* wxplot: Initial revision
+
+Sat Jan 31 22:32:27 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* ChangeLog, TODO, wx200d.lsm, README, Makefile: For 0.4.
+
+	* gnuplot.cmd: Initial revision
+
+	* config.h: Turned CONNECTIONS down to a more sane limit (256 -> 128).
+
+	* wx200.c: Added gen indicators (display screen, power, low batt).
+
+	* wx200.html: Initial revision
+
+	* wx200.c:
+	Now runs as a WWW CGI program if $QUERY_STRING is set (method GET).
+
+	* wx200.c:
+	Switched to getopt_long and implemented unit and display format
+	options that override the WX200 settings.  See -h or --help.
+
+	* wx200.c: Added alarm values and on/off status.
+
+	* wx200.h, format.c:
+	Added format_val which can format and label arbitrary values.
+
+	* unit.c:
+	Added ability to convert temperature difference (dew point alarm).
+
+	* parse.c: Fixed a couple bugs in alarms.
+
+	* wx200d.c:
+	Since we close all unused fd's (including 0) when we become a daemon,
+	the active fd test must be more specific than just a check for
+	non-zero since fd 0 may get reused.  Changed it to (fd > -1).
+
+	* wx200.h, tab.c, buffer.c, wx200d.c:
+	Tab and binary files were not in synch for the first few samples.
+	Corrected this by adding a re-set of the buffer and tab routines
+	between new files.  This causes them to start over and say they've
+	found something new when they really haven't.
+
+Wed Jan 28 05:51:19 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200d.c:
+	Toggled meaning of -z so that running with no args does the smartest
+	thing (compresses).  Added tab-delimited ASCII log files.  New -a
+	option turns off ASCII logs while -b turns off binary logs.
+
+	* wxfilter.c:
+	Renamed from wxz.c to be an extendible binary data filter.  Now
+	produces tab-delimited ASCII by default.  Use -z to abbreviate data.
+
+	* tab.c: Initial revision
+
+	* wx200.c:
+	Use new F_TEMP1 for dew point and wind chill.  Trimmed width.
+
+	* format.c:
+	Enhanced unit_format to drop precision if necessary to fit a number in
+	width.  E.g. when rain goes from 99.99in to 100.0in.  Added F_TEMP1
+	which formats temperatures with no decimals (for dew point and wind
+	chill).
+
+Sat Jan 24 16:24:06 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* format.c: Changed descriptions to match those on page 59.
+
+Thu Jan 22 06:56:47 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.c, wx200.h, format.c:
+	Collapsed the many formatting functions into one.
+
+	* ChangeLog, Makefile, TODO, wx200d.lsm: For 0.3.
+
+	* wx200.c: Added format_dir wind direction formatting.
+
+	* unit.c, wx200.h: Moved text labels and formatting to format.c.
+
+	* format.c: Initial revision
+
+Tue Jan 20 06:04:01 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* unit.c, wx200.c: Improved timestamp formatting.
+
+	* parse.c, wx200.h, wxdebug.c: Changed time structure to be more like a sensor.
+
+Sat Jan 17 18:40:46 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.c: Greatly simplified by using new data formatting functions.
+
+	* unit.c, wx200.h: Added data formatting functions.
+
+	* wx200.c: Added some sensor error and O.R. indicators.
+
+	* unit.c, wx200.c: Added wind direction divider and labels.
+
+Fri Jan 16 06:44:14 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.h: Added wind direction divider and labels.
+
+	* wx200.c:
+	Now displays same units as on wx200 display, thanks to new unit.c.
+
+	* wx200.h, parse.c:
+	Added n, nlo, nhi floats which are recorded in a known base unit to
+	simplify unit conversion.  E.g. all temperatures are in celsius.
+
+	* unit.c: Initial revision
+
+Sun Jan 11 23:29:24 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200d.c:
+	Fixed bug: running without -d didn't work since it closed the serial
+	device and socket (oops!).
+
+	* wx200d.c:
+	Tossed the alarm in favor of a select test before socket or serial
+	read.  Added a sleep between reading to be even nicer to the system.
+
+	* ChangeLog, Makefile, wx200d.lsm, TODO, README: For 0.2.
+
+	* parse.c, wx200.c, wxdebug.c, wx200.h:
+	Switched to structures of structures which make all the pieces of data
+	much easier to understand and therefore the clients easier to write.
+
+Sat Jan 10 19:26:07 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxdebug.c, parse.c, wx200.h: Added error flags to humidity sections.
+
+	* wx200d.c: Improved error messages, cleaned some things.
+
+	* buffer.c: Shortened FF group from 7 to 5 bytes.
+
+	* wxz.c: Tossed bogus group D and E.
+
+	* wx200.txt, wx200.h, parse.c, wxdebug.c:
+	Shortened FF group from 7 to 5 bytes.
+
+	* wxstdout.c: Fixed usage.
+
+	* wx200.txt:
+	Added a couple Dewpt O.R.s and a note about how wx200d format works.
+
+	* wxz.c: Initial revision
+
+	* parse.c: Changed to parse data from the new groupbuf instead of a fd.
+
+	* buffer.c: Initial revision
+
+	* wx200d.c, wxdebug.c, wx200.c:
+	Changed to use new wx200bufread and wx200parse functions.
+
+	* wx200.h: Added new things.
+
+	* Makefile: Tweaked for new things.
+
+	* client.c: Improved error messages.
+
+Fri Jan  9 02:32:00 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200d.c:
+	Changed to blocking I/O on the device to simplify continuous reading.
+	Now remembers the sections and records/sends only sections that have
+	changed.  New `FF' group is a timestamp only (an 8F that hasn't
+	otherwise changed).
+
+Thu Jan  8 06:00:18 1998  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wxread.c: Simplified for new serial.c.
+
+	* serial.c:
+	Changed to blocking I/O on the device to simplify continuous reading.
+	Eliminated getoneblock() which will no longer be needed.
+
+Thu Dec 18 05:38:49 1997  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* ChangeLog, wx200d.lsm, README: Initial revision
+
+	* wx200.txt: Added some O.R. bits
+
+	* wx200.h: Initial revision
+
+Wed Dec 17 07:21:52 1997  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* TODO, wx200.c, Makefile, config.h, parse.c, wxstdout.c, wxdebug.c, wxread.c, serial.c, client.c:
+	Initial revision
+
+	* wx200d.c: Added server code that tees data out to client connections.
+
+Fri Dec 12 05:37:33 1997  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200d.c: Initial revision
+
+Wed Dec 10 04:10:50 1997  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.txt:
+	Reformatted to fit in 80 columns with standard 8-char tabs, to be
+	sortable and to have holes where the missing bits are.
+
+Sat Dec  6 23:59:09 1997  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* wx200.txt: Initial revision
+
+Sun Feb  4 22:11:19 1996  Tim Witham  <twitham@pcocd2.intel.com>
+
+	* COPYING: Initial revision
+

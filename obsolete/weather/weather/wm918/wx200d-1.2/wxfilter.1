@@ -1,0 +1,80 @@
+.\" @(#)$Id: wxfilter.1,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WXFILTER 1 "Feb 01, 2000" "wx200d Manual"
+.SH NAME
+wxfilter \- WX200 weather data filter
+.SH SYNOPSIS
+.B wxfilter
+[-h] [-z]
+
+.SH DESCRIPTION
+
+.B wxfilter
+takes binary WX200 data on the standard input and produces
+tab-delimited ASCII or abbreviated binary on the standard output.  See
+.B wx200d(5)
+for a description of these file formats.
+.B wxfilter
+can be used with
+.B wxstdout(1)
+to convert real-time WX200 data, or with
+.B cat(1)
+or
+.B zcat(1)
+to convert binary
+.B wx200d(8)
+data files.  See
+.I EXAMPLES
+below.
+
+.SH OPTIONS
+
+.TP 0.5i
+.B -h
+Display a help usage message showing these options, then exit.
+
+.TP 0.5i
+.B -z
+Produce abbreviated binary output, instead of tab-delimited ASCII.
+This removes WX200 data groups in which no bits have changed,
+resulting in the smallest file that still contains all information.
+Using this option on a binary file collected by
+.B wx200d(8)
+will have no effect since
+.B wx200d(8)
+writes files in abbreviated format directly.  This option would only
+be useful to convert raw data collected from a physical WX200.
+Without this option, tab-delimited ASCII is produced.
+
+.SH EXAMPLES
+
+.TP 0.5i
+.B wxstdout | wxfilter
+Monitor the current WX200 data in tab-delimited format.
+
+.TP 0.5i
+.B zcat 19980206.bin.gz | wxfilter > 19980206.tab
+Convert a binary
+.B wx200d(8)
+log file to a tab-delimited log.
+
+.SH LIMITATIONS
+
+.SH BUGS
+I don't think so.
+
+.SH SEE ALSO
+wxstdout(1), wxdebug(1), wx200d(5), wx200d(8)
+
+.SH AUTHOR
+Tim Witham <twitham@quiknet.com>
+.SH COPYRIGHT
+Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+
+wxfilter is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.

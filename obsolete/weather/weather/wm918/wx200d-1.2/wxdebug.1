@@ -1,0 +1,206 @@
+.\" @(#)$Id: wxdebug.1,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WXDEBUG 1 "Feb 01, 2000" "wx200d Manual"
+.SH NAME
+wxdebug \- show contents of WX200 data groups
+.SH SYNOPSIS
+.B wxdebug
+[-h] [-01px89abcfu]
+
+.SH DESCRIPTION
+
+.B wxdebug
+takes binary WX200 data on the standard input and produces human
+readable data group listings on the standard output.  Groups are
+listed one per line.  Any or all groups may be shown.
+.B wxdebug
+can be used with
+.B wxstdout(1)
+to monitor real-time WX200 data, or with
+.B cat(1)
+or
+.B zcat(1)
+to look at binary
+.B wx200d(8)
+data files.  See
+.I EXAMPLES
+below.
+.P
+
+The data group always appears first on the line.  The hexidecimal
+display mode displays each byte of the group in hexidecimal.  The
+plain text display mode shows all known data after parsing as
+integers, but before any decimal point correction or unit conversions.
+For example temperature is shown in tenths of degrees Celsius while
+temperature alarms are shown in degrees Fahrenheit, since this is the
+way the WX200 has sent them.
+.P
+
+The unknowns are displayed as (byte #) = (hex value) and the groups of
+unknowns are separate by a / character.
+.P
+
+Groups 8, 9, and A show indoor data first, followed by outdoor data.
+Timestamps are always in the form: MM/DD:HH:MM:SS.  The general layout
+of related data is:
+.P
+
+(alarm range) [=] (low) (low timestamp) < (current value) < (high)
+(high timestamp)
+.P
+
+The following characters have the given meanings (in certain groups).
+
+.TP 0.5i
+.B a
+The following number(s) is(are) the alarm setting and the alarm is OFF.
+
+.TP 0.5i
+.B A
+The following number(s) is(are) the alarm setting and the alarm is ON.
+
+.TP 0.5i
+.B f
+The following number is the format (unit) setting.
+
+.TP 0.5i
+.B e
+The following sensor value is not in error.
+
+.TP 0.5i
+.B E
+The following sensor value is in error.
+
+.TP 0.5i
+.B o
+The preceeding value is in range.
+
+.TP 0.5i
+.B O
+The preceeding value is out of range.
+
+.TP 0.5i
+.B l
+The following numer is the local pressure (group A).
+
+.TP 0.5i
+.B s
+The following numer is the sea level pressure (group A).  The
+following numbers are the screen being displayed (group C).
+
+.TP 0.5i
+.B p
+The following numer is the prediction (group A).  The following number
+is the power indicator (group C).
+
+.TP 0.5i
+.B b
+The following number is the battery indicator (group C).
+
+.TP 0.5i
+.B t
+The following numer is the pressure trend (group A).  The following
+number is the total rain (group B).
+
+.TP 0.5i
+.B r
+The following number is the rain rate (group B).
+
+.TP 0.5i
+.B y
+The following number is yesterday's rain amount (group B).
+
+.TP 0.5i
+.B g
+The following numbers are the gust wind direction @ speed ~ average
+wind direction @ speed (group C).
+
+.SH OPTIONS
+
+.TP 0.5i
+.B -h
+Display a help usage message showing these options, then exit.
+
+.TP 0.5i
+.B -0
+Turn all groups off.
+
+.TP 0.5i
+.B -1
+Turn all groups on.  This is the default.
+
+.TP 0.5i
+.B -p
+Toggle plain text group display mode.  This is on by default.
+
+.TP 0.5i
+.B -x
+Toggle hexidecimal group display mode.  This is off by default.
+
+.TP 0.5i
+.B -8
+Toggle display of Time/Humidity group 8.
+
+.TP 0.5i
+.B -9
+Toggle display of Temperature group 9.
+
+.TP 0.5i
+.B -a
+Toggle display of Barometer/Dew Point group A.
+
+.TP 0.5i
+.B -b
+Toggle display of Rain group B.
+
+.TP 0.5i
+.B -c
+Toggle display of Wind/Wind Chill group C.
+
+.TP 0.5i
+.B -f
+Toggle display of Timestamp group F.
+
+.TP 0.5i
+.B -u
+Toggle display of bytes that may contain unknown bits.  All bits of
+the bytes are shown, whether known or not.  See wx200.txt for details
+of which bits are still unknown.  Please let me know if you discover
+what an unknown bit is!
+
+.SH EXAMPLES
+
+.TP 0.5i
+.B wxstdout | wxdebug
+Monitor all groups of the current WX200 data in real-time.
+
+.TP 0.5i
+.B wxstdout | wxdebug -1cf
+Monitor all groups except wind and timestamps of the current WX200
+data in real-time.
+
+.TP 0.5i
+.B zcat 19980206.bin.gz | wxdebug -x0c
+Show wind group of given binary data file in both hexidecimal and
+parsed formats.
+
+.SH LIMITATIONS
+
+.SH BUGS
+Possibly.
+
+.SH SEE ALSO
+wxstdout(1), wxfilter(1), wx200d(5), wx200d(8)
+
+.SH AUTHOR
+Tim Witham <twitham@quiknet.com>
+.SH COPYRIGHT
+Copyright (C) 1998 - 2000 Tim Witham <twitham@quiknet.com>
+
+wxdebug is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.

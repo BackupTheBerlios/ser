@@ -1,0 +1,78 @@
+@(#)$Id: AUTHORS,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+wx200d was written by Tim Witham <twitham@quiknet.com>, known as
+<twitham@pcocd2.intel.com> back in 1997 when development began.
+
+wx200d was written by me on my own time and equipment.  My employer
+has absolutely nothing to do with it.  See also the file COPYING.
+
+
+	CREDITS:
+
+Thanks to:
+
+RadioShack(TM) and AccuWeather(R) for producing a nice and affordable
+weather station.  Radio Shack(TM) is a trademark used by Tandy
+Corporation.  AccuWeather(R) is a registered trademark of AccuWeather,
+Inc.
+
+Mike Wingstrom <mikeasl@earthlink.net> for reverse engineering of the
+WX200 serial data stream.
+
+Glynne Tolar <glynne@blkbox.com> for additional work and for setting
+up the very helpful mailing list and web page.  Without their efforts,
+this project would have been much more difficult.
+
+Don Dykes <dykes@pobox.com> for helpful feedback and encouragement.
+
+Tim Smith <trs@azstarnet.com> for adding the wx200 options to output a
+single weather variable.
+
+Pat Jensen <patj@futureunix.net> for the termio to termios conversion
+of serial.c.  This allowed the code to also compile and run on BSD if
+you have GNU getops and GNU make.
+
+<dirkx@covalent.net> for the patch to allow quick (re)start of deamon
+or client while there are pending conncections during the quit.  This
+is to avoid addresss/port in use error.
+
+Raul Luna <rlunaro@bigfoot.com> for the Postgres database support for
+the server.
+
+"rofo" and Dean Benson <dean@visualsoft.co.uk> for ideas on more wx200
+options.
+
+Steve Fraser <sfraser@sierra.apana.org.au> for wx200's --aprs option
+and the wxaprs script to support the amateur radio APRS network.
+
+Tobias Oetiker <oetiker@ee.ethz.ch> for the way cool RRDtool that
+makes the new much improved weather graphs.
+
+
+	WMR918 CREDITS:
+
+WMR918 support has been contributed by Dominique Le Foll
+<dominique@le-foll.demon.co.uk>.  Thanks to Dominique for the WMR918
+files and the following additional credits:
+
+Thanks to John Stanley <stanley@peak.org> who find out the code of the
+WMR918 well hiden by Oregon Scientific. His original code written for
+Iris has it latest version at his own page at:
+http://www.peak.org/~stanley/wmr918/
+
+Thanks to whoever it was in China who built the WMR918 for Oregon
+Scientific to sell.
+
+Thanks to Dave Heider of Weather Information Systems for looking over
+the data spec I decoded. If you have a WMR918 and a PC with Windows,
+go to <http://www.weatherview32.com> first.
+
+Thanks, of a sort, to Oregon Scientific for refusing to provide any
+assistance in decoding their data format, which made this into a more
+difficult problem to solve and more satisfying with each discovery.
+
+
+Please let me know if I forgot your name here.
+
+-- 
+-- Tim Witham <twitham@quiknet.com>, http://www.quiknet.com/~twitham/

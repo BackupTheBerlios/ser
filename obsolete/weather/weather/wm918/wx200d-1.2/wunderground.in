@@ -1,0 +1,77 @@
+#!@PERL@
+
+# @(#)$Id: wunderground.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 2001 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This file contributes weather data to wunderground.com
+
+$usage = "usage: $0 [minutes between reports] [file]";
+
+use POSIX qw(strftime);
+use LWP;
+
+$URL = 'http://weatherstation.wunderground.com/weatherstation/updateweatherstation.php';
+
+$prefix = "@prefix@";
+$exec_prefix = "@exec_prefix@";
+$ENV{'PATH'} .= ":@bindir@";	# in case launched from cron
+undef $ENV{'WXPLOT'};
+$cmd = 'wx200 --mph --F --in --inhg --noerrors --nounits --line';
+
+while ($_ = shift @ARGV) {
+    if (/^-?(\d+)$/) { $time = $1 } # daemon mode
+    else { $conf = $_ }		# config file
+}
+$conf = "$0.conf" unless $conf;
+$cmd .= ' --refresh' if $time;
+@data = qw(skip tempf skip humidity skip dewptf skip baromin
+	   windgustmph skip windspeedmph winddir skip rainin skip skip);
+$f{softwaretype} = '@PACKAGE@';
+
+$ua = new LWP::UserAgent;
+$ua->agent("@PACKAGE@/@VERSION@ " . $ua->agent);
+
+open FILE, $conf or die "$0: can't read $conf: $!\n$usage\n";
+while (<FILE>) {
+    chomp;
+    next unless $_;
+    ($f{ID}, $f{PASSWORD}) = split;
+}
+die "must supply ID PASSWORD in $conf\n" unless $f{ID} && $f{PASSWORD};
+
+$max = 0;			# max wind gust since last time
+open PIPE, "$cmd |" or die "$0: can't pipe from $cmd: $!\n";
+while (<PIPE>) {		# each line of data
+    die $_ if /usage/;
+    chomp;
+    @field = @data;
+    $url = '';
+    for (split) {		# each field of data
+	$field = shift @field;
+	next if $field eq 'skip';
+	if ($field eq 'windgustmph') {
+	    $max = $_ if $_ > $max;
+	    $_ = $max;
+	}
+	$url .= "&$field=$_";
+    }
+    next if $time && (time - $prev < $time * 60);
+    next unless $url;
+    $f{dateutc} = strftime "%Y-%m-%d+%H:%M:%S", gmtime time;
+    $send = "$URL?action=updateraw&ID=$f{ID}&PASSWORD=$f{PASSWORD}"
+	. "&softwaretype=$f{softwaretype}&dateutc=$f{dateutc}$url";
+    my $req = new HTTP::Request GET => $send;
+    my $res = $ua->request($req);
+    if ($res->is_success) {
+	$prev = time;
+	print $res->content unless $res->content =~ /success/i;
+	$ex = $max = 0;		# reset max wind gust until next time
+    } else {
+	warn "$0: upload failed using URL:\n$send\n";
+	$ex = 1;
+    }
+}
+exit $ex;

@@ -1,0 +1,17 @@
+#!@PERL@ -w
+
+# @(#)$Id: wxvws.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 2001 - 2002 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# usage: wxvws [host][:port]
+
+# wx200 wrapper that generates Virtual Weather Station format CSV
+
+%c = qw(Sunny 0 Cloudy 4 Partly 2 Rain 6);
+@t = gmtime time;		# UTC
+@w = split ' ', `wx200 -lue --forecast --in --F --mph --inhg @ARGV`;
+print join(',', $t[5] + 1900, $t[4] + 1, @t[3,2,1,0],
+	   @w[10,8,11,2,3,0,1,6,15,14,13], $c{$w[16]} || 0), "\r\n";

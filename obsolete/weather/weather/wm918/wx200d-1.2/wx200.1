@@ -1,0 +1,211 @@
+.\" @(#)$Id: wx200.1,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WX200 1 "Sep 05, 2001" "wx200d Manual"
+.SH NAME
+wx200 \- wx200d weather client
+.SH SYNOPSIS
+.B wx200
+[-h | --help] [-r | --refresh]
+[--dm | --md] [--12hr | --24hr]
+[--C | --celsius | --F | --fahrenheit]
+[--inhg | --mmhg | --mbar | --hpa]
+[--mm | --mm/h | --in | --in/h]
+[--mph | --knots | --mps | --kph]
+[-e | --noerrors] [-u | --nounits]
+[ -a | --alarms | -t | --tab | -l | --line | --aprs |
+[[--intemp] [--inhumidity] [--indewpoint]
+[--temp] [--humidity] [--dewpoint]
+[--local] [--sea]
+[--gust] [--average]
+[--rate] [--yesterday] [--total]
+[--trend] [--forecast]
+[--power] [--battery] [--display]]]
+[[host][:port]]
+
+.SH DESCRIPTION
+
+.B wx200
+is a
+.B wx200d(8)
+client that displays all current data of the WX200 weather station on
+the given host and port.  If host or port is not specified, the
+.B WX200D
+environment variable is checked for the missing field(s).  Finally, if
+neither of these provide the host or port, the built-in defaults
+(localhost:9753) are used.
+.P
+
+With no options,
+.B wx200
+displays all current weather data and exits.  The data is formatted as
+human readable text 80 columns wide to fit in most standard terminals.
+.P
+
+.B wx200
+can also output HTML as a CGI program.  If the environment variable
+.I QUERY_STRING
+is set,
+.B wx200
+assumes it was called by a WWW server and outputs text/html instead of
+plain text.
+.P
+
+The display should be mostly self-explanatory.  Sensor values are
+followed by a unit designator.  Between the number and the unit is a
+space character or one of the following special flag characters:
+
+.TP 0.5i
+.B *
+The value is Out of Range (this is shown as O.R. on the physical WX200)
+
+.TP 0.5i
+.B !
+There is a sensor error so the value has not been updated (this is
+shown as ---- on the physical WX200)
+
+.TP 0.5i
+.B #
+Both the * and ! flags are set.  That is, the sensor is out of range
+and there is an error.
+
+.SH OPTIONS
+
+.TP 0.5i
+.B "-h, --help"
+Display a help usage message showing these options, then exit.
+
+.TP 0.5i
+.B "-r, --refresh"
+Continuously refresh the display of weather data, instead of exiting.
+This looks best in an 80x25 terminal with
+.B -a
+or an 80x14 otherwise.  Under X, an alias like:
+.B xterm -name WX200 -geometry 80x14 +sb -e wx200 -r
+works great.  If
+.B QUERY_STRING
+is set, this option adds a 10 second
+.I Refresh:
+header which causes most web browsers to request the page every 10
+seconds.
+
+.TP 0.5i
+.B "--dm, --md"
+Display dates in Day/Month or Month/Day format respectively.  If
+neither of these options are specified, the format of the physical
+WX200 is used.
+
+.TP 0.5i
+.B "--12hr, --24hr"
+Display times in 12 hour (with am/pm indicators) or 24 hour notation
+respectively.  If neither of these options are specified, the format
+of the physical WX200 is used.
+
+.TP 0.5i
+.B "--C, --celsius, --F, --fahrenheit"
+Display temperatures in degrees Celsius or degrees Fahrenheit
+respectively.  If none of these options are specified, the format of
+the physical WX200 is used.
+
+.TP 0.5i
+.B "--inhg, --mmhg, --mbar, --hpa"
+Display barometric pressure in inches of mercury, millimeters of
+mercury, millibars or hecto-pascals respectively.  If none of these
+options are specified, the format of the physical WX200 is used.
+
+.TP 0.5i
+.B "--mm, --mm/h, --in, --in/h"
+Display rain fall depths and rates in inches and inches per hour or
+millimeters and millimeters per hour respectively.  If none of these
+options are specified, the format of the physical WX200 is used.
+
+.TP 0.5i
+.B "--mph, --knots, --mps, --kph"
+Display wind speed in miles per hour, nautical miles per hour, meters
+per second or kilometers per hour respectively.  If none of these
+options are specified, the format of the physical WX200 is used.
+
+.TP 0.5i
+.B "-e, --noerrors"
+Suppress error and out of range flags from the display.
+
+.TP 0.5i
+.B "-u, --nounits"
+Suppress units from the display.
+
+.TP 0.5i
+.B "-a, --alarms"
+Add alarm and flag legend details to the display.
+
+.TP 0.5i
+.B "-t, --tab"
+Instead of the default display, show all variables on one
+tab-delimited line in
+.B wx200d(5)
+tab format.
+
+.TP 0.5i
+.B "--aprs"
+Instead of the default display, show one line in amateur radio APRS
+network format.  There is an example wxaprs script in the distribution
+for transmitting data in this format.
+
+.TP 0.5i
+.B "-l, --line"
+Instead of the default display, show all weather variables on one
+tab-delimited line in the order listed here:
+
+.TP 0.5i
+.B "--intemp, --temp, --inhumidity, --humidity, --indewpoint, --dewpoint, --local, --sea, --gust, --average, --rate, --yesterday, --total, --trend, --forecast, --power, --battery, --display"
+Instead of the default display, list only the given variables on one
+line.  The order of the output is fixed like this and the order of the
+options on the command line will make no difference.
+
+
+.SH EXAMPLES
+
+.TP 0.5i
+.B wx200 -a -r
+
+Show all weather station information continuously.
+
+.TP 0.5i
+.B wx200 -eu --temp --humidity --dewpoint --C
+
+Output only 3 numbers (no error flags or units) with temperatures in
+degress Celsius.
+
+.SH ENVIRONMENT
+
+.TP 0.5i
+.B WX200D
+If set, the [host][:port] to contact if none is specified on the
+command line.
+
+.TP 0.5i
+.B QUERY_STRING
+If set, causes
+.B wx200
+to output text/html as a CGI program.
+.B QUERY_STRING
+can contain any of the above options separated by & or = characters,
+as a front-end HTML form may provide.
+
+.SH LIMITATIONS
+
+.SH BUGS
+
+.SH SEE ALSO
+wxplot(1), wx200d(8), wx200d(5)
+
+.SH AUTHOR
+Tim Witham <twitham@quiknet.com>
+.SH COPYRIGHT
+Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+
+wx200 is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.

@@ -1,0 +1,68 @@
+#!@PERL@
+
+# @(#)$Id: wxsum.in,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+
+# Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+
+# (see the files README and COPYING for more details)
+
+# This filter summarizes .tab to .day or .day to .mon by avg/min/max
+
+$div = 16;			# how many wind direction buckets
+$per = 360.0 / $div;		# degrees per division
+$format0 = "\t%.3g\t%.3g\t%d\t%d\t%d\t%d"
+    . "\t%.4g\t%.5g\t%d\t%.3g\t%d\t%.3g\t%d\t%d\t%d";
+$format = "%d.5$format0$format0$format0\n";
+@min = @MIN = qw(9999 9999 9999 9999 9999 9999 9999
+		 9999 9999 9999 9999 9999 9999 9999 9999);
+@max = @MAX = qw(0 -40 10 10 0 0 795 795 0 0 0 0 -85 0 0);
+
+sub bygust { $gust{$a} <=> $gust{$b}; }
+sub bywind { $wind{$a} <=> $wind{$b}; }
+sub unit_dir { int(($_[0] + ($per / 2.0)) / $per) % $div; }
+
+sub out {
+    grep($_ /= $total, @avg);	# mean
+    @gust = sort bygust keys %gust; # 3 most-common wind direction buckets
+    @wind = sort bywind keys %wind;
+    $avg[8] = pop @gust; $avg[10] = pop @wind;
+    $min[8] = pop @gust || $avg[8]; $min[10] = pop @wind || $avg[10];
+    $max[8] = pop @gust || $avg[8]; $max[10] = pop @wind || $avg[10];
+    $avg[8]--; $avg[10]--; $min[8]--; $min[10]--; $max[8]--; $max[10]--;
+    grep($_ = $_ == 9999 ? 0 : $_, @min);
+    $i = 0; grep($_ = $_ == $MAX[$i++] ? 0 : $_, @max);
+    printf $format, $hour, @avg[0..14], @min[0..14], @max[0..14];
+    @min = @MIN; @max = @MAX; @avg = %gust = %wind = (); $total = 0;
+}
+
+$day = 1 if grep(/day/, @ARGV);	# parsing .day or .tab files?
+while (<>) {
+    ($t, @d) = split;
+    $num = @d;
+    if ($day) {
+	$next = $ARGV;
+	&out if $hour != $next && defined $hour;
+	$num /= 3;
+	for $i (0 .. $num - 1) {
+	    $avg[$i] += $d[$i];
+	    $min[$i] = $d[$i + $num] if $d[$i + $num] < $min[$i];
+	    $max[$i] = $d[$i + $num * 2] if $d[$i + $num * 2] > $max[$i];
+	}
+    } else {
+	$next = int($t);
+	next if (($hour < 12 && $next > 12) ||
+		 ($hour > 12 && $next < 12) || $next > 23);
+	&out if $hour != $next && defined $hour;
+	$i = 0;
+	for (@d) {
+	    $min[$i] = $_ if $_ < $min[$i];
+	    $max[$i] = $_ if $_ > $max[$i];
+	    $avg[$i++] += $_;
+	}
+    }
+    $gust{int(&unit_dir($d[8]) * $per) + 1}++;
+    $wind{int(&unit_dir($d[10]) * $per) + 1}++;
+    $total++;
+    $hour = $next;
+}
+&out;

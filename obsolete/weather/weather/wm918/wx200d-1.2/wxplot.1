@@ -1,0 +1,330 @@
+.\" @(#)$Id: wxplot.1,v 1.1 2002/09/23 19:12:51 bogdan Rel $
+.\"
+.\" Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+.\"
+.\" (see the files README and COPYING for more details)
+
+.TH WXPLOT 1 "Jun 10, 2001" "wx200d Manual"
+.SH NAME
+wxplot \- plot (graph) wx200d weather data log files
+.SH SYNOPSIS
+.B wxplot
+[--help] [--batch] [--one] [--cache <file>]
+[--terminal <terminal type>] [--output <file or pipe>]
+[--C | --celsius | --F | --fahrenheit]
+[--inhg | --mmhg | --mbar | --hpa]
+[--mph | --knots | --mps | --kph]
+[--mm | --in]
+[--[no]indoor]
+[--[no]outdoor]
+[--combine]
+[--[no]temps | --[no]temp | --[no]dewpoint | --[no]chill]
+[--[no]humidity]
+[--[no]barometer | --[no]sea | --[no]local]
+[--[no]wind | --[no]direction | --[no]speed | --[no]gust | --[no]average]
+[--[no]rate] [--[no]rain] [--[no]timestamp] [--[no]grid]
+[--[no]errorbars]
+file | YYYYMMDD[.tab|.day] | YYYYMM.mon ...
+
+.SH DESCRIPTION
+
+.B wxplot
+is a
+.B perl(1)
+script that uses
+.B gnuplot(1)
+to plot
+.B wx200d(8)
+.I .tab,
+.I .day
+and
+.I .mon
+tab-delimited ASCII weather data log files.  The graphs display time
+on the X axis versus weather variable(s) on the Y axis.  If the given
+files do not exist, they are searched for in the data directory and
+.I .tab
+and
+.I .gz
+extentions are assumed if necessary.
+.P
+
+By default, one chart is generated for each file.  Alternatively,
+multiple consecutive files may be combined on one continuous chart
+that spans multiple files.  Related weather variables in the same
+units are combined into one chart when possible.  For example
+temperature, dew point and wind chill are all combined.  Any number of
+variables can be graphed in any known units and the graphical output
+can be in any format supported by
+.B gnuplot(1).
+
+.SH OPTIONS
+
+.TP 0.5i
+.B --help
+Help usage message showing these options, then exit.
+
+.TP 0.5i
+.B --batch
+Do not print informational messages and do not interactively pause
+after each plot.  This is useful for automatic batch scripts.
+
+.TP 0.5i
+.B --one
+Plot all files (days) on one graph instead of one graph per file.
+This is very slow since the the hour column must be converted into a
+day column to create a continuous linear axis that spans days.  Also,
+this will not work correctly across month or year boundaries.  If this
+option is not given, one set of graphs is created per file.  This is
+much faster since the files can be used directly without conversion.
+
+.TP 0.5i
+.B --cache <file>
+Instead of plotting through a temporary data file, use persistent
+cache
+.I file
+instead.  If
+.I file
+does not exist, it is created from the data files listed on the
+command line and it is not removed when the program exits.  If
+.I file
+already exists, from an earlier run, it is directly used for plotting.
+This saves the time of recreating the data from the files listed on
+the command line.  This is useful for speeding up multiple plots of
+the same data files.  The
+.B wxplot2html
+script uses this feature to speed up very long plots.  It is up to you
+to remove
+.I file
+when it is no longer needed.
+
+.TP 0.5i
+.B "--terminal <terminal type>"
+Specify the output
+.I terminal type
+by doing a
+.B gnuplot(1)
+.I set terminal <terminal type>.
+See
+.I help set terminal
+in
+.B gnuplot(1)
+for a list of the available terminal types.
+
+.TP 0.5i
+.B "--output <file or pipe>"
+Redirect the output graph to
+.I file or pipe
+by doing a
+.B gnuplot(1)
+.I set output <file or pipe>
+See
+.I help set output
+in
+.B gnuplot(1)
+for more information.
+
+.TP 0.5i
+.B "--C, --celsius, --F, --fahrenheit"
+Display temperatures in degrees Celsius or degrees Fahrenheit
+respectively.  If none of these options is specified, Celsius is used.
+
+.TP 0.5i
+.B "--inhg, --mmhg, --mbar, --hpa"
+Display barometric pressure in inches of mercury, millimeters of
+mercury, millibars or hecto-pascals respectively.  If none of these
+options are specified, millibars is used.
+
+.TP 0.5i
+.B "--mph, --knots, --mps, --kph"
+Display wind speed in miles per hour, nautical miles per hour, meters
+per second or kilometers per hour respectively.  If none of these
+options are specified, meters per second is used.
+
+.TP 0.5i
+.B "--mm, --in"
+Display rain fall rates and totals in millimeters or inches
+respectively.  If none of these options are specified, millimeters is
+used.
+
+.TP 0.5i
+.B "--indoor, --noindoor"
+Plot (or don't plot) only the indoor variables.  If any specific
+variable options are given, only those are plotted.  Otherwise, all
+are plotted except for the --no prefixed ones.
+
+.TP 0.5i
+.B "--outdoor, --nooutdoor"
+Plot (or don't plot) the outdoor variables.  If any specific variable
+options are given, only those are plotted.  Otherwise, all are plotted
+except for the --no prefixed ones.
+
+.TP 0.5i
+.B "--combine"
+Combine indoor and outdoor temperatures on the same graph, instead of
+plotting them on separate graphs.
+
+.TP 0.5i
+.B "--temps, --notemps"
+Plot (or don't plot) all indoor and/or outdoor temperature variables.
+Same as --temp --dewpoint --chill (or --notemp --nodewpoint
+--nochill).  These are all plotted on the same graph (one for indoor
+and one for outdoor unless
+.B --combine
+is used).
+
+.TP 0.5i
+.B "--temp, --notemp"
+Plot (or don't plot) the indoor and/or outdoor temperature.
+
+.TP 0.5i
+.B "--dewpoint, --nodewpoint"
+Plot (or don't plot) the indoor and/or outdoor dewpoint.
+
+.TP 0.5i
+.B "--chill, --nochill"
+Plot (or don't plot) the outdoor wind chill.
+
+.TP 0.5i
+.B "--humidity, --nohumidity"
+Plot (or don't plot) the indoor and/or outdoor relative humidity.
+These are both plotted on the same graph.
+
+.TP 0.5i
+.B "--barometer, --nobarometer"
+Plot (or don't plot) the barometric pressure variables.  Same as --sea
+--local (or --nosea --nolocal).  These two variables are plotted on
+the same graph.
+
+.TP 0.5i
+.B "--sea, --nosea"
+Plot (or don't plot) the sea level barometric pressure.
+
+.TP 0.5i
+.B "--local, --nolocal"
+Plot (or don't plot) the local barometric pressure.
+
+.TP 0.5i
+.B "--wind, --nowind"
+Plot (or don't plot) the wind variables.  Same as --direction --speed
+(or --nodirection --nospeed).  Gust and Average winds are plotted on
+the same graph (one graph for direction and another one for speed).
+
+.TP 0.5i
+.B "--direction, --nodirection"
+Plot (or don't plot) the wind direction graph.  This graph is the
+direction from which the wind blew in compass degrees and labeled by
+direction.  Gust and/or average winds are plotted on this graph.
+
+.TP 0.5i
+.B "--speed, --nospeed"
+Plot (or don't plot) the wind speed graph.  This graph is the speed at
+which the wind blew.  Gust and/or average winds are plotted on this
+graph.
+
+.TP 0.5i
+.B "--gust, --nogust"
+Plot (or don't plot) the gust winds on the wind direction and wind
+speed graphs.
+
+.TP 0.5i
+.B "--average, --noaverage"
+Plot (or don't plot) the average winds on the wind direction and wind
+speed graphs.
+
+.TP 0.5i
+.B "--rate, --norate"
+Plot (or don't plot) the rain rate graph.
+
+.TP 0.5i
+.B "--rain, --norain"
+Plot (or don't plot) the cumulative rain total graph.
+
+.TP 0.5i
+.B "--timestamp, --notimestamp"
+Include (or don't include) the time at which the graph was produced.
+This is on by default.
+
+.TP 0.5i
+.B "--grid, --nogrid"
+Include (or don't include) a grid on the graphs.  This is on by
+default.
+
+.TP 0.5i
+.B "--errorbars, --noerrorbars"
+Include (or don't include) errorbars when plotting
+.I .day
+or
+.I .mon
+daily or monthly summary files.  This is on by default.  Summary files
+include three points for each variable: average, low and high.  With
+errorbars, the average is marked with a point and a line connects the
+low and high to indicate the range.  For wind direction, the most
+common direction is marked with a point and the second and third most
+common directions are connected by the line.  With noerrorbars, only
+the average is plotted.
+
+.SH EXAMPLES
+
+.TP 0.5i
+.B wxplot 19980221
+Plot all variables for February 21, 1998.
+
+.TP 0.5i
+.B wxplot --outdoor --F --inhg --in --mph 19980221
+Plot just the outdoor graphs, using english units.
+
+.TP 0.5i
+.B wxplot --local --barometer --inhg --terminal postscript --output '|lpr' 19980221
+Print the local barometer in inches of mercury to a postscript printer.
+
+.TP 0.5i
+.B wxplot --batch --nogrid --notimestamp --terminal dumb --output 19980221.txt 19980221
+Dump all graphs into an ASCII text file!
+
+.TP 0.5i
+.B wxplot --batch --outdoor --temp --terminal 'pbm color' --output '|ppmtogif>199801temp.gif' 199801.mon
+Plot January's daily outdoor temperature summary to a .gif file.
+
+.TP 0.5i
+.B wxplot --batch --outdoor --temp --terminal 'pbm color' --output '|ppmtogif>199801temp.gif' --one 199801*.day
+Plot January's hourly outdoor temperature summary to a .gif file.
+This is similar to the previous example but provides more detail by
+using
+.I .day
+files instead of
+.I .mon
+files.  It plots 24 points per day instead of one.
+
+.SH ENVIRONMENT
+
+.TP 0.5i
+.B WXPLOT
+If set, the preferred options to assume, as if they were included on
+the command line.  This is nice for setting your favorite units so you
+don't have to keep specifying them over and over again on the command
+line.
+
+.SH LIMITATIONS
+Weird option combinations may not make sense and may produce
+unexpected results.
+.P
+
+Files created by versions less than 1.0 lacked the rain total column
+and will therefore be plotted incorrectly.  The wxsum script can help
+correct this.
+
+.SH BUGS
+This usage is probably confusing, but what are you going to do?  Just
+play with it a little and it might start to make some sense.
+
+.SH SEE ALSO
+wx200(1), wx200d(8), wx200d(5), perl(1), gnuplot(1)
+
+.SH AUTHOR
+Tim Witham <twitham@quiknet.com>
+.SH COPYRIGHT
+Copyright (C) 1998 - 2001 Tim Witham <twitham@quiknet.com>
+
+wxplot is released under the conditions of the GNU General Public
+License.  See the files README and COPYING in the distribution for
+details.
