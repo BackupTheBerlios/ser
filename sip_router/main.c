@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.102 2002/09/03 23:31:10 janakj Exp $
+ * $Id: main.c,v 1.103 2002/09/05 17:44:02 noh Exp $
  */
 
 #include <stdio.h>
@@ -48,7 +48,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.102 2002/09/03 23:31:10 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.103 2002/09/05 17:44:02 noh Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -127,8 +127,8 @@ Options:\n\
 \n\
     -r           Use dns to check if is necessary to add a \"received=\"\n\
                  field to a via\n\
-    -R           Same as `-r´ but use reverse dns;\n\
-                 (to use both use `-rR´)\n\
+    -R           Same as `-r` but use reverse dns;\n\
+                 (to use both use `-rR`)\n\
 \n\
     -v           Turn on \"via:\" host checking when forwarding replies\n\
     -d           Debugging mode (multiple -d increase the level)\n\
