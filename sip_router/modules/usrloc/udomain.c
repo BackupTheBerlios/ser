@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.12 2002/11/28 16:55:38 janakj Exp $ 
+ * $Id: udomain.c,v 1.13 2002/12/03 15:52:37 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -379,7 +379,7 @@ int get_urecord(udomain_t* _d, str* _aor, struct urecord** _r)
 	r = _d->table[sl].first;
 
 	for(i = 0; i < _d->table[sl].n; i++) {
-		if ((r->aor.len == _aor->len) && !memcmp(r->aor.s, _aor->s, _aor->len)) {
+		if ((r->aor.len == _aor->len) && !strncasecmp(r->aor.s, _aor->s, _aor->len)) {
 			*_r = r;
 			return 0;
 		}
