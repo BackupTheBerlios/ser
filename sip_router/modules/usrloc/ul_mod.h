@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.7 2002/12/10 20:25:37 janakj Exp $
+ * $Id: ul_mod.h,v 1.8 2003/03/13 16:30:40 janakj Exp $
  *
  * Usrlocation module interface
  *
@@ -25,6 +25,10 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History:
+ * ---------
+ * 2003-03-12 added replication and state column (nils)
  */
 
 
@@ -53,6 +57,8 @@ extern char* q_col;
 extern char* callid_col;
 extern char* cseq_col;
 extern char* method_col;
+extern char* replicate_col;
+extern char* state_col;
 extern char* db_url;
 extern int   timer_interval;
 extern int   db_mode;
