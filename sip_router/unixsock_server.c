@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.c,v 1.10 2004/03/09 11:10:59 janakj Exp $
+ * $Id: unixsock_server.c,v 1.11 2004/03/15 15:29:58 andrei Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -970,8 +970,9 @@ int unixsock_reply_printf(char* fmt, ...)
 
 	va_start(ap, fmt);
 	ret = vsnprintf(reply_pos.s, reply_pos.len, fmt, ap);
-	if ((ret == -1) || (ret >= reply_pos.len)) {
+	if ((ret < 0) || (ret >= reply_pos.len)) {
 		LOG(L_ERR, "unixsock_reply_printf: Buffer too small\n");
+		va_end(ap);
 		return -1;
 	}
 
