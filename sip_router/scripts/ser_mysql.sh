@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.57 2004/07/21 07:57:21 sobomax Exp $
+# $Id: ser_mysql.sh,v 1.58 2004/08/25 10:59:24 sobomax Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -239,10 +239,10 @@ INSERT INTO version VALUES ( 'reserved', '1');
 INSERT INTO version VALUES ( 'phonebook', '1');
 INSERT INTO version VALUES ( 'pending', '4');
 INSERT INTO version VALUES ( 'missed_calls', '2');
-INSERT INTO version VALUES ( 'location', '4');
+INSERT INTO version VALUES ( 'location', '5');
 INSERT INTO version VALUES ( 'grp', '2');
 INSERT INTO version VALUES ( 'event', '1');
-INSERT INTO version VALUES ( 'aliases', '4');
+INSERT INTO version VALUES ( 'aliases', '5');
 INSERT INTO version VALUES ( 'active_sessions', '1');
 INSERT INTO version VALUES ( 'acc', '2');
 INSERT INTO version VALUES ( 'config', '1');
