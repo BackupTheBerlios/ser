@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.79 2005/02/24 17:07:55 sobomax Exp $
+/* $Id: nathelper.c,v 1.80 2005/02/24 17:27:20 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -279,7 +279,6 @@ struct rtpp_node {
 	int			rn_disabled;	/* found unaccessible? */
 	unsigned		rn_weight;	/* for load balancing */
 	int			rn_recheck_ticks;
-	struct rtpp_head	*rn_head;
 	struct rtpp_node	*rn_next;
 };
 
