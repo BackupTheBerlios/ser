@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_base.c,v 1.10 2004/01/20 15:53:47 dcm Exp $
+ * $Id: dbt_base.c,v 1.11 2004/01/20 16:04:17 dcm Exp $
  *
  * DBText module core functions
  *
@@ -45,7 +45,7 @@
 #include "dbt_api.h"
 
 #ifndef CFG_DIR
-#define CFG_DIR "/"
+#define CFG_DIR "/tmp"
 #endif
 
 #define DBT_ID		"dbtext://"
