@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.h,v 1.3 2003/03/31 15:53:17 jih Exp $
+ * $Id: enum_mod.h,v 1.4 2003/12/17 06:04:48 jih Exp $
  *
  * Enum module headers
  *
@@ -39,6 +39,7 @@
  * Internal module variables
  */
 extern str suffix;           /* str version of domain_suffix */
+extern str service;          /* default (empty) service */
 
 
 #endif /* ENUM_MOD_H */
