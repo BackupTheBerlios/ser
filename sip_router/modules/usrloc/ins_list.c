@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.c,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: ins_list.c,v 1.5 2003/02/02 04:34:55 calrissian Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -45,7 +45,7 @@ int put_on_ins_list(struct ucontact* _c)
 
 	p = (struct ins_itm*)pkg_malloc(sizeof(struct ins_itm) + _c->callid.len);
 	if (p == 0) {
-		LOG(L_ERR, "put_on_ins_list(): No memory left");
+		LOG(L_ERR, "put_on_ins_list(): No memory left\n");
 		return -1;
 	}
 
