@@ -1,10 +1,11 @@
-/* $Id: sr_module.h,v 1.7 2002/03/01 10:53:16 janakj Exp $
+/* $Id: sr_module.h,v 1.8 2002/03/26 19:21:53 janakj Exp $
  *
  * modules/plugin strtuctures declarations
  *
  */
 
-#ifndef sr_module
+#ifndef sr_module_h
+#define sr_module_h
 
 #include "msg_parser.h" /* for sip_msg */
 
