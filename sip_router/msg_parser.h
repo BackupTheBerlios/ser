@@ -1,10 +1,12 @@
 /*
- * $Id: msg_parser.h,v 1.5 2001/09/25 23:06:39 andrei Exp $
+ * $Id: msg_parser.h,v 1.6 2001/10/23 19:59:08 andrei Exp $
  */
 
 #ifndef msg_parser_h
 #define msg_parser_h
 
+
+#include "data_lump.h"
 
 #define SIP_REQUEST 1
 #define SIP_REPLY   2
@@ -75,6 +77,9 @@ struct sip_msg{
 
 	/* modifications */
 	char* new_uri; /* changed first line uri*/
+
+	struct lump* add_rm;      /* used for all the forwarded messages */
+	struct lump* repl_add_rm; /* only for localy generated replies !!!*/
 	
 };
 

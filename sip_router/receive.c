@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.9 2001/10/11 23:03:42 andrei Exp $
+ *$Id: receive.c,v 1.10 2001/10/23 19:59:08 andrei Exp $
  */
 
 #include <string.h>
@@ -72,10 +72,14 @@ int receive_msg(char* buf, unsigned int len, unsigned long src_ip)
 	}
 skip:
 	if (msg.new_uri) free(msg.new_uri);
+	if (msg.add_rm) free_lump_list(msg.add_rm);
+	if (msg.repl_add_rm) free_lump_list(msg.repl_add_rm);
 	free(msg.orig);
 	return 0;
 error:
 	if (msg.new_uri) free(msg.new_uri);
+	if (msg.add_rm) free_lump_list(msg.add_rm);
+	if (msg.repl_add_rm) free_lump_list(msg.repl_add_rm);
 	free(msg.orig);
 error1:
 	return -1;
