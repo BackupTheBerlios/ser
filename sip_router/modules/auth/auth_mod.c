@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.6 2002/03/05 14:36:50 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.7 2002/03/08 01:09:35 janakj Exp $ 
  */
 
 #include <stdlib.h>
@@ -21,22 +21,28 @@ static struct module_exports auth_exports = {"auth",
 						     "authorize",
 						     "challenge",
 						     "is_user",
-						     "is_in_group"
+						     "is_in_group",
+						     "check_to",
+						     "check_from"
 					     },
 					     (cmd_function[]) {
 						     authorize, 
 						     challenge,
 						     is_user,
-						     is_in_group
+						     is_in_group,
+						     check_to,
+						     check_from
 					     },
-					     (int[]) {1, 1, 1, 1},
+					     (int[]) {1, 1, 1, 1, 0, 0},
 					     (fixup_function[]) {
 						     NULL, 
 						     NULL,
 						     NULL,
+						     NULL,
+						     NULL,
 						     NULL
 					     },
-					     4,
+					     6,
 					     NULL, /* response function */
 					     destroy, /* destroy function */
 					     NULL,  /* oncancel function */
