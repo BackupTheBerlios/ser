@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.22 2002/12/10 19:41:44 andrei Exp $
+ * $Id: msg_parser.c,v 1.23 2002/12/17 18:14:32 janakj Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -511,7 +511,6 @@ void free_sip_msg(struct sip_msg* msg)
 	if (msg->add_rm)      free_lump_list(msg->add_rm);
 	if (msg->repl_add_rm) free_lump_list(msg->repl_add_rm);
 	if (msg->reply_lump)   free_reply_lump(msg->reply_lump);
-	if (msg->parsed_uri_ok) free_uri(&msg->parsed_uri);
 	pkg_free(msg->orig);
 	/* don't free anymore -- now a pointer to a static buffer */
 #	ifdef DYN_BUF

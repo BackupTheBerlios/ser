@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.h,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: parse_uri.h,v 1.5 2002/12/17 18:14:32 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -45,7 +45,5 @@
  */
 int parse_uri(char *buf, int len, struct sip_uri* uri);
 int parse_sip_msg_uri(struct sip_msg* msg);
-
-void free_uri(struct sip_uri* u);
 
 #endif /* PARSE_URI_H */
