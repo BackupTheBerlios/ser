@@ -1,5 +1,5 @@
 /*
- * $Id: acc.h,v 1.6 2003/04/04 03:21:58 jiri Exp $
+ * $Id: acc.h,v 1.7 2003/04/05 14:05:18 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -51,6 +51,8 @@
 /* syslog attribute names */
 #define A_CALLID "call_id"
 #define A_CALLID_LEN (sizeof(A_CALLID)-1)
+#define A_CSEQ "cseq"
+#define A_CSEQ_LEN (sizeof(A_CSEQ)-1)
 #define A_TOTAG "totag"
 #define A_TOTAG_LEN (sizeof(A_TOTAG)-1)
 #define A_FROM "from"
@@ -79,6 +81,8 @@
 #define A_UID_LEN (sizeof(A_UID)-1)
 #define A_UP_IURI "userpart"
 #define A_UP_IURI_LEN (sizeof(A_UP_IURI)-1)
+#define A_CODE "code"
+#define A_CODE_LEN (sizeof(A_CODE)-1)
 
 #define A_SEPARATOR ", " /* must be shorter than ACC! */
 #define A_SEPARATOR_LEN (sizeof(A_SEPARATOR)-1)
@@ -97,6 +101,7 @@ void acc_log_missed( struct cell* t, struct sip_msg *reply,
 void acc_log_ack(  struct cell* t , struct sip_msg *ack );
 void acc_log_reply(  struct cell* t , struct sip_msg *reply,
 	unsigned int code);
+
 #ifdef SQL_ACC
 int acc_db_request( struct sip_msg *rq, struct hdr_field *to,
 		str* phrase,  char *table, char *fmt);
@@ -104,6 +109,16 @@ void acc_db_missed( struct cell* t, struct sip_msg *reply,
 	unsigned int code );
 void acc_db_ack(  struct cell* t , struct sip_msg *ack );
 void acc_db_reply(  struct cell* t , struct sip_msg *reply,
+	unsigned int code);
+#endif
+
+#ifdef RAD_ACC
+int acc_rad_request( struct sip_msg *rq, struct hdr_field *to,
+		str* phrase);
+void acc_rad_missed( struct cell* t, struct sip_msg *reply,
+	unsigned int code );
+void acc_rad_ack(  struct cell* t , struct sip_msg *ack );
+void acc_rad_reply(  struct cell* t , struct sip_msg *reply,
 	unsigned int code);
 #endif
 

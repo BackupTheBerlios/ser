@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2003/04/04 03:21:58 jiri Exp $
+# $Id: Makefile,v 1.5 2003/04/05 14:05:18 jiri Exp $
 #
 # acc module makefile
 #
@@ -8,7 +8,12 @@
 auto_gen=
 NAME=acc.so
 LIBS=
-DEFS+=-DSQL_ACC
+
+# uncomment the next line if you wish to enable SQL accounting
+#DEFS+=-DSQL_ACC
+
+# uncomment the next two lines if you wish to enable RADIUS accounting
 #DEFS+=-DRAD_ACC
+#LIBS=-L$(LOCALBASE)/lib -lradiusclient
 
 include ../../Makefile.modules
