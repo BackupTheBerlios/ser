@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.136 2002/12/12 21:46:38 andrei Exp $
+ * $Id: main.c,v 1.137 2003/01/05 23:28:55 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -84,7 +84,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.136 2002/12/12 21:46:38 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.137 2003/01/05 23:28:55 jiri Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -440,14 +440,21 @@ void handle_sigs()
 
 	switch(sig_flag){
 		case 0: break; /* do nothing*/
-		case SIGINT:
 		case SIGPIPE:
+				/* SIGPIPE might be rarely received on use of
+				   exec module; simply ignore it
+				 */
+				LOG(L_WARN, "WARNING: SIGPIPE received and ignored\n");
+				break;
+		case SIGINT:
 		case SIGTERM:
 			/* we end the program in all these cases */
 			if (sig_flag==SIGINT)
 				DBG("INT received, program terminates\n");
-			else if (sig_flag==SIGPIPE)
+#ifdef OBSOLETED
+			else if (sig_flag==SIGPIPE) 
 				DBG("SIGPIPE received, program terminates\n");
+#endif
 			else
 				DBG("SIGTERM received, program terminates\n");
 				
