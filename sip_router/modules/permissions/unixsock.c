@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock.c,v 1.1 2004/03/05 22:33:05 janakj Exp $
+ * $Id: unixsock.c,v 1.2 2004/03/27 09:29:35 andrei Exp $
  *
  * UNIX Domain Socket Interface
  *
@@ -99,7 +99,7 @@ static int trusted_dump(str* msg)
 /*
  * Register domain fifo functions
  */
-int init_trusted_unxisock(void) 
+int init_trusted_unixsock(void) 
 {
 	if (unixsock_register_cmd("trusted_reload", trusted_reload) < 0) {
 		LOG(L_CRIT, "init_trusted_unixsock: Cannot register trusted_reload\n");
