@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.c,v 1.48 2002/03/12 23:58:26 jku Exp $
+ * $Id: msg_parser.c,v 1.49 2002/03/22 20:38:56 andrei Exp $
  *
  * sip msg. header proxy parser 
  *
@@ -767,6 +767,10 @@ int parse_msg(char* buf, unsigned int len, struct sip_msg* msg)
 	return 0;
 	
 error:
+	/* more debugging, msg->orig is/should be null terminated*/
+	LOG(L_ERR, "ERROR: parse_msg: ip source=%x dest=%x; message=<%s>\n",
+			msg->src_ip, msg->dst_ip,
+			msg->orig);
 	return -1;
 }
 
