@@ -4,8 +4,8 @@
     <chapterinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2003/07/14 21:03:05 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2003/07/15 06:36:45 $</date>
 	    </revision>
 	</revhistory>
     </chapterinfo>
@@ -62,6 +62,6 @@
 
 <!-- Keep this element at the end of the file
 Local Variables:
-sgml-parent-document: ("module.sgml" "Book" "chapter")
+sgml-parent-document: ("exec.sgml" "Book" "chapter")
 End:
 -->
