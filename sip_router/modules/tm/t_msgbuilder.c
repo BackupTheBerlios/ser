@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.31 2003/06/29 22:28:03 jiri Exp $
+ * $Id: t_msgbuilder.c,v 1.32 2003/07/07 15:06:23 andrei Exp $
  *
  * message printing
  *

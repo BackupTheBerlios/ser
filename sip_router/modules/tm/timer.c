@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.47 2003/06/30 15:48:44 andrei Exp $
+ * $Id: timer.c,v 1.48 2003/07/07 15:06:23 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
