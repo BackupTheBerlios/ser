@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.14 2001/11/29 12:49:49 jku Exp $
+ * $Id: cfg.lex,v 1.15 2002/04/03 21:55:09 janakj Exp $
  *
  * scanner for cfg files
  */
@@ -88,6 +88,7 @@ CHECK_VIA	check_via
 LOOP_CHECKS	loop_checks
 
 LOADMODULE	loadmodule
+MODPARAM        modparam
 
 /* values */
 YES			"yes"|"true"|"on"|"enable"
@@ -162,6 +163,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{CHECK_VIA}	{ count(); yylval.strval=yytext; return CHECK_VIA; }
 <INITIAL>{LOOP_CHECKS}	{ count(); yylval.strval=yytext; return LOOP_CHECKS; }
 <INITIAL>{LOADMODULE}	{ count(); yylval.strval=yytext; return LOADMODULE; }
+<INITIAL>{MODPARAM}     { count(); yylval.strval=yytext; return MODPARAM; }
 
 <INITIAL>{EQUAL}	{ count(); return EQUAL; }
 <INITIAL>{EQUAL_T}	{ count(); return EQUAL_T; }

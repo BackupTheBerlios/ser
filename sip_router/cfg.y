@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.22 2002/03/02 02:20:00 andrei Exp $
+ * $Id: cfg.y,v 1.23 2002/04/03 21:55:09 janakj Exp $
  *
  *  cfg grammar
  */
@@ -18,6 +18,7 @@
 #include "route.h"
 #include "dprint.h"
 #include "sr_module.h"
+#include "modparam.h"
 
 
 #ifdef DEBUG_DMALLOC
@@ -80,6 +81,7 @@ void* f_tmp;
 %token CHECK_VIA
 %token LOOP_CHECKS
 %token LOADMODULE
+%token MODPARAM
 %token MAXBUFFER
 
 
@@ -230,7 +232,18 @@ module_stm:	LOADMODULE STRING	{ DBG("loading module %s\n", $2);
 								  		yyerror("failed to load module");
 								  }
 								}
-		 |	LOADMODULE error	{ yyerror("string expected");  }
+		 | LOADMODULE error	{ yyerror("string expected");  }
+                 | MODPARAM LPAREN STRING COMMA STRING COMMA STRING RPAREN {
+			 if (set_mod_param($3, $5, STR_PARAM, $7) != 0) {
+				 yyerror("Can't set module parameter");
+			 }
+		   }
+                 | MODPARAM LPAREN STRING COMMA STRING COMMA NUMBER RPAREN {
+			 if (set_mod_param($3, $5, INT_PARAM, (void*)$7) != 0) {
+				 yyerror("Can't set module parameter");
+			 }
+		   }
+                 | MODPARAM error { yyerror("Invalid arguments"); }
 		 ;
 
 
