@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.h,v 1.5 2003/03/13 16:30:40 janakj Exp $
+ * $Id: ins_list.h,v 1.6 2003/03/13 22:13:06 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -49,7 +49,7 @@ struct ins_itm {
 	str* user;
 	str* cont;
 	int cid_len;
-	char callid[0];
+	char callid[1];
 };
 
 

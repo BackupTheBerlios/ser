@@ -1,5 +1,5 @@
 /* 
- * $Id: ins_list.c,v 1.8 2003/03/13 16:30:40 janakj Exp $
+ * $Id: ins_list.c,v 1.9 2003/03/13 22:13:06 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -75,7 +75,7 @@ int process_ins_list(str* _d)
 {
 	struct ins_itm* p;
 	char b[256];
-	db_key_t keys[] = {user_col, contact_col, expires_col, q_col, callid_col, cseq_col, replicate_col, state_col};
+	db_key_t keys[8];
 	db_val_t vals[8];
 
 	keys[0] = user_col;
