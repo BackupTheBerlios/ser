@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.5 2002/08/27 09:47:03 janakj Exp $
+ * $Id: ul_mod.c,v 1.6 2002/08/27 12:14:05 janakj Exp $
  *
  * Usrloc module interface
  */
@@ -13,6 +13,7 @@
 #include "udomain.h"         /* {insert,delete,get,release}_urecord */
 #include "urecord.h"         /* {insert,delete,get}_ucontact */
 #include "ucontact.h"        /* update_ucontact */
+#include "ul_fifo.h"
 
 
 static int mod_init(void);                          /* Module initialization function */
@@ -137,7 +138,8 @@ static int mod_init(void)
 	printf("usrloc module - initializing\n");
 
 	register_timer(timer, NULL, timer_interval);
-	
+	init_ul_fifo();
+
 	if (db_mode != NO_DB) {
 		if (bind_dbmod() < 0) {
 			LOG(L_ERR, "mod_init(): Can't bind database module\n");

@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.6 2002/08/27 11:15:49 janakj Exp $
+ * $Id: dlist.c,v 1.7 2002/08/27 12:14:05 janakj Exp $
  *
  * List of registered domains
  */
@@ -17,7 +17,7 @@
 /*
  * List of all registered domains
  */
-static dlist_t* root = 0;
+dlist_t* root = 0;
 
 
 /*

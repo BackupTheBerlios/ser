@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.h,v 1.3 2002/08/21 20:09:02 janakj Exp $
+ * $Id: dlist.h,v 1.4 2002/08/27 12:14:05 janakj Exp $
  *
  * List of registered domains
  */
@@ -20,6 +20,8 @@ typedef struct dlist {
 	struct dlist* next;  /* Next element in the list */
 } dlist_t;
 
+
+extern dlist_t* root;
 
 /*
  * Function registers a new domain with usrloc
