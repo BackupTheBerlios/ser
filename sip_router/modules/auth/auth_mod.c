@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.42 2003/10/10 02:19:44 jiri Exp $ 
+ * $Id: auth_mod.c,v 1.43 2004/01/21 18:24:15 janakj Exp $ 
  *
  * Digest Authentication Module
  *
@@ -50,9 +50,7 @@
 
 MODULE_VERSION
 
-
 #define RAND_SECRET_LEN 32
-
 
 /*
  * Module destroy function prototype
