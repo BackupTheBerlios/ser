@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.h,v 1.6 2004/08/24 09:00:42 janakj Exp $
+ * $Id: t_fifo.h,v 1.7 2004/11/17 21:09:26 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -27,6 +27,7 @@
  * History:
  * --------
  *  2003-03-31  200 for INVITE/UAS resent even for UDP (jiri) 
+ *  2004-11-15  t_write_xxx can print whatever avp/hdr
  */
 
 
@@ -35,8 +36,13 @@
 #define _TM_T_FIFO_H_
 
 #include "../../parser/msg_parser.h"
+#include "../../sr_module.h"
 
 extern int tm_unix_tx_timeout;
+
+int fixup_t_write( void** param, int param_no);
+
+int parse_tw_append( modparam_t type, param_func_param_t param_val);
 
 int init_twrite_lines();
 
