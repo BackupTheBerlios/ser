@@ -1,5 +1,5 @@
 /*
- * $Id: db_con.c,v 1.1 2003/04/08 01:25:35 lgfausak Exp $
+ * $Id: db_con.c,v 1.2 2004/02/08 15:30:59 lgfausak Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -37,12 +37,12 @@
  */
 
 #include <string.h>
-#include "../../db/db_con.h"
 #include "../../dprint.h"
 #include "../../mem/mem.h"
 #include "defs.h"
 #include "con_postgres.h"
 #include "aug_std.h"
+#include "db_con.h"
 
 /*
  * Store name of table that will be used by
