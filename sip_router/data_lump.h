@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump.h,v 1.9 2003/10/20 17:10:13 andrei Exp $
+ * $Id: data_lump.h,v 1.10 2004/02/23 16:40:49 bogdan Exp $
  *
  * adding/removing headers or any other data chunk from a message
  *
@@ -76,5 +76,9 @@ struct lump* anchor_lump(struct sip_msg* msg, int offset, int len, int type);
 struct lump* dup_lump_list( struct lump *l );
 /* frees a shallowly duplicated lump list */
 void free_duped_lump_list(struct lump* l);
+
+
+/* remove all non-SHMEM lumps from the list */
+void del_nonshm_lump( struct lump** lump_list );
 
 #endif
