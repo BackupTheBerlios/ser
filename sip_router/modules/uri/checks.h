@@ -1,5 +1,5 @@
 /*
- * $Id: checks.h,v 1.1 2003/02/26 14:04:38 janakj Exp $
+ * $Id: checks.h,v 1.2 2003/02/26 14:29:04 janakj Exp $
  *
  * Various URI checks
  *
@@ -59,7 +59,7 @@ int check_from(struct sip_msg* _msg, char* _str1, char* _str2);
 
 
 /*
- * Check if uri belongs to a local user
+ * Check if uri belongs to a local user, contributed by Juha Heinanen
  */
 int does_uri_exist(struct sip_msg* _msg, char* _table, char* _s2);
 
