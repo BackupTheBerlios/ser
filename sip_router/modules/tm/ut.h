@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.6 2003/02/19 17:16:41 andrei Exp $
+ * $Id: ut.h,v 1.7 2003/03/10 22:16:34 andrei Exp $
  *
  * utilities
  *
@@ -59,7 +59,7 @@ inline static struct proxy_l *uri2proxy( str *uri, int proto )
 		return 0;
 	}
 	if (parsed_uri.port.s){ 
-		port=str2s((unsigned char*)parsed_uri.port.s, parsed_uri.port.len, &err);
+		port=str2s(parsed_uri.port.s, parsed_uri.port.len, &err);
 		if (err){
 			LOG(L_ERR, "ERROR: t_relay: bad port in uri: <%.*s>\n",
 				parsed_uri.port.len, parsed_uri.port.s);
