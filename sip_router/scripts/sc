@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: sc,v 1.55 2003/05/28 09:11:00 jiri Exp $
+# $Id: sc,v 1.56 2003/05/28 20:23:42 jiri Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -62,7 +62,7 @@ ACL_GROUPS="local ld int voicemail free-pstn"
 FOREVER='2020-05-28 21:32:15'
 FOREVER_REL=1073741823
 
-VERSION='$Revision: 1.55 $'
+VERSION='$Revision: 1.56 $'
 #### SQL names
 
 # Usr Loc Table
@@ -87,6 +87,7 @@ ACL_TABLE=grp
 ACL_USER_COLUMN=username
 ACL_GROUP_COLUMN=grp
 ACL_MODIFIED_COLUMN=last_modified
+ACL_DOMAIN_COLUMN=domain
 
 # aliases table
 A_TABLE=aliases
@@ -420,8 +421,8 @@ acl() {
 				fi
 
         		QUERY="insert into $ACL_TABLE \
-                	($ACL_USER_COLUMN,$ACL_GROUP_COLUMN,$ACL_MODIFIED_COLUMN) \
-                	values ('$SIP_USER','$1', now());"
+                	($ACL_USER_COLUMN,$ACL_GROUP_COLUMN,$ACL_MODIFIED_COLUMN, $ACL_DOMAIN_COLUMN ) \
+                	values ('$SIP_USER','$1', now(), '$SIP_DOMAIN' );"
 				sql_query "$QUERY"
 				if [ $? -ne 0 ] ; then
 					echo "SQL Error"
