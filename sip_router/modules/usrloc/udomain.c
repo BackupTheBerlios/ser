@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.21 2003/04/03 20:32:45 calrissian Exp $ 
+ * $Id: udomain.c,v 1.22 2003/04/24 02:41:19 calrissian Exp $ 
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -248,7 +248,7 @@ int preload_udomain(udomain_t* _d)
 		callid.len  = strlen(callid.s);
 
 		if (use_domain) {
-			domain    = (char*)VAL_STRING(ROW_VALUES(row) + 7);
+			domain    = (char*)VAL_STRING(ROW_VALUES(row) + 8);
 			snprintf(b, 256, "%.*s@%s", user.len, user.s, domain);
 			user.s = b;
 			user.len = strlen(b);
