@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.3 2002/08/09 11:23:36 janakj Exp $ 
+ * $Id: hf.c,v 1.4 2002/08/09 12:13:05 janakj Exp $ 
  */
 
 #include "hf.h"
@@ -34,7 +34,7 @@ void clean_hdr_field(struct hdr_field* hf)
 
                 case HDR_AUTHORIZATION:
 		case HDR_PROXYAUTH:
-			free_credentials((auth_body_t**)(&(hf->parsed));
+			free_credentials((auth_body_t**)(&(hf->parsed)));
 			break;
 
 		case HDR_FROM:
