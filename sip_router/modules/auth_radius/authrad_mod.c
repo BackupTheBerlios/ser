@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.10 2003/05/02 12:21:54 jih Exp $ 
+ * $Id: authrad_mod.c,v 1.11 2003/05/02 21:36:29 janakj Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -78,7 +78,7 @@ static cmd_export_t cmds[] = {
  */
 static param_export_t params[] = {
 	{"radius_config", STR_PARAM, &radius_config},
-	{"service_type", INT_PARAM, &service_type},
+	{"service_type",  INT_PARAM, &service_type },
 	{0, 0, 0}
 };
 
