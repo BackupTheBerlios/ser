@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.52 2004/03/30 09:44:19 andrei Exp $
+ * $Id: tcp_main.c,v 1.53 2004/03/31 11:01:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -942,7 +942,7 @@ static int send2child(struct tcp_connection* tcpconn)
 	tcp_children[idx].busy++;
 	tcp_children[idx].n_reqs++;
 	if (min_busy){
-		LOG(L_WARN, "WARNING: send2child: no free tcp receiver, "
+		DBG("WARNING: send2child: no free tcp receiver, "
 				" connection passed to the least busy one (%d)\n",
 				min_busy);
 	}
