@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.10 2004/10/24 11:36:41 jiri Exp $
+ * $Id: xl_lib.c,v 1.11 2004/10/24 12:55:51 jiri Exp $
  *
  * XLOG module
  *
@@ -679,7 +679,7 @@ int xl_print_log(struct sip_msg* msg, xl_elog_p log, char *buf, int *len)
 	{
 		/* put the text */
 		if(it->text.s && it->text.len>0) {
-			if(n+it->text.len+1 <= *len) {
+			if(n+it->text.len+1 >= *len) {
 				LOG(L_ERR, "XLOG: xl_print_log: buffer text overflow ...\n");
 				break;
 			}
