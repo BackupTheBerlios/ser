@@ -1,7 +1,7 @@
-/* 
- * Route & Record-Route module, helper functions
+/*
+ * Route & Record-Route module, strict routing support
  *
- * $Id: utils.h,v 1.8 2002/11/14 14:01:41 janakj Exp $ 
+ * $Id: strict.c,v 1.1 2002/11/14 14:01:41 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -28,14 +28,34 @@
  */
 
 
-#ifndef UTILS_H
-#define UTILS_H
-
-#include "../../str.h"
+#include "strict.h"
+#include "common.h"
+#include "../../dprint.h"
 
 /*
- * Find a character occurence that is not quoted
+ * Do strict routing as defined in RFC2584
  */
-char* find_not_quoted(str* _s, char _c);
+int strict_route(struct sip_msg* _m, char* _s1, char* _s2)
+{
+	str first_uri;
+	
+	if (find_first_route(_m) == 0) {
+		if (parse_first_route(_m->route,  &first_uri) < 0) {
+			LOG(L_ERR, "strict_route(): Error while parsing Route HF\n");
+			return -1;
+		}
+		if (rewrite_RURI(_m, &first_uri) < 0) {
+			LOG(L_ERR, "strict_route(): Error while rewriting request URI\n");
+			return -2;
+		}
+		if (remove_TMRoute(_m, _m->route, &first_uri) < 0) {
+			LOG(L_ERR, "strict_route(): Error while removing the topmost Route URI\n");
+			return -3;
+		}
+		return 1;
+	}
+	
+	DBG("strict_route(): There is no Route HF\n");
+	return -1;
+}
 
-#endif
