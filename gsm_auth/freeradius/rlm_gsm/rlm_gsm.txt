@@ -1,0 +1,158 @@
+GSM Authentication
+==================
+
+(at this moment using a MySQL database)
+
+
+1.   INSTALLATION
+
+This module depends on MySQL server and client libraries. For details on
+obtaining MySQL look at <http://www.mysql.org>.
+
+Copy rlm_gsm directory you find in archive in src/modules of FreeRADIUS if it
+isn't already there.
+
+Type: ./configure in base directory of FreeRADIUS
+
+Make sure rlm_gsm is listed in "MODULES" variable in Make.inc file (you must
+add it by hand).
+
+Proceed with normal installation steps of FreeRADIUS server:
+'make' and 'make install'.
+
+If you get error during compilation of rlm_gsm module it might be because of
+libmysqlclient library. Locate where it is on your disk along with 'mysql.h'
+file and set the appropriate values in Makefile from 'src/modules/rlm_gsm/'.
+
+Then you must create the database where the records having
+(imsi, challenge, session key, response, realm, access time)
+on a row are stored.
+
+You can use next SQL script:
+
+<snip>
+
+-- SQL script for RLM_GSM (FreeRADIUS) module
+
+DROP DATABASE IF EXISTS gsm_auth;
+
+-- create th database
+CREATE DATABASE gsm_auth;
+
+USE gsm_auth;
+
+-- create the table
+CREATE TABLE gsm_user(
+      -- IMSI
+    imsi VARCHAR(32) NOT NULL PRIMARY KEY,
+      -- REALM
+    realm VARCHAR(64) NOT NULL DEFAULT "localhost",
+      -- GSM challenge
+    challenge VARCHAR(64) NOT NULL,
+      -- GSM response
+    response VARCHAR(64) NOT NULL,
+      -- GSM session key
+    session_key VARCHAR(64) NOT NULL,
+      -- expiration time
+    access_time DATETIME NOT NULL DEFAULT 0
+);
+
+-- adding a sample user
+INSERT INTO gsm_user (imsi, realm, challenge, response, \
+	session_key, access_time) \
+	VALUES ('232033006758425', 'alpha.org', \
+	'30000000000000000000000000000000', '1EF8EED7', \
+	'AB9CC857FC15E400', NOW());
+
+</snip>
+
+If you want to give the access rights to a user for GSM module's database you
+can use next MySQL command:
+
+GRANT GRANT select, update ON gsm_auth.* TO your_user@your_host IDENTIFIED BY
+'password'.
+
+If you want same user for administrative purposes (adding/deleting) you must
+grant insert and delete too.
+
+Next step is to configure RADIUS server to load gsm module and set the
+appropriate values for configuration options of gsm module -- see section
+"CONFIGURATION"
+
+
+2. GSM AUTHENTICATION ATTRIBUTES
+
+The mapping between RADIUS AVPs and GSM authentication attributes is as
+following:
+
+IMSI          - PW_USER_NAME (1)
+GSM Response  - PW_USER_PASSWORD (2)
+GSM Challenge - PW_CHAP_CHALLENGE (60)
+REALM         - PW_USER_REALM (experimental = 223)
+
+A request for GSM authentication is recognized using Service-Type whose value
+can be set in configuration file.
+
+
+3. CONFIGURATION
+
+Add following subsection to the modules{} section of radiusd.conf to control
+the rlm_gsm module:
+
+  modules { ...
+	
+	gsm {
+		# Service-Type - same as the one sent by clients
+		service_type = 23
+		# username to login to MySQL server
+		mysql_user = user
+		# password to login to MySQL server
+		mysql_password = xxx
+		# address of MySQL server
+		mysql_host = 127.0.0.1
+		# port to connect to MySQL server
+		mysql_port = 3306
+		# database name which stores the table with
+		# (imsi, challenge, session key, response) records
+		mysql_db = gsm_auth
+		# table storing the values
+		mysql_table = gsm_user
+		# name of column storing IMSI
+		mysql_imsi = imsi
+		# name of column storing REALM
+		mysql_realm = realm
+		# name of column storing CHALLENGE
+		mysql_challenge = challenge
+		# name of column storing RESPONSE
+		mysql_response = response
+		# name of column storing SESSION KEY
+		mysql_key = session_key
+		# name of column storing last access time
+		mysql_access = access_time
+	}
+  }
+
+In authorize section you must have 'gsm' set:
+
+authorize {
+...
+	gsm
+...
+}
+
+In authenticate section you must have:
+
+authenticate {
+...
+	#
+	#  GSM authentication.
+	Auth-Type GSM {
+		gsm
+	}
+...
+}
+
+In 'clients' or 'clients.conf' (depending on your RADIUS server) you must allow
+SER to connect to Radius server by setting same password as in radiusclient's
+'servers' file.
+
