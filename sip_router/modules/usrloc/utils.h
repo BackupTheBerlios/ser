@@ -1,5 +1,5 @@
 /* 
- * $Id: utils.h,v 1.3 2002/02/24 17:09:10 janakj Exp $ 
+ * $Id: utils.h,v 1.4 2002/03/25 11:08:50 janakj Exp $ 
  */
 
 #ifndef UTILS_H
@@ -67,6 +67,5 @@ char* find_not_quoted(char* _b, char c);
  * Skip the name part of a URL if any
  */
 char* eat_name(char* _b);
-
 
 #endif
