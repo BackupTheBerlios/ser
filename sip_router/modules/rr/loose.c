@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.3 2002/12/10 11:05:34 janakj Exp $
+ * $Id: loose.c,v 1.4 2002/12/17 18:09:28 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -82,23 +82,17 @@ static inline int cmp_slow(str* _uri)
 		LOG(L_ERR, "cmp_slow(): Error while parsing URI\n");
 	}
 
-	if (uri->port.s) {
-		port = atoi(uri->port.s);
-	} else {
-		port = 5060;
-	}
+	port = (uri->port.s) ? (uri->port_no) : SIP_PORT;
 
 	if (bind_address->port_no == port) {
 		if (uri->host.len == bind_address->address_str.len) {
 			if (!memcmp(uri->host.s, bind_address->address_str.s, uri->host.len)) {
 				DBG("cmp_slow(): equal\n");
-				free_uri(uri);
 				return 0;
 			} else DBG("cmp_slow(): hosts differ\n");
 		} else DBG("cmp_slow(): Host length differs\n");
 	} else DBG("cmp_slow(): Ports differ\n");
 	
-	free_uri(uri);
 	return 1;
 }
 
