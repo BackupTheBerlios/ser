@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.18 2002/08/26 21:53:27 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.19 2002/09/04 15:12:12 janakj Exp $ 
  *
  * Digest Authentication Module
  */
@@ -51,8 +51,8 @@ int (*sl_reply)(struct sip_msg* _msg, char* _str1, char* _str2);
 /*
  * Module parameter variables
  */
-char* db_url       = "sql://janakj:heslo@localhost/ser";
-char* user_column  = "user";
+char* db_url       = "sql://serro:47serro11@localhost/ser";
+char* user_column  = "user_id";
 char* realm_column = "realm";
 char* pass_column  = "ha1";
 
