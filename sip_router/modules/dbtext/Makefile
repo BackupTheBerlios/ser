@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2003/02/07 20:18:07 dcm Exp $
+# $Id: Makefile,v 1.2 2003/05/23 15:43:43 andrei Exp $
 #
 # example module makefile
 #
@@ -8,6 +8,7 @@
 # extra debug messages
 DEFS+=-DDBT_EXTRA_DEBUG
  
+include ../../Makefile.defs
 auto_gen=
 NAME=dbtext.so
 LIBS=

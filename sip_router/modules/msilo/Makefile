@@ -1,10 +1,11 @@
-# $Id: Makefile,v 1.4 2002/09/30 20:02:12 andrei Exp $
+# $Id: Makefile,v 1.5 2003/05/23 15:43:43 andrei Exp $
 #
 # example module makefile
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
 
+include ../../Makefile.defs
 auto_gen=
 NAME=msilo.so
 LIBS=

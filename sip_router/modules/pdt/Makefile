@@ -1,10 +1,11 @@
-# $Id: Makefile,v 1.1 2003/04/04 19:06:56 ramona Exp $
+# $Id: Makefile,v 1.2 2003/05/23 15:43:43 andrei Exp $
 #
 # print example module makefile
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
 
+include ../../Makefile.defs
 auto_gen=
 NAME=pdt.so
 LIBS=

@@ -1,10 +1,11 @@
-# $Id: Makefile,v 1.9 2003/05/02 12:22:16 jih Exp $
+# $Id: Makefile,v 1.10 2003/05/23 15:43:42 andrei Exp $
 #
 # acc module makefile
 #
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
+include ../../Makefile.defs
 auto_gen=
 NAME=acc.so
 LIBS=

@@ -1,10 +1,11 @@
-# $Id: Makefile,v 1.5 2001/12/08 22:06:27 andrei Rel $
+# $Id: Makefile,v 1.6 2003/05/23 15:43:43 andrei Exp $
 #
 # print example module makefile
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
 
+include ../../Makefile.defs
 auto_gen=
 NAME=print.so
 LIBS=
