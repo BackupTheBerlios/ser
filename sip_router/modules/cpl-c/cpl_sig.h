@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_sig.h,v 1.1 2003/07/02 20:09:43 bogdan Exp $
+ * $Id: cpl_sig.h,v 1.2 2003/07/31 17:38:36 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -31,7 +31,8 @@
 
 #include "cpl_run.h"
 
-int cpl_proxy_to_loc_set( struct cpl_interpreter *inter );
+int cpl_proxy_to_loc_set( struct sip_msg *msg, struct location **loc_set,
+													unsigned char flag);
 
 
 #endif
