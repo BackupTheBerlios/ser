@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.28 2003/01/07 23:00:02 jiri Exp $
+$Id: INSTALL,v 1.29 2003/03/16 01:01:22 jiri Exp $
 
 
      ===========================================
@@ -8,6 +8,13 @@ $Id: INSTALL,v 1.28 2003/01/07 23:00:02 jiri Exp $
              http://www.iptel.org/ser/
 
      ===========================================
+
+  This memo gives you hints how to set up SER quickly. To 
+  understand how SER works and how to configure it properly,
+  read admin's guide available from SER website. We also
+  urgue you to read latest ISSUES (available from SER website 
+  too) and check for potential problems in this release.
+  
 
 TOC
 
@@ -305,6 +312,7 @@ proceed, you need to make sure MySQL is installed on your box.
    b) try to login with your SIP client as user 'admin' with password 'heslo'
    c) try adding new users using 
        'serctl add <name> <password> <email>'
+
 
 4. Troubleshooting
 ------------------
