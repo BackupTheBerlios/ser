@@ -1,8 +1,4 @@
-<<<<<<< Makefile.defs
-# $Id: Makefile.defs,v 1.100 2002/06/10 19:00:19 jku Exp $
-=======
-# $Id: Makefile.defs,v 1.100 2002/06/10 19:00:19 jku Exp $
->>>>>>> 1.99
+# $Id: Makefile.defs,v 1.101 2002/06/11 11:04:01 bogdan Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
