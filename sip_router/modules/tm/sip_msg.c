@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.18 2001/12/07 00:32:22 jku Exp $
+ * $Id: sip_msg.c,v 1.19 2001/12/07 00:55:09 jku Exp $
  */
 
 
@@ -193,7 +193,7 @@ hf_error:
 	sh_free( new_hdr );
 error:
 	sip_msg_free( new_msg );
-	sh_free( new_msg );
+	/* sh_free( new_msg ); */
 	return 0;
 
 }
