@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_res.c,v 1.7 2003/11/11 20:46:03 bogdan Exp $
+ * $Id: dbt_res.c,v 1.8 2003/11/17 13:19:24 dcm Exp $
  *
  * DBText module core functions
  *
@@ -491,7 +491,6 @@ int dbt_cmp_val(dbt_val_p _vp, db_val_t* _v)
 		case DB_BITMAP:
 			return (_vp->val.int_val<_v->val.bitmap_val)?-1:
 				(_vp->val.int_val>_v->val.bitmap_val)?1:0;
-			return 1;
 	}
 	return -2;
 }

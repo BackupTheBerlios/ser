@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_base.c,v 1.8 2003/11/07 19:43:40 bogdan Exp $
+ * $Id: dbt_base.c,v 1.9 2003/11/17 13:19:24 dcm Exp $
  *
  * DBText module core functions
  *
@@ -84,7 +84,7 @@ db_con_t* dbt_init(const char* _sqlurl)
 	DBT_CON_CONNECTION(_res) = dbt_cache_get_db(&_s);
 	if (!DBT_CON_CONNECTION(_res))
 	{
-		LOG(L_ERR, "DBT:dbt_init: No enough memory\n");
+		LOG(L_ERR, "DBT:dbt_init: cannot get the link to database\n");
 		return NULL;
 	}
 
