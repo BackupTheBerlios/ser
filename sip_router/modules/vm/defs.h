@@ -1,5 +1,5 @@
 /*
- * $Id: defs.h,v 1.2 2003/11/08 04:17:43 jiri Exp $
+ * $Id: defs.h,v 1.3 2004/01/14 17:55:26 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -32,9 +32,5 @@
 
 #ifndef _VM_DEFS_H
 #define _VM_DEFS_H
-
-/* turn on if you wish to make user lookups using domain name */
-#define MULTI_DOMAIN
-
 
 #endif
