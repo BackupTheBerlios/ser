@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.12 2003/05/26 15:24:45 andrei Exp $
+ * $Id: common.c,v 1.13 2003/09/11 19:44:16 bogdan Exp $
  *
  * Digest Authentication Module
  *
@@ -30,6 +30,7 @@
  * -------
  * 2003-03-15: In case of HDR_PROXYAUTH we always extract realm from From,
  *             even for REGISTERS
+ * 2003-09-11: updated to new build_lump_rpl() interface (bogdan)
  */
 
 
@@ -89,7 +90,7 @@ int send_resp(struct sip_msg* _m, int _code, char* _reason,
 	
 	     /* Add new headers if there are any */
 	if ((_hdr) && (_hdr_len)) {
-		ptr = build_lump_rpl(_hdr, _hdr_len);
+		ptr = build_lump_rpl(_hdr, _hdr_len, LUMP_RPL_HDR);
 		add_lump_rpl(_m, ptr);
 	}
 	
