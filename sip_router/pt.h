@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.10 2004/08/24 08:45:10 janakj Exp $
+ * $Id: pt.h,v 1.11 2004/11/26 16:27:22 andrei Exp $
  *
  * Process Table
  *
@@ -72,18 +72,15 @@ inline static int process_count()
 		/* receivers and attendant */
 		(dont_fork ? 1 : children_no*udp_listeners + 1)
 		/* timer process */
-		+ (timer_list ? 1 : 0 )
+		+ 1 /* always, we need it in most cases, and we can't tell here
+			   & now if we don't need it */
 		/* fifo server */
 		+((fifo==NULL || strlen(fifo)==0) ? 0 : 1 )
 		/* unixsock server*/
 		+(unixsock_name?unixsock_children:0)
 #ifdef USE_TCP
-		+((!tcp_disable)?( 1/* tcp main */ + tcp_children_no + 
-							(timer_list ? 0: 1)):0) /* add the timer proc.
-													  if not already taken
-													  into account */
+		+((!tcp_disable)?( 1/* tcp main */ + tcp_children_no ):0) 
 #endif
-		
 		;
 }
 
