@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.157 2003/04/15 20:39:37 andrei Exp $
+ * $Id: main.c,v 1.158 2003/04/16 18:22:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -98,7 +98,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.157 2003/04/15 20:39:37 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.158 2003/04/16 18:22:47 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -205,8 +205,8 @@ Options:\n\
     -b nr        Maximum receive buffer size which will not be exceeded by\n\
                   auto-probing procedure even if  OS allows\n\
     -m nr        Size of shared memory allocated in Megabytes\n\
-    -w  dir      Change the working directory to \"dir\" (default \"/\")\n\
-    -t  dir      Chroot to \"dir\"\n\
+    -w dir       Change the working directory to \"dir\" (default \"/\")\n\
+    -t dir       Chroot to \"dir\"\n\
     -u uid       Change uid \n\
     -g gid       Change gid \n\
     -P file      Create a pid file\n\

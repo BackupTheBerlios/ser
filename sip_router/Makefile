@@ -1,10 +1,10 @@
-# $Id: Makefile,v 1.106 2003/04/08 16:02:43 andrei Exp $
+# $Id: Makefile,v 1.107 2003/04/16 18:22:47 andrei Exp $
 #
 # sip_router makefile
 #
 # WARNING: requires gmake (GNU Make)
 #  Arch supported: Linux, FreeBSD, SunOS (tested on Solaris 8), OpenBSD (3.2),
-#  limited WinNT (cygwin) support
+#  NetBSD (1.6).
 #
 #  History:
 #  --------
@@ -21,10 +21,16 @@ auto_gen=lex.yy.c cfg.tab.c   #lexx, yacc etc
 #include  source related defs
 include Makefile.sources
 
-override exclude_modules:=CVS cpl cpl-c ext radius_acc radius_auth snmp \
-							jabber sms pa extcmd msilo \
+override exclude_modules:=CVS cpl cpl-c ext extcmd mangler nathelper pdt \
+								postgres snmp  \
+							jabber sms pa  msilo \
 							auth_radius group_radius uri_radius \
 							$(exclude_modules)
+
+# first 2 lines are excluded because of the experimental or incomplete
+# status of the modules
+# the rest is excluded because it depends on external libraries
+#
 static_modules=
 static_modules_path=$(addprefix modules/, $(static_modules))
 extra_sources=$(wildcard $(addsuffix /*.c, $(static_modules_path)))
