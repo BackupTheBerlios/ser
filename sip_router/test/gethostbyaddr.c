@@ -1,8 +1,8 @@
 /*
- * $Id: gethostbyaddr.c,v 1.2 2002/09/19 12:23:55 jku Rel $
+ * $Id: gethostbyaddr.c,v 1.3 2004/08/24 09:01:29 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -35,7 +35,7 @@
 
 
 
-static char* id="$Id: gethostbyaddr.c,v 1.2 2002/09/19 12:23:55 jku Rel $";
+static char* id="$Id: gethostbyaddr.c,v 1.3 2004/08/24 09:01:29 janakj Exp $";
 static char* version="gethostbyaddr 0.1";
 static char* help_msg="\
 Usage: gethostbyaddr   [-hV] -n host\n\
@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 	
 	he=gethostbyname(name);
 	if (he==0){
-			printf("bad adddress <%s>\n", name);
+			printf("bad address <%s>\n", name);
 			goto error;
 	}
 	he=gethostbyaddr(he->h_addr_list[0], he->h_length, he->h_addrtype); 

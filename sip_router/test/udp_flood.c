@@ -1,7 +1,7 @@
-/* $Id: udp_flood.c,v 1.5 2003/11/18 17:53:50 andrei Exp $ */
+/* $Id: udp_flood.c,v 1.6 2004/08/24 09:01:29 janakj Exp $ */
 /*
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -41,7 +41,7 @@
 #include <arpa/inet.h>
 
 
-static char *id="$Id: udp_flood.c,v 1.5 2003/11/18 17:53:50 andrei Exp $";
+static char *id="$Id: udp_flood.c,v 1.6 2004/08/24 09:01:29 janakj Exp $";
 static char *version="udp_flood 0.1";
 static char* help_msg="\
 Usage: udp_flood -f file -d address -p port -c count [-v]\n\

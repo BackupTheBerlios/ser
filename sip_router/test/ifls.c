@@ -1,9 +1,9 @@
-/* $Id: ifls.c,v 1.6 2004/07/01 15:33:58 andrei Exp $
+/* $Id: ifls.c,v 1.7 2004/08/24 09:01:29 janakj Exp $
  *
  *
  * test programs, list all interfaces and their ip address
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -56,7 +56,7 @@
 
 
 static char* version="ifls 0.1";
-static char* id="$Id: ifls.c,v 1.6 2004/07/01 15:33:58 andrei Exp $";
+static char* id="$Id: ifls.c,v 1.7 2004/08/24 09:01:29 janakj Exp $";
 static char* help_msg="\
 Usage: ifls [-6hV} [interface...]\n\
 (if no interface name is specified it will list all the interfaces)\n\
@@ -314,7 +314,7 @@ int main(int argc, char**argv)
 				break;
 			case '?':
 				if (isprint(optopt))
-					fprintf(stderr, "Unknow option `-%c´\n", optopt);
+					fprintf(stderr, "Unknown option `-%c´\n", optopt);
 				else
 					fprintf(stderr, "Unknown character `\\x%x´\n", optopt);
 				goto error;

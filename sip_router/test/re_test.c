@@ -1,8 +1,8 @@
 
-/* $Id: re_test.c,v 1.2 2003/11/22 13:25:46 andrei Exp $ */
+/* $Id: re_test.c,v 1.3 2004/08/24 09:01:29 janakj Exp $ */
 /*
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -47,7 +47,7 @@
 #include <regex.h>
 
 
-static char *id="$Id: re_test.c,v 1.2 2003/11/22 13:25:46 andrei Exp $";
+static char *id="$Id: re_test.c,v 1.3 2004/08/24 09:01:29 janakj Exp $";
 static char *version="re_test 0.1";
 static char* help_msg="\
 Usage: re_test [-f file] regular_expression \n\

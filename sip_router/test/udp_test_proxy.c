@@ -1,8 +1,8 @@
 /* 
- * $Id: udp_test_proxy.c,v 1.3 2002/09/19 12:23:55 jku Rel $
+ * $Id: udp_test_proxy.c,v 1.4 2004/08/24 09:01:29 janakj Exp $
  *
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -41,7 +41,7 @@
 
 
 
-static char *id="$Id: udp_test_proxy.c,v 1.3 2002/09/19 12:23:55 jku Rel $";
+static char *id="$Id: udp_test_proxy.c,v 1.4 2004/08/24 09:01:29 janakj Exp $";
 static char *version="udp_test_proxy 0.1";
 static char* help_msg="\
 Usage: udp_test_proxy  -l address -s port -d address -p port [-n no] [-v]\n\

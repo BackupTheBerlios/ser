@@ -1,9 +1,9 @@
 /*
- * $Id: parse_rr.h,v 1.9 2003/10/29 12:25:31 dcm Exp $
+ * $Id: parse_rr.h,v 1.10 2004/08/24 09:01:26 janakj Exp $
  *
  * Route & Record-Route Parser
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

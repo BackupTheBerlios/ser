@@ -1,7 +1,7 @@
-/* $Id: resolver_test.c,v 1.2 2002/09/19 12:23:55 jku Rel $ */
+/* $Id: resolver_test.c,v 1.3 2004/08/24 09:01:29 janakj Exp $ */
 /*
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -41,7 +41,7 @@
 #include <arpa/inet.h>
 
 
-static char *id="$Id: resolver_test.c,v 1.2 2002/09/19 12:23:55 jku Rel $";
+static char *id="$Id: resolver_test.c,v 1.3 2004/08/24 09:01:29 janakj Exp $";
 static char *version="resolver_test 0.1";
 static char* help_msg="\
 Usage: resolver -n address [-c count] [-v]\n\

@@ -1,10 +1,10 @@
 /*
- * $Id: parse_via.c,v 1.22 2004/03/31 09:29:55 andrei Exp $ 
+ * $Id: parse_via.c,v 1.23 2004/08/24 09:01:27 janakj Exp $ 
  *
  * via parsing automaton
  * 
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

@@ -1,9 +1,9 @@
 /* 
- * $Id: case_dive.h,v 1.1 2004/01/18 16:17:56 janakj Exp $ 
+ * $Id: case_dive.h,v 1.2 2004/08/24 09:01:24 janakj Exp $ 
  *
  * Diversion Header Field Parsing Macros
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

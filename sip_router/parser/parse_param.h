@@ -1,9 +1,9 @@
 /* 
- * $Id: parse_param.h,v 1.9 2004/08/13 12:07:11 janakj Exp $
+ * $Id: parse_param.h,v 1.10 2004/08/24 09:01:26 janakj Exp $
  *
  * Generic Parameter Parser
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -46,7 +46,7 @@ typedef enum ptype {
 	P_OTHER = 0, /* Unknown parameter */
 	P_Q,         /* Contact: q parameter */
 	P_EXPIRES,   /* Contact: expires parameter */
-	P_METHODS,   /* Contact: method parameter */
+	P_METHOD,    /* Contact: method parameter */
 	P_TRANSPORT, /* URI: transport parameter */
 	P_LR,        /* URI: lr parameter */
 	P_R2,        /* URI: r2 parameter (ser specific) */
@@ -72,7 +72,7 @@ typedef struct param {
 	ptype_t type;         /* Type of the parameter */
 	str name;             /* Parameter name */
 	str body;             /* Parameter body */
-	int len;              /* Total lenght of the parameter including = and quotes */
+	int len;              /* Total length of the parameter including = and quotes */
 	struct param* next;   /* Next parameter in the list */
 } param_t;
 

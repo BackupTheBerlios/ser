@@ -1,9 +1,9 @@
 /*
- * $Id: contact.h,v 1.5 2003/07/02 12:08:23 janakj Exp $
+ * $Id: contact.h,v 1.6 2004/08/24 09:01:28 janakj Exp $
  *
- * Contact datatype
+ * Contact data type
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -41,7 +41,7 @@
 
 
 /*
- * Structure representing a Contac HF body
+ * Structure representing a Contact HF body
  */
 typedef struct contact {
 	str name;               /* Name part */

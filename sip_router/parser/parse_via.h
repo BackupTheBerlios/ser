@@ -1,7 +1,7 @@
 /*
- * $Id: parse_via.h,v 1.11 2004/03/31 09:29:55 andrei Exp $
+ * $Id: parse_via.h,v 1.12 2004/08/24 09:01:27 janakj Exp $
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

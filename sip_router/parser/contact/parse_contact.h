@@ -1,9 +1,9 @@
 /*
- * $Id: parse_contact.h,v 1.4 2003/04/10 12:38:18 janakj Exp $
+ * $Id: parse_contact.h,v 1.5 2004/08/24 09:01:28 janakj Exp $
  *
  * Contact header field body parser
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *

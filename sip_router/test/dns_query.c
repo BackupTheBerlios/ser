@@ -1,5 +1,5 @@
 /*
- * $Id: dns_query.c,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: dns_query.c,v 1.5 2004/08/24 09:01:29 janakj Exp $
  *
  * tests for ../resolver.c
  *
@@ -8,7 +8,7 @@
  *  (and first compile ser with qm_malloc)
  * 
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
@@ -52,7 +52,7 @@ char mem_pool[1024*1024];
 struct qm_block* mem_block;
 
 
-static char* id="$Id: dns_query.c,v 1.4 2002/09/19 12:23:55 jku Rel $";
+static char* id="$Id: dns_query.c,v 1.5 2004/08/24 09:01:29 janakj Exp $";
 static char* version="dns_query 0.1";
 static char* help_msg="\
 Usage: dns_query  [-t type] [-hV] -n host\n\

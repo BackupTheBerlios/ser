@@ -1,7 +1,7 @@
 /* 
- * $Id: hf.h,v 1.13 2004/02/23 16:40:49 bogdan Exp $ 
+ * $Id: hf.h,v 1.14 2004/08/24 09:01:25 janakj Exp $ 
  *
- * Copyright (C) 2001-2003 Fhg Fokus
+ * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
  *
