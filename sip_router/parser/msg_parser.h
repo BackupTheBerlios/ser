@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.49 2004/12/03 17:11:36 jamey Exp $
+ * $Id: msg_parser.h,v 1.50 2004/12/20 18:52:54 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -193,6 +193,7 @@ struct sip_msg {
 	struct hdr_field* accept_disposition;
 	struct hdr_field* diversion;
 	struct hdr_field* rpid;
+	struct hdr_field* server;
 
 	char* eoh;        /* pointer to the end of header (if found) or null */
 	char* unparsed;   /* here we stopped parsing*/
