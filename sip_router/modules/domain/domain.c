@@ -1,5 +1,5 @@
 /* 
- * $Id: domain.c,v 1.10 2003/04/01 17:51:54 jih Exp $
+ * $Id: domain.c,v 1.11 2003/04/02 06:53:06 jih Exp $
  *
  * Domain table related functions
  *
@@ -58,7 +58,6 @@ inline struct to_body *get_parsed_from_body(struct sip_msg *_msg)
  */
 int is_domain_local(str* _host)
 {
-	LOG(L_ERR, "is_local(): \'%.*s\'\n", _host->len, _host->s);
 	if (db_mode == 0) {
 		db_key_t keys[1];
 		db_val_t vals[1];
