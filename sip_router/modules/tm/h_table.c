@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.54 2002/02/18 13:06:38 bogdan Exp $
+ * $Id: h_table.c,v 1.55 2002/02/21 20:04:53 andrei Exp $
  */
 
 #include "hash_func.h"
@@ -206,9 +206,9 @@ void    insert_into_hash_table_unsafe( struct s_table *hash_table,  struct cell 
 
 void insert_into_hash_table( struct s_table *hash_table,  struct cell * p_cell )
 {
-	lock( hash_table->entrys[ p_cell->hash_index ].mutex );
+	lock( &(hash_table->entrys[ p_cell->hash_index ].mutex) );
 	insert_into_hash_table_unsafe( hash_table,  p_cell );
-	unlock( hash_table->entrys[ p_cell->hash_index ].mutex );
+	unlock( &(hash_table->entrys[ p_cell->hash_index ].mutex) );
 }
 
 
@@ -221,7 +221,7 @@ void remove_from_hash_table( struct s_table *hash_table,  struct cell * p_cell )
    struct entry*  p_entry  = &(hash_table->entrys[p_cell->hash_index]);
 
    /* unlink the cell from entry list */
-   lock( p_entry->mutex );
+   lock( &(p_entry->mutex) );
 
    if ( p_cell->prev_cell )
       p_cell->prev_cell->next_cell = p_cell->next_cell;
@@ -233,7 +233,7 @@ void remove_from_hash_table( struct s_table *hash_table,  struct cell * p_cell )
    else
       p_entry->last_cell = p_cell->prev_cell;
 
-   unlock( p_entry->mutex );
+   unlock( &(p_entry->mutex) );
 }
 
 
