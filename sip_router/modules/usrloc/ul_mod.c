@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.42 2004/09/19 20:22:51 andrei Exp $
+ * $Id: ul_mod.c,v 1.43 2005/02/28 18:57:00 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -37,6 +37,7 @@
  * 2003-04-21 failed fifo init stops init process (jiri)
  * 2004-03-17 generic callbacks added (bogdan)
  * 2004-06-07 updated to the new DB api (andrei)
+ * 2005-02-25 incoming socket is saved in ucontact record (bogdan)
  */
 
 #include <stdio.h>
