@@ -1,7 +1,7 @@
 /*
  * Record-Route & Route module interface
  *
- * $Id: rr_mod.h,v 1.3 2003/03/16 18:06:13 janakj Exp $
+ * $Id: rr_mod.h,v 1.4 2003/03/26 16:44:26 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,7 +38,7 @@
 
 
 extern int use_fast_cmp;
-extern int rr_append_fromtag;
+extern int append_fromtag;
 
 
 #endif /* RR_MOD_H */
