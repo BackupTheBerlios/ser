@@ -1,5 +1,5 @@
 /* 
- * $Id: group_mod.c,v 1.3 2003/03/16 20:27:23 janakj Exp $ 
+ * $Id: group_mod.c,v 1.4 2003/03/18 17:48:19 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -74,7 +74,7 @@ static int hf_fixup(void** param, int param_no);
 char* db_url       = "sql://serro:47serro11@localhost/ser";
 
 char* table        = "grp";    /* Table name where group definitions are stored */
-char* user_col     = "user";
+char* user_col     = "username";
 char* domain_col   = "domain";
 char* grp_col      = "grp";
 int   use_domain   = 0;

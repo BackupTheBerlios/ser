@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.19 2003/03/16 20:27:25 janakj Exp $
+ * $Id: ul_mod.c,v 1.20 2003/03/18 17:48:19 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -59,7 +59,7 @@ static int child_init(int rank);                    /* Per-child init function *
 /*
  * Module parameters and their default values
  */
-char* user_col       = "user";                             /* Name of column containing usernames */
+char* user_col       = "username";                         /* Name of column containing usernames */
 char* domain_col     = "domain";                           /* Name of column containing domains */
 char* contact_col    = "contact";                          /* Name of column containing contact addresses */
 char* expires_col    = "expires";                          /* Name of column containing expires values */
