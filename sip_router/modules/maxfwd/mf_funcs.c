@@ -1,5 +1,5 @@
 /*
- * $Id: mf_funcs.c,v 1.19 2003/03/11 12:51:32 andrei Exp $
+ * $Id: mf_funcs.c,v 1.20 2003/05/07 13:03:18 calrissian Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -74,6 +74,10 @@ int is_maxfwd_present( struct sip_msg* msg , str *foo)
 		LOG(L_ERR, "ERROR: is_maxfwd_zero :"
 			" unable to parse the max forwards number !\n");
 		return -2;
+	}
+	if (x > 255){
+		LOG(L_NOTICE, "is_maxfwd_present: value %d decreased to 255\n", x);
+		x = 255;
 	}
 	DBG("DEBUG: is_maxfwd_present: value = %d \n",x);
 	return x;
