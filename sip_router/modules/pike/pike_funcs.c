@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.18 2004/05/12 12:28:48 bogdan Exp $
+ * $Id: pike_funcs.c,v 1.19 2004/05/26 19:11:59 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -68,7 +68,7 @@ void print_timer_list(struct list_link *head)
 }
 
 
-/*#define _test*/
+#define _test
 int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 {
 	struct ip_node *node;
