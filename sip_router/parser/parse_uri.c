@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.c,v 1.2 2002/08/19 11:51:31 andrei Exp $
+ * $Id: parse_uri.c,v 1.3 2002/08/20 09:34:12 andrei Exp $
  */
 
 #include "parse_uri.h"
@@ -207,7 +207,7 @@ int parse_sip_msg_uri(struct sip_msg* msg)
 			tmp_len=msg->first_line.u.request.uri.len;
 		}
 		if (parse_uri(tmp, tmp_len, &msg->parsed_uri)<0){
-			LOG(L_ERR, "ERROR: parse_sip_msg_uri: bad uri <%*s>\n",
+			LOG(L_ERR, "ERROR: parse_sip_msg_uri: bad uri <%.*s>\n",
 						tmp_len, tmp);
 			msg->parsed_uri_ok=0;
 			return -1;

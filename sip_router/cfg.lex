@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.21 2002/08/19 11:51:31 andrei Exp $
+ * $Id: cfg.lex,v 1.22 2002/08/20 09:34:12 andrei Exp $
  *
  * scanner for cfg files
  */
@@ -91,6 +91,7 @@ DEBUG	debug
 FORK	fork
 LOGSTDERROR	log_stderror
 LISTEN		listen
+ALIAS		alias
 DNS		 dns
 REV_DNS	 rev_dns
 PORT	port
@@ -187,6 +188,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{FORK}		{ count(); yylval.strval=yytext; return FORK; }
 <INITIAL>{LOGSTDERROR}	{ yylval.strval=yytext; return LOGSTDERROR; }
 <INITIAL>{LISTEN}	{ count(); yylval.strval=yytext; return LISTEN; }
+<INITIAL>{ALIAS}	{ count(); yylval.strval=yytext; return ALIAS; }
 <INITIAL>{DNS}	{ count(); yylval.strval=yytext; return DNS; }
 <INITIAL>{REV_DNS}	{ count(); yylval.strval=yytext; return REV_DNS; }
 <INITIAL>{PORT}	{ count(); yylval.strval=yytext; return PORT; }

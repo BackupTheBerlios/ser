@@ -1,4 +1,4 @@
-/* $Id: vq_malloc.c,v 1.4 2002/08/18 19:18:49 jku Exp $
+/* $Id: vq_malloc.c,v 1.5 2002/08/20 09:34:12 andrei Exp $
  *
  * History: 
  * merged from Andrei's qmalloc and many fragments from Regents 
@@ -98,7 +98,7 @@ void vqm_debug_frag(struct vqm_block* qm, struct vqm_frag* f)
 		abort();
 	};
 	if (memcmp(f->end_check, END_CHECK_PATTERN, END_CHECK_PATTERN_LEN)!=0) {
-		LOG(L_CRIT, "BUG: vqm_*: fragm. %p end overwritten(%*s)!\n",
+		LOG(L_CRIT, "BUG: vqm_*: fragm. %p end overwritten(%.*s)!\n",
 				f, END_CHECK_PATTERN_LEN, f->end_check );
 		vqm_status(qm);
 		abort();
