@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.5 2004/03/30 17:48:21 janakj Exp $
+# $Id: Makefile,v 1.6 2004/04/07 04:31:05 jih Exp $
 #
 # print example module makefile
 #
@@ -9,7 +9,10 @@ include ../../Makefile.defs
 auto_gen=
 NAME=vm.so
 LIBS=
+DEFS+= -DWITH_DB_SUPPORT
 #DEFS+= -DWITH_LDAP_SUPPORT
+#DEFS+= -DWITH_RADIUS_SUPPORT
+#LIBS=-L$(LOCALBASE)/lib -lradiusclient
 
 ifeq ($(MAKELEVEL), 0)
 # make called directly in the module dir!
