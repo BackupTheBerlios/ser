@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.22 2003/02/28 14:12:25 jiri Exp $
+/* $Id: shm_mem.c,v 1.23 2003/03/12 15:55:12 andrei Exp $
  *
  * Shared memory functions
  *
@@ -161,13 +161,7 @@ int shm_mem_init()
 	}
 
 	/* init it for malloc*/
-#	ifdef VQ_MALLOC
-		shm_block=vqm_malloc_init(shm_mempool, /* SHM_MEM_SIZE */ shm_mem_size );
-	#elif defined F_MALLOC
-		shm_block=fm_malloc_init(shm_mempool, /* SHM_MEM_SIZE */ shm_mem_size );
-#	else
-		shm_block=qm_malloc_init(shm_mempool, /* SHM_MEM_SIZE */ shm_mem_size );
-#	endif
+	shm_block=shm_malloc_init(shm_mempool, shm_mem_size);
 	if (shm_block==0){
 		LOG(L_CRIT, "ERROR: shm_mem_init: could not initialize shared"
 				" malloc\n");
