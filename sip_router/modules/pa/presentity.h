@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.3 2003/04/30 17:49:29 janakj Exp $
+ * $Id: presentity.h,v 1.4 2003/05/02 08:37:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -88,6 +88,12 @@ int notify_watchers(presentity_t* _p);
  * Print a presentity, just for debugging
  */
 void print_presentity(FILE* _f, presentity_t* _p);
+
+
+/*
+ * Find a given watcher in the list
+ */
+int find_watcher(struct presentity* _p, str* _uri, watcher_t** _w);
 
 
 #endif /* PRESENTITY_H */

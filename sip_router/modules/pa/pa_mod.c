@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.9 2003/04/30 17:49:29 janakj Exp $
+ * $Id: pa_mod.c,v 1.10 2003/05/02 08:37:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -71,7 +71,9 @@ struct tm_binds tmb;
  * Exported functions
  */
 static cmd_export_t cmds[]={
-	{"subscribe",  subscribe,  1, subscribe_fixup, REQUEST_ROUTE},
+	{"handle_subscription",   handle_subscription,   1, subscribe_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
+	{"existing_subscription", existing_subscription, 1, subscribe_fixup, REQUEST_ROUTE                },
+	{"pua_exists",            pua_exists,            1, subscribe_fixup, REQUEST_ROUTE                },
 	{0, 0, 0, 0, 0}
 };
 

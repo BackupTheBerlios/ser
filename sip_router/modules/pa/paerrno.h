@@ -1,7 +1,7 @@
 /*
  * Presence Agent, error reporting
  *
- * $Id: paerrno.h,v 1.3 2003/04/30 17:49:29 janakj Exp $
+ * $Id: paerrno.h,v 1.4 2003/05/02 08:37:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -34,7 +34,6 @@
 typedef enum paerr {
 	PA_OK,            /* Everything went OK */
 	PA_PARSE_ERR,     /* Error while parsing headers */
-	PA_CONTACT_MISS,  /* To header field missing */
 	PA_FROM_MISS,     /* From header field missing */
 	PA_EVENT_MISS,    /* Event header field missing */
 	PA_EVENT_PARSE,   /* Error while parsing Event header field */
@@ -43,11 +42,12 @@ typedef enum paerr {
 	PA_NO_MEMORY,     /* No memory left */
 	PA_TIMER_ERROR,   /* Error in timer */
 	PA_EXTRACT_USER,  /* Error while extracting username from R-URI */
-	PA_CONT_PARSE,    /* Error while parsing Contact */
-	PA_CONT_STAR,     /* Contact containing * not allowed */
-	PA_FROM_ERROR,    /* Error while parsing From header */
+	PA_FROM_ERR,      /* From malformed or missing */
 	PA_SMALL_BUFFER,  /* Buffer too small */
 	PA_UNSUPP_DOC,    /* Unsupported presence document format */
+	PA_ACCEPT_PARSE,  /* Error while parsing Accept header field */
+	PA_URI_PARSE,     /* Error while parsing URI */
+	PA_DIALOG_ERR,    /* Error while creating dialog */
 	PA_INTERNAL_ERROR /* Internal server error */
 } paerr_t;
 

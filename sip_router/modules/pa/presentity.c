@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.4 2003/04/30 17:49:29 janakj Exp $
+ * $Id: presentity.c,v 1.5 2003/05/02 08:37:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -172,4 +172,27 @@ int notify_watchers(presentity_t* _p)
 		ptr = ptr->next;
 	}
 	return 0;
+}
+
+
+/*
+ * Find a given watcher in the list
+ */
+int find_watcher(struct presentity* _p, str* _uri, watcher_t** _w)
+{
+	watcher_t* ptr;
+
+	ptr = _p->watchers;
+
+	while(ptr) {
+		if ((_uri->len == ptr->uri.len) &&
+		    (!memcmp(_uri->s, ptr->uri.s, _uri->len))) {
+			*_w = ptr;
+			return 0;
+		}
+			
+		ptr = ptr->next;
+	}
+	
+	return 1;
 }

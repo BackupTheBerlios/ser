@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.h,v 1.3 2003/04/30 17:49:29 janakj Exp $
+ * $Id: subscribe.h,v 1.4 2003/05/02 08:37:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -32,11 +32,24 @@
 
 #include "../../parser/msg_parser.h"
 
+
 /*
  * Handle a subscribe Request
  */
-int subscribe(struct sip_msg* _m, char* _s1, char* _s2);
+int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2);
 
+
+/*
+ * Return 1 if the subscription exists and 0 if not
+ */
+int existing_subscription(struct sip_msg* _m, char* _domain, char* _s2);
+
+
+/*
+ * Returns 1 if possibly a user agent can handle SUBSCRIBE
+ * itself, 0 if it cannot for sure
+ */
+int pua_exists(struct sip_msg* _m, char* _domain, char* _s2);
 
 
 #endif /* SUBSCRIBE_H */
