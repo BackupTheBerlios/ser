@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: sdp_mangler.c,v 1.3 2003/04/09 15:40:01 gabriel Exp $
+ * $Id: sdp_mangler.c,v 1.4 2003/04/11 15:34:45 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -250,7 +250,7 @@ continue1:
 	fprintf (stdout,"---END--------MANGLE PORT-----------------\n");
 #endif
 
-	return ret+1;
+	return ret+2;
 }
 
 
@@ -456,7 +456,7 @@ continue2:
 	fprintf (stdout,"---END--------MANGLE IP-----------------\n");
 #endif
 
-	return ret+1;
+	return ret+2;
 
 }
 

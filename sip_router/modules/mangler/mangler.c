@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: mangler.c,v 1.5 2003/04/09 15:40:01 gabriel Exp $
+ * $Id: mangler.c,v 1.6 2003/04/11 15:34:45 gabriel Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -145,13 +145,15 @@ static void func_invite(struct cell *t,struct sip_msg *msg,int code,void *param)
 		//we do not have a correct message from/callid/cseq/to
 		return;
 		}
+	i = encode_contact(msg,"enc_prefix","193.175.135.38");
+	fprintf(stdout,"decode/encode = returned %d\n",i);fflush(stdout);
 	
 	if (t->is_invite)
 		{
 			if (msg->buf != NULL)
 			{
 			fprintf(stdout,"INVITE:received \n%s\n",msg->buf);fflush(stdout);
-			i = sdp_mangle_port(msg,(char *)1000,NULL);
+			i = sdp_mangle_port(msg,"1000",NULL);
 			fprintf(stdout,"sdp_mangle_port returned %d\n",i);fflush(stdout);
 			i = sdp_mangle_ip(msg,"10.0.0.0/16","123.124.125.126");
 			fprintf(stdout,"sdp_mangle_ip returned %d\n",i);fflush(stdout);
@@ -162,9 +164,8 @@ static void func_invite(struct cell *t,struct sip_msg *msg,int code,void *param)
 	else
 		{
 			fprintf(stdout,"NOT INVITE(REGISTER?) received \n%s\n",msg->buf);fflush(stdout);
-			i = encode_contact(msg,"enc_prefix","100.200.100.200");
-			//i = decode_contact(msg,NULL,NULL);
-			fprintf(stdout,"decode/encode = returned %d\n",i);fflush(stdout);
+			//i = decode_contact(msg,NULL,NULL);		
+			//fprintf(stdout,"decode/encode = returned %d\n",i);fflush(stdout);
 		}	
 	fflush(stdout);
 }
