@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.8 2002/09/08 15:41:06 jku Exp $
+ * $Id: fifo_server.h,v 1.9 2002/09/18 07:49:31 jku Exp $
  *
  */
 
@@ -11,10 +11,16 @@
 #define CMD_SEPARATOR ':'
 
 /* core FIFO command set */
+/* echo input */
 #define FIFO_PRINT "print"
+/* print server's uptime */
 #define FIFO_UPTIME "uptime"
+/* print server's version */
 #define FIFO_VERSION "version"
+/* print available FIFO commands */
 #define FIFO_WHICH "which"
+/* print server's process table */
+#define FIFO_PS "ps"
 
 #define MAX_CTIME_LEN 128
 

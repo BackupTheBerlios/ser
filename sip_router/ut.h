@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.16 2002/09/05 18:03:15 andrei Exp $
+ *$Id: ut.h,v 1.17 2002/09/18 07:49:31 jku Exp $
  *
  * - various general purpose functions
  */
@@ -189,6 +189,8 @@ inline static int string2hex(
 	}
 	return orig_len-len;
 }
+
+/* portable sleep in microseconds (no interrupt handling now) */
 
 inline static void sleep_us( unsigned int nusecs )
 {
