@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.49 2004/03/10 11:58:37 kozlik Exp $
+# $Id: ser_mysql.sh,v 1.50 2004/03/10 21:00:33 kozlik Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -265,7 +265,8 @@ CREATE TABLE acc (
   totag varchar(128) NOT NULL default '',
   time datetime NOT NULL default '0000-00-00 00:00:00',
   timestamp timestamp(14) NOT NULL,
-  INDEX acc_user ($USERCOL, domain)
+  INDEX acc_user ($USERCOL, domain),
+  KEY sip_callid (sip_callid)
 ) $TABLE_TYPE;
 
 
