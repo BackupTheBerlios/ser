@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.25 2003/04/14 20:26:27 andrei Exp $
+ * $Id: tcp_main.c,v 1.26 2003/04/16 16:17:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -54,6 +54,8 @@
 #include <sys/types.h>
 #include <sys/select.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/in_systm.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
 #include <sys/uio.h>  /* writev*/

@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.61 2003/04/14 19:27:57 andrei Exp $
+ * $Id: udp_server.c,v 1.62 2003/04/16 16:17:09 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -38,6 +38,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netinet/in_systm.h>
 #include <netinet/ip.h>
 #include <errno.h>
 #include <arpa/inet.h>

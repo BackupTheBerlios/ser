@@ -1,5 +1,5 @@
 /* 
- * $Id: msg_translator.c,v 1.115 2003/04/14 18:51:58 andrei Exp $
+ * $Id: msg_translator.c,v 1.116 2003/04/16 16:17:09 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -1781,9 +1781,6 @@ char * build_res_buf_with_body_from_sip_req( unsigned int code, char *text ,
 	}
 	*(p) = 0;
 	*returned_len = len;
-	DBG("build_*: len=%d, diff=%d\n", len, p-buf);
-	DBG("build_*: rport_len=%d, delete_len=%d\n", rport_len, delete_len);
-	DBG("build_*: message=\n%.*s\n", (int)len, buf);
 	/* in req2reply, received_buf is not introduced to lumps and
 	   needs to be deleted here
 	*/
