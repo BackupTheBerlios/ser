@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.9 2002/08/12 11:33:17 janakj Exp $ 
+ * $Id: db_mod.c,v 1.10 2002/08/30 10:16:58 janakj Exp $ 
  *
  * MySQL module interface
  */
@@ -46,10 +46,10 @@ struct module_exports exports = {
 	},
 	8, /* number of functions*/
 
-	NULL,   /* Module parameter names */
-	NULL,   /* Module parameter types */
-	NULL,   /* Module parameter variable pointers */
-	0,      /* Number of module paramers */
+	0,   /* Module parameter names */
+	0,   /* Module parameter types */
+	0,   /* Module parameter variable pointers */
+	0,   /* Number of module paramers */
 
 	mod_init, /* module initialization function */
 	0,        /* response function*/
