@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.5 2002/08/27 09:47:03 janakj Exp $ 
+ * $Id: udomain.c,v 1.6 2002/08/27 11:15:49 janakj Exp $ 
  */
 
 #include "udomain.h"
@@ -123,12 +123,14 @@ void free_udomain(udomain_t* _d)
 {
 	int i;
 	
+	lock_udomain(_d);
 	if (_d->table) {
 		for(i = 0; i < _d->size; i++) {
 			deinit_slot(_d->table + i);
 		}
 		shm_free(_d->table);
 	}
+	unlock_udomain(_d);
 
         shm_free(_d);
 }
