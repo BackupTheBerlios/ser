@@ -1,5 +1,5 @@
 /*
- * $Id: fix_lumps.h,v 1.4 2003/11/24 17:39:51 andrei Exp $
+ * $Id: fix_lumps.h,v 1.5 2004/07/01 15:33:58 andrei Exp $
  *
  * here, we delete message lumps which are generated in
  * core functions using pkg_malloc and applied to shmem
@@ -60,10 +60,12 @@
 */
 inline static void free_via_clen_lump( struct lump **list )
 {
-	struct lump *prev_lump, *lump, *a, *foo;
+	struct lump *prev_lump, *lump, *a, *foo, *next;
 
+	next=0;
 	prev_lump=0;
-	for(lump=*list;lump;lump=lump->next) {
+	for(lump=*list;lump;lump=next) {
+		next=lump->next;
 		if (lump->type==HDR_VIA||lump->type==HDR_CONTENTLENGTH) {
 			a=lump->before;
 			while(a) {
