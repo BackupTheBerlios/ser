@@ -1,8 +1,9 @@
-$Id: TODO,v 1.56 2003/07/06 18:43:16 andrei Exp $
+$Id: TODO,v 1.57 2003/07/09 17:59:50 andrei Exp $
 
 ( - todo, x - done)
 
 release:
+- check via ipv6 fixes and backport to stable
 x fix kill(0, SIGTERM) on startup error (will kill also the launching shell
  if non-interactive)
 - fix modules destroy (some modules will try to free uninitialized resources
