@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.6 2001/12/03 13:07:13 jku Exp $
+/*$Id: msg_translator.h,v 1.7 2001/12/07 00:09:42 bogdan Exp $
  * 
  */
 
@@ -20,6 +20,8 @@ char * build_res_buf_from_sip_req(	unsigned int code ,
 									char *text ,
 									struct sip_msg* msg,
 									unsigned int *returned_len);
+char* via_builder( struct sip_msg *msg ,
+									unsigned int *len );
 
 
 

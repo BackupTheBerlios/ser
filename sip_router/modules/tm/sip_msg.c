@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.16 2001/12/06 23:43:46 andrei Exp $
+ * $Id: sip_msg.c,v 1.17 2001/12/07 00:09:42 bogdan Exp $
  */
 
 
@@ -114,6 +114,9 @@ struct sip_msg* sip_msg_cloner( struct sip_msg *org_msg )
 		break;
 	    case HDR_FROM :
 		new_msg->from = new_hdr;
+		break;
+	    case HDR_TO :
+		new_msg->to = new_hdr;
 		break;
 	    case HDR_CSEQ :
 		if (header->parsed)
