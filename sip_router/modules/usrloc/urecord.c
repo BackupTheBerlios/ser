@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.8 2002/08/27 15:48:33 janakj Exp $ 
+ * $Id: urecord.c,v 1.9 2002/08/28 23:29:15 janakj Exp $ 
  *
  * Usrloc record structure
  */
@@ -225,6 +225,9 @@ static inline int wb_timer(urecord_t* _r)
 
 	while(ptr) {
 		if (ptr->expires < act_time) {
+			LOG(L_NOTICE, "Binding '\%.*s\',\'%.*s\' has expired\n",
+			    ptr->aor->len, ptr->aor->s,
+			    ptr->c.len, ptr->c.s);
 			t = ptr;
 			ptr = ptr->next;
 
