@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.22 2004/08/24 08:58:31 janakj Exp $
+/* $Id: mediaproxy.c,v 1.23 2004/10/28 22:58:00 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -148,7 +148,7 @@ static Bool testPrivateVia(struct sip_msg* msg);
 /* Local global variables */
 static char *mediaproxySocket = "/var/run/proxydispatcher.sock";
 
-static int natpingInterval = 20; // 20 seconds
+static int natpingInterval = 60; // 60 seconds
 
 static usrloc_api_t userLocation;
 
