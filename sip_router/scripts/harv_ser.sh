@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: harv_ser.sh,v 1.37 2003/06/04 23:26:18 jiri Exp $
+# $Id: harv_ser.sh,v 1.38 2003/06/16 15:57:37 jiri Exp $
 #
 # tool for post-processesing captured SIP messages 
 #
@@ -116,6 +116,7 @@ BEGIN {
 	ua_dlink=0;
 	ua_gphone=0;
 	ua_xlite=0;
+	ua_edial=0;
 	ua_xx=0;
 
 	server_cisco=0
@@ -324,6 +325,10 @@ ua==0 && /User-Agent:.*D-Link/ {
 }
 ua==0 && /User-Agent:.*Gphone/ {
 	ua_gphone++
+	ua=1
+}
+ua==0 && /User-Agent:.*eDial/ {
+	ua_edial++
 	ua=1
 }
 ua==0 && /User-Agent:.*X-Lite/ {
