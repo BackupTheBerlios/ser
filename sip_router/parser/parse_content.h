@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.h,v 1.3 2003/02/20 18:13:22 andrei Exp $
+ * $Id: parse_content.h,v 1.4 2003/02/24 16:47:50 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -51,7 +51,7 @@
 /*
  * returns the content-type value of a sip_msg as an integer
  */
-#define get_content_type(_msg_)   ((long)((_msg_)->content_type->parsed))
+#define get_content_type(_msg_)   ((int)(long)((_msg_)->content_type->parsed))
 
 
 
