@@ -1,5 +1,5 @@
 /*
- * $Id: group.h,v 1.1 2003/03/12 16:11:33 janakj Exp $
+ * $Id: group.h,v 1.2 2003/03/12 19:46:54 janakj Exp $
  *
  * Group membership checking over Radius
  *
@@ -43,7 +43,7 @@
  * is Group-Check.  SIP-Group is SER specific attribute and Group-Check is
  * SER specific service type value.
  */
-int radius_is_user_in (struct sip_msg* _msg, char* _hf, char* _group);
+int radius_is_user_in(struct sip_msg* _msg, char* _hf, char* _group);
 
 
 #endif /* GROUP_H */

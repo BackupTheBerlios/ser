@@ -1,5 +1,5 @@
 /*
- * $Id: grouprad_mod.h,v 1.1 2003/03/12 16:11:33 janakj Exp $
+ * $Id: grouprad_mod.h,v 1.2 2003/03/12 19:46:54 janakj Exp $
  *
  * Group membership checking over Radius
  *
@@ -31,21 +31,12 @@
  * 2003-03-10 - Created by janakj
  */
 
-
 #ifndef GROUPRAD_MOD_H
 #define GROUPRAD_MOD_H
 
-#include "../../str.h"
-#include "../../parser/digest/digest.h" /* auth_body_t */
-#include "../../parser/msg_parser.h"    /* struct sip_msg */
-
-
-extern char* table;           /* 'group' table name */
-extern char* user_column;     /* 'user' column name in group table */
-extern char* domain_column;   /* 'domain' column name in group table */
-extern char* group_column;    /* "group' column name in group table */
-extern int use_domain;        /* Use domain in is_user_in */
-
-extern db_con_t* db_handle;   /* Database connection handle */
+/*
+ * Module parameter variables
+ */
+extern char* radius_config;   /* radiusclient configuration file */
 
 #endif /* GROUPRAD_MOD_H */
