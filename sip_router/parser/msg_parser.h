@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.9 2002/08/08 21:14:56 janakj Exp $
+ * $Id: msg_parser.h,v 1.10 2002/08/12 12:14:07 janakj Exp $
  */
 
 #ifndef msg_parser_h
@@ -78,6 +78,7 @@ struct sip_msg {
 	struct hdr_field* proxy_require;
 	struct hdr_field* unsupported;
 	struct hdr_field* allow;
+	struct hdr_field* event;
 
 	char* eoh;        /* pointer to the end of header (if found) or null */
 	char* unparsed;   /* here we stopped parsing*/
