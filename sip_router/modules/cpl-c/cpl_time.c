@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_time.c,v 1.7 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_time.c,v 1.8 2004/09/14 12:21:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -521,7 +521,7 @@ int tr_print(tmrec_p _trp)
 		printf("\n(null)\n");
 		return -1;
 	}
-	printf("\Recurrence definition\n-- start time ---\n");
+	printf("Recurrence definition\n-- start time ---\n");
 	printf("Sys time: %d\n", (int)_trp->dtstart);
 	printf("Time: %02d:%02d:%02d\n", _trp->ts.tm_hour, 
 				_trp->ts.tm_min, _trp->ts.tm_sec);

@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_sig.c,v 1.10 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_sig.c,v 1.11 2004/09/14 12:21:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -79,7 +79,7 @@ int cpl_proxy_to_loc_set( struct sip_msg *msg, struct location **locs,
 	while(*locs) {
 		DBG("DEBUG:cpl_c:cpl_proxy_to_loc_set: appending branch "
 			"<%.*s>\n",(*locs)->addr.uri.len,(*locs)->addr.uri.s);
-		if(append_branch(msg,(*locs)->addr.uri.s,(*locs)->addr.uri.len,0)==-1){
+		if(append_branch(msg,(*locs)->addr.uri.s,(*locs)->addr.uri.len,0, 0, 0)==-1){
 			LOG(L_ERR,"ERROR:cpl_c:cpl_proxy_to_loc_set: failed when "
 				"appending branch <%s>\n",(*locs)->addr.uri.s);
 			goto error;
