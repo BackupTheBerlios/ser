@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.c,v 1.1 2002/11/28 16:14:53 bogdan Exp $
+ * $Id: parse_content.c,v 1.2 2002/11/29 12:02:34 bogdan Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -185,7 +185,7 @@ char* parse_content_type( char* buffer, char* end, int* type)
 	*type = mime;
 	return p;
 error:
-	LOG(L_ERR,"ERROR:parse_content_length: parse error near char [%d][%c]\n",
+	LOG(L_ERR,"ERROR:parse_content_type: parse error near char [%d][%c]\n",
 		*p,*p);
 	return 0;
 }
