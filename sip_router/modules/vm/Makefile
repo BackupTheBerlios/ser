@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2004/03/30 17:47:17 janakj Exp $
+# $Id: Makefile,v 1.5 2004/03/30 17:48:21 janakj Exp $
 #
 # print example module makefile
 #
@@ -9,7 +9,7 @@ include ../../Makefile.defs
 auto_gen=
 NAME=vm.so
 LIBS=
-DEFS+= -DWITH_LDAP_SUPPORT
+#DEFS+= -DWITH_LDAP_SUPPORT
 
 ifeq ($(MAKELEVEL), 0)
 # make called directly in the module dir!
