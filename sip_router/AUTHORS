@@ -1,4 +1,4 @@
-# $Id: AUTHORS,v 1.5 2003/01/13 03:17:16 janakj Exp $
+# $Id: AUTHORS,v 1.6 2003/01/19 10:10:29 janakj Exp $
 # The format of this file was inspired by the Linux kernel CREDITS file.
 # 
 # Authors and contributors are listed alphabetically (first name).
@@ -35,7 +35,7 @@ E:
 D:
 
 N: Juha Heinanen
-C: 
+C: jih
 E: jh@song.fi
 W: http://lohi.eng.song.fi
 D:
