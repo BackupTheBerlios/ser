@@ -1,5 +1,5 @@
 /*
- * $Id: data_lump_rpl.c,v 1.12 2004/08/24 08:45:10 janakj Exp $
+ * $Id: data_lump_rpl.c,v 1.13 2004/12/03 17:05:29 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -133,17 +133,25 @@ void unlink_lump_rpl(struct sip_msg * msg, struct lump_rpl* lump)
 	}
 }
 
-
-
-void del_nonshm_lump_rpl( struct lump_rpl **head_list)
+void del_nonshm_lump_rpl(struct lump_rpl** list)
 {
-	struct lump_rpl *foo;
+        struct lump_rpl* it, *tmp;
+        struct lump_rpl** pred;
 
-	while( (*head_list) && (((*head_list)->flags&LUMP_RPL_SHMEM)==0) ) {
-		foo = (*head_list);
-		(*head_list) = foo->next;
-		free_lump_rpl( foo );
-	}
+        it = *list;
+        pred = list;
+
+        while(it) {
+                if (!(it->flags & LUMP_RPL_SHMEM)) {
+                        tmp = it;
+                        *pred = it->next;
+                        it = it->next;
+                        free_lump_rpl(tmp);
+                        continue;
+                }
+
+                pred = &it->next;
+                it = it->next;
+        }
 }
-
 
