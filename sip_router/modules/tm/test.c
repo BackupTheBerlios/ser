@@ -1,5 +1,5 @@
 /* 
- * $Id: test.c,v 1.6 2003/10/20 17:10:14 andrei Exp $
+ * $Id: test.c,v 1.7 2004/02/11 03:38:49 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -34,6 +34,7 @@
 #include "../../dprint.h"
 #include "../../config.h"
 #include "../../parser/parser_f.h"
+#include "../../data_lump.h"
 #include "../../ut.h"
 #include "../../timer.h"
 #include "../../data_lump.h"
