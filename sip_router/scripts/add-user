@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: add-user,v 1.3 2002/05/13 03:02:30 jku Exp $
+# $Id: add-user,v 1.4 2002/05/14 00:05:26 janakj Exp $
 #
 # script for adding users to database
 #
@@ -35,7 +35,7 @@ if [ $? -ne 0 ] ; then
 	echo "HA1 calculation failed"
 	exit 1
 fi
-HA1B=`$GENHA1 $1 $2 "$3@$DOMAIN"`
+HA1B=`$GENHA1 "$1@$DOMAIN" $2 $3`
 if [ $? -ne 0 ] ; then
 	echo "HA1B calculation failed"
 	exit 1
