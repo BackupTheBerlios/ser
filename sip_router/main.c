@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.155 2003/04/08 16:02:45 andrei Exp $
+ * $Id: main.c,v 1.156 2003/04/10 22:06:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -97,7 +97,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.155 2003/04/08 16:02:45 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.156 2003/04/10 22:06:30 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -614,6 +614,8 @@ int main_loop()
 		/* only one address, we ignore all the others */
 		if (udp_init(&sock_info[0])==-1) goto error;
 		bind_address=&sock_info[0];
+		sendipv4=bind_address;
+		sendipv6=bind_address; /*FIXME*/
 		bind_idx=0;
 		if (sock_no>1){
 			LOG(L_WARN, "WARNING: using only the first listen address"
