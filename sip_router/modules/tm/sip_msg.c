@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.67 2003/03/06 15:55:19 janakj Exp $
+ * $Id: sip_msg.c,v 1.68 2003/03/16 18:02:11 janakj Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -173,7 +173,6 @@ static inline struct auth_body* auth_body_cloner(char* new_buf, char *org_buf, s
 	new_auth->digest.nonce.s = translate_pointer(new_buf, org_buf, auth->digest.nonce.s);
 	new_auth->digest.uri.s = translate_pointer(new_buf, org_buf, auth->digest.uri.s);
 	new_auth->digest.response.s = translate_pointer(new_buf, org_buf, auth->digest.response.s);
-	new_auth->digest.algorithm.s = translate_pointer(new_buf, org_buf, auth->digest.algorithm.s);
 	new_auth->digest.alg.alg_str.s = translate_pointer(new_buf, org_buf, auth->digest.alg.alg_str.s);
 	new_auth->digest.cnonce.s = translate_pointer(new_buf, org_buf, auth->digest.cnonce.s);
 	new_auth->digest.opaque.s = translate_pointer(new_buf, org_buf, auth->digest.opaque.s);
