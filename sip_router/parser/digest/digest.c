@@ -1,5 +1,5 @@
 /*
- * $Id: digest.c,v 1.4 2002/09/19 12:23:55 jku Rel $
+ * $Id: digest.c,v 1.5 2003/01/25 15:13:02 janakj Exp $
  *
  * Digest credentials parser interface
  *
@@ -44,7 +44,7 @@ static inline int new_credentials(struct hdr_field* _h)
 	b = (auth_body_t*)pkg_malloc(sizeof(auth_body_t));
 	if (b == 0) {
 		LOG(L_ERR, "parse_credentials(): No memory left\n");
-		return -2;
+		return -1;
 	}
 		
 	init_dig_cred(&(b->digest));
@@ -60,6 +60,10 @@ static inline int new_credentials(struct hdr_field* _h)
 
 /*
  * Parse digest credentials
+ * Return value -1 means that the function was unable to allocate
+ * memory and therefore the server should return Internal Server Error,
+ * not Bad Request in this case !
+ * Bad Request should be send when return value != -1
  */
 int parse_credentials(struct hdr_field* _h)
 {
@@ -74,6 +78,10 @@ int parse_credentials(struct hdr_field* _h)
 		return -1;
 	}
 
+	     /* parse_digest_cred must return < -1 on error otherwise we will be
+	      * unable to distinguis if the error was caused by the server or if the
+	      * credentials are broken
+	      */
 	res = parse_digest_cred(&(_h->body), &(((auth_body_t*)(_h->parsed))->digest));
 	
 	if (res != 0) {
