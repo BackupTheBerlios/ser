@@ -1,9 +1,10 @@
-$Id: INSTALL,v 1.7 2002/02/25 19:47:32 andrei Exp $
+$Id: INSTALL,v 1.8 2002/03/08 03:03:13 andrei Exp $
 
 Installation Notes
 
-Supported architectures: Linux, FreeBSD, Solaris, Win* (CYGWIN)
-(for other architectures the Makefile must be edited)
+Supported arhitectures: Linux/i386, Linux/armv4l, FreeBSD/i386, Solaris/sparc64,
+Win*/i386 (CYGWIN)
+(for other arhitectures the Makefile must be edited)
 
 There are various configuration options defined in the Makefile.
 
