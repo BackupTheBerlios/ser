@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.7 2003/04/14 03:02:56 jiri Exp $
+ * $Id: t_cancel.c,v 1.8 2003/04/30 18:50:58 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -94,7 +94,7 @@ void cancel_branch( struct cell *t, int branch )
 
 	if (t->uac[branch].last_received<100) {
 		DBG("DEBUG: cancel_branch: no response ever received: "
-			"giving up on cancel\n");
+		    "giving up on cancel\n");
 		return;
 	}
 

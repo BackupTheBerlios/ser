@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.12 2003/04/29 16:33:56 janakj Exp $
+ * $Id: t_reply.h,v 1.13 2003/04/30 18:50:58 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -52,6 +52,7 @@ enum rps {
 };
 
 extern char tm_tags[TOTAG_VALUE_LEN];
+extern char *tm_tag_suffix;
 
 enum route_mode { MODE_REQUEST=1, MODE_ONREPLY, MODE_ONFAILURE };
 extern enum route_mode rmode;

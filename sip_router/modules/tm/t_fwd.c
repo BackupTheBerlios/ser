@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.48 2003/04/15 20:39:37 andrei Exp $
+ * $Id: t_fwd.c,v 1.49 2003/04/30 18:50:58 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -219,7 +219,7 @@ int add_uac( struct cell *t, struct sip_msg *request, str *uri, str* next_hop,
 
 	/* now message printing starts ... */
 	shbuf=print_uac_request( t, request, branch, uri, 
-		&len, send_sock, proxy->proto);
+		&len, send_sock, proxy->proto );
 	if (!shbuf) {
 		ret=ser_error=E_OUT_OF_MEM;
 		goto error01;

@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.73 2003/04/30 13:01:26 jiri Exp $
+ * $Id: t_lookup.c,v 1.74 2003/04/30 18:50:58 janakj Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -989,8 +989,9 @@ static inline int new_t(struct sip_msg *p_msg)
 */
 int t_newtran( struct sip_msg* p_msg )
 {
-
 	int lret, my_err;
+
+	ret=1;
 
 	/* is T still up-to-date ? */
 	DBG("DEBUG: t_addifnew: msg id=%d , global msg id=%d ,"
@@ -1161,7 +1162,7 @@ int t_lookup_ident(struct cell ** trans, unsigned int hash_index, unsigned int l
     {
 		if(p_cell->label == label){
 			REF_UNSAFE(p_cell);
-    		UNLOCK_HASH(hash_index);
+    			UNLOCK_HASH(hash_index);
 			set_t(p_cell);
 			*trans=p_cell;
 			DBG("DEBUG: t_lookup_ident: transaction found\n");

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.160 2003/04/27 21:16:51 jiri Exp $
+ * $Id: t_funcs.c,v 1.161 2003/04/30 18:50:58 janakj Exp $
  *
  * transaction maintenance functions
  *

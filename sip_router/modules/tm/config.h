@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.22 2003/02/28 14:12:26 jiri Exp $
+ * $Id: config.h,v 1.23 2003/04/30 18:50:58 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -91,5 +91,8 @@
 
 /* to-tag separator for stateful processing */
 #define TM_TAG_SEPARATOR '-'
+
+/* FIFO substitution character */
+#define SUBST_CHAR '!'
 
 #endif

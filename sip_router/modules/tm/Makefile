@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.19 2003/04/18 17:58:34 andrei Exp $
+# $Id: Makefile,v 1.20 2003/04/30 18:50:58 janakj Exp $
 #
 # example module makefile
 #
@@ -7,6 +7,6 @@
 
 auto_gen=
 NAME=tm.so
-LIBS= 
+LIBS=
 
 include ../../Makefile.modules
