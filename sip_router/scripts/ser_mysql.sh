@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.65 2005/02/14 23:21:03 jih Exp $
+# $Id: ser_mysql.sh,v 1.66 2005/02/18 16:00:55 janakj Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -321,7 +321,7 @@ CREATE TABLE aliases (
   contact varchar(255) NOT NULL default '',
   received varchar(255) default NULL,
   expires datetime NOT NULL default '$DEFAULT_ALIASES_EXPIRES',
-  q float(10,2) NOT NULL default '$DEFAULT_Q',
+  q float(10,3) NOT NULL default '$DEFAULT_Q',
   callid varchar(255) NOT NULL default '$DEFAULT_CALLID',
   cseq int(11) NOT NULL default '$DEFAULT_CSEQ',
   last_modified timestamp(14) NOT NULL,
@@ -378,7 +378,7 @@ CREATE TABLE location (
   contact varchar(255) NOT NULL default '',
   received varchar(255) default NULL,
   expires datetime NOT NULL default '$DEFAULT_LOCATION_EXPIRES',
-  q float(10,2) NOT NULL default '$DEFAULT_Q',
+  q float(10,3) NOT NULL default '$DEFAULT_Q',
   callid varchar(255) NOT NULL default '$DEFAULT_CALLID',
   cseq int(11) NOT NULL default '$DEFAULT_CSEQ',
   last_modified timestamp(14) NOT NULL,
