@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.18 2002/03/08 01:13:30 janakj Exp $
+ * $Id: auth.c,v 1.19 2002/03/08 01:46:18 jku Exp $
  */
 
 #include "auth.h"
@@ -423,7 +423,7 @@ int check_to(struct sip_msg* _msg, char* _str1, char* _str2)
 		return 1;
 	} else {
 		DBG("check_to(): auth id and To username differ\n");
-		return 0;
+		return -1;
 	}
 }
 
