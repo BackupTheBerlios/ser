@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.83 2002/07/08 17:14:39 janakj Exp $
+ * $Id: main.c,v 1.84 2002/07/10 16:14:48 andrei Exp $
  */
 
 #include <stdio.h>
@@ -43,7 +43,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.83 2002/07/08 17:14:39 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.84 2002/07/10 16:14:48 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -854,7 +854,8 @@ int main(int argc, char** argv)
 			DPrint("ERROR: could not resolve %s\n", sock_info[r].name.s);
 			goto error;
 		}
-		hostent2ip_addr(&sock_info[r].address, he, 0); /*convert to ip_addr format*/
+		hostent2ip_addr(&sock_info[r].address, he, 0); /*convert to ip_addr 
+														 format*/
 		tmp=ip_addr2a(&sock_info[r].address);
 		sock_info[r].address_str.s=(char*)malloc(strlen(tmp)+1);
 		if (sock_info[r].address_str.s==0){
