@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.39 2001/12/10 21:30:00 bogdan Exp $
+ * $Id: h_table.c,v 1.40 2001/12/11 07:45:30 andrei Exp $
  */
 
 
@@ -107,7 +107,7 @@ struct s_table* init_hash_table()
    int       i;
 
    /*allocs the table*/
-   hash_table = (struct s_table*)sh_malloc(  sizeof( struct s_table ) );
+   hash_table = (struct s_table*)sh_malloc( sizeof( struct s_table ) );
    if ( !hash_table )
       goto error;
 
