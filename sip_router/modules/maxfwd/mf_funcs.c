@@ -1,5 +1,5 @@
 /*
- * $Id: mf_funcs.c,v 1.26 2005/03/24 17:49:26 andrei Exp $
+ * $Id: mf_funcs.c,v 1.27 2005/03/25 17:36:28 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -98,7 +98,10 @@ int decrement_maxfwd( struct sip_msg* msg , int x, str *s)
 	for(i = s->len - 1; i >= 0; i--) {
 		s->s[i] = (x % 10) + '0';
 		x /= 10;
-		if (x==0) break;
+		if (x==0) {
+		    i = i - 1;
+		    break;
+		}
 	}
 	while(i >= 0) s->s[i--] = ' ';
 
