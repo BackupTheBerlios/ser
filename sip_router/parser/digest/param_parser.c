@@ -1,5 +1,5 @@
 /*
- * $Id: param_parser.c,v 1.3 2002/11/18 23:24:46 janakj Exp $
+ * $Id: param_parser.c,v 1.4 2003/03/03 17:45:25 janakj Exp $
  *
  * 32-bit Digest parameter name parser
  *
@@ -230,4 +230,3 @@ int parse_param_name(str* _s, dig_par_t* _type)
 		return 0;
 	}
 }
-

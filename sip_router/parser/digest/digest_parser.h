@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.h,v 1.3 2002/11/18 23:24:46 janakj Exp $
+ * $Id: digest_parser.h,v 1.4 2003/03/03 17:45:25 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -72,6 +72,9 @@ struct qp {
  */
 typedef struct dig_cred {
 	str username;         /* Username */
+#ifdef DIGEST_DOMAIN
+	str domain;           /* Domain contained in username */
+#endif
 	str realm;            /* Realm */
 	str nonce;            /* Nonce value */
 	str uri;              /* URI */

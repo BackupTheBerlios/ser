@@ -1,5 +1,5 @@
 /*
- * $Id: digest.c,v 1.5 2003/01/25 15:13:02 janakj Exp $
+ * $Id: digest.c,v 1.6 2003/03/03 17:45:25 janakj Exp $
  *
  * Digest credentials parser interface
  *
@@ -152,6 +152,9 @@ void print_cred(dig_cred_t* _c)
 	printf("===Digest credentials===\n");
 	if (_c) {
 		printf("Username  = \'%.*s\'\n", _c->username.len, _c->username.s);
+#ifdef DIGEST_DOMAIN
+		printf("Domain    = \'%.*s\'\n", _c->domain.len, _c->domain.s);
+#endif
 		printf("Realm     = \'%.*s\'\n", _c->realm.len, _c->realm.s);
 		printf("Nonce     = \'%.*s\'\n", _c->nonce.len, _c->nonce.s);
 		printf("URI       = \'%.*s\'\n", _c->uri.len, _c->uri.s);
