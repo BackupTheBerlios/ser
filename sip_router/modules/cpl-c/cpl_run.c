@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.25 2003/10/23 17:27:19 bogdan Exp $
+ * $Id: cpl_run.c,v 1.26 2003/10/23 20:00:55 bogdan Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -301,6 +301,11 @@ static inline char *run_lookup( struct cpl_interpreter *intr )
 				}
 				/* set the flag for modifing the location set */
 				intr->flags |= CPL_LOC_SET_MODIFIED;
+				/* we found a valid contact */
+				kid = success_kid;
+			} else {
+				/* no valid contact found */
+				kid = notfound_kid;
 			}
 			cpl_ulb.unlock_udomain( cpl_domain );
 		}
