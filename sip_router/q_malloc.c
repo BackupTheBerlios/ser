@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.6 2001/12/06 23:58:35 andrei Exp $
+/* $Id: q_malloc.c,v 1.7 2001/12/08 14:20:09 andrei Exp $
  *
  */
 
@@ -11,15 +11,16 @@
 
 /*usefull macros*/
 #define FRAG_END(f)  \
-			((struct qm_frag_end*)((char*)f+sizeof(struct qm_frag)+f->size))
+			((struct qm_frag_end*)((char*)(f)+sizeof(struct qm_frag)+ \
+								   (f)->size))
 
 #define FRAG_NEXT(f) \
-			((struct qm_frag*)((char*)f+sizeof(struct qm_frag)+f->size+ \
+			((struct qm_frag*)((char*)(f)+sizeof(struct qm_frag)+(f)->size+ \
 							   sizeof(struct qm_frag_end)))
 			
 #define FRAG_PREV(f) \
-		( (struct qm_frag*) ( ((char*)f-sizeof(struct qm_frag_end))- \
-		((struct qm_frag_end*)((char*)f-sizeof(struct qm_frag_end)))->size- \
+		( (struct qm_frag*) ( ((char*)(f)-sizeof(struct qm_frag_end))- \
+		((struct qm_frag_end*)((char*)(f)-sizeof(struct qm_frag_end)))->size- \
 			sizeof(struct qm_frag) ) )
 
 

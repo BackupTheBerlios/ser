@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.25 2001/12/05 23:00:08 jku Exp $
+ * $Id: msg_parser.h,v 1.26 2001/12/08 14:20:09 andrei Exp $
  */
 
 #ifndef msg_parser_h
@@ -41,7 +41,7 @@ enum{
 };
 
 /* casting macro for accessing CSEQ body */
-#define get_cseq( p_msg)    ((struct cseq_body*)p_msg->cseq->parsed)
+#define get_cseq( p_msg)    ((struct cseq_body*)(p_msg)->cseq->parsed)
 
 
 
