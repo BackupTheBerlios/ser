@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.h,v 1.1 2002/11/14 14:01:41 janakj Exp $
+ * $Id: loose.h,v 1.2 2003/04/03 16:39:30 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -35,7 +35,7 @@
 
 
 /*
- * Do loose routing as defined in RFC3621
+ * Do loose routing as per RFC3621
  */
 int loose_route(struct sip_msg* _m, char* _s1, char* _s2);
 

@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.25 2003/04/03 12:21:40 janakj Exp $
+ * $Id: rr_mod.c,v 1.26 2003/04/03 16:39:30 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -55,7 +55,6 @@ static int str_fixup(void** param, int param_no);
 /*
  * Exported functions
  */
-
 /*
  * I do not want people to use strict routing so it is disabled by default,
  * you should always use loose routing, if you really need strict routing then
@@ -63,23 +62,23 @@ static int str_fixup(void** param, int param_no);
  * record_route_strict. Don't do that unless you know what you are really doing !
  * Oh, BTW, have I mentioned already that you shouldn't use strict routing ?
  */
-static cmd_export_t cmds[]={
-	{"loose_route",           loose_route,         0, 0,         REQUEST_ROUTE},
-	{"strict_route",          strict_route,        0, 0,         0            },
-	{"record_route",          record_route,        0, 0,         REQUEST_ROUTE},
-	{"record_route_strict" ,  record_route_strict, 0, 0,         0            },
-	{"record_route_preset",   record_route_preset, 1, str_fixup, REQUEST_ROUTE},
-	{0,0,0,0,0}
+static cmd_export_t cmds[] = {
+	{"loose_route",          loose_route,         0, 0,         REQUEST_ROUTE},
+	{"record_route",         record_route,        0, 0,         REQUEST_ROUTE},
+	{"record_route_preset",  record_route_preset, 1, str_fixup, REQUEST_ROUTE},
+	{"strict_route",         strict_route,        0, 0,         0            },
+	{"record_route_strict" , record_route_strict, 0, 0,         0            },
+	{0, 0, 0, 0, 0}
 };
 
 
 /*
  * Exported parameters
  */
-static param_export_t params[]={
+static param_export_t params[] ={ 
 	{"append_fromtag",   INT_PARAM, &append_fromtag  },
 	{"enable_double_rr", INT_PARAM, &enable_double_rr},
-	{0,0,0}
+	{0, 0,0 }
 };
 
 
