@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.54 2002/02/11 17:56:22 andrei Exp $
+ * $Id: main.c,v 1.55 2002/02/12 20:09:20 andrei Exp $
  */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.54 2002/02/11 17:56:22 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.55 2002/02/12 20:09:20 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -647,7 +647,8 @@ int main(int argc, char** argv)
 	
 	if (children_no<=0) children_no=CHILD_NO;
 	else if (children_no >= MAX_PROCESSES ) {
-		fprintf(stderr, "ERROR: too many children processes configured; maximum is %d\n",
+		fprintf(stderr, "ERROR: too many children processes configured;"
+				" maximum is %d\n",
 			MAX_PROCESSES-1 );
 		goto error;
 	}

@@ -1,7 +1,7 @@
 /*
  * fast arhitecture specific locking
  *
- * $Id: fastlock.h,v 1.2 2002/02/11 17:56:22 andrei Exp $
+ * $Id: fastlock.h,v 1.3 2002/02/12 20:09:20 andrei Exp $
  *
  * 
  */
@@ -15,7 +15,6 @@
 #include <sched.h>
 
 
-#ifdef __i386
 
 
 typedef  volatile int lock_t;
@@ -30,12 +29,20 @@ typedef  volatile int lock_t;
 inline static int tsl(lock_t* lock)
 {
 	volatile char val;
+#ifdef __i386
 	
 	val=1;
 	asm volatile( 
 		" xchg %b0, %1" : "=q" (val), "=m" (*lock) : "0" (val) : "memory"
 	);
 	return val;
+#elif defined __sparc64
+	asm volatile(
+			"ldstub [%1], %0 \n\t"
+			"membar #StoreStore | #StoreLoad \n\t"
+			: "=r"(val) : "r"(lock):"memory"
+	);
+#endif
 }
 
 
@@ -54,13 +61,22 @@ inline static void release_lock(lock_t* lock)
 {
 	char val;
 
+#ifdef __i386
 	val=0;
 	asm volatile(
 		" xchg %b0, %1" : "=q" (val), "=m" (*lock) : "0" (val) : "memory"
+	); /* hmm, maybe lock; movb $0, [%1] would be faster ???*/
+#elif defined __sparc64
+	asm volatile(
+			"membar #LoadStore | #StoreStore \n\t" /*is this really needed?*/
+			"stb %%g0, [%0] \n\t"
+			: /*no output*/
+			: "r" (lock)
+			: "memory"
 	);
+#endif
 }
 
-#endif
 
 
 #endif
