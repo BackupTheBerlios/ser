@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.2 2003/03/12 19:46:54 janakj Exp $
+ * $Id: group.c,v 1.3 2003/03/12 21:35:15 janakj Exp $
  *
  * Group membership checking over Radius
  *
@@ -183,7 +183,7 @@ int radius_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 	
 	memcpy(user_name.s, user.s, user.len);
 	user_name.s[user.len] = '@';
-	memcpy(user_name.s + user.len, domain.s, domain.len);
+	memcpy(user_name.s + user.len + 1, domain.s, domain.len);
 	
 	if (!rc_avpair_add(&send, PW_USER_NAME, user_name.s, user_name.len)) {
 		LOG(L_ERR, "radius_is_user_in(): Error adding PW_USER_NAME\n");
