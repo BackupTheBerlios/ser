@@ -1,6 +1,6 @@
-#!/bin/sh -x
+#!/bin/sh 
 #
-# $Id: ser_mysql.sh,v 1.3 2002/08/28 22:59:28 jku Exp $
+# $Id: ser_mysql.sh,v 1.4 2002/08/28 23:04:56 jku Exp $
 #
 # Script for adding and dropping ser MySql tables
 # 
@@ -13,7 +13,7 @@
 #################################################################
 # config vars
 #################################################################
-DBNAME=ser2
+DBNAME=ser
 USERNAME=ser
 DEFAULT_PW=heslo
 ROUSER=serro
@@ -259,7 +259,7 @@ CREATE TABLE pending (
 
 
 CREATE TABLE phonebook (
-  id int(10) unsigned NOT NULL increment,
+  id int(10) unsigned NOT NULL auto_increment,
   user varchar(50) NOT NULL default '',
   fname varchar(32) NOT NULL default '',
   lname varchar(32) NOT NULL default '',
