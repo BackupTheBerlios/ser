@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.19 2003/10/20 17:10:13 andrei Exp $
+ * $Id: challenge.c,v 1.20 2004/04/15 13:46:23 janakj Exp $
  *
  * Challenge related functions
  *
@@ -164,7 +164,7 @@ static inline int challenge(struct sip_msg* _msg, str* _realm, int _qop,
 		_realm = &uri.host;
 	}
 
-	auth_hf = build_auth_hf(0, 0, _realm, &auth_hf_len, _qop, _challenge_msg);
+	auth_hf = build_auth_hf(0, (cred ? cred->stale : 0), _realm, &auth_hf_len, _qop, _challenge_msg);
 	if (!auth_hf) {
 		LOG(L_ERR, "ERROR: challenge: no mem w/cred\n");
 		return -1;
