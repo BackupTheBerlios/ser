@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.63 2002/03/01 10:52:19 janakj Exp $
+ * $Id: main.c,v 1.64 2002/03/01 11:08:46 janakj Exp $
  */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.63 2002/03/01 10:52:19 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.64 2002/03/01 11:08:46 janakj Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ __DATE__ ;
 static char flags[]=
@@ -334,11 +334,12 @@ int main_loop()
 		     /* We will call child_init even if we
 		      * do not fork
 		      */
-		if (init_child(0) < 0) {
+/*
+		if (init_child(1) < 0) {
 			LOG(L_ERR, "init_child failed\n");
 			goto error;
 		}
-		
+*/		
 		return udp_rcv_loop();
 	}else{
 		for(r=0;r<addresses_no;r++){
@@ -351,10 +352,12 @@ int main_loop()
 				}
 				if (pid==0){
 					     /* child */
+/*
 					if (init_child(i) < 0) {
 						LOG(L_ERR, "init_child failed\n");
 						goto error;
 					}
+*/
 					process_no=i+1; /*0=main*/
 					process_bit = 1 << i;
 #ifdef STATS
