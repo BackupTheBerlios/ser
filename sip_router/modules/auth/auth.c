@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.20 2002/03/12 22:14:50 janakj Exp $
+ * $Id: auth.c,v 1.21 2002/03/20 23:47:54 janakj Exp $
  */
 
 #include "auth.h"
@@ -305,7 +305,7 @@ int authorize(struct sip_msg* _msg, char* _realm, char* str2)
 	print_cred(&cred);
 
 	if (get_ha1(&cred.username, _realm, ha1) == -1) {
-		LOG(L_ERR, "authorize(): Error while getting A1 string for user %s\n", cred.username.s);
+		LOG(L_ERR, "authorize(): Error while getting A1 string for user \"%s\"\n", cred.username.s);
 		return -1;
 	}
 	
