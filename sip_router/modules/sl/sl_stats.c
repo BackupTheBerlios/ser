@@ -1,6 +1,6 @@
 /*
  *
- * $Id: sl_stats.c,v 1.8 2002/10/21 00:46:13 jiri Exp $
+ * $Id: sl_stats.c,v 1.9 2003/06/29 20:20:06 jiri Exp $
  *
  *
  * Copyright (C) 2001-2003 Fhg Fokus
@@ -110,7 +110,7 @@ int static sl_stats_cmd( FILE *pipe, char *response_file )
 
 void sl_stats_destroy()
 {
-	shm_free(sl_stats);
+	if (sl_stats) shm_free(sl_stats);
 }
 
 int init_sl_stats( void ) 
