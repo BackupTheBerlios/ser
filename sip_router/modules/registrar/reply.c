@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.10 2003/02/14 12:04:23 janakj Exp $
+ * $Id: reply.c,v 1.11 2003/03/13 14:15:36 janakj Exp $
  *
  * Send a reply
  *
@@ -102,7 +102,9 @@ void build_contact(ucontact_t* _c)
 		LOG(L_ERR, "build_contact(): Contact list buffer exhaused, %d contact(s) ignored\n", nummissed);
 	}
 
-	DBG("build_contact(): Created Contact HF: %.*s\n", l, b);
+	if (_c) {
+		DBG("build_contact(): Created Contact HF: %.*s\n", l, b);
+	}
 }
 
 
