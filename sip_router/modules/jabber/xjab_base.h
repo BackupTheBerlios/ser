@@ -1,5 +1,5 @@
 /**
- * $Id: xjab_base.h,v 1.9 2003/06/11 17:41:20 dcm Exp $
+ * $Id: xjab_base.h,v 1.10 2004/04/01 17:51:15 jamey Exp $
  *
  * eXtended JABber module
  *
@@ -55,7 +55,7 @@
 #define XJ_FLAG_OPEN		0
 #define XJ_FLAG_CLOSE		1
 
-typedef void (*pa_callback_f)(str* _user, int _state, void *p);
+typedef void (*pa_callback_f)(str* _user, str* _contact, int _state, void *p);
 
 /**********             ***/
 

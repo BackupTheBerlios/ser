@@ -1,5 +1,5 @@
 /*
- * $Id: xjab_presence.c,v 1.6 2003/06/02 15:42:21 dcm Exp $
+ * $Id: xjab_presence.c,v 1.7 2004/04/01 17:51:15 jamey Exp $
  *
  * XJAB module
  *
@@ -268,7 +268,7 @@ void xj_pres_list_notifyall(xj_pres_list prl, int s)
 	while(p)
 	{
 		if(p->cbf)
-			(*(p->cbf))(&(p->userid),(s==XJ_PS_CHECK)?p->state:s,
+			(*(p->cbf))(&(p->userid),&(p->userid), (s==XJ_PS_CHECK)?p->state:s,
 					p->cbp);
 		p = p->next;
 	}
