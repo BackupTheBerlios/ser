@@ -1,5 +1,5 @@
 /*
- * $Id: parse_rr.c,v 1.3 2003/03/27 20:45:40 janakj Exp $
+ * $Id: parse_rr.c,v 1.4 2003/03/30 20:32:35 janakj Exp $
  *
  * Route & Record-Route header field parser
  *
@@ -33,7 +33,7 @@
 #include "../mem/mem.h"
 #include "../dprint.h"
 #include "../trim.h"
-
+#include "../ut.h"
 
 /*
  * Parse Route and Record-Route header fields
@@ -49,8 +49,12 @@ int parse_rr(struct hdr_field* _h)
 		return -1;
 	}
 
+	if (_h->parsed) {
+		     /* Already parsed, return */
+		return 0;
+	}
 
-	     /* Make a temporary copy of the string */
+	     /* Make a temporary copy of the string pointer */
 	s.s = _h->body.s;
 	s.len = _h->body.len;
 	trim_leading(&s);
