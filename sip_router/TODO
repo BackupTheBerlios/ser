@@ -1,7 +1,8 @@
-$Id: TODO,v 1.10 2001/11/06 00:11:56 andrei Exp $
+$Id: TODO,v 1.11 2001/11/23 00:47:19 andrei Exp $
 
 ( - todo, x - done)
 
+- fix parse_cseq!!! (it doesnt parse 1234\n INVITE a.s.o)
 - better Via parsing (handle ' ' in uri, eg: foo.bar : 1234 ; received=) and
  ipv6 addresses ([fec0:aa::01]).
 - fix format string vulnerability in log()

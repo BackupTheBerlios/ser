@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.27 2001/11/22 22:32:38 andrei Exp $
+ * $Id: main.c,v 1.28 2001/11/23 00:47:19 andrei Exp $
  */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@
 #endif
 
 
-static char id[]="@(#) $Id: main.c,v 1.27 2001/11/22 22:32:38 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.28 2001/11/23 00:47:19 andrei Exp $";
 static char version[]="ser 0.8.3.9";
 static char flags[]="NOCR:"
 #ifdef NOCR
@@ -288,7 +288,9 @@ static void sig_usr(int signo)
 		DPrint("Thank you for flying ser\n");
 		exit(0);
 	} else if (signo==SIGUSR1) { /* statistic */
+#ifdef STATS
 		dump_all_statistic();
+#endif
 	}
 }
 	
@@ -329,7 +331,9 @@ int main(int argc, char** argv)
 					cfg_file=optarg;
 					break;
 			case 's':
+				#ifdef STATS
 					stat_file=optarg;
+				#endif
 					break;
 			case 'p':
 					port_no=strtol(optarg, &tmp, 10);

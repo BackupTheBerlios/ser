@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.24 2001/11/22 22:32:38 andrei Exp $
+# $Id: Makefile,v 1.25 2001/11/23 00:47:19 andrei Exp $
 #
 # sip_router makefile
 #
@@ -28,7 +28,7 @@ NAME=ser
 # DEBUG compiles in some extra debugging code
 # OLD_PARSER uses the old and stable parser (from ser 8.3.2)
 # DNS_IP_HACK faster ip address resolver for ip strings (e.g "127.0.0.1")
-DEFS=-DNOCR -DMACROEATER -DSTATS -DDNS_IP_HACK #-DNO_DEBUG 
+DEFS=-DNOCR -DMACROEATER -DDNS_IP_HACK #-DSTATS -DNO_DEBUG 
 #-DNO_LOG
 
 PROFILE=  # -pg #set this if you want profiling
