@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.9 2002/08/08 17:26:34 janakj Exp $ 
+ * $Id: dbase.c,v 1.10 2002/08/09 15:02:48 janakj Exp $ 
  *
  * MySQL module core functions
  */
@@ -246,7 +246,7 @@ db_con_t* db_init(const char* _sqlurl)
 		memset(res, 0, sizeof(db_con_t));
 	}
 
-	if (!connect_db(res, _sqlurl)) {
+	if (connect_db(res, _sqlurl) < 0) {
 		LOG(L_ERR, "db_init(): Error while trying to connect database\n");
 		pkg_free(res);
 		return NULL;
