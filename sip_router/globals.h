@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.16 2002/09/03 23:31:10 janakj Exp $
+ * $Id: globals.h,v 1.17 2002/09/10 10:47:47 jku Exp $
  *
  * global variables
  *
@@ -69,5 +69,8 @@ extern int process_no;
 extern int reply_to_via;
 
 extern int is_main;
+
+/* debugging level for dumping memory status */
+extern int memlog;
 
 #endif
