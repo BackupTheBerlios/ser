@@ -1,6 +1,6 @@
 /*
  *
- * $Id: vm.c,v 1.29 2003/07/15 09:00:43 rco Exp $
+ * $Id: vm.c,v 1.30 2003/10/10 05:11:30 jiri Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -487,7 +487,11 @@ static int vm_action(struct sip_msg* msg, char* vm_fifo, char* action)
 
     lines[6]=msg->rcv.bind_address->address_str; /* dst ip */
 
+#ifdef JKUFIX
     lines[7]=msg->parsed_uri.port.len ? empty_param : msg->rcv.bind_address->port_no_str; /* port */
+#endif
+    lines[7]=msg->rcv.dst_port==SIP_PORT ?
+			empty_param : msg->rcv.bind_address->port_no_str; /* port */
     lines[8]=msg->first_line.u.request.uri;      /* r_uri ('Contact:' for next requests) */
 
     lines[9]=str_uri.len?str_uri:empty_param; /* r_uri for subsequent requests */
