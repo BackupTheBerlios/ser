@@ -1,5 +1,5 @@
 /*
- * $Id: mem.c,v 1.7 2002/09/19 12:23:53 jku Rel $
+ * $Id: mem.c,v 1.8 2003/03/27 13:26:06 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.147 2003/03/19 18:41:58 andrei Exp $
+ * $Id: main.c,v 1.148 2003/03/27 13:26:06 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -91,7 +91,7 @@
 #include <dmalloc.h>
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.147 2003/03/19 18:41:58 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.148 2003/03/27 13:26:06 andrei Exp $";
 static char version[]=  NAME " " VERSION " (" ARCH "/" OS ")" ;
 static char compiled[]= __TIME__ " " __DATE__ ;
 static char flags[]=
@@ -1072,6 +1072,10 @@ int main(int argc, char** argv)
 	ret=-1;
 	my_argc=argc; my_argv=argv;
 	
+	/*init mallocs (before parsing cfg or cmd line !)*/
+	if (init_mallocs()==-1)
+		goto error;
+
 	/* added by jku: add exit handler */
 	if (signal(SIGINT, sig_usr) == SIG_ERR ) {
 		DPrint("ERROR: no SIGINT signal handler can be installed\n");
@@ -1287,9 +1291,6 @@ try_again:
 	
 	
 
-	/*init mallocs (before parsing cfg !)*/
-	if (init_mallocs()==-1)
-		goto error;
 
 	/*init timer, before parsing the cfg!*/
 	if (init_timer()<0){
