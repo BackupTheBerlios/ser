@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.1 2003/02/26 14:03:47 janakj Exp $
+ * $Id: group.c,v 1.2 2003/03/06 15:51:09 janakj Exp $
  *
  * Group membership
  *
@@ -114,8 +114,8 @@ static inline int get_cred_user(struct sip_msg* _m, str* _u)
 	
 	c = (auth_body_t*)(h->parsed);
 
-	_u->s = c->digest.username.s;
-	_u->len = c->digest.username.len;
+	_u->s = c->digest.username.whole.s;
+	_u->len = c->digest.username.whole.len;
 
 	return 0;
 }
