@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.26 2005/03/29 05:58:28 danp Exp $
+/* $Id: mediaproxy.c,v 1.27 2005/04/11 11:01:02 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -1255,8 +1255,13 @@ testSourceAddress(struct sip_msg* msg)
     int via1Port;
 
     diffIP   = received_test(msg);
-    via1Port = (msg->via1->port ? msg->via1->port : SIP_PORT);
-    diffPort = (msg->rcv.src_port != via1Port);
+    if (isSIPAsymmetric(getUserAgent(msg))) {
+        // ignore port test for asymmetric clients (it's always different)
+        diffPort = False;
+    } else {
+        via1Port = (msg->via1->port ? msg->via1->port : SIP_PORT);
+        diffPort = (msg->rcv.src_port != via1Port);
+    }
 
     return (diffIP || diffPort);
 }
