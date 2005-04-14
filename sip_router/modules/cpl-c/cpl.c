@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.53 2005/02/23 17:16:02 andrei Exp $
+ * $Id: cpl.c,v 1.54 2005/04/14 15:24:56 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -208,13 +208,13 @@ static int cpl_init(void)
 
 	/* check the module params */
 	if (DB_URL==0) {
-		LOG(L_CRIT,"ERROR:cpl_init: mandatory parameter \"DB_URL\" "
+		LOG(L_CRIT,"ERROR:cpl_init: mandatory parameter \"cpl_db\" "
 			"found empty\n");
 		goto error;
 	}
 
 	if (DB_TABLE==0) {
-		LOG(L_CRIT,"ERROR:cpl_init: mandatory parameter \"DB_TABLE\" "
+		LOG(L_CRIT,"ERROR:cpl_init: mandatory parameter \"cpl_table\" "
 			"found empty\n");
 		goto error;
 	}
