@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.37 2004/12/15 17:49:13 andrei Exp $
+ * $Id: cpl_run.c,v 1.38 2005/04/16 08:49:07 bogdan Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -287,8 +287,7 @@ static inline char *run_lookup( struct cpl_interpreter *intr )
 		} else {
 			contact = r->contacts;
 			/* skip expired contacts */
-			while ((contact) && ((contact->expires <= tc) ||
-			(contact->state >= CS_ZOMBIE_N)))
+			while ( contact && contact->expires <= tc)
 				contact = contact->next;
 			/* any contacts left? */
 			if (contact) {
