@@ -1,0 +1,49 @@
+$Id: README,v 1.1 2005/04/19 15:17:09 janakj Exp $
+
+SER Artwork
+===========
+
+This directory contains a couple of images and logos that can be used together
+with the SIP Express Router and related utilities. The collection contains
+logos for SER, SERWeb, RTPProxy, and SEMS.
+
+* You can use the artwork for any project that is based on or uses SER and
+  accompanying utilities.
+  
+* You can use the images to demonstrate your support for the project and place
+  them on your webpage.
+    
+* We would like to encourage people to publicly demonstrate that their servers
+  or services are based on the SIP Express Router. We give away the software
+  for free and the least you could do for us is to announce that you find
+  the software useful. The best way how to do that is placing the small
+  "SER-Powered" logo on your website along with a link to the homepage of
+  SER.
+  
+Description
+-----------
+
+Subdirectory psd contains the source files for Photoshop that were used to
+generate the JPEG images. You can use the Photoshop source files if you
+need to generate the images in a different size or file format, or different
+level of compression.
+
+Subdirectory jpg contains pre-generated JPEG files in various sizes, the
+names of the subdirectories are self-explanatory.
+
+Subdirectory jpg/notext contains a special version of the main logo with
+no text or description attached to it. This image (or its psd version) can
+be used to generate logos with custom text or description. Custom logos should
+try to follow the style common for all other logos. Preferable color scheme is 
+blue.
+
+The image itself expresses a man holding two maritime signaling flags (one up,
+one down). This system has been used at sea for communication between ships.
+SER and accompanying utilities mostly work with SIP signaling and their
+purpose is to enable real-time communication in the internet  -- hence the 
+analogy to the maritime flag signaling system :-)
+
+I bought this image under a non-exclusive licence and it is possible, although
+the chance is quite small, that it will be used also used by someone else.
+
+  -- Jan Janak <jan@iptel.org>
