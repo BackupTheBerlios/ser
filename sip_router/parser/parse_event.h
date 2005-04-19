@@ -1,5 +1,5 @@
 /*
- * $Id: parse_event.h,v 1.6 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_event.h,v 1.7 2005/04/19 12:52:26 jamey Exp $
  *
  * Event header field body parser
  * This parser was written for Presence Agent module only.
@@ -41,8 +41,8 @@
 #define EVENT_OTHER          0
 #define EVENT_PRESENCE       1
 #define EVENT_PRESENCE_WINFO 2
-#define EVENT_XCAP_CHANGE    3
-#define EVENT_LOCATION       4
+#define EVENT_SIP_PROFILE    3
+#define EVENT_XCAP_CHANGE    4
 
 typedef struct event {
 	str text;       /* Original string representation */
