@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.27 2005/04/04 14:24:31 jamey Exp $
+ * $Id: subscribe.c,v 1.28 2005/04/19 12:49:07 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -187,11 +187,11 @@ static int get_watch_uri(struct sip_msg* _m, str* _wuri, str *_dn)
  */
 static int parse_hfs(struct sip_msg* _m, int accept_header_required)
 {
-	if ( (parse_headers(_m, HDR_FROM_F | HDR_EVENT_F | HDR_EXPIRES_F |
-							HDR_ACCEPT_F, 0) == -1) ||
-			(_m->from==0)||(_m->event==0)||(_m->expires==0) ) {
+	int rc = 0;
+	if ( ((rc = parse_headers(_m, HDR_FROM_F | HDR_EVENT_F | HDR_EXPIRES_F | HDR_ACCEPT_F, 0)) == -1) 
+	     || (_m->from==0) || (_m->event==0) ) {
 		paerrno = PA_PARSE_ERR;
-		LOG(L_ERR, "parse_hfs(): Error while parsing headers\n");
+		LOG(L_ERR, "parse_hfs(): Error while parsing headers: rc=%d\n", rc);
 		return -1;
 	}
 
@@ -217,6 +217,7 @@ static int parse_hfs(struct sip_msg* _m, int accept_header_required)
 		}
 	}
 
+	/* now look for Accept header */
 	if (_m->accept) {
 		LOG(L_ERR, "parsing accept header\n");
 		if (parse_accept_hdr(_m) < 0) {
@@ -583,6 +584,8 @@ int pa_handle_registration(struct sip_msg* _m, char* _domain, char* _s2)
 
      if (_m->expires) {
 	  e = ((exp_body_t*)_m->expires->parsed)->val;
+     } else {
+	  e = default_expires;
      }
 
      if (from)
