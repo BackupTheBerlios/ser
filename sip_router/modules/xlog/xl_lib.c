@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.17 2005/02/26 15:29:04 janakj Exp $
+ * $Id: xl_lib.c,v 1.18 2005/04/19 07:54:58 ramona Exp $
  *
  * XLOG module
  *
@@ -428,7 +428,7 @@ static int xl_get_callid(struct sip_msg *msg, str *res, str *hp, int hi)
 	if(msg->callid==NULL && ((parse_headers(msg, HDR_CALLID_F, 0)==-1) ||
 				(msg->callid==NULL)) )
 	{
-		LOG(L_ERR, "XLOG: xl_get_cseq: ERROR cannot parse Call-Id header\n");
+		LOG(L_ERR, "XLOG: xl_get_callid: ERROR cannot parse Call-Id header\n");
 		return xl_get_null(msg, res, hp, hi);
 	}
 
@@ -502,7 +502,7 @@ static int xl_get_useragent(struct sip_msg *msg, str *res, str *hp, int hi)
 	if(msg->user_agent==NULL && ((parse_headers(msg, HDR_USERAGENT_F, 0)==-1)
 			 || (msg->user_agent==NULL)))
 	{
-		LOG(L_ERR, "XLOG: xl_get_useragent: ERROR cannot parse User-Agent header\n");
+		DBG("XLOG: xl_get_useragent: User-Agent header not found\n");
 		return xl_get_null(msg, res, hp, hi);
 	}
 	
