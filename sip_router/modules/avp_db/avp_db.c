@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.3 2005/03/14 13:16:01 mma Exp $
+ * $Id: avp_db.c,v 1.4 2005/04/20 19:54:53 bogdan Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -251,7 +251,7 @@ static int load_avp_uuid(struct sip_msg* msg, str* prefix, int avp_id)
 
 	attr_istr.n = avp_id;
 	
-	uuid = search_first_avp(AVP_VAL_STR, attr_istr, &val_istr);
+	uuid = search_first_avp(AVP_NAME_STR, attr_istr, &val_istr);
 	if (!uuid) {
 		LOG(L_ERR, "load_avp_uuid: no AVP with id %d was found\n", avp_id);
 		return -1;
