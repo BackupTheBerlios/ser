@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.68 2005/03/15 10:25:39 dcm Exp $
+# $Id: ser_mysql.sh,v 1.69 2005/04/26 18:10:03 kozlik Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -682,6 +682,8 @@ CREATE TABLE speed_dial (
   sd_username varchar(64) NOT NULL default '',
   sd_domain varchar(128) NOT NULL default '',
   new_uri varchar(192) NOT NULL default '',
+  fname varchar(128) NOT NULL default '',
+  lname varchar(128) NOT NULL default '',
   description varchar(64) NOT NULL default '',
   PRIMARY KEY  ($USERCOL,domain,sd_username,sd_domain)
 ) $TABLE_TYPE;
