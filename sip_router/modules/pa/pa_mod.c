@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.29 2005/04/29 14:38:49 jamey Exp $
+ * $Id: pa_mod.c,v 1.30 2005/04/29 14:48:07 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
