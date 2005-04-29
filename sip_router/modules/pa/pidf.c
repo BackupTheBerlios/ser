@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.c,v 1.16 2005/04/29 14:48:07 jamey Exp $
+ * $Id: pidf.c,v 1.17 2005/04/29 18:03:58 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -803,7 +803,7 @@ int mangle_message_cpim(struct sip_msg* _msg, char* _s1, char* _s2)
 	  LOG(L_ERR, "mangle_message_cpim -1b- patched content-type=%.*s\n", new_content_type_len, new_content_type_str);
 	  if (ptr) {
 	       char *new_body = NULL;
-	       int new_body_len = ptr + 4 - body;
+	       int new_body_len =  body_len - (ptr + 4 - body);
 	    
 	       //LOG(L_ERR, "mangle_message_cpim -2- old_body_len=%d new_body_len=%d\n", body_len, new_body_len);
 	       new_body = pkg_malloc(new_body_len+1);
