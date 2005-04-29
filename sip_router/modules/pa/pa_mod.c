@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.28 2005/04/19 12:40:32 jamey Exp $
+ * $Id: pa_mod.c,v 1.29 2005/04/29 14:38:49 jamey Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -45,6 +45,7 @@
 #include "unixsock.h"
 #include "location.h"
 #include "pa_mod.h"
+#include "pidf.h"
 #include "watcher.h"
 
 MODULE_VERSION
@@ -95,6 +96,8 @@ static cmd_export_t cmds[]={
 	{"handle_publish",        handle_publish,        1, subscribe_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{"existing_subscription", existing_subscription, 1, subscribe_fixup, REQUEST_ROUTE                },
 	{"pua_exists",            pua_exists,            1, subscribe_fixup, REQUEST_ROUTE                },
+	{"mangle_pidf",           mangle_pidf,           0, NULL, REQUEST_ROUTE | FAILURE_ROUTE},
+	{"mangle_message_cpim",   mangle_message_cpim,   0, NULL,            REQUEST_ROUTE | FAILURE_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
