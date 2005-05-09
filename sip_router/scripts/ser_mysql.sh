@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.69 2005/04/26 18:10:03 kozlik Exp $
+# $Id: ser_mysql.sh,v 1.70 2005/05/09 12:13:02 kozlik Exp $
 #
 # Script for adding and dropping ser MySql tables
 #
@@ -596,7 +596,8 @@ CREATE TABLE usr_preferences (
   value varchar(128) NOT NULL default '',
   type integer NOT NULL default '0',
   modified timestamp(14) NOT NULL,
-  PRIMARY KEY  (attribute,$USERCOL,domain)
+  PRIMARY KEY  (attribute,$USERCOL,domain),
+  INDEX (uuid)
 ) $TABLE_TYPE;
 
 
@@ -677,6 +678,7 @@ CREATE TABLE calls_forwarding (
 #
 
 CREATE TABLE speed_dial (
+  uuid varchar(64) NOT NULL default '',
   $USERCOL varchar(64) NOT NULL default '',
   domain varchar(128) NOT NULL default '',
   sd_username varchar(64) NOT NULL default '',
@@ -685,7 +687,8 @@ CREATE TABLE speed_dial (
   fname varchar(128) NOT NULL default '',
   lname varchar(128) NOT NULL default '',
   description varchar(64) NOT NULL default '',
-  PRIMARY KEY  ($USERCOL,domain,sd_username,sd_domain)
+  PRIMARY KEY  ($USERCOL,domain,sd_username,sd_domain),
+  INDEX (uuid)
 ) $TABLE_TYPE;
 
 #
