@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.c,v 1.7 2005/04/22 16:06:45 andrei Exp $
+ * $Id: dispatch.c,v 1.8 2005/05/12 10:26:16 andrei Exp $
  *
  * dispatcher module
  * 
@@ -344,7 +344,7 @@ int ds_destroy_list()
 		pkg_free(sp->dlist);
 		sp = sp->next;
 	}
-	pkg_free(_ds_list);
+	if (_ds_list) pkg_free(_ds_list);
 	
 	si = _ds_index;
 	while(si)
