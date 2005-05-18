@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.43 2005/02/28 18:52:51 janakj Exp $ 
+ * $Id: dbase.c,v 1.44 2005/05/18 16:30:35 janakj Exp $ 
  *
  * MySQL module core functions
  *
@@ -275,7 +275,6 @@ db_con_t* db_init(const char* _url)
 		     /* Not in the pool yet */
 		con = new_connection(id);
 		if (!con) {
-			LOG(L_ERR, "db_init: No memory left\n");
 			goto err;
 		}
 		pool_insert((struct pool_con*)con);
