@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.88 2005/05/18 17:10:45 janakj Exp $
+ * $Id: sip_msg.c,v 1.89 2005/05/23 15:46:25 janakj Exp $
  * 
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -684,7 +684,7 @@ do { \
 				}
 				break;
 			case HDR_SUBJECT_T:
-				if (new_msg->priority == 0) {
+				if (new_msg->subject == 0) {
 					new_msg->subject = new_hdr;
 				}
 				break;
