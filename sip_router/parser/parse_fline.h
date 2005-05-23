@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.h,v 1.6 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_fline.h,v 1.7 2005/05/23 09:20:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -51,6 +51,7 @@
 #define CANCEL_LEN 6
 #define ACK_LEN 3
 #define BYE_LEN 3
+#define INFO_LEN 4
 
 
 struct msg_start {

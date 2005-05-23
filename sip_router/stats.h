@@ -1,5 +1,5 @@
 /*
- * $Id: stats.h,v 1.10 2004/08/24 08:45:10 janakj Exp $
+ * $Id: stats.h,v 1.11 2005/05/23 09:20:57 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -47,6 +47,7 @@
           	case METHOD_ACK: stats->dir##_requests_ack++; break;		\
           	case METHOD_CANCEL: stats->dir##_requests_cnc++; break;	\
           	case METHOD_BYE: stats->dir##_requests_bye++; break;		\
+		case METHOD_INFO: stats->dir##_requests_info++; break;		\
           	case METHOD_OTHER: stats->dir##_requests_other++; break;	\
           	default: LOG(L_ERR, "ERROR: unknown method in rq stats (%s)\n", \
 							#dir);	\
