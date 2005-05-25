@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.307 2005/05/25 10:53:45 andrei Exp $
+# $Id: Makefile.defs,v 1.308 2005/05/25 17:43:39 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -922,9 +922,6 @@ ifeq  ($(OS), solaris)
 		#LDFLAGS=-g $(PROFILE)
 		#MOD_LDFLAGS=-g -G
 	endif
-ifneq ($(TLS),)
-	DEFS+= -I/usr/local/ssl/include
-endif
 	YACC=yacc
 
 ifeq ($(CC_NAME), suncc)
@@ -1024,6 +1021,7 @@ endif
 
 #add libssl if needed
 ifneq ($(TLS),)
+DEFS+= -I/usr/local/ssl/include
 LIBS+= -L/usr/local/lib -L/usr/local/ssl/lib -lssl  -lcrypto
 endif
 
