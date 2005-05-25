@@ -1,7 +1,15 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.38 2004/12/16 17:39:46 andrei Exp $
+$Id: NEWS,v 1.39 2005/05/25 10:53:45 andrei Exp $
+
+0.10.99-dev changes
+
+
+new archs:
+  - powerpc64 support
+  - alpha experimental support
+
 
 0.8.99-dev changes
 
