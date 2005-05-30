@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.84 2005/03/10 08:34:08 janakj Exp $
+# $Id: sc,v 1.85 2005/05/30 16:52:57 janakj Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -65,7 +65,7 @@ LAST_LINE='tail -1'
 VERIFY_ACL=1
 ACL_GROUPS="local ld int voicemail free-pstn prepaid"
 
-VERSION='$Revision: 1.84 $'
+VERSION='$Revision: 1.85 $'
 #### SQL names
 
 # Usr Loc Table
@@ -243,14 +243,16 @@ check_alias() {
 				> /dev/stderr
 			exit 1
 		fi
-		echo "$RES" | grep "^200" > /dev/null
+
+		# Unknown error
+		echo "$RES" | grep "^[1-9][0-9][0-9]" > /dev/null
 		if [ $? -eq 0 ] ; then
-			echo "error: overlap with an existing alias" \
+			echo "error: $RES" \
 				> /dev/stderr
 			exit 1
 		fi
-		# other errors
-		echo "error: $RES" > /dev/stderr
+
+		echo "error: Overlap with an existing alias" > /dev/stderr
 		exit 1
 }
 
