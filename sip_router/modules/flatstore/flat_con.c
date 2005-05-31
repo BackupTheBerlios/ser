@@ -1,5 +1,5 @@
 /* 
- * $Id: flat_con.c,v 1.4 2004/12/01 10:58:23 andrei Exp $
+ * $Id: flat_con.c,v 1.5 2005/05/31 12:59:30 janakj Exp $
  *
  * Flastore module connection structure
  *
@@ -163,10 +163,17 @@ int flat_reopen_connection(struct flat_con* con)
 
 	if (con->file) {
 		fclose(con->file);
+		con->file = 0;
 
 		fn = get_name(con->id);
+		if (fn == 0) {
+			LOG(L_ERR, "flat_reopen_connection: get_name() failed\n");
+		        return -1;
+		}
 
 		con->file = fopen(fn, "a");
+		pkg_free(fn);
+
 		if (!con->file) {
 			LOG(L_ERR, "flat_reopen_connection: Invalid parameter value\n");
 			return -1;
