@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.36 2005/02/23 17:16:05 andrei Exp $
+ * $Id: loose.c,v 1.37 2005/05/31 13:49:50 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -698,7 +698,7 @@ static inline int after_loose(struct sip_msg* _m, int preloaded)
 				}
 				if (res > 0) { /* No next route found */
 					DBG("after_loose: No next URI found\n");
-					return NOT_RR_DRIVEN;
+					return (preloaded ? NOT_RR_DRIVEN : RR_DRIVEN);
 				}
 				rt = (rr_t*)hdr->parsed;
 			} else rt = rt->next;
