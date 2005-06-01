@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2004/12/03 19:09:33 andrei Exp $
+# $Id: Makefile,v 1.5 2005/06/01 22:25:06 andrei Exp $
 #
 # Presence Agent
 #
@@ -11,6 +11,6 @@ NAME=pa.so
 LIBS=
 
 DEFS+=-I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2
-LIBS+=-I/usr/include/lib  -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2
+LIBS+=-I/usr/include/lib  -L$(LOCALBASE)/lib -lxml2
 
 include ../../Makefile.modules

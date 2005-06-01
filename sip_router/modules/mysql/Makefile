@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.26 2004/10/22 17:17:55 andrei Exp $
+# $Id: Makefile,v 1.27 2005/06/01 22:25:06 andrei Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
@@ -8,13 +8,13 @@ NAME=mysql.so
 
 # mysql.h locations (freebsd,openbsd  solaris)
 DEFS +=-I$(LOCALBASE)/include -I$(LOCALBASE)/include/mysql \
-		-I$(LOCALBASE)/mysql/include -I/usr/pkg/include \
+		-I$(LOCALBASE)/mysql/include \
 		-I/usr/include/mysql
 
 # libmysqlclient locations on RH/Suse, Solaris /OpenBSD, FreeBSD
 # (Debian does the right thing and puts it in /usr/lib)
 LIBS=-L/usr/lib/mysql -L$(LOCALBASE)/lib -L$(LOCALBASE)/lib/mysql \
-		-L$(LOCALBASE)/mysql/lib/mysql/ -L/usr/pkg/lib/mysql \
+		-L$(LOCALBASE)/mysql/lib/mysql/ \
 		-L$(LOCALBASE)/mysql/lib \
 		-L/usr/lib64/mysql \
 		-lmysqlclient -lz

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.137 2005/05/25 10:53:44 andrei Exp $
+# $Id: Makefile,v 1.138 2005/06/01 22:25:05 andrei Exp $
 #
 # sip_router makefile
 #
@@ -237,6 +237,7 @@ dbinstall:
 mk-install-dirs: $(cfg-prefix)/$(cfg-dir) $(bin-prefix)/$(bin-dir) \
 			$(modules-prefix)/$(modules-dir) $(doc-prefix)/$(doc-dir) \
 			$(man-prefix)/$(man-dir)/man8 $(man-prefix)/$(man-dir)/man5
+
 
 $(cfg-prefix)/$(cfg-dir): 
 		mkdir -p $(cfg-prefix)/$(cfg-dir)
