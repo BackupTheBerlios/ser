@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.14 2004/03/09 12:51:14 janakj Exp $
+# $Id: Makefile.rules,v 1.15 2005/06/01 23:23:48 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -41,12 +41,15 @@ static: $(objs)
 clean: 
 	-@rm -f $(objs) $(NAME) $(objs:.o=.il) 2>/dev/null
 	-@for r in $(modules) $(static_modules_path) "" ; do \
-		if [ -n "$$r" ]; then \
+		if [ -d "$$r" ]; then \
 			echo "module $$r" ; \
 			$(MAKE) -C $$r clean ; \
 		fi ; \
 	done
-	@if [ -n "$(modules)" ]; then cd utils/gen_ha1; $(MAKE) clean; cd ../serunix; $(MAKE) clean; fi
+	@if [ -n "$(modules)" -a -d utils/gen_ha1 ]; then \
+		cd utils/gen_ha1; $(MAKE) clean; \
+		cd ../serunix; $(MAKE) clean; \
+	fi
 
 .PHONY: proper
 .PHONY: distclean
@@ -54,7 +57,7 @@ clean:
 proper realclean distclean: clean 
 	-@rm -f $(depends) $(auto_gen) 2>/dev/null
 	-@for r in $(modules) "" ; do \
-		if [ -n "$$r" ]; then \
+		if [ -d "$$r" ]; then \
 			 $(MAKE) -C $$r proper ; \
 		fi ; \
 	done 
@@ -63,7 +66,7 @@ proper realclean distclean: clean
 mantainer-clean: distclean
 	-rm -f TAGS tags *.dbg .*.swp
 	-@for r in $(modules) "" ; do \
-		if [ -n "$$r" ]; then \
+		if [ -d "$$r" ]; then \
 			$(MAKE) -C $$r mantainer-clean; \
 		fi ; \
 	 done 
