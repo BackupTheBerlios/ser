@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_time.c,v 1.8 2004/09/14 12:21:53 janakj Exp $
+ * $Id: cpl_time.c,v 1.9 2005/06/02 23:59:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -395,7 +395,8 @@ int tr_parse_dtstart(tmrec_p _trp, char *_in)
 	if(!_trp || !_in)
 		return -1;
 	_trp->dtstart = ic_parse_datetime(_in, &(_trp->ts));
-	DBG("----->dtstart = %ld | %s\n",_trp->dtstart,ctime(&(_trp->dtstart)));
+	DBG("----->dtstart = %ld | %s\n", (long)_trp->dtstart,
+									ctime(&(_trp->dtstart)));
 	return (_trp->dtstart==0)?-1:0;
 }
 
@@ -405,7 +406,9 @@ int tr_parse_dtend(tmrec_p _trp, char *_in)
 	if(!_trp || !_in)
 		return -1;
 	_trp->dtend = ic_parse_datetime(_in,&_tm);
-	DBG("----->dtend = %ld | %s\n",_trp->dtend,ctime(&(_trp->dtend)));
+	DBG("----->dtend = %ld | %s\n",
+								(long)_trp->dtend,
+								ctime(&(_trp->dtend)));
 	return (_trp->dtend==0)?-1:0;
 }
 
