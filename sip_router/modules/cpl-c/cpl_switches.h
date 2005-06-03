@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_switches.h,v 1.14 2005/02/23 17:16:03 andrei Exp $
+ * $Id: cpl_switches.h,v 1.15 2005/06/03 01:13:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -31,7 +31,7 @@
 
 #include "cpl_time.h"
 #include "../../parser/parse_from.h"
-#include "../../parser/parse_uri.c"
+#include "../../parser/parse_uri.h"
 
 
 
