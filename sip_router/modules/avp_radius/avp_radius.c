@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.3 2005/03/07 20:01:30 janakj Exp $
+ * $Id: avp_radius.c,v 1.4 2005/06/06 06:43:00 jih Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -278,6 +278,10 @@ static int load_avp_user(struct sip_msg* msg, str* prefix, load_avp_param_t type
 		vp = received;
 		while ((vp = rc_avpair_get(vp, attrs[A_SIP_AVP].v, 0))) {
 			attr_name_value(vp, &name_str, &val_str);
+			if (name_str.len == 0) {
+			    LOG(L_ERR, "avp_load_user: Missing attribute name\n");
+			    return -1;
+			}
 
 			buffer.s = (char*)pkg_malloc(prefix->len + name_str.len);
 			if (!buffer.s) {
