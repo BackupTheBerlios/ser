@@ -1,5 +1,5 @@
 /*
- * $Id: auth.c,v 1.2 2005/03/26 20:10:19 ramona Exp $
+ * $Id: auth.c,v 1.3 2005/06/11 12:24:13 bogdan Exp $
  *
  * Copyright (C) 2005 Voice Sistem SRL
  *
@@ -229,7 +229,7 @@ static inline struct hdr_field *get_autenticate_hdr(struct sip_msg *rpl,
 	}
 	for( hdr=rpl->headers ; hdr ; hdr=hdr->next )
 	{
-		if ( !(hdr->type&HDR_OTHER_T) )
+		if ( hdr->type!=HDR_OTHER_T )
 			continue;
 		if (hdr->name.len==hdr_name.len &&
 		strncasecmp(hdr->name.s,hdr_name.s, hdr_name.len)==0 )
