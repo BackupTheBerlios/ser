@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.58 2004/11/09 15:15:11 andrei Exp $
+ * $Id: tcp_main.c,v 1.59 2005/06/13 17:58:42 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1189,7 +1189,7 @@ void tcp_main_loop()
 					case CONN_DESTROY:
 					case CONN_EOF:
 						/* WARNING: this will auto-dec. refcnt! */
-						tcp_children[pt[r].idx].busy--;
+						tcp_children[r].busy--;
 						if (tcpconn){
 							if (tcpconn->s!=-1)
 								FD_CLR(tcpconn->s, &master_set);
