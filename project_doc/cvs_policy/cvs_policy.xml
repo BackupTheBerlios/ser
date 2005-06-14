@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4//EN"
+                      "file:///usr/share/sgml/docbook/dtd/xml/4/docbookx.dtd" [
+
+<!ENTITY % all_entities SYSTEM "../entities/all.xml">
+%all_entities;
+
+]>
+
+<section id="cvs_policy" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <sectioninfo>
+	<releaseinfo role="cvs">$Revision: 1.1 $</releaseinfo>
+	<pubdate role="cvs">$Date: 2005/06/14 19:22:53 $</pubdate>
+    </sectioninfo>
+    
+    <title>
+	SIP Express Router CVS Policy
+    </title>
+
+    <abstract>
+	<para>
+	    The purpose of this document is to give a brief overview of SER CVS
+	    repository. The document describes how does the repository operate,
+	    how to access the source files stored in the repository, and how to
+	    to get write access to the repository if you have something to
+	    contribute.
+	</para>
+	<para>
+	    Intended audience of this document is users checking out files from
+	    the repository, source code contributors, and CVS administrators.
+	</para>
+    </abstract>
+
+    <section it="section.how_to_read">
+	<title>How To Read The Document</title>
+	<section>
+	    <title>Regular Users</title>
+	    <para>
+		Read <xref linkend="section.access"/> to find out how to get
+		access to the repository and how to obtain sources. In
+		addition to that <xref linkend="section.rep_structure"/>
+		outlines the structure of the repository, this section will
+		help you to navigate through various parts of the repository.
+	    </para>
+	    <para>
+		If you would like to get write access to the repository to
+		contribute your code then you should also read <xref
+		linkend="section.getting_rw_access"/>.
+	    </para>
+	</section>
+
+	<section>
+	    <title>3rd Party Developers</title>
+	    <para>
+		<xref linkend="section.getting_rw_access"/> describes how to
+		get write access to <filename>experimental</filename>
+		directory. Once you get write access you should also make
+		yourself familiar with the release cycle described in <xref
+		linkend="section.release_cycle"/>, access control restrictions
+		described in <xref linkend="section.acl"/>, and format of
+		commit logs described in <xref linkend="section.commitlogs"/>.
+	    </para>
+	</section>
+
+	<section>
+	    <title>CVS Administrators and Core Developers</title>
+	    <para>
+		CVS administrators should read <xref
+		linkend="section.rep_internals"/> which describes various
+		internal scripts installed in the repository. <xref
+		linkend="section.email"/> describes how to configure e-mail
+		addresses of developers, and <xref
+		linkend="section.adding_user"/> describes the procedure of
+		granting write permissions to 3rd party developers. <xref
+		linkend="section.acl_internals"/> describes the format of ACL
+		configuration file. This especially useful for administrators
+		of <filename>experimental</filename> directory.
+	    </para>
+	</section>
+
+    </section>
+    
+    <section id="section.access">
+	<title>Accessing the Repository</title>
+
+	<section id="section.ro_access">
+	    <title>Read Only Access</title>
+	    <para>
+		There is anonymous read only access to the repository through
+		pserver method. Those who do not have write access to the
+		repository can use this method to obtain sources:
+	    </para>
+	    <screen>
+janakj@localhost:~$ export CVSROOT=:pserver:anonymous@cvs.berlios.de:/cvsroot/ser
+janakj@localhost:~$ cvs co sip_router		
+</screen>
+	</section>
+
+	<section id="section.web_interface">
+	    <title>CVS Web Interface</title>
+	    <para>
+		There is a Web interface to the repository where you can browse
+		the contents of the repository, see files, and differences
+		between file revisions even if you have no CVS client
+		installed. You can also obtain any revision of any file under
+		revision control and see logs and trees of branches.
+	    </para>
+	    <para>
+		The web interface can be found at <ulink
+		    url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/">
+		    http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/
+		</ulink>
+	    </para>
+	</section>
+
+	<section id="section.getting_rw_access">
+	    <title>Getting Write Access</title>
+	    <para>
+		Anyone can get write access to CVS module
+		<filename>experimental</filename>. Before applying for write
+		access, we would like to see that you really have something to
+		contribute. Please send your code (or link where we can see the
+		code) to serdev@iptel.org mailing list first. After that you
+		can apply for write access to <filename>experimental</filename>
+		CVS module and put your code there.
+	    </para>
+	    <section>
+		<title>How To Apply</title>
+		<itemizedlist>
+		    <listitem>
+			<para>
+			    Create yourself an account on <ulink
+				url="http://developer.berlios.de/account/register.php">Berlios</ulink>.
+			</para>
+			<note>
+			    <para>
+				Berlios updates configuration once per day so
+				it will take at least 24 hours before we can
+				grant you write access to our repository.
+			    </para>
+			</note>
+		    </listitem>
+		    <listitem>
+			<para>
+			    Send your username to Greger V. Teigre
+			    &lt;greger@teigre.com&gt; who is the maintainer of
+			    <filename>experimental</filename> CVS module.
+			</para>
+			<para>
+			    Make sure you include the following: Full name,
+			    E-mail address, Berlios username, and name of the
+			    module you would like to put in CVS.
+			</para>
+		    </listitem>
+		    <listitem>
+			<para>
+			    If you are not yet subscribed to serdev mailing
+			    list then please do so now. All important
+			    developer-related information is sent to the list
+			    (including CVS commit logs). This is a
+			    low-to-moderate volume mailing list.
+			</para>
+		    </listitem>
+		    <listitem>
+			<para>
+			    Once you get a confirmation from Greger that your
+			    account has been setup, check out the
+			    <filename>experimental</filename> CVS module:
+			</para>
+			<screen>
+export CVSROOT=:ext:&lt;your_username&gt;@cvs.berlios.de:/cvsroot/ser
+cvs co experimental
+</screen>
+		    </listitem>
+		    <listitem>
+			<para>
+			    This will create directory
+			    <filename>experimental</filename> on your local
+			    filesystem. There will be an empty directory with
+			    the name of your module.
+			</para>
+		    </listitem>
+		    <listitem>
+			<para>
+			    Put your code in the directory and commit. You
+			    should see your commit log message on the mailing
+			    list shortly.
+			</para>
+		    </listitem>
+		</itemizedlist>
+	    </section>
+	</section>
+	
+	<section id="section.unrestricted">
+	    <title>Unrestricted CVS Access</title>
+	    <para>
+		If you have your code in the experimental module and it is of
+		general use and well supported then you can apply for
+		unrestricted CVS access which would allow you to move your
+		module from experimental directory to the official SER tree.
+	    </para>
+	    <para>
+		In general you should work for a while in the experimental
+		module before you apply for unrestricted CVS access. This
+		measure allows us to get you know a little bit and develop
+		mutual trust which is necessary given that there are no
+		restrictions once you get full access. When considering giving
+		anyone full write access, we will look at your code to see
+		whether it is of general use, it should compile with the latest
+		SER versions and you must be willing to maintain the code in
+		the main tree (alternatively you could convince another
+		developer to maintain the module for you). You should be also
+		subscribed to the SER mailing lists and reply to questions
+		related to your code. This would help us to get you know a bit
+		and establish mutual trust.
+	    </para>
+	</section>
+
+    </section>
+
+    <section id="section.rep_structure">
+	<title>Repository Structure</title>
+	<para>
+	    SER CVS Repository consists of modules. Modules are top level
+	    directories in the CVS repository, at the time of writing this
+	    document the repository contains the following modules:
+	</para>
+	<screen>
+janakj@sheep:~> ls -al /cvsroot/ser
+total 83
+drwxrwsr-x   10 ser    ser     264 2005-06-13 16:57 .
+drwxr-xr-x  2913 root  root  77616 2005-06-12 19:29 ..
+drwxrwsr-x    3 ser    ser    1832 2005-06-10 18:53 CVSROOT <co id="structure.CVSROOT"/>
+drwxrwsr-x    2 ser    ser      48 2005-06-13 17:10 experimental <co id="structure.experimental"/>
+drwxrwsr-x    5 ser    ser     160 2003-12-15 13:34 gsm_auth <co id="structure.gsm_auth"/>
+drwxrwsr-x   29 ser    ser     768 2005-06-09 11:30 locks <co id="structure.locks"/>
+drwxrwsr-x    4 ser    ser      96 2005-06-13 17:14 obsolete <co id="structure.obsolete"/>
+drwxrwsr-x    4 ser    ser    1120 2005-06-07 15:53 rtpproxy <co id="structure.rtpproxy"/>
+drwxrwsr-x    4 ser    ser     120 2005-04-19 17:17 ser_artwork <co id="structure.ser_artwork"/>
+drwxrwsr-x   23 ser    ser    4168 2005-06-07 20:55 sip_router <co id="structure.sip_router"/>
+</screen>
+	<calloutlist>
+	    <callout arearefs="structure.experimental">
+		<para>
+		    Experimental code (mainly SER modules written by 3rd parties).
+		</para>
+	    </callout>
+	    <callout arearefs="structure.CVSROOT">
+		<para>
+		    Repository administrative files, see <xref
+		    linkend="section.rep_internals"/>.
+		</para>
+	    </callout>
+	    <callout arearefs="structure.gsm_auth">
+		<para>
+		    Various modifications of SER, kphone, and freeradius to
+		    support GSM authentication.
+		</para>
+	    </callout>
+	    <callout arearefs="structure.locks">
+		<para>
+		    CVS repository creates locks here.
+		</para>
+	    </callout>
+	    <callout arearefs="structure.rtpproxy">
+		<para>
+		    Maxim Sobolev's rtpproxy.
+		</para>
+	    </callout>
+	    <callout arearefs="structure.ser_artwork">
+		<para>
+		    SER related images and logos.
+		</para>
+	    </callout>
+	    <callout arearefs="structure.obsolete">
+		<para>
+		    Obsolete SER modules and code.
+		</para>
+	    </callout>
+	    <callout arearefs="structure.sip_router">
+		<para>
+		    The main SER source tree.
+		</para>
+	    </callout>
+	</calloutlist>
+    </section>
+
+    <section id="section.release_cycle">
+	<title>Release Cycle</title>
+	<para>
+	    The code in the CVS repository is split among several branches. The
+	    main development branch is often called the "trunk". Most of the
+	    development work happens on the trunk and thus there are no guarantees
+	    that the code there will work.
+	</para>
+	<para>
+	    Before releasing a new SER version the code in CVS will be
+	    frozen. In such a case the development work stops for and only bug
+	    fixes can be committed, nothing else. When fixing a bug in frozen
+	    code, you should always try to make the bug fix as simple as
+	    possible. This is important to avoid any side effects bug fixing
+	    may have. The purpose of frozen phase is to catch as many remaining
+	    bugs as possible, not to make the code any better. All bug fixes
+	    committed into frozen code should be backwards compatible with the
+	    original code.
+	</para>
+	<para>
+	    After some period of time (when there are no more obvious or
+	    critical bugs) the frozen code will be released as a new stable SER
+	    version.
+	</para>
+	<para>
+	    To avoid development stalls withing frozen periods, the frozen code
+	    is usually moved onto a separate branch. The name of the branch
+	    will be rel_X_Y_Z where X is the major version, X is minor version,
+	    and Z is bug fix version. You can use -r option of
+	    <command>cvs</command> to check out the code from other branches
+	    than the trunk. The development work can continue in the trunk when
+	    the frozen code has its own branch.
+	</para>
+	<para>
+	    After releasing a new stable SER version there is always a grace
+	    period during which the stable code is supported. That means we
+	    keep the stable branch open in CVS and commit bug fixes and minor
+	    improvements. Once in a while a bug fix update is released. Each
+	    such release has the last version number incremented. Bug fix
+	    releases do not have their own branch in CVS, their are kept in the
+	    original stable branch (bug fix releases are tagged within the
+	    stable branch).
+	</para>
+	<para>
+	    The grace period usually lasts until the next next SER
+	    release. The old stable branch will be declared dead and no more
+	    supported once we release a new stable version and create a new
+	    branch for it. We always support exactly one stable SER version.
+	</para>
+    </section>
+
+    <section id="section.acl">
+	<title>Access Control</title>
+	<para>
+	    The scripts in CVSROOT module also implement basic access control
+	    to the repository. The main purpose of access control is to avoid
+	    accidental commits, we do not try to enforce strict access control
+	    to different parts of the repository.
+	</para>
+	<para>
+	    Currently there 3 groups of people with different access rights:
+	</para>
+	<itemizedlist>
+	    <listitem>
+	    </listitem>
+	    <listitem>
+		<para>
+		    <emphasis>3rd Party Developers</emphasis>.
+		    Anyone who has code to contribute can apply for write
+		    access to the experimental directory in the repository. The
+		    developer will get access to his code only, he will not get
+		    write access to modules of others within that directory nor
+		    he will get write access to other parts of the repository.
+		    <xref linkend="section.getting_rw_access"/> describes the procedure of
+		    applying for write access to the module in detail.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    <emphasis>Maintainers of experimental
+		    directory.</emphasis> The maintainers of experimental
+		    directory have write access to the whole sub-tree of
+		    experimental directory and to any module there. They can
+		    remove obsolete and outdated modules from experimental
+		    directory. They can also grant/revoke write access to
+		    particular modules within that directory to other
+		    developers.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    <emphasis>Trusted Developers</emphasis>. Trusted developers
+		    have unrestricted write access to the whole repository. SER
+		    core developers and trusted contributors fall into this
+		    category. Developers of modules in the experimental
+		    directory can be promoted to trusted developers and gain
+		    full write access to the repository.
+		</para>
+	    </listitem>
+	</itemizedlist>
+
+    </section>
+
+    <section id="section.commitlogs">
+	<title>Commit Logs</title>
+	<para>
+	    The CVS server generates e-mail commit logs upon each commit and
+	    e-mails them to <email>serdev@iptel.org</email> mailing list. Each
+	    commit log contains the descriptions of the changes (this is the
+	    commit message entered by the developer), summary of the changes
+	    such as modified files, the number of added and removed lines, and
+	    URL pointing to the Web interface of CVS which can display diff
+	    between the changes. Here is an example commit log message:
+	</para>
+	<programlisting>
+Date: Fri, 10 Jun 2005 18:47:29 +0200
+From: Jan Janak &lt;jan@iptel.org&gt; <co id="commitlog.from"/>
+Subject: [Serdev] CVS:commitlog: <co id="commitlog.subj"/> CVSROOT avail cfg_local.pm checkoutlist
+To: serdev@iptel.org
+X-Topics: CVS Log <co id="commitlog.topics"/>
+
+janakj      2005/06/10 18:47:29 CEST
+
+  SER CVS Repository
+
+  Modified files:
+    .    cfg_local.pm checkoutlist <co id="commitlog.modified"/>
+  Added files:
+    .    avail <co id="commitlog.added"/>
+  Log:
+  - Added Greger's email address <co id="commitlog.log"/>
+  - New file avail which contains access control lists
+
+  Revision  Changes    Path <co id="commitlog.summary"/>
+  1.1       +19 -0     CVSROOT/avail (new)
+http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/CVSROOT/avail?rev=1.1&amp;content-type
++=text/plain
+  1.9       +2 -1      CVSROOT/cfg_local.pm
+http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/CVSROOT/cfg_local.pm.diff?r1=1.8&amp;r
++2=1.9
+  1.3       +2 -1      CVSROOT/checkoutlist
+http://cvs.berlios.de/cgi-bin/viewcvs.cgi/ser/CVSROOT/checkoutlist.diff?r1=1.2&amp;r
++2=1.3
+
+_______________________________________________
+Serdev mailing list
+Serdev@iptel.org
+http://mail.iptel.org/mailman/listinfo/serdev
+</programlisting>
+	<calloutlist>
+	    <callout arearefs="commitlog.subj">
+		<para>
+		    The subject of commit log messages always begins with text
+		    "CVS:commitlog:".
+		</para>
+	    </callout>
+	    <callout arearefs="commitlog.from">
+		<para>
+		    E-mail address of the user who made the commit. The
+		    contents of this header field is configurable, see <xref
+			linkend="section.email"/>.
+		</para>
+	    </callout>
+	    <callout arearefs="commitlog.topics">
+		<para>
+		    The mailing list manager scans the contents of e-mail
+		    messages and assigns topics to them. CVS commit logs are
+		    assigned topics "CVS Log". Users subscribed to the mailing
+		    list can enable/disable delivery of a specific category in
+		    the configuration interface of mailman. This allows them to
+		    disable deliver of commit logs while they still receive
+		    other e-mail messages.
+		</para>
+	    </callout>
+	    <callout arearefs="commitlog.modified">
+		<para>
+		    This section contains the list of files that were modified
+		    by the commit.
+		</para>
+	    </callout>
+	    <callout arearefs="commitlog.added">
+		<para>
+		    This section contains the list of files added to the
+		    repository by the commit.
+		</para>
+	    </callout>
+	    <callout arearefs="commitlog.log">
+		<para>
+		    Commit log message entered by the developer. This should
+		    give a brief overview of the changes being made and the
+		    number of bug when fixing a bug from the bug tracking
+		    system.
+		</para>
+	    </callout>
+	    <callout arearefs="commitlog.summary">
+		<para>
+		    Brief summary of changes for each file listing the new
+		    revision of the file, number of lines added/removed and a
+		    link to the web interface which will display the
+		    differences between the old revision and new revision.
+		</para>
+	    </callout>
+	</calloutlist>
+	<para>
+	    The commit logs are generated by scripts residing in CVSROOT
+	    module. The scripts are briefly described in <xref
+	    linkend="section.rep_internals"/>.
+	</para>
+    </section>
+
+    <section id="section.rep_internals">
+	<title>Repository Internals</title>
+	<para>
+	    We are using slightly modified version of famous FreeBSD CVS
+	    repository scripts. Most of the scripts are written in Perl and
+	    reside within CVSROOT module in the repository. The scripts perform
+	    additional functions on each commit such as generating CVS commit
+	    logs that include diffs or hyperlinks to the CVS web interface,
+	    sending e-mails containing the commit logs to the development list,
+	    performing basic access control, and so on.
+	</para>
+	<para>
+	    To modify one of the scripts, check out the CVSROOT module from SER
+	    CVS repository:
+	</para>
+	<screen>
+janakj@localhost:~/ser$ cvs co CVSROOT
+cvs server: Updating CVSROOT
+U CVSROOT/avail <co id="cvsroot.avail"/>
+U CVSROOT/cfg.pm <co id="cvsroot.cfg.pm"/>
+U CVSROOT/cfg_local.pm <co id="cvsroot.cfg_local.pm"/>
+U CVSROOT/checkoutlist <co id="cvsroot.checkoutlist"/>
+U CVSROOT/commit_prep.pl <co id="cvsroot.commit_prep.pl"/>
+U CVSROOT/commitcheck <co id="cvsroot.commitcheck"/>
+U CVSROOT/commitinfo <co id="cvsroot.commitinfo"/>
+U CVSROOT/config <co id="cvsroot.config"/>
+U CVSROOT/cvs_acls.pl <co id="cvsroot.cvs_acls.pl"/>
+U CVSROOT/cvsignore <co id="cvsroot.cvsignore"/>
+U CVSROOT/cvswrappers <co id="cvsroot.cvswrappers"/>
+U CVSROOT/editinfo <co id="cvsroot.editinfo"/>
+U CVSROOT/log_accum.pl <co id="cvsroot.log_accum.pl"/>
+U CVSROOT/loginfo <co id="cvsroot.loginfo"/>
+U CVSROOT/modules <co id="cvsroot.modules"/>
+U CVSROOT/notify <co id="cvsroot.notify"/>
+U CVSROOT/rcsinfo <co id="cvsroot.rcsinfo"/>
+U CVSROOT/taginfo <co id="cvsroot.taginfo"/>
+U CVSROOT/verifymsg <co id="cvsroot.verifymsg"/>
+janakj@localhost:~/ser$ 
+</screen>
+	<calloutlist>
+	    <callout arearefs="cvsroot.avail">
+		<para>
+		    Repository access control lists. The file is examined upon
+		    each commit to find out whether the user is allowed to
+		    perform the commit.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.cfg.pm">
+		<para>
+		    Main configuration file of the FreeBSD CVS scripts
+		    containing default values for config options.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.cfg_local.pm">
+		<para>
+		    If you need to change an option then do it in
+		    <filename>cfg_local.pm</filename>.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.checkoutlist">
+		<para>
+		    This file contains the list of files that will be
+		    automatically checked out into the repository on the server
+		    after each commit.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.commit_prep.pl">
+		<para>
+		    Script performing pre-commit checks.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.commitcheck">
+		<para>
+		    This script is run at commit time. It calls other commit
+		    related scripts such as <filename>cvs_acl.pl</filename> and
+		    <filename>commit_prep.pl</filename>.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.config">
+		<para>
+		    The CVS configuration file. See the CVS Manual for more
+		    details.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.cvs_acls.pl">
+		<para>
+		    A perl script that sucks in
+		    <filename>CVSROOT/avail</filename> file and checks whether
+		    the user performing commit has privileges to do so.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.cvsignore">
+		<para>
+		    The list of files or patterns to be ignored by cvs commit.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.cvswrappers">
+		<para>
+		    Here you can specify additional cvs options for various
+		    data formats (such as enable binary mode for GIFs).
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.editinfo">
+		<para>
+		    Not used, see the CVS Manual for more details.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.log_accum.pl">
+		<para>
+		    Perl script that generates commit logs messages.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.loginfo">
+		<para>
+		    This script is called by CVS to send commit logs. This
+		    script calls <filename>log_accum.pl</filename>.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.modules">
+		<para>
+		    Not used. See the CVS Manual for more details.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.notify">
+		<para>
+		    Not used.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.rcsinfo">
+		<para>
+		    The file can be used to specify commit message templates.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.taginfo">
+		<para>
+		    Pre-tag checks can be specified here.
+		</para>
+	    </callout>
+	    <callout arearefs="cvsroot.verifymsg">
+		<para>
+		    This file can be used to verify commit and logging information.
+		</para>
+	    </callout>
+	</calloutlist>
+	<para>
+	    Edit the files in CVSROOT directory and then commit your
+	    changes. Keep in mind that you have to update checkoutlist file
+	    when adding a new file here. This file contains the list of all
+	    files that should be checked out inside the repository after the
+	    commit. Check the CVS manual for more information.
+	</para>
+    </section>
+        
+    <section id="section.email">
+	<title>Configuring E-Mail Addresses</title>
+	<para>
+	    The CVS server keeps track of usernames of individual developers
+	    but it does not know what are their real e-mail addresses. The
+	    script sending commit log messages will by default use e-mail
+	    addresses of the form <email>username@cvs_server</email>. In our
+	    case it would be something like "Jan Janak at BerliOS
+	    &lt;janakj@sheep.berlios.de&gt;" because the CVS server is hosted
+	    on a Berlios machine named sheep. Developers are often using other
+	    e-mail addresses and the script that generates commit logs needs to
+	    be configured to translate Berlios internal e-mail addresses to the
+	    real ones.
+	</para>
+	<para>
+	    The translation can be configured in
+	    <filename>CVSROOT/cfg_local.pm</filename> Perl script. The
+	    corresponding script section looks like:
+	</para>
+	<programlisting>
+# Translate e-mails
+$TRANSLATE_EMAIL = 1;
+
+@EMAIL_MAP = (
+  'Jan Janak &lt;jan@iptel.org&gt;' => '^janakj$',
+  '' => '.*'
+);
+</programlisting>
+	<para>
+	    The snipped above tells the commit log script that it should put
+	    "Jan Janak &lt;jan@iptel.org&gt;" in From when user janakj performs
+	    a commit.
+	</para>
+	<para>
+	    The last rule means that the internal Berlios e-mail address
+	    should be used when no mapping can be found for a user. This rule
+	    should be always the last one.
+	</para>
+	<para>
+	    Please do the following when adding a new developer to the project:
+	</para>
+	<itemizedlist>
+	    <listitem>
+		<para>
+		    Check out CVSROOT module from the repository.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    Edit file <filename>cfg_local.pm</filename> and add email mappings.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    Commit your changes.
+		</para>
+	    </listitem>
+	</itemizedlist>
+    </section>
+
+    <section id="section.acl_internals">
+	<title>ACL Internals</title>
+	<para>
+	    The configuration file for access control is
+	    <filename>CVSROOT/avail</filename>. There you can assign users to
+	    groups and give them write access. The following groups are defined
+	    in the file:
+	</para>
+	<itemizedlist>
+	    <listitem>
+		<para>
+		    <emphasis>core</emphasis> Core developers.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    <emphasis>contrib</emphasis> Trusted contributors.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    <emphasis>iptel</emphasis> Iptel.org employees who are
+		    neither core developers nor trusted contributors.
+		</para>
+	    </listitem>
+	    <listitem>
+		<para>
+		    <emphasis>exp_admin</emphasis> Administrators of
+		    experimental directory.
+		</para>
+	    </listitem>
+	</itemizedlist>
+
+	<section>
+	    <title>Format of <filename>avail</filename> File</title>
+	    <para>
+		The lines in the file are read from top to bottom. The script
+		processing the file keeps track of a bit which determines
+		whether the developer has privileges to perform the commit. The
+		bit is set to ON before scanning the file. The list matching
+		line in the file wins. Lines that do not begin with "avail",
+		"unavail", or "group" are ignored. "unavail" sets the bit to
+		off.
+	    </para>
+	    <para>
+		Each line beginning with avail, unavail, or group is assumed to
+		be a | (pipe character) separated triple.
+	    </para>
+	    <programlisting>
+{avail.*,unavail.*} [| user,user,... [| repos,repos, ...]]
+{group|group_name|user[,user,...]
+</programlisting>
+	    <para>
+		<filename>repos</filename> are strings relative to
+		CVSROOT. They can be name of directories or individual
+		files. Directory name allows access to any directory or file
+		below that directory.
+	    </para>
+	    <para>
+		Names of groups can be used anywhere where a username can be
+		used. Group names start with :. Thus ":admin" will be replaced
+		with list of usernames that are members of group "admin". 
+	    </para>
+	    <para>
+		If there are no directory or filename listed on an avail line
+		then it means that the users have access anywhere in the
+		repository.
+	    </para>
+	    <programlisting>
+group|core|andrei,bogdan,dcm,janakj,jiri
+group|contrib|agprojects,danp,lgfausak,jamey,jih,sobomax,tirpi,calrissian,ramona,rco,klaus3000
+group|iptel|kozlik,mma,paka,ullstar
+group|exp_admin|greger
+
+<co id="avail.unavail"/>
+# No access by default
+unavail 
+
+<co id="avail.core"/>
+# Core developers and trusted contributors have access everywhere
+avail|:core,:contrib,:iptel 
+
+# Admins of experimental module have access to CVSROOT to
+# set users' privileges and e-mail addresses and to the whole
+# experimental tree
+<co id="avail.experimental"/>
+avail|:exp_admin|CVSROOT,experimental
+
+# Here is an example of granting user fgalan write access to
+# path sub-directory in the experimental module
+<co id="avail.path"/>
+avail|fgalan|experimental/path
+</programlisting>
+	    <calloutlist>
+		<callout arearefs="avail.unavail">
+		    <para>
+			Write access is disabled if no matching line is found
+			in the file.
+		    </para>
+		</callout>
+		<callout arearefs="avail.core">
+		    <para>
+			Core developers, trusted contributors, and Iptel
+			selected Iptel employees have access anywhere.
+		    </para>
+		</callout>
+		<callout arearefs="avail.experimental">
+		    <para>
+			The administrators of experimental directory have
+			access to the whole directory and any projects below.
+		    </para>
+		</callout>
+		<callout arearefs="avail.path">
+		    <para>
+			User fgalan has write access to path module within
+			experimental directory only.
+		    </para>
+		</callout>
+	    </calloutlist>
+	    <para>
+		See file <filename>CVSROOT/cfg_acl.pm</filename> for more
+		details on the format of the file.
+	    </para>
+	</section>
+    </section>
+
+    <section id="section.adding_user">
+	<title>Adding a New Developer</title>
+	<para>
+	    Only people who have something to contribute can get write access
+	    to the repository. People who ask for write access to the
+	    repository should show us the code they are willing to contribute
+	    first. Please ask them to publish the code first and send a link
+	    (or the code itself) to <email>serdev@iptel.org</email>.
+	</para>
+	<para>
+	    As the next step ask the user to create an account on Berlios and
+	    send you his Full Name, username, E-mail address, and the name of
+	    the module. Assign the username to the SER project on Berlios once
+	    you get the username (Username activation usually takes a day).
+	</para>
+	<para>
+	    Create an empty directory under experimental directory in CVS and
+	    give the user access to the directory in CVSROOT/avail.
+	</para>
+	<para>
+	    As the last step configure his e-mail address in CVSROOT/cfg_local.pm.
+	</para>
+    </section>
+
+</section>
