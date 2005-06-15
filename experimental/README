@@ -1,2 +1,8 @@
-A temporary readme file. Here goes info about submitting experimental SER modules,
-as well as info on each module.
+The Experimental Directory
+=========================
+Temporary info:
+Two modules have been added to this directory: path (implementation of the path specification) 
++ tls (TLS support for transport).  The maintainers will submit their code and READMEs in
+the near future and maintain the code in this CVS module.  Please use:
+http://bugs.sip-router.org/ 
+to submit bugs.
