@@ -1,0 +1,16 @@
+TODO LIST:
+---------
+
+- Multiple elements in a Path header (the current implementation is too
+  one-element-oriented)
+- No user token removing (the current implementation removes the token from
+  SIP URI in the Path header)
+- Put the Route header derived from the path vector route just after Via
+  (the current implementation put the Route header the last one in the
+  message)
+- Use P-Asserted-Identity to perform binding (instead of To/From, as the
+  current implementation does)
+
+------
+Fermín
+fermin.galan@agora-2000.com
