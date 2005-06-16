@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.22 2004/08/24 08:45:10 janakj Exp $
+ * $Id: tcp_conn.h,v 1.23 2005/06/16 14:05:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -50,6 +50,7 @@
 									   timeout */
 #define DEFAULT_TCP_CONNECT_TIMEOUT 10 /* if a connect doesn't complete in this
 										  time, timeout */
+#define DEFAULT_TCP_MAX_FD_NO 2048 /* maximum fd number */
 #define TCP_CHILD_TIMEOUT 5 /* after 5 seconds, the child "returns" 
 							 the connection to the tcp master process */
 #define TCP_MAIN_SELECT_TIMEOUT 5 /* how often "tcp main" checks for timeout*/

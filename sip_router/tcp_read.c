@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.27 2004/08/24 08:45:10 janakj Exp $
+ * $Id: tcp_read.c,v 1.28 2005/06/16 14:05:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -588,7 +588,7 @@ void tcp_receive_loop(int unix_sock)
 			if (FD_ISSET(unix_sock, &sel_set)){
 				nfds--;
 				/* a new conn from "main" */
-				n=receive_fd(unix_sock, &con, sizeof(con), &s);
+				n=receive_fd(unix_sock, &con, sizeof(con), &s, 0);
 				if (n<0){
 					if (errno == EWOULDBLOCK || errno == EAGAIN ||
 							errno == EINTR){

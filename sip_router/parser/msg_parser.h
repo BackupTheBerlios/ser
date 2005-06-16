@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.57 2005/05/23 09:20:58 andrei Exp $
+ * $Id: msg_parser.h,v 1.58 2005/06/16 14:05:25 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -309,13 +309,13 @@ inline static int char_msg_val( struct sip_msg *msg, char *cv )
 inline static char* get_body(struct sip_msg *msg)
 {
 	int offset;
-	int len;
+	unsigned int len;
 
 	if ( parse_headers(msg, HDR_EOH_F, 0)==-1 )
 		return 0;
 
 	if (msg->unparsed){
-		len=(int)(msg->unparsed-msg->buf);
+		len=(unsigned int)(msg->unparsed-msg->buf);
 	}else return 0;
 	if ((len+2<=msg->len) && (strncmp(CRLF,msg->unparsed,CRLF_LEN)==0) )
 		offset = CRLF_LEN;

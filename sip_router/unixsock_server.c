@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.c,v 1.17 2004/12/03 19:09:31 andrei Exp $
+ * $Id: unixsock_server.c,v 1.18 2005/06/16 14:05:24 andrei Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -605,6 +605,9 @@ int init_unixsock_children(void)
 				unix_tcp_sock=sockfd[1];
 			}
 #endif
+			/* record pid twice to avoid the child using it, before
+			 * parent gets a chance to set it*/
+			pt[process_no].pid=getpid();
 			if (init_child(PROC_UNIXSOCK) < 0) {
 				LOG(L_ERR, "init_unixsock_server: Error in "
 				    "init_child\n");
