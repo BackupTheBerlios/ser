@@ -2,7 +2,24 @@ The Experimental Directory
 =========================
 Temporary info:
 Two modules have been added to this directory: path (implementation of the path specification) 
-+ tls (TLS support for transport).  The maintainers will submit their code and READMEs in
-the near future and maintain the code in this CVS module.  Please use:
++ tls (TLS support for transport).  The maintainers are in the process of submitting their code. 
+
+Please use:
 http://bugs.sip-router.org/ 
 to submit bugs.
+
+Description of modules:
+=============================
+path module
+-----------
+Maintainer: Fermin Galan Marquez <fermin.galan@agora-2000.com>
+
+This module implements the Session Initiation Protocol (SIP) Extension
+Header Field for Registering Non-Adjacent Contacts, as described in RFC
+3327
+
+tls module
+----------
+Maintainer: Cesc Santasusana <cesc.santa@gmail.com>
+
+Description will appear soon.
