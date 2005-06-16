@@ -1,0 +1,35 @@
+--- cfg.lex	2005-06-16 19:43:45.354287352 +0200
++++ cfg.lex	2005-06-16 19:40:57.211848888 +0200
+@@ -218,6 +216,7 @@
+ TLS_CERTIFICATE	"tls_certificate"
+ TLS_PRIVATE_KEY "tls_private_key"
+ TLS_CA_LIST		"tls_ca_list"
++TLS_CIPHERS_LIST	"tls_ciphers_list"
+ TLS_HANDSHAKE_TIMEOUT	"tls_handshake_timeout"
+ TLS_SEND_TIMEOUT	"tls_send_timeout"
+ ADVERTISED_ADDRESS	"advertised_address"
+@@ -226,6 +225,7 @@
+ OPEN_FD_LIMIT		"open_files_limit"
+ MCAST_LOOPBACK		"mcast_loopback"
+ MCAST_TTL			"mcast_ttl"
++TLS_DOMAIN              "tls_domain"
+ 
+ LOADMODULE	loadmodule
+ MODPARAM        modparam
+@@ -385,6 +385,8 @@
+ 										return TLS_PRIVATE_KEY; }
+ <INITIAL>{TLS_CA_LIST}	{ count(); yylval.strval=yytext; 
+ 										return TLS_CA_LIST; }
++<INITIAL>{TLS_CIPHERS_LIST}	{ count(); yylval.strval=yytext; 
++										return TLS_CIPHERS_LIST; }
+ <INITIAL>{TLS_HANDSHAKE_TIMEOUT}	{ count(); yylval.strval=yytext;
+ 										return TLS_HANDSHAKE_TIMEOUT; }
+ <INITIAL>{TLS_SEND_TIMEOUT}	{ count(); yylval.strval=yytext;
+@@ -412,6 +414,7 @@
+ 									return MCAST_LOOPBACK; }
+ <INITIAL>{MCAST_TTL}		{	count(); yylval.strval=yytext;
+ 									return MCAST_TTL; }
++<INITIAL>{TLS_DOMAIN} { count(); yylval.strval=yytext; return TLS_DOMAIN; }
+ <INITIAL>{LOADMODULE}	{ count(); yylval.strval=yytext; return LOADMODULE; }
+ <INITIAL>{MODPARAM}     { count(); yylval.strval=yytext; return MODPARAM; }
+ 
