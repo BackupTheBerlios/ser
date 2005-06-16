@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.1 2005/06/16 14:05:24 andrei Exp $
+ * $Id: io_wait.h,v 1.2 2005/06/16 14:49:58 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -65,6 +65,11 @@
 #include <sys/epoll.h>
 #endif
 #ifdef HAVE_SELECT
+/* needed on openbsd for select*/
+#include <sys/time.h> 
+#include <sys/types.h> 
+#include <unistd.h>
+/* needed according to POSIX for select*/
 #include <sys/select.h>
 #endif
 #include <sys/poll.h>
