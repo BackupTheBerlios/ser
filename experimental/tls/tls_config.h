@@ -29,6 +29,15 @@
 
 #include "../tcp_conn.h"
 
+#warning "====================================="
+#warning ""
+#warning "TLS code is still experimental."
+#warning "Use at own risk, but use it :)"
+#warning "Report bugs and experience to the development"
+#warning "   lists of ser, mantainer and bug-tracking system."
+#warning ""
+#warning "====================================="
+
 enum tls_method {
 	TLS_METHOD_UNSPEC = 0,
 	TLS_USE_SSLv2_cli,
