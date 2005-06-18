@@ -1,0 +1,60 @@
+ 
+Welcome to the Tools folder!
+
+Here you can find tools to create certificates for working
+with SER TLS.
+
+For a test run, in the tls/etc folder there are already the
+needed certificates (which were created using this tools).
+
+You need:
+- one self-signed root CA certificate
+- N user certificates, signed by the above CA
+
+To generate the root CA cert, go to tls/tools/ca. 
+
+NOTE: Before using any of the scripts, take a good look at them, and
+      also at the .conf files. They are very important.
+      I recommend you to mantain the file structure of the tools 
+      folder, as the scripts and .conf files refer to each other 
+      using relative paths. 
+
+First, you need to create the files needed for the 
+Certificate Authority to run ... 
+> cd tls/tools/ca
+> ./reset_CA.sh
+Some files are created. Now you are ready to create certs.
+
+Now, we want to create the root CA certificate, which will 
+sign all the user certificates we generate.
+A default rootca.conf file is there, with working 
+(though probably not useful for production) values.
+To create the root CA:
+> cd tls/tools/ca
+> ./create_CA_certificate.sh rootCA
+(the parameter is the .conf filename, but without the .conf)
+The resulting cert is stored in the ca folder, and the private
+key in ca/private (keep it safe!)
+The other script, reset_CA.sh, can be used to reset the files
+that the CA application uses.
+
+To generate user certs, signed by the above CA, go to
+tls/tools/users.
+You can also find there .conf files ready to use and modify
+(the ones used to generate the test certs included).
+Equally easy, modify the .conf file, then execute:
+> ./create_certificate.sh filename
+(filename is the filename.conf, without the .conf)
+This will generate a private key, then the signing request, which
+will be sent to the CA. You will be popped for the rootCA private
+key password and with the certificate details to sign. Say yes 
+and you got a new certificate.
+Look in ca/certs/sign_defaults.conf for some more configuration
+options.
+
+Note that this instructions are to create your own CA ... 
+maybe you want to buy some from a real CA for your production
+site.
+
+June 2005
+Copyright @ 2005 Cesc Santasusana

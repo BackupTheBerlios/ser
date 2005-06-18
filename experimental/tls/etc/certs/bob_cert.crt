@@ -1,0 +1,52 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: CN=SER.Certs.Inc, ST=SipLand, C=NL/emailAddress=cesc@sipland.sl, O=CA.ffeine Inc., OU=Certification Services
+        Validity
+            Not Before: Jun 17 15:03:20 2005 GMT
+            Not After : May 30 15:03:20 2016 GMT
+        Subject: C=CT, ST=SipUserland, O=SipSerUser, OU=HumanBeing, CN=Bob/emailAddress=bob@sipuser.org
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:db:f3:e5:cf:07:26:8d:73:3c:9b:0d:78:17:b9:
+                    c4:12:5a:ab:30:fe:7a:1f:f4:a1:df:5a:5f:2a:70:
+                    f8:dd:38:71:b6:fc:91:ec:b6:38:87:44:32:80:14:
+                    69:a7:f7:7b:be:3b:9a:62:da:ee:d1:36:a0:37:62:
+                    32:13:8f:98:70:a4:41:c3:2f:7b:f8:aa:b8:31:bc:
+                    06:42:6d:20:68:94:eb:b7:41:09:fd:b2:39:f7:29:
+                    c2:8f:55:3b:32:60:de:a0:b4:38:75:5f:13:6d:8c:
+                    af:5e:11:00:3d:f8:01:1a:a3:2f:cd:ef:4e:a9:8d:
+                    f7:4c:26:af:d6:66:fb:67:f3
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+    Signature Algorithm: sha1WithRSAEncryption
+        9f:de:e3:6e:b3:0f:66:75:90:c0:dd:f0:29:d5:f8:c7:9c:67:
+        62:6a:40:49:db:ed:21:7f:9f:84:60:0f:2d:40:06:f6:e1:a7:
+        16:00:1e:8e:c5:83:48:fa:00:4d:c3:34:f5:2f:be:13:65:0d:
+        cc:33:79:89:2b:9b:8f:2d:7e:20:89:7e:e3:7b:0c:53:50:ad:
+        9f:68:b5:cc:da:fe:80:68:99:f7:6f:e2:2b:f9:9f:8c:8e:68:
+        1a:d8:3d:b4:d1:c8:76:5e:f5:e5:eb:35:cd:0e:aa:fb:76:ad:
+        ae:a6:d9:22:bd:ee:ff:8f:f8:ad:80:e6:01:8c:ad:46:30:d7:
+        26:67
+-----BEGIN CERTIFICATE-----
+MIICkDCCAfmgAwIBAgIBAjANBgkqhkiG9w0BAQUFADCBkTEWMBQGA1UEAxMNU0VS
+LkNlcnRzLkluYzEQMA4GA1UECBMHU2lwTGFuZDELMAkGA1UEBhMCTkwxHjAcBgkq
+hkiG9w0BCQEWD2Nlc2NAc2lwbGFuZC5zbDEXMBUGA1UEChMOQ0EuZmZlaW5lIElu
+Yy4xHzAdBgNVBAsTFkNlcnRpZmljYXRpb24gU2VydmljZXMwHhcNMDUwNjE3MTUw
+MzIwWhcNMTYwNTMwMTUwMzIwWjB7MQswCQYDVQQGEwJDVDEUMBIGA1UECBMLU2lw
+VXNlcmxhbmQxEzARBgNVBAoTClNpcFNlclVzZXIxEzARBgNVBAsTCkh1bWFuQmVp
+bmcxDDAKBgNVBAMTA0JvYjEeMBwGCSqGSIb3DQEJARYPYm9iQHNpcHVzZXIub3Jn
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDb8+XPByaNczybDXgXucQSWqsw
+/nof9KHfWl8qcPjdOHG2/JHstjiHRDKAFGmn93u+O5pi2u7RNqA3YjITj5hwpEHD
+L3v4qrgxvAZCbSBolOu3QQn9sjn3KcKPVTsyYN6gtDh1XxNtjK9eEQA9+AEaoy/N
+706pjfdMJq/WZvtn8wIDAQABow0wCzAJBgNVHRMEAjAAMA0GCSqGSIb3DQEBBQUA
+A4GBAJ/e426zD2Z1kMDd8CnV+MecZ2JqQEnb7SF/n4RgDy1ABvbhpxYAHo7Fg0j6
+AE3DNPUvvhNlDcwzeYkrm48tfiCJfuN7DFNQrZ9otcza/oBomfdv4iv5n4yOaBrY
+PbTRyHZe9eXrNc0Oqvt2ra6m2SK97v+P+K2A5gGMrUYw1yZn
+-----END CERTIFICATE-----

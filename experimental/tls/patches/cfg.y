@@ -1,5 +1,6 @@
 /*
- * $Id: cfg.y,v 1.1 2005/06/16 22:40:49 cesc_santa Exp $
+ *
+ * Taken from: cfg.y,v 1.84.2.1 2005/01/09 14:38:17 sobomax Exp $
  *
  *  cfg grammar
  *

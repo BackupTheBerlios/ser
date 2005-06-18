@@ -1,5 +1,6 @@
 /*
- * $Id: cfg.lex,v 1.1 2005/06/16 22:40:49 cesc_santa Exp $
+ *
+ * Taken from: cfg.lex,v 1.64 2004/11/30 16:28:23 andrei Exp $
  *
  * scanner for cfg files
  *
