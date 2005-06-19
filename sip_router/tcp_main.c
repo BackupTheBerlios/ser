@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.61 2005/06/16 14:59:53 andrei Exp $
+ * $Id: tcp_main.c,v 1.62 2005/06/19 22:01:08 calrissian Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1444,6 +1444,7 @@ void tcp_main_loop()
 						" in tls_listen\n");
 			}
 		}
+	}
 #endif
 	/* add all the unix sockets used for communcation with other ser processes
 	 *  (get fd, new connection a.s.o) */
