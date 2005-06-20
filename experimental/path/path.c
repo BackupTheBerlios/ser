@@ -1056,6 +1056,7 @@ static int mod_init(void)
 {
 
     fprintf(stderr, "%s - initializing\n", exports.name);
+    LOG(L_ALERT, "WARNING! This module is experimental and may crash SER or create unexpected results. Use it at your own risk!");
     
     // Create path_db file
     int fd;
