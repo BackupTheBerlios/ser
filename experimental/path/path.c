@@ -374,12 +374,16 @@ static char* search_path(char* key)
 
 /*
  *
- * Removes the '<sip:' prefix and '>' in the given string.
+ * Removes the '<' prefix and '>' in the given string.
  * For example, if the string is '<sip:ue@domain.com>' the
  * function will return 'eu@domain.com'.
  *
- * If the function doesn't starts with '<sip:' or ends
- * with '>', return null.
+ * If the string doesn't starts with '<' and ends
+ * with '>' the returned value is the same passed as
+ * argument.
+ *
+ * If the string starts with '<' but doesn't end with
+ * '>' or viceversa, null is returned
  *
  * Parameters:
  *
@@ -388,32 +392,45 @@ static char* search_path(char* key)
  * Returns:
  *
  * - char*, the parsed string
- * - null, if the parameter doesn't follow the '<sip:x>'
- *   pattern
+ * - null, if the parameter doesn't follow the pattern
  * 
  */
-static char* remove_brackets(char* string) 
-{
-        char* ue;
+
+static char* remove_brackets(char* string) {
+
+        char* ret;
         int size;
 
-        // Check format
-        if (!((strncmp(string,"<sip:",5) == 0) && ( strstr(string,">") == string+strlen(string)-1 )))
+        // Sanity check
+        if ((strncmp(string,"<",1) == 0) && !( strstr(string,">") == string+strlen(string)-1 )) 
             return NULL;
-        
-        // Remove brackets
-        // Allocating len - 1 (:) - 1 (>) + 1 (\0)
-        size = strlen(strstr(string,":"))-1;
-        ue = pkg_malloc(size);
-        strncpy(ue,strstr(string,":")+1,size-1);
 
-        // Add the trailing \0
-        ue[size-1] = '\0';
-        LOG(L_INFO,"remove_brackets(): returning -%s-\n",ue);
+        if (!(strncmp(string,"<",1) == 0) && ( strstr(string,">") == string+strlen(string)-1 )) 
+            return NULL;
+            
+        // Check format
+        if (!((strncmp(string,"<",1) == 0) && ( strstr(string,">") == string+strlen(string)-1 ))) {
+            LOG(L_INFO,"remove_brackets(): no brackets\n");
+            size = strlen(string) + 1; 
+            ret = pkg_malloc(size);
+            strncpy (ret,string,size-1);
+            // Add the trailing \0
+            ret[size-1] = '\0';
+        }
+        else {
+            // Remove brackets
+            // Allocations len - 2 (< and >) + 1 (\0)
+            size = strlen(string) - 2 + 1;
+            ret = pkg_malloc(size);
+            strncpy(ret,string+1,size-1);
+            // Add the trailing \0
+            ret[size-1] = '\0';
+        }
         
-	    return ue;
+        LOG(L_INFO,"remove_brackets(): returning -%s-\n",ret);
+        return ret;
+    
 }
-
 
 /*
  * Removes the user prefix in the given SIPO URI string.
@@ -450,44 +467,51 @@ static char* remove_user_prefix (char* string)
                 strncpy(ret,ue+1,strlen(ue)-1);
                 // Addint the trailing \0
                 ret[strlen(ue)-1] = '\0';
-                LOG(L_INFO,"remove_user_prefix(): returning -%s-\n",ue);
+                LOG(L_INFO,"remove_user_prefix(): returning -%s-\n",ret);
                 return ret;
         }
 } 
 
-/*
- * Removes the loose-routing sufix (;lr) in the given SIP URI string.
- * For example, if the string is 'ue@domain.com;lr' the
- * function will return 'ue@domain.com'
+/* Removes the portion of a SIP URI after ';'. For example,
+ * if the string is 'ue@domain.com;tag' the function will
+ * return 'ue@domain'
  *
- * If the function doesn't end with ';lr', return null
+ * If the function doesn't ends with a ; suffix, the
+ * returned value is the whole SIP URI
  *
  * Parameters:
  *
- * - char* string, the string to be parsed
+ * - char* string, the strings to be parsed
  *
- * Returns:
+ * Returns
  *
  * - char*, the parsed string
- * - null, if the parameter doesn't follow the 'a;lr' pattern
- * 
  */
-static char* remove_lr_sufix (char* string) {
 
-    // Check format
-    if (strstr(string,";lr") != string+strlen(string)-3)
-       return NULL;
+static char* remove_semicolon_suffix (char* string) {
+
+    // Find the ;
+    char* semicolon = strstr(string,";");
+
+    int size;
+    if (semicolon != NULL) {
+        // Allocate len + 1 (\0) bytes
+        size = semicolon - string + 1;
+    }
+    else {
+        // Duplicate the original string
+        size = strlen(string) + 1; 
+        LOG(L_INFO,"remove_semicolon_suffix(): no semicolon\n");
+    }
     
-    // Allocating len - 3 (;lr) +1
-    int size = strlen(string)-2;
     char* ret = pkg_malloc(size);
-    strncpy(ret,string,size-1);
-
+    strncpy (ret,string,size-1);
     // Add the trailing \0
     ret[size-1] = '\0';
-    LOG(L_INFO,"remove_lr_sufix(): returning -%s-\n",ret);
-        
-	return ret;
+
+    LOG(L_INFO,"remove_semicolon_suffix(): returning -%s-\n",ret);
+
+    return ret;
     
 }
 
@@ -931,6 +955,7 @@ static int store_path(struct sip_msg* msg)
         // Clean path and ue
         LOG(L_INFO,"store_path(): Cleaning (%s,%s) before database storage\n",ue,path);
 
+        // <sip:term@pcscf.domain1.com;lr> -> sip:term@pcscf.domain1.com;lr
         char* path2 = remove_brackets(path);
         if (path2 == NULL) {
             LOG(L_INFO,"store_path(): Format error in string -%s-\n",path);
@@ -939,6 +964,8 @@ static int store_path(struct sip_msg* msg)
             return -3;
         }
         pkg_free(path);
+
+        // sip:term@pcscf.domain1.com;lr -> pcscf.domain1.com;lr
         char* path3 = remove_user_prefix(path2);
         if (path3 == NULL) {
             LOG(L_INFO,"store_path(): Format error in string -%s-\n",path2);
@@ -947,7 +974,9 @@ static int store_path(struct sip_msg* msg)
             return -4;
         }
         pkg_free(path2);
-        char* path4 = remove_lr_sufix(path3);
+        
+        // pcscf.domain1.com;lr -> pcscf.domain1.com
+        char* path4 = remove_semicolon_suffix(path3);
         if (path4 == NULL) {
             LOG(L_INFO,"store_path(): Format error in string -%s-\n",path3);
             pkg_free(ue);
@@ -956,7 +985,8 @@ static int store_path(struct sip_msg* msg)
         }
         pkg_free(path3);
      
-        char* ue2 = remove_brackets(ue);
+        // <sip:ue@domain1.com>;tag=1a2b3c -> <sip:ue@domain1.com>
+        char* ue2 = remove_semicolon_suffix(ue);
         if (ue2 == NULL) {
             LOG(L_INFO,"store_path(): Format error in string -%s-\n",ue);
             pkg_free(ue);
@@ -964,17 +994,37 @@ static int store_path(struct sip_msg* msg)
             return -6;
         }
         pkg_free(ue);
-
-        // Database storage
-        LOG(L_INFO,"store_path(): Storing (%s,%s)\n",ue2,path4);
-        if (write_path(ue2,path4) < 0) {
-            LOG(L_ERR,"store_path(): Error storing path\n");
+        
+        // <sip:ue@domain1.com> -> sip:ue@domain1.com
+        char* ue3 = remove_brackets(ue2);
+        if (ue3 == NULL) {
+            LOG(L_INFO,"store_path(): Format error in string -%s-\n",ue2);
             pkg_free(ue2);
             pkg_free(path4);
             return -7;
         }
-
         pkg_free(ue2);
+
+        // sip:ue@domain1.com -> ue@domain1.com
+        char* ue4 = remove_sip_prefix(ue3);
+        if (ue4 == NULL) {
+            LOG(L_INFO,"store_path(): Format error in string -%s-\n",ue3);
+            pkg_free(ue3);
+            pkg_free(path4);
+            return -8;
+        }
+        pkg_free(ue3);
+
+        // Database storage
+        LOG(L_INFO,"store_path(): Storing (%s,%s)\n",ue4,path4);
+        if (write_path(ue4,path4) < 0) {
+            LOG(L_ERR,"store_path(): Error storing path\n");
+            pkg_free(ue4);
+            pkg_free(path4);
+            return -9;
+        }
+
+        pkg_free(ue4);
         pkg_free(path4);
         
     }
