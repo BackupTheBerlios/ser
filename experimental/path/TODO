@@ -10,6 +10,12 @@ TODO LIST:
   message)
 - Use P-Asserted-Identity to perform binding (instead of To/From, as the
   current implementation does)
+- Using To/From headers like:
+
+  To: "UE" <ue@domain1.com>
+
+  produce parsing errors in store_path() function. The quoted prefix hurts.
+  Fixit.
 
 ------
 Fermín
