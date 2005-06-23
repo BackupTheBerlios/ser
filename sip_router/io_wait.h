@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.2 2005/06/16 14:49:58 andrei Exp $
+ * $Id: io_wait.h,v 1.3 2005/06/23 13:08:27 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -286,7 +286,7 @@ inline static int io_watch_add(	io_wait_h* h,
 			set_fd_flags(O_ASYNC| O_NONBLOCK);
 #ifdef EXTRA_DEBUG
 			DBG("io_watch_add: sigio_rt on f %d, signal %d to pid %d\n",
-					fd,  h->signo, pid);
+					fd,  h->signo, my_pid());
 #endif
 			/* empty socket receive buffer, if buffer is already full
 			 * (e.g. early media), no more space to put packets
