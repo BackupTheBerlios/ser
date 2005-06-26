@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.71 2005/03/10 12:55:46 andrei Exp $
+ * $Id: udp_server.c,v 1.72 2005/06/26 19:58:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -35,6 +35,7 @@
  *  2004-07-05  udp_rcv_loop: drop packets with 0 src port + error msg.
  *              cleanups (andrei)
  *  2005-03-10  multicast options are now set for all the udp sockets (andrei)
+ *  2005-06-26  failure to set mcast options is not an error anymore (andrei)
  */
 
 
@@ -319,32 +320,30 @@ int udp_init(struct socket_info* sock_info)
 	if (addr->s.sa_family==AF_INET){
 		if (setsockopt(sock_info->socket, IPPROTO_IP, IP_MULTICAST_LOOP, 
 						&mcast_loopback, sizeof(mcast_loopback))==-1){
-			LOG(L_ERR, "ERROR: udp_init: setsockopt(IP_MULTICAST_LOOP): %s\n",
-						strerror(errno));
-			goto error;
+			LOG(L_WARN, "WARNING: udp_init: setsockopt(IP_MULTICAST_LOOP):"
+						" %s\n", strerror(errno));
+			/* it's only a warning because we might get this error if the
+			  network interface doesn't support multicasting -- andrei */
 		}
 		if (mcast_ttl>=0){
 			if (setsockopt(sock_info->socket, IPPROTO_IP, IP_MULTICAST_TTL,
 						&mcast_ttl, sizeof(mcast_ttl))==-1){
-				LOG(L_ERR, "ERROR: udp_init: setsockopt (IP_MULTICAST_TTL):"
+				LOG(L_WARN, "WARNING: udp_init: setsockopt (IP_MULTICAST_TTL):"
 						" %s\n", strerror(errno));
-				goto error;
 			}
 		}
 #ifdef USE_IPV6
 	} else if (addr->s.sa_family==AF_INET6){
 		if (setsockopt(sock_info->socket, IPPROTO_IPV6, IPV6_MULTICAST_LOOP, 
 						&mcast_loopback, sizeof(mcast_loopback))==-1){
-			LOG(L_ERR, "ERROR: udp_init: setsockopt (IPV6_MULTICAST_LOOP):"
+			LOG(L_WARN, "WARNING: udp_init: setsockopt (IPV6_MULTICAST_LOOP):"
 					" %s\n", strerror(errno));
-			goto error;
 		}
 		if (mcast_ttl>=0){
 			if (setsockopt(sock_info->socket, IPPROTO_IP, IPV6_MULTICAST_HOPS,
 							&mcast_ttl, sizeof(mcast_ttl))==-1){
-				LOG(L_ERR, "ERROR: udp_init: setssckopt (IPV6_MULTICAST_HOPS):"
-						" %s\n", strerror(errno));
-				goto error;
+				LOG(L_WARN, "WARNING: udp_init: setssckopt "
+						"(IPV6_MULTICAST_HOPS): %s\n", strerror(errno));
 			}
 		}
 #endif /* USE_IPV6*/
