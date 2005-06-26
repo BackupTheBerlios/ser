@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.311 2005/06/26 19:58:07 andrei Exp $
+# $Id: Makefile.defs,v 1.312 2005/06/26 20:48:23 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -1001,8 +1001,8 @@ ifeq ($(OS), openbsd)
 		DEFS+= -DUSE_PTHREAD_MUTEX  # try pthread sems
 		found_lock_method=yes
 	endif
-	# check for ver >= 3.7
-	ifeq ($(shell [ $(OSREL_N) -ge 3007 ] && echo has_kqueue), has_kqueue)
+	# check for ver >=2 9
+	ifeq ($(shell [ $(OSREL_N) -ge 2009 ] && echo has_kqueue), has_kqueue)
 		ifeq ($(NO_KQUEUE),)
 			DEFS+=-DHAVE_KQUEUE
 		endif
