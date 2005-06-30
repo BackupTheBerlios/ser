@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.12 2005/03/07 20:01:30 janakj Exp $
+ * $Id: group.c,v 1.13 2005/06/30 21:29:32 andrei Exp $
  *
  * Group membership checking over Radius
  *
@@ -32,7 +32,12 @@
  *
  */
 
-#include <radiusclient-ng.h>
+#ifdef RADIUSCLIENT_NG_4
+#  include <radiusclient.h>
+#else
+#  include <radiusclient-ng.h>
+#endif
+
 #include <string.h>
 #include "../../mem/mem.h"
 #include "../../ut.h"

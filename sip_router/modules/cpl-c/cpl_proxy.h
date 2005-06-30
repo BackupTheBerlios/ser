@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_proxy.h,v 1.24 2005/02/23 17:16:03 andrei Exp $
+ * $Id: cpl_proxy.h,v 1.25 2005/06/30 21:29:31 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -310,6 +310,7 @@ static inline char *run_proxy( struct cpl_interpreter *intr )
 	int i;
 	str *s;
 	struct location *loc;
+	int_str tmp;
 
 	intr->proxy.ordering = PARALLEL_VAL;
 	intr->proxy.recurse = (unsigned short)cpl_env.proxy_recurse;
@@ -320,8 +321,9 @@ static inline char *run_proxy( struct cpl_interpreter *intr )
 		switch (attr_name) {
 			case TIMEOUT_ATTR:
 				if (cpl_env.timer_avp.n || cpl_env.timer_avp.s) {
+					tmp.n=(int)n;
 					if ( add_avp( cpl_env.timer_avp_type,
-					cpl_env.timer_avp, (int_str)(int)n)<0) {
+					cpl_env.timer_avp, tmp)<0) {
 						LOG(L_ERR,"ERROR:run_proxy: unable to set "
 							"timer AVP\n");
 						/* continue */

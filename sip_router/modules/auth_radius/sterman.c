@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.17 2005/03/07 20:01:29 janakj Exp $
+ * $Id: sterman.c,v 1.18 2005/06/30 21:29:31 andrei Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -43,8 +43,12 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <radiusclient-ng.h>
 
+#ifdef RADIUSCLIENT_NG_4
+#  include <radiusclient.h>
+#else
+#  include <radiusclient-ng.h>
+#endif
 
 static void attr_name_value(VALUE_PAIR* vp, str* name, str* value)
 {

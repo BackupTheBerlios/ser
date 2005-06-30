@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.54 2005/04/14 15:24:56 bogdan Exp $
+ * $Id: cpl.c,v 1.55 2005/06/30 21:29:31 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -95,7 +95,7 @@ struct cpl_enviroment    cpl_env = {
 		0, /* udomain */
 		0, /* no branches on lookup */
 		0, /* timer avp type */
-		(int_str)0  /* timer avp name/ID */
+		/*(int_str)*/{ 0 } /* timer avp name/ID */
 };
 
 struct cpl_functions  cpl_fct;

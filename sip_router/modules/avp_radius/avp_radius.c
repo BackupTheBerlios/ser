@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.4 2005/06/06 06:43:00 jih Exp $
+ * $Id: avp_radius.c,v 1.5 2005/06/30 21:29:31 andrei Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -26,8 +26,12 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifdef RADIUSCLIENT_NG_4
+#  include <radiusclient.h>
+# else
+#  include <radiusclient-ng.h>
+#endif
 
-#include <radiusclient-ng.h>
 #include "../acc/dict.h"
 #include "../../sr_module.h"
 #include "../../mem/mem.h"

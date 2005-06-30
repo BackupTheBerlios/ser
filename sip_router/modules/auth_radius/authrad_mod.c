@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.18 2005/03/07 20:01:29 janakj Exp $ 
+ * $Id: authrad_mod.c,v 1.19 2005/06/30 21:29:31 andrei Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -44,7 +44,13 @@
 #include "../../mem/mem.h"
 #include "authrad_mod.h"
 #include "authorize.h"
-#include <radiusclient-ng.h>
+
+#ifdef RADIUSCLIENT_NG_4
+#  include <radiusclient.h>
+# else
+#  include <radiusclient-ng.h>
+#endif
+
 #include "../../modules/acc/dict.h"
 
 MODULE_VERSION

@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.138 2005/06/01 22:25:05 andrei Exp $
+# $Id: Makefile,v 1.139 2005/06/30 21:29:31 andrei Exp $
 #
 # sip_router makefile
 #
@@ -170,7 +170,8 @@ tar:
 	$(TAR) -C .. \
 		--exclude=$(notdir $(CURDIR))/test* \
 		--exclude=$(notdir $(CURDIR))/tmp* \
-		--exclude=$(notdir $(CURDIR))/debian/ser* \
+		--exclude=$(notdir $(CURDIR))/debian/ser \
+		--exclude=$(notdir $(CURDIR))/debian/ser-* \
 		--exclude=$(notdir $(CURDIR))/ser_tls* \
 		--exclude=CVS* \
 		--exclude=.svn* \
@@ -268,6 +269,9 @@ install-cfg: $(cfg-prefix)/$(cfg-dir)
 			mv -f $(cfg-prefix)/$(cfg-dir)ser.cfg.sample \
 				$(cfg-prefix)/$(cfg-dir)ser.cfg; \
 		fi
+		# radius dictionary
+		$(INSTALL-TOUCH) $(cfg-prefix)/$(cfg-dir)/dictionary.ser 
+		$(INSTALL-CFG) etc/dictionary.ser $(cfg-prefix)/$(cfg-dir)
 #		$(INSTALL-CFG) etc/ser.cfg $(cfg-prefix)/$(cfg-dir)
 
 install-bin: $(bin-prefix)/$(bin-dir) utils/gen_ha1/gen_ha1 utils/serunix/serunix

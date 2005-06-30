@@ -1,5 +1,5 @@
 /*
- * $Id: aug_sysdep.h,v 1.3 2004/08/24 09:00:35 janakj Exp $
+ * $Id: aug_sysdep.h,v 1.4 2005/06/30 21:29:32 andrei Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -40,10 +40,10 @@
 **
 **
 **                      $RCSfile: aug_sysdep.h,v $
-**                     $Revision: 1.3 $
+**                     $Revision: 1.4 $
 **
-**             Last change $Date: 2004/08/24 09:00:35 $
-**           Last change $Author: janakj $
+**             Last change $Date: 2005/06/30 21:29:32 $
+**           Last change $Author: andrei $
 **                        $State: Exp $
 **                       $Locker:  $
 **
@@ -158,6 +158,17 @@ typedef unsigned int augUInt32;
 typedef unsigned int augUInt32;
 
 #endif
+#if defined(x86_64) || defined(__x86_64)
+
+#if defined(__GNUC__)
+#define AUG_CONFIGURATION	"Sun Solaris x86_64 with GCC"
+#else
+#define AUG_CONFIGURATION	"Sun Solaris x86_64 with SUNpro C"
+#endif
+
+typedef unsigned int augUInt32;
+
+#endif
 
 #if defined(sparc) || defined(__sparc)
 #if defined(__svr4__) || defined(__SVR4)
@@ -204,7 +215,16 @@ typedef unsigned int augUInt32;
 
 typedef unsigned int augUInt32;
 
-#endif /* i386 */
+#endif /* x86 */
+#if defined(__x86_64)
+
+#if defined(__GNUC__)
+#define AUG_CONFIGURATION	"Linux x86_64 with GCC"
+#endif
+
+typedef unsigned int augUInt32;
+
+#endif /* x86-64 */
 #endif /* linux */
 
 /*
@@ -244,7 +264,16 @@ typedef unsigned int augUInt32;
 
 typedef unsigned int augUInt32;
 
-#endif /* i386 */
+#endif /* x86 */
+#if defined(__x86_64)
+
+#if defined(__GNUC__)
+#define AUG_CONFIGURATION	"FreeBSD x86_64 with GCC"
+#endif
+
+typedef unsigned int augUInt32;
+
+#endif /* x86_64 */
 #endif /* freebsd */
 
 /*
@@ -324,7 +353,7 @@ typedef unsigned int augUInt32;
 */
 
 #ifndef AUG_CONFIGURATION
-error: os/cpu/compiler combination not configured in $Source: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/postgres/Attic/aug_sysdep.h,v $ $Revision: 1.3 $
+#error: os/cpu/compiler combination not configured in $Source: /home/xubuntu/berlios_backup/github/tmp-cvs-err/ser/Repository/sip_router/modules/postgres/Attic/aug_sysdep.h,v $ $Revision: 1.4 $
 #endif
 
 #endif /* AUG_SYSDEP_H */

@@ -1,5 +1,5 @@
 /*
- * $Id: aug_alloc.c,v 1.1 2003/04/08 01:25:35 lgfausak Exp $
+ * $Id: aug_alloc.c,v 1.2 2005/06/30 21:29:32 andrei Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -40,10 +40,10 @@
 **
 **
 **                      $RCSfile: aug_alloc.c,v $
-**                     $Revision: 1.1 $
+**                     $Revision: 1.2 $
 **
-**             Last change $Date: 2003/04/08 01:25:35 $
-**           Last change $Author: lgfausak $
+**             Last change $Date: 2005/06/30 21:29:32 $
+**           Last change $Author: andrei $
 **                        $State: Exp $
 **                       $Locker:  $
 **
@@ -115,6 +115,7 @@ struct MemOpt
 static int mem_bad(MemHead *mem, char *where, char *file, int line)
 {
 	aug_abort(file, line, "Corrupted memory in %s", where);
+	return 0;
 }
 
 /*
@@ -225,7 +226,7 @@ static void *mem_alloc(size_t size, void *parent, char *file, int line)
 
 	if(par)
 	{
-		if(mem->m.sibling = par->m.child)
+		if((mem->m.sibling = par->m.child))
 			mem->m.sibling->m.parent = mem;
 		par->m.child = mem;
 	}
