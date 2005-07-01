@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.h,v 1.7 2005/02/01 09:57:36 janakj Exp $
+ * $Id: authrad_mod.h,v 1.8 2005/07/01 08:58:35 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -36,6 +36,8 @@
 #define AUTHRAD_MOD_H
 
 #include "../auth/api.h"
+
+#include "../acc/dict.h"
 
 extern struct attr attrs[];
 extern struct val vals[];

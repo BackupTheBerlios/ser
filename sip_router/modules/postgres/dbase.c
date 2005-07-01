@@ -1,5 +1,5 @@
 /*
- * $Id: dbase.c,v 1.3 2004/04/25 15:24:06 janakj Exp $
+ * $Id: dbase.c,v 1.4 2005/07/01 08:58:36 janakj Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -242,7 +242,7 @@ db_con_t *db_init(const char* _sqlurl)
 	*/
 	res = aug_alloc(sizeof(db_con_t), 0);
 	memset(res, 0, sizeof(db_con_t));
-	(struct con_postgres*)res->tail = aug_alloc(sizeof(struct con_postgres), (char*)res);
+	res->tail = aug_alloc(sizeof(struct con_postgres), (char*)res);
 	memset((struct con_postgres*)res->tail, 0, sizeof(struct con_postgres));
 
 	if (connect_db(res, _sqlurl) < 0)
