@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.105 2005/06/01 15:14:51 janakj Exp $
+ * $Id: t_reply.c,v 1.106 2005/07/04 16:20:02 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -554,6 +554,18 @@ static inline int fake_req(struct sip_msg *faked_req,
 			faked_req->new_uri.len);
 		faked_req->new_uri.s[faked_req->new_uri.len]=0;
 	}
+	/* dst_uri can change ALSO!!! -- make a private copy */
+	if (shmem_msg->dst_uri.s!=0 && shmem_msg->dst_uri.len!=0) {
+		faked_req->dst_uri.s=pkg_malloc(shmem_msg->dst_uri.len+1);
+		if (!faked_req->dst_uri.s) {
+			LOG(L_ERR, "ERROR: fake_req: no uri/pkg mem\n");
+			goto error00;
+		}
+		faked_req->dst_uri.len=shmem_msg->dst_uri.len;
+		memcpy( faked_req->dst_uri.s, shmem_msg->dst_uri.s, 
+			faked_req->dst_uri.len);
+		faked_req->dst_uri.s[faked_req->dst_uri.len]=0;
+	}
 
 	return 1;
 error00:
@@ -567,6 +579,11 @@ void inline static free_faked_req(struct sip_msg *faked_req, struct cell *t)
 	if (faked_req->new_uri.s) {
 		pkg_free(faked_req->new_uri.s);
 		faked_req->new_uri.s = 0;
+	}
+
+	if (faked_req->dst_uri.s) {
+		pkg_free(faked_req->dst_uri.s);
+		faked_req->dst_uri.s = 0;
 	}
 
 	/* free all types of lump that were added in failure handlers */
