@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_parse.c,v 1.10 2005/02/03 22:13:21 ramona Exp $
+ * $Id: avpops_parse.c,v 1.11 2005/07/04 10:44:38 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -385,7 +385,8 @@ struct fis_param* parse_check_value(char *s)
 		if ( (strncasecmp(p,"ruri"  ,len)==0 && (flags|=AVPOPS_USE_RURI))
 		  || (strncasecmp(p,"from"  ,len)==0 && (flags|=AVPOPS_USE_FROM))
 		  || (strncasecmp(p,"to"    ,len)==0 && (flags|=AVPOPS_USE_TO))
-		  || (strncasecmp(p,"src_ip",len)==0 && (flags|=AVPOPS_USE_SRC_IP)))
+		  || (strncasecmp(p,"src_ip",len)==0 && (flags|=AVPOPS_USE_SRC_IP))
+		  || (strncasecmp(p,"dst_ip",len)==0 && (flags|=AVPOPS_USE_DST_IP)))
 		{
 			flags |= AVPOPS_VAL_NONE;
 		} else {

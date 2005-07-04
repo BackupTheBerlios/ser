@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.h,v 1.4 2005/02/03 22:13:21 ramona Exp $
+ * $Id: avpops_impl.h,v 1.5 2005/07/04 10:44:38 ramona Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -64,6 +64,7 @@
 #define AVPOPS_USE_HDRREQ    (1<<10)
 #define AVPOPS_USE_HDRRPL    (1<<11)
 #define AVPOPS_USE_SRC_IP    (1<<12)
+#define AVPOPS_USE_DST_IP    (1<<13)
 
 /* flags about operation  16..23  */
 #define AVPOPS_OP_EQ        (1<<16)
