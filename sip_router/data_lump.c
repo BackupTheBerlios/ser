@@ -1,4 +1,4 @@
-/* $Id: data_lump.c,v 1.20 2005/03/24 14:47:26 janakj Exp $
+/* $Id: data_lump.c,v 1.21 2005/07/04 15:52:11 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -373,9 +373,17 @@ struct lump* anchor_lump(struct sip_msg* msg, int offset, int len, enum _hdr_typ
 void free_lump(struct lump* lmp)
 {
 	if (lmp && (lmp->op==LUMP_ADD)){
-		if (lmp->u.value) pkg_free(lmp->u.value);
-		lmp->u.value=0;
-		lmp->len=0;
+		if (lmp->u.value){
+			if (lmp->flags &(LUMPFLAG_DUPED|LUMPFLAG_SHMEM)){
+				LOG(L_CRIT, "BUG: free_lump: called on a not free-able lump:"
+						"%p flags=%x\n", lmp, lmp->flags);
+				abort();
+			}else{
+				pkg_free(lmp->u.value);
+				lmp->u.value=0;
+				lmp->len=0;
+			}
+		}
 	}
 }
 
