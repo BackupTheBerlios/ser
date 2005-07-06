@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.24 2005/03/02 18:42:41 andrei Exp $ 
+ * $Id: parse_via.c,v 1.25 2005/07/06 14:56:05 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1011,6 +1011,7 @@ parse_again:
 	vb->error=PARSE_ERROR;
 	/* parse start of via ( SIP/2.0/UDP    )*/
 	state=F_SIP;
+	saved_state=F_SIP; /* fixes gcc 4.0 warning */
 	param_start=0;
 	for(tmp=buffer;tmp<end;tmp++){
 		switch(*tmp){

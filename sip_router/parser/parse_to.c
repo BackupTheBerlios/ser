@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.20 2004/10/10 19:33:20 andrei Exp $
+ * $Id: parse_to.c,v 1.21 2005/07/06 14:56:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -496,7 +496,8 @@ char* parse_to(char* buffer, char *end, struct to_body *to_b)
 	int status;
 	int saved_status;
 	char  *tmp,*foo;
-
+	
+	saved_status=START_TO; /* fixes gcc 4.x warning */
 	status=START_TO;
 	to_b->error=PARSE_OK;
 	to_b->uri.len = 0;

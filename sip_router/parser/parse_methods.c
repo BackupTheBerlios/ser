@@ -1,5 +1,5 @@
 /*
- * $Id: parse_methods.c,v 1.2 2004/08/13 21:42:18 janakj Exp $
+ * $Id: parse_methods.c,v 1.3 2005/07/06 14:56:05 andrei Exp $
  *
  * Copyright (c) 2004 Juha Heinanen
  *
@@ -227,6 +227,8 @@ static int parse_method(str* _next, unsigned int* _method)
  {
  	str next;
  	unsigned int method;
+	
+	method=0; /* fixes silly gcc 4.x warning */
  
 	if (!_body || !_methods) {
 		LOG(L_ERR, "parse_methods: Invalid parameter value\n");

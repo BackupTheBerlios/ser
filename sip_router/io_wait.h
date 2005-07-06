@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.7 2005/07/05 21:19:32 andrei Exp $
+ * $Id: io_wait.h,v 1.8 2005/07/06 14:56:05 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -186,14 +186,6 @@ static inline struct fd_map* hash_fd_map(	io_wait_h* h,
 	h->fd_hash[fd].data=data;
 	return &h->fd_hash[fd];
 }
-
-
-#ifdef HAVE_SIGIO_RT
-typedef unsigned int sigio_rtsig_mask_t;
-extern sigset_t _sigio_rtsig_used;
-extern int _sigio_crt_rtsig;
-extern int _sigio_init;
-#endif
 
 
 

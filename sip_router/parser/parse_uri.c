@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.c,v 1.20 2005/03/03 10:47:38 andrei Exp $
+ * $Id: parse_uri.c,v 1.21 2005/07/06 14:56:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -323,6 +323,8 @@ int parse_uri(char* buf, int len, struct sip_uri* uri)
 	b=v=0;
 	param=param_val=0;
 	pass=0;
+	password.s=0; /* fixes gcc 4.0 warning */
+	password.len=0;
 	port_no=0;
 	state=URI_INIT;
 	memset(uri, 0, sizeof(struct sip_uri)); /* zero it all, just to be sure*/
