@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.8 2005/07/06 14:56:05 andrei Exp $
+ * $Id: io_wait.h,v 1.9 2005/07/06 16:10:05 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -736,11 +736,6 @@ inline static int io_wait_loop_kqueue(io_wait_h* h, int t, int repeat)
 again:
 		n=kevent(h->kq_fd, h->kq_changes, h->kq_nchanges,  h->kq_array,
 					h->fd_no, &tspec);
-#ifdef EXTRA_DEBUG
-		DBG("DBG: kevent(%d, %p, %d, %p, %d, ...)=%d\n",
-			 h->kq_fd, h->kq_changes, h->kq_nchanges,  h->kq_array, h->fd_no,
-			 n);
-#endif
 		if (n==-1){
 			if (errno==EINTR) goto again; /* signal, ignore it */
 			else{

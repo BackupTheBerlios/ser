@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.72 2005/06/26 19:58:07 andrei Exp $
+ * $Id: udp_server.c,v 1.73 2005/07/06 16:10:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -268,6 +268,9 @@ int udp_init(struct socket_info* sock_info)
 {
 	union sockaddr_union* addr;
 	int optval;
+#ifdef USE_MCAST
+	unsigned char m_ttl, m_loop;
+#endif
 	addr=&sock_info->su;
 /*
 	addr=(union sockaddr_union*)pkg_malloc(sizeof(union sockaddr_union));
@@ -318,16 +321,18 @@ int udp_init(struct socket_info* sock_info)
 	}
 	/* set the multicast options */
 	if (addr->s.sa_family==AF_INET){
+		m_loop=mcast_loopback;
 		if (setsockopt(sock_info->socket, IPPROTO_IP, IP_MULTICAST_LOOP, 
-						&mcast_loopback, sizeof(mcast_loopback))==-1){
+						&m_loop, sizeof(m_loop))==-1){
 			LOG(L_WARN, "WARNING: udp_init: setsockopt(IP_MULTICAST_LOOP):"
 						" %s\n", strerror(errno));
 			/* it's only a warning because we might get this error if the
 			  network interface doesn't support multicasting -- andrei */
 		}
 		if (mcast_ttl>=0){
+			m_ttl=mcast_ttl;
 			if (setsockopt(sock_info->socket, IPPROTO_IP, IP_MULTICAST_TTL,
-						&mcast_ttl, sizeof(mcast_ttl))==-1){
+						&m_ttl, sizeof(m_ttl))==-1){
 				LOG(L_WARN, "WARNING: udp_init: setsockopt (IP_MULTICAST_TTL):"
 						" %s\n", strerror(errno));
 			}
