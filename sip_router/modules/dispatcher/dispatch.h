@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.h,v 1.2 2004/08/24 08:58:27 janakj Exp $
+ * $Id: dispatch.h,v 1.3 2005/07/08 15:49:27 andrei Exp $
  *
  * dispatcher module
  * 
@@ -39,6 +39,10 @@
 #define _DISPATCH_H_
 
 #include "../../parser/msg_parser.h"
+
+
+#define DS_HASH_USER_ONLY 1  /* use only the uri user part for hashing */
+extern int ds_flags; 
 
 int ds_load_list(char *lfile);
 int ds_destroy_list();
