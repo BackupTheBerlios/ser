@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.c,v 1.6 2005/07/04 15:10:52 andrei Exp $
+ * $Id: io_wait.c,v 1.7 2005/07/08 15:39:07 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -374,7 +374,7 @@ char* check_poll_method(enum poll_types poll_method)
 #ifndef HAVE_KQUEUE
 			ret="kqueue not supported, try re-compiling with -DHAVE_KQUEUE";
 #else
-		/* only in FreeBSD 4.1, NETBSD 2.0, OpenBSD ???, Darwin ??? FIXME */
+		/* only in FreeBSD 4.1, NETBSD 2.0, OpenBSD 2.9, Darwin */
 	#ifdef __OS_freebsd
 			if (os_ver<0x0401) /* if ver < 4.1 */
 				ret="kqueue not supported on FreeBSD < 4.1";
@@ -422,7 +422,7 @@ enum poll_types choose_poll_method()
 #endif
 #ifdef HAVE_KQUEUE
 	if (poll_method==0)
-		/* only in FreeBSD 4.1, NETBSD 2.0, OpenBSD ???, Darwin ??? FIXME */
+		/* only in FreeBSD 4.1, NETBSD 2.0, OpenBSD 2.9, Darwin */
 	#ifdef __OS_freebsd
 		if (os_ver>=0x0401) /* if ver >= 4.1 */
 	#elif defined (__OS_netbsd)

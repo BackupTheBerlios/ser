@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.53 2005/06/16 14:05:24 andrei Exp $
+ * $Id: globals.h,v 1.54 2005/07/08 15:39:07 andrei Exp $
  *
  * global variables
  *
@@ -81,8 +81,10 @@ extern int tcp_disable;
 extern int tcp_accept_aliases;
 extern int tcp_connect_timeout;
 extern int tcp_send_timeout;
+extern int tcp_con_lifetime; /* connection lifetime */
 extern enum poll_types tcp_poll_method;
 extern int tcp_max_fd_no;
+extern int tcp_max_connections;
 #endif
 #ifdef USE_TLS
 extern int tls_disable;
