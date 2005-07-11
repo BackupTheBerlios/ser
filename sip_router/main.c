@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.198 2005/06/16 14:05:24 andrei Exp $
+ * $Id: main.c,v 1.199 2005/07/11 17:30:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -130,7 +130,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.198 2005/06/16 14:05:24 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.199 2005/07/11 17:30:44 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1449,6 +1449,8 @@ try_again:
 	
 	print_rl();
 	
+	/* init the resolver, before fixing the config */
+	resolv_init();
 	/* fix parameters */
 	if (port_no<=0) port_no=SIP_PORT;
 #ifdef USE_TLS

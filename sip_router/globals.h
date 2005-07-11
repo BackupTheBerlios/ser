@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.54 2005/07/08 15:39:07 andrei Exp $
+ * $Id: globals.h,v 1.55 2005/07/11 17:30:44 andrei Exp $
  *
  * global variables
  *
@@ -164,5 +164,11 @@ extern str default_global_port;
 /* core dump and file limits */
 extern int disable_core_dump;
 extern int open_files_limit;
+
+/* resolver */
+extern int dns_retr_time;
+extern int dns_retr_no;
+extern int dns_servers_no;
+extern int dns_search_list;
 
 #endif
