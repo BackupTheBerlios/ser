@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.87 2005/07/11 17:30:44 andrei Exp $
+ * $Id: cfg.y,v 1.88 2005/07/12 15:22:19 andrei Exp $
  *
  *  cfg grammar
  *
@@ -62,6 +62,8 @@
  *              (andrei)
  * 2005-07-11 added DNS_RETR_TIME, DNS_RETR_NO, DNS_SERVERS_NO, DNS_USE_SEARCH,
  *             DNS_TRY_IPV6 (andrei)
+ * 2005-07-12  default onreply route added (andrei)
+ *
  */
 
 
@@ -855,7 +857,10 @@ failure_route_stm: ROUTE_FAILURE LBRACK NUMBER RBRACK LBRACE actions RBRACE {
 		| ROUTE_FAILURE error { yyerror("invalid failure_route statement"); }
 	;
 
-onreply_route_stm: ROUTE_ONREPLY LBRACK NUMBER RBRACK LBRACE actions RBRACE {
+onreply_route_stm: ROUTE LBRACE actions RBRACE {
+										push($3, &onreply_rlist[DEFAULT_RT]);
+											  }
+				| ROUTE_ONREPLY LBRACK NUMBER RBRACK LBRACE actions RBRACE {
 										if (($3<ONREPLY_RT_NO)&&($3>=1)){
 											push($6, &onreply_rlist[$3]);
 										} else {
