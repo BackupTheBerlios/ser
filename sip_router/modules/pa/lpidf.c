@@ -1,7 +1,7 @@
 /*
  * Presence Agent, LPIDF document support
  *
- * $Id: lpidf.c,v 1.7 2004/08/24 08:58:32 janakj Exp $
+ * $Id: lpidf.c,v 1.8 2005/07/20 17:16:23 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -84,6 +84,7 @@ int lpidf_add_address(str* _b, int _l, str* _addr, lpidf_status_t _st)
 	switch(_st) {
 	case LPIDF_ST_OPEN:   s.s = Q_OPEN; s.len = Q_OPEN_L;     break;
 	case LPIDF_ST_CLOSED: s.s = Q_CLOSED; s.len = Q_CLOSED_L; break;
+	default: s.s=0; s.len=0;
 	}
 
 	if (_l < (CONTACT_START_L + _addr->len + CONTACT_MIDDLE_L + s.len + 2)) {

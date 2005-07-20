@@ -1,5 +1,5 @@
 /*
- * $Id: user_in.c,v 1.5 2005/02/23 17:16:02 andrei Exp $
+ * $Id: user_in.c,v 1.6 2005/07/20 17:16:22 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -126,6 +126,9 @@ int diameter_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 	int ret;
 	unsigned int tmp;
 
+	user_name.s=0; /* fixes a gcc 4.0 warning */
+	uri.s=0; 
+	uri.len=0; 
 	grp = (str*)_group; /* via fixup */
 
 	hf_type = (int)(long)_hf;

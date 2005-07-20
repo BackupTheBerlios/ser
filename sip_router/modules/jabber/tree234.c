@@ -1,5 +1,5 @@
 /*
- * $Id: tree234.c,v 1.7 2004/08/24 08:58:30 janakj Exp $
+ * $Id: tree234.c,v 1.8 2005/07/20 17:16:23 andrei Exp $
  *
  * tree234.c: reasonably generic counted 2-3-4 tree routines.
  * 
@@ -154,6 +154,7 @@ static void *add234_internal(tree234 *t, void *e, int index) {
     void *orig_e = e;
     int c, lcount, rcount;
 
+	n=0; /* warning fix */
     LOG123(("adding node %p to tree %p\n", e, t));
     if (t->root == NULL) {
 	t->root = mknew(node234);

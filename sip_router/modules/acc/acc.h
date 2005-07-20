@@ -1,5 +1,5 @@
 /*
- * $Id: acc.h,v 1.14 2004/08/24 08:58:23 janakj Exp $
+ * $Id: acc.h,v 1.15 2005/07/20 17:16:17 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -101,6 +101,7 @@
 
 
 #ifdef RAD_ACC
+#include "dict.h"
 extern struct attr attrs[];
 extern struct val vals[];
 #endif

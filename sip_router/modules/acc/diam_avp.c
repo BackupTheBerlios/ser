@@ -1,5 +1,5 @@
 /*
- * $Id: diam_avp.c,v 1.2 2004/08/24 08:58:23 janakj Exp $
+ * $Id: diam_avp.c,v 1.3 2005/07/20 17:16:21 andrei Exp $
  *
  * 2002-10-04 created  by illya (komarov@fokus.gmd.de)
  * 2003-03-12 converted to shm_malloc/free (andrei)
@@ -105,7 +105,7 @@ AAA_AVP*  AAACreateAVP(
 	AAA_AVPFlag flags,
 	AAAVendorId vendorId,
 	char   *data,
-	unsigned int length,
+	size_t length,
 	AVPDataStatus data_status)
 {
 	AAA_AVP *avp;

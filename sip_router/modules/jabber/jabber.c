@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.58 2005/02/23 17:16:03 andrei Exp $
+ * $Id: jabber.c,v 1.59 2005/07/20 17:16:22 andrei Exp $
  *
  * XJAB module
  *
@@ -429,7 +429,9 @@ int xjab_manage_sipmsg(struct sip_msg *msg, int type)
 	int pipe, fl;
 	t_xj_jkey jkey, *p;
 	int mime;
-
+	
+	body.s=0;  /* fixes gcc 4.0 warning */
+	body.len=0;
 	// extract message body - after that whole SIP MESSAGE is parsed
 	if (type==XJ_SEND_MESSAGE)
 	{

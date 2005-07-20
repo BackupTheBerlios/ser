@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_run.c,v 1.38 2005/04/16 08:49:07 bogdan Exp $
+ * $Id: cpl_run.c,v 1.39 2005/07/20 17:16:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -348,6 +348,7 @@ static inline char *run_location( struct cpl_interpreter *intr )
 	clear = NO_VAL;
 	prio = 10;
 	url.s = (char*)UNDEF_CHAR;
+	url.len = 0; /* fixes gcc 4.0 warning */
 
 	/* sanity check */
 	if (NR_OF_KIDS(intr->ip)>1) {

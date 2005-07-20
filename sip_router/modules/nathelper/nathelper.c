@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.86 2005/04/27 14:15:21 sobomax Exp $
+/* $Id: nathelper.c,v 1.87 2005/07/20 17:16:23 andrei Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -552,6 +552,7 @@ get_to_tag(struct sip_msg* _m, str* _tag)
 		_tag->s = get_to(_m)->tag_value.s;
 		_tag->len = get_to(_m)->tag_value.len;
 	} else {
+		_tag->s = 0; /* fixes gcc 4.0 warnings */
 		_tag->len = 0;
 	}
 

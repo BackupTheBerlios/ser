@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.6 2005/02/23 17:16:02 andrei Exp $
+ * $Id: authorize.c,v 1.7 2005/07/20 17:16:22 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -383,6 +383,8 @@ int diameter_authorize(struct hdr_field* hdr, str* p_method, struct sip_uri uri,
 	dig_cred_t* cred;
 	unsigned int tmp;
 
+	user_name.s=0; /* fixes gcc 4.0 warning */
+	
 	if ( !p_method )
 	{
 		LOG(L_ERR, M_NAME":diameter_authorize(): Invalid parameter value\n");

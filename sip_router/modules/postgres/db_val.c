@@ -1,5 +1,5 @@
 /*
- * $Id: db_val.c,v 1.4 2004/08/24 09:00:35 janakj Exp $
+ * $Id: db_val.c,v 1.5 2005/07/20 17:16:23 andrei Exp $
  *
  * POSTGRES module, portions of this code were templated using
  * the mysql module, thus it's similarity.
@@ -223,7 +223,7 @@ int str2valp(db_type_t _t, db_val_t* _v, const char* _s, int _l, void *_p)
 
 	case DB_STR:
 		VAL_STR(_v).s = aug_alloc(_l + 1, _p);
-		memcpy(_s, VAL_STR(_v).s, _l);
+		memcpy(VAL_STR(_v).s, _s,  _l);
 		VAL_STR(_v).s[_l] = (char) 0;
 		VAL_STR(_v).len = _l;
 		VAL_TYPE(_v) = DB_STR;
@@ -248,7 +248,7 @@ int str2valp(db_type_t _t, db_val_t* _v, const char* _s, int _l, void *_p)
 	case DB_BLOB:
 
 		VAL_STR(_v).s = aug_alloc(_l + 1, _p);
-		memcpy(_s, VAL_STR(_v).s, _l);
+		memcpy(VAL_STR(_v).s, _s,  _l);
 		VAL_STR(_v).s[_l] = (char) 0;
 		VAL_STR(_v).len = _l;
 		VAL_TYPE(_v) = DB_BLOB;

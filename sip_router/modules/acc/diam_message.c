@@ -1,5 +1,5 @@
 /*
- * $Id: diam_message.c,v 1.2 2004/08/24 08:58:23 janakj Exp $
+ * $Id: diam_message.c,v 1.3 2005/07/20 17:16:21 andrei Exp $
  *
  * 2003-04-07 created by bogdan
  *
@@ -68,7 +68,7 @@ AAAReturnCode AAABuildMsgBuffer( AAAMessage *msg )
 	}
 
 	/* allocate some memory */
-	msg->buf.s = (unsigned char*)ad_malloc( msg->buf.len );
+	msg->buf.s = ad_malloc( msg->buf.len );
 	if (!msg->buf.s) {
 		LOG(L_ERR,"ERROR:AAABuildMsgBuffer: no more free memory!\n");
 		goto error;
@@ -76,7 +76,7 @@ AAAReturnCode AAABuildMsgBuffer( AAAMessage *msg )
 	memset(msg->buf.s, 0, msg->buf.len);
 
 	/* fill in the buffer */
-	p = msg->buf.s;
+	p = (unsigned char*)msg->buf.s;
 	/* DIAMETER HEADER */
 	/* message length */
 	((unsigned int*)p)[0] =htonl(msg->buf.len);
@@ -292,7 +292,7 @@ AAAMessage* AAATranslateMessage( unsigned char* source, unsigned int sourceLen,
 		}
 
 		/* create the AVP */
-		avp = AAACreateAVP( avp_code, avp_flags, avp_vendorID, ptr,
+		avp = AAACreateAVP( avp_code, avp_flags, avp_vendorID, (char*)ptr,
 			avp_data_len, AVP_DONT_FREE_DATA);
 		if (!avp)
 			goto error;
@@ -305,7 +305,7 @@ AAAMessage* AAATranslateMessage( unsigned char* source, unsigned int sourceLen,
 
 	/* link the buffer to the message */
 	if (attach_buf) {
-		msg->buf.s = source;
+		msg->buf.s = (char*)source;
 		msg->buf.len = msg_len;
 	}
 

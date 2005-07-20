@@ -1,5 +1,5 @@
 /*
- * $Id: group.c,v 1.16 2005/02/23 17:16:03 andrei Exp $
+ * $Id: group.c,v 1.17 2005/07/20 17:16:22 andrei Exp $
  *
  * Group membership
  *
@@ -117,6 +117,8 @@ int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp)
 	struct hdr_field* h;
 	struct auth_body* c = 0; /* Makes gcc happy */
 
+	uri.s=0; /* fixes gcc 4.0 warning */
+	uri.len=0;
 	keys[0] = user_column.s;
 	keys[1] = group_column.s;
 	keys[2] = domain_column.s;
