@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.322 2005/07/25 14:41:20 andrei Exp $
+# $Id: Makefile.defs,v 1.323 2005/07/25 16:28:38 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -1019,7 +1019,7 @@ endif
 
 ifeq  ($(OS), solaris)
 	DEFS+= -DHAVE_GETIPNODEBYNAME -DHAVE_SYS_SOCKIO_H -DHAVE_SCHED_YIELD \
-			-DHAVE_ALLOCA_H
+			-DHAVE_ALLOCA_H -DUSE_SIGACTION
 	ifneq ($(found_lock_method), yes)
 		DEFS+= -DUSE_PTHREAD_MUTEX  # try pthread sems
 		found_lock_method=yes

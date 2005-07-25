@@ -1,6 +1,6 @@
 #!/bin/sh 
 #
-# $Id: sc,v 1.86 2005/07/25 14:41:20 andrei Exp $
+# $Id: sc,v 1.87 2005/07/25 16:28:39 andrei Exp $
 #
 # sc: ser control; tool for maintaining ser's databases
 #
@@ -26,6 +26,7 @@ SYSLOG=1 # 0=output to console, 1=output to syslog
 STARTOPTIONS= # for example -dddd
 DIR=`dirname $0`
 SERBIN=$DIR/ser
+AWK=awk
 
 # ser's FIFO server
 if [ -z "$SER_FIFO" ]; then
@@ -65,7 +66,7 @@ LAST_LINE='tail -1'
 VERIFY_ACL=1
 ACL_GROUPS="local ld int voicemail free-pstn prepaid"
 
-VERSION='$Revision: 1.86 $'
+VERSION='$Revision: 1.87 $'
 #### SQL names
 
 # Usr Loc Table
@@ -198,8 +199,8 @@ get_my_host() {
 # calculate name and domain of current user
 set_user() {
 
-	SERUSER=`echo $1|awk -F @ '{print $1}'`
-	SERDOMAIN=`echo $1|awk -F @ '{print $2}'`
+	SERUSER=`echo $1|$AWK -F @ '{print $1}'`
+	SERDOMAIN=`echo $1|$AWK -F @ '{print $2}'`
 
 	if [ -z "$SERDOMAIN" ] ; then
 		SERDOMAIN="$SIP_DOMAIN"
@@ -286,7 +287,7 @@ filter_fl()
 {
 #	tail +2
 	
-	awk 'BEGIN {line=0;IGNORECASE=1;}
+	$AWK 'BEGIN {line=0;IGNORECASE=1;}
 		{line++}
 		line==1 && /^200 ok/ { next }
 		{ print }'
@@ -970,7 +971,7 @@ case $1 in
 		;;
 
 	online)
-		fifo_cmd ul_dump |grep aor| awk '{print $3}' | sort | sort -mu
+		fifo_cmd ul_dump |grep aor| $AWK '{print $3}' | sort | sort -mu
 		exit $?
 		;;
 
