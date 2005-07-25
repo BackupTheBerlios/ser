@@ -1,4 +1,4 @@
-/* $Id: f_malloc.h,v 1.15 2005/03/02 11:45:14 andrei Exp $
+/* $Id: f_malloc.h,v 1.16 2005/07/25 14:41:20 andrei Exp $
  *
  * simple, very fast, malloc library
  *
@@ -137,7 +137,7 @@ void*  fm_realloc(struct fm_block*, void* p, unsigned long size);
 #endif
 
 void  fm_status(struct fm_block*);
-void  fm_info(struct fm_block*, struct meminfo*);
+void  fm_info(struct fm_block*, struct mem_info*);
 
 
 #endif

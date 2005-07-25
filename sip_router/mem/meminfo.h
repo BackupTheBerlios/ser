@@ -1,4 +1,4 @@
-/* $Id: meminfo.h,v 1.1 2005/03/02 11:45:14 andrei Exp $*
+/* $Id: meminfo.h,v 1.2 2005/07/25 14:41:20 andrei Exp $*
  *
  * mem (malloc) info 
  *
@@ -29,12 +29,13 @@
  * History:
  * --------
  *  2005-03-02  created (andrei)
+ *  2005-07-25  renamed meminfo to mem_info due to name conflict on solaris
  */
 
 #ifndef meminfo_h
 #define meminfo_h
 
-struct meminfo{
+struct mem_info{
 	unsigned long total_size;
 	unsigned long free;
 	unsigned long used;

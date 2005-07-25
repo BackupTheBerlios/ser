@@ -1,4 +1,4 @@
-/* $Id: f_malloc.c,v 1.18 2005/03/02 11:45:14 andrei Exp $
+/* $Id: f_malloc.c,v 1.19 2005/07/25 14:41:20 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -549,7 +549,7 @@ void fm_status(struct fm_block* qm)
 
 /* fills a malloc info structure with info about the block
  * if a parameter is not supported, it will be filled with 0 */
-void fm_info(struct fm_block* qm, struct meminfo* info)
+void fm_info(struct fm_block* qm, struct mem_info* info)
 {
 	int r;
 	long total_frags;

@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.21 2005/03/02 11:45:14 andrei Exp $
+/* $Id: q_malloc.c,v 1.22 2005/07/25 14:41:20 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -687,7 +687,7 @@ void qm_status(struct qm_block* qm)
 
 /* fills a malloc info structure with info about the block
  * if a parameter is not supported, it will be filled with 0 */
-void qm_info(struct qm_block* qm, struct meminfo* info)
+void qm_info(struct qm_block* qm, struct mem_info* info)
 {
 	int r;
 	long total_frags;

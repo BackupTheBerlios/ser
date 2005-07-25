@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.53 2005/06/16 14:05:24 andrei Exp $
+ * $Id: fifo_server.c,v 1.54 2005/07/25 14:41:20 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -876,7 +876,7 @@ static int ps_fifo_cmd(FILE *stream, char *response_file )
 
 static int meminfo_fifo_cmd( FILE *stream, char *response_file )
 {
-	struct meminfo mi;
+	struct mem_info mi;
 	
 	if (response_file==0 || *response_file==0 ) { 
 		LOG(L_ERR, "ERROR: meminfo_fifo_cmd: null file\n");

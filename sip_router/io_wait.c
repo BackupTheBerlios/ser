@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.c,v 1.7 2005/07/08 15:39:07 andrei Exp $
+ * $Id: io_wait.c,v 1.8 2005/07/25 14:41:20 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -511,11 +511,7 @@ int init_io_wait(io_wait_h* h, int max_fd, enum poll_types poll_method)
 			LOG(L_INFO, "init_io_wait: using %s as the io watch method"
 					" (auto detected)\n", poll_method_str[poll_method]);
 		}
-	}else{
-			LOG(L_INFO, "init_io_wait: using %s io watch method (forced)\n",
-					poll_method_str[poll_method]);
 	}
-
 	
 	h->poll_method=poll_method;
 	
