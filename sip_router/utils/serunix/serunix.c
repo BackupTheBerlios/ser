@@ -1,5 +1,5 @@
 /*
- * $Id: serunix.c,v 1.3 2005/02/11 13:07:02 janakj Exp $
+ * $Id: serunix.c,v 1.4 2005/07/27 12:47:19 janakj Exp $
  *
  * Copyright (C) 2004 FhG FOKUS
  *
@@ -95,6 +95,7 @@ int main(int argc, char** argv)
 		        goto err;
 		}
 
+		from_len = sizeof(from);
 		len = recvfrom(sock, buffer, BUF_SIZE, 0, (struct sockaddr*)&from, &from_len);
 		if (len == -1) {
 			fprintf(stderr, "Error in recvfrom: %s\n", strerror(errno));
