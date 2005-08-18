@@ -1,5 +1,5 @@
 /**
- * $Id: xlog.c,v 1.8 2004/10/27 10:12:39 ramona Exp $
+ * $Id: xlog.c,v 1.9 2005/08/18 15:49:00 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -63,9 +63,9 @@ void destroy(void);
 
 static cmd_export_t cmds[]={
 	{"xlog",  xlog,  2, xlog_fixup, REQUEST_ROUTE | FAILURE_ROUTE |
-		 ONREPLY_ROUTE},
+		 ONREPLY_ROUTE | BRANCH_ROUTE},
 	{"xdbg",  xdbg,  1, xdbg_fixup, REQUEST_ROUTE | FAILURE_ROUTE | 
-		ONREPLY_ROUTE},
+		ONREPLY_ROUTE | BRANCH_ROUTE},
 	{0,0,0,0,0}
 };
 
