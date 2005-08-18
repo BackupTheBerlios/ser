@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.88 2005/07/12 15:22:19 andrei Exp $
+ * $Id: cfg.y,v 1.89 2005/08/18 15:46:46 janakj Exp $
  *
  *  cfg grammar
  *
@@ -149,6 +149,7 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token ROUTE
 %token ROUTE_FAILURE
 %token ROUTE_ONREPLY
+%token ROUTE_BRANCH
 %token EXEC
 %token SET_HOST
 %token SET_HOSTPORT
@@ -335,6 +336,7 @@ statement:	assign_stm
 		| {rt=REQUEST_ROUTE;} route_stm 
 		| {rt=FAILURE_ROUTE;} failure_route_stm
 		| {rt=ONREPLY_ROUTE;} onreply_route_stm
+		| {rt=BRANCH_ROUTE;} branch_route_stm
 
 		| CR	/* null statement*/
 	;
@@ -869,6 +871,19 @@ onreply_route_stm: ROUTE LBRACE actions RBRACE {
 											YYABORT; }
 										}
 		| ROUTE_ONREPLY error { yyerror("invalid onreply_route statement"); }
+	;
+branch_route_stm: ROUTE_BRANCH LBRACE actions RBRACE {
+										push($3, &branch_rlist[DEFAULT_RT]);
+											  }
+				| ROUTE_BRANCH LBRACK NUMBER RBRACK LBRACE actions RBRACE {
+										if (($3<BRANCH_RT_NO)&&($3>=1)){
+											push($6, &branch_rlist[$3]);
+										} else {
+											yyerror("invalid branch routing"
+												"table number");
+											YYABORT; }
+										}
+		| ROUTE_BRANCH error { yyerror("invalid branch_route statement"); }
 	;
 /*
 rules:	rules rule { push($2, &$1); $$=$1; }

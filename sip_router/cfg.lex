@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.66 2005/07/11 17:30:43 andrei Exp $
+ * $Id: cfg.lex,v 1.67 2005/08/18 15:46:46 janakj Exp $
  *
  * scanner for cfg files
  *
@@ -113,6 +113,7 @@ ERROR	error
 ROUTE	route
 ROUTE_FAILURE failure_route
 ROUTE_ONREPLY onreply_route
+ROUTE_BRANCH branch_route
 EXEC	exec
 FORCE_RPORT		"force_rport"|"add_rport"
 FORCE_TCP_ALIAS		"force_tcp_alias"|"add_tcp_alias"
@@ -312,6 +313,7 @@ EAT_ABLE	[\ \t\b\r]
 								return ROUTE_ONREPLY; }
 <INITIAL>{ROUTE_FAILURE}	{ count(); yylval.strval=yytext;
 								return ROUTE_FAILURE; }
+<INITIAL>{ROUTE_BRANCH} { count(); yylval.strval=yytext; return ROUTE_BRANCH; }
 <INITIAL>{EXEC}	{ count(); yylval.strval=yytext; return EXEC; }
 <INITIAL>{SET_HOST}	{ count(); yylval.strval=yytext; return SET_HOST; }
 <INITIAL>{SET_HOSTPORT}	{ count(); yylval.strval=yytext; return SET_HOSTPORT; }

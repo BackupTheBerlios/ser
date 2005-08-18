@@ -1,5 +1,5 @@
 /*
- * $Id: lump_struct.h,v 1.3 2005/03/24 14:47:26 janakj Exp $
+ * $Id: lump_struct.h,v 1.4 2005/08/18 15:46:46 janakj Exp $
  *
  * adding/removing headers or any other data chunk from a message
  *
@@ -75,7 +75,7 @@ enum lump_conditions {	COND_FALSE,         /* always false */
 						   proto = protocol (tcp, udp, tls)
 						*/
 
-enum lump_flag { LUMPFLAG_NONE=0, LUMPFLAG_DUPED=1, LUMPFLAG_SHMEM=2 };
+enum lump_flag { LUMPFLAG_NONE=0, LUMPFLAG_DUPED=1, LUMPFLAG_SHMEM=2, LUMPFLAG_BRANCH=4 };
 
 
 struct lump{
