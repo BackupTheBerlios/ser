@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.20 2004/08/13 01:25:57 danp Exp $
+ * $Id: domain_mod.c,v 1.21 2005/08/18 19:54:50 jih Exp $
  *
  * Domain module
  *
@@ -88,7 +88,8 @@ struct domain_list **hash_table_2;	/* Pointer to hash table 2 */
  */
 static cmd_export_t cmds[] = {
 	{"is_from_local",     is_from_local,     0, 0, REQUEST_ROUTE},
-	{"is_uri_host_local", is_uri_host_local, 0, 0, REQUEST_ROUTE},
+	{"is_uri_host_local", is_uri_host_local, 0, 0, REQUEST_ROUTE|
+	 BRANCH_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
