@@ -6,15 +6,15 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:35 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2005/08/24 22:26:21 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
 
     <title>Parameters</title>
 
-    <section id="user_column">
+    <section id="usrloc.user_column">
 	<title><varname>user_column</varname> (string)</title>
 	<para>
 	    Name of column containing usernames.
@@ -177,7 +177,7 @@ modparam("usrloc", "received_column", "received")
 	</example>
     </section>
 
-    <section id="db_url">
+    <section id="usrloc.db_url">
 	<title><varname>db_url</varname> (string)</title>
 	<para>
 	    URL of the database that should be used.
@@ -215,7 +215,7 @@ modparam("usrloc", "timer_interval", 120)
 	</example>
     </section>
 
-    <section id="db_mode">
+    <section id="usrloc.db_mode">
 	<title><varname>db_mode</varname> (integer)</title>
 	<para>
 	    The usrloc module can utilize database for persistent contact

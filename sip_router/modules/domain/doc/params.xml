@@ -6,15 +6,15 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:31 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2005/08/24 22:26:18 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
 
     <title>Parameters</title>
 
-    <section id="db_url">
+    <section id="domain.db_url">
 	<title><varname>db_url</varname> (string)</title>
 	<para>
 	    This is <acronym>URL</acronym> of the database to be used.
@@ -64,7 +64,7 @@ modparam("domain", "domain_table", "new_name")
 	</example>
     </section>
     
-    <section id="domain_column">
+    <section id="domain.domain_column">
 	<title><varname>domain_column</varname> (string)</title>
 	<para>
 	    Name of column containing domains in domain table.

@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:28 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2005/08/24 22:24:59 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -38,7 +38,5 @@
     <xi:include href="sip_msg.xml"/>
     <xi:include href="to_body.xml"/>
     <xi:include href="cseq_body.xml"/>
-    <xi:include href="event_t.xml"/>
-    <xi:include href="exp_body_t.xml"/>
 
 </section>

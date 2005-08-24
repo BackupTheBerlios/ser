@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:30 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2005/08/24 22:26:17 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -34,7 +34,7 @@
 	</para>
     </section>
 
-    <section id="db_url">
+    <section id="avp_db.db_url">
 	<title><varname>db_url</varname> (string)</title>
 	<para>
 	    The URL of the database to be used.
@@ -75,7 +75,7 @@
 	</para>
     </section>
 
-    <section id="domain_column">
+    <section id="avp_db.domain_column">
 	<title><varname>domain_column</varname> (string)</title>
 	<para>
 	    Name of the column containing the domain that the

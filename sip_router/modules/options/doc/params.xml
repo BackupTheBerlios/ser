@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:32 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2005/08/24 22:26:19 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -78,7 +78,7 @@ modparam("options", "accept_language", "de")
 	</example>
     </section>
     
-    <section id="support">
+    <section id="options.support">
 	<title><varname>support</varname> (string)</title>
 	<para>
 	    This parameter is the content of the Support header field.  Please
