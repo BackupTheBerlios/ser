@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4//EN"
-                      "file:///usr/share/sgml/docbook/dtd/xml/4/docbookx.dtd">
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" 
+   "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 
 <section id="exec.functions" xmlns:xi="http://www.w3.org/2001/XInclude">
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2005/07/23 23:24:53 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2005/08/24 13:24:31 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
