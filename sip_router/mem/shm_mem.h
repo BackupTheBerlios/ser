@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.26 2005/07/04 12:08:33 andrei Exp $*
+/* $Id: shm_mem.h,v 1.27 2005/08/29 12:34:57 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -142,7 +142,7 @@ inline static void* _shm_malloc(unsigned int size,
 
 
 inline static void* _shm_realloc(void *ptr, unsigned int size, 
-		char* file, char* function, int line )
+		const char* file, const char* function, int line )
 {
 	void *p;
 	shm_lock();
