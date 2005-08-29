@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.66 2005/07/08 15:39:07 andrei Exp $
+ * $Id: tcp_main.c,v 1.67 2005/08/29 11:30:51 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1665,7 +1665,7 @@ int tcp_init_children()
 	for(r=0, si=tcp_listen; si; si=si->next, r++);
 #ifdef USE_TLS
 	if (! tls_disable)
-		for (si=tls_listen; si; si=si->next; r++);
+		for (si=tls_listen; si; si=si->next, r++);
 #endif
 	
 	tcp_max_fd_no=process_count()*2 +r-1 /* timer */ +3; /* stdin/out/err*/
