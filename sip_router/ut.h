@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.33 2005/02/02 19:10:49 janakj Exp $
+ *$Id: ut.h,v 1.34 2005/09/01 12:22:40 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -261,7 +261,7 @@ inline static int string2hex(
 inline static void sleep_us( unsigned int nusecs )
 {
 	struct timeval tval;
-	tval.tv_sec=nusecs/100000;
+	tval.tv_sec =nusecs/1000000;
 	tval.tv_usec=nusecs%1000000;
 	select(0, NULL, NULL, NULL, &tval );
 }
