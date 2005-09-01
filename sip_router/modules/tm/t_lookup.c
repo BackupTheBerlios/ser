@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.95 2005/08/18 15:47:58 janakj Exp $
+ * $Id: t_lookup.c,v 1.96 2005/09/01 13:59:17 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -84,7 +84,6 @@
 #include "defs.h"
 
 
-#include <assert.h>
 #include "../../comp_defs.h"
 #include "../../dprint.h"
 #include "../../config.h"
