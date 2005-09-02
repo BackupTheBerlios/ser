@@ -1,5 +1,5 @@
 /*
- * $Id: contact.c,v 1.9 2004/09/01 20:08:23 janakj Exp $
+ * $Id: contact.c,v 1.10 2005/09/02 10:36:15 janakj Exp $
  *
  * Parses one Contact in Contact HF body
  *
@@ -247,6 +247,7 @@ int parse_contacts(str* _s, contact_t** _c)
 			c->expires = hooks.contact.expires;
 			c->received = hooks.contact.received;
 			c->method = hooks.contact.method;
+			c->instance = hooks.contact.instance;
 
 			if (_s->len == 0) goto ok;
 		}
@@ -315,6 +316,7 @@ void print_contacts(FILE* _o, contact_t* _c)
 		fprintf(_o, "expires : %p\n", ptr->expires);
 		fprintf(_o, "received: %p\n", ptr->received);
 		fprintf(_o, "method  : %p\n", ptr->method);
+		fprintf(_o, "instance: %p\n", ptr->instance);
 		fprintf(_o, "len     : %d\n", ptr->len);
 		if (ptr->params) {
 			print_params(_o, ptr->params);

@@ -1,5 +1,5 @@
 /*
- * $Id: ul_fifo.c,v 1.35 2005/03/29 13:48:45 janakj Exp $
+ * $Id: ul_fifo.c,v 1.36 2005/09/02 10:36:14 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -180,13 +180,13 @@ static inline int add_contact(udomain_t* _d, str* _u, str* _c, time_t _e, qvalue
 	ua.len = FIFO_UA_LEN;
 
 	if (c) {
-		if (update_ucontact(c, _e + act_time, _q, &cid, FIFO_CSEQ, _f, FL_NONE, &ua, 0, 0) < 0) {
+		if (update_ucontact(c, _c, _e + act_time, _q, &cid, FIFO_CSEQ, _f, FL_NONE, &ua, 0, 0, 0) < 0) {
 			LOG(L_ERR, "fifo_add_contact(): Error while updating contact\n");
 			release_urecord(r);
 			return -5;
 		}
 	} else {
-		if (insert_ucontact(r, _c, _e + act_time, _q, &cid, FIFO_CSEQ, _f, &c, &ua, 0, 0) < 0) {
+		if (insert_ucontact(r, _c, _e + act_time, _q, &cid, FIFO_CSEQ, _f, &c, &ua, 0, 0, 0) < 0) {
 			LOG(L_ERR, "fifo_add_contact(): Error while inserting contact\n");
 			release_urecord(r);
 			return -6;

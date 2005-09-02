@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.12 2005/02/26 15:27:03 janakj Exp $
+ * $Id: parse_param.h,v 1.13 2005/09/02 10:36:15 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -55,6 +55,7 @@ typedef enum ptype {
 	P_TTL,       /* URI: ttl parameter */
 	P_DSTIP,     /* URI: dstip parameter */
 	P_DSTPORT,   /* URi: dstport parameter */
+	P_INSTANCE,  /* Contact: sip.instance parameter */
 } ptype_t;
 
 
@@ -88,6 +89,7 @@ struct contact_hooks {
 	struct param* q;        /* q parameter */
 	struct param* method;   /* method parameter */
 	struct param* received; /* received parameter */
+	struct param* instance; /* sip.instance parameter */
 };
 
 

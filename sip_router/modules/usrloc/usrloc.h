@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.h,v 1.15 2004/12/04 18:33:31 janakj Exp $
+ * $Id: usrloc.h,v 1.16 2005/09/02 10:36:14 janakj Exp $
  *
  * Convenience usrloc header file
  *
@@ -54,6 +54,7 @@ typedef struct usrloc_api {
 	insert_ucontact_t    insert_ucontact;
 	delete_ucontact_t    delete_ucontact;
 	get_ucontact_t       get_ucontact;
+	get_ucontact_by_inst_t get_ucontact_by_instance;
 
 	update_ucontact_t    update_ucontact;
 

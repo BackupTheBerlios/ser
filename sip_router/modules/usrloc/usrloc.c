@@ -1,5 +1,5 @@
 /*
- * $Id: usrloc.c,v 1.39 2004/12/04 18:33:31 janakj Exp $
+ * $Id: usrloc.c,v 1.40 2005/09/02 10:36:14 janakj Exp $
  *
  * Usrloc interface
  *
@@ -103,6 +103,12 @@ int bind_usrloc(usrloc_api_t* api)
 	api->get_ucontact = (get_ucontact_t)find_export("ul_get_ucontact", 1, 0);
 	if (api->get_ucontact == 0) {
 		LOG(L_ERR, "bind_usrloc(): Can't bind get_ucontact\n");
+		return -1;
+	}
+
+	api->get_ucontact_by_instance = (get_ucontact_by_inst_t)find_export("ul_get_ucontact_by_inst", 1, 0);
+	if (api->get_ucontact_by_instance == 0) {
+		LOG(L_ERR, "bind_usrloc(): Can't bind get_ucontact_by_instance\n");
 		return -1;
 	}
 

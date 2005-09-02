@@ -1,5 +1,5 @@
 /*
- * $Id: contact.h,v 1.8 2004/09/01 20:08:23 janakj Exp $
+ * $Id: contact.h,v 1.9 2005/09/02 10:36:16 janakj Exp $
  *
  * Contact data type
  *
@@ -50,6 +50,7 @@ typedef struct contact {
 	param_t* expires;       /* expires parameter hook */
 	param_t* method;        /* method parameter hook */
 	param_t* received;      /* received parameter hook */
+	param_t* instance;      /* sip.instance parameter hook */
 	param_t* params;        /* List of all parameters */
 	int len;                /* Total length of the element */
         struct contact* next; /* Next contact in the list */
