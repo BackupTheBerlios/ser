@@ -23,3 +23,9 @@ tls module
 Maintainer: Cesc Santasusana <cesc.santa@gmail.com>
 
 Description will appear soon.
+
+usrloc-ul module
+-----------
+Maintainer: Andreas Granig <agranig@linguin.org>
+
+An implementation of usrloc that does not use the regular cache mechanism.
