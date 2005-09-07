@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.c,v 1.18 2005/07/20 17:16:23 andrei Exp $
+ * $Id: pidf.c,v 1.19 2005/09/07 16:03:38 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -63,7 +63,7 @@
 #define DOCTYPE "<!DOCTYPE presence PUBLIC \"" PUBLIC_ID "\" \"" PIDF_DTD "\">"
 #define DOCTYPE_L (sizeof(DOCTYPE) - 1)
 
-#define PRESENCE_START "<presence entity=\"sip:"
+#define PRESENCE_START "<presence xmlns=\"urn:ietf:params:xml:ns:pidf\" entity=\"sip:"
 #define PRESENCE_START_L (sizeof(PRESENCE_START) - 1)
 
 #define PRESENCE_END "\">"
@@ -338,7 +338,7 @@ int pidf_add_location(str* _b, int _l, str *_loc, str *_site, str *_floor, str *
 	     }
 	     str_append(_b, PRESCAPS_ETAG CRLF, PRESCAPS_ETAG_L + CRLF_L);
 	}
-	str_append(_b, STATUS_ETAG CRLF, STATUS_ETAG_L + CRLF_L);
+/*	str_append(_b, STATUS_ETAG CRLF, STATUS_ETAG_L + CRLF_L);*/
 	return 0;
 }
 

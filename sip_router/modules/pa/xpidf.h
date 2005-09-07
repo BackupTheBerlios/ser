@@ -1,7 +1,7 @@
 /*
  * Presence Agent, XPIDF document support
  *
- * $Id: xpidf.h,v 1.5 2004/08/24 09:00:33 janakj Exp $
+ * $Id: xpidf.h,v 1.6 2005/09/07 16:03:38 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -54,7 +54,7 @@ int xpidf_add_presentity(str* _b, int _l, str* _uri);
 /*
  * Add a contact address with given status
  */
-int xpidf_add_address(str* _b, int _l, str* _addr, xpidf_status_t _st);
+int xpidf_add_address(str* _b, int _l, str* _addr, str *id, xpidf_status_t _st);
 
 
 /*
