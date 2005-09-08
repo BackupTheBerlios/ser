@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.25 2005/02/23 17:16:02 andrei Exp $
+ * $Id: authorize.c,v 1.26 2005/09/08 20:10:44 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -102,7 +102,7 @@ static inline int get_ha1(struct username* _username, str* _domain,
 	}
 	pkg_free(col);
 
-	if (RES_ROW_N(*res) == 0) {
+	if ((RES_ROW_N(*res) == 0) || VAL_NULL(ROW_VALUES(RES_ROWS(*res)))) {
 		DBG("get_ha1(): no result for user \'%.*s@%.*s\'\n",
 		    _username->user.len, ZSW(_username->user.s), (use_domain ? (_domain->len) : 0), ZSW(_domain->s));
 		return 1;
