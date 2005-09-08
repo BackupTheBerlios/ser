@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.18 2005/09/02 10:36:14 janakj Exp $
+ * $Id: ul_mod.h,v 1.19 2005/09/08 07:55:25 kubartv Exp $
  *
  * User location module interface
  *
@@ -49,7 +49,7 @@
 #define WRITE_THROUGH 1
 #define WRITE_BACK    2
 
-#define TABLE_VERSION 6
+#define TABLE_VERSION 7
 
 extern str user_col;
 extern str domain_col;
