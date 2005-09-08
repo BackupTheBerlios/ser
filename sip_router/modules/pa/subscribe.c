@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.29 2005/09/07 16:03:38 kubartv Exp $
+ * $Id: subscribe.c,v 1.30 2005/09/08 11:59:21 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -105,10 +105,14 @@ void callback(str* _user, str *_contact, int state, void* data)
 
 			orig = tuple->state;
 
-			if (state == 0) tuple->state = PS_OFFLINE;
-			else tuple->state = PS_ONLINE;
-
-			tuple->expires = act_time + default_expires;
+			if (state == 0) {
+				tuple->state = PS_OFFLINE;
+				tuple->expires = act_time + 2 * timer_interval;
+			}
+			else {
+				tuple->state = PS_ONLINE;
+				tuple->expires = act_time + default_expires;
+			}
 
 			db_update_presentity(presentity);
 

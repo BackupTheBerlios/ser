@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.20 2005/09/07 16:03:38 kubartv Exp $
+ * $Id: watcher.c,v 1.21 2005/09/08 11:59:21 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -695,7 +695,8 @@ int winfo_start_resource(str* _b, int _l, str* _uri, watcher_t *watcher)
 	add_string(WATCHERLIST_START, WATCHERLIST_START_L);
 	add_pstr(_uri);
 	add_string(PACKAGE_START, PACKAGE_START_L);
-	add_string(event_package_name[watcher->event_package], strlen(event_package_name[watcher->event_package]));
+/*	add_string(event_package_name[watcher->event_package], strlen(event_package_name[watcher->event_package]));*/
+	add_string(event_package_name[EVENT_PRESENCE], strlen(event_package_name[EVENT_PRESENCE])); /* FIXME */
 	add_string(PACKAGE_END, PACKAGE_END_L);
 	add_string(CRLF, CRLF_L);
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.26 2005/09/07 16:03:38 kubartv Exp $
+ * $Id: notify.c,v 1.27 2005/09/08 11:59:21 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -148,8 +148,7 @@ static str reason[] = {
 
 static str method = {METHOD_NOTIFY, METHOD_NOTIFY_L};
 
-
-#define BUF_LEN 4096
+#define BUF_LEN 16384
 
 static char headers_buf[BUF_LEN];
 static char buffer[BUF_LEN];
