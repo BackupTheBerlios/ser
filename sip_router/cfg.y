@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.89 2005/08/18 15:46:46 janakj Exp $
+ * $Id: cfg.y,v 1.90 2005/09/08 13:58:56 janakj Exp $
  *
  *  cfg grammar
  *
@@ -841,7 +841,7 @@ route_stm:  ROUTE LBRACE actions RBRACE { push($3, &rlist[DEFAULT_RT]); }
 										if (($3<RT_NO) && ($3>=0)){
 											push($6, &rlist[$3]);
 										}else{
-											yyerror("invalid routing"
+											yyerror("invalid routing "
 													"table number");
 											YYABORT; }
 										}
