@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.c,v 1.8 2005/07/25 14:41:20 andrei Exp $
+ * $Id: io_wait.c,v 1.9 2005/09/09 14:29:48 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -334,9 +334,9 @@ static unsigned int get_sys_version(int* major, int* minor, int* minor2)
 char* check_poll_method(enum poll_types poll_method)
 {
 	char* ret;
-	ret=0;
 	unsigned int os_ver;
 
+	ret=0;
 	os_ver=get_sys_version(0,0,0);	
 	switch(poll_method){
 		case POLL_NONE:

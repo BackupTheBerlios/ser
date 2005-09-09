@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.10 2005/07/11 13:47:33 andrei Exp $
+ * $Id: io_wait.h,v 1.11 2005/09/09 14:29:48 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -297,7 +297,7 @@ inline static int io_watch_add(	io_wait_h* h,
 	int check_io;
 	struct pollfd pf;
 	
-	check_io=0; /* set to 1 if we need to check for pre-existiing queued
+	check_io=0; /* set to 1 if we need to check for pre-existing queued
 				   io/data on the fd */
 	idx=-1;
 #endif
