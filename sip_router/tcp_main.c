@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.67 2005/08/29 11:30:51 andrei Exp $
+ * $Id: tcp_main.c,v 1.68 2005/09/12 17:08:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -223,7 +223,9 @@ static int tcp_blocking_connect(int fd, const struct sockaddr *servaddr,
 	int ticks;
 	int err;
 	unsigned int err_len;
+	int poll_err;
 	
+	poll_err=0;
 	to=tcp_connect_timeout;
 	ticks=get_ticks();
 again:
@@ -270,17 +272,18 @@ again:
 			goto error;
 		}else if (n==0) /* timeout */ continue;
 #if defined(HAVE_SELECT) && defined(BLOCKING_USE_SELECT)
-		if (FD_ISSET(fd, &sel_set)){
+		if (FD_ISSET(fd, &sel_set))
 #else
 		if (pf.revents&(POLLERR|POLLHUP|POLLNVAL)){ 
-			LOG(L_ERR, "ERROR: tcp_blocking_connect: bad poll flags %x\n",
+			LOG(L_ERR, "ERROR: tcp_blocking_connect: poll error: flags %x\n",
 					pf.revents);
-			goto error;
-		}else{
+			poll_err=1;
+		}
 #endif
+		{
 			err_len=sizeof(err);
 			getsockopt(fd, SOL_SOCKET, SO_ERROR, &err, &err_len);
-			if (err==0) goto end;
+			if ((err==0) && (poll_err==0)) goto end;
 			if (err!=EINPROGRESS && err!=EALREADY){
 				LOG(L_ERR, "ERROR: tcp_blocking_connect: SO_ERROR (%d) %s\n",
 						err, strerror(err));
