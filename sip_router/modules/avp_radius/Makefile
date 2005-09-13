@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.5 2005/06/30 21:29:31 andrei Exp $
+# $Id: Makefile,v 1.6 2005/09/13 13:53:12 andrei Exp $
 #
 # avp_radius module Makefile
 #
@@ -11,16 +11,6 @@ include ../../Makefile.radius
 auto_gen=
 NAME=avp_radius.so
 
-LIBS=-l$(RADIUSCLIENT_LIB)
 
-ifeq ($(MAKELEVEL), 0)
-# make called directly in the module dir!
-
-all::
-	cd ../..; make all
-
-else
 
 include ../../Makefile.modules
-
-endif

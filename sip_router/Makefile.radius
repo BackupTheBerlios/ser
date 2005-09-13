@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.radius,v 1.2 2005/06/30 21:29:31 andrei Exp $
+# $Id: Makefile.radius,v 1.3 2005/09/13 13:53:11 andrei Exp $
 #
 #
 # Radiusclient library detection comes here
@@ -20,7 +20,6 @@
 # need to look int /usr/local/lib as well
 #
 DEFS+=-I$(LOCALBASE)/include
-LIBS+=-L$(LOCALBASE)/lib
 
 ifneq ($(radiusclient_ng), 4)
 
@@ -34,3 +33,5 @@ DEFS+=-DRADIUSCLIENT_NG_4
 RADIUSCLIENT_LIB=radiusclient
 
 endif
+
+LIBS=-L$(LOCALBASE)/lib -l$(RADIUSCLIENT_LIB)

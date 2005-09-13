@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2005/06/30 21:29:32 andrei Exp $
+# $Id: Makefile,v 1.8 2005/09/13 13:53:12 andrei Exp $
 #
 # Group Membeship checking over Radius
 #
@@ -10,6 +10,5 @@ include ../../Makefile.radius
 
 auto_gen=
 NAME=group_radius.so
-LIBS=-l$(RADIUSCLIENT_LIB)
 
 include ../../Makefile.modules

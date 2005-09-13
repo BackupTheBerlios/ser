@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2005/06/30 21:29:31 andrei Exp $
+# $Id: Makefile,v 1.9 2005/09/13 13:53:12 andrei Exp $
 #
 # Digest Authentication - Radius support
 #
@@ -11,6 +11,5 @@ include ../../Makefile.radius
 auto_gen=
 NAME=auth_radius.so
 
-LIBS=-l$(RADIUSCLIENT_LIB)
 
 include ../../Makefile.modules
