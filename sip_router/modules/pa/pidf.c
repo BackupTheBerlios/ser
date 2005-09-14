@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.c,v 1.19 2005/09/07 16:03:38 kubartv Exp $
+ * $Id: pidf.c,v 1.20 2005/09/14 15:07:09 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -172,8 +172,6 @@ const char *prescap_names[] = {
 int start_pidf_doc(str* _b, int _l)
 {
 	if ((XML_VERSION_L + 
-	     CRLF_L +
-	     DOCTYPE_L + 
 	     CRLF_L
 	    ) > _l) {
 		paerrno = PA_SMALL_BUFFER;
@@ -181,8 +179,8 @@ int start_pidf_doc(str* _b, int _l)
 		return -1;
 	}
 
-	str_append(_b, XML_VERSION CRLF DOCTYPE CRLF,
-		   XML_VERSION_L + CRLF_L + DOCTYPE_L + CRLF_L);
+	str_append(_b, XML_VERSION CRLF,
+		   XML_VERSION_L + CRLF_L);
 	return 0;
 }
 
