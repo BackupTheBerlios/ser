@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.94 2005/08/01 20:52:41 janakj Exp $
+ * $Id: h_table.c,v 1.95 2005/09/19 16:27:33 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -380,19 +380,6 @@ void insert_into_hash_table_unsafe( struct cell * p_cell, unsigned int _hash )
 	p_entry->acc_entries++;
 	t_stats_new( is_local(p_cell) );
 }
-
-
-
-#ifdef _OBSOLETED
-void insert_into_hash_table( struct cell * p_cell)
-{
-	LOCK_HASH(p_cell->hash_index);
-	insert_into_hash_table_unsafe(  p_cell );
-	UNLOCK_HASH(p_cell->hash_index);
-}
-#endif
-
-
 
 
 /*  Un-link a  cell from hash_table, but the cell itself is not released */

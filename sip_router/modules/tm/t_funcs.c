@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.178 2005/02/26 15:51:07 janakj Exp $
+ * $Id: t_funcs.c,v 1.179 2005/09/19 16:27:33 janakj Exp $
  *
  * transaction maintenance functions
  *
@@ -91,21 +91,6 @@ int send_pr_buffer(	struct retr_buf *rb, void *buf, int len
 		return -1;
 	}
 }
-
-#ifdef _OBSOLETED
-void start_retr( struct retr_buf *rb )
-{
-	if (rb->dst.proto==PROTO_UDP) {
-		rb->retr_list=RT_T1_TO_1;
-		set_timer( &rb->retr_timer, RT_T1_TO_1 );
-	}
-	set_timer( &rb->fr_timer, FR_TIMER_LIST );
-}
-#endif
-
-
-
-
 
 void tm_shutdown()
 {

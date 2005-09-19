@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.62 2005/02/16 23:14:20 bogdan Exp $
+ * $Id: t_funcs.h,v 1.63 2005/09/19 16:27:33 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -176,10 +176,6 @@ int get_ip_and_port_from_uri( str* uri , unsigned int *param_ip,
 
 
 void put_on_wait(  struct cell  *Trans  );
-
-#ifdef _OBSOLETED
-void start_retr( struct retr_buf *rb );
-#endif
 
 void cleanup_localcancel_timers( struct cell *t );
 

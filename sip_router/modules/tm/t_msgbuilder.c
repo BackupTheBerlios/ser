@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.41 2005/02/23 17:16:06 andrei Exp $
+ * $Id: t_msgbuilder.c,v 1.42 2005/09/19 16:27:33 janakj Exp $
  *
  * message printing
  *
@@ -88,15 +88,6 @@ char *build_local(struct cell *Trans,unsigned int branch,
 	int branch_len;
 	str branch_str;
 	struct hostport hp;
-
-#ifdef _OBSO
-	if ( Trans->uac[branch].last_received<100)
-	{
-		DBG("DEBUG: build_local: no response ever received"
-			" : dropping local request! \n");
-		goto error;
-	}
-#endif
 
 	/* method, separators, version: "CANCEL sip:p2@iptel.org SIP/2.0" */
 	*len=SIP_VERSION_LEN + method_len + 2 /* spaces */ + CRLF_LEN;
