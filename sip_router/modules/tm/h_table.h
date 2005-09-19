@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.80 2005/08/18 15:47:58 janakj Exp $
+ * $Id: h_table.h,v 1.81 2005/09/19 17:15:27 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -225,7 +225,7 @@ typedef struct cell
 	int nr_of_outgoings;
 	/* nr of replied branch; 0..MAX_BRANCHES=branch value,
 	 * -1 no reply, -2 local reply */
-	int relaied_reply_branch;
+	int relayed_reply_branch;
 	/* UA Server */
 	struct ua_server  uas;
 	/* UA Clients */

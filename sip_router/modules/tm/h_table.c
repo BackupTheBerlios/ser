@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.95 2005/09/19 16:27:33 janakj Exp $
+ * $Id: h_table.c,v 1.96 2005/09/19 17:15:27 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -268,7 +268,7 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 	/* UAC */
 	init_branches(new_cell);
 
-	new_cell->relaied_reply_branch   = -1;
+	new_cell->relayed_reply_branch   = -1;
 	/* new_cell->T_canceled = T_UNDEFINED; */
 #ifdef EXTRA_DEBUG
 	new_cell->wait_tl.tg=TG_WT;
