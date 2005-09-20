@@ -1,8 +1,11 @@
 The Experimental Directory
 =========================
-Temporary info:
-Two modules have been added to this directory: path (implementation of the path specification) 
-+ tls (TLS support for transport).  The maintainers are in the process of submitting their code. 
+
+The experimental directory contains three types of modules:
+1. Simple modules that can be dropped into main code tree
+2. Modules or code patches that modify the core to accomplish new functionality
+3. Backported modules that exist in the HEAD, but can be found in experimental for 
+   the currently maintained released branch
 
 Please use:
 http://bugs.sip-router.org/ 
@@ -29,3 +32,23 @@ usrloc-ul module
 Maintainer: Andreas Granig <agranig@linguin.org>
 
 An implementation of usrloc that does not use the regular cache mechanism.
+
+osp module
+----------
+Maintainer: Dmitry Isakbayev <isakdim@gmail.com> 
+
+This module adds support for the Open Settlement Protocol to SER.  The Open
+Settlement Protocol (OSP) standard is an operations and billing support
+system protocol for IP network applications such as VoIP, video, short
+message services (SMS) and content brokering.  OSP is an open standard
+defined by ETSI - the European Telecommunications Standards Institute.  OSP
+has been widely deployed by VoIP carriers to enforce secure access control
+for peer to peer inter-domain VoIP routing and Call Detail Record (CDR)
+collection.  For more information see www.etsi.org and search for ETSI TS
+101 321.
+
+lcr module
+----------
+Maintainer: Juha Heinanen <jh@tutpro.com>
+
+Backported Least Cost Routing module from HEAD.
