@@ -1,5 +1,5 @@
 /* 
- * $Id: res.h,v 1.3 2004/08/24 08:58:31 janakj Exp $ 
+ * $Id: res.h,v 1.4 2005/09/20 13:28:34 agranig Exp $ 
  *
  * MySQL module result related functions
  *
@@ -33,6 +33,13 @@
 #include "../../db/db_res.h"
 #include "../../db/db_con.h"
 
+struct my_res {
+	MYSQL_RES* res; /* The mysql result */
+	MYSQL_ROW  row; /* The current row */
+};
+
+#define MYRES_RESULT(db_res)   (((struct my_res*)(db_res)->data)->res)
+#define MYRES_ROW(db_res)      (((struct my_res*)(db_res)->data)->row)
 
 /*
  * Create a new result structure and initialize it

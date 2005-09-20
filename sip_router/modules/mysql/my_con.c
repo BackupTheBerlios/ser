@@ -1,5 +1,5 @@
 /* 
- * $Id: my_con.c,v 1.4 2005/02/02 19:09:22 janakj Exp $
+ * $Id: my_con.c,v 1.5 2005/09/20 13:28:34 agranig Exp $
  *
  * Copyright (C) 2001-2004 iptel.org
  *
@@ -109,7 +109,6 @@ struct my_con* new_connection(struct db_id* id)
 void free_connection(struct my_con* con)
 {
 	if (!con) return;
-	if (con->res) mysql_free_result(con->res);
 	if (con->id) free_db_id(con->id);
 	if (con->con) {
 		mysql_close(con->con);
