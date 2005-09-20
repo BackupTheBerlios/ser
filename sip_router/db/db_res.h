@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.h,v 1.5 2004/08/24 08:45:12 janakj Exp $ 
+ * $Id: db_res.h,v 1.6 2005/09/20 13:25:38 agranig Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -43,6 +43,7 @@ typedef struct db_res {
 	} col;
 	struct db_row* rows;       /* Rows */
 	int n;                     /* Number of rows */
+	void* data;                /* Auxiliary data */
 } db_res_t;
 
 
