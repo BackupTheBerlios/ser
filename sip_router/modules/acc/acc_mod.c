@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_mod.c,v 1.42 2005/03/07 20:01:29 janakj Exp $
+ * $Id: acc_mod.c,v 1.43 2005/09/20 16:04:22 janakj Exp $
  * 
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -219,7 +219,7 @@ static param_export_t params[] = {
 	{"db_url",                STR_PARAM, &db_url               },
 	{"db_localtime", 	  INT_PARAM, &db_localtime},
 	{"acc_sip_from_column",   STR_PARAM, &acc_sip_from_col  },
-	{"acc_sip_to_column",     STR_PARAM, &acc_sip_status_col},
+	{"acc_sip_to_column",     STR_PARAM, &acc_sip_to_col},
 	{"acc_sip_status_column", STR_PARAM, &acc_sip_status_col},
 	{"acc_sip_method_column", STR_PARAM, &acc_sip_method_col},
 	{"acc_i_uri_column",      STR_PARAM, &acc_i_uri_col     },
