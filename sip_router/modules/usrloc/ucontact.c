@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.38 2005/09/02 10:36:13 janakj Exp $ 
+ * $Id: ucontact.c,v 1.39 2005/09/22 22:05:04 calrissian Exp $ 
  *
  * Usrloc contact structure
  *
@@ -133,6 +133,7 @@ error:
  		if ((*_c)->user_agent.s) shm_free((*_c)->user_agent.s);
  		if ((*_c)->callid.s) shm_free((*_c)->callid.s);
  		if ((*_c)->c.s) shm_free((*_c)->c.s);
+		if ((*_c)->instance.s) shm_free((*_c)->instance.s);
  		shm_free(*_c);
 	}
 	return -1;	
@@ -149,6 +150,7 @@ void free_ucontact(ucontact_t* _c)
 	if (_c->user_agent.s) shm_free(_c->user_agent.s);
 	if (_c->callid.s) shm_free(_c->callid.s);
 	if (_c->c.s) shm_free(_c->c.s);
+	if (_c->instance.s) shm_free(_c->instance.s);
 	shm_free(_c);
 }
 
