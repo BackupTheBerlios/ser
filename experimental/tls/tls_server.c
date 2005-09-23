@@ -35,7 +35,7 @@
 #include <openssl/ssl.h>
 #include "../mem/shm_mem.h"
 #include "../timer.h"
-#include "../global.h"
+#include "../globals.h"
 
 /*
  * Open questions:
