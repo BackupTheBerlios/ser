@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.200 2005/07/25 16:28:38 andrei Exp $
+ * $Id: main.c,v 1.201 2005/09/23 20:50:18 calrissian Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -132,7 +132,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.200 2005/07/25 16:28:38 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.201 2005/09/23 20:50:18 calrissian Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -835,6 +835,9 @@ int main_loop()
 	struct socket_info* si;
 #ifdef USE_TCP
 	int sockfd[2];
+#endif
+#ifdef DEBUG
+	int r;
 #endif
 
 	/* one "main" process and n children handling i/o */
