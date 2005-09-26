@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.44 2005/09/02 10:36:14 janakj Exp $ 
+ * $Id: udomain.c,v 1.45 2005/09/26 19:29:46 calrissian Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -389,6 +389,8 @@ int preload_udomain(db_con_t* _c, udomain_t* _d)
 				sock = 0;
 			}
 		} else {
+			received.s = 0;
+			received.len = 0;
 			rec = 0;
 			sock = 0;
 		}
