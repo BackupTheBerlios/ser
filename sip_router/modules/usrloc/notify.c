@@ -1,5 +1,5 @@
 /*
- * $Id: notify.c,v 1.8 2004/08/24 09:00:46 janakj Exp $
+ * $Id: notify.c,v 1.9 2005/09/29 15:38:52 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -105,6 +105,7 @@ int register_watcher(str* _f, str* _t, notcb_t _c, void* _data)
 
 	if (get_urecord(d, _t, &r) > 0) {
 		if (insert_urecord(d, _t, &r) < 0) {
+			unlock_udomain(d);
 			LOG(L_ERR, "register_watcher(): Error while creating a new record\n");
 			return -2;
 		}
@@ -136,6 +137,7 @@ int unregister_watcher(str* _f, str* _t, notcb_t _c, void* _data)
 	lock_udomain(d);
 	
 	if (get_urecord(d, _t, &r) > 0) {
+		unlock_udomain(d);
 		DBG("unregister_watcher(): Record not found\n");
 		return 0;
 	}
