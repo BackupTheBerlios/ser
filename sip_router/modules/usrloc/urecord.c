@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.c,v 1.41 2005/09/02 10:36:14 janakj Exp $ 
+ * $Id: urecord.c,v 1.42 2005/09/29 16:45:30 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -80,7 +80,14 @@ int new_urecord(str* _dom, str* _aor, urecord_t** _r)
  */
 void free_urecord(urecord_t* _r)
 {
+	notify_cb_t* watcher;
 	ucontact_t* ptr;
+
+	while(_r->watchers) {
+		watcher = _r->watchers;
+		_r->watchers = watcher->next;
+		shm_free(watcher);
+	}
 
 	while(_r->contacts) {
 		ptr = _r->contacts;

@@ -1,5 +1,5 @@
 /*
- * $Id: notify.c,v 1.9 2005/09/29 15:38:52 janakj Exp $
+ * $Id: notify.c,v 1.10 2005/09/29 16:45:30 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -82,6 +82,7 @@ int remove_watcher(struct urecord* _r, notcb_t _c, void* _d)
 		if ((ptr->cb == _c) && (ptr->data == _d)) {
 			if (prev) prev->next = ptr->next;
 			else _r->watchers = ptr->next;
+			shm_free(ptr);
 			return 0;
 		}
 		prev = ptr;
