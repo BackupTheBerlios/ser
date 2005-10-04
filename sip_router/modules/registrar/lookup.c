@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.33 2005/05/04 14:19:40 janakj Exp $
+ * $Id: lookup.c,v 1.34 2005/10/04 09:32:48 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -163,9 +163,9 @@ int registered(struct sip_msg* _m, char* _t, char* _s)
 	
 	ul.lock_udomain((udomain_t*)_t);
 	res = ul.get_urecord((udomain_t*)_t, &aor, &r);
-	ul.unlock_udomain((udomain_t*)_t);
 
 	if (res < 0) {
+		ul.unlock_udomain((udomain_t*)_t);
 		LOG(L_ERR, "registered(): Error while querying usrloc\n");
 		return -1;
 	}
@@ -177,11 +177,13 @@ int registered(struct sip_msg* _m, char* _t, char* _s)
 		}
 
 		if (ptr) {
+			ul.unlock_udomain((udomain_t*)_t);
 			DBG("registered(): '%.*s' found in usrloc\n", aor.len, ZSW(aor.s));
 			return 1;
 		}
 	}
 
+	ul.unlock_udomain((udomain_t*)_t);
 	DBG("registered(): '%.*s' not found in usrloc\n", aor.len, ZSW(aor.s));
 	return -1;
 }
