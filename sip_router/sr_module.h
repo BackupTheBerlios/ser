@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.25 2005/08/18 15:46:46 janakj Exp $
+/* $Id: sr_module.h,v 1.26 2005/10/11 14:54:21 janakj Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -161,4 +161,26 @@ void* find_param_export(char* mod, char* name, modparam_t type);
  */
 
 
-#endif
+/*
+ * Common fixup functions shared across modules
+ */
+
+/* Convert both parameters from char* to str* */
+int fixup_str_12(void** param, int param_no);
+
+/* Convert first parameter from char* to str* */
+int fixup_str_1(void** param, int param_no);
+
+/* Convert second parameter from char* to str* */
+int fixup_str_2(void** param, int param_no);
+
+/* Convert both parameters from char* to long */
+int fixup_int_12(void** param, int param_no);
+
+/* Convert first parameter from char* to long */
+int fixup_int_1(void** param, int param_no);
+
+/* Convert second parameter from char* to long */
+int fixup_int_2(void** param, int param_no);
+
+#endif /* sr_module_h */
