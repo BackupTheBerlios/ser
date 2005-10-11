@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.13 2005/02/23 17:16:06 andrei Exp $
+ * $Id: uac_fifo.c,v 1.14 2005/10/11 11:22:38 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -537,8 +537,6 @@ static void fifo_callback( struct cell *t, int type, struct tmcb_params *ps )
 	char *filename;
 	FILE* f;
 	str text;
-
-	DBG("!!!!! ref_counter: %d\n", t->ref_count);
 
 	DBG("DEBUG: fifo UAC completed with status %d\n", ps->code);
 	if (!*ps->param) {
