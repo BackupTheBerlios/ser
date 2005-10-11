@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.90 2005/09/08 13:58:56 janakj Exp $
+ * $Id: cfg.y,v 1.91 2005/10/11 11:16:18 andrei Exp $
  *
  *  cfg grammar
  *
@@ -859,7 +859,7 @@ failure_route_stm: ROUTE_FAILURE LBRACK NUMBER RBRACK LBRACE actions RBRACE {
 		| ROUTE_FAILURE error { yyerror("invalid failure_route statement"); }
 	;
 
-onreply_route_stm: ROUTE LBRACE actions RBRACE {
+onreply_route_stm: ROUTE_ONREPLY LBRACE actions RBRACE {
 										push($3, &onreply_rlist[DEFAULT_RT]);
 											  }
 				| ROUTE_ONREPLY LBRACK NUMBER RBRACK LBRACE actions RBRACE {
