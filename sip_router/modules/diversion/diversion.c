@@ -1,5 +1,5 @@
 /* 
- * $Id: diversion.c,v 1.5 2005/02/23 17:16:03 andrei Exp $
+ * $Id: diversion.c,v 1.6 2005/10/11 16:51:22 janakj Exp $
  *
  * Diversion Header Field Support
  *
@@ -53,7 +53,6 @@ MODULE_VERSION
 str suffix = {"", 0};
 
 int add_diversion(struct sip_msg* msg, char* r, char* s);
-static int str_fixup(void** param, int param_no);
 
 
 /*
@@ -66,7 +65,7 @@ static int mod_init(void);
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"add_diversion",    add_diversion,    1, str_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
+	{"add_diversion",    add_diversion,    1, fixup_str_12, REQUEST_ROUTE | FAILURE_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
@@ -98,29 +97,6 @@ struct module_exports exports = {
 static int mod_init(void)
 {
 	suffix.len = strlen(suffix.s);
-	return 0;
-}
-
-
-/*
- * Convert char* parameter to str* parameter
- */
-static int str_fixup(void** param, int param_no)
-{
-	str* s;
-
-	if (param_no == 1 || param_no == 2) {
-		s = (str*)pkg_malloc(sizeof(str));
-		if (!s) {
-			LOG(L_ERR, "str_fixup: No memory left\n");
-			return E_UNSPEC;
-		}
-
-		s->s = (char*)*param;
-		s->len = strlen(s->s);
-		*param = (void*)s;
-	}
-
 	return 0;
 }
 
