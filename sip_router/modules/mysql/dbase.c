@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.45 2005/09/20 13:28:34 agranig Exp $ 
+ * $Id: dbase.c,v 1.46 2005/10/12 02:57:00 agranig Exp $ 
  *
  * MySQL module core functions
  *
@@ -346,6 +346,7 @@ static int store_result(db_con_t* _h, db_res_t** _r)
 
 	if (convert_result(_h, *_r) < 0) {
 		LOG(L_ERR, "store_result: Error while converting result\n");
+		mysql_free_result(MYRES_RESULT(*_r));
 		pkg_free((*_r)->data);
 		pkg_free(*_r);
 
