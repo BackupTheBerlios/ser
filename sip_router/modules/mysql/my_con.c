@@ -1,5 +1,5 @@
 /* 
- * $Id: my_con.c,v 1.5 2005/09/20 13:28:34 agranig Exp $
+ * $Id: my_con.c,v 1.6 2005/10/13 09:23:07 janakj Exp $
  *
  * Copyright (C) 2001-2004 iptel.org
  *
@@ -65,7 +65,8 @@ struct my_con* new_connection(struct db_id* id)
 	mysql_init(ptr->con);
 
 	if (id->port) {
-		DBG("new_connection: Opening MySQL connection: mysql://%s:%s@%s:%d/%s\n",
+		DBG("new_connection: Opening MySQL connection: %s://%s:%s@%s:%d/%s\n",
+		    ZSW(id->scheme),
 		    ZSW(id->username),
 		    ZSW(id->password),
 		    ZSW(id->host),
@@ -73,7 +74,8 @@ struct my_con* new_connection(struct db_id* id)
 		    ZSW(id->database)
 		    );
 	} else {
-		DBG("new_connection: Opening MySQL connection: mysql://%s:%s@%s/%s\n",
+		DBG("new_connection: Opening MySQL connection: %s://%s:%s@%s/%s\n",
+		    ZSW(id->scheme),
 		    ZSW(id->username),
 		    ZSW(id->password),
 		    ZSW(id->host),
