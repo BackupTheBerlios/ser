@@ -1,6 +1,6 @@
 /*
  *
- * $Id: acc.c,v 1.29 2005/10/26 22:57:59 tma0 Exp $
+ * $Id: acc.c,v 1.30 2005/10/26 23:02:42 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -160,7 +160,7 @@ static int fmt2strar( char *fmt, /* what would you like to account ? */
 	static struct sip_uri from_uri, to_uri;
 	static str mycode;
 	str *cr;
-	struct cseq_body *cseq, cseq2;
+	struct cseq_body *cseq;
 
 	cnt=tl=al=0;
 
