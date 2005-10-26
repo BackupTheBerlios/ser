@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.21 2005/02/14 12:17:33 janakj Exp $
+ * $Id: tm_load.h,v 1.22 2005/10/26 07:14:54 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -98,6 +98,7 @@ struct tm_binds {
 	free_dlg_f         free_dlg;
 	print_dlg_f        print_dlg;
 	tgett_f            t_gett;
+	calculate_hooks_f  calculate_hooks;
 	enum route_mode*   route_mode;
 };
 

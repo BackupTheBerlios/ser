@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.122 2005/10/11 16:51:20 janakj Exp $
+ * $Id: tm.c,v 1.123 2005/10/26 07:14:54 kubartv Exp $
  *
  * TM module
  *
@@ -252,6 +252,7 @@ static cmd_export_t cmds[]={
 	{"free_dlg",           (cmd_function)free_dlg,          NO_SCRIPT,   0, 0},
 	{"print_dlg",          (cmd_function)print_dlg,         NO_SCRIPT,   0, 0},
 	{T_GETT,               (cmd_function)get_t,             NO_SCRIPT,   0,0},
+	{"calculate_hooks",    (cmd_function)w_calculate_hooks, NO_SCRIPT,   0, 0},
 	{0,0,0,0,0}
 };
 

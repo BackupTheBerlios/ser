@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.21 2005/02/14 12:17:33 janakj Exp $
+ * $Id: tm_load.c,v 1.22 2005/10/26 07:14:54 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -138,6 +138,10 @@ int load_tm( struct tm_binds *tmb)
 	}
 	if (!(tmb->t_gett=(tgett_f)find_export(T_GETT,NO_SCRIPT,0))) {
 		LOG( L_ERR, LOAD_ERROR "'" T_GETT "' not found\n");
+		return -1;
+	}
+	if (!(tmb->calculate_hooks=(calculate_hooks_f)find_export("calculate_hooks",NO_SCRIPT,0))) {
+		LOG( L_ERR, LOAD_ERROR "' calculate_hooks ' not found\n");
 		return -1;
 	}
 
