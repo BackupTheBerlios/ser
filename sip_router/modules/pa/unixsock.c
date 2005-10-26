@@ -1,7 +1,7 @@
 /*
  * Presence Agent, UNIX Domain Socket interface
  *
- * $Id: unixsock.c,v 1.2 2004/04/14 15:54:29 jamey Exp $
+ * $Id: unixsock.c,v 1.3 2005/10/26 09:09:25 kubartv Exp $
  *
  * Copyright (C) 2003-2004 Hewlett-Packard Company
  * Copyright (C) 2004 FhG FOKUS
@@ -202,7 +202,6 @@ static int pa_location(str* msg)
      return -1;
 }
 
-
 int init_unixsock_iface(void)
 {
 	if (unixsock_register_cmd("pa_publish", pa_publish) < 0) {
@@ -216,5 +215,6 @@ int init_unixsock_iface(void)
 	if (unixsock_register_cmd("pa_location", pa_location) < 0) {
 		return -1;
 	}
+	
 	return 0;
 }

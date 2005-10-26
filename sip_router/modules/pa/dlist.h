@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.h,v 1.4 2004/08/24 08:58:32 janakj Exp $
+ * $Id: dlist.h,v 1.5 2005/10/26 09:09:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -56,6 +56,10 @@ extern dlist_t* root;
  */
 int register_pdomain(const char* _n, pdomain_t** _d);
 
+/*
+ * Function finds existing domain with presence agent
+ */
+int find_pdomain(const char* _n, pdomain_t** _d);
 
 /*
  * Free all registered domains

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, hash table
  *
- * $Id: hslot.c,v 1.2 2004/08/24 08:58:32 janakj Exp $
+ * $Id: hslot.c,v 1.3 2005/10/26 09:09:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -49,15 +49,16 @@ void deinit_slot(hslot_t* _s)
 {
 	presentity_t* ptr;
 	
-	     /* Remove all elements */
-	while(_s->first) {
+	/* Remove all elements */
+	while ((_s->first) && (_s->n > 0)) {
 		ptr = _s->first;
 		_s->first = _s->first->next;
+		_s->n--;
 		free_presentity(ptr);
 	}
-	
+
 	_s->n = 0;
-        _s->d = 0;
+	_s->d = 0;
 }
 
 

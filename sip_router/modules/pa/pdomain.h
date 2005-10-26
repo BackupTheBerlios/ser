@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.h,v 1.5 2004/08/24 08:58:32 janakj Exp $
+ * $Id: pdomain.h,v 1.6 2005/10/26 09:09:25 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -56,6 +56,7 @@ typedef struct pdomain {
 	int expired;                /* Number of expired presentities */
 	register_watcher_t reg;     /* Register watcher function */
 	unregister_watcher_t unreg; /* Unregister watcher function */
+	int initialized;	/* FIXME: changed to asynchronous callback processing */
 } pdomain_t;
 
 
