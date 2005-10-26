@@ -1,5 +1,5 @@
 /* 
- * $Id: keys.h,v 1.14 2005/02/14 23:48:21 jih Exp $ 
+ * $Id: keys.h,v 1.15 2005/10/26 08:06:55 kubartv Exp $ 
  *
  * Fast 32-bit Header Field Name Parser -- keys
  *
@@ -92,6 +92,9 @@
 #define _enti_ 0x69746e65   /* "enti" */
 #define _cate_ 0x65746163   /* "cate" */
 #define _even_ 0x6e657665   /* "even" */
+#define _sip_  0x2d706973   /* "sip-" */
+#define _ifm_  0x6d2d6669   /* "if-m" */
+#define _atch_ 0x68637461   /* "atch" */
 
 #define _pt_l_ 0x6c2d7470   /* "pt-l" */
 #define _angu_ 0x75676e61   /* "angu" */

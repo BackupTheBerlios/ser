@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.c,v 1.25 2005/02/23 17:16:07 andrei Exp $ 
+ * $Id: hf.c,v 1.26 2005/10/26 08:06:55 kubartv Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,6 +42,7 @@
 #include "digest/digest.h" /* free_credentials */
 #include "parse_event.h"
 #include "parse_expires.h"
+#include "parse_sipifmatch.h"
 #include "parse_rr.h"
 #include "contact/parse_contact.h"
 #include "parse_disposition.h"
@@ -73,6 +74,10 @@ void clean_hdr_field(struct hdr_field* hf)
 			break;
 
 		case HDR_CALLID_T:
+			break;
+
+		case HDR_SIPIFMATCH_T:
+			free_sipifmatch((str **)(&(hf->parsed)));
 			break;
 
 		case HDR_CONTACT_T:
