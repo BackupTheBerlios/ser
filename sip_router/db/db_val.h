@@ -1,5 +1,5 @@
 /* 
- * $Id: db_val.h,v 1.9 2004/08/24 08:45:12 janakj Exp $ 
+ * $Id: db_val.h,v 1.10 2005/10/27 23:19:35 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -63,6 +63,7 @@ typedef struct {
 		str           str_val;    /* str string value */
 		str           blob_val;   /* Blob data */
 		unsigned int  bitmap_val; /* Bitmap data type, 32 flags, should be enough */ 
+		long long     int8_val;   /* 8-byte integer */
 	} val;                            /* union of all possible types */
 } db_val_t;
 
