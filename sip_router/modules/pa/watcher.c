@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.22 2005/10/26 09:09:25 kubartv Exp $
+ * $Id: watcher.c,v 1.23 2005/10/27 10:58:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -650,6 +650,14 @@ void print_watcher(FILE* _f, watcher_t* _w)
 int update_watcher(struct presentity *p, watcher_t* _w, time_t _e)
 {
 	_w->expires = _e;
+	/*if (_w->status == WS_PENDING) {*/
+	if (!is_watcher_terminated(_w)) {
+		/* do reauthorization for non-terminated watchers (policy may
+		 * change) - in the future should be done elsewhere using 
+		 * "subscriptions to XCAP changes" */
+		_w->status = authorize_watcher(p,_w);
+		/* handle rejected watchers here? */
+	}
 	if (use_db) return db_update_watcher(p, _w);
 	else return 0;
 }

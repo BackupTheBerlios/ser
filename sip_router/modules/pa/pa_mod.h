@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.12 2005/10/26 09:09:25 kubartv Exp $
+ * $Id: pa_mod.h,v 1.13 2005/10/27 10:58:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -34,6 +34,7 @@
 #include "../tm/tm_load.h"
 #include "../../db/db.h"
 #include "../dialog/dlg_mod.h"
+#include "auth.h"
 
 extern int default_expires;
 extern double default_priority;
@@ -59,7 +60,7 @@ extern char *watcherinfo_table;
 extern char *place_table;
 extern int use_bsearch;
 extern int use_location_package;
-extern int authorize_watchers;
+extern auth_params_t pa_auth_params;
 extern int watcherinfo_notify;
 extern int callback_update_db;
 extern int callback_lock_pdomain;

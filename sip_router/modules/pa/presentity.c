@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.26 2005/10/26 09:09:25 kubartv Exp $
+ * $Id: presentity.c,v 1.27 2005/10/27 10:58:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -113,6 +113,7 @@ int new_presentity_no_wb(struct pdomain *pdomain, str* _uri, presentity_t** _p)
 	presentity->first_qsa_subscription = 0;
 	presentity->last_qsa_subscription = 0;
 	presentity->presid = 0;
+	presentity->authorization_info = NULL;
 
 	*_p = presentity;
 
@@ -346,6 +347,10 @@ void free_presentity(presentity_t* _p)
 		iw = niw;
 	}
 
+	if (_p->authorization_info) {
+		free_pres_rules(_p->authorization_info);
+	}
+	
 	shm_free(_p);
 }
 

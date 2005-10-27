@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2005/10/26 09:09:24 kubartv Exp $
+# $Id: Makefile,v 1.8 2005/10/27 10:58:25 kubartv Exp $
 #
 # Presence Agent
 #
@@ -15,6 +15,6 @@ LIBS=
 
 # experimental (vku)
 DEFS += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 -Wall -I../../lib -DSER -I../..
-LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2 -lcurl -L../../lib/presence -L../../lib/cds -lpresence -lcds
+LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -L../../lib/xcap -L../../lib/presence -L../../lib/cds -lxcap -lpresence -lcds -lxml2 -lcurl 
 
 include ../../Makefile.modules
