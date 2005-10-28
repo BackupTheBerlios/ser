@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.24 2005/07/08 15:39:07 andrei Exp $
+ * $Id: tcp_conn.h,v 1.25 2005/10/28 20:59:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -58,6 +58,7 @@
 
 /* tcp connection flags */
 #define F_CONN_NON_BLOCKING 1
+#define F_CONN_REMOVED      2 /* no longer  in "main" listen fd list */
 
 
 enum tcp_req_errors {	TCP_REQ_INIT, TCP_REQ_OK, TCP_READ_ERROR,
