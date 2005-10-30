@@ -1,40 +1,90 @@
-The Experimental Directory
-=========================
+The Purpose of The Experimental Directory
+=========================================
+The experimental directory has been created to lower the threshold for adding 
+new code to SER, while keeping the main code tree robust.  Experimental exists 
+both in CVS head (the main development branch), as well as in release branches 
+(ex. rel_0_9_0).  
 
-The experimental directory contains three types of modules:
-1. Simple modules that can be dropped into main code tree
-2. Modules or code patches that modify the core to accomplish new functionality
-3. Backported modules that exist in the HEAD, but can be found in experimental for 
-   the currently maintained released branch
+In the CVS head, experimental can be used for patches to the main code tree, 
+as well as for modules that extend SER's functionality.  Any code will be 
+excepted, provided that the code give some generic value and one or more 
+developers are willing to maintain the code. Code that proves itself popular 
+and stable will be moved to the main code tree.
 
-Please use:
+In a release branch, experimental can be used to add new functionality to an
+already released version. Code will never be allowed into the main code tree
+(because the code has been freezed), but people can add experimental features
+to the stable release. This way limited functionality can be added without 
+having to use the CVS head, which will have lots of (possibly untested)
+functionality added.  Often modules that have been developed for CVS head will 
+be "backported", i.e. made to work with a previous, stable version. Also, some
+developers may use a stable release and have developed a module for that version.
+This module can be submitted to experimental of a released version to facilitate
+the introduction of the new code into SER. (NOTE that ALL code submitted to a 
+stable version MUST be ported to also work with CVS head. Allowing a module only
+into the experimental directory of a stable release is just time-limited until 
+porting has been done.)
+
+
+What You Will Find in Experimental
+==================================
+The experimental directory may contain three types of code:
+1. *Simple modules* that can be dropped into main code tree
+2. *Complex modules* that require patching of the main tree
+3. *Code patches* (no module) that modify the core to accomplish new functionality
+
+Submitting Bug Reports
+======================
+For experimental code to enter the main code tree, it needs to be used, tested,
+and bugs/feature requests most be reported.  If you use code from the experimental
+directory,remember that the code maintainer will love to hear about your 
+experiences!  Contact the code maintainer directly (see information below).
+
+If you have found a bug or have a feature request, please use:
 http://bugs.sip-router.org/ 
-to submit bugs.
 
-Description of modules:
 =============================
-path module
+Description of Modules:
+=============================
+
+path module, simple module
 -----------
+COMMENT:The path module has been ported into the main code tree by Andreas Granig.
+This module will thus be removed as this effort has been finished.
+
 Maintainer: Fermin Galan Marquez <fermin.galan@agora-2000.com>
 
 This module implements the Session Initiation Protocol (SIP) Extension
 Header Field for Registering Non-Adjacent Contacts, as described in RFC
 3327
 
-tls module
+tls, code patches
 ----------
 Maintainer: Cesc Santasusana <cesc.santa@gmail.com>
+TLS is an optional part of the core, not a module. TLS, as defined in SIP RFC, 
+is a mandatory feature for proxies and can be used to secure the SIP signalling
+on a hop-by-hop basis (not end-to-end). TLS works on top of TCP (DTLS, or TLS 
+over UDP is already defined by IETF and may become available in the future).
 
-Description will appear soon.
-
-usrloc-ul module
+usrloc-cl module
 -----------
+COMMENT: This module is currently only found in rel_0_9_0 branch. Work is in 
+progress to port the module to CVS head.
 Maintainer: Andreas Granig <agranig@linguin.org>
 
-An implementation of usrloc that does not use the regular cache mechanism.
+This is a cacheless implementation of the usrloc API and replaces the original
+usrloc module. It provides access to domain tables (like location and aliases)
+to other modules. The module exports no functions that could be used directly
+from scripts.
+
+The typical use case for this module over the original usrloc module is that
+one wants to replicate the tables on the database layer without the need of SIP
+replication. This allows better scalability at the cost of performance.
 
 osp module
 ----------
+COMMENT: The maintainer is currently working on packaging the code for 
+submission to the cvs.
 Maintainer: Dmitry Isakbayev <isakdim@gmail.com> 
 
 This module adds support for the Open Settlement Protocol to SER.  The Open
@@ -49,6 +99,8 @@ collection.  For more information see www.etsi.org and search for ETSI TS
 
 lcr module
 ----------
+COMMENT: The LCR module of head has a slightly different feature set that
+have been difficult to backport to 0.9.x.
 Maintainer: Juha Heinanen <jh@tutpro.com>
 
-Backported Least Cost Routing module from HEAD.
+Backported Least Cost Routing module from HEAD. 
