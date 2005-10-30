@@ -1,0 +1,101 @@
+HACKING SER
+===========
+This information is for people who have or would like to develop a 
+module or code for SER and would like to submit the code to the SER
+CVS tree. Please first read the README file in the experimental
+directory for information about the purpose of the directory and
+what type of code you can submit.
+
+If you have decided to go ahead, the information below is what you
+need to get started!
+
+Administrator
+=============
+The administrator of the experimental directories is Greger V. Teigre.
+He can be contacted at greger@onsip.org. If you have any questions
+after reading this or would like to submit code, please send an email!
+
+Registration
+============
+
+As a new SER developer you need to register an account at 
+http://bugs.sip-router.org/ and at 
+http://developer.berlios.de/account/register.php.  Use the same 
+username for both.
+
+Requesting Access
+=================
+In order to get write access to the experimental CVS you need to 
+send information about the module/code to the administrator (see above), 
+as well as your full name, and the username and email address used for 
+the above registration. Information about parameters and function calls,
+the version of SER the module has been developed for, and one or more
+use cased for the code will be of help (unless it's obvious...). You 
+should also include a 3-5 lines description of the code/module that
+you would like to include in the experimental README.
+
+You will then be advised on how to make sure your code is a use for others
+and if others are working on/requested submission of similar code. The 
+purpose of this check is to make submitted code as easily accessible as 
+possible and avoid overlapping coding efforts.
+
+Once approved, you check out using: cvs co experimental.  You will get 
+all the experimental modules, your module should have an empty directory 
+where you have write CVS access.
+
+Development Requirements
+------------------------
+You should read this general info on the SER CVS:
+http://www.iptel.org/ser/cvs/
+
+And to understand how SER is organized, you should read the first part of:
+http://www.iptel.org/~janakj/ser_cvs.xhtml
+
+We strive to keep the requirements as few as possible (we don't like 
+overhead more than you do), but there are some rules you must follow:
+
+- You are responsible for maintaining the module for any branches you have
+submitted the module in. This includes keeping it updated as HEAD and the
+branches are updated
+
+- Bug and issue tracking MUST be kept on http://bugs.sip-router.org/
+
+- If a module is not being maintained, it will be moved to the "attic" and
+eventually deleted
+
+- All experimental modules should be checked in with paths as if they live
+in the main modules directory
+
+- All experimental modules should have an updated README
+
+- All experimental modules should have #warning directives that will be
+shown when making, as well as a LOG(L_ALERT, "WARNING! ..."); in the
+initialization function of the module. This warning should also be added to
+the README file. Recommended warning template:  "This module is experimental
+and may crash SER or create unexpected results. You use the module at your
+own risk. Please submit bugs at http://bugs.sip-router.org/"
+
+- IF YOUR MODULE REQUIRES PATCHING OF CORE OR OTHER MODULES:
+If the module requires a patch to the core tree, the README file and compile
+warning should explicitly warn about this and describe how to go about
+patching the tree (reference to install.sh below and README). Patch(es)
+should be included in a separate sub-directory called patches/. The README
+should have instructions on which changes will be made, and the maintainer
+should keep an updated install.sh that will apply the patches in the
+patches/ directory (assuming that the module is located in the ser modules
+directory after checkout by the user).  This script may include patching
+code in root/other modules, as well as making a new directory in root and
+copying files from the modules/modulename/patches/ directory to the root.
+IF the contributed code is NOT a module, but a core extension/patch, the
+script should make the proper tree modifications, should NOT include a
+Makefile (i.e. a module makefile), and should leave its own directory intact
+after patching.
+
+- If and when the module has proven its usefulness to a broad range of users
+and its stability (and the developer his/her ability to support and maintain
+the module), it may be promoted to a standard module status. This is a
+decision made by the core developers.  An application can be sent to
+serdev@iptel.org if and when the maintainer finds the module applicable to
+such status
+
+
