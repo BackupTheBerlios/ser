@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.71 2005/10/28 20:59:37 andrei Exp $
+ * $Id: tcp_main.c,v 1.72 2005/11/02 18:14:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -179,7 +179,7 @@ static int init_sock_opt(int s)
 	}
 #endif
 	/* tos*/
-	optval=IPTOS_LOWDELAY;
+	optval = tos;
 	if (setsockopt(s, IPPROTO_IP, IP_TOS, (void*)&optval,sizeof(optval)) ==-1){
 		LOG(L_WARN, "WARNING: init_sock_opt: setsockopt tos: %s\n",
 				strerror(errno));
@@ -898,7 +898,7 @@ int tcp_init(struct socket_info* sock_info)
 	}
 #endif
 	/* tos */
-	optval=IPTOS_LOWDELAY;
+	optval = tos;
 	if (setsockopt(sock_info->socket, IPPROTO_IP, IP_TOS, (void*)&optval, 
 				sizeof(optval)) ==-1){
 		LOG(L_WARN, "WARNING: tcp_init: setsockopt tos: %s\n", strerror(errno));

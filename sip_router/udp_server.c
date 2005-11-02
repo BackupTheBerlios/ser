@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.73 2005/07/06 16:10:05 andrei Exp $
+ * $Id: udp_server.c,v 1.74 2005/11/02 18:14:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -298,7 +298,7 @@ int udp_init(struct socket_info* sock_info)
 		goto error;
 	}
 	/* tos */
-	optval=IPTOS_LOWDELAY;
+	optval = tos;
 	if (setsockopt(sock_info->socket, IPPROTO_IP, IP_TOS, (void*)&optval, 
 			sizeof(optval)) ==-1){
 		LOG(L_WARN, "WARNING: udp_init: setsockopt tos: %s\n", strerror(errno));

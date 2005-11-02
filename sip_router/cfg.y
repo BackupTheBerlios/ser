@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.91 2005/10/11 11:16:18 andrei Exp $
+ * $Id: cfg.y,v 1.92 2005/11/02 18:14:12 andrei Exp $
  *
  *  cfg grammar
  *
@@ -260,6 +260,7 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token OPEN_FD_LIMIT
 %token MCAST_LOOPBACK
 %token MCAST_TTL
+%token TOS
 
 
 
@@ -749,6 +750,8 @@ assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
 								#endif
 		  }
 		| MCAST_TTL EQUAL error { yyerror("number expected"); }
+		| TOS EQUAL NUMBER { tos=$3; }
+		| TOS EQUAL error { yyerror("number expected"); }
 		| error EQUAL { yyerror("unknown config variable"); }
 	;
 

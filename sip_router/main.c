@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.201 2005/09/23 20:50:18 calrissian Exp $
+ * $Id: main.c,v 1.202 2005/11/02 18:14:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -73,6 +73,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <sys/utsname.h>
 #include <sys/types.h>
@@ -132,7 +133,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.201 2005/09/23 20:50:18 calrissian Exp $";
+static char id[]="@(#) $Id: main.c,v 1.202 2005/11/02 18:14:13 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -290,6 +291,8 @@ int reply_to_via=0;
 int mcast_loopback = 0;
 int mcast_ttl = -1; /* if -1, don't touch it, use the default (usually 1) */
 #endif /* USE_MCAST */
+
+int tos = IPTOS_LOWDELAY;
 
 #if 0
 char* names[MAX_LISTEN];              /* our names */
