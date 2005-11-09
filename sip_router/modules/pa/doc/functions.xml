@@ -2,12 +2,12 @@
 <!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" 
    "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 
-<section id="pa.functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section id="pa.functions">
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:33 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2005/11/09 14:18:47 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>

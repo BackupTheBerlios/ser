@@ -6,8 +6,8 @@
     <bookinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.4 $</revnumber>
-		<date>$Date: 2005/11/01 12:24:41 $</date>
+		<revnumber>$Revision: 1.5 $</revnumber>
+		<date>$Date: 2005/11/09 14:18:48 $</date>
 	    </revision>
 	</revhistory>
     </bookinfo>
@@ -34,7 +34,9 @@
 
     <chapter>
 	<title>Presence Handbook</title>
-	<xi:include href="presence/presence.xml"/>
+	<xi:include href="presence/intro.xml"/>
+	<xi:include href="presence/xcap.xml"/>
+	<xi:include href="presence/install.xml"/>
 	<xi:include href="presence/biblio.xml"/>
     </chapter>
 	
