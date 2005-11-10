@@ -6,8 +6,8 @@
     <bookinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.5 $</revnumber>
-		<date>$Date: 2005/11/09 14:18:48 $</date>
+		<revnumber>$Revision: 1.6 $</revnumber>
+		<date>$Date: 2005/11/10 13:36:17 $</date>
 	    </revision>
 	</revhistory>
     </bookinfo>
@@ -37,6 +37,7 @@
 	<xi:include href="presence/intro.xml"/>
 	<xi:include href="presence/xcap.xml"/>
 	<xi:include href="presence/install.xml"/>
+	<xi:include href="presence/examples.xml"/>
 	<xi:include href="presence/biblio.xml"/>
     </chapter>
 	
