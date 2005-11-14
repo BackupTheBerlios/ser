@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2005/10/26 09:30:38 kubartv Exp $
+# $Id: Makefile,v 1.2 2005/11/14 11:47:11 kubartv Exp $
 #
 # Registrar Presence User Agent
 #
@@ -8,6 +8,17 @@
 include ../../Makefile.defs
 auto_gen=
 NAME = rls.so
+
+# .PHONY:	libraries
+#
+# $(NAME):	libraries
+# 
+# install:	libraries
+# 
+# clean:	libraries
+# 
+# libraries:	
+# 			make $(MAKECMDGOALS) -f Makefile.ser -C ../../lib
 
 # if using libcds, the directive SER must be defined !
 # and root ser directory must be in include directories
