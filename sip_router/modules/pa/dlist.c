@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.11 2005/10/26 09:09:24 kubartv Exp $
+ * $Id: dlist.c,v 1.12 2005/11/14 12:35:01 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -187,7 +187,6 @@ int register_pdomain(const char* _n, pdomain_t** _d)
 
 	pdomain = d->d;
 	lock_pdomain(pdomain);	/* do not enable timer to delete presentities in it */
-	pdomain->initialized = 0;
 	d->next = root;
 	root = d;
 	
@@ -197,7 +196,6 @@ int register_pdomain(const char* _n, pdomain_t** _d)
 	 * to use database
 	 */
 	pdomain_load_presentities(pdomain);
-	pdomain->initialized = 1;
 	unlock_pdomain(pdomain);
 
 	return 0;

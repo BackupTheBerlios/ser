@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.19 2005/10/27 10:58:26 kubartv Exp $
+ * $Id: presentity.h,v 1.20 2005/11/14 12:35:01 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -100,6 +100,12 @@ typedef struct presence_tuple {
 	int is_published;	/* 1 for published tuples - these are stored into DB */
 } presence_tuple_t;
 
+typedef struct {
+	str user;
+	str contact;
+	pstate_t state;
+} tuple_change_info_t;
+
 struct pdomain;
 
 typedef enum pflag {
@@ -134,6 +140,7 @@ typedef struct presentity {
 	
 	internal_pa_subscription_t *first_qsa_subscription, *last_qsa_subscription;
 	presence_rules_t *authorization_info;
+	msg_queue_t mq;	/* message queue supplying direct usrloc callback processing */
 } presentity_t;
 
 /*
