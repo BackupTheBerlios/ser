@@ -1,5 +1,5 @@
 /*
- * $Id: grouprad_mod.h,v 1.5 2004/08/24 08:58:30 janakj Exp $
+ * $Id: grouprad_mod.h,v 1.6 2005/11/15 12:29:10 janakj Exp $
  *
  * Group membership checking over Radius
  *
@@ -33,6 +33,8 @@
 
 #ifndef GROUPRAD_MOD_H
 #define GROUPRAD_MOD_H
+
+#include "../../rad_dict.h"
 
 extern struct attr attrs[];
 extern struct val vals[];
