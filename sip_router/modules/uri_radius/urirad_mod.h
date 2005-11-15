@@ -1,5 +1,5 @@
 /*
- * $Id: urirad_mod.h,v 1.6 2005/07/20 17:16:24 andrei Exp $
+ * $Id: urirad_mod.h,v 1.7 2005/11/15 12:31:56 janakj Exp $
  *
  * URI checks using Radius
  *
@@ -34,9 +34,7 @@
 #ifndef URIRAD_MOD_H
 #define URIRAD_MOD_H
 
-#include "../acc/dict.h"
-
-#include "../../modules/acc/dict.h" /* attr & val */
+#include "../../rad_dict.h" /* attr & val */
 
 extern struct attr attrs[];
 extern struct val vals[];
