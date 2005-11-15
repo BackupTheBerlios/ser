@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.333 2005/11/02 20:37:10 andrei Exp $
+# $Id: Makefile.defs,v 1.334 2005/11/15 15:31:42 janakj Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -342,6 +342,7 @@ DEFS+= $(extra_defs) \
 	 -DDISABLE_NAGLE \
 	 -DHAVE_RESOLV_RES \
 	 -DDBG_QM_MALLOC \
+         -DHAVE_TIMEGM \
 	 #-DF_MALLOC \
 	 #-DDBG_F_MALLOC \
 	 #-DNO_DEBUG \
