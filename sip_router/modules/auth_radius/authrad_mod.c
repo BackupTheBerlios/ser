@@ -1,5 +1,5 @@
 /* 
- * $Id: authrad_mod.c,v 1.20 2005/10/11 16:51:22 janakj Exp $ 
+ * $Id: authrad_mod.c,v 1.21 2005/11/15 12:26:48 janakj Exp $ 
  *
  * Digest Authentication - Radius support
  *
@@ -50,8 +50,6 @@
 # else
 #  include <radiusclient-ng.h>
 #endif
-
-#include "../../modules/acc/dict.h"
 
 MODULE_VERSION
 
@@ -118,22 +116,31 @@ static int mod_init(void)
 
 	memset(attrs, 0, sizeof(attrs));
 	memset(attrs, 0, sizeof(vals));
+
+	     /* RFC2865, RFC2866 */
+	attrs[A_USER_NAME].n			= "User-Name";
 	attrs[A_SERVICE_TYPE].n			= "Service-Type";
-	attrs[A_SIP_URI_USER].n			= "Sip-URI-User";
+
+	     /* draft-sterman-aaa-sip-00 */
 	attrs[A_DIGEST_RESPONSE].n		= "Digest-Response";
+	attrs[A_DIGEST_REALM].n			= "Digest-Realm";
+	attrs[A_DIGEST_NONCE].n			= "Digest-Nonce";
+	attrs[A_DIGEST_METHOD].n		= "Digest-Method";
+	attrs[A_DIGEST_URI].n			= "Digest-URI";
+	attrs[A_DIGEST_QOP].n			= "Digest-QOP";
 	attrs[A_DIGEST_ALGORITHM].n		= "Digest-Algorithm";
 	attrs[A_DIGEST_BODY_DIGEST].n		= "Digest-Body-Digest";
 	attrs[A_DIGEST_CNONCE].n		= "Digest-CNonce";
 	attrs[A_DIGEST_NONCE_COUNT].n		= "Digest-Nonce-Count";
-	attrs[A_DIGEST_QOP].n			= "Digest-QOP";
-	attrs[A_DIGEST_METHOD].n		= "Digest-Method";
-	attrs[A_DIGEST_URI].n			= "Digest-URI";
-	attrs[A_DIGEST_NONCE].n			= "Digest-Nonce";
-	attrs[A_DIGEST_REALM].n			= "Digest-Realm";
 	attrs[A_DIGEST_USER_NAME].n		= "Digest-User-Name";
-	attrs[A_USER_NAME].n			= "User-Name";
+
+	     /* SER-specific */
+	attrs[A_SER_URI_USER].n			= "SER-Uri-User";
+	attrs[A_SER_ATTRS].n	                = "SER-Attrs";
+
 	attrs[A_CISCO_AVPAIR].n			= "Cisco-AVPair";
-	attrs[A_SIP_AVP].n	                = "SIP-AVP";
+
+	     /* draft-schulzrinne-sipping-radius-accounting-00 */
 	vals[V_SIP_SESSION].n			= "Sip-Session";
 
 	if ((rh = rc_read_config(radius_config)) == NULL) {
