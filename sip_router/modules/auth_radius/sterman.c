@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.19 2005/11/15 12:26:49 janakj Exp $
+ * $Id: sterman.c,v 1.20 2005/11/16 09:00:20 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -91,7 +91,7 @@ static int generate_avps(VALUE_PAIR* received)
 	while ((vp = rc_avpair_get(vp, attrs[A_SER_ATTRS].v, 0))) {
 		attr_name_value(vp, &name_str, &val_str);
 		
-		if (add_user_avp(AVP_NAME_STR | AVP_VAL_STR, name, val) < 0) {
+		if (add_avp(AVP_NAME_STR | AVP_VAL_STR, name, val) < 0) {
 			LOG(L_ERR, "generate_avps: Unable to create a new AVP\n");
 		} else {
 			DBG("generate_avps: AVP '%.*s'='%.*s' has been added\n",
