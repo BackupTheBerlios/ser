@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.33 2005/06/14 19:11:26 andrei Exp $
+ * $Id: route_struct.c,v 1.34 2005/11/16 21:37:34 andrei Exp $
  *
  * route structures helping functions
  *
@@ -162,10 +162,12 @@ void print_expr(struct expr* exp)
 			case DSTIP_O:
 				DBG("dstip");
 				break;
+			case DSTPORT_O:
+				DBG("dstport");
+				break;
 			case NUMBER_O:
 				break;
 			case ACTION_O:
-				print_action((struct action*) exp->r.param);
 				break;
 			default:
 				DBG("UNKNOWN");
@@ -178,6 +180,21 @@ void print_expr(struct expr* exp)
 				DBG("=~");
 				break;
 			case NO_OP:
+				break;
+			case GT_OP:
+				DBG(">");
+				break;
+			case GTE_OP:
+				DBG(">=");
+				break;
+			case LT_OP:
+				DBG("<");
+				break;
+			case LTE_OP:
+				DBG("<=");
+				break;
+			case DIFF_OP:
+				DBG("!=");
 				break;
 			default:
 				DBG("<UNKNOWN>");
