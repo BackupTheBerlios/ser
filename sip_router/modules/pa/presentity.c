@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.28 2005/11/14 12:35:01 kubartv Exp $
+ * $Id: presentity.c,v 1.29 2005/11/16 17:24:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -177,7 +177,7 @@ static int db_add_presentity(presentity_t* presentity)
 
 		} else {
 			/* insert new record into database */
-			LOG(L_INFO, "new_presentity: inserting %d cols into table\n", n_query_cols);
+			LOG(L_DBG, "new_presentity: inserting %d cols into table\n", n_query_cols);
 			if (pa_dbf.insert(pa_db, query_cols, query_vals, n_query_cols)
 					< 0) {
 				LOG(L_ERR, "new_presentity: Error while inserting tuple\n");

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.24 2005/11/14 12:35:01 kubartv Exp $
+ * $Id: watcher.c,v 1.25 2005/11/16 17:24:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -278,7 +278,7 @@ static int set_watcher_db_data(presentity_t *_p, watcher_t *watcher,
 	
 	cols[n_cols] = "r_uri";
 	vals[n_cols].type = DB_STR;
-	vals[n_cols].nul = n_cols;
+	vals[n_cols].nul = 0;
 	vals[n_cols].val.str_val.s = _p->uri.s;
 	vals[n_cols].val.str_val.len = _p->uri.len;
 	n_cols++;
