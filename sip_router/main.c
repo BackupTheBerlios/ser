@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.202 2005/11/02 18:14:13 andrei Exp $
+ * $Id: main.c,v 1.203 2005/11/17 01:24:03 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -71,12 +71,15 @@
 #include <string.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <sys/types.h>
 #include <sys/socket.h>
+#if defined(HAVE_NETINET_IN_SYSTM)
+#include <netinet/in_systm.h>
+#endif
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <sys/utsname.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include <fcntl.h>
@@ -133,7 +136,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.202 2005/11/02 18:14:13 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.203 2005/11/17 01:24:03 sobomax Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;

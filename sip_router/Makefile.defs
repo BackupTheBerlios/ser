@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.337 2005/11/17 01:22:03 andrei Exp $
+# $Id: Makefile.defs,v 1.338 2005/11/17 01:24:03 sobomax Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -1066,7 +1066,8 @@ endif
 ifeq ($(OS), freebsd)
 	DEFS+=-DHAVE_SOCKADDR_SA_LEN -DHAVE_GETHOSTBYNAME2 -DHAVE_UNION_SEMUN \
 		-DHAVE_SCHED_YIELD -DHAVE_MSGHDR_MSG_CONTROL \
-		-DHAVE_CONNECT_ECONNRESET_BUG -DHAVE_TIMEGM
+		-DHAVE_CONNECT_ECONNRESET_BUG -DHAVE_TIMEGM \
+		-DHAVE_NETINET_IN_SYSTM
 	ifneq ($(found_lock_method), yes)
 		DEFS+= -DUSE_PTHREAD_MUTEX  # try pthread sems
 		found_lock_method=yes
