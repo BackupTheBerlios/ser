@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.c,v 1.32 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_parser.c,v 1.33 2005/11/17 03:50:07 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -645,7 +645,7 @@ error:
 static inline int encode_time_switch_attr(xmlNodePtr  node, char *node_ptr,
 																char *buf_end)
 {
-	static str     tz_str = {"TZ=",3};
+	static str     tz_str = STR_STATIC_INIT("TZ=");
 	xmlAttrPtr     attr;
 	char           *p, *p_orig;
 	unsigned char  *nr_attr;

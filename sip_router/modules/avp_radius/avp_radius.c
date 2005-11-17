@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.6 2005/11/17 03:39:22 sobomax Exp $
+ * $Id: avp_radius.c,v 1.7 2005/11/17 03:50:07 sobomax Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -67,8 +67,8 @@ static int load_avp_fixup(void**, int);
 static char *radius_config = "/usr/local/etc/radiusclient/radiusclient.conf";
 static int caller_service_type = -1;
 static int callee_service_type = -1;
-static str caller_prefix = {CALLER_PREFIX, CALLER_PREFIX_LEN};
-static str callee_prefix = {CALLEE_PREFIX, CALLEE_PREFIX_LEN};
+static str caller_prefix = STR_STATIC_INIT(CALLER_PREFIX);
+static str callee_prefix = STR_STATIC_INIT(CALLEE_PREFIX);
 
 static void *rh;
 struct attr attrs[A_MAX];

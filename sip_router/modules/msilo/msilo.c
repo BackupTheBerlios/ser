@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.43 2005/02/23 17:16:04 andrei Exp $
+ * $Id: msilo.c,v 1.44 2005/11/17 03:50:28 sobomax Exp $
  *
  * MSILO module
  *
@@ -137,7 +137,7 @@ int  ms_check_time=30;
 int  ms_clean_period=5;
 int  ms_use_contact=1;
 
-str msg_type = { "MESSAGE", 7 };
+str msg_type = STR_STATIC_INIT("MESSAGE");
 
 str reg_addr;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.63 2005/02/23 17:16:06 andrei Exp $
+ * $Id: sms_funcs.c,v 1.64 2005/11/17 03:50:52 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -302,7 +302,7 @@ int push_on_network(struct sip_msg *msg, int net)
 
 int send_sip_msg_request(str *to, str *from_user, str *body)
 {
-	str msg_type = { "MESSAGE", 7};
+	str msg_type = STR_STATIC_INIT("MESSAGE");
 	str from;
 	str hdrs;
 	int foo;

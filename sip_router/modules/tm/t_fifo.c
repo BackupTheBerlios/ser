@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.24 2005/08/29 13:52:24 rco Exp $
+ * $Id: t_fifo.c,v 1.25 2005/11/17 03:50:52 sobomax Exp $
  *
  * transaction maintenance functions
  *
@@ -669,7 +669,7 @@ static int assemble_msg(struct sip_msg* msg, struct tw_info *twi)
 	static char     route_buffer[ROUTE_BUFFER_MAX];
 	static char     append_buf[APPEND_BUFFER_MAX];
 	static char     cmd_buf[CMD_BUFFER_MAX];
-	static str      empty_param = {".",1};
+	static str      empty_param = STR_STATIC_INIT(".");
 	unsigned int      hash_index, label;
 	contact_body_t*   cb=0;
 	contact_t*        c=0;

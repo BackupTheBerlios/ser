@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.c,v 1.11 2005/07/04 10:44:38 ramona Exp $
+ * $Id: avpops_impl.c,v 1.12 2005/11/17 03:50:07 sobomax Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -55,7 +55,7 @@
 
 static db_key_t  store_keys[6];
 static db_val_t  store_vals[6];
-static str      empty={"",0};
+static str      empty=STR_STATIC_INIT("");
 
 
 void init_store_avps( char **db_columns)

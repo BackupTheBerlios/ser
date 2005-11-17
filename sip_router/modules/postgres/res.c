@@ -1,5 +1,5 @@
 /* 
- * $Id: res.c,v 1.1 2005/10/27 23:11:45 janakj Exp $ 
+ * $Id: res.c,v 1.2 2005/11/17 03:50:51 sobomax Exp $ 
  *
  * Postgres module result related functions
  *
@@ -173,7 +173,7 @@ static inline void free_rows(db_res_t* res)
 
 static inline int convert_cell(db_con_t* con, db_res_t* res, int row, int col)
 {
-	static str dummy_str = {"", 0};
+	static str dummy_str = STR_STATIC_INIT("");
 	PGresult* pgres;
 	db_val_t* val;
 	int type, pglen;

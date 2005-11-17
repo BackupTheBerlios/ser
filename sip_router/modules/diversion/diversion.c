@@ -1,5 +1,5 @@
 /* 
- * $Id: diversion.c,v 1.6 2005/10/11 16:51:22 janakj Exp $
+ * $Id: diversion.c,v 1.7 2005/11/17 03:50:20 sobomax Exp $
  *
  * Diversion Header Field Support
  *
@@ -50,7 +50,7 @@ MODULE_VERSION
 
 
 
-str suffix = {"", 0};
+str suffix = STR_STATIC_INIT("");
 
 int add_diversion(struct sip_msg* msg, char* r, char* s);
 

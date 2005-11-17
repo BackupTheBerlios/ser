@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd_funcs.c,v 1.15 2004/08/24 08:58:29 janakj Exp $
+ * $Id: extcmd_funcs.c,v 1.16 2005/11/17 03:50:27 sobomax Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -633,8 +633,8 @@ inline void FD_CLR_AND_MAX( fd_set *fdset, int fd, int *max_fd)
 
 void extcmd_server_process( int server_sock )
 {
-	str message_req = { "MESSAGE", 7};
-	//str invite_req = { "INVITE", 6};
+	str message_req = STR_STATIC_INIT("MESSAGE");
+	//str invite_req = STR_STATIC_INIT("INVITE");
 	fd_set read_set;
 	fd_set wait_set;
 	client_t *client;

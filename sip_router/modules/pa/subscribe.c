@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.34 2005/11/14 12:35:01 kubartv Exp $
+ * $Id: subscribe.c,v 1.35 2005/11/17 03:50:45 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -376,7 +376,7 @@ int extract_server_contact(struct sip_msg *m, str *dst)
 static int create_watcher(struct sip_msg* _m, struct presentity* _p, struct watcher** _w, int et, time_t expires)
 {
 	dlg_t* dialog;
-	str server_contact = {0, 0};
+	str server_contact = STR_NULL;
 	int acc = 0;
 	str watch_uri;
 	str watch_dn;

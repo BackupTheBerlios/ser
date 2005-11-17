@@ -1,5 +1,5 @@
 /*
- * $Id: notify.c,v 1.10 2005/09/29 16:45:30 janakj Exp $
+ * $Id: notify.c,v 1.11 2005/11/17 03:50:52 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -33,7 +33,7 @@
 #include "udomain.h"
 
 
-str dom = {"location", 8};
+str dom = STR_STATIC_INIT("location");
 
 
 void notify_watchers(struct urecord* _r, ucontact_t *_c, int state)

@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.17 2005/02/03 22:05:27 ramona Exp $
+ * $Id: pdt.c,v 1.18 2005/11/17 03:50:51 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -85,7 +85,7 @@ char *prefix_column = "prefix";
 char *domain_column = "domain";
 
 /** pstn prefix */
-str prefix = {"", 0};
+str prefix = STR_STATIC_INIT("");
 int sync_time = 600;
 int clean_time = 900;
 

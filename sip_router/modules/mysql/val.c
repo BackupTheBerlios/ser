@@ -1,5 +1,5 @@
 /* 
- * $Id: val.c,v 1.10 2005/02/25 16:31:45 janakj Exp $ 
+ * $Id: val.c,v 1.11 2005/11/17 03:50:29 sobomax Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -160,7 +160,7 @@ static inline int time2str(time_t _v, char* _s, int* _l)
  */
 int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l)
 {
-	static str dummy_string = {"", 0};
+	static str dummy_string = STR_STATIC_INIT("");
 	
 	if (!_v) {
 		LOG(L_ERR, "str2val: Invalid parameter value\n");
