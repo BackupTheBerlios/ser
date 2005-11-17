@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.18 2005/11/17 11:59:28 janakj Exp $
+ * $Id: usr_avp.c,v 1.19 2005/11/17 20:47:14 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -346,7 +346,7 @@ avp_t *search_first_avp(unsigned short flags, int_str name, int_str *val, struct
 	}
 	s->name = name;
 
-	if (!(flags & AVP_NAME_STR) && !(flags & AVP_NAME_RE)) {
+	if (flags & AVP_NAME_STR) {
 		s->id = compute_ID(name.s);
 	}
 
