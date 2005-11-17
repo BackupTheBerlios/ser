@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.5 2005/06/30 21:29:31 andrei Exp $
+ * $Id: avp_radius.c,v 1.6 2005/11/17 03:39:22 sobomax Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -32,13 +32,13 @@
 #  include <radiusclient-ng.h>
 #endif
 
-#include "../acc/dict.h"
 #include "../../sr_module.h"
 #include "../../mem/mem.h"
 #include "../../parser/digest/digest_parser.h"
 #include "../../parser/digest/digest.h"
 #include "../../parser/parse_uri.h"
 #include "../../parser/parse_from.h"
+#include "../../rad_dict.h"
 #include "../../usr_avp.h"
 #include "../../ut.h"
 
