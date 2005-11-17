@@ -6,8 +6,8 @@
     <bookinfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.6 $</revnumber>
-		<date>$Date: 2005/11/10 13:36:17 $</date>
+		<revnumber>$Revision: 1.7 $</revnumber>
+		<date>$Date: 2005/11/17 12:08:17 $</date>
 	    </revision>
 	</revhistory>
     </bookinfo>
@@ -30,6 +30,16 @@
     <chapter>
 	<title>Administrator's Guide</title>
 	<xi:include href="seruser/seruser.xml"/>
+    </chapter>
+
+    <chapter>
+	<title>SER Remote Procedure Call Interface</title>
+	<xi:include href="rpc/ser_rpc.xml"/>
+    </chapter>
+
+    <chapter>
+	<title>SER Database Schema and Administration</title>
+	<xi:include href="database/ser_db.xml"/>
     </chapter>
 
     <chapter>
