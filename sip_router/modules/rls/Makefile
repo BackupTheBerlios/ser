@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2005/11/14 11:47:11 kubartv Exp $
+# $Id: Makefile,v 1.3 2005/11/17 03:08:53 sobomax Exp $
 #
 # Registrar Presence User Agent
 #
@@ -23,7 +23,7 @@ NAME = rls.so
 # if using libcds, the directive SER must be defined !
 # and root ser directory must be in include directories
 
-DEFS += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 -Wall -I../../lib -DSER -I../..
+DEFS += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 -I$(LOCALBASE)/include -Wall -I../../lib -DSER -I../..
 LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2 -lcurl -L../../lib/presence -L../../lib/cds -L../../lib/xcap -lxcap -lpresence -lcds
 
 #DEFS = -I../.. -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 -Wall -I../../lib -DSER $(DEFS)
