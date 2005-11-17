@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.96 2005/09/19 17:15:27 janakj Exp $
+ * $Id: h_table.c,v 1.97 2005/11/17 13:20:26 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -246,7 +246,7 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 	new_cell->uas.response.my_T=new_cell;
 
 	/* move the current avp list to transaction -bogdan */
-	old = set_avp_list( &new_cell->user_avps );
+	old = set_user_avp_list( &new_cell->user_avps );
 	new_cell->user_avps = *old;
 	*old = 0;
 
@@ -283,7 +283,7 @@ error:
 	destroy_avp_list(&new_cell->user_avps);
 	shm_free(new_cell);
 	/* unlink transaction AVP list and link back the global AVP list (bogdan)*/
-	reset_avps();
+	reset_user_avps();
 	return NULL;
 }
 

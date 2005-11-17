@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.92 2005/10/26 23:04:56 tma0 Exp $
+ * $Id: sip_msg.c,v 1.93 2005/11/17 13:20:26 janakj Exp $
  *
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -559,6 +559,9 @@ do { \
 				((struct to_body*)new_hdr->parsed)->body.s =
 					translate_pointer( new_msg->buf , org_msg->buf ,
 					((struct to_body*)hdr->parsed)->body.s );
+				((struct to_body*)new_hdr->parsed)->display.s = 
+					translate_pointer( new_msg->buf, org_msg->buf,
+					((struct to_body*)hdr->parsed)->display.s);
 				((struct to_body*)new_hdr->parsed)->uri.s =
 					translate_pointer( new_msg->buf , org_msg->buf ,
 					((struct to_body*)hdr->parsed)->uri.s );

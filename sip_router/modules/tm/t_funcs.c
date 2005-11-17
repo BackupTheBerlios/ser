@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.180 2005/09/19 17:15:27 janakj Exp $
+ * $Id: t_funcs.c,v 1.181 2005/11/17 13:20:25 janakj Exp $
  *
  * transaction maintenance functions
  *
@@ -326,7 +326,7 @@ static inline int avp2timer(unsigned int* timer, int type, int_str name)
 	int_str val_istr;
 	int err;
 
-	avp = search_first_avp( type, name, &val_istr);
+	avp = search_first_avp( type, name, &val_istr, 0);
 	if (!avp) {
 		/*
 		 DBG("avp2timer: AVP '%.*s' not found\n", param.s->len, ZSW(param.s->s));
