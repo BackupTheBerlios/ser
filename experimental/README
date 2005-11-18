@@ -83,8 +83,7 @@ replication. This allows better scalability at the cost of performance.
 
 osp module
 ----------
-COMMENT: The maintainer is currently working on packaging the code for 
-submission to the cvs.
+COMMENT: The module is currently in review for being added to main tree (CVS head)
 Maintainer: Dmitry Isakbayev <isakdim@gmail.com> 
 
 This module adds support for the Open Settlement Protocol to SER.  The Open
