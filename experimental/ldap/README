@@ -1,0 +1,601 @@
+
+LDAP authorization and group membership module
+
+Created By: Arek Bekiersz
+Mantainer:  Arek Bekiersz
+Email:      arek@perceval.net
+Edited By:
+
+WARNING:    This module is experimental and may crash SER
+            or create unexpected results. You use the module
+            at your own risk. Please submit bugs at
+            http://bugs.sip-router.org/
+
+Copyright (C) 2005 Arek Bekiersz
+Parts of the code copyright (C) 2004 Swiss Federal Institute of Technology (ETH Zurich)
+Parts of the code copyright (C) 2004 Marcel Baur <baur@ethworld.ethz.ch>
+
+   __________________________________________________________
+
+   Table of Contents
+   1. User's Guide
+
+        1.1. Overview
+        1.2. Dependencies
+        1.3. Exported Parameters
+
+              1.3.1  ldap_server                (string)
+              1.3.2  ldap_port                  (int)
+              1.3.3  ldap_base                  (string)
+              1.3.4  ldap_admin                 (string)
+              1.3.5  ldap_passwd                (string)
+              1.3.6  ldap_sip_objectclass       (string)
+              1.3.7  ldap_sip_user_attrib       (string)
+              1.3.8  ldap_sip_grp_attrib        (string)
+              1.3.9  ldap_lang_attrib           (string)
+              1.3.10 ldap_sip_alias_attrib      (string)
+              1.3.11 ldap_sip_cc_prefix_attrib  (string)
+              1.3.12 ldap_sip_lac_prefix_attrib (string)
+              1.3.13 ldap_sip_passwd_attrib     (string)
+              1.3.14 calc_ha1                   (int)
+
+        1.4. Exported Functions
+
+              1.4.1  ldap_does_uri_exist()
+              1.4.2  ldap_is_user_in( URI, group )
+              1.4.3  ldap_www_authorize( realm )
+              1.4.4  ldap_proxy_authorize( realm )
+              1.4.5  ldap_alias_lookup()
+              1.4.6  ldap_lang_lookup()
+              1.4.7  ldap_prefixes_lookup( mode )
+
+   2. Developer's Guide
+   3. Frequently Asked Questions
+              3.1. Where can I find more about SER?
+              3.2. Where can I post question about this module?
+              3.3. How can I report a bug?
+              3.4  3.5. I am not happy with this README ... Now what?
+
+   List of Examples
+   1-3-1.  ldap_server usage
+   1-3-2.  ldap_port usage
+   1-3-3.  ldap_base usage
+   1-3-4.  ldap_admin usage
+   1-3-5.  ldap_passwd usage
+   1-3-6.  ldap_sip_objectclass usage
+   1-3-7.  ldap_sip_user_attrib usage
+   1-3-8.  ldap_sip_grp_attrib usage
+   1-3-9.  ldap_lang_attrib usage
+   1-3-10. ldap_sip_alias_attrib usage
+   1-3-11. ldap_sip_cc_prefix_attrib usage
+   1-3-12. ldap_sip_lac_prefix_attrib usage
+   1-3-13. ldap_sip_passwd_attrib usage
+   1-3-14. calc_ha1 usage
+
+   1-4-1  ldap_does_uri_exist() usage
+   1-4-2  ldap_is_user_in() usage
+   1-4-3  ldap_www_authorize() usage
+   1-4-4  ldap_proxy_authorize() usage
+   1-4-5  ldap_alias_lookup() usage
+   1-4-6  ldap_lang_lookup() usage
+   1-4-7  ldap_prefixes_lookup() usage
+
+   ___________________________________________________________
+
+Chapter 1. User's Guide
+
+1.1. Overview
+   This module contains functions to work with LDAP database, mainly to
+   perform authorization and group membership check. Module is basically an
+   alternative for using RADIUS with LDAP backend - it is a scenario where
+   directory database is accessed directly. It can work with various
+   database schemas (including user defined ones) because all attribute
+   and object names are exported as module parameters. Finally the module
+   should be able to operate with various LDAP implementations; however
+   it was only tested with OpenLDAP 2.1.xx and 2.2.10 running on FreeBSD.
+
+   Module contains general purpose functions to perform digest
+   authentication using Authorization and Proxy-Authorization header fields
+   and a group membership checking function. It also contains a set of
+   additional functions, useful in some specific scenarios. Performing Alias
+   lookup or prepending default Country and/or Local Area Codes can be useful
+   when creating various carrier-specific services.
+
+   Last and not least there are some things to be corrected. It is a small
+   module and there was no time to review it. It just serves it's purpose so
+   every comments and bug reports are welcome.
+
+
+
+   ___________________________________________________________
+
+1.2. Dependencies
+
+   The module depends on the following modules (in the other
+   words the listed modules must be loaded before this module):
+
+      * sl -- Stateless replies
+      * auth -- Generic authentication functions
+
+
+
+   ___________________________________________________________
+
+1.3. Exported Parameters
+
+1.3.1. ldap_server (string)
+
+   IP address of the database server. Can be textual or numeric, but without
+   the RFC2396 scheme string (without "ldap://"). This parameter together
+   with following "ldap_port" is used to open LDAP connection. Please see
+   "man ldap_init" for additional information about ldap_init() system
+   function from <ldap.h>.
+
+   Default value is "127.0.0.1".
+
+   Example 1-3-1. ldap_server parameter usage
+      modparam("ldap","ldap_server","localhost")
+      modparam("ldap","ldap_server","somehost.somedomain.net")
+   ___________________________________________________________
+
+1.3.2. ldap_port (int)
+
+   Port number used in ldap_server. Please see "man ldap_init"
+   for additional information about ldap_init() system function from
+   <ldap.h>.
+
+   Default value is "389".
+
+   Example 1-3-2. ldap_port parameter usage
+      modparam("ldap","ldap_port","389")
+   ___________________________________________________________
+
+1.3.3. ldap_base (string)
+
+   Base DN for all LDAP search operations. This parameter must have standard
+   DN syntax as in RFC2252.
+
+   Default value is "" (empty). Must be specified in SER config file.
+
+   Example 1-3-3. ldap_base parameter usage
+      modparam("ldap","ldap_base","ou=Some Department,o=Some Corporation")
+   ___________________________________________________________
+
+1.3.4. ldap_admin (string)
+
+   The DN of LDAP user to bind to database. This parameter and following
+   "ldap_passwd" are used to perform simple LDAP bind. Please
+   see "man ldap_bind_s" for additional infomation about ldap_bind_s()
+   system function from <ldap.h>.
+
+   Default value is "" (empty). Must be specified in SER config file.
+
+   Example 1-3-4. ldap_admin parameter usage
+      modparam("ldap","ldap_admin","cn=john,ou=Admins,o=Some Corporation")
+   ___________________________________________________________
+
+1.3.5. ldap_passwd (string)
+
+   The DN of LDAP user to bind to database. This parameter is used to perform
+   simple LDAP bind. Please see "man ldap_bind_s" for additional infomation
+   about ldap_bind_s() system function from <ldap.h>.
+
+   Default value is "" (empty). Must be specified in SER config file.
+
+   Example 1-3-5. ldap_passwd parameter usage
+      modparam("ldap","ldap_passwd","secret")
+   ___________________________________________________________
+
+1.3.6. ldap_sip_objectclass (string)
+
+   LDAP objectClass of object that contains data about SIP account. It can
+   be any type of user defined object (structural or auxiliary) as long as
+   it contains attributes necessary to perform desired operation:
+
+      * "ldap_sip_user_attrib" and "ldap_sip_passwd_attrib" for authentication
+      * "ldap_sip_user_attrib" and "ldap_sip_grp_attrib" for group membership check
+      * "ldap_sip_user_attrib" and "ldap_lang_attrib" for language check
+      * "ldap_sip_user_attrib" and "ldap_sip_alias_attrib" for alias rewrite
+      * "ldap_sip_user_attrib" and "ldap_sip_cc_prefix_attrib" for prefix rewrite
+      * "ldap_sip_user_attrib" and "ldap_sip_lac_prefix_attrib" for prefix rewrite
+
+   Default value is "" (empty). Must be specified in SER config file.
+
+   Example 1-3-6. ldap_sip_objectclass parameter usage
+      modparam("ldap","ldap_sip_objectclass","mySipAccountObjectClass")
+   ___________________________________________________________
+
+1.3.7. ldap_sip_user_attrib (string)
+
+   LDAP attribute of "ldap_sip_objectclass" containing SIP URI of account.
+   Attribute value should be SIP URI without "sip:" scheme string
+   (in example: 1234@somedomain.net). This attribute is used in all module
+   functions to find users in database.
+
+   Default value is "" (empty). Must be specified in SER config file.
+
+   Example 1-3-7. ldap_sip_user_attrib parameter usage
+      modparam("ldap","ldap_sip_user_attrib","mySipAccountUriAttrib")
+   ___________________________________________________________
+
+1.3.8. ldap_sip_grp_attrib (string)
+
+   LDAP attribute of "ldap_sip_objectclass" containing one or more group names.
+   It is said that if attribute contains specified group name (in example:
+   "myGroup") then SIP account is a member of this group.
+
+   Default value is "" (empty). Must be specified in SER config file if
+   group checking functions will be used.
+
+   Example 1-3-8. ldap_sip_grp_attrib parameter usage
+      modparam("ldap","ldap_sip_grp_attrib","mySipAccountGroupAttrib")
+   ___________________________________________________________
+
+1.3.9. ldap_lang_attrib (string)
+
+   LDAP attribute of "ldap_sip_objectclass" containing default language for
+   SIP account (ISO639 language code, like "en" or "de"). This attribute is used
+   in ldap_lang_lookup() function.
+
+   Default value is "preferredLanguage".
+
+   Example 1-3-9. ldap_lang_attrib parameter usage
+      modparam("ldap","ldap_lang_attrib","preferredLanguage")
+   ___________________________________________________________
+
+1.3.10. ldap_sip_alias_attrib (string)
+
+   LDAP multivalue attribute of "ldap_sip_objectclass" containing telephony alias of
+   SIP account. It is used in ldap_lang_lookup() function to rewrite aliased
+   Request-URI with default URI.
+
+   Default value is "" (empty). Must be specified in SER config file if
+   alias checking and rewriting functions will be used. 
+
+   Example 1-3-10. ldap_sip_alias_attrib parameter usage
+      modparam("ldap","ldap_sip_alias_attrib","mySipAccountAliasAttrib")
+   ___________________________________________________________
+
+1.3.11. ldap_sip_cc_prefix_attrib (string)
+
+   LDAP multivalue attribute of "ldap_sip_objectclass" containing default
+   Country Code of SIP account. It is used in ldap_prefixes_lookup() function to
+   prepend Country Code at the beginning of Request-URI.
+
+   Default value is "" (empty). Must be specified in SER config file if
+   prefix rewriting functions will be used. 
+
+   Example 1-3-11. ldap_sip_cc_prefix_attrib parameter usage
+      modparam("ldap","ldap_sip_cc_prefix_attrib","mySipAccountCcPrefixAttrib")
+   ___________________________________________________________
+
+1.3.12. ldap_sip_lac_prefix_attrib (string)
+
+   LDAP multivalue attribute of "ldap_sip_objectclass" containing default
+   Local Area Code of SIP account (Area or City Code). It is used in
+   ldap_prefixes_lookup() function to prefix Request-URI with Local Area Code prefix.
+
+   Default value is "" (empty). Must be specified in SER config file if
+   prefix rewriting functions will be used. 
+
+   Example 1-3-12. ldap_sip_lac_prefix_attrib parameter usage
+      modparam("ldap","ldap_sip_lac_prefix_attrib","mySipAccountCityPrefixAttrib")
+   ___________________________________________________________
+
+1.3.13. ldap_sip_passwd_attrib (string)
+
+   LDAP attribute of "ldap_sip_objectclass" containing cleartext SIP password
+   for SIP account. It is used in ldap_www_authorize() and
+   ldap_proxy_authorize() functions.
+
+   Default value is "" (empty). Must be specified in SER config file if
+   authentication functions will be used. 
+
+   Example 1-3-13. ldap_sip_passwd_attrib parameter usage
+      modparam("ldap","ldap_sip_passwd_attrib","mySipAccountPasswdAttrib")
+   ___________________________________________________________
+
+1.3.14. calc_ha1 (int)
+
+   Specifies if authentication functions should calculate MD5 hash of
+   cleartext SIP password taken from database (calc_ha1 set to "1") or not
+   (calc_ha1 set to "0"). Currently only cleartext passwords are used,
+   so it is advised to leave default value ("1").
+
+   Default value is "1" (calculate MD5 hash, password stored in cleartext)
+
+   Example 1-3-14. calc_ha1 parameter usage
+      modparam("ldap","calc_ha1","1")
+
+
+
+     _________________________________________________________
+
+1.4. Exported Functions
+
+1.4.1. ldap_does_uri_exist()
+
+   This function checks if SIP account exists in LDAP. It searches for object
+   of type "ldap_sip_objectclass" which has "ldap_sip_user_attrib" same as
+   Request-URI of SIP message. If such SIP account was found, function
+   returns RESULT_YES (value "1"). Otherwise it returns RESULT_NO
+   (value "-1").
+
+   Example 1-4-1. ldap_does_uri_exist() usage
+      ...
+      # Check if this is our subscriber and set flag
+      if( ldap_does_uri_exist() ) {
+         setflag(1);
+      };
+      ...
+     _________________________________________________________
+
+1.4.2. ldap_is_user_in( URI, group )
+
+   This function checks if SIP account is member of LDAP group. It searches for
+   object of type "ldap_sip_objectclass" which has "ldap_sip_user_attrib" same as
+   selected URI header of SIP message. If such SIP account was found, function
+   checks if one of "ldap_sip_grp_attrib" values is same as "group"
+   parameter. If yes, user is member of this group and function returns
+   RESULT_YES (value "1"). Otherwise it returns:
+
+      * value "-1" if "Request-URI" could not be extracted from message
+      * value "-2" if "To" could not be extracted from message
+      * value "-3" if "From" could not be extracted from message
+      * value "-4" if user is not a member of group
+
+   Meaning of the parameters is as follows:
+
+     * URI - what header to be used as basis for SIP account identification.
+       SIP account with "ldap_sip_user_attrib" set to this URI will be
+       checked for group membership. It can be: "Request-URI", "To" or "From".
+
+     * group - name of group to be checked, in example "my_group"
+
+   NOTE: Function checks if special "ldap_sip_grp_attrib" attribute of LDAP
+   entry contains specified string value. Function should be rewritten to check
+   LDAP group membership. In that scenario "groupOfNames" object should exist and should
+   contain "member" attribute pointing to users that are group members.
+
+   Example 1-4-2. ldap_is_user_in() usage
+      ...
+      # Is caller allowed?
+      if( !ldap_is_user_in("From", "my_group_allow") ) {
+        setflag(2);
+      };
+      ...
+     _________________________________________________________
+
+1.4.3. ldap_www_authorize( realm )
+
+   This function verifies credentials according to RFC2617. If the credentials
+   are verified sucessfully then the function will succeed and mark the
+   credentials as authorized (marked credentials can be later used by some
+   other functions). If the function was unable to verify the credentials
+   for some reason then it will fail and the script should call www_challenge()
+   which will challenge the user again.
+
+   In case of success function returns AUTHORIZED (value "1"). Otherwise
+   it returns:
+
+      * value "0" if error occured
+      * value "-1" if user was not authorized
+
+   Meaning of the parameter is as follows:
+
+     * realm - Realm is a opaque string that the user agent
+       should present to the user so he can decide what username
+       and password to use. Usualy this is domain of the host the
+       server is running on.
+       If an empty string "" is used then the server will
+       generate it from the request. In case of REGISTER requests
+       To header field domain will be used (because this header
+       field represents a user being registered), for all other
+       messages From header field domain will be used.
+
+   Example 1-4-3. ldap_www_authorize() usage
+      ...
+      if (method=="REGISTER") {
+         if( !ldap_www_authorize("") ) {
+            www_challenge("", "0");
+            break;
+         };
+         save("location");
+         break;
+      };
+      ...
+     _________________________________________________________
+
+1.4.4. ldap_proxy_authorize( realm )
+
+   This function verifies credentials according to RFC2617. If the credentials
+   are verified sucessfully then the function will succeed and mark the
+   credentials as authorized (marked credentials can be later used by some
+   other functions). If the function was unable to verify the credentials
+   for some reason then it will fail and the script should call proxy_challenge
+   which will challenge the user again.
+
+   In case of success function returns AUTHORIZED (value "1"). Otherwise
+   it returns:
+
+      * value "0" if error occured
+      * value "-1" if user was not authorized
+
+   Meaning of the parameter is as follows:
+
+     * realm - Realm is a opaque string that the user agent
+       should present to the user so he can decide what username
+       and password to use. Usualy this is domain of the host the
+       server is running on.
+       If an empty string "" is used then the server will
+       generate it from the request. From header field domain
+       will be used as realm.
+
+   Example 1-4-4. ldap_proxy_authorize() usage
+      ...
+      if( method=="INVITE" ) {
+         if (!ldap_proxy_authorize("")) {
+            proxy_challenge("", "0");
+            break;
+         };
+      };
+      ...
+     _________________________________________________________
+
+1.4.5. ldap_alias_lookup()
+
+   This function checks if there is SIP account in LDAP that has telephony alias
+   attribute (in our case "ldap_sip_alias_attrib") set to the same value as
+   current Request-URI. If such SIP account is found, function rewrites
+   Request-URI with master SIP URI of this SIP account.
+
+   Function assumes that Request-URI is an alias and performs search in
+   database. If it succeedes it rewrites Request-URI with SIP URI of
+   target account and returns value "1". Otherwise it returns
+   value "-1".
+
+   As aliases are stored in database in E.164 format,
+   this function tries not only to find Request-URI, but adds default prefixes
+   to Request-URI and checks again. It is useful when user is using
+   abbreviated dialing with ldap_prefixes_lookup() at the same time.
+
+   NOTE: Aliases must be unique throughout the database (two different users
+   cannot have the same alias).
+
+   Example 1-4-5. ldap_alias_lookup() usage
+      SIP account 223241@somedomain has alias set to "003241234567"
+      SIP account 223345@somedomain has default Country Code set to "32"
+      User 223345 dials "041234567" (Request-URI "041234567@somedomain")
+      System will search LDAP and replace Request-URI with "223241@somedomain"
+
+      ...
+      if( !ldap_alias_lookup() ) {
+         # Alias has not been rewritten. Forward to Request-URI as it is
+         t_relay();
+         break;
+      };
+      ...
+     _________________________________________________________
+
+1.4.6. ldap_lang_lookup()
+
+   This function checks if there is SIP account with "ldap_sip_user_attrib"
+   same as From URI of message. If yes, function checks what ISO language
+   code is stored in "ldap_lang_attrib" attribute. If there is any value it is
+   prepended at the beginning of Request-URI. Function is useful during
+   very simple and basic integration with various voicemail systems, as correct
+   language versions of mailboxes can be contacted. It should also prove
+   useful in other IVR systems.
+
+   Note that language code attribute value should be set according to
+   ISO639.
+
+   Function tries to prepend language code at the beginning of Request-URI.
+   If it succeeds it returns RESULT_YES (value "1"). Otherwise it returns
+   RESULT_NO (value "-1").
+
+   Example 1-4-6. ldap_lang_lookup() usage
+      SIP account 223241@somedomain has preferred language set to "en"
+      User 223241 dials "987654" (Request-URI "987654@somedomain")
+      System will search LDAP and replace Request-URI with "en987654@somedomain"
+
+      ...
+      if( !ldap_lang_lookup() ) {
+         # Language has not been rewritten. Forward to Request-URI as it is
+         t_relay();
+         break;
+      };
+      ...
+     _________________________________________________________
+
+1.4.7. ldap_prefixes_lookup( mode )
+
+   This function checks if there is SIP account with "ldap_sip_user_attrib"
+   same as From URI and it has defined any default telephony prefixes. Those
+   prefixes are prepended at the beginning of Request-URI. According to mode
+   of operation it can be either Coutry Code or Country Code with Local Area
+   Code.  Prefixes should be stored in "ldap_sip_cc_prefix_attrib" and
+   "ldap_sip_lac_prefix_attrib" single-valued attributes. They should
+   resemble standard PSTN Country and Area prefixes (they should be choosen
+   in accordance with ITU-T documents). In example one can enter "49" for
+   default country code (Germany) and "30" for default area code (Berlin).
+
+   Meaning of the parameter is as follows:
+
+     * mode - selects mode of operation, can be either "cc" or "cclac".
+
+        "cc": only Country Code will be prepended provided that user dialed
+              number beginning with "0" - here we assume that he entered
+              Local Area Code
+
+        "cclac": both Country Code and Local Area Code will be prepended, provided
+              that user dialed number without any "0" at the beginning -
+              here we assume that he entered local number without Local Area Code
+
+   In case of success function returns RESULT_YES (value "1"). Otherwise
+   it returns RESULT_NO (value "-1").
+
+   Example 1-4-7. ldap_prefixes_lookup() usage
+      SIP account 223345@somedomain has default Country Code set to "49" and
+      Local Area Code set to "30".
+
+      I.) User 223345 dials "041234567" (Request-URI "041234567@somedomain")
+          Function will replace Request-URI with "004941234567@somedomain"
+
+      II.) User 223345 dials "1234567" (Request-URI "1234567@somedomain")
+          Function will replace Request-URI with "0049301234567@somedomain"
+
+      ...
+      if( uri =~ "^sip:0" ) {
+         if( uri =~ "^sip:00" ) {
+            ...
+         } else {
+            if( !ldap_prefixes_lookup( "cc" ) ) {
+               # Country code has not been rewritten. Forward to Request-URI as it is
+               t_relay();
+               break;
+            };
+         };
+      };
+      ...
+
+
+
+     _________________________________________________________
+
+2. Developer's Guide
+
+   To be done.
+
+
+
+     _________________________________________________________
+
+3. Frequently Asked Questions
+
+3.1. Where can I find more about SER?
+
+   Take a look at http://iptel.org/ser and http://www.openser.org
+     _________________________________________________________
+
+
+3.2. Where can I post question about this module?
+
+   In the webpages above there is access to mailing list. Use the users
+   list for normal user support, use the dev  list for development
+   questions (bugs, fixes, etc). 
+     _________________________________________________________
+
+
+3.3. How can I report a bug?
+
+   At the dev lists on the above webpages, and also at: http://bugs.sip-router.org
+     _________________________________________________________
+
+
+3.4. I am not happy with this README ... Now what?
+
+   Three things:
+   1 - Complain to the maintainer
+   2 - Contribute yourself with your acquired knowledge. It is welcome.
+

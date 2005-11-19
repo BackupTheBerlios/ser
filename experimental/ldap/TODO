@@ -1,0 +1,61 @@
+
+LDAP authorization and group membership module
+
+Mantainer:  Arek Bekiersz
+Email:      arek@perceval.net
+
+WARNING:    This module is experimental and may crash SER
+            or create unexpected results. You use the module
+            at your own risk. Please submit bugs at
+            http://bugs.sip-router.org/
+
+Copyright (C) 2005 Arek Bekiersz
+Parts of the code copyright (C) 2004 Swiss Federal Institute of Technology (ETH Zurich)
+Parts of the code copyright (C) 2004 Marcel Baur <baur@ethworld.ethz.ch>
+
+
+TO DO LIST:
+-----------
+
+* DATE:        2005-11-10
+  FUNCTION:    ldap_is_user_in()
+  PROPOSITION: Correct group handling. Store group members' DNs inside 'groupOfNames'
+               or 'groupOfUniqueNames' objects.
+  CURRENTLY:   Group membership is stored in multivalued, object-specific
+               attribute, containing group name that object is a member of.
+  NOTES:       1. According to Greger V.Teigre there is an issue with
+               groupOfNames. Some LDAP servers do not have built-in functions
+               for efficiently checking group membership (i.e. OpenLDAP). We will
+               have to make sure that the future implementation of group check
+               algorithm will work across LDAP servers.
+               2. We could experience schema violations when using
+               empty 'groupOfNames' (without any 'member' attribute value, which
+               may happen if group has no members). This attribute is
+               mandatory according to schemas. However it is perfectly possible
+               to enter empty value inside 'member' attribute'.
+
+* DATE:        2005-11-10
+  FUNCTION:    ldap_proxy_authorize(), ldap_www_authorize()
+  PROPOSITION: Support for hashed LDAP passwords. MD5 should be supported in first place.
+  CURRENTLY:   Only plain text passwords stored in LDAP are supported.
+
+
+* DATE:        2005-11-17
+  FUNCTION:    all functions
+  PROPOSITION: Test possibility of using SER native memory allocation routines (i.e. pkg_malloc())
+  CURRENTLY:   Standard calloc() is used in some functions.
+
+
+* DATE:        2005-11-19
+  FUNCTION:    all functions
+  PROPOSITION: Decide whether 'ldap' module should be splitted into
+               'auth_ldap'and 'group_ldap'
+  CURRENTLY:   Both authorization and group membership functions are in one
+               module.
+
+
+
+
+DONE:
+-----
+
