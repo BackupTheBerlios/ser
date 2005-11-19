@@ -1,5 +1,5 @@
 /*
- * $Id: notify.c,v 1.11 2005/11/17 03:50:52 sobomax Exp $
+ * $Id: notify.c,v 1.12 2005/11/19 19:05:04 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,7 +42,7 @@ void notify_watchers(struct urecord* _r, ucontact_t *_c, int state)
        
 	n = _r->watchers;
         while(n) {
-		n->cb(&_r->aor, &_c->c, state, n->data);
+		n->cb(&_r->uid, &_c->c, state, n->data);
 		n = n->next;
 	}
 }
@@ -66,7 +66,7 @@ int add_watcher(struct urecord* _r, notcb_t _c, void* _d)
 
 	c = _r->contacts;
 	while (c) {
-		ptr->cb(&_r->aor, &c->c, PRES_ONLINE, ptr->data);
+		ptr->cb(&_r->uid, &c->c, PRES_ONLINE, ptr->data);
 		c = c->next;
 	}
 	return 0;

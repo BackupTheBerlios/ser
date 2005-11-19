@@ -1,6 +1,6 @@
 /*
  *
- * $Id: ul_fifo.h,v 1.9 2004/08/24 09:00:47 janakj Exp $
+ * $Id: ul_fifo.h,v 1.10 2005/11/19 19:05:04 janakj Exp $
  *
  *
  *
@@ -43,7 +43,7 @@
 
 /* buffer dimensions */
 #define MAX_TABLE 128
-#define MAX_USER 256
+#define MAX_UID 256
 
 int init_ul_fifo(void);
 

@@ -1,5 +1,5 @@
 /*
- * $Id: notify.h,v 1.7 2004/08/24 09:00:46 janakj Exp $
+ * $Id: notify.h,v 1.8 2005/11/19 19:05:04 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -45,7 +45,7 @@ typedef enum pres_state {
 	PRES_ONLINE
 } pres_state_t;
 
-typedef void (*notcb_t)(str* _user, str* _contact, pres_state_t _p, void* _d);
+typedef void (*notcb_t)(str* uid, str* _contact, pres_state_t _p, void* _d);
 
 typedef int (*register_watcher_t)(str* _f, str* _t, notcb_t _c, void* _data);
 typedef int (*unregister_watcher_t)(str* _f, str* _t, notcb_t _c, void* _data);
@@ -63,9 +63,9 @@ int add_watcher(struct urecord* _r, notcb_t _c, void* _d);
 
 int remove_watcher(struct urecord* _r, notcb_t _c, void* _d);
 
-int register_watcher(str* _d, str* _a, notcb_t _c, void* _data);
+int register_watcher(str* _d, str* uid, notcb_t _c, void* _data);
 
-int unregister_watcher(str* _d, str* _a, notcb_t _c, void* _data);
+int unregister_watcher(str* _d, str* uid, notcb_t _c, void* _data);
 
 int post_script(struct sip_msg* _m, void* param);
 

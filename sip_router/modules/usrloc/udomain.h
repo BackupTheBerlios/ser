@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.h,v 1.11 2004/08/24 09:00:46 janakj Exp $ 
+ * $Id: udomain.h,v 1.12 2005/11/19 19:05:04 janakj Exp $ 
  *
  * Usrloc domain structure
  *
@@ -106,7 +106,7 @@ int timer_udomain(udomain_t* _d);
 /*
  * Insert record into domain
  */
-int mem_insert_urecord(udomain_t* _d, str* _aor, struct urecord** _r);
+int mem_insert_urecord(udomain_t* _d, str* _uid, struct urecord** _r);
 
 
 /*
@@ -135,22 +135,22 @@ void unlock_udomain(udomain_t* _d);
 /*
  * Create and insert a new record
  */
-typedef int (*insert_urecord_t)(udomain_t* _d, str* _aor, struct urecord** _r);
-int insert_urecord(udomain_t* _d, str* _aor, struct urecord** _r);
+typedef int (*insert_urecord_t)(udomain_t* _d, str* _uid, struct urecord** _r);
+int insert_urecord(udomain_t* _d, str* _uid, struct urecord** _r);
 
 
 /*
  * Obtain a urecord pointer if the urecord exists in domain
  */
-typedef int  (*get_urecord_t)(udomain_t* _d, str* _a, struct urecord** _r);
-int get_urecord(udomain_t* _d, str* _aor, struct urecord** _r);
+typedef int  (*get_urecord_t)(udomain_t* _d, str* _uid, struct urecord** _r);
+int get_urecord(udomain_t* _d, str* _uid, struct urecord** _r);
 
 
 /*
  * Delete a urecord from domain
  */
-typedef int  (*delete_urecord_t)(udomain_t* _d, str* _a);
-int delete_urecord(udomain_t* _d, str* _aor);
+typedef int  (*delete_urecord_t)(udomain_t* _d, str* _uid);
+int delete_urecord(udomain_t* _d, str* _uid);
 
 
 #endif /* UDOMAIN_H */
