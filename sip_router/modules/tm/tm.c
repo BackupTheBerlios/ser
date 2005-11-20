@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.123 2005/10/26 07:14:54 kubartv Exp $
+ * $Id: tm.c,v 1.124 2005/11/20 23:44:39 janakj Exp $
  *
  * TM module
  *
@@ -484,6 +484,7 @@ static int mod_init(void)
 		return -1;
 	}
 
+	tm_init = 1;
 	return 0;
 }
 

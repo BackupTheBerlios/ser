@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.22 2005/10/26 07:14:54 kubartv Exp $
+ * $Id: tm_load.h,v 1.23 2005/11/20 23:44:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -102,6 +102,7 @@ struct tm_binds {
 	enum route_mode*   route_mode;
 };
 
+extern int tm_init;
 
 typedef int(*load_tm_f)( struct tm_binds *tmb );
 int load_tm( struct tm_binds *tmb);

@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.22 2005/10/26 07:14:54 kubartv Exp $
+ * $Id: tm_load.c,v 1.23 2005/11/20 23:44:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -38,8 +38,16 @@
 
 #define LOAD_ERROR "ERROR: tm_bind: TM module function "
 
+int tm_init = 0;
+
 int load_tm( struct tm_binds *tmb)
 {
+	if (!tm_init) {
+		LOG(L_ERR, "tm:load_tm: Module not initialized yet, make sure that all modules that need"
+		    " tm module are loaded before tm in the configuration file\n");
+		return -1;
+	}
+
 	if (!( tmb->register_tmcb=(register_tmcb_f) 
 		find_export("register_tmcb", NO_SCRIPT, 0)) ) {
 		LOG(L_ERR, LOAD_ERROR "'register_tmcb' not found\n");
