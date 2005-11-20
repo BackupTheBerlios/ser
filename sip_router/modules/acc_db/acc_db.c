@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_db.c,v 1.2 2005/11/17 03:50:06 sobomax Exp $
+ * $Id: acc_db.c,v 1.3 2005/11/20 23:56:59 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -45,6 +45,7 @@
 #include "../../usr_avp.h"
 #include "../tm/tm_load.h"
 #include "../../db/db.h"
+#include "../../id.h"
 
 /*
  * TODO:
@@ -646,7 +647,9 @@ static int fmt2strar(char *fmt,             /* what would you like to account ? 
 			break;
 
 		case 'I': /* from_uid */
-			vals[cnt].nul = 1;
+			if (get_from_uid(&vals[cnt].val.str_val, rq) < 0) {
+				vals[cnt].nul = 1;
+			}
 			break;
 
 		case 'M': /* from_did */
@@ -674,7 +677,9 @@ static int fmt2strar(char *fmt,             /* what would you like to account ? 
 			break;
 
 		case 'U': /* to_uid */
-			vals[cnt].nul = 1;
+			if (get_to_uid(&vals[cnt].val.str_val, rq) < 0) {
+				vals[cnt].nul = 1;
+			}
 			break;
 
 		case 'X': /* response_timestamp */

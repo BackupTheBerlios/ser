@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_syslog.c,v 1.2 2005/11/17 03:50:06 sobomax Exp $
+ * $Id: acc_syslog.c,v 1.3 2005/11/20 23:56:59 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -43,6 +43,7 @@
 #include "../../parser/parse_from.h"
 #include "../../parser/digest/digest.h"
 #include "../../usr_avp.h"
+#include "../../id.h"
 
 #include "../tm/tm_load.h"
 
@@ -382,7 +383,7 @@ static int fmt2strar(char *fmt,             /* what would you like to account ? 
 	int cnt, tl, al;
 	struct to_body* from, *pto;
 	static str mycode, flags, tm_s, rqtm_s, src_ip, src_port;
-	str *cr;
+	str *cr, to_uid, from_uid;
 	struct cseq_body *cseq;
 	char* p;
 
@@ -505,7 +506,11 @@ static int fmt2strar(char *fmt,             /* what would you like to account ? 
 			break;
 
 		case 'I': /* from_uid */
-			val_arr[cnt] = &na;
+			if (get_from_uid(&from_uid, rq) < 0) {
+				val_arr[cnt] = &na;
+			} else {
+				val_arr[cnt] = &from_uid;
+			}
 			ATR(FROMUID);
 			break;
 
@@ -545,7 +550,11 @@ static int fmt2strar(char *fmt,             /* what would you like to account ? 
 			break;
 
 		case 'U': /* to_uid */
-			val_arr[cnt] = &na;
+			if (get_to_uid(&to_uid, rq) < 0) {
+				val_arr[cnt] = &na;
+			} else {
+				val_arr[cnt] = &to_uid;
+			}
 			ATR(TOUID);
 			break;
 
