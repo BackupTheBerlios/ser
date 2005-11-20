@@ -1,5 +1,5 @@
 /*
- * $Id: id.h,v 1.1 2005/11/19 17:05:03 janakj Exp $
+ * $Id: id.h,v 1.2 2005/11/20 23:55:05 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -31,6 +31,7 @@
 
 #include "str.h"
 #include "usr_avp.h"
+#include "parser/msg_parser.h"
 
 
 /*
@@ -40,9 +41,9 @@ void set_from_uid(str* uid);
 
 
 /*
- * Set From UID
+ * Get From UID
  */
-int get_from_uid(str* uid);
+int get_from_uid(str* uid, struct sip_msg* msg);
 
 /*
  * Set To UID
@@ -51,15 +52,15 @@ void set_to_uid(str* uid);
 
 
 /*
- * Set To UID
+ * Ge To UID
  */
-int set_to_uid(str* uid);
+int get_to_uid(str* uid, struct sip_msg* msg);
 
 
 /*
  * Return the current domain id
  */
-int get_did(str* did);
+int get_did(str* did, struct sip_msg* msg);
 
 
 #endif /* _ID_H */
