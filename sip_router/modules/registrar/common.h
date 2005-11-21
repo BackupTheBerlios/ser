@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.10 2004/08/24 09:00:37 janakj Exp $
+ * $Id: common.h,v 1.11 2005/11/21 00:10:29 janakj Exp $
  *
  * Common stuff
  *
@@ -32,12 +32,5 @@
 #define COMMON_H
 
 #include "../../str.h"
-
-
-/*
- * Extract Address Of Record
- */
-int extract_aor(str* _uri, str* _a);
-
 
 #endif /* COMMON_H */
