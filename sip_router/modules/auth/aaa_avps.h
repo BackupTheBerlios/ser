@@ -1,5 +1,5 @@
 /*
- * $Id: aaa_avps.h,v 1.1 2005/01/31 17:52:12 janakj Exp $
+ * $Id: aaa_avps.h,v 1.2 2005/11/21 00:00:30 janakj Exp $
  *
  * Common functions for Digest Authentication and Accounting Modules
  *
@@ -38,7 +38,7 @@
 #include <string.h>
 
 /*
- * Parse list of tokens separated by some char and put each tocken
+ * Parse list of tokens separated by some char and put each token
  * into result array. Caller frees result array!
  */
 static inline int
