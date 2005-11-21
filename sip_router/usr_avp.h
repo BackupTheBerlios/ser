@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.12 2005/11/19 16:51:51 janakj Exp $
+ * $Id: usr_avp.h,v 1.13 2005/11/21 16:40:18 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -62,6 +62,7 @@
 #define AVP_FR_TIMER     "fr_timer"      /* Value of final response timer */
 #define AVP_FR_INV_TIMER "fr_inv_timer"  /* Value of final response invite timer */
 #define AVP_RPID         "rpid"          /* Remote-Party-ID */
+#define AVP_GFLAGS        "gflags"       /* global flags */
 
 
 struct str_int_data {
