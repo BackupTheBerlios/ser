@@ -1,5 +1,5 @@
 /*
- * $Id: fifo.h,v 1.2 2003/03/16 18:01:21 janakj Exp $
+ * $Id: fifo.h,v 1.3 2005/11/21 16:43:14 janakj Exp $
  *
  * Header file for domain fifo functions
  *
@@ -36,8 +36,7 @@
 #define DOMAIN_DUMP "domain_dump"
 
 
-int init_domain_fifo( void );
-int reload_domain_table( void );
-
+int init_domain_fifo(void);
+int reload_domain_table(void);
 
 #endif
