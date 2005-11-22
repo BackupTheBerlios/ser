@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.35 2005/11/17 03:50:45 sobomax Exp $
+ * $Id: subscribe.c,v 1.36 2005/11/22 13:18:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -122,12 +122,12 @@ static int extract_plain_uri(str* _uri)
 		return -1;
 	}
 	
-	_uri->s = puri.user.s;
+	/* _uri->s = puri.user.s;
 	if ((!_uri->s) || (puri.user.len < 1)) {
 		_uri->s = puri.host.s;
 		_uri->len = puri.host.len;
 		return -1;
-	}
+	}*/
 	_uri->len = puri.host.s + puri.host.len - _uri->s;
 	return 0;
 }

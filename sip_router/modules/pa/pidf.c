@@ -1,7 +1,7 @@
 /*
  * Presence Agent, PIDF document support
  *
- * $Id: pidf.c,v 1.20 2005/09/14 15:07:09 kubartv Exp $
+ * $Id: pidf.c,v 1.21 2005/11/22 13:18:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -63,7 +63,7 @@
 #define DOCTYPE "<!DOCTYPE presence PUBLIC \"" PUBLIC_ID "\" \"" PIDF_DTD "\">"
 #define DOCTYPE_L (sizeof(DOCTYPE) - 1)
 
-#define PRESENCE_START "<presence xmlns=\"urn:ietf:params:xml:ns:pidf\" entity=\"sip:"
+#define PRESENCE_START "<presence xmlns=\"urn:ietf:params:xml:ns:pidf\" entity=\""
 #define PRESENCE_START_L (sizeof(PRESENCE_START) - 1)
 
 #define PRESENCE_END "\">"

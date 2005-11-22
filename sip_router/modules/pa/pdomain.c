@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.18 2005/11/14 12:35:01 kubartv Exp $
+ * $Id: pdomain.c,v 1.19 2005/11/22 13:18:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -256,7 +256,7 @@ void add_presentity(pdomain_t* _d, struct presentity* _p)
 
 	slot_add(&_d->table[sl], _p, &_d->first, &_d->last);
 
-	_d->reg(&_p->uri, &_p->uri, (void*)callback, _p);
+	_d->reg(&_p->uri, &_p->uuid, (void*)callback, _p);
 	/* LOG(L_ERR, "registering callback to %.*s, %p\n", _p->uri.len, _p->uri.s,_p); */
 }
 
