@@ -1,5 +1,5 @@
 /*
- * $Id: id.h,v 1.2 2005/11/20 23:55:05 janakj Exp $
+ * $Id: id.h,v 1.3 2005/11/24 15:04:41 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -58,9 +58,15 @@ int get_to_uid(str* uid, struct sip_msg* msg);
 
 
 /*
- * Return the current domain id
+ * Return current To domain id
  */
-int get_did(str* did, struct sip_msg* msg);
+int get_to_did(str* did, struct sip_msg* msg);
+
+
+/*
+ * Return current From domain id
+ */
+int get_from_did(str* did, struct sip_msg* msg);
 
 
 #endif /* _ID_H */
