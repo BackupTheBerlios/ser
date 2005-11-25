@@ -1,5 +1,5 @@
 /**
- * $Id: dispatcher.c,v 1.5 2005/10/11 16:51:22 janakj Exp $
+ * $Id: dispatcher.c,v 1.6 2005/11/25 16:54:39 ullstar Exp $
  *
  * dispatcher module -- stateless load balancing
  *
@@ -64,7 +64,7 @@ static int w_ds_select_dst(struct sip_msg*, char*, char*);
 void destroy(void);
 
 static cmd_export_t cmds[]={
-	{"ds_select_dst", w_ds_select_dst, 2, fixup_str_12, REQUEST_ROUTE},
+	{"ds_select_dst", w_ds_select_dst, 2, fixup_int_12, REQUEST_ROUTE},
 	{0,0,0,0,0}
 };
 
