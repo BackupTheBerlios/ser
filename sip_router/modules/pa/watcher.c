@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.27 2005/11/22 13:18:26 kubartv Exp $
+ * $Id: watcher.c,v 1.28 2005/11/29 15:48:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -108,7 +108,7 @@ int str2event_package(const char *epname)
 	return -1; /* unsupported */
 }
 
-/* returns 1 if package supported by PA */
+/* returns 0 if package supported by PA */
 int verify_event_package(int et)
 {
 	switch (et) {

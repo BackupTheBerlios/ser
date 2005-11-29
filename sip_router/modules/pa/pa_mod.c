@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.35 2005/11/24 15:34:04 kubartv Exp $
+ * $Id: pa_mod.c,v 1.36 2005/11/29 15:48:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -394,7 +394,7 @@ static int pa_child_init(int _rank)
 
 static void pa_destroy(void)
 {
-	TRACE_LOG("PA module cleanup\n");
+	DEBUG_LOG("PA module cleanup\n");
 	DEBUG_LOG("destroying PA module\n");
 	DEBUG_LOG(" ... qsa interface\n");
 	pa_qsa_interface_destroy();

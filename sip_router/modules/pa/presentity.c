@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.31 2005/11/22 13:18:26 kubartv Exp $
+ * $Id: presentity.c,v 1.32 2005/11/29 15:48:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -146,7 +146,7 @@ int new_presentity_no_wb(struct pdomain *pdomain, str* _uri, presentity_t** _p)
 	*_p = presentity;
 	str_free_content(&uuid);
 
-	LOG(L_DBG, "new_presentity_no_wb=%p for uri=%.*s uuid=%.*s\n", 
+	DEBUG_LOG("new_presentity_no_wb=%p for uri=%.*s uuid=%.*s\n", 
 			presentity, presentity->uri.len, ZSW(presentity->uri.s),
 			presentity->uuid.len, ZSW(presentity->uuid.s));
 
