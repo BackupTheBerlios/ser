@@ -1,5 +1,5 @@
 /*
- * $Id: uac_fifo.c,v 1.14 2005/10/11 11:22:38 janakj Exp $
+ * $Id: uac_fifo.c,v 1.15 2005/11/29 14:48:50 rco Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -568,7 +568,10 @@ static void fifo_callback( struct cell *t, int type, struct tmcb_params *ps )
 	}
 	DBG("DEBUG: fifo_callback successfully completed\n");
 done:
-	shm_free(filename);
+        if (ps->code >= 200) {
+	        /* Do not free if we received provisional reply */
+                shm_free(filename);
+        }
 }
 
 

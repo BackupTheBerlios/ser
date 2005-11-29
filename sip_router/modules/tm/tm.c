@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.124 2005/11/20 23:44:39 janakj Exp $
+ * $Id: tm.c,v 1.125 2005/11/29 14:48:50 rco Exp $
  *
  * TM module
  *
@@ -275,6 +275,7 @@ static param_export_t params[]={
 	{"fr_timer_avp",        STR_PARAM, &fr_timer_param                       },
 	{"fr_inv_timer_avp",    STR_PARAM, &fr_inv_timer_param                   },
 	{"tw_append",           STR_PARAM|USE_FUNC_PARAM, (void*)parse_tw_append },
+        {"pass_provisional_replies", INT_PARAM, &pass_provisional_replies        },
 	{0,0,0}
 };
 

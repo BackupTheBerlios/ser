@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.110 2005/11/17 13:20:25 janakj Exp $
+ * $Id: t_reply.c,v 1.111 2005/11/29 14:48:50 rco Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -98,6 +98,7 @@
 #include "t_fwd.h"
 #include "fix_lumps.h"
 #include "t_stats.h"
+#include "uac.h"
 
 
 /* restart fr timer on each provisional reply, default yes */
@@ -1213,6 +1214,15 @@ enum rps local_reply( struct cell *t, struct sip_msg *p_msg, int branch,
 		}
 	}
 	UNLOCK_REPLIES(t);
+ 
+        if (local_winner >= 0 && pass_provisional_replies && winning_code < 200) {
+                if (!totag_retr && has_tran_tmcbs(t, TMCB_LOCAL_RESPONSE_OUT) ) {
+                        DBG("DEBUG: Passing provisional reply %d to FIFO application\n", winning_code);
+                        run_trans_callbacks( TMCB_LOCAL_RESPONSE_OUT, t, 0,
+                                winning_msg, winning_code);
+                }
+        }
+ 
 	if (local_winner>=0 && winning_code>=200 ) {
 		DBG("DEBUG: local transaction completed\n");
 		if (!totag_retr) {

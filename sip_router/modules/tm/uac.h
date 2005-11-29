@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.21 2004/08/24 09:00:44 janakj Exp $
+ * $Id: uac.h,v 1.22 2005/11/29 14:48:50 rco Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -41,7 +41,7 @@
 #define DEFAULT_CSEQ 10 /* Default CSeq number */
 
 extern char *uac_from;  /* UAC From parameter */
-
+extern int pass_provisional_replies; /* Pass provisional replies to fifo applications */
 
 /*
  * Function prototypes
