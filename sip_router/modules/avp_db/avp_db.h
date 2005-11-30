@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.h,v 1.1 2005/06/14 14:32:02 kozlik Exp $
+ * $Id: avp_db.h,v 1.2 2005/11/30 17:05:11 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -27,16 +27,5 @@
 
 #include "../../db/db.h"
 
-#define AVP_LIST_RELOAD "avp_list_reload"
- 
-extern db_con_t* db_handle;
-extern db_func_t dbf;
-
-extern char* db_list_table;
-extern char* attr_name_column;
-extern char* attr_type_column;
-extern char* attr_dval_column;
-
-
-int avp_db_init();
-void avp_db_close();
+extern db_con_t* con;
+extern db_func_t db;
