@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.20 2005/11/16 09:00:20 janakj Exp $
+ * $Id: sterman.c,v 1.21 2005/11/30 16:55:44 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -85,8 +85,8 @@ static int generate_avps(VALUE_PAIR* received)
 	VALUE_PAIR *vp;
 
 	vp = received;
-	name.s = &name_str;
-	val.s = &val_str;
+	name.s = name_str;
+	val.s = val_str;
 
 	while ((vp = rc_avpair_get(vp, attrs[A_SER_ATTRS].v, 0))) {
 		attr_name_value(vp, &name_str, &val_str);

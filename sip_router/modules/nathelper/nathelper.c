@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.88 2005/10/11 16:51:21 janakj Exp $
+/* $Id: nathelper.c,v 1.89 2005/11/30 16:55:44 janakj Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -2077,7 +2077,7 @@ fix_nated_register_f(struct sip_msg* msg, char* str1, char* str2)
 		return -1;
 	}
 
-	val.s = &uri;
+	val.s = uri;
 
 	rcv_avp.n=rcv_avp_no;
 	if (add_avp(AVP_VAL_STR, rcv_avp, val) < 0) {

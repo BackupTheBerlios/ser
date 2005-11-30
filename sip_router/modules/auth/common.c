@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.17 2005/11/21 00:00:23 janakj Exp $
+ * $Id: common.c,v 1.18 2005/11/30 16:51:30 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -58,9 +58,9 @@ int get_realm(struct sip_msg* msg, hdr_types_t hftype, str* realm)
 	str u;
 	static str n = STR_STATIC_INIT(AVP_REALM);
 	
-	name.s = &n;
+	name.s = n;
 	if (search_first_avp(AVP_NAME_STR, name, &val, 0)) {
-		*realm = *val.s;
+		*realm = val.s;
 		return 0;
 	}
 

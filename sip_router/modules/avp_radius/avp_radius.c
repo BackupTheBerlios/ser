@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.8 2005/11/17 12:37:26 janakj Exp $
+ * $Id: avp_radius.c,v 1.9 2005/11/30 16:55:44 janakj Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -194,8 +194,8 @@ static int load_avp_user(struct sip_msg* msg, str* prefix, load_avp_param_t type
 	send = received = 0;
 	user_domain.s = 0;
 
-	name.s = &buffer;
-	val.s = &val_str;
+	name.s = buffer;
+	val.s = val_str;
 
 	switch(type) {
 	case LOAD_CALLER:
