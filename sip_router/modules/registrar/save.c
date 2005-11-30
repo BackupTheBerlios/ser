@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.44 2005/11/21 00:10:29 janakj Exp $
+ * $Id: save.c,v 1.45 2005/11/30 16:59:17 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -213,7 +213,7 @@ static inline int insert(struct sip_msg* _m, contact_t* _c, udomain_t* _d, str* 
 		if (_c->received) {
 			recv = &_c->received->body;
 		} else if (search_first_avp(0, rcv_avp, &val, 0)) {
-			recv = val.s;
+			recv = &val.s;
 		} else {
 			recv = 0;
 		}
@@ -367,7 +367,7 @@ static inline int update(struct sip_msg* _m, urecord_t* _r, contact_t* _c, str* 
 				if (_c->received) {
 					recv = &_c->received->body;
 				} else if (search_first_avp(0, rcv_avp, &val, 0)) {
-					recv = val.s;
+					recv = &val.s;
 				} else {
 					recv = 0;
 				}
@@ -417,7 +417,7 @@ static inline int update(struct sip_msg* _m, urecord_t* _r, contact_t* _c, str* 
 				if (_c->received) {
 					recv = &_c->received->body;
 				} else if (search_first_avp(0, rcv_avp, &val, 0)) {
-					recv = val.s;
+					recv = &val.s;
 				} else {
 					recv = 0;
 				}
