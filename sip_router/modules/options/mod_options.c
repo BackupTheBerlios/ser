@@ -1,5 +1,5 @@
 /*
- * $Id: mod_options.c,v 1.3 2004/08/24 08:58:32 janakj Exp $
+ * $Id: mod_options.c,v 1.4 2005/11/30 17:01:50 janakj Exp $
  *
  * Options Reply Module
  *
@@ -31,6 +31,7 @@
  * 2003-11-11: build_lump_rpl() removed, add_lump_rpl() has flags (bogdan)
  */
 
+#include <stdlib.h>
 #include "mod_options.h"
 #include "../../sr_module.h"
 #include "../../mem/mem.h"
