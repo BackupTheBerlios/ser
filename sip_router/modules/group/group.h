@@ -1,5 +1,5 @@
 /*
- * $Id: group.h,v 1.3 2004/08/24 08:58:29 janakj Exp $
+ * $Id: group.h,v 1.4 2005/11/30 17:06:47 janakj Exp $
  *
  * Group membership
  *
@@ -42,7 +42,7 @@
 /*
  * Check if username in specified header field is in a table
  */
-int is_user_in(struct sip_msg* _msg, char* _hf, char* _grp);
+int is_user_in(struct sip_msg* _msg, char* _id, char* _grp);
 
 
 int group_db_init(char* db_url);
