@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.203 2005/11/17 01:24:03 sobomax Exp $
+ * $Id: main.c,v 1.204 2005/11/30 16:26:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -126,7 +126,7 @@
 #include "tls/tls_init.h"
 #endif
 #endif
-
+#include "usr_avp.h"
 
 
 #include "stats.h"
@@ -136,7 +136,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.203 2005/11/17 01:24:03 sobomax Exp $";
+static char id[]="@(#) $Id: main.c,v 1.204 2005/11/30 16:26:50 janakj Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1568,6 +1568,8 @@ try_again:
 		goto error;
 	}
 	
+	if (init_avps()<0) goto error;
+
 #ifdef USE_TCP
 	if (!tcp_disable){
 		/*init tcp*/

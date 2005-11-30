@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.9 2004/08/24 08:45:10 janakj Exp $
+ * $Id: dprint.h,v 1.10 2005/11/30 16:26:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -142,25 +142,25 @@ int str2facility(char *s);
 					else { \
 						switch(lev){ \
 							case L_CRIT: \
-								syslog(LOG_CRIT|log_facility, fmt, ##args); \
+								syslog(LOG_CRIT|log_facility, "CRIT: " fmt, ##args); \
 								break; \
 							case L_ALERT: \
-								syslog(LOG_ALERT|log_facility, fmt, ##args); \
+								syslog(LOG_ALERT|log_facility, "ALERT: " fmt, ##args); \
 								break; \
 							case L_ERR: \
-								syslog(LOG_ERR|log_facility, fmt, ##args); \
+								syslog(LOG_ERR|log_facility, "ERROR: " fmt, ##args); \
 								break; \
 							case L_WARN: \
-								syslog(LOG_WARNING|log_facility, fmt, ##args);\
+								syslog(LOG_WARNING|log_facility, "WARNING: " fmt, ##args);\
 								break; \
 							case L_NOTICE: \
-								syslog(LOG_NOTICE|log_facility, fmt, ##args); \
+								syslog(LOG_NOTICE|log_facility, "NOTICE: " fmt, ##args); \
 								break; \
 							case L_INFO: \
-								syslog(LOG_INFO|log_facility, fmt, ##args); \
+								syslog(LOG_INFO|log_facility, "INFO: " fmt, ##args); \
 								break; \
 							case L_DBG: \
-								syslog(LOG_DEBUG|log_facility, fmt, ##args); \
+								syslog(LOG_DEBUG|log_facility, "DEBUG: " fmt, ##args); \
 								break; \
 						} \
 					} \

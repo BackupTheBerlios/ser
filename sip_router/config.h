@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.64 2005/11/29 19:28:13 andrei Exp $
+ *  $Id: config.h,v 1.65 2005/11/30 16:26:50 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -119,10 +119,10 @@
 #define SRV_MAX_PREFIX_LEN SRV_TLS_PREFIX_LEN
 
 /*used only if PKG_MALLOC is defined*/
-#define PKG_MEM_POOL_SIZE 1024*1024
+#define PKG_MEM_POOL_SIZE 4*1024*1024
 
 /*used if SH_MEM is defined*/
-#define SHM_MEM_SIZE 32
+#define SHM_MEM_SIZE 128
 
 #define TIMER_TICK 1
 
