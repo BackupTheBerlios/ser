@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.28 2005/11/29 15:48:59 kubartv Exp $
+ * $Id: watcher.c,v 1.29 2005/11/30 15:43:17 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -797,7 +797,7 @@ int winfo_add_internal_watcher(str* _b, int _l, internal_pa_subscription_t *iwat
 	sprintf(id, "%p", iwatcher);
 	add_string(WATCHER_START, WATCHER_START_L);
 	add_string(STATUS_START, STATUS_START_L);
-	add_str(watcher_status_names[0]); /* TODO: authorization and status remeber ! */
+	add_str(watcher_status_names[iwatcher->status]);
 	add_string(EVENT_START, EVENT_START_L);
 	add_str(watcher_event_names[0]); /* TODO: auth */
 	add_string(SID_START, SID_START_L);

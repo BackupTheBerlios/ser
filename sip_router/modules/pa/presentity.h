@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.21 2005/11/22 13:18:26 kubartv Exp $
+ * $Id: presentity.h,v 1.22 2005/11/30 15:43:17 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -155,6 +155,11 @@ int new_presentity(struct pdomain *pdomain, str* _uri, presentity_t** _p);
  * Free all memory associated with a presentity
  */
 void free_presentity(presentity_t* _p);
+
+/*
+ * Free all memory associated with a presentity and remove it from DB
+ */
+void release_presentity(presentity_t* _p);
 
 /*
  * Sync presentity to db if db is in use

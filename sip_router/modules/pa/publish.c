@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.24 2005/11/17 03:50:45 sobomax Exp $
+ * $Id: publish.c,v 1.25 2005/11/30 15:43:17 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -739,7 +739,6 @@ int fifo_pa_presence_contact(FILE *fifo, char *response_file)
      find_presentity(pdomain, &p_uri, &presentity);
      if (!presentity) {
 	  new_presentity(pdomain, &p_uri, &presentity);
-	  add_presentity(pdomain, presentity);
 	  changed = 1;
      }
      if (!presentity) {
@@ -870,7 +869,6 @@ int fifo_pa_location(FILE *fifo, char *response_file)
      find_presentity(pdomain, &p_uri, &presentity);
      if (!presentity) {
 	  new_presentity(pdomain, &p_uri, &presentity);
-	  add_presentity(pdomain, presentity);
 	  changed = 1;
      }
      if (!presentity) {
@@ -1004,7 +1002,6 @@ int fifo_pa_location_contact(FILE *fifo, char *response_file)
      find_presentity(pdomain, &p_uri, &presentity);
      if (!presentity) {
 	  new_presentity(pdomain, &p_uri, &presentity);
-	  add_presentity(pdomain, presentity);
 	  changed = 1;
      }
      if (!presentity) {

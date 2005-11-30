@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.38 2005/11/29 15:48:59 kubartv Exp $
+ * $Id: subscribe.c,v 1.39 2005/11/30 15:43:17 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -512,12 +512,9 @@ int create_presentity(struct sip_msg* _m, struct pdomain* _d, str* _puri,
 	res = create_watcher(_m, *_p, _w, et, e);
 	if (res != 0) {
 		/* remove presentity from database !!*/
-		db_remove_presentity(*_p);
-		free_presentity(*_p);
+		release_presentity(*_p);
 		return res;
 	}
-
-	add_presentity(_d, *_p);
 
 	return 0;
 }
