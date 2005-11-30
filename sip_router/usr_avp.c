@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.21 2005/11/24 15:03:54 janakj Exp $
+ * $Id: usr_avp.c,v 1.22 2005/11/30 16:09:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -509,7 +509,7 @@ void reset_avps(void)
 }
 
 
-avp_list_t set_avp_list( unsigned short flags, avp_list_t* list )
+avp_list_t* set_avp_list( unsigned short flags, avp_list_t* list )
 {
 	avp_list_t* prev;
 
@@ -534,7 +534,7 @@ avp_list_t set_avp_list( unsigned short flags, avp_list_t* list )
 	        *crt_glist = list;
 	}
 
-	return *prev;
+	return prev;
 }
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.14 2005/11/24 15:03:54 janakj Exp $
+ * $Id: usr_avp.h,v 1.15 2005/11/30 16:09:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -106,10 +106,10 @@ struct search_state {
 };
 
 /* avp aliases structs*/
-struct avp_spec {
+typedef struct avp_spec {
 	int type;
 	int_str name;
-};
+} avp_spec_t;
 
 /* AVP types */
 #define AVP_NAME_STR     (1<<0)
@@ -157,7 +157,7 @@ void get_avp_val(avp_t *avp, int_str *val );
 str* get_avp_name(avp_t *avp);
 
 avp_list_t get_avp_list(unsigned short flags);
-avp_list_t set_avp_list(unsigned short flags, avp_list_t* list);
+avp_list_t* set_avp_list(unsigned short flags, avp_list_t* list);
 
 
 /* global alias functions (manipulation and parsing)*/
