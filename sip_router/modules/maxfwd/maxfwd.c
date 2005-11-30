@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.21 2004/09/03 15:21:22 janakj Exp $
+ * $Id: maxfwd.c,v 1.22 2005/11/30 16:58:19 janakj Exp $
  *
  * MAXFWD module
  *
@@ -59,6 +59,8 @@ static int mod_init(void);
 
 static cmd_export_t cmds[]={
 	{"mf_process_maxfwd_header", w_process_maxfwd_header, 1, 
+		fixup_maxfwd_header, REQUEST_ROUTE},
+	{"process_maxfwd", w_process_maxfwd_header, 1, 
 		fixup_maxfwd_header, REQUEST_ROUTE},
 	{0,0,0,0,0}
 };
