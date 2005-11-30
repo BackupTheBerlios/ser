@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.54 2005/11/19 16:57:54 janakj Exp $
+ *$Id: receive.c,v 1.55 2005/11/30 16:10:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -228,8 +228,7 @@ end:
 	skipped = 0;
 #endif
 	/* free possible loaded avps -bogdan */
-	reset_user_avps();
-	reset_domain_avps();
+	reset_avps();
 	DBG("receive_msg: cleaning up\n");
 	free_sip_msg(msg);
 	pkg_free(msg);
@@ -240,16 +239,14 @@ end:
 error_rpl:
 	/* execute post reply-script callbacks */
 	exec_post_rpl_cb(msg);
-	reset_user_avps();
-	reset_domain_avps();
+	reset_avps();
 	goto error02;
 error_req:
 	DBG("receive_msg: error:...\n");
 	/* execute post request-script callbacks */
 	exec_post_req_cb(msg);
 	/* free possible loaded avps -bogdan */
-	reset_user_avps();
-	reset_domain_avps();
+	reset_avps();
 error02:
 	free_sip_msg(msg);
 	pkg_free(msg);
