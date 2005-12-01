@@ -1,5 +1,5 @@
 /* 
- * $Id: urirad_mod.c,v 1.11 2005/11/15 12:31:56 janakj Exp $ 
+ * $Id: urirad_mod.c,v 1.12 2005/12/01 22:58:11 janakj Exp $ 
  *
  * URI checks using Radius
  *
@@ -98,7 +98,7 @@ static int mod_init(void)
 	DBG("uri_radius - initializing\n");
 
 	memset(attrs, 0, sizeof(attrs));
-	memset(attrs, 0, sizeof(vals));
+	memset(vals, 0, sizeof(vals));
 
 	attrs[A_USER_NAME].n	= "User-Name";
 	attrs[A_SERVICE_TYPE].n	= "Service-Type";

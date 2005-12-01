@@ -1,5 +1,5 @@
 /* 
- * $Id: grouprad_mod.c,v 1.14 2005/11/15 12:29:10 janakj Exp $ 
+ * $Id: grouprad_mod.c,v 1.15 2005/12/01 22:58:11 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -105,7 +105,7 @@ static int mod_init(void)
 	DBG("group_radius - initializing\n");
 
 	memset(attrs, 0, sizeof(attrs));
-	memset(attrs, 0, sizeof(vals));
+	memset(vals, 0, sizeof(vals));
 	attrs[A_SERVICE_TYPE].n	  = "Service-Type";
 	attrs[A_USER_NAME].n	  = "User-Name";
 	attrs[A_SER_GROUP].n      = "SER-Group";

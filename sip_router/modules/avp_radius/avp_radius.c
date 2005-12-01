@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.9 2005/11/30 16:55:44 janakj Exp $
+ * $Id: avp_radius.c,v 1.10 2005/12/01 22:58:11 janakj Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -113,7 +113,7 @@ static int mod_init(void)
         DBG("avp_radius - Initializing\n");
 
 	memset(attrs, 0, sizeof(attrs));
-	memset(attrs, 0, sizeof(vals));
+	memset(vals, 0, sizeof(vals));
 
 	attrs[A_USER_NAME].n	  = "User-Name";
 	attrs[A_SERVICE_TYPE].n	  = "Service-Type";

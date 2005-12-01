@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_radius.c,v 1.3 2005/11/20 23:56:59 janakj Exp $
+ * $Id: acc_radius.c,v 1.4 2005/12/01 22:58:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -797,7 +797,7 @@ static int mod_init(void)
 	}
 
 	memset(attrs, 0, sizeof(attrs));
-	memset(attrs, 0, sizeof(vals));
+	memset(vals, 0, sizeof(vals));
 
 	attrs[A_USER_NAME].n		     = "User-Name";
 	attrs[A_SERVICE_TYPE].n		     = "Service-Type";
