@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.9 2005/11/30 17:05:11 janakj Exp $
+ * $Id: avp_db.c,v 1.10 2005/12/01 10:18:56 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -228,7 +228,7 @@ static int load_attrs(str* uid, int track)
 	}
 	DBG("avp_db:load_attrs: %d user attributes found, %d loaded\n", res->n, n);
 	db.free_result(con, res);
-	return 0;	
+	return 1;
 }
 
 
