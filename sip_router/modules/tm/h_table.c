@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.97 2005/11/17 13:20:26 janakj Exp $
+ * $Id: h_table.c,v 1.98 2005/12/01 10:56:48 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -226,7 +226,7 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 {
 	struct cell* new_cell;
 	int          sip_msg_len;
-	struct usr_avp **old;
+	avp_list_t* old;
 
 	/* allocs a new cell */
 	new_cell = (struct cell*)shm_malloc( sizeof( struct cell ) );
@@ -246,7 +246,7 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 	new_cell->uas.response.my_T=new_cell;
 
 	/* move the current avp list to transaction -bogdan */
-	old = set_user_avp_list( &new_cell->user_avps );
+	old = set_avp_list(AVP_TRACK_FROM | AVP_CLASS_USER,  &new_cell->user_avps );
 	new_cell->user_avps = *old;
 	*old = 0;
 
@@ -283,7 +283,7 @@ error:
 	destroy_avp_list(&new_cell->user_avps);
 	shm_free(new_cell);
 	/* unlink transaction AVP list and link back the global AVP list (bogdan)*/
-	reset_user_avps();
+	reset_avps();
 	return NULL;
 }
 

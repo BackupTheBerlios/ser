@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.54 2005/11/29 14:48:50 rco Exp $
+ * $Id: uac.c,v 1.55 2005/12/01 10:56:48 janakj Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -203,7 +203,7 @@ int t_uac(str* method, str* headers, str* body, dlg_t* dialog,
 
 	/* better reset avp list now - anyhow, it's useless from
 	 * this point (bogdan) */
-	reset_user_avps();
+	reset_avps();
 
 	/* add the callback the the transaction for LOCAL_COMPLETED event */
  
