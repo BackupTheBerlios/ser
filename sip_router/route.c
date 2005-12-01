@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.46 2005/11/30 16:26:50 janakj Exp $
+ * $Id: route.c,v 1.47 2005/12/01 10:18:27 janakj Exp $
  *
  * SIP routing engine
  *
@@ -151,7 +151,7 @@ static int fix_expr(struct expr* exp)
 			}
 			if (exp->r_type==STRING_ST) {
 				int len;
-				if (exp->l.string) len = strlen(exp->r.string);
+				if (exp->r.string) len = strlen(exp->r.string);
 				else len = 0;
 				exp->r.str.s = exp->r.string;
 				exp->r.str.len = len;
