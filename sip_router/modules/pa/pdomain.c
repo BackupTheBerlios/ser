@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.21 2005/11/30 15:43:17 kubartv Exp $
+ * $Id: pdomain.c,v 1.22 2005/12/01 15:22:28 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -212,9 +212,6 @@ void unlock_pdomain(pdomain_t* _d)
 	if (!in_pdomain)
 	     lock_release(&_d->lock);
 }
-
-/* FIXME: this is only temporarily - till this function in core */
-int get_presentity_uuid(str *uuid, const str *uri);
 
 /*
  * Find a presentity in domain

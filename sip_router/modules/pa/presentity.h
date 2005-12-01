@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.22 2005/11/30 15:43:17 kubartv Exp $
+ * $Id: presentity.h,v 1.23 2005/12/01 15:22:28 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -251,6 +251,9 @@ resource_list_t *resource_list_remove(resource_list_t *list, str *uri);
 
 int db_remove_presentity(presentity_t* presentity);
 
+/* helper function - will be removed - FIXME */
+int get_presentity_uuid(str *uuid, const str *uri);
+	
 /*
  * Create a new presentity but no watcher list
  */

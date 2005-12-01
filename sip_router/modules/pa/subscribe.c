@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.39 2005/11/30 15:43:17 kubartv Exp $
+ * $Id: subscribe.c,v 1.40 2005/12/01 15:22:28 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -780,6 +780,10 @@ int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2)
 
 	DEBUG_LOG("handle_subscription about to return 1: w->event_package=%d w->accept=%d p->flags=%x w->flags=%x w=%p\n",
 	    (w ? w->event_package : -1), (w ? w->preferred_mimetype : -1), (p ? p->flags : -1), (w ? w->flags : -1), w);
+
+	/* process and change this presentity and notify watchers */
+	timer_presentity(p);
+	
 	unlock_pdomain(d);
 	return 1;
 	
