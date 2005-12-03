@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.69 2005/11/30 16:14:51 janakj Exp $
+ * $Id: cfg.lex,v 1.70 2005/12/03 18:57:37 janakj Exp $
  *
  * scanner for cfg files
  *
@@ -181,12 +181,12 @@ PLUS	"+"
 MINUS	"-"
 
 /* Attribute specification */
-ATTR_MARK   "$"|"%"|"@"   /* Prefix */
-ATTR_FROM   "from"|"f"    /* Track specification */ 
-ATTR_TO     "to"|"t"      /* Track specification */
-ATTR_USER   "user"|"u"    /* Class specification */
-ATTR_DOMAIN "domain"|"d"  /* Class specification */
-ATTR_GLOBAL "global"|"g"  /* Class specification */
+ATTR_MARK   "$"|"%"|"@"
+ATTR_FROM   "from"|"f"
+ATTR_TO     "to"|"t"
+ATTR_USER   "user"|"u"
+ATTR_DOMAIN "domain"|"d"
+ATTR_GLOBAL "global"|"g"
 
 /* config vars. */
 DEBUG	debug
