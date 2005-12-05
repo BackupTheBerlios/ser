@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.66 2005/11/30 17:31:00 janakj Exp $
+ *  $Id: config.h,v 1.67 2005/12/05 18:29:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -124,7 +124,6 @@
 /*used if SH_MEM is defined*/
 #define SHM_MEM_SIZE 32
 
-#define TIMER_TICK 1
 
 /* dimensioning buckets in q_malloc */
 /* size of the size2bucket table; everything beyond that asks for

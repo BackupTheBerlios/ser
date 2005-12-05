@@ -1,5 +1,5 @@
 /*
- * $Id: error.c,v 1.10 2004/08/24 08:45:10 janakj Exp $
+ * $Id: error.c,v 1.11 2005/12/05 18:29:30 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -109,7 +109,7 @@ int err2reason_phrase(
 
 		case E_OUT_OF_MEM:
 		/* dont disclose lack of mem in release mode */
-#ifdef DEBUG
+#ifdef EXTRA_DEBUG
 			error_txt="Excuse me I ran out of memory";
 			*sip_error=500;
 			break;

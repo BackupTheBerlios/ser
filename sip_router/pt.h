@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.11 2004/11/26 16:27:22 andrei Exp $
+ * $Id: pt.h,v 1.12 2005/12/05 18:29:30 andrei Exp $
  *
  * Process Table
  *
@@ -74,6 +74,9 @@ inline static int process_count()
 		/* timer process */
 		+ 1 /* always, we need it in most cases, and we can't tell here
 			   & now if we don't need it */
+#ifdef USE_SLOW_TIMER
+		+ 1 /* slow timer process */
+#endif
 		/* fifo server */
 		+((fifo==NULL || strlen(fifo)==0) ? 0 : 1 )
 		/* unixsock server*/
