@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.15 2005/11/30 16:09:01 janakj Exp $
+ * $Id: usr_avp.h,v 1.16 2005/12/05 17:32:17 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -138,7 +138,7 @@ int add_avp(unsigned short flags, int_str name, int_str val);
 int add_avp_list(avp_list_t* list, unsigned short flags, int_str name, int_str val);
 
 /* Delete avps with given type and name */
-int delete_avp(unsigned short flags, int_str name);
+void delete_avp(unsigned short flags, int_str name);
 
 /* search functions */
 avp_t *search_first_avp( unsigned short flags, int_str name,

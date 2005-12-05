@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.22 2005/11/30 16:09:01 janakj Exp $
+ * $Id: usr_avp.c,v 1.23 2005/12/05 17:32:17 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -782,7 +782,7 @@ error:
 }
 
 
-int delete_avp(unsigned short flags, int_str name)
+void delete_avp(unsigned short flags, int_str name)
 {
 	struct search_state st;
 	avp_t* avp;

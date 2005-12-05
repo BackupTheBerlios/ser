@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.99 2005/12/01 10:56:48 janakj Exp $
+ * $Id: t_lookup.c,v 1.100 2005/12/05 17:32:18 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -682,7 +682,7 @@ int t_reply_matching( struct sip_msg *p_msg , int *p_branch )
 {
 	struct cell*  p_cell;
 	unsigned int hash_index   = 0;
-	int entry_label  = 0;
+	unsigned int entry_label  = 0;
 	unsigned int branch_id    = 0;
 	char  *hashi, *branchi, *p, *n;
 	int hashl, branchl;

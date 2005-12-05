@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.69 2005/11/30 16:26:50 janakj Exp $
+ * $Id: action.c,v 1.70 2005/12/05 17:32:17 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -693,7 +693,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 			} else if (a->p2_type == ACTION_ST) {
 				flags = a->p1.attr->type;
 				name = a->p1.attr->name;
-				if (&a->p2.data) {
+				if (a->p2.data) {
 					value.n = run_actions((struct action*)a->p2.data, msg);
 				} else {
 					value.n = -1;
