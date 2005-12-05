@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.6 2005/02/28 18:54:42 janakj Exp $
+/* $Id: functions.h,v 1.7 2005/12/05 10:05:35 danp Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -116,9 +116,6 @@ FixContact(struct sip_msg* msg, char* str1, char* str2)
     Bool asymmetric;
 
     if (!getContactURI(msg, &uri, &contact))
-        return -1;
-
-    if (uri.proto != PROTO_UDP && uri.proto != PROTO_NONE)
         return -1;
 
     newip = ip_addr2a(&msg->rcv.src_ip);
