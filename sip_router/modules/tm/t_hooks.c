@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.19 2005/12/01 10:56:48 janakj Exp $
+ * $Id: t_hooks.c,v 1.20 2005/12/05 17:14:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -189,8 +189,8 @@ void run_trans_callbacks( int type , struct cell *trans,
 			params.param = &(cbp->param);
 			cbp->callback( trans, type, &params );
 		}
-	set_avp_list(AVP_CLASS_USER | AVP_TRACK_FROM, backup );
 	}
+	set_avp_list(AVP_CLASS_USER | AVP_TRACK_FROM, backup );
 }
 
 
@@ -216,4 +216,3 @@ void run_reqin_callbacks( struct cell *trans, struct sip_msg *req, int code )
 	}
 	set_avp_list(AVP_CLASS_USER | AVP_TRACK_FROM, backup );
 }
-
