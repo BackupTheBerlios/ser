@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.70 2005/12/03 18:57:37 janakj Exp $
+ * $Id: cfg.lex,v 1.71 2005/12/05 17:01:08 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -371,7 +371,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{AF}	{ count(); yylval.strval=yytext; return AF; }
 <INITIAL>{MYSELF}	{ count(); yylval.strval=yytext; return MYSELF; }
 
-<INITIAL>{DEBUG}	{ count(); yylval.strval=yytext; return DEBUG; }
+<INITIAL>{DEBUG}	{ count(); yylval.strval=yytext; return DEBUG_V; }
 <INITIAL>{FORK}		{ count(); yylval.strval=yytext; return FORK; }
 <INITIAL>{LOGSTDERROR}	{ yylval.strval=yytext; return LOGSTDERROR; }
 <INITIAL>{LOGFACILITY}	{ yylval.strval=yytext; return LOGFACILITY; }

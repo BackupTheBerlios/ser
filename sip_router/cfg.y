@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.94 2005/11/30 16:26:50 janakj Exp $
+ * $Id: cfg.y,v 1.95 2005/12/05 17:01:08 andrei Exp $
  *
  *  cfg grammar
  *
@@ -193,7 +193,7 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token TLS
 
 /* config vars. */
-%token DEBUG
+%token DEBUG_V
 %token FORK
 %token LOGSTDERROR
 %token LOGFACILITY
@@ -406,8 +406,8 @@ id_lst:		phostport		{  $$=$1 ; }
 		;
 
 
-assign_stm:	DEBUG EQUAL NUMBER { debug=$3; }
-		| DEBUG EQUAL error  { yyerror("number  expected"); }
+assign_stm:	DEBUG_V EQUAL NUMBER { debug=$3; }
+		| DEBUG_V EQUAL error  { yyerror("number  expected"); }
 		| FORK  EQUAL NUMBER { dont_fork= ! $3; }
 		| FORK  EQUAL error  { yyerror("boolean value expected"); }
 		| LOGSTDERROR EQUAL NUMBER { if (!config_check) log_stderr=$3; }
