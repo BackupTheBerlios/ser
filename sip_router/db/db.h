@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.17 2005/11/24 15:09:45 janakj Exp $
+ * $Id: db.h,v 1.18 2005/12/06 15:57:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -53,6 +53,9 @@
 #define DB_FOR_SERWEB (1 << 5)  /* Credentials instance can be used by serweb */
 #define DB_PENDING    (1 << 6)
 #define DB_DELETED    (1 << 7)
+#define DB_CALLER_DELETED (1 << 8) /* Accounting table */
+#define DB_CALLEE_DELETED (1 << 9) /* Accounting table */
+
 
 /*
  * Specify table name that will be used for
