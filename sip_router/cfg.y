@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.97 2005/12/06 15:09:45 janakj Exp $
+ * $Id: cfg.y,v 1.98 2005/12/06 15:14:26 janakj Exp $
  *
  *  cfg grammar
  *
@@ -66,7 +66,6 @@
  * 2005-11-16  fixed if (cond) cmd; (andrei)
  *
  */
-
 
 %{
 
@@ -264,7 +263,6 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token TOS
 
 %token ATTR_MARK
-%token FUNC_MARK
 %token ATTR_FROM
 %token ATTR_TO
 %token ATTR_USER
@@ -1192,9 +1190,6 @@ attr_id : ATTR_MARK ID { s_attr = (struct avp_spec*)pkg_malloc(sizeof(struct avp
                                              $$ = s_attr;
                                             }
 ;
-
-func_id : FUNC_MARK ID
-       
 
 assign_op : ADDEQ { $$ = ADD_T; }
           | EQUAL { $$ = ASSIGN_T; }
