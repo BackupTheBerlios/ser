@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_parser.c,v 1.33 2005/11/17 03:50:07 sobomax Exp $
+ * $Id: cpl_parser.c,v 1.34 2005/12/06 15:57:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1529,28 +1529,28 @@ int encodeCPL( str *xml, str *bin, str *log)
 	/* parse the xml */
 	doc = xmlParseDoc( (unsigned char*)xml->s );
 	if (!doc) {
-		append_log( 1, ERR BAD_XML LF, ERR_LEN+BAD_XML_LEN+LF_LEN);
+		append_log( 1, MSG_ERR BAD_XML LF, MSG_ERR_LEN+BAD_XML_LEN+LF_LEN);
 		LOG(L_ERR,"ERROR:cpl:encodeCPL:" BAD_XML "\n");
 		goto error;
 	}
 
 	/* check the xml against dtd */
 	if (xmlValidateDtd(&cvp, doc, dtd)!=1) {
-		append_log( 1, ERR BAD_CPL LF, ERR_LEN+BAD_CPL_LEN+LF_LEN);
+		append_log( 1, MSG_ERR BAD_CPL LF, MSG_ERR_LEN+BAD_CPL_LEN+LF_LEN);
 		LOG(L_ERR,"ERROR:cpl-c:encodeCPL: " BAD_CPL "\n");
 		goto error;
 	}
 
 	cur = xmlDocGetRootElement(doc);
 	if (!cur) {
-		append_log( 1, ERR NULL_CPL LF, ERR_LEN+NULL_CPL_LEN+LF_LEN);
+		append_log( 1, MSG_ERR NULL_CPL LF, MSG_ERR_LEN+NULL_CPL_LEN+LF_LEN);
 		LOG(L_ERR,"ERROR:cpl-c:encodeCPL: " NULL_CPL "\n");
 		goto error;
 	}
 
 	bin->len = encode_node( cur, buf, buf+ENCONDING_BUFFER_SIZE);
 	if (bin->len<0) {
-		append_log( 1, ERR ENC_ERR LF, ERR_LEN+ENC_ERR_LEN+LF_LEN);
+		append_log( 1, MSG_ERR ENC_ERR LF, MSG_ERR_LEN+ENC_ERR_LEN+LF_LEN);
 		LOG(L_ERR,"ERROR:cpl-c:encodeCPL: " ENC_ERR "\n");
 		goto error;
 	}

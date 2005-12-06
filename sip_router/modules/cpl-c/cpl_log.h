@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_log.h,v 1.2 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_log.h,v 1.3 2005/12/06 15:57:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -41,12 +41,12 @@
 
 #define MAX_LOG_NR    64
 
-#define ERR     "Error: "
-#define ERR_LEN (sizeof(ERR)-1)
-#define WARN    "Warning: "
-#define WARN_LEN (sizeof(WARN)-1)
-#define NOTE     "Notice: "
-#define NOTE_LEN (sizeof(NOTE)-1)
+#define MSG_ERR     "Error: "
+#define MSG_ERR_LEN (sizeof(MSG_ERR)-1)
+#define MSG_WARN    "Warning: "
+#define MSG_WARN_LEN (sizeof(MSG_WARN)-1)
+#define MSG_NOTE     "Notice: "
+#define MSG_NOTE_LEN (sizeof(MSG_NOTE)-1)
 
 #define LF       "\n"
 #define LF_LEN   (1)
