@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.28 2005/11/30 16:55:44 janakj Exp $
+ * $Id: authorize.c,v 1.29 2005/12/06 15:24:43 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -62,6 +62,7 @@ static inline int get_ha1(struct username* username, str* realm,
 	str result;
 	int n, nc, i;
 
+	val = 0; /* Fixes gcc warning */
 	col = pkg_malloc(sizeof(*col) * (credentials_n + 2));
 	if (col == NULL) {
 		LOG(L_ERR, "auth_db:get_ha1: Error while allocating memory\n");
