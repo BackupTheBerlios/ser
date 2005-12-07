@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.h,v 1.9 2005/04/19 12:50:53 jamey Exp $
+ * $Id: parse_content.h,v 1.10 2005/12/07 17:53:40 kubartv Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -61,6 +61,7 @@ struct mime_type {
 #define SUBTYPE_WATCHERINFOXML     10
 #define SUBTYPE_EXTERNAL_BODY      11
 #define SUBTYPE_XML_MSRTC_PIDF     12
+#define SUBTYPE_CPIM_PIDFXML       13
 #define SUBTYPE_ALL          0xfe
 #define SUBTYPE_UNKNOWN      0xff
 

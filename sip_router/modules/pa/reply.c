@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.13 2005/10/26 09:09:25 kubartv Exp $
+ * $Id: reply.c,v 1.14 2005/12/07 17:53:40 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -162,7 +162,10 @@ int send_reply(struct sip_msg* _m)
 		case PA_FROM_ERR: msg = MSG_400; code = 400; break;
 		case PA_TO_ERR: msg = MSG_400; code = 400; break;
 		case PA_SMALL_BUFFER: msg = MSG_500; code = 500; break;
-		case PA_UNSUPP_DOC: msg = MSG_400; code = 400; break; /* ? */
+		case PA_UNSUPP_DOC: 
+					msg = "Unsupported document format"; 
+					code = 415; 
+					break;
 		case PA_ACCEPT_PARSE: msg = MSG_400; code = 400; break;
 		case PA_URI_PARSE: msg = MSG_400; code = 400; break;
 		case PA_DIALOG_ERR: msg = MSG_500; code = 500; break;
