@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.h,v 1.10 2005/12/07 17:53:40 kubartv Exp $
+ * $Id: parse_content.h,v 1.11 2005/12/08 15:39:23 kubartv Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -97,6 +97,8 @@ struct mime_type {
  *           -1        : error (parse error )
  */
 int parse_content_type_hdr( struct sip_msg *msg);
+
+int parse_accept_body(struct hdr_field *hdr);
 
 /*
  * parse the the body of the Accept header. It's values are also converted
