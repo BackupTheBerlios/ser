@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.31 2005/11/30 16:26:50 janakj Exp $
+ * $Id: route_struct.h,v 1.32 2005/12/09 18:33:58 mma Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -109,19 +109,20 @@ struct expr{
 	union exp_op r;
 };
 
+typedef union {
+	long number;
+	char* string;
+	str str;
+	void* data;
+	avp_spec_t* attr;
+} action_u_t;
 
 struct action{
 	int type;  /* forward, drop, log, send ...*/
 	int p1_type;
 	int p2_type;
 	int p3_type;
-	union {
-		long number;
-		char* string;
-		str str;
-		void* data;
-		avp_spec_t* attr;
-	}p1, p2, p3;
+	action_u_t p1, p2, p3; /* tm module expects these parameters to be adjacent */
 	struct action* next;
 };
 
