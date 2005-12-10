@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.36 2005/12/09 18:29:38 andrei Exp $
+ *$Id: ut.h,v 1.37 2005/12/10 15:48:39 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -106,6 +106,12 @@ struct msgid_var{
 /* return the value or 0 if the msg_id doesn't match */
 #define get_msgid_val(var, id, type)\
 	(type)((type)((var).msgid!=(id))-1)&((var).u.type##_val)
+
+#define set_msgid_val(var, id, type, value)\
+	do{\
+		(var).msgid=(id); \
+		(var).u.type##_val=(value); \
+	}while(0)
 
 /* char to hex conversion table */
 static char fourbits2char[16] = { '0', '1', '2', '3', '4', '5',
