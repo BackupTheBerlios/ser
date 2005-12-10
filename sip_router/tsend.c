@@ -1,5 +1,5 @@
 /*
- * $Id: tsend.c,v 1.4 2004/08/24 08:45:10 janakj Exp $
+ * $Id: tsend.c,v 1.5 2005/12/10 23:44:06 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,18 +42,28 @@
 #include <sys/uio.h>
 
 #include "dprint.h"
+#include "timer.h"
+#include "timer_ticks.h"
 
 /* the functions below are very similar => some generic macros */
 #define TSEND_INIT \
 	int n; \
 	struct pollfd pf; \
+	ticks_t expire; \
+	s_ticks_t diff; \
+	expire=get_ticks_raw()+MS_TO_TICKS((ticks_t)timeout); \
 	pf.fd=fd; \
 	pf.events=POLLOUT
 
 #define TSEND_POLL(f_name) \
 poll_loop: \
 	while(1){ \
-		n=poll(&pf, 1, timeout); \
+		diff=expire-get_ticks_raw(); \
+		if (diff<=0){ \
+			LOG(L_ERR, "ERROR: " f_name ": send timeout (%d)\n", timeout); \
+			goto error; \
+		} \
+		n=poll(&pf, 1, TICKS_TO_MS((ticks_t)diff)); \
 		if (n<0){ \
 			if (errno==EINTR) continue; /* signal, ignore */ \
 			LOG(L_ERR, "ERROR: " f_name ": poll failed: %s [%d]\n", \
@@ -61,7 +71,7 @@ poll_loop: \
 			goto error; \
 		}else if (n==0){ \
 			/* timeout */ \
-			LOG(L_ERR, "ERROR: " f_name ": send timeout (%d)\n", timeout); \
+			LOG(L_ERR, "ERROR: " f_name ": send timeout (p %d)\n", timeout); \
 			goto error; \
 		} \
 		if (pf.revents&POLLOUT){ \
