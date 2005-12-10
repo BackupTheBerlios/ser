@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.55 2005/12/01 10:56:48 janakj Exp $
+ * $Id: uac.c,v 1.56 2005/12/10 16:04:53 andrei Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -254,7 +254,8 @@ int t_uac(str* method, str* headers, str* body, dlg_t* dialog,
 			dialog->hooks.next_hop->s);
 	}
 	
-	start_retr(request);
+	if (start_retr(request)!=0)
+		LOG(L_CRIT, "BUG: t_uac: failed to start retr. for %p\n", request);
 	return 1;
 
  error1:

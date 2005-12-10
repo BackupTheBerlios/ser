@@ -1,5 +1,5 @@
 /*
- * $Id: lock.h,v 1.27 2004/08/24 09:00:41 janakj Exp $
+ * $Id: lock.h,v 1.28 2005/12/10 16:04:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -68,7 +68,6 @@ enum timer_groups {
 
 
 #include "h_table.h"
-#include "timer.h" 
 
 /* Uni*x permissions for IPC */
 #define IPC_PERMISSIONS 0666
@@ -133,7 +132,6 @@ static inline void _unlock( ser_lock_t* s )
 #endif
 }
 
-int init_timerlist_lock(  enum lists timerlist_id);
 
 
 #endif

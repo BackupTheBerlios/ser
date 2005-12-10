@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.47 2004/08/24 09:00:41 janakj Exp $
+ * $Id: lock.c,v 1.48 2005/12/10 16:04:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -292,12 +292,5 @@ int release_entry_lock( struct entry *entry )
 int release_timerlist_lock( struct timer *timerlist )
 {
 	/* the same as above */
-	return 0;
-}
-
-int init_timerlist_lock( enum lists timerlist_id)
-{
-	get_timertable()->timers[timerlist_id].mutex=
-		&(timer_group_lock[ timer_group[timerlist_id] ]);
 	return 0;
 }
