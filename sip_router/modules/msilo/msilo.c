@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.45 2005/12/04 11:51:45 janakj Exp $
+ * $Id: msilo.c,v 1.46 2005/12/10 17:06:30 andrei Exp $
  *
  * MSILO module
  *
@@ -547,14 +547,12 @@ error:
  */
 static int m_dump(struct sip_msg* msg, char* str1, char* str2)
 {
-	struct to_body to, *pto = NULL;
 	db_key_t db_keys[1];
 	db_val_t db_vals[1];
 	db_key_t db_cols[7];
 	db_res_t* db_res = NULL;
 	int i, db_no_cols = 7, db_no_keys = 1, mid, n;
 	char hdr_buf[1024], body_buf[1024];
-	struct sip_uri puri;
 
 	str str_vals[5], hdr_str , body_str, uid;
 	time_t rtime;

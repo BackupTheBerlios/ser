@@ -1,5 +1,5 @@
 /* 
- * $Id: uridb_mod.c,v 1.7 2005/12/01 10:19:29 janakj Exp $ 
+ * $Id: uridb_mod.c,v 1.8 2005/12/10 17:06:30 andrei Exp $ 
  *
  * Various URI related functions
  *
@@ -219,6 +219,7 @@ static int lookup_user(struct sip_msg* msg, char* s1, char* s2)
 	db_res_t* res;
 	int flag, i;
 
+	flag=0; /*warning fix*/
 	id = (long)s1;
 
 	keys[0] = username_col.s;

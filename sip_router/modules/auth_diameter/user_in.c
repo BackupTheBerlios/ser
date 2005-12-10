@@ -1,5 +1,5 @@
 /*
- * $Id: user_in.c,v 1.6 2005/07/20 17:16:22 andrei Exp $
+ * $Id: user_in.c,v 1.7 2005/12/10 17:06:30 andrei Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -303,7 +303,7 @@ int diameter_is_user_in(struct sip_msg* _m, char* _hf, char* _group)
 		goto error1;
 	}
 	
-#ifdef DEBUG
+#ifdef EXTRA_DEBUG
 	AAAPrintMessage(req);
 #endif
 
