@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.27 2005/10/11 16:50:15 janakj Exp $
+/* $Id: sr_module.h,v 1.28 2005/12/11 22:46:39 andrei Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -70,6 +70,7 @@ typedef int (*param_func_t)( modparam_t type, void* val);
 #define FAILURE_ROUTE 2  /* Function can be used in reply route blocks */
 #define ONREPLY_ROUTE 4  /* Function can be used in on_reply */
 #define BRANCH_ROUTE  8  /* Function can be used in branch_route blocks */
+#define ONSEND_ROUTE   16  /* Function can be used in onsend_route blocks */
 
 /* Macros - used as rank in child_init function */
 #define PROC_MAIN      0  /* Main ser process */
