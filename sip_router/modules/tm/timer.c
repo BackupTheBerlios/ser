@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.65 2005/12/12 16:10:35 andrei Exp $
+ * $Id: timer.c,v 1.66 2005/12/12 20:27:16 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -99,6 +99,8 @@
  *  2004-02-13  t->is_invite, t->local, t->noisy_ctimer replaced;
  *              timer_link.payload removed (bogdan)
  *  2005-10-03  almost completely rewritten to use the new timers (andrei)
+ *  2005-12-12  on final response marked the rb as removed to avoid deleting
+ *              it from the timer handle; timer_allow_del()  (andrei)
  */
 
 #include "defs.h"
@@ -423,6 +425,8 @@ ticks_t retr_buf_handler(ticks_t ticks, struct timer_ln* tl, void *p)
 							 (both timers disabled)
 							  a little race risk, but
 							  nothing bad would happen */
+		timer_allow_del(); /* [optional] allow timer_dels, since we're done
+							  and there is no race risk */
 		final_response_handler(rbuf, t);
 		return 0;
 	}else{

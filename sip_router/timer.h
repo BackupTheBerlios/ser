@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.7 2005/12/05 18:29:30 andrei Exp $
+ * $Id: timer.h,v 1.8 2005/12/12 20:27:16 andrei Exp $
  *
  *
  * timer related functions (public interface)
@@ -174,6 +174,8 @@ void timer_del_safe(struct timer_ln *tl);
 #define timer_add timer_add_safe
 #define timer_del timer_del_safe
 #endif
+
+void timer_allow_del();
 
 /* old timer compatibility functions & structure */
 
