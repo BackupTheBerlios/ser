@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.17 2005/12/08 15:39:23 kubartv Exp $
+ * $Id: watcher.h,v 1.18 2005/12/12 14:33:42 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -36,8 +36,6 @@
 #include "../../parser/parse_content.h"
 #include <stdio.h>
 #include <time.h>
-
-#define MIMETYPE(x_,y_) ((TYPE_##x_ << 16) | (SUBTYPE_##y_))
 
 #define DOC_XPIDF        MIMETYPE(APPLICATION,XPIDFXML)
 #define DOC_LPIDF        MIMETYPE(APPLICATION,LPIDFXML)

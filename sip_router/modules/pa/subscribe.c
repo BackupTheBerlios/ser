@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.41 2005/12/08 15:39:23 kubartv Exp $
+ * $Id: subscribe.c,v 1.42 2005/12/12 14:33:42 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -384,7 +384,7 @@ static int get_accepted_mime_type_idx(int *accepts_mimes, event_mimetypes_t *em)
 		/* try find "preferred" mime type */
 		i = 0;
 		while ((mt = em->mimes[i]) != 0) {
-			TRACE_LOG("searching for %x\n", mt);
+			/* TRACE_LOG("searching for %x\n", mt); */
 			if (find_mime(accepts_mimes, mt) >= 0) return i;
 			i++;
 		}
