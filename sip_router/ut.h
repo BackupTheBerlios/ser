@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.37 2005/12/10 15:48:39 andrei Exp $
+ *$Id: ut.h,v 1.38 2005/12/13 01:05:04 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -418,5 +418,13 @@ static inline int str2int(str* _s, unsigned int* _r)
 	
 	return 0;
 }
+
+/* converts a username into uid:gid,
+ * returns -1 on error & 0 on success */
+int user2uid(int* uid, int* gid, char* user);
+
+/* converts a group name into a gid
+ * returns -1 on error, 0 on success */
+int group2gid(int* gid, char* group);
 
 #endif
