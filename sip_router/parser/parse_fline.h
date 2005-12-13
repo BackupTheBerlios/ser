@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.h,v 1.7 2005/05/23 09:20:58 andrei Exp $
+ * $Id: parse_fline.h,v 1.8 2005/12/13 00:41:18 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,6 +42,9 @@
 
 #define SIP_VERSION "SIP/2.0"
 #define SIP_VERSION_LEN 7
+
+#define HTTP_VERSION "HTTP/1."
+#define HTTP_VERSION_LEN (sizeof(HTTP_VERSION - 1))
 
 #define CANCEL "CANCEL"
 #define ACK    "ACK"
