@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.22 2005/11/30 16:59:34 janakj Exp $
+ * $Id: sl.c,v 1.23 2005/12/13 01:38:37 janakj Exp $
  *
  * sl module
  *
@@ -96,7 +96,7 @@ struct module_exports exports= {
 	"sl_module",
 	cmds,
 	0, /* param exports */
-	
+	0,
 	mod_init,   /* module initialization function */
 	(response_function) 0,
 	mod_destroy,
