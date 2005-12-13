@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.22 2005/11/30 16:58:19 janakj Exp $
+ * $Id: maxfwd.c,v 1.23 2005/12/13 00:19:35 janakj Exp $
  *
  * MAXFWD module
  *
@@ -79,6 +79,7 @@ struct module_exports exports= {
 #endif
 	"maxfwd",
 	cmds,
+	0,       /* RPC methods */
 	params,
 	mod_init,
 	(response_function) 0,

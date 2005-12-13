@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.18 2005/11/17 03:50:51 sobomax Exp $
+ * $Id: pdt.c,v 1.19 2005/12/13 00:19:33 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -127,6 +127,7 @@ static param_export_t params[]={
 struct module_exports exports = {
 	"pdt",
 	cmds,
+	0,         /* RPC methods */
 	params,
 	
 	mod_init,		/* module initialization function */

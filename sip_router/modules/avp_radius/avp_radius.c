@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.11 2005/12/06 15:27:50 janakj Exp $
+ * $Id: avp_radius.c,v 1.12 2005/12/13 00:19:37 janakj Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -99,6 +99,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"avp_radius", 
 	cmds,      /* Exported commands */
+	0,         /* RPC methods */
 	params,    /* Exported parameters */
 	mod_init,  /* module initialization function */
 	0,         /* response function*/

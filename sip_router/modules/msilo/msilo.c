@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.46 2005/12/10 17:06:30 andrei Exp $
+ * $Id: msilo.c,v 1.47 2005/12/13 00:19:35 janakj Exp $
  *
  * MSILO module
  *
@@ -188,6 +188,7 @@ static param_export_t params[]={
 struct module_exports exports= {
 	"msilo",    /* module id */
 	cmds,       /* module's exported functions */
+	0,          /* RPC methods */
 	params,     /* module's exported parameters */
 	
 	mod_init,   /* module initialization function */

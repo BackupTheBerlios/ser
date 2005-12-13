@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.8 2005/10/27 23:11:45 janakj Exp $ 
+ * $Id: db_mod.c,v 1.9 2005/12/13 00:19:33 janakj Exp $ 
  *
  * Postgres module interface
  *
@@ -69,6 +69,7 @@ static param_export_t params[] = {
 struct module_exports exports = {	
 	"postgres",
 	cmds,
+	0,         /* RPC methods */
 	params,    /*  module parameters */
         0,         /* module initialization function */
 	0,         /* response function*/

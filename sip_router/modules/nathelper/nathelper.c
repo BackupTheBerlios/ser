@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.89 2005/11/30 16:55:44 janakj Exp $
+/* $Id: nathelper.c,v 1.90 2005/12/13 00:19:34 janakj Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -313,6 +313,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"nathelper",
 	cmds,
+	0,       /* RPC methods */
 	params,
 	mod_init,
 	0, /* reply processing */

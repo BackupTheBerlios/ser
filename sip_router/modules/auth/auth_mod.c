@@ -1,5 +1,5 @@
 /* 
- * $Id: auth_mod.c,v 1.59 2005/11/21 00:00:29 janakj Exp $ 
+ * $Id: auth_mod.c,v 1.60 2005/12/13 00:19:38 janakj Exp $ 
  *
  * Digest Authentication Module
  *
@@ -113,6 +113,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"auth", 
 	cmds,
+	0,          /* RPC methods */
 	params,
 	mod_init,   /* module initialization function */
 	0,          /* response function */

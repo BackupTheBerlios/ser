@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.35 2005/12/12 23:18:27 tma0 Exp $
+ * $Id: rr_mod.c,v 1.36 2005/12/13 00:19:32 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -105,6 +105,7 @@ static param_export_t params[] ={
 struct module_exports exports = {
 	"rr",
 	cmds,      /* Exported functions */
+	0,         /* RPC methods */
 	params,    /* Exported parameters */
 	mod_init,  /* initialize module */
 	0,         /* response function*/

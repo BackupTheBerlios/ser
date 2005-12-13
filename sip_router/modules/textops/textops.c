@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.44 2005/12/11 22:46:39 andrei Exp $
+/*$Id: textops.c,v 1.45 2005/12/13 00:19:31 janakj Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -146,6 +146,7 @@ static param_export_t params[]={ {0,0,0} }; /* no params */
 struct module_exports exports= {
 	"textops",
 	cmds,
+	0,        /* RPC methods */
 	params,
 	mod_init, /* module initialization function */
 	0, /* response function */

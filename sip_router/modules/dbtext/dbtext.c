@@ -1,5 +1,5 @@
 /*
- * $Id: dbtext.c,v 1.11 2004/08/24 08:58:26 janakj Exp $
+ * $Id: dbtext.c,v 1.12 2005/12/13 00:19:37 janakj Exp $
  *
  * DBText module interface
  *
@@ -77,6 +77,7 @@ static param_export_t params[] = {
 struct module_exports exports = {	
 	"dbtext",
 	cmds,     /* Exported functions */
+	0,        /* RPC method */
 	params,   /* Exported parameters */
 	mod_init, /* module initialization function */
 	0,        /* response function*/

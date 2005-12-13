@@ -1,5 +1,5 @@
 /* 
- * $Id: group_mod.c,v 1.17 2005/11/30 17:06:47 janakj Exp $ 
+ * $Id: group_mod.c,v 1.18 2005/12/13 00:19:36 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -116,6 +116,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"group", 
 	cmds,       /* Exported functions */
+	0,          /* RPC methods */
 	params,     /* Exported parameters */
 	mod_init,   /* module initialization function */
 	0,          /* response function */

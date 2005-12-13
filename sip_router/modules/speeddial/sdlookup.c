@@ -1,5 +1,5 @@
 /*
- * $Id: sdlookup.c,v 1.5 2005/12/10 17:06:30 andrei Exp $
+ * $Id: sdlookup.c,v 1.6 2005/12/13 00:19:31 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -38,8 +38,8 @@
 #include "../../parser/parse_uri.h"
 #include "../../parser/parse_from.h"
 #include "../../db/db.h"
-#include "../../dset.h" /* rewrite_uri */
-#include "../../id.h"   /* get_from_uid, get_to_did */
+#include "../../id.h"
+#include "../../dset.h"
 
 #include "speeddial.h"
 #include "sdlookup.h"

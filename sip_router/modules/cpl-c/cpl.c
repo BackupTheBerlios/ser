@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.57 2005/11/30 16:55:44 janakj Exp $
+ * $Id: cpl.c,v 1.58 2005/12/13 00:19:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -148,6 +148,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"cpl-c",
 	cmds,     /* Exported functions */
+	0,        /* RPC methods */
 	params,   /* Exported parameters */
 	cpl_init, /* Module initialization function */
 	(response_function) 0,

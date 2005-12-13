@@ -1,7 +1,7 @@
 /*
  * execution module
  *
- * $Id: exec_mod.c,v 1.11 2004/08/24 08:58:29 janakj Exp $
+ * $Id: exec_mod.c,v 1.12 2005/12/13 00:19:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -83,6 +83,7 @@ struct module_exports exports= {
 #endif
 	"exec",
 	cmds,           /* Exported functions */
+	0,              /* RPC methods */
 	params,         /* Exported parameters */
 	mod_init, 	/* initialization module */
 	0,		/* response function */

@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.c,v 1.36 2005/11/30 16:59:17 janakj Exp $
+ * $Id: reg_mod.c,v 1.37 2005/12/13 00:19:33 janakj Exp $
  *
  * Registrar module interface
  *
@@ -117,6 +117,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"registrar", 
 	cmds,        /* Exported functions */
+	0,           /* RPC methods */
 	params,      /* Exported parameters */
 	mod_init,    /* module initialization function */
 	0,

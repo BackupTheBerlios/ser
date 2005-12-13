@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.37 2004/08/24 09:00:39 janakj Exp $
+ * $Id: sms.c,v 1.38 2005/12/13 00:19:32 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -111,6 +111,7 @@ static param_export_t params[]={
 struct module_exports exports= {
 	"sms",
 	cmds,
+	0,        /* RPC methods */
 	params,
 	
 	sms_init,   /* module initialization function */

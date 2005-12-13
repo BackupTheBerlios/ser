@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.41 2005/12/08 15:39:23 kubartv Exp $
+ * $Id: pa_mod.c,v 1.42 2005/12/13 00:19:34 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -157,6 +157,7 @@ static param_export_t params[]={
 struct module_exports exports = {
 	"pa", 
 	cmds,        /* Exported functions */
+	0,           /* RPC methods */
 	params,      /* Exported parameters */
 	pa_mod_init, /* module initialization function */
 	0,           /* response function*/

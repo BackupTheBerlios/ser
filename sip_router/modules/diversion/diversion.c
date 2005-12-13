@@ -1,5 +1,5 @@
 /* 
- * $Id: diversion.c,v 1.7 2005/11/17 03:50:20 sobomax Exp $
+ * $Id: diversion.c,v 1.8 2005/12/13 00:19:37 janakj Exp $
  *
  * Diversion Header Field Support
  *
@@ -85,6 +85,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"diversion", 
 	cmds,       /* Exported functions */
+	0,          /* RPC methods */
 	params,     /* Exported parameters */
         mod_init,   /* module initialization function */
 	0,          /* response function */

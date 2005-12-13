@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.c,v 1.20 2005/02/26 15:29:04 janakj Exp $
+ * $Id: permissions.c,v 1.21 2005/12/13 00:19:33 janakj Exp $
  *
  * PERMISSIONS module
  *
@@ -130,6 +130,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
         "permissions",
         cmds,      /* Exported functions */
+	0,         /* RPC methods */
         params,    /* Exported parameters */
         mod_init,  /* module initialization function */
         0,         /* response function */

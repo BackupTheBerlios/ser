@@ -1,5 +1,5 @@
 /**
- * $Id: dispatcher.c,v 1.6 2005/11/25 16:54:39 ullstar Exp $
+ * $Id: dispatcher.c,v 1.7 2005/12/13 00:19:37 janakj Exp $
  *
  * dispatcher module -- stateless load balancing
  *
@@ -81,6 +81,7 @@ static param_export_t params[]={
 struct module_exports exports= {
 	"dispatcher",
 	cmds,
+	0,          /* RPC methods */
 	params,
 	
 	mod_init,   /* module initialization function */

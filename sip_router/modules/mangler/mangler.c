@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: mangler.c,v 1.13 2004/08/24 08:58:30 janakj Exp $
+ * $Id: mangler.c,v 1.14 2005/12/13 00:19:35 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -114,6 +114,7 @@ static cmd_export_t cmds[] =
 struct module_exports exports = {
 	"mangler",
 	cmds,			/* Exported functions */
+	0,                      /* RPC methods */
 	params,			/* Exported parameters */
 	mod_init,		/* module initialization function */
 	0,			/* response function */

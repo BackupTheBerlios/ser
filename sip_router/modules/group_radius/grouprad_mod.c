@@ -1,5 +1,5 @@
 /* 
- * $Id: grouprad_mod.c,v 1.15 2005/12/01 22:58:11 janakj Exp $ 
+ * $Id: grouprad_mod.c,v 1.16 2005/12/13 00:19:36 janakj Exp $ 
  *
  * Group membership - module interface
  *
@@ -91,6 +91,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"group_radius", 
 	cmds,       /* Exported functions */
+	0,          /* RPC methods */
 	params,     /* Exported parameters */
 	mod_init,   /* module initialization function */
 	0,          /* response function */

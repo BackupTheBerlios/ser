@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.2 2005/03/26 20:10:20 ramona Exp $
+ * $Id: uac.c,v 1.3 2005/12/13 00:19:30 janakj Exp $
  *
  * Copyright (C) 2005 Voice Sistem SRL
  *
@@ -91,6 +91,7 @@ static param_export_t params[] = {
 struct module_exports exports= {
 	"uac",
 	cmds,       /* exported functions */
+	0,          /* RPC methods */
 	params,     /* param exports */
 	mod_init,   /* module initialization function */
 	(response_function) 0,

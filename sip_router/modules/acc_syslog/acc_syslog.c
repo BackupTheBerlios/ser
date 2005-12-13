@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_syslog.c,v 1.3 2005/11/20 23:56:59 janakj Exp $
+ * $Id: acc_syslog.c,v 1.4 2005/12/13 00:19:38 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -176,6 +176,7 @@ static param_export_t params[] = {
 struct module_exports exports= {
 	"acc_syslog",
 	cmds,     /* exported functions */
+	0,        /* RPC methods */
 	params,   /* exported params */
 	mod_init, /* initialization module */
 	0,	  /* response function */

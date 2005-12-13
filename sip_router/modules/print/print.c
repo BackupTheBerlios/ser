@@ -1,4 +1,4 @@
-/*$Id: print.c,v 1.14 2004/08/24 09:00:36 janakj Exp $
+/*$Id: print.c,v 1.15 2005/12/13 00:19:33 janakj Exp $
  *
  * Example ser module, it will just print its string parameter to stdout
  *
@@ -63,6 +63,7 @@ static param_export_t params[]={
 struct module_exports exports = {
 	"print_stdout", 
 	cmds,
+	0,        /* RPC methods */
 	params,
 	
 	mod_init, /* module initialization function */

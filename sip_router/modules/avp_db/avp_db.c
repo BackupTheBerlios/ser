@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.10 2005/12/01 10:18:56 janakj Exp $
+ * $Id: avp_db.c,v 1.11 2005/12/13 00:19:37 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -100,6 +100,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"avp_db",
 	cmds,        /* Exported commands */
+	0,           /* RPC methods */
 	params,      /* Exported parameters */
 	mod_init,    /* module initialization function */
 	0,           /* response function*/

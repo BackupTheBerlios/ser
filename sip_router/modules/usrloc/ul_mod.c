@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.47 2005/11/19 19:05:04 janakj Exp $
+ * $Id: ul_mod.c,v 1.48 2005/12/13 00:19:30 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -155,6 +155,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"usrloc",
 	cmds,       /* Exported functions */
+	0,          /* RPC methods */
 	params,     /* Export parameters */
 	mod_init,   /* Module initialization function */
 	0,          /* Response function */

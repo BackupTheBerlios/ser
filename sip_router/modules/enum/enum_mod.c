@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.c,v 1.11 2005/10/11 16:51:21 janakj Exp $
+ * $Id: enum_mod.c,v 1.12 2005/12/13 00:19:36 janakj Exp $
  *
  * Enum module
  *
@@ -92,6 +92,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"enum", 
 	cmds,     /* Exported functions */
+	0,        /* RPC method */
 	params,   /* Exported parameters */
 	mod_init, /* module initialization function */
 	0,        /* response function*/

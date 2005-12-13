@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.29 2005/10/11 16:51:21 janakj Exp $
+/* $Id: mediaproxy.c,v 1.30 2005/12/13 00:19:35 janakj Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -205,6 +205,7 @@ static param_export_t parameters[] = {
 struct module_exports exports = {
     "mediaproxy", // module name
     commands,     // module exported functions
+    0,            // RPC methods
     parameters,   // module exported parameters
     mod_init,     // module init (before any kid is created. kids will inherit)
     NULL,         // reply processing

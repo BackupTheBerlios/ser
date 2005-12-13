@@ -1,5 +1,5 @@
 /*
- * $Id: auth_diameter.c,v 1.6 2005/10/11 16:51:22 janakj Exp $ 
+ * $Id: auth_diameter.c,v 1.7 2005/12/13 00:19:38 janakj Exp $ 
  * Digest Authentication - Diameter support
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -103,6 +103,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"auth_diameter", 
 	cmds,       	/* Exported functions */
+	0,              /* RPC methods */
 	params,     	/* Exported parameters */
 	mod_init,   	/* module initialization function */
 	0,          	/* response function */

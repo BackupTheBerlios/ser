@@ -1,5 +1,5 @@
 /*
- * $Id: speeddial.c,v 1.2 2005/12/01 11:25:58 janakj Exp $
+ * $Id: speeddial.c,v 1.3 2005/12/13 00:19:31 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -93,6 +93,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"speeddial", 
 	cmds,       /* Exported functions */
+	0,          /* RPC params */
 	params,     /* Exported parameters */
 	mod_init,   /* module initialization function */
 	0,          /* response function */

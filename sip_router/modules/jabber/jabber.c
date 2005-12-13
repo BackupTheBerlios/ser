@@ -1,5 +1,5 @@
 /*
- * $Id: jabber.c,v 1.59 2005/07/20 17:16:22 andrei Exp $
+ * $Id: jabber.c,v 1.60 2005/12/13 00:19:35 janakj Exp $
  *
  * XJAB module
  *
@@ -175,6 +175,7 @@ static param_export_t params[] = {
 struct module_exports exports= {
 	"jabber",
 	cmds,       /* Exported functions */
+	0,          /* RPC methods */
 	params,     /* Exported parameters */
 	mod_init,   /* module initialization function */
 	(response_function) 0,

@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.11 2005/11/30 16:56:41 janakj Exp $
+/*$Id: gflags.c,v 1.12 2005/12/13 00:19:36 janakj Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour 
@@ -117,6 +117,7 @@ static param_export_t params[]={
 struct module_exports exports = {
 	"gflags", 
 	cmds,
+	0,           /* RPC methods */
 	params,
 	mod_init,    /* module initialization function */
 	0,           /* response function*/

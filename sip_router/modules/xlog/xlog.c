@@ -1,5 +1,5 @@
 /**
- * $Id: xlog.c,v 1.9 2005/08/18 15:49:00 janakj Exp $
+ * $Id: xlog.c,v 1.10 2005/12/13 00:19:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -80,6 +80,7 @@ static param_export_t params[]={
 struct module_exports exports= {
 	"xlog",
 	cmds,
+	0,        /* RPC methods */
 	params,
 	
 	mod_init,   /* module initialization function */

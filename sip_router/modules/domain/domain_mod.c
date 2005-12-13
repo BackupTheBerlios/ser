@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.25 2005/11/30 17:03:13 janakj Exp $
+ * $Id: domain_mod.c,v 1.26 2005/12/13 00:19:36 janakj Exp $
  *
  * Domain module
  *
@@ -158,6 +158,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"domain", 
 	cmds,      /* Exported functions */
+	0,         /* RPC methods */
 	params,    /* Exported parameters */
 	mod_init,  /* module initialization function */
 	0,         /* response function*/

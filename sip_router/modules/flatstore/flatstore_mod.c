@@ -1,5 +1,5 @@
 /* 
- * $Id: flatstore_mod.c,v 1.3 2004/10/09 14:45:03 janakj Exp $ 
+ * $Id: flatstore_mod.c,v 1.4 2005/12/13 00:19:36 janakj Exp $ 
  *
  * Flatstore module interface
  *
@@ -97,6 +97,7 @@ static param_export_t params[] = {
 struct module_exports exports = {	
 	"flatstore",
 	cmds,
+	0,           /* RPC methods */
 	params,      /*  module parameters */
 	mod_init,    /* module initialization function */
 	0,           /* response function*/

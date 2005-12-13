@@ -1,5 +1,5 @@
 /* 
- * $Id: db_mod.c,v 1.27 2005/02/28 18:52:51 janakj Exp $ 
+ * $Id: db_mod.c,v 1.28 2005/12/13 00:19:35 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -78,6 +78,7 @@ static param_export_t params[] = {
 struct module_exports exports = {	
 	"mysql",
 	cmds,
+	0,               /* RPC method */
 	params,          /*  module parameters */
 	mysql_mod_init,  /* module initialization function */
 	0,               /* response function*/

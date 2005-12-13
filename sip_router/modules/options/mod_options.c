@@ -1,5 +1,5 @@
 /*
- * $Id: mod_options.c,v 1.4 2005/11/30 17:01:50 janakj Exp $
+ * $Id: mod_options.c,v 1.5 2005/12/13 00:19:34 janakj Exp $
  *
  * Options Reply Module
  *
@@ -76,6 +76,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"options",       /* Module name */
 	cmds,            /* Exported functions */
+	0,               /* RPC methods */
 	params,          /* Exported parameters */
 	mod_init,        /* Initialization function */
 	0,               /* Response function */

@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.127 2005/12/10 16:04:53 andrei Exp $
+ * $Id: tm.c,v 1.128 2005/12/13 00:19:30 janakj Exp $
  *
  * TM module
  *
@@ -298,6 +298,7 @@ struct module_exports exports= {
 	"tm",
 	/* -------- exported functions ----------- */
 	cmds,
+	0,    /* RPC methods */
 	/* ------------ exported variables ---------- */
 	params,
 	

@@ -1,5 +1,5 @@
 /* 
- * $Id: uri_mod.c,v 1.21 2005/10/11 16:51:20 janakj Exp $ 
+ * $Id: uri_mod.c,v 1.22 2005/12/13 00:19:30 janakj Exp $ 
  *
  * Various URI related functions
  *
@@ -80,6 +80,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"uri", 
 	cmds,      /* Exported functions */
+	0,         /* RPC methods */
 	params,    /* Exported parameters */
 	0,         /* module initialization function */
 	0,         /* response function */

@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.23 2004/11/05 14:21:00 bogdan Exp $
+ * $Id: pike.c,v 1.24 2005/12/13 00:19:33 janakj Exp $
  *
  * PIKE module
  *
@@ -90,6 +90,7 @@ static param_export_t params[]={
 struct module_exports exports= {
 	"pike",
 	cmds,
+	0,           /* RPC methods */
 	params,
 	
 	pike_init,   /* module initialization function */
