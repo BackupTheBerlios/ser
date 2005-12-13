@@ -1,5 +1,5 @@
 /* 
- * $Id: urirad_mod.c,v 1.12 2005/12/01 22:58:11 janakj Exp $ 
+ * $Id: urirad_mod.c,v 1.13 2005/12/13 00:21:07 janakj Exp $ 
  *
  * URI checks using Radius
  *
@@ -84,6 +84,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"uri_radius", 
 	cmds,       /* Exported functions */
+	0,          /* RPC methods */
 	params,     /* Exported parameters */
 	mod_init,   /* module initialization function */
 	0,          /* response function */
