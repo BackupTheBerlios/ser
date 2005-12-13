@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.c,v 1.18 2005/06/16 14:05:24 andrei Exp $
+ * $Id: unixsock_server.c,v 1.19 2005/12/13 12:10:16 janakj Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -193,7 +193,7 @@ static int ps_cmd(str* msg)
 
 	ret = 0;
 	unixsock_reply_asciiz("200 OK\n");
-	for (p = 0; p < process_count(); p++) {
+	for (p = 0; p < process_count; p++) {
 		if (unixsock_reply_printf("%d\t%d\t%s\n", p, pt[p].pid, pt[p].desc) < 0) {
 			unixsock_reply_reset();
 			unixsock_reply_asciiz("500 Error while printing reply\n");
