@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.205 2005/12/05 18:29:30 andrei Exp $
+ * $Id: main.c,v 1.206 2005/12/13 01:12:22 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -137,7 +137,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.205 2005/12/05 18:29:30 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.206 2005/12/13 01:12:22 janakj Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -640,59 +640,6 @@ int install_sigs()
 error:
 	return -1;
 }
-
-
-
-/* converts a username into uid:gid,
- * returns -1 on error & 0 on success */
-static int user2uid(int* uid, int* gid, char* user)
-{
-	char* tmp;
-	struct passwd *pw_entry;
-	
-	if (user){
-		*uid=strtol(user, &tmp, 10);
-		if ((tmp==0) ||(*tmp)){
-			/* maybe it's a string */
-			pw_entry=getpwnam(user);
-			if (pw_entry==0){
-				goto error;
-			}
-			*uid=pw_entry->pw_uid;
-			if (gid) *gid=pw_entry->pw_gid;
-		}
-		return 0;
-	}
-error:
-	return -1;
-}
-
-
-
-/* converts a group name into a gid
- * returns -1 on error, 0 on success */
-static int group2gid(int* gid, char* group)
-{
-	char* tmp;
-	struct group  *gr_entry;
-	
-	if (group){
-		*gid=strtol(group, &tmp, 10);
-		if ((tmp==0) ||(*tmp)){
-			/* maybe it's a string */
-			gr_entry=getgrnam(group);
-			if (gr_entry==0){
-				goto error;
-			}
-			*gid=gr_entry->gr_gid;
-		}
-		return 0;
-	}
-error:
-	return -1;
-}
-
-
 
 /* returns -1 on error, 0 on success
  * sets proto */

@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.1 2005/12/12 23:41:30 janakj Exp $
+ * $Id: core_cmd.c,v 1.2 2005/12/13 01:12:22 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -159,7 +159,7 @@ static void core_ps(rpc_t* rpc, void* c)
 {
 	int p;
 
-	for (p=0; p<process_count;p++) {
+	for (p=0; p<process_count();p++) {
 		rpc->printf(c, "pid: %d", pt[p].pid);
 		rpc->printf(c, "desc: %s", pt[p].desc);
 	}
