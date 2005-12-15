@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_db.h,v 1.4 2004/12/03 19:09:32 andrei Exp $
+ * $Id: avpops_db.h,v 1.5 2005/12/15 23:19:40 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -44,7 +44,7 @@
 struct db_scheme
 {
 	char *name;
-	char *uuid_col;
+	char *uid_col;
 	char *username_col;
 	char *domain_col;
 	char *value_col;
