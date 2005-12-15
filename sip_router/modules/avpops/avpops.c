@@ -1,5 +1,5 @@
 /*
- * $Id: avpops.c,v 1.13 2005/12/15 23:19:40 janakj Exp $
+ * $Id: avpops.c,v 1.14 2005/12/15 23:31:24 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -135,6 +135,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
 	"avpops",
 	cmds,     /* Exported functions */
+	0,        /* RPC methods */
 	params,   /* Exported parameters */
 	avpops_init, /* Module initialization function */
 	(response_function) 0,
