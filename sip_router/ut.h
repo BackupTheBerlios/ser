@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.38 2005/12/13 01:05:04 janakj Exp $
+ *$Id: ut.h,v 1.39 2005/12/15 23:17:40 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -50,6 +50,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <limits.h>
+#include <time.h>
 #include <unistd.h>
 #include <ctype.h>
 
@@ -426,5 +427,12 @@ int user2uid(int* uid, int* gid, char* user);
 /* converts a group name into a gid
  * returns -1 on error, 0 on success */
 int group2gid(int* gid, char* group);
+
+/*
+ * Replacement of timegm (does not exists on all platforms
+ * Taken from 
+ * http://lists.samba.org/archive/samba-technical/2002-November/025737.html
+ */
+time_t _timegm(struct tm* t);
 
 #endif
