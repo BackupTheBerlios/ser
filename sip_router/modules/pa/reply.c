@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.14 2005/12/07 17:53:40 kubartv Exp $
+ * $Id: reply.c,v 1.15 2005/12/15 14:21:43 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -176,8 +176,7 @@ int send_reply(struct sip_msg* _m)
 								   break;
 		case PA_OK_WAITING_FOR_AUTH:
 						msg = "Accepted"; 
-						/* FIXME: code = 202;  */ /* eyeBeam beta dies on 202 ! */
-						code = 200;
+						code = 202;
 						break;
 						/* OK but waiting for auth -> should return 202 */
 	}	

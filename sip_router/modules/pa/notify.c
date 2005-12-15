@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.34 2005/12/08 15:39:23 kubartv Exp $
+ * $Id: notify.c,v 1.35 2005/12/15 14:21:43 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -385,7 +385,7 @@ static int send_xpidf_notify(struct presentity* _p, struct watcher* _w)
 		return -3;
 	}
 	if (!tuple) {
-		 LOG(L_ERR, "send_xpidf_notify() NO TUPLE\n");
+		 /* LOG(L_ERR, "send_xpidf_notify() NO TUPLE\n"); */
 		 st = XPIDF_ST_CLOSED;
 		 if (xpidf_add_address(&body, BUF_LEN - body.len, &_p->uri, &none, st) < 0) {
              LOG(L_ERR, "send_xpidf_notify(): xpidf_add_address failed\n");

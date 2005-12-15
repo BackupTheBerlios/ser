@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.42 2005/12/13 00:19:34 janakj Exp $
+ * $Id: pa_mod.c,v 1.43 2005/12/15 14:21:43 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -87,6 +87,7 @@ str pa_domain;
 char *presentity_table = "presentity";
 char *presentity_contact_table = "presentity_contact";
 char *presentity_notes_table = "presentity_notes";
+char *tuple_notes_table = "tuple_notes";
 char *watcherinfo_table = "watcherinfo";
 char *place_table = "place";
 
