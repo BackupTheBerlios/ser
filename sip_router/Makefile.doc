@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.doc,v 1.5 2005/12/13 00:46:11 janakj Exp $
+# $Id: Makefile.doc,v 1.6 2005/12/19 14:10:11 greger Exp $
 #
 
 #
@@ -94,7 +94,7 @@ pdf: $(pdf_files)
         --xinclude \
         -o $@ $(FO_XSL) $<
 
-%.pdf: %.fo $.d $(alldep)
+%.pdf: %.fo %.d $(alldep)
 	$(XEP) $(XEP_FLAGS) -fo $< -pdf $@
 
 %.txt: %.xml %.d $(alldep)
