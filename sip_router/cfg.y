@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.101 2005/12/20 00:49:32 mma Exp $
+ * $Id: cfg.y,v 1.102 2005/12/20 01:52:41 mma Exp $
  *
  *  cfg grammar
  *
@@ -66,6 +66,7 @@
  * 2005-11-16  fixed if (cond) cmd; (andrei)
  * 2005-12-11  added onsend_route support, fcmd (filtered cmd),
  *             snd_{ip,port,proto,af}, to_{ip,proto} (andrei)
+ * 2005-12-19  select framework (mma)
  *
  */
 

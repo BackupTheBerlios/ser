@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.77 2005/12/20 00:49:32 mma Exp $
+ * $Id: cfg.lex,v 1.78 2005/12/20 01:52:41 mma Exp $
  *
  * scanner for cfg files
  *
@@ -59,6 +59,7 @@
  *  2005-12-11  added onsend_route, snd_{ip,port,proto,af},
  *              to_{ip,port} (andrei)
  *  2005-12-12  separated drop, exit, break, return, added RETCODE (andrei)
+ *  2005-12-19  select framework (mma)
  */
 
 

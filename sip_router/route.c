@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.51 2005/12/20 00:49:32 mma Exp $
+ * $Id: route.c,v 1.52 2005/12/20 01:52:41 mma Exp $
  *
  * SIP routing engine
  *
@@ -41,6 +41,7 @@
  *  2003-10-10  added more operators support to comp_* (<,>,<=,>=,!=) (andrei)
  *  2004-10-19  added from_uri & to_uri (andrei)
  *  2005-12-12  added retcode support (anrei)
+ *  2005-12-19  select framework (mma)
  */
 
  

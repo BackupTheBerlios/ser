@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.73 2005/12/20 00:49:32 mma Exp $
+ * $Id: action.c,v 1.74 2005/12/20 01:52:40 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -38,6 +38,7 @@
  *  2003-10-29  added FORCE_TCP_ALIAS_T (andrei)
  *  2004-11-30  added FORCE_SEND_SOCKET_T (andrei)
  *  2005-12-12  return & drop/exit differentiation (andrei)
+ *  2005-12-19  select framework (mma)
  */
 
 

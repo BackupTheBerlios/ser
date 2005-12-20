@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.36 2005/12/20 00:49:32 mma Exp $
+ * $Id: route_struct.c,v 1.37 2005/12/20 01:52:41 mma Exp $
  *
  * route structures helping functions
  *
@@ -33,6 +33,7 @@
  *  2003-04-12  FORCE_RPORT_T added (andrei)
  *  2003-10-02  added SET_ADV_ADDRESS & SET_ADV_PORT (andrei)
  *  2004-02-24  added LOAD_AVP_T and AVP_TO_URI_T (bogdan)
+ *  2005-12-19  select framework added SELECT_O and SELECT_ST (mma)
  */
 
 
