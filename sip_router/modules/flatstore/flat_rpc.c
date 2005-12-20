@@ -1,7 +1,7 @@
 /* 
- * $Id: flat_fifo.c,v 1.1 2004/10/09 14:45:03 janakj Exp $ 
+ * $Id: flat_rpc.c,v 1.2 2005/12/20 11:37:45 janakj Exp $ 
  *
- * Flatstore module FIFO interface
+ * Flatstore module interface
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -27,45 +27,23 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include "../../dprint.h"
-#include "../../fifo_server.h"
 #include "flatstore_mod.h"
-#include "flat_fifo.h"
+#include "flat_rpc.h"
 
 
-#define FLAT_ROTATE "flat_rotate"
-#define FLAT_ROTATE_LEN (sizeof(FLAT_ROTATE) - 1)
-
-
-static int flat_rotate_cmd(FILE* pipe, char* response_file);
-
-
-/*
- * Initialize the FIFO interface
- */
-int init_flat_fifo(void)
+static void rotate(rpc_t* rpc, void* c)
 {
-	if (register_fifo_cmd(flat_rotate_cmd, FLAT_ROTATE, 0) < 0) {
-		LOG(L_CRIT, "flatstore: Cannot register flat_rotate\n");
-		return -1;
-	}
-	
-	return 0;
-}
-
-
-static int flat_rotate_cmd(FILE* pipe, char* response_file)
-{
-	FILE* reply_file;
-	
-	reply_file = open_reply_pipe(response_file);
-	if (reply_file == 0) {
-		LOG(L_ERR, "flat_rotate_cmd: File not open\n");
-		return -1;
-	}
-
 	*flat_rotate = time(0);
-	fputs( "200 OK\n", reply_file);
-	fclose(reply_file);
-	return 1;
 }
+
+
+static const char* flat_rotate_doc[2] = {
+	"Close and reopen flatrotate files during log rotation.",
+	0
+};
+
+
+rpc_export_t flat_rpc[] = {
+	{"flatstore.rotate", rotate, flat_rotate_doc, 0},
+	{0, 0, 0, 0},
+};
