@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.c,v 1.21 2005/12/13 00:19:33 janakj Exp $
+ * $Id: permissions.c,v 1.22 2005/12/20 21:41:20 janakj Exp $
  *
  * PERMISSIONS module
  *
@@ -34,6 +34,7 @@
 #include "permissions.h"
 #include "parse_config.h"
 #include "trusted.h"
+#include "trusted_rpc.h"
 #include "../../mem/mem.h"
 #include "../../parser/parse_from.h"
 #include "../../parser/parse_uri.h"
@@ -130,7 +131,7 @@ static param_export_t params[] = {
 struct module_exports exports = {
         "permissions",
         cmds,      /* Exported functions */
-	0,         /* RPC methods */
+	trusted_rpc, /* RPC methods */
         params,    /* Exported parameters */
         mod_init,  /* module initialization function */
         0,         /* response function */
