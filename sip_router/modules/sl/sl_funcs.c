@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.51 2005/03/01 11:15:43 bogdan Exp $
+ * $Id: sl_funcs.c,v 1.52 2005/12/20 21:43:15 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -193,11 +193,11 @@ int sl_send_reply(struct sip_msg *msg ,int code ,char *text )
 	*(sl_timeout) = get_ticks() + SL_RPL_WAIT_TIME;
 	pkg_free(buf);
 
-	update_sl_stats(code);
+//	update_sl_stats(code);
 	return 1;
 
 error:
-	update_sl_failures();
+//	update_sl_failures();
 	return -1;
 }
 

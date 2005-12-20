@@ -1,8 +1,7 @@
 /*
+ * $Id: ul_rpc.h,v 1.2 2005/12/20 21:43:54 janakj Exp $
  *
- * $Id: ul_fifo.h,v 1.10 2005/11/19 19:05:04 janakj Exp $
- *
- *
+ * Usrloc module interface
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -28,23 +27,11 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef _UL_RPC_H
+#define _UL_RPC_H
 
-#ifndef _UL_FIFO_H
-#define _UL_FIFO_H
+#include "../../rpc.h"
 
-/* FIFO commands */
-#define UL_STATS	"ul_stats"
-#define UL_RM		"ul_rm"
-#define UL_RM_CONTACT   "ul_rm_contact"
-#define UL_DUMP         "ul_dump"
-#define UL_FLUSH        "ul_flush"
-#define UL_ADD          "ul_add"
-#define UL_SHOW_CONTACT "ul_show_contact"
+extern rpc_export_t ul_rpc[];
 
-/* buffer dimensions */
-#define MAX_TABLE 128
-#define MAX_UID 256
-
-int init_ul_fifo(void);
-
-#endif
+#endif /* _UL_RPC_H */

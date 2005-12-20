@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.23 2005/12/13 01:38:37 janakj Exp $
+ * $Id: sl.c,v 1.24 2005/12/20 21:43:15 janakj Exp $
  *
  * sl module
  *
@@ -95,8 +95,8 @@ struct module_exports exports= {
 #endif
 	"sl_module",
 	cmds,
-	0, /* param exports */
-	0,
+	sl_rpc,     /* RPC methods */
+	0,          /* param exports */
 	mod_init,   /* module initialization function */
 	(response_function) 0,
 	mod_destroy,
@@ -110,10 +110,12 @@ struct module_exports exports= {
 static int mod_init(void)
 {
 	fprintf(stderr, "stateless - initializing\n");
+
 	if (init_sl_stats()<0) {
 		LOG(L_ERR, "ERROR: init_sl_stats failed\n");
 		return -1;
 	}
+
 	/* if SL loaded, filter ACKs on beginning */
 	if (register_script_cb( sl_filter_ACK, PRE_SCRIPT_CB|REQ_TYPE_CB, 0 )<0) {
 		LOG(L_ERR,"ERROR:sl:mod_init: failed to install SCRIPT callback\n");
