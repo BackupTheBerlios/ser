@@ -1,7 +1,7 @@
 /*
  * Presence Agent, location package handling
  *
- * $Id: location.c,v 1.7 2004/08/24 08:58:32 janakj Exp $
+ * $Id: location.c,v 1.8 2005/12/20 12:11:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -30,7 +30,6 @@
  */
 
 #include <string.h>
-#include "../../fifo_server.h"
 #include "../../str.h"
 #include "../../dprint.h"
 #include "../../mem/mem.h"

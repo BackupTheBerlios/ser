@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.h,v 1.3 2004/08/24 09:00:33 janakj Exp $
+ * $Id: publish.h,v 1.4 2005/12/20 12:11:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -37,37 +37,5 @@
  * Handle a publish Request
  */
 int handle_publish(struct sip_msg* _m, char* _domain, char* _s2);
-
-/*
- * FIFO function for publishing events
- */
-int fifo_pa_publish(FILE *stream, char *response_file);
-/*
- * FIFO function for publishing presence
- */
-int fifo_pa_presence(FILE *stream, char *response_file);
-/*
- * FIFO function for publishing location
- */
-int fifo_pa_location(FILE *stream, char *response_file);
-
-/*
- * FIFO function for publishing location for a contact
- *
- * :pa_location_contact:
- * pdomain (registrar or jabber)
- * presentity_uri
- * presentity_contact
- * presentity_location (civil or geopriv)
- * priority
- * expires
- *
- */
-int fifo_pa_location_contact(FILE *fifo, char *response_file);
-
-/*
- * FIFO function to cause ser to reload watcherinfo for a presentity
- */
-int fifo_pa_watcherinfo(FILE *fifo, char *response_file);
 
 #endif /* PUBLISH_H */
