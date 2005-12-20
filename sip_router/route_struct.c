@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.35 2005/11/30 16:26:50 janakj Exp $
+ * $Id: route_struct.c,v 1.36 2005/12/20 00:49:32 mma Exp $
  *
  * route structures helping functions
  *
@@ -174,6 +174,9 @@ void print_expr(struct expr* exp)
 		        case AVP_ST:
 				DBG("attr");
 				break;
+		        case SELECT_ST:
+			        DBG("select");
+				break;
 			
 			default:
 				DBG("UNKNOWN");
@@ -228,9 +231,11 @@ void print_expr(struct expr* exp)
 					DBG("_myself_");
 					break;
 		        case AVP_ST:
-				DBG("attr");
-				break;
-			
+				        DBG("attr");
+			 	        break;
+		        case SELECT_ST:
+				        DBG("select");
+				        break;
 			default:
 					DBG("type<%d>", exp->r_type);
 		}
@@ -407,6 +412,9 @@ void print_action(struct action* t)
 	case AVP_ST:
 		DBG("avp(%u,%.*s)", t->p1.attr->type, t->p1.attr->name.s.len, ZSW(t->p1.attr->name.s.s));
 		break;
+	case SELECT_ST:
+		DBG("select");
+		break;
 	default:
 		DBG("type<%d>", t->p1_type);
 	}
@@ -437,6 +445,9 @@ void print_action(struct action* t)
 		break;
 	case AVP_ST:
 		DBG(", avp(%u,%.*s)", t->p2.attr->type, t->p2.attr->name.s.len, ZSW(t->p2.attr->name.s.s));
+		break;
+	case SELECT_ST:
+		DBG("select");
 		break;
 	default:
 		DBG(", type<%d>", t->p2_type);

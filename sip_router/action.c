@@ -1,5 +1,5 @@
 /*
- * $Id: action.c,v 1.72 2005/12/12 23:47:57 andrei Exp $
+ * $Id: action.c,v 1.73 2005/12/20 00:49:32 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -770,6 +770,20 @@ int do_action(struct action* a, struct sip_msg* msg)
 				}
 				ret = 1;
 				break;
+			} else if (a->p2_type == SELECT_ST) {
+				int r;
+				r = run_select(&value.s, a->p2.select, msg);
+				if (r < 0) {
+					ret=E_UNSPEC;
+					break;
+				} else if (r > 0) {
+					value.s.s = "";
+					value.s.len = 0;
+				}
+
+				flags = a->p1.attr->type | AVP_VAL_STR;
+				name = a->p1.attr->name;
+				ret = 1;
 			} else {
 				LOG(L_CRIT, "BUG: do_action: Bad right side of avp assignment\n");
 				ret=E_BUG;
