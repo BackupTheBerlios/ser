@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.29 2005/12/13 00:02:03 janakj Exp $
+/* $Id: sr_module.h,v 1.30 2005/12/20 21:47:36 janakj Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -79,6 +79,8 @@ typedef int (*param_func_t)( modparam_t type, void* val);
 #define PROC_FIFO     -2  /* FIFO attendant process */
 #define PROC_TCP_MAIN -4  /* TCP main process */
 #define PROC_UNIXSOCK -5  /* Unix socket server */
+
+#define PROC_MIN PROC_UNIXSOCK /* Minimum process rank */
 
 #define MODULE_VERSION \
 	char *module_version=SER_FULL_VERSION; \
