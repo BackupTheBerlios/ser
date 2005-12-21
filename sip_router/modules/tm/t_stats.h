@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.h,v 1.9 2004/08/24 09:00:43 janakj Exp $
+ * $Id: t_stats.h,v 1.10 2005/12/21 17:25:32 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -33,7 +33,7 @@
 
 #include "defs.h"
 
-
+#include "../../rpc.h"
 #include "../../pt.h"
 
 
@@ -90,5 +90,8 @@ inline static void update_reply_stats( int code ) {
 
 int init_tm_stats(void);
 void free_tm_stats();
+
+extern const char* tm_rpc_stats_doc[2];
+void tm_rpc_stats(rpc_t* rpc, void* c);
 
 #endif

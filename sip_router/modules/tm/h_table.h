@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.82 2005/12/10 16:04:53 andrei Exp $
+ * $Id: h_table.h,v 1.83 2005/12/21 17:25:32 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -330,11 +330,6 @@ void   insert_into_hash_table_unsafe( struct cell * p_cell, unsigned int _hash )
 
 unsigned int transaction_count( void );
 
-int fifo_hash( FILE *stream, char *response_file );
-
-/* Unix socket variant */
-int unixsock_hash(str* msg);
-		    
 #endif
 
 
