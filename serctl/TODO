@@ -1,0 +1,24 @@
+Important:
+==========
+
+  * Config file.
+  * Fix install target in makefile.
+
+Future:
+=======
+
+  * Hexadecimal flags.
+
+  * Fix the problem: duplicated unique key in domain_attrs for deleted
+    rows.
+
+  * Attribute manipulations.
+
+  * API reference manual.
+
+  * Documentation.
+
+Wishlist:
+=========
+
+  * Interactive & secure prompt for password.

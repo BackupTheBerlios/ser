@@ -1,0 +1,94 @@
+serctl (0.0.14)
+
+  * Package renamed to serctl.
+  * Command 'serctl all' converted to ser_ctl.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 21 Dec 2005 17:43:51 +0100
+
+serctl-ng (0.0.13)
+
+  * Command serctl split to ser_uri, ser_cred, ser_domain, ser_user.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 21 Dec 2005 16:09:32 +0100
+
+serctl-ng (0.0.12)
+
+  * Copyright and license notice corrected.
+  * Command name links (e.g. serctl_cred -> serctl) are functional.
+  * Minor typo fix.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 20 Dec 2005 18:24:11 +0100
+
+serctl-ng (0.0.11)
+
+  * API changed - parameters for most of methods.
+  * Changed command line syntax.
+  * Delete-marked arguments and functions name changed to purge.
+  * Check realm against domain_attr (not domain) table. Fix.
+  * Change methods updated.
+  * Change password in credentials is possible.
+  * Removed canonical operations from Cred and User classes.
+  * Fixed quote error in update from dbsql.py
+
+ -- Jan Halla <hallik@iptel.org> Mon, 19 Dec 2005 18:06:14 +0100
+
+serctl-ng (0.0.10)
+
+  * Uri, Domain, User, Cred, Raw classes are completed for testing.
+
+ -- Jan Halla <hallik@iptel.org> Fri, 16 Dec 2005 01:24:54 +0100
+
+serctl-ng (0.0.9)
+
+  * Uri class cleanup.
+
+ -- Jan Halla <hallik@iptel.org> Thu, 15 Dec 2005 20:23:39 +0100
+
+serctl-ng (0.0.8)
+
+  * Domain class cleanup.
+
+ -- Jan Halla <hallik@iptel.org> Thu, 15 Dec 2005 18:21:05 +0100
+
+serctl-ng (0.0.7)
+
+  * User object functional.
+
+ -- Jan Halla <hallik@iptel.org> Tue, 13 Dec 2005 23:46:37 +0100
+
+serctl-ng (0.0.6)
+
+  * Domain object functional.
+
+ -- Jan Halla <hallik@iptel.org> Tue, 13 Dec 2005 14:21:58 +0100
+
+serctl-ng (0.0.5)
+
+  * Cred object functional.
+
+ -- Jan Halla <hallik@iptel.org> Tue, 13 Dec 2005 12:21:31 +0100
+
+serctl-ng (0.0.4)
+
+  * Uri's add, rm, delete-marked and simple show is functional.
+
+ -- Jan Halla <hallik@iptel.org> St pro  7 17:43:46 CET 2005
+
+serctl-ng (0.0.3)
+
+  * Raw (raw table manipulation) object for testing added.
+
+ -- Jan Halla <hallik@iptel.org> Tue, 06 Dec 2005 23:13:03 +0100
+
+serctl-ng (0.0.2)
+
+  * Application and classes skeletons.
+  * Simple manipulations with URI table implemented.
+
+ -- Jan Halla <hallik@iptel.org> Fri, 02 Dec 2005 20:43:11 +0100
+
+serctl-ng (0.0.1)
+
+  * Initial release.
+
+ -- Jan Halla <hallik@iptel.org>  Mon, 14 Nov 2005 13:46:34 +0100
