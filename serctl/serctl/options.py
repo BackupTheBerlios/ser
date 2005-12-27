@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: options.py,v 1.2 2005/12/27 10:13:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -28,6 +28,7 @@ CMD_ADD        = 'add'
 CMD_CANONICAL  = 'canonical'
 CMD_DISABLE    = 'disable'
 CMD_ENABLE     = 'enable'
+CMD_FLUSH      = 'flush'
 CMD_HELP       = 'help'
 CMD_CHANGE     = 'change'
 CMD_PURGE      = 'purge'
@@ -124,6 +125,12 @@ CMD = {\
 	'ena'        : CMD_ENABLE,
 	'en'         : CMD_ENABLE,
 	'e'          : CMD_ENABLE,
+
+	'flush'      : CMD_FLUSH,
+	'flus'       : CMD_FLUSH,
+	'flu'        : CMD_FLUSH,
+	'fl'         : CMD_FLUSH,
+	'f'          : CMD_FLUSH,
 
 	'help'       : CMD_HELP,
 	'hel'        : CMD_HELP,

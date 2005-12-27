@@ -1,6 +1,10 @@
 Important:
 ==========
 
+  * Fix program name in error reports.
+
+  * Ser_ctl flush command.
+
   * Config file.
 
 Future:

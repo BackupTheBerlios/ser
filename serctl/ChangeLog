@@ -1,3 +1,9 @@
+serctl (0.0.15)
+
+  * Flush command added but not finished.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.0.14)
 
   * Package renamed to serctl.
