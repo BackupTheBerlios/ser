@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
+# $Id: ser_user,v 1.2 2005/12/27 09:21:36 hallik Exp $
+#
 # Copyright (C) 2005 iptelorg GmbH
 #
 # This is part of SER (SIP Express Router), a free SIP server project. 
@@ -9,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/12/21
-# Last update: 2005/12/21
+# Last update: 2005/12/27
 
 from serctl.main import main
 import sys

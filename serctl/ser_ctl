@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ser_ctl,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: ser_ctl,v 1.2 2005/12/27 09:21:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/14
-# Last update: 2005/11/21
+# Last update: 2005/11/27
 
 from serctl.main import main
 import sys
