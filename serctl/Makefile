@@ -17,11 +17,11 @@ localstatedir = $(var_prefix)
 
 PYPKG_DIR     = $(libexecdir)/python$(python_ver)/site-packages/$(name)
 DOC_DIR       = $(docdir)/$(name)
-PRECOMP_DIR   = src
+PRECOMP_DIR   = serctl
 
 # ------------------------------------------------------------------------- #
 
-SRC_DOC_FILES = README TODO ChangeLog doc/*
+SRC_DOC_FILES = README TODO ChangeLog
 
 # ========================================================================= #
 
@@ -36,8 +36,10 @@ precompile:
 		`find $$PRECOMP_DIR -name '*.py'`
 
 i:
-	make install prefix=install
-	make precompile PRECOMP_DIR=install
+	make install-precomp prefix=install
+
+install-precomp: install
+	make precompile PRECOMP_DIR=$(prefix)
 
 install: install-lib install-bin install-doc
 
@@ -50,6 +52,7 @@ install-lib: build
 install-bin: build
 	# python bins
 	mkdir -m 0755 -p $(bindir)
+	cp -a ser_* $(bindir)
 
 install-doc: build
 	# documentation
@@ -62,8 +65,7 @@ clean:
 	find $(PRECOMP_DIR) -name '*.pyc' -type f -exec rm -f \{\} \;
 	find $(PRECOMP_DIR) -name '*.pyo' -type f -exec rm -f \{\} \;
 
-
-nuke: clean clean-deb
+nuke: clean
 	rm -rf install $(pkg_name)
 	rm -f $(pkg_name).tar.bz2
 
@@ -73,8 +75,12 @@ tree:
 	tar c --exclude=$(pkg_name) . | tar -C $(pkg_name) -x
 	cd $(pkg_name) && $(MAKE) nuke
 
+tarball: tree
+	tar -cjf $(pkg_name).tar.bz2 $(pkg_name)
+	rm -r $(pkg_name)
+
 version:
 	@echo $(ver)
 
 .PHONY: all build precompile i install install-lib install-bin install-doc clean
-.PHONY: nuke tree version
+.PHONY: nuke tree tarball version
