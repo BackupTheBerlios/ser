@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.h,v 1.7 2005/11/14 12:35:01 kubartv Exp $
+ * $Id: pdomain.h,v 1.8 2006/01/03 15:14:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -75,12 +75,6 @@ int new_pdomain(str* _n, int _s, pdomain_t** _d, register_watcher_t _reg, unregi
  * the domain
  */
 void free_pdomain(pdomain_t* _d);
-
-
-/*
- * Just for debugging
- */
-void print_pdomain(FILE* _f, pdomain_t* _d);
 
 
 /*

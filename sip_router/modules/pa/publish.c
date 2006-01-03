@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.31 2005/12/20 12:11:07 janakj Exp $
+ * $Id: publish.c,v 1.32 2006/01/03 15:14:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -51,7 +51,6 @@
 #include "reply.h"
 #include "subscribe.h"
 #include "publish.h"
-#include "pidf.h"
 #include "common.h"
 #include "../../data_lump_rpl.h"
 #include "../../parser/parse_sipifmatch.h"

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.37 2005/12/15 14:21:43 kubartv Exp $
+ * $Id: presentity.c,v 1.38 2006/01/03 15:14:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -896,35 +896,6 @@ void free_presence_tuple(presence_tuple_t * _t)
 
 		shm_free(_t);
 	}
-}
-
-/*
- * Print a presentity
- */
-void print_presentity(FILE* _f, presentity_t* _p)
-{
-	watcher_t* ptr;
-
-	fprintf(_f, "--presentity_t---\n");
-	fprintf(_f, "uri: '%.*s'\n", _p->uri.len, ZSW(_p->uri.s));
-	
-	if (_p->watchers) {
-		ptr = _p->watchers;
-		while(ptr) {
-			print_watcher(_f, ptr);
-			ptr = ptr->next;
-		}
-	}
-
-	if (_p->winfo_watchers) {
-		ptr = _p->winfo_watchers;
-		while(ptr) {
-			print_watcher(_f, ptr);
-			ptr = ptr->next;
-		}
-	}
-
-	fprintf(_f, "---/presentity_t---\n");
 }
 
 static void process_watchers(presentity_t* _p, int *changed)

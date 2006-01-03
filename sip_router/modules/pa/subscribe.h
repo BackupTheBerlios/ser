@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.h,v 1.8 2004/08/24 09:00:33 janakj Exp $
+ * $Id: subscribe.h,v 1.9 2006/01/03 15:14:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -55,20 +55,8 @@ int existing_subscription(struct sip_msg* _m, char* _domain, char* _s2);
 int pa_handle_registration(struct sip_msg* _m, char* _domain, char* _s2);
 
 /*
- * Returns 1 if possibly a user agent can handle SUBSCRIBE
- * itself, 0 if it cannot for sure
- */
-int pua_exists(struct sip_msg* _m, char* _domain, char* _s2);
-
-enum doctype;
-/*
  * Get presentity URI, which is stored in R-URI
  */
 int get_pres_uri(struct sip_msg* _m, str* _puri);
-
-/*
- * Parse Accept header field body
- */
-int parse_accept(struct hdr_field* _h, enum doctype* _a);
 
 #endif /* SUBSCRIBE_H */

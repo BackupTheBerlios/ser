@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.23 2005/12/07 09:22:49 kubartv Exp $
+ * $Id: pdomain.c,v 1.24 2006/01/03 15:14:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -122,36 +122,6 @@ void free_pdomain(pdomain_t* _d)
 
         shm_free(_d);
 }
-
-
-/*
- * Just for debugging
- */
-void print_pdomain(FILE* _f, pdomain_t* _d)
-{
-	struct presentity* p;
-
-	fprintf(_f, "---pdomain---\n");
-	fprintf(_f, "name : '%.*s'\n", _d->name->len, ZSW(_d->name->s));
-	fprintf(_f, "size : %d\n", _d->size);
-	fprintf(_f, "table: %p\n", _d->table);
-	fprintf(_f, "first: %p\n", _d->first);
-	fprintf(_f, "last : %p\n", _d->last);
-	/* fprintf(_f, "lock : %d\n", _d->lock);*/ /*it can be a struct --andrei*/
-
-	if (_d->first) {
-		fprintf(_f, "\n");
-		p = _d->first;
-		while(p) {
-			print_presentity(_f, p);
-			p = p->next;
-		}
-		fprintf(_f, "\n");
-	}
-
-	fprintf(_f, "---pdomain---\n");
-}
-
 
 int timer_pdomain(pdomain_t* _d)
 {

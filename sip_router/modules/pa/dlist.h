@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.h,v 1.5 2005/10/26 09:09:24 kubartv Exp $
+ * $Id: dlist.h,v 1.6 2006/01/03 15:14:18 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -65,12 +65,6 @@ int find_pdomain(const char* _n, pdomain_t** _d);
  * Free all registered domains
  */
 void free_all_pdomains(void);
-
-
-/*
- * Just for debugging
- */
-void print_all_pdomains(FILE* _f);
 
 
 /*

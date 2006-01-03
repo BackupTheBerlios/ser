@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.12 2005/11/14 12:35:01 kubartv Exp $
+ * $Id: dlist.c,v 1.13 2006/01/03 15:14:17 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -218,25 +218,6 @@ void free_all_pdomains(void)
 		shm_free(ptr);
 	}
 }
-
-
-/*
- * Just for debugging
- */
-void print_all_pdomains(FILE* _f)
-{
-	dlist_t* ptr;
-	
-	ptr = root;
-
-	fprintf(_f, "===Domain list===\n");
-	while(ptr) {
-		print_pdomain(_f, ptr->d);
-		ptr = ptr->next;
-	}
-	fprintf(_f, "===/Domain list===\n");
-}
-
 
 /*
  * Run timer handler of all domains

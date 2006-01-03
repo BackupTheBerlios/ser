@@ -1,9 +1,5 @@
-/*
- * Presence Agent, LPDIF document support
- *
- * $Id: lpidf.h,v 1.4 2004/08/24 08:58:32 janakj Exp $
- *
- * Copyright (C) 2001-2003 FhG Fokus
+/* 
+ * Copyright (C) 2005 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
@@ -22,34 +18,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef __PRESENCE_XPIDF_H
+#define __PRESENCE_XPIDF_H
 
-#ifndef LPIDF_H
-#define LPIDF_H
+#include <cds/sstr.h>
+#include <presence/pres_doc.h>
 
-#include "../../str.h"
+int create_lpidf_document(presentity_info_t *p, str_t *dst, str_t *dst_content_type);
 
-
-typedef enum lpidf_status {
-	LPIDF_ST_OPEN,
-	LPIDF_ST_CLOSED,
-} lpidf_status_t;
-
-
-/*
- * Add a presentity information
- */
-int lpidf_add_presentity(str* _b, int _l, str* _uri);
-
-
-/*
- * Add a contact address with given status
- */
-int lpidf_add_address(str* _b, int _l, str* _addr, lpidf_status_t _st);
-
-
-#endif /* LPIDF_H */
+#endif
