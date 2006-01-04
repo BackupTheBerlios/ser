@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.45 2006/01/03 15:14:24 kubartv Exp $
+ * $Id: pa_mod.c,v 1.46 2006/01/04 13:35:40 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -331,8 +331,6 @@ static int pa_mod_init(void)
 		return -1;
 	}
 
-	WARN_LOG("TESTING VERSION of get_presentity_uuid()!\n");
-	
 	LOG(L_DBG, "pa_mod_init done\n");
 	return 0;
 }

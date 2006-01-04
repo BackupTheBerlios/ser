@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.h,v 1.8 2006/01/03 15:14:24 kubartv Exp $
+ * $Id: pdomain.h,v 1.9 2006/01/04 13:35:40 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -96,9 +96,9 @@ void unlock_pdomain(pdomain_t* _d);
 
 
 /*
- * Find a presentity in domain
+ * Find a presentity in domain acording to UID (!)
  */
-int find_presentity(pdomain_t* _d, str* _uri, struct presentity** _p);
+int find_presentity_uid(pdomain_t* _d, str* uid, struct presentity** _p);
 
 /*
  * Add a presentity to domain

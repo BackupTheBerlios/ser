@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.36 2006/01/03 15:14:18 kubartv Exp $
+ * $Id: notify.c,v 1.37 2006/01/04 13:35:40 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -390,7 +390,7 @@ static int send_winfo_notify(struct presentity* _p, struct watcher* _w)
 
 	_w->document_index++; /* increment index for next document */
 	
-	if (use_db) db_update_watcher(_p, _w);
+	if (use_db) db_update_watcher(_p, _w); /* dialog and index have changed */
 
 	return 0;
 }
