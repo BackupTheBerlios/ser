@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2005/10/26 07:09:46 kubartv Exp $
+# $Id: Makefile,v 1.2 2006/01/05 09:36:46 kubartv Exp $
 #
 # Registrar Presence User Agent
 #
@@ -12,7 +12,7 @@ NAME = dialog.so
 # and root ser directory must be in include directories
 
 DEFS += -Wall -I../../lib -DSER -I../..
-LIBS += -L../../lib/cds -lcds
+LIBS += -L../../lib/cds -l_ser_cds
 
 #DEFS = -I../.. -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 -Wall -I../../lib -DSER $(DEFS)
 #LIBS = -L../../lib/cds -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2 -lcurl -lcds $(LIBS)
