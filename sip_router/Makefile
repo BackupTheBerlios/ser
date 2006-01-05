@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.143 2005/12/15 23:30:41 janakj Exp $
+# $Id: Makefile,v 1.144 2006/01/05 19:53:14 calrissian Exp $
 #
 # sip_router makefile
 #
@@ -52,7 +52,7 @@ exclude_modules?= 			acc cpl ext extcmd radius_acc radius_auth vm \
 							jabber mysql \
 							cpl-c \
 							auth_radius group_radius uri_radius avp_radius \
-							acc_radius dialog pa rls xmlrpc
+							acc_radius dialog pa rls xmlrpc osp
 # always exclude the CVS dir
 override exclude_modules+= CVS $(skip_modules)
 
