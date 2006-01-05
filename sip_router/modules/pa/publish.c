@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.33 2006/01/04 13:35:40 kubartv Exp $
+ * $Id: publish.c,v 1.34 2006/01/05 14:31:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -639,7 +639,7 @@ static int update_all_published_tuples(presentity_t *p, str *etag, time_t expire
 	return found;
 }
 
-static int process_presentity_info(presentity_t *presentity, presentity_info_t *p, str *etag, time_t expires)
+int process_published_presentity_info(presentity_t *presentity, presentity_info_t *p, str *etag, time_t expires)
 {
 	if (etag->len < 1) {
 		
@@ -717,7 +717,7 @@ static int publish_presence(struct sip_msg* _m, struct presentity* presentity)
 		}
 	}
 	
-	if (process_presentity_info(presentity, p, &etag, expires) == 0) {
+	if (process_published_presentity_info(presentity, p, &etag, expires) == 0) {
 		/* add header fields into response */
 		add_expires_to_rpl(_m, msg_expires);
 		add_etag_to_rpl(_m, &etag);

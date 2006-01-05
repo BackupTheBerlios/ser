@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.h,v 1.4 2005/12/20 12:11:07 janakj Exp $
+ * $Id: publish.h,v 1.5 2006/01/05 14:31:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -32,10 +32,16 @@
 #define PUBLISH_H
 
 #include "../../parser/msg_parser.h"
+#include "qsa_interface.h"
 
 /*
  * Handle a publish Request
  */
 int handle_publish(struct sip_msg* _m, char* _domain, char* _s2);
 
+/*
+ * Publish given parsed "presence document"
+ */
+int process_published_presentity_info(presentity_t *presentity, presentity_info_t *p, str *etag, time_t expires);
+	
 #endif /* PUBLISH_H */
