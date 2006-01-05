@@ -1,5 +1,5 @@
 /*
- * $Id: parse_from.h,v 1.9 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_from.h,v 1.10 2006/01/05 09:36:19 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,7 +39,7 @@
 
 
 /*
- * To header field parser
+ * From header field parser
  */
 int parse_from_header( struct sip_msg *msg);
 
