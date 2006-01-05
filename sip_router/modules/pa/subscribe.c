@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.44 2006/01/04 13:35:40 kubartv Exp $
+ * $Id: subscribe.c,v 1.45 2006/01/05 15:59:46 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -369,6 +369,7 @@ int check_message(struct sip_msg* _m)
 		}
 		acc = acc->next;
 	}
+	paerrno = PA_WRONG_ACCEPTS;
 	LOG(L_ERR, "no satisfactory document type found\n");
 	return -1;
 }
