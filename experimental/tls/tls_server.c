@@ -422,8 +422,15 @@ tls_tcpconn_init(struct tcp_connection *c, int sock)
 	c->type = PROTO_TLS;
 	c->rcv.proto = PROTO_TLS;
 	c->flags = 0;
-	c->timeout = get_ticks() + tcp_con_lifetime;
-
+	c->timeout = get_ticks() 
+	#ifdef SER_VER
+		/* use tcp_con_lifetime */
+		+ tcp_con_lifetime;
+	#else
+		/* use TCP_CON_TIMEOUT */
+		+ TCP_CON_TIMEOUT;
+	#endif
+	
 	if (c->state == S_CONN_ACCEPT) {
 		DBG("tls_tcpconn_init: Looking up tls domain [%s:%d]\n",
 			ip_addr2a(&c->rcv.dst_ip), c->rcv.dst_port);
