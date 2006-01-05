@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.27 2005/12/16 00:40:14 janakj Exp $
+ * $Id: domain_mod.c,v 1.28 2006/01/05 14:56:03 kubartv Exp $
  *
  * Domain module
  *
@@ -446,6 +446,10 @@ static int get_to_host(str* res, struct sip_msg* msg)
 	struct sip_uri puri;
 	str uri;
 
+	if (parse_headers(msg, HDR_TO_F, 0) < 0) {
+		LOG(L_ERR, "domain: get_to_host: Error while parsing To header\n");
+		return -1;
+	}
 	if (!msg->to) {
 		LOG(L_ERR, "domain:get_to_host: No To header field found in message\n");
 		return -1;
