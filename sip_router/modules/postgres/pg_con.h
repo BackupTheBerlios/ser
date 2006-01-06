@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_con.h,v 1.1 2005/10/27 23:11:45 janakj Exp $
+ * $Id: pg_con.h,v 1.2 2006/01/06 13:21:35 janakj Exp $
  *
  * Portions Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003 August.Net Services, LLC
@@ -63,12 +63,12 @@ struct pg_con {
  * Create a new connection structure,
  * open the MySQL connection and set reference count to 1
  */
-struct pg_con* new_connection(struct db_id* id);
+struct pg_con* pg_new_connection(struct db_id* id);
 
 
 /*
  * Close the connection and release memory
  */
-void free_connection(struct pg_con* con);
+void pg_free_connection(struct pg_con* con);
 
 #endif /* _PG_CON_H */

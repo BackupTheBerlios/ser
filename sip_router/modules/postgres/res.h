@@ -1,5 +1,5 @@
 /* 
- * $Id: res.h,v 1.1 2005/10/27 23:11:45 janakj Exp $ 
+ * $Id: res.h,v 1.2 2006/01/06 13:21:35 janakj Exp $ 
  *
  * Postgres module result related functions
  *
@@ -39,19 +39,19 @@
 /*
  * Create a new result structure and initialize it
  */
-db_res_t* new_result(PGresult* pgres);
+db_res_t* pg_new_result(PGresult* pgres);
 
 
 /*
  * Fill the structure with data from database
  */
-int convert_result(db_res_t* res, db_con_t* con);
+int pg_convert_result(db_res_t* res, db_con_t* con);
 
 
 /*
  * Release memory used by a result structure
  */
-int free_result(db_res_t* res);
+int pg_free_result(db_res_t* res);
 
 
 #endif /* _RES_H */

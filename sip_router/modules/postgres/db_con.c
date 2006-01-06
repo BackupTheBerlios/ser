@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.4 2005/10/27 23:11:45 janakj Exp $ 
+ * $Id: db_con.c,v 1.5 2006/01/06 13:21:35 janakj Exp $ 
  *
  * Database connection related functions
  *
@@ -40,10 +40,10 @@
  * Store name of table that will be used by
  * subsequent database functions
  */
-int use_table(db_con_t* _h, const char* _t)
+int pg_use_table(db_con_t* _h, const char* _t)
 {
 	if ((!_h) || (!_t)) {
-		LOG(L_ERR, "use_table: Invalid parameter value\n");
+		ERR("Invalid parameter value\n");
 		return -1;
 	}
 
