@@ -1,5 +1,5 @@
-/* 
- * $Id: flatstore_mod.h,v 1.2 2004/10/09 14:30:27 janakj Exp $ 
+/*
+ * $Id: flatstore_mod.h,v 1.3 2006/01/06 23:55:14 tma0 Exp $
  *
  * Flatstore module interface
  *
@@ -22,8 +22,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 /*
@@ -43,18 +43,25 @@
  */
 extern int flat_pid;
 
-
 /*
  * Should we flush after each write to the database ?
  */
 extern int flat_flush;
 
+/*
+ * Delimiter delimiting rows
+ */
+extern char *flat_record_delimiter;
 
 /*
- * Delmiter delimiting columns
+ * Delimiter delimiting columns
  */
-extern char* flat_delimiter;
+extern char *flat_delimiter;
 
+/*
+ * Escape char escaning delimiters and itself
+ */
+extern char *flat_escape;
 
 /*
  * The timestamp of log rotation request from

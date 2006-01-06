@@ -1,5 +1,5 @@
-/* 
- * $Id: flat_con.c,v 1.5 2005/05/31 12:59:30 janakj Exp $
+/*
+ * $Id: flat_con.c,v 1.6 2006/01/06 23:55:14 tma0 Exp $
  *
  * Flastore module connection structure
  *
@@ -22,8 +22,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
@@ -59,7 +59,7 @@ static char* get_name(struct flat_id* id)
 					total_len, buf_len);
 		return 0;
 	}
-	
+
 	buf=pkg_malloc(buf_len);
 	if (buf==0){
 		LOG(L_ERR, "ERROR: get_name: memory allocation failure\n");
@@ -76,7 +76,7 @@ static char* get_name(struct flat_id* id)
 	ptr += id->table.len;
 
 	*ptr++ = '_';
-	
+
 	num = int2str(flat_pid, &num_len);
 	if (buf_len<(total_len+num_len)){
 		LOG(L_ERR, "ERROR:  get_name: the path is too long (%d and PATHMAX is"
@@ -114,7 +114,7 @@ struct flat_con* flat_new_connection(struct flat_id* id)
 
 	memset(res, 0, sizeof(struct flat_con));
 	res->ref = 1;
-	
+
 	res->id = id;
 
 	fn = get_name(id);
@@ -130,7 +130,7 @@ struct flat_con* flat_new_connection(struct flat_id* id)
 		pkg_free(res);
 		return 0;
 	}
-	
+
 	return res;
 }
 
