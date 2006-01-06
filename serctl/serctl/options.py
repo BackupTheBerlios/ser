@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.2 2005/12/27 10:13:04 hallik Exp $
+# $Id: options.py,v 1.3 2006/01/06 10:43:45 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -20,6 +20,7 @@ OBJ_CREDENTIAL = 'credential'
 OBJ_CTL        = 'ctl'
 OBJ_DOMAIN     = 'domain'
 OBJ_HELP       = 'help'
+OBJ_INTERCEPT  = 'intercept'
 OBJ_RAW        = 'raw'
 OBJ_URI        = 'uri'
 OBJ_USER       = 'user'
@@ -84,11 +85,22 @@ OBJ = {\
 	'he'         : OBJ_HELP,
 	'h'          : OBJ_HELP,
 
+	'i'          : OBJ_URI,
+
+	'intercept'  : OBJ_INTERCEPT,
+	'intercep'   : OBJ_INTERCEPT,
+	'interce'    : OBJ_INTERCEPT,
+	'interc'     : OBJ_INTERCEPT,
+	'inter'      : OBJ_INTERCEPT,
+	'inte'       : OBJ_INTERCEPT,
+	'int'        : OBJ_INTERCEPT,
+	'in'         : OBJ_INTERCEPT,
+	'I'          : OBJ_INTERCEPT,
+
 	'raw'        : OBJ_RAW,
 
 	'uri'        : OBJ_URI,
 	'ur'         : OBJ_URI,
-	'i'          : OBJ_URI,
 
 	'user'       : OBJ_USER,
 	'use'        : OBJ_USER,

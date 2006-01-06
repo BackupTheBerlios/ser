@@ -1,11 +1,19 @@
 Important:
 ==========
 
+  * Disable user --> disable uri, cred.
+
+  * Remove pending flag.
+
   * Fix program name in error reports.
 
   * Ser_ctl flush command.
 
   * Config file.
+
+  * Help improvements.
+
+  * Fifo and xmlrpc objects.
 
 Future:
 =======

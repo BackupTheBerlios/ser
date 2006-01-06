@@ -1,8 +1,11 @@
 serctl (0.0.15)
 
   * Flush command added but not finished.
+  * Fixed typo in help.
+  * Interface for 'line interception' object. 
+    Note: Object for 'line interception' not available in public version.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Fri, 06 Jan 2006 11:42:58 +0100
 
 serctl (0.0.14)
 

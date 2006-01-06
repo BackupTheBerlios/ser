@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: main.py,v 1.2 2006/01/06 10:43:45 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -13,7 +13,7 @@
 # Created:     2005/11/14
 # Last update: 2005/12/21
 
-from error   import Error, EINVAL, ENODB, set_excepthook
+from error   import Error, EINVAL, ENODB, ENOSYS, set_excepthook
 from getopt  import gnu_getopt
 from options import *
 from os.path import basename
@@ -62,6 +62,15 @@ def module(name):
 	if name == OBJ_URI:
 		import ctluri
 		return ctluri
+
+	# intercept module not in public release.
+	if name == OBJ_INTERCEPT:
+		try:
+			import ctlintercept
+		except:
+			raise Error (ENOSYS, 'Interception control')
+		return ctlintercept
+
 	return None
 
 def handle_help(args, opts):
