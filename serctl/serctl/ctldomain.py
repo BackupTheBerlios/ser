@@ -9,7 +9,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/30
-# Last update: 2005/12/15
+# Last update: 2006/01/06
 
 from ctlcred import Cred
 from ctluri  import Uri
@@ -114,7 +114,7 @@ def change(db, args, opts):
 	flags = opts.get(OPT_FLAGS)
 
 	u = Domain(db)
-	u.change_flags(domain, flags=flags)
+	u.change(domain, flags=flags, force=force)
 
 def rm(db, args, opts):
 	domain = _get_domain(args, False)
@@ -127,12 +127,24 @@ def rm(db, args, opts):
 	u.rm(domain, force=force)
 
 def enable(db, args, opts):
-	opts['flags'] = '-d'
-	return change(db, args, opts)
+	domain = _get_domain(args, False)
+
+	no_all(opts, domain)
+
+	force = opts.has_key(OPT_FORCE)
+
+	u = Domain(db)
+	u.enable(domain, force=force)
 
 def disable(db, args, opts):
-	opts['flags'] = '+d'
-	return change(db, args, opts)
+	domain = _get_domain(args, False)
+
+	no_all(opts, domain)
+
+	force = opts.has_key(OPT_FORCE)
+
+	u = Domain(db)
+	u.disable(domain, force=force)
 
 def canonical(db, args, opts):
 	opts['flags'] = '+c'
@@ -268,7 +280,7 @@ class Domain:
 		canonical = is_canonical(nflags)
 
 		# get did
-		dids, err = _get_dids(domain)
+		dids, err = self._get_dids(domain)
 		if not dids:
 			if force:
 				return
@@ -380,6 +392,12 @@ class Domain:
 	def purge(self):
 		self.db.delete(self.T_DOM, CND_DELETED)
 		self.db.delete(self.T_DATTR, CND_DELETED)
+
+	def enable(self, domain=None, force=False):
+		return self.change(domain, flags='-d', force=force)
+
+	def disable(self, domain=None, force=False):
+		return self.change(domain, flags='+d', force=force)
 
 	def _default_dra_flags(self): # default flags for digest_realm attr
 		return '0'

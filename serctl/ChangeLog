@@ -1,3 +1,11 @@
+serctl (0.0.16)
+
+  * Enable and disable functions converted to metods.
+  * User's enable and disable methods enable/disable credentials and uri, too.
+  * Some bugfixes.
+
+ -- Jan Halla <hallik@iptel.org> Fri, 06 Jan 2006 15:46:53 +0100
+
 serctl (0.0.15)
 
   * Flush command added but not finished.

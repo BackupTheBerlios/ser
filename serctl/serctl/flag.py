@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: flag.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -118,18 +118,6 @@ def new_flags(old_flags, mask):
 
 def is_canonical(flags):
 	return (long(flags) & CANON) > 0
-
-
-# FIX: get from attr_types table
-def default_flags(db):
-#	db.select('attr_types', ...)
-	return str(IS_TO | IS_FROM)
-
-# FIX: set to real function
-default_uri_flags      = default_flags
-default_cred_flags     = default_flags
-default_userattr_flags = default_flags
-default_domattr_flags  = default_flags
 
 def set_deleted(flags):
 	return str(long(flags) | DELETED)

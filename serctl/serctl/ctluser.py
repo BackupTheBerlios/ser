@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluser.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: ctluser.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/30
-# Last update: 2005/12/19
+# Last update: 2006/01/06
 
 from ctlcred import Cred
 from ctluri  import Uri
@@ -32,6 +32,10 @@ def main(args, opts):
 
 	if   cmd == CMD_ADD:
 		ret = add(db, args[3:], opts)
+	elif cmd == CMD_ENABLE:
+		ret = enable(db, args[3:], opts)
+	elif cmd == CMD_DISABLE:
+		ret = disable(db, args[3:], opts)
 	elif cmd == CMD_CHANGE:
 		ret = change(db, args[3:], opts)
 	elif cmd == CMD_RM:
@@ -95,7 +99,7 @@ def change(db, args, opts):
 	flags = opts.get(OPT_FLAGS)
 
 	u = User(db)
-	u.change_flags(uid, flags=flags, force=force)
+	u.change(uid, flags=flags, force=force)
 
 def rm(db, args, opts):
 	uid = _get_uid(args, False)
@@ -106,12 +110,20 @@ def rm(db, args, opts):
 	u.rm(uid, force=force)
 
 def enable(db, args, opts):
-	opts['flags'] = '-d'
-	return change(db, args, opts)
+	uid = _get_uid(args, False)
+
+	force = opts.has_key(OPT_FORCE)
+
+	u = User(db)
+	u.enable(uid, force=force)
 
 def disable(db, args, opts):
-	opts['flags'] = '+d'
-	return change(db, args, opts)
+	uid = _get_uid(args, False)
+
+	force = opts.has_key(OPT_FORCE)
+
+	u = User(db)
+	u.disable(uid, force=force)
 
 def purge(db, args, opts):
 	u = User(db)
@@ -253,3 +265,21 @@ class User:
 
 	def purge(self):
 		self.db.delete(self.T_UATTR, CND_DELETED)
+
+	def enable(self, uid=None, force=False):
+		udb = Uri(self.dburi)
+		udb.enable(uid=uid, force=force)
+		del(udb)
+		cdb = Cred(self.dburi)
+		cdb.enable(uid=uid, force=force)
+		del(cdb)
+		return self.change(uid, flags='-d', force=force)
+
+	def disable(self, uid=None, force=False):
+		udb = Uri(self.dburi)
+		udb.disable(uid=uid, force=force)
+		del(udb)
+		cdb = Cred(self.dburi)
+		cdb.disable(uid=uid, force=force)
+		del(cdb)
+		return self.change(uid, flags='+d', force=force)

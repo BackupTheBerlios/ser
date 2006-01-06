@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: ctluri.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/30
-# Last update: 2005/12/19
+# Last update: 2006/01/06
 
 from dbany   import DBany
 from error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
@@ -131,7 +131,7 @@ def change(db, args, opts):
 	flags = opts.get(OPT_FLAGS)
 
 	u = Uri(db)
-	u.change(uri, uid, did, flags=flags)
+	u.change(uri, uid, did, flags=flags, force=force)
 
 def rm(db, args, opts):
 	uri = _get_uri(args, False)
@@ -146,12 +146,28 @@ def rm(db, args, opts):
 	u.rm(uri, uid, did, force=force)
 
 def enable(db, args, opts):
-	opts['flags'] = '-d'
-	return change(db, args, opts)
+	uri = _get_uri(args, False)
+	uid = _get_uid(args, False)
+	did = _get_did(args, False)
+
+	no_all(opts, uri, uid, did)
+
+	force = opts.has_key(OPT_FORCE)
+
+	u = Uri(db)
+	u.enable(uri, uid, did, force=force)
 
 def disable(db, args, opts):
-	opts['flags'] = '+d'
-	return change(db, args, opts)
+	uri = _get_uri(args, False)
+	uid = _get_uid(args, False)
+	did = _get_did(args, False)
+
+	no_all(opts, uri, uid, did)
+
+	force = opts.has_key(OPT_FORCE)
+
+	u = Uri(db)
+	u.disable(uri, uid, did, force=force)
 
 def canonical(db, args, opts):
 	opts['flags'] = '+c'
@@ -309,7 +325,7 @@ class Uri:
 			'flags' : flags }
 		self.db.insert(self.T_URI, ins)
 
-	def change_flags(self, uri=None, uid=None, did=None, flags=None, \
+	def change(self, uri=None, uid=None, did=None, flags=None, \
 	  force=False):
 		fmask = parse_flags(flags)
 		nflags = new_flags(0, fmask)
@@ -318,7 +334,7 @@ class Uri:
 		username, domain = self._split_uri(uri)
 		if did is None:
 			did = self._get_did(domain)
-		if did is None:
+		if (did is None) and (uri is not None):
 			if force:
 				return
 			raise Error (ENODOMAIN, domain)
@@ -394,3 +410,9 @@ class Uri:
 
 	def purge(self):
 		self.db.delete(self.T_URI, CND_DELETED)
+
+	def enable(self, uri=None, uid=None, did=None, force=False):
+		return self.change(uri, uid, did, flags='-d', force=force)
+
+	def disable(self, uri=None, uid=None, did=None, force=False):
+		return self.change(uri, uid, did, flags='+d', force=force)

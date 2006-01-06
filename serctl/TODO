@@ -1,8 +1,6 @@
 Important:
 ==========
 
-  * Disable user --> disable uri, cred.
-
   * Remove pending flag.
 
   * Fix program name in error reports.

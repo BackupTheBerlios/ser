@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: ctlcred.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/30
-# Last update: 2005/12/15
+# Last update: 2006/01/06
 
 from dbany   import DBany
 from error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
@@ -157,12 +157,28 @@ def rm(db, args, opts):
 	u.rm(username, realm, uid, force=force)
 
 def enable(db, args, opts):
-	opts['flags'] = '-d'
-	return change(db, args, opts)
+	username = _get_username(args, False)
+	realm    = _get_realm(args, False)
+	uid      = _get_uid(args, False)
+
+	no_all(opts, username, realm, uid)
+
+	force    = opts.has_key(OPT_FORCE)
+
+        u = Cred(db)
+        u.enable(username, realm, uid, force=force)
 
 def disable(db, args, opts):
-	opts['flags'] = '+d'
-	return change(db, args, opts)
+	username = _get_username(args, False)
+	realm    = _get_realm(args, False)
+	uid      = _get_uid(args, False)
+
+	no_all(opts, username, realm, uid)
+
+	force    = opts.has_key(OPT_FORCE)
+
+        u = Cred(db)
+        u.disable(username, realm, uid, force=force)
 
 def purge(db, args, opts):
 	u = Cred(db)
@@ -346,3 +362,9 @@ class Cred:
 
 	def purge(self):
 		self.db.delete(self.T_CRED, CND_DELETED)
+
+	def enable(self, username=None, realm=None, uid=None, force=False):
+		return self.change(username, realm, uid, flags='-d', force=force)
+
+	def disable(self, username=None, realm=None, uid=None, force=False):
+		return self.change(username, realm, uid, flags='+d', force=force)
