@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:28 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2006/01/07 23:24:58 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -444,14 +444,14 @@ module_stm = "loadmodule" STRING
 | "loadmodule" error	 { yyerror("string expected");  }
 | "modparam" "(" STRING "," STRING "," STRING ")" 
 {
-    if (set_mod_param($3, $5, STR_PARAM, $7) != 0) {
+    if (set_mod_param($3, $5, PARAM_STR|PARAM_STRING, $7) != 0) {
         yyerror("Can't set module parameter");
     }
 }
 
 | "modparam" "(" STRING "," STRING "," NUMBER ")" 
 {
-    if (set_mod_param($3, $5, INT_PARAM, (void*)$7) != 0) {
+    if (set_mod_param($3, $5, PARAM_INT, (void*)$7) != 0) {
         yyerror("Can't set module parameter");
     }
 }
