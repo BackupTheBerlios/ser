@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.28 2005/12/10 23:44:07 andrei Exp $
+ * $Id: t_fifo.c,v 1.29 2006/01/07 21:28:50 mma Exp $
  *
  * transaction maintenance functions
  *
@@ -198,6 +198,7 @@ int parse_tw_append( modparam_t type, void* val)
 	char bar;
 	str foo;
 	int n;
+	int index;
 	
 	if (val==0 || ((char*)val)[0]==0)
 		return 0;
@@ -314,7 +315,7 @@ int parse_tw_append( modparam_t type, void* val)
 		/* process and optimize the element name */
 		if (ha->type==ELEM_IS_AVP) {
 			/* element is AVP */
-			if ( parse_avp_spec( &foo, &n, &avp_name)!=0 ) {
+			if ( parse_avp_spec( &foo, &n, &avp_name, &index)!=0 ) {
 				LOG(L_ERR,"ERROR:tm:parse_tw_append: bad alias spec "
 					"<%.*s>\n",foo.len, foo.s);
 				goto error;
