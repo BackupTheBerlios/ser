@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.23 2006/01/07 21:28:50 mma Exp $
+ * $Id: xl_lib.c,v 1.24 2006/01/07 21:58:08 mma Exp $
  *
  * XLOG module
  *
@@ -1440,7 +1440,7 @@ int xl_parse_format(char *s, xl_elog_p *el)
 				e->hparam.s=name.s;
 				e->hparam.len=name.len;
 				e->hindex=avp_index;
-				ERR("flags %x  name %.*s  index %d\n",avp_flags, avp_name.s.len, avp_name.s.s, avp_index);
+				DBG("flags %x  name %.*s  index %d\n",avp_flags, avp_name.s.len, avp_name.s.s, avp_index);
 				break;
 			case '%':
 				e->itf = xl_get_percent;

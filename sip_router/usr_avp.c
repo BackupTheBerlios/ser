@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.24 2006/01/07 21:28:49 mma Exp $
+ * $Id: usr_avp.c,v 1.25 2006/01/07 21:58:07 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -772,7 +772,7 @@ int parse_avp_name( str *name, int *type, int_str *avp_name, int *index)
 	}
 
 	if (index) *index = 0;
-	ERR("Parsing '%.*s'\n", name->len, name->s);
+	DBG("Parsing '%.*s'\n", name->len, name->s);
 	if (name->len>=2 && name->s[1]==':') { // old fashion i: or s:
 		WARN("i: and s: avp name syntax is deprecated!\n");
 		c = name->s[0];
