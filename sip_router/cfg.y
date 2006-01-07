@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.104 2006/01/05 10:59:27 mma Exp $
+ * $Id: cfg.y,v 1.105 2006/01/07 16:29:01 mma Exp $
  *
  *  cfg grammar
  *
@@ -1301,7 +1301,7 @@ select_param : ID {
 		    if (sel.n >= MAX_SELECT_PARAMS-1) {
 			    yyerror("Select identifier too long\n");
 		    }
-		    sel.params[sel.n].type = PARAM_STR; 
+		    sel.params[sel.n].type = SEL_PARAM_STR; 
 		    sel.params[sel.n].v.s.s = $1;
 		    sel.params[sel.n].v.s.len = strlen($1);
 		    sel.n++;
@@ -1310,11 +1310,11 @@ select_param : ID {
 		     if (sel.n >= MAX_SELECT_PARAMS-2) {
 			    yyerror("Select identifier too long\n");
 		     }
-		     sel.params[sel.n].type = PARAM_STR;
+		     sel.params[sel.n].type = SEL_PARAM_STR;
 		     sel.params[sel.n].v.s.s = $1;
 		     sel.params[sel.n].v.s.len = strlen($1);
 		     sel.n++;
-		     sel.params[sel.n].type = PARAM_INT;
+		     sel.params[sel.n].type = SEL_PARAM_INT;
 		     sel.params[sel.n].v.i = $3;
 		     sel.n++;
 	     }
