@@ -1,7 +1,7 @@
 /*
  * execution module
  *
- * $Id: exec_mod.c,v 1.12 2005/12/13 00:19:36 janakj Exp $
+ * $Id: exec_mod.c,v 1.13 2006/01/08 22:43:16 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -22,8 +22,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * History:
@@ -70,8 +70,8 @@ static cmd_export_t cmds[] = {
  * Exported parameters
  */
 static param_export_t params[] = {
-	{"time_to_kill", INT_PARAM, &time_to_kill},
-	{"setvars",      INT_PARAM, &setvars     },
+	{"time_to_kill", PARAM_INT, &time_to_kill},
+	{"setvars",      PARAM_INT, &setvars     },
 	{0, 0, 0}
 };
 

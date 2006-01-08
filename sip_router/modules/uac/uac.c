@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.3 2005/12/13 00:19:30 janakj Exp $
+ * $Id: uac.c,v 1.4 2006/01/08 22:43:19 tma0 Exp $
  *
  * Copyright (C) 2005 Voice Sistem SRL
  *
@@ -80,9 +80,9 @@ static cmd_export_t cmds[]={
 
 /* Exported parameters */
 static param_export_t params[] = {
-	{"from_store_param",  STR_PARAM,                &from_param_chr      },
-	{"from_restore_mode", INT_PARAM,                &from_restore_mode   },
-	{"credential",        STR_PARAM|USE_FUNC_PARAM, &add_credential      },
+	{"from_store_param",  PARAM_STRING,                &from_param_chr      },
+	{"from_restore_mode", PARAM_INT,                   &from_restore_mode   },
+	{"credential",        PARAM_STRING|PARAM_USE_FUNC, &add_credential      },
 	{0, 0, 0}
 };
 

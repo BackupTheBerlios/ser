@@ -1,5 +1,5 @@
 /*
- * $Id: flatstore_mod.c,v 1.6 2006/01/06 23:55:14 tma0 Exp $
+ * $Id: flatstore_mod.c,v 1.7 2006/01/08 22:43:16 tma0 Exp $
  *
  * Flatstore module interface
  *
@@ -97,10 +97,10 @@ static cmd_export_t cmds[] = {
  * Exported parameters
  */
 static param_export_t params[] = {
-	{"flush", INT_PARAM, &flat_flush},
-	{"field_delimiter", STR_PARAM, &flat_delimiter},
-	{"record_delimiter", STR_PARAM, &flat_record_delimiter},
-	{"escape_char", STR_PARAM, &flat_escape},
+	{"flush", PARAM_INT, &flat_flush},
+	{"field_delimiter", PARAM_STRING, &flat_delimiter},
+	{"record_delimiter", PARAM_STRING, &flat_record_delimiter},
+	{"escape_char", PARAM_STRING, &flat_escape},
 	{0, 0, 0}
 };
 

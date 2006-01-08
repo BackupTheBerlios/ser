@@ -1,5 +1,5 @@
 /*
- * $Id: fifo.c,v 1.1 2005/12/20 11:34:26 janakj Exp $
+ * $Id: fifo.c,v 1.2 2006/01/08 22:43:16 tma0 Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
@@ -52,20 +52,20 @@ static cmd_export_t cmds[] = {
  * Exported parameters
  */
 static param_export_t params[] = {
-	{"fifo_file",     STR_PARAM, &fifo               },
-	{"fifo_dir",      STR_PARAM, &fifo_dir           },
-	{"user",          STR_PARAM, &fifo_user          },
-	{"mode",          INT_PARAM, &fifo_mode          },
-	{"group",         STR_PARAM, &fifo_group         },
-	{"reply_retries", INT_PARAM, &fifo_reply_retries },
-	{"reply_wait",    INT_PARAM, &fifo_reply_wait    },
+	{"fifo_file",     PARAM_STRING, &fifo               },
+	{"fifo_dir",      PARAM_STRING, &fifo_dir           },
+	{"user",          PARAM_STRING, &fifo_user          },
+	{"mode",          PARAM_INT,    &fifo_mode          },
+	{"group",         PARAM_STRING, &fifo_group         },
+	{"reply_retries", PARAM_INT,    &fifo_reply_retries },
+	{"reply_wait",    PARAM_INT,    &fifo_reply_wait    },
 	{0, 0, 0}
 };
 
 static rpc_t func_param;
 
 struct module_exports exports = {
-	"fifo", 
+	"fifo",
 	cmds,           /* Exported commands */
 	0,              /* Exported RPC methods */
 	params,         /* Exported parameters */

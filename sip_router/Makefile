@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.144 2006/01/05 19:53:14 calrissian Exp $
+# $Id: Makefile,v 1.145 2006/01/08 22:43:14 tma0 Exp $
 #
 # sip_router makefile
 #
@@ -99,7 +99,7 @@ include Makefile.defs
 NAME=$(MAIN_NAME)
 
 #export relevant variables to the sub-makes
-export DEFS PROFILE CC LD MKDEP MKTAGS CFLAGS LDFLAGS MOD_CFLAGS MOD_LDFLAGS 
+export DEFS PROFILE CC LD MKDEP MKTAGS CFLAGS LDFLAGS INCLUDES MOD_CFLAGS MOD_LDFLAGS 
 export LIBS
 export LEX YACC YACC_FLAGS
 export PREFIX LOCALBASE

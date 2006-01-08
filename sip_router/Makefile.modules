@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.modules,v 1.8 2006/01/08 12:54:41 tma0 Exp $
+# $Id: Makefile.modules,v 1.9 2006/01/08 22:43:14 tma0 Exp $
 #
 # module Makefile
 #(to be included from each module)
@@ -17,7 +17,8 @@ override modules=
 override static_modules=
 override static_modules_path=
 
-INCLUDES += -I$(COREPATH)
+# should be set in Makefile of apart module
+# INCLUDES += -I$(COREPATH)
 
 ifeq ($(MAKELEVEL), 0)
 # make called directly in the module dir!

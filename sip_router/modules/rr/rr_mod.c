@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.37 2006/01/08 09:51:46 tma0 Exp $
+ * $Id: rr_mod.c,v 1.38 2006/01/08 22:43:19 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -92,14 +92,14 @@ static cmd_export_t cmds[] = {
  * Exported parameters
  */
 static param_export_t params[] ={
-	{"append_fromtag",   INT_PARAM, &append_fromtag  },
-	{"enable_double_rr", INT_PARAM, &enable_double_rr},
-	{"enable_full_lr",   INT_PARAM, &enable_full_lr  },
+	{"append_fromtag",   PARAM_INT,    &append_fromtag  },
+	{"enable_double_rr", PARAM_INT,    &enable_double_rr},
+	{"enable_full_lr",   PARAM_INT,    &enable_full_lr  },
 #ifdef ENABLE_USER_CHECK
-	{"ignore_user",      STR_PARAM, &ignore_user     },
+	{"ignore_user",      PARAM_STRING, &ignore_user     },
 #endif
-	{"add_username",     INT_PARAM, &add_username    },
-	{"cookie_filter",    STR_PARAM, &cookie_filter   },
+	{"add_username",     PARAM_INT,    &add_username    },
+	{"cookie_filter",    PARAM_STRING, &cookie_filter   },
 	{0, 0, 0 }
 };
 

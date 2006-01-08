@@ -1,5 +1,5 @@
-/* 
- * $Id: db_mod.c,v 1.28 2005/12/13 00:19:35 janakj Exp $ 
+/*
+ * $Id: db_mod.c,v 1.29 2006/01/08 22:43:17 tma0 Exp $
  *
  * MySQL module interface
  *
@@ -22,8 +22,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 /*
@@ -69,13 +69,13 @@ static cmd_export_t cmds[] = {
  * Exported parameters
  */
 static param_export_t params[] = {
-	{"ping_interval", INT_PARAM, &ping_interval},
-	{"auto_reconnect", INT_PARAM, &auto_reconnect},
+	{"ping_interval", PARAM_INT, &ping_interval},
+	{"auto_reconnect", PARAM_INT, &auto_reconnect},
 	{0, 0, 0}
 };
 
 
-struct module_exports exports = {	
+struct module_exports exports = {
 	"mysql",
 	cmds,
 	0,               /* RPC method */
