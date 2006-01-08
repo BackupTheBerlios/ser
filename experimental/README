@@ -83,8 +83,8 @@ replication. This allows better scalability at the cost of performance.
 
 osp module
 ----------
-COMMENT: The module is currently in review for being added to main tree (CVS head)
-Maintainer: Dmitry Isakbayev <isakdim@gmail.com> 
+COMMENT: This module has been moved to main module tree for HEAD!!
+Not maintained in experimental anymore.
 
 This module adds support for the Open Settlement Protocol to SER.  The Open
 Settlement Protocol (OSP) standard is an operations and billing support
