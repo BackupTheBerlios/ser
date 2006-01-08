@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, avp cookie support
  *
- * $Id: avp_cookie.c,v 1.2 2006/01/08 09:51:46 tma0 Exp $
+ * $Id: avp_cookie.c,v 1.3 2006/01/08 18:52:57 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -157,7 +157,6 @@ void base64encode(char* src_buf, int src_len, char* tgt_buf, int* tgt_len) {
 
 #define MAX_AVP_DIALOG_LISTS 2
 static unsigned short avp_dialog_lists[MAX_AVP_DIALOG_LISTS] = {AVP_CLASS_USER|AVP_TRACK_FROM, AVP_CLASS_USER|AVP_TRACK_TO};
-typedef char avp_flags_t;
 
 str *rr_get_avp_cookies(void) {
 	unsigned short crc, ll;
