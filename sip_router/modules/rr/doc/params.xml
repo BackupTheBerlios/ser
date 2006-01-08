@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:34 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2006/01/08 23:53:07 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -74,6 +74,37 @@ modparam("rr", "append_fromtag", 0)
 ...
 modparam("rr", "enable_double_rr", 0)
 ...
+	    </programlisting>
+	</example>
+    </section>
+
+    <section id="user_part_avp">
+	<title><varname>user_part_avp</varname> (string)</title>
+	<para>
+	    If this parameter is set, the loose_route call stores the user
+	    part of the route URI in the AVP, which is identified by the
+	    parameter value. It can be utilized later in the routing script.	    
+	</para>
+	<para>
+	    Default value is NULL (do not insert user part into avps).
+	</para>
+	<example>
+	    <title>Set <varname>user_part_avp</varname> parameter, later use</title>
+	    <programlisting>
+...
+modparam("rr", "user_part_avp", "route_user")
+...
+route{
+...
+	if (loose_route()) {
+		t_relay();
+	}
+	
+	if ($route_user == "my_user") {
+		...
+	}
+...
+}
 	    </programlisting>
 	</example>
     </section>

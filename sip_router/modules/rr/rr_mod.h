@@ -1,7 +1,7 @@
 /*
  * Record-Route & Route module interface
  *
- * $Id: rr_mod.h,v 1.9 2004/08/24 09:00:38 janakj Exp $
+ * $Id: rr_mod.h,v 1.10 2006/01/08 23:53:06 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -40,6 +40,9 @@
 #include "../../str.h"
 extern str i_user;
 #endif
+
+#include "../../usr_avp.h"
+extern avp_ident_t user_part_avp_ident;
 
 extern int append_fromtag;
 extern int enable_double_rr;
