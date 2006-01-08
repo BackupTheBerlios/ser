@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.346 2005/12/19 12:58:10 andrei Exp $
+# $Id: Makefile.defs,v 1.347 2006/01/08 12:54:41 tma0 Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -482,6 +482,7 @@ endif
 
 CFLAGS=
 LDFLAGS=
+INCLUDES=
 # setting CFLAGS
 ifeq ($(mode), release)
 	#if i386
