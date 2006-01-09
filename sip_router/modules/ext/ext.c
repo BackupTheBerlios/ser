@@ -1,5 +1,5 @@
 /*
- * $Id: ext.c,v 1.17 2006/01/08 22:43:16 tma0 Exp $
+ * $Id: ext.c,v 1.18 2006/01/09 19:42:36 tma0 Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -325,8 +325,8 @@ static int ext_rewrite(struct sip_msg *msg, char *cmd, int type )
 			/* first returned uri */
 			memset(&act, 0, sizeof(act));
 			act.type = (type==EXT_REWRITE_URI)?SET_URI_T:SET_USER_T;
-			act.p1_type = STRING_ST;
-			act.p1.string = new_val.s;
+			act.val[0].type = STRING_ST;
+			act.val[0].u.string = new_val.s;
 			if (do_action(&act, msg)<0) {
 				LOG(L_ERR,"ERROR:ext_rewrite : SET_XXXX_T action failed\n");
 				goto error;

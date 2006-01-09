@@ -1,5 +1,5 @@
 /*
- * $Id: modparam.c,v 1.12 2006/01/09 09:56:14 janakj Exp $
+ * $Id: modparam.c,v 1.13 2006/01/09 19:42:35 tma0 Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -87,6 +87,7 @@ int set_mod_param_regex(char* regex, char* name, modparam_t type, void* val)
 		if (regexec(&preg, t->exports->name, 0, 0, 0) == 0) {
 			DBG("set_mod_param_regex: '%s' matches module '%s'\n", regex, t->exports->name);
 			mod_found = 1;
+			/* PARAM_STR (PARAM_STRING) may be assigned also to PARAM_STRING(PARAM_STR) so let get both module param */
 			ptr = find_param_export(t, name, type | ((type & (PARAM_STR|PARAM_STRING))?PARAM_STR|PARAM_STRING:0), &param_type);
 			if (ptr) {
 				     /* type casting */
