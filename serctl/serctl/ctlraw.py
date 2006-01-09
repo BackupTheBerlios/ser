@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlraw.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: ctlraw.py,v 1.2 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -18,6 +18,7 @@ from error   import Error, ENOARG
 from options import OPT_DATABASE, CMD_ADD, CMD_RM, CMD_SHOW, OPT_FORCE, \
                     OPT_LIMIT
 from utils   import show_opts, arg_pairs, tabprint
+import ctlhelp
 
 def main(args, opts):
 	cmd = args[2]
@@ -35,8 +36,8 @@ def main(args, opts):
 
 def help(args, opts):
 	return """
-Usage: serctl raw <add|rm|show> <table_name> [column_name column_value] ...
-"""
+Usage: serraw raw <add|rm|show> <table_name> [column_name column_value] ...
+""" % ctlhelp.options(args, opts)
 
 def show(db, tab, args, opts):
 

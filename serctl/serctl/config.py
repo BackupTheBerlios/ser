@@ -1,5 +1,5 @@
 #
-# $Id: config.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: config.py,v 1.2 2006/01/09 13:53:44 hallik Exp $
 #
 # serctl configuration file
 #
@@ -29,6 +29,17 @@ DB_URI = 'mysql://ser:heslo@localhost/ser'
 # URI to serctl
 #
 ENV_DB = 'SERCTL_DB'
+
+#
+# Ser URI, this should be the SER URI for xmlrpc requests.
+#
+SER_URI = 'http://localhost:5060/'
+
+#
+# Name of environment variable used to pass the SER  URI 
+# to serctl
+#
+ENV_SER = 'SERCTL_SER'
 
 #
 # Global contstants, do not touch the lines below unless

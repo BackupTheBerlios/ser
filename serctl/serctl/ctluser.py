@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluser.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
+# $Id: ctluser.py,v 1.3 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -25,6 +25,7 @@ from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                     CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
                     OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS
 from utils   import show_opts, tabprint, arg_pairs, idx_dict, timestamp, no_all
+import ctlhelp
 
 def main(args, opts):
 	cmd = args[2]
@@ -53,6 +54,7 @@ def help(args, opts):
 Usage:
 	ser_user [options...] [--] [command] [param...]
 
+%s
 Commands & parameters:
 	ser_user add     <user>
 	ser_user change  [user] [-F flags]
@@ -61,7 +63,7 @@ Commands & parameters:
 	ser_user rm      [user]
 	ser_user purge
 	ser_user show    [user]
-"""
+""" % ctlhelp.options(args, opts)
 
 def _get_uid(args, mandatory=True):
 	try:

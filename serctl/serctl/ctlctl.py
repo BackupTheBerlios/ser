@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.2 2005/12/27 10:13:04 hallik Exp $
+# $Id: ctlctl.py,v 1.3 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,13 +13,16 @@
 # Created:     2005/12/16
 # Last update: 2005/12/27
 
-from ctluri    import Uri
-from ctlcred   import Cred
-from ctldomain import Domain
-from ctluser   import User
-from error     import Error, ENOARG, EINVAL, ENOSYS
-from options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE
-from xmlrpclib import ServerProxy
+from ctluri       import Uri
+from ctlcred      import Cred
+from ctldomain    import Domain
+from ctluser      import User
+from error        import Error, ENOARG, EINVAL, ENOSYS
+from options      import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
+                         OPT_SER_URI
+from serxmlrpclib import ServerProxy
+from utils        import show_opts
+import ctlhelp
 
 def main(args, opts):
 	cmd = args[2]
@@ -27,6 +30,8 @@ def main(args, opts):
 
 	if   cmd == CMD_FLUSH:
 		ret = flush(db, args[3:], opts)
+	elif cmd == CMD_PUBLISH:
+		ret = publish(db, args[3:], opts)
 	elif cmd == CMD_PURGE:
 		ret = purge(db, args[3:], opts)
 	else:
@@ -38,10 +43,12 @@ def help(args, opts):
 Usage:
 	ser_ctl [options...] [--] [command] [param...]
 
+%s
 Commands & parameters:
-	ser_ctl flush <uri>
+	ser_ctl flush   <uri>
+	ser_ctl publish <uri> <file_with_PIDF_doc> <expires_in_sec> [etag]
 	ser_ctl purge
-"""
+""" % ctlhelp.options(args, opts)
 
 def purge(db, args, opts):
 	for c in (Uri, Cred, Domain, User):
@@ -60,3 +67,39 @@ def flush(db, args, opts):
 	# FIX: TODO: what fn?
 	#server.fn(...)
 	raise Error (ENOSYS, 'flush')
+
+def publish(db, args, opts):
+	try:
+		uri = args[0]
+	except:
+		raise Error (ENOARG, 'uri')
+
+	try:
+		doc_file = args[1]
+	except:
+		raise Error (ENOARG, 'file_with_PIDF_doc')
+
+	try:
+		expires = args[2]
+	except:
+		raise Error (ENOARG, 'expires_in_sec')
+
+	try:
+		etag = args[3]
+	except:
+		etag = None
+
+	expires = int(expires)
+
+	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	ser = ServerProxy(opts[OPT_SER_URI])
+	fh = open(doc_file)
+	doc = fh.read()
+	fh.close()
+	if etag:
+		ret = ser.pa.publish('registrar', uri, doc, expires, etag)
+	else:
+		ret = ser.pa.publish('registrar', uri, doc, expires)
+
+	print ret

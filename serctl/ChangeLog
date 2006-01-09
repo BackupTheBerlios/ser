@@ -1,3 +1,10 @@
+serctl (0.0.17)
+
+  * Help bug fixed.
+  * Xmlrpc wrapper added.
+
+ -- Jan Halla <hallik@iptel.org> Mon, 09 Jan 2006 14:48:38 +0100
+
 serctl (0.0.16)
 
   * Enable and disable functions converted to metods.

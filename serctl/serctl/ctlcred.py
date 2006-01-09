@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
+# $Id: ctlcred.py,v 1.3 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -23,7 +23,7 @@ from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                     CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, OPT_PASSWORD, \
                     OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS
 from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
-import md5
+import md5, ctlhelp
 
 def main(args, opts):
 	cmd = args[2]
@@ -52,6 +52,7 @@ def help(args, opts):
 Usage:
 	ser_cred [options...] [--] [command] [param...]
 
+%s
 Commands & parameters:
 	ser_cred add     <auth_username> <realm> <uid> <password>
 	ser_cred change  [[[auth_username] realm] uid] [-p password] [-F flags]
@@ -60,7 +61,7 @@ Commands & parameters:
 	ser_cred rm      [[[auth_username] realm] uid]
 	ser_cred purge
 	ser_cred show    [[[auth_username] realm] uid]
-"""
+""" % ctlhelp.options(args, opts)
 
 def _get_username(args, mandatory=True):
 	try:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.2 2006/01/06 10:43:45 hallik Exp $
+# $Id: main.py,v 1.3 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -13,7 +13,7 @@
 # Created:     2005/11/14
 # Last update: 2005/12/21
 
-from error   import Error, EINVAL, ENODB, ENOSYS, set_excepthook
+from error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
 from getopt  import gnu_getopt
 from options import *
 from os.path import basename
@@ -99,6 +99,18 @@ def handle_db(opts):
 	except:
 		raise Error (ENODB)
 
+def handle_ser_uri(opts):
+	if opts.has_key(OPT_SER_URI):
+		return
+	db = os.getenv(config.ENV_SER)
+	if db:
+		opts[OPT_SER_URI] = db
+		return
+	try:
+		opts[OPT_SER_URI] = config.SER_URI
+	except:
+		raise Error (ENOSER)
+
 def handle_cmdname(args):
 	if not args:
 		return
@@ -134,6 +146,7 @@ def main(argv):
 
 	handle_help(args, opts)
 	handle_db(opts)
+	handle_ser_uri(opts)
 
 	mod = module(args[1])
 	if mod:

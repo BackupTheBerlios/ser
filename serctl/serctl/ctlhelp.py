@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: ctlhelp.py,v 1.2 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -16,15 +16,8 @@
 def main(args, opts):
 	print help()
 
-def help(args, opts):
+def options(args, opts):
 	return """\
-Usage:
-	ser_uri    [options...] [--] [[command] params...]
-	ser_cred   [options...] [--] [[command] params...]
-	ser_domain [options...] [--] [[command] params...]
-	ser_user   [options...] [--] [[command] params...]
-	serctl     [options...] [--] [[command] params...]
-
 Options:
 	-b --database   : Database URI,
 	-c --columns    : Show only specified columns,
@@ -39,13 +32,25 @@ Options:
 	-n --numeric    : Use numeric (raw) - not symbolic show,
 	-p --password   : Password,
 	-R --record-sep : Record separator (for show command),
+	-s --ser-uri    : Ser uri for xmlrpc operations,
 	-S --column-sep : Column separator for -c option, (default is comma),
 	-t --table      : Show output as table,
 	-v --verbose    : Verbose (multiple ocurence increase),
 	-q --quiet      : Be silent
-	
+"""	
+
+def help(args, opts):
+	return """\
+Usage:
+	ser_uri    [options...] [--] [[command] params...]
+	ser_cred   [options...] [--] [[command] params...]
+	ser_domain [options...] [--] [[command] params...]
+	ser_user   [options...] [--] [[command] params...]
+	ser_ctl    [options...] [--] [[command] params...]
+
+%s
 Commands:
 	add, canonical, change, enable, disable, purge, rm, show
 
 Use 'ser_<obj> help' for params specification.
-""" 
+""" % options(args, opts)

@@ -23,6 +23,7 @@ from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                     CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
                     OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS
 from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
+import ctlhelp
 
 def main(args, opts):
 	cmd = args[2]
@@ -53,6 +54,7 @@ def help(args, opts):
 Usage:
 	ser_domain [options...] [--] [command] [param...]
 
+%s
 Commands & parameters:
 	ser_domain add       <domain> <did>
 	ser_domain canonical [domain]
@@ -62,7 +64,7 @@ Commands & parameters:
 	ser_domain rm        [domain]
 	ser_domain purge
 	ser_domain show      [domain]
-"""
+""" % ctlhelp.options(args, opts)
 
 def _get_domain(args, mandatory=True):
 	try:

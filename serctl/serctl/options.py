@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.3 2006/01/06 10:43:45 hallik Exp $
+# $Id: options.py,v 1.4 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/29
-# Last update: 2005/12/07
+# Last update: 2006/01/06
 #
 # Command line options.
 
@@ -32,6 +32,7 @@ CMD_ENABLE     = 'enable'
 CMD_FLUSH      = 'flush'
 CMD_HELP       = 'help'
 CMD_CHANGE     = 'change'
+CMD_PUBLISH    = 'publish'
 CMD_PURGE      = 'purge'
 CMD_RM         = 'rm'
 CMD_SHOW       = 'show'
@@ -48,6 +49,7 @@ OPT_LINE_SEP   = 'lsep'
 OPT_NUMERIC    = 'numeric'
 OPT_PASSWORD   = 'password'
 OPT_REC_SEP    = 'rsep'
+OPT_SER_URI    = 'ser-uri'
 OPT_TABLE      = 'table'
 OPT_VERBOSE    = 'verbose'
 OPT_QUIET      = 'quiet'
@@ -156,6 +158,12 @@ CMD = {\
 	'ch'         : CMD_CHANGE,
 	'C'          : CMD_CHANGE,
 
+	'publish'    : CMD_PUBLISH,
+	'publis'     : CMD_PUBLISH,
+	'publi'      : CMD_PUBLISH,
+	'publ'       : CMD_PUBLISH,
+	'pub'        : CMD_PUBLISH,
+
 	'purge'      : CMD_PURGE,
 	'purg'       : CMD_PURGE,
 	'pur'        : CMD_PURGE,
@@ -184,6 +192,7 @@ OPT = {\
 	OPT_NUMERIC   : ('n', 'numeric',    False),
 	OPT_PASSWORD  : ('p', 'password',   True),
 	OPT_REC_SEP   : ('R', 'record-sep', True),
+	OPT_SER_URI   : ('s', 'ser-uri',    True),
 	OPT_COL_SEP   : ('S', 'column-sep', True),
 	OPT_TABLE     : ('t', 'table',      False),
 	OPT_VERBOSE   : ('v', 'verbose',    False),

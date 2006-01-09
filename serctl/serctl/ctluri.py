@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
+# $Id: ctluri.py,v 1.3 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -24,6 +24,7 @@ from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                     CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
                     OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS
 from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
+import ctlhelp
 
 def main(args, opts):
 	cmd = args[2]
@@ -54,6 +55,7 @@ def help(args, opts):
 Usage:
         ser_uri [options...] [--] [command] [param...]
 
+%s
 Commands & parameters:
 	ser_uri add       <uri> <uid> [did]
 	ser_uri canonical [[[uri] uid] did]
@@ -63,7 +65,7 @@ Commands & parameters:
 	ser_uri rm        [[[uri] uid] did]
 	ser_uri purge
 	ser_uri show      [[[uri] uid] did]
-"""
+""" % ctlhelp.options(args, opts)
 
 def _get_uri(args, mandatory=True):
 	try:

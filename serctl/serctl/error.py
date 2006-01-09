@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: error.py,v 1.2 2006/01/09 13:53:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -86,11 +86,16 @@ errorstr[EUSER]        = 'User identifier in use'
 
 EALL                   = 400
 errorcode[EALL]        = 'EALL'
-errorstr[EALL]         = 'For operations on entire table use force flag'
+errorstr[EALL]         = 'For operation with ALL items use force flag'
 
 EUMAP                  = 401
 errorcode[EUMAP]       = 'EUMAP'
 errorstr[EUMAP]        = 'Auth_username & realm mapped to many uids'
+
+ENOSER                 = 402
+errorcode[ENOSER]      = 'ENOSER'
+errorstr[ENOSER]       = 'SER URI not specified'
+
 
 def strerror(err):
 	if err < 256:
