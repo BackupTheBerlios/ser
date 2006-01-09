@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.c,v 1.10 2006/01/08 22:43:20 tma0 Exp $
+ * $Id: uridb_mod.c,v 1.11 2006/01/09 10:20:26 ullstar Exp $
  *
  * Various URI related functions
  *
@@ -211,7 +211,7 @@ static int lookup_user(struct sip_msg* msg, char* s1, char* s2)
 	db_key_t keys[2], cols[2];
 	db_val_t vals[2], *val;
 	db_res_t* res;
-	int flag, i;
+	int flag, i, ret;
 
 	flag=0; /*warning fix*/
 	id = (long)s1;
@@ -295,7 +295,8 @@ static int lookup_user(struct sip_msg* msg, char* s1, char* s2)
 		if ((val[1].val.int_val & flag) == 0) continue;        /* Not allowed in the header we are interested in */
 		goto found;
 	}
-	return -1; /* Not found -> not allowed */
+	ret = -1; /* Not found -> not allowed */
+	goto freeres;
  found:
 	uid.s = (char*)val[0].val.string_val;
 	uid.len = strlen(uid.s);
@@ -304,7 +305,10 @@ static int lookup_user(struct sip_msg* msg, char* s1, char* s2)
 	} else {
 		set_to_uid(&uid);
 	}
-	return 1;
+	ret = 1;
+ freeres:
+	db.free_result(con, res);
+	return ret;
 }
 
 
