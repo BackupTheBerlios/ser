@@ -1,5 +1,5 @@
 /*
- * $Id: modparam.c,v 1.11 2006/01/09 09:25:38 rco Exp $
+ * $Id: modparam.c,v 1.12 2006/01/09 09:56:14 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -89,17 +89,16 @@ int set_mod_param_regex(char* regex, char* name, modparam_t type, void* val)
 			mod_found = 1;
 			ptr = find_param_export(t, name, type | ((type & (PARAM_STR|PARAM_STRING))?PARAM_STR|PARAM_STRING:0), &param_type);
 			if (ptr) {
-				// type casting
+				     /* type casting */
 				if (type == PARAM_STRING && PARAM_TYPE_MASK(param_type) == PARAM_STR) {
 					s.s = (char*)val;
-					s.len = s.s?strlen(s.s):0;
+					s.len = s.s ? strlen(s.s) : 0;
 					val2 = &s;
 				} else if (type == PARAM_STR && PARAM_TYPE_MASK(param_type) == PARAM_STRING) {
-					val2 = s.s;	// zero terminator expected
-				}
-				else
+					val2 = s.s;	/* zero terminator expected */
+				} else {
 					val2 = val;
-
+				}
 
 				DBG("set_mod_param_regex: found <%s> in module %s [%s]\n", name, t->exports->name, t->path);
 				if (param_type & PARAM_USE_FUNC) {
