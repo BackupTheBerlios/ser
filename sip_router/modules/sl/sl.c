@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.24 2005/12/20 21:43:15 janakj Exp $
+ * $Id: sl.c,v 1.25 2006/01/10 15:27:53 janakj Exp $
  *
  * sl module
  *
@@ -77,6 +77,7 @@ MODULE_VERSION
 static int w_sl_send_reply(struct sip_msg* msg, char* str, char* str2);
 static int w_sl_reply_error(struct sip_msg* msg, char* str, char* str2);
 static int mod_init(void);
+static int child_init(int rank);
 static void mod_destroy();
 
 
@@ -101,7 +102,7 @@ struct module_exports exports= {
 	(response_function) 0,
 	mod_destroy,
 	0,
-	0  /* per-child init function */
+	child_init  /* per-child init function */
 };
 
 
@@ -126,7 +127,16 @@ static int mod_init(void)
 	return 0;
 }
 
-
+static int child_init(int rank)
+{
+	if (rank == PROC_MAIN) {
+		if (init_sl_stats_child() < 0) {
+			ERR("init_sl_stats_child failed\n");
+			return -1;
+		}
+	}
+	return 0;
+}
 
 
 static void mod_destroy()
