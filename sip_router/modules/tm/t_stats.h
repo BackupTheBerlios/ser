@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.h,v 1.10 2005/12/21 17:25:32 janakj Exp $
+ * $Id: t_stats.h,v 1.11 2006/01/10 14:59:44 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -89,6 +89,7 @@ inline static void update_reply_stats( int code ) {
 
 
 int init_tm_stats(void);
+int init_tm_stats_child(void);
 void free_tm_stats();
 
 extern const char* tm_rpc_stats_doc[2];
