@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-# $Id: ser_postgres.sh,v 1.1 2005/11/19 19:10:31 janakj Exp $
+# $Id: ser_postgres.sh,v 1.2 2006/01/10 22:14:49 janakj Exp $
 #
-# Script for adding and dropping ser MySQL tables
+# Script for adding and dropping SER Postgres tables
 #
 
 #################################################################
