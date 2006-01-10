@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.20 2005/11/19 19:05:04 janakj Exp $
+ * $Id: ul_mod.h,v 1.21 2006/01/10 22:25:21 janakj Exp $
  *
  * User location module interface
  *
@@ -48,6 +48,7 @@
 #define NO_DB         0
 #define WRITE_THROUGH 1
 #define WRITE_BACK    2
+#define READONLY      3
 
 #define TABLE_VERSION 8
 
