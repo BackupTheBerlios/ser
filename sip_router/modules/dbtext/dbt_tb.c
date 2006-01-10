@@ -1,5 +1,5 @@
 /*
- * $Id: dbt_tb.c,v 1.6 2004/08/24 08:58:26 janakj Exp $
+ * $Id: dbt_tb.c,v 1.7 2006/01/10 22:16:07 janakj Exp $
  *
  * DBText library
  *
@@ -297,7 +297,12 @@ int dbt_row_set_val(dbt_row_p _drp, dbt_val_p _vp, int _t, int _idx)
 				memcpy(_drp->fields[_idx].val.str_val.s, _vp->val.string_val,
 					_drp->fields[_idx].val.str_val.len);
 			break;
-			
+
+			case DB_FLOAT:
+				_drp->fields[_idx].type = DB_FLOAT;
+				_drp->fields[_idx].val.float_val = _vp->val.float_val;
+			break;			
+
 			case DB_DOUBLE:
 				_drp->fields[_idx].type = DB_DOUBLE;
 				_drp->fields[_idx].val.double_val = _vp->val.double_val;
@@ -377,6 +382,11 @@ int dbt_row_update_val(dbt_row_p _drp, dbt_val_p _vp, int _t, int _idx)
 					_drp->fields[_idx].val.str_val.len);
 			break;
 			
+			case DB_FLOAT:
+				_drp->fields[_idx].type = DB_FLOAT;
+				_drp->fields[_idx].val.float_val = _vp->val.float_val;
+			break;
+
 			case DB_DOUBLE:
 				_drp->fields[_idx].type = DB_DOUBLE;
 				_drp->fields[_idx].val.double_val = _vp->val.double_val;

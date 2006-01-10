@@ -1,5 +1,5 @@
 /* 
- * $Id: res.c,v 1.6 2005/09/20 13:28:34 agranig Exp $ 
+ * $Id: res.c,v 1.7 2006/01/10 22:16:07 janakj Exp $ 
  *
  * MySQL module result related functions
  *
@@ -83,6 +83,9 @@ static inline int get_columns(db_con_t* _h, db_res_t* _r)
 			break;
 
 		case FIELD_TYPE_FLOAT:
+			RES_TYPES(_r)[i] = DB_FLOAT;
+			break;
+
 		case FIELD_TYPE_DOUBLE:
 			RES_TYPES(_r)[i] = DB_DOUBLE;
 			break;

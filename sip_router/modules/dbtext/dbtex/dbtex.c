@@ -1,5 +1,5 @@
 /*
- * $Id: dbtex.c,v 1.3 2004/08/24 08:58:26 janakj Exp $
+ * $Id: dbtex.c,v 1.4 2006/01/10 22:16:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -92,6 +92,9 @@ static int print_res(db_res_t* _r)
 			switch(RES_ROWS(_r)[i].values[j].type) {
 			case DB_INT:
 				printf("%d ", RES_ROWS(_r)[i].values[j].val.int_val);
+				break;
+			case DB_FLOAT:
+				printf("%f ", RES_ROWS(_r)[i].values[j].val.float_val);
 				break;
 			case DB_DOUBLE:
 				printf("%f ", RES_ROWS(_r)[i].values[j].val.double_val);

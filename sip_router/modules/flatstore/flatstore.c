@@ -1,5 +1,5 @@
 /*
- * $Id: flatstore.c,v 1.3 2006/01/06 23:55:14 tma0 Exp $
+ * $Id: flatstore.c,v 1.4 2006/01/10 22:16:07 janakj Exp $
  *
  * Flatstore module interface
  *
@@ -175,6 +175,10 @@ int flat_db_insert(db_con_t* h, db_key_t* k, db_val_t* v, int n)
 			switch(VAL_TYPE(v + i)) {
 				case DB_INT:
 					fprintf(f, "%d", VAL_INT(v + i));
+					break;
+
+				case DB_FLOAT:
+					fprintf(f, "%f", VAL_FLOAT(v + i));
 					break;
 
 				case DB_DOUBLE:
