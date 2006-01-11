@@ -1,5 +1,5 @@
 /*
- * $Id: fifo.c,v 1.2 2006/01/08 22:43:16 tma0 Exp $
+ * $Id: fifo.c,v 1.3 2006/01/11 11:53:35 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -99,7 +99,7 @@ static int child_init(int rank)
 	      * ensures that the function gets called at the end of the init
 	      * process, when all the sockets are properly initialized.
 	      */
-	if (rank == PROC_MAIN) {
+	if (rank == 1) {
 		if (start_fifo_server() < 0) return -1;
 	}
 	return 0;

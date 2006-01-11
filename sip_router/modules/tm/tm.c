@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.132 2006/01/10 14:59:44 janakj Exp $
+ * $Id: tm.c,v 1.133 2006/01/11 11:53:35 janakj Exp $
  *
  * TM module
  *
@@ -461,7 +461,7 @@ static int child_init(int rank) {
 		return -2;
 	}
 
-	if (rank == PROC_MAIN) {
+	if (rank == 1) {
 		if (init_tm_stats_child() < 0) {
 			ERR("Error while initializing tm statistics structures\n");
 			return -1;
