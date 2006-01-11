@@ -1,5 +1,5 @@
 /* 
- * $Id: hf.h,v 1.22 2005/10/26 08:06:55 kubartv Exp $ 
+ * $Id: hf.h,v 1.23 2006/01/11 11:54:23 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -87,7 +87,7 @@ enum _hdr_types_t {
 	HDR_RPID_T					       /* Remote-Party-ID header field */,
 	HDR_REFER_TO_T				       /* Refer-To header fiels */,
 	HDR_SIPIFMATCH_T                   /* SIP-If-Match header field */,
-	HDR_EOH_T				       /* Some other header field */
+	HDR_EOH_T				       /* End of message header */
 };
 
 
