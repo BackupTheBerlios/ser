@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.2 2006/01/06 14:59:43 hallik Exp $
+# $Id: flag.py,v 1.3 2006/01/12 14:00:47 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -10,8 +10,6 @@
 # Public License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
 #
-# Created:     2005/12/11
-# Last update: 2005/12/15
 
 from error import Error, EIFLAG
 

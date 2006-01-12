@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.3 2006/01/09 13:53:44 hallik Exp $
+# $Id: ctlctl.py,v 1.4 2006/01/12 14:00:47 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -10,8 +10,6 @@
 # Public License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
 #
-# Created:     2005/12/16
-# Last update: 2005/12/27
 
 from ctluri       import Uri
 from ctlcred      import Cred

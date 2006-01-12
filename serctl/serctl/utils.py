@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: utils.py,v 1.2 2006/01/12 14:00:47 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -10,8 +10,6 @@
 # Public License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
 #
-# Created:     2005/12/01
-# Last update: 2005/12/15
 
 from config  import REC_SEP, LINE_SEP, COL_SEP, WHITESP
 from error   import Error, EINVAL, EMISMATCH, EALL

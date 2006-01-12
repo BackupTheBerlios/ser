@@ -8,8 +8,6 @@
 # Public License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
 #
-# Created:     2005/11/30
-# Last update: 2006/01/06
 
 from ctlcred import Cred
 from ctluri  import Uri

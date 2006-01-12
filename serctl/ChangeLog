@@ -1,10 +1,11 @@
 serctl (0.0.18)
 
+  * Some cosmetic changes.
   * First support for postgres. (Not yet finished.)
   * Database driver import modified. Fixed bug: unused database modules
     not needed for serctl work on another database type.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Thu, 12 Jan 2006 15:00:07 +0100
 
 serctl (0.0.17)
 
