@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbany.py,v 1.2 2006/01/12 12:13:15 janakj Exp $
+# $Id: dbany.py,v 1.3 2006/01/12 13:46:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/14
-# Last update: 2005/12/06
+# Last update: 2006/01/12
 
 from dbmysql    import DBmysql
 from dbpostgres import DBpostgres
@@ -20,8 +20,8 @@ from error      import error, EINVAL
 from uri        import parse, SCHEME
 
 DBS = {\
-	'mysql': DBmysql,
-	'postgres': DBpostgres
+	'mysql'    : DBmysql,
+	'postgres' : DBpostgres,
 }
 
 def DBany(uri):

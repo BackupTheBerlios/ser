@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbsql.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: dbsql.py,v 1.2 2006/01/12 13:46:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/30
-# Last update: 2005/12/17
+# Last update: 2006/01/12
 #
 # Base class for SQL databases.
 
@@ -20,23 +20,15 @@ from opsql  import where
 from uri    import USER, PASS, HOST, PORT, DB
 
 class DBsql(DBbase):
-#	dbmodule = <database module>
+
+	def _connect(user, password, host, port, db):
+	# This function should be implemented in db<driver>.py
+	# See dbmysql.py for example.
+		pass
 
 	def __init__(self, puri):
-		params  = []
-		if puri[USER] is not None:
-			params.append("user='%s'" % puri[USER])
-		if puri[PASS] is not None:
-			params.append("passwd='%s'" % puri[PASS])
-		if puri[HOST] is not None:
-			params.append("host='%s'" % puri[HOST])
-		if puri[PORT] is not None:
-			params.append("port='%s'" % puri[PORT])
-		if puri[DB] is not None:
-			params.append("db='%s'" % puri[DB])
-		params = ', '.join(params)
-		connect = 'self.dbmodule.connect(%s)' % params
-		self.db = eval(connect)
+		self.db = self._connect(puri[USER], puri[PASS], puri[HOST], \
+		                        puri[PORT], puri[DB])
 
 	def insert(self, tab, ins):
 		names  = ins.keys()

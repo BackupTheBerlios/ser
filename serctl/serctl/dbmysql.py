@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbmysql.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: dbmysql.py,v 1.2 2006/01/12 13:46:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,10 +11,27 @@
 # of the License, or (at your option) any later version.
 #
 # Created:     2005/11/14
-# Last update: 2005/11/28
+# Last update: 2006/01/12
 
 from dbsql import DBsql
-import MySQLdb
 
 class DBmysql(DBsql):
-	dbmodule = MySQLdb
+
+	def _connect(self, user, password, host, port, db):
+		import MySQLdb
+
+		params  = []
+		if user is not None:
+			params.append("user='%s'" % user)
+		if password is not None:
+			params.append("passwd='%s'" % password)
+		if host is not None:
+			params.append("host='%s'" % host)
+		if port is not None:
+			params.append("port='%s'" % port)
+		if db is not None:
+			params.append("db='%s'" % db)
+		params = ', '.join(params)
+
+		connect = 'MySQLdb.connect(%s)' % params
+		return eval(connect)
