@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbany.py,v 1.1 2005/12/21 18:18:30 janakj Exp $
+# $Id: dbany.py,v 1.2 2006/01/12 12:13:15 janakj Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,13 +13,15 @@
 # Created:     2005/11/14
 # Last update: 2005/12/06
 
-from dbmysql import DBmysql
-from dbbase  import DSC_NAME, DSC_TYPE, DSC_DEFAULT
-from error   import error, EINVAL
-from uri     import parse, SCHEME
+from dbmysql    import DBmysql
+from dbpostgres import DBpostgres
+from dbbase     import DSC_NAME, DSC_TYPE, DSC_DEFAULT
+from error      import error, EINVAL
+from uri        import parse, SCHEME
 
 DBS = {\
 	'mysql': DBmysql,
+	'postgres': DBpostgres
 }
 
 def DBany(uri):
