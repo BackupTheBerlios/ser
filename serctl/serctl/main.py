@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.4 2006/01/12 14:00:47 hallik Exp $
+# $Id: main.py,v 1.5 2006/01/12 20:27:06 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -11,11 +11,13 @@
 # of the License, or (at your option) any later version.
 #
 
+import config
+
 from error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
 from getopt  import gnu_getopt
 from options import *
 from os.path import basename
-import sys, os, config
+import sys, os
 
 def parse_opts(cmd_line):
 	lineopts, args = gnu_getopt(cmd_line, GETOPT_SHORT, GETOPT_LONG)

@@ -3,11 +3,7 @@ Important:
 
   * Remove pending flag.
 
-  * Fix program name in error reports.
-
   * Ser_ctl flush command.
-
-  * Config file.
 
   * Fifo and xmlrpc objects.
 

@@ -1,9 +1,11 @@
 serctl (0.0.19)
 
+  * Configuration file added.
+  * Tool name fixed in error reports.
   * Support for postgres updated.
   * Fixed some bugs related to postgres.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Thu, 12 Jan 2006 21:24:52 +0100
 
 serctl (0.0.18)
 
