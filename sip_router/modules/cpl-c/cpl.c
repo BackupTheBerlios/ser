@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.60 2006/01/08 22:43:15 tma0 Exp $
+ * $Id: cpl.c,v 1.61 2006/01/12 23:05:04 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -231,7 +231,7 @@ static int cpl_init(void)
 	if (timer_avp) {
 		foo.s = timer_avp;
 		foo.len = strlen(foo.s);
-		if (parse_avp_spec(&foo,&cpl_env.timer_avp_type,&cpl_env.timer_avp)<0){
+		if (parse_avp_spec(&foo,&cpl_env.timer_avp_type,&cpl_env.timer_avp,0)<0){
 			LOG(L_CRIT,"ERROR:cpl_init: invalid timer AVP specs \"%s\"\n",
 				timer_avp);
 			goto error;
