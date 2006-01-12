@@ -19,6 +19,8 @@ Future:
   * Fix the problem: duplicated unique key in domain_attrs for deleted
     rows.
 
+  * Fix the problem: inconsistent timestamp - see BUGS.
+
   * Attribute manipulations.
 
   * API reference manual.

@@ -20,7 +20,7 @@ from flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
 from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                     CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
                     OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS
-from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
+from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, timestamp
 import ctlhelp
 
 def main(args, opts):
@@ -270,7 +270,9 @@ class Domain:
 			flags = set_canonical(flags)
 
 		# add new domain
-		ins = { 'did' : did, 'domain' : domain, 'flags' : flags }
+		stamp = timestamp()
+		ins = { 'did' : did, 'domain' : domain, \
+		        'last_modified' : stamp, 'flags' : flags }
 		self.db.insert(self.T_DOM, ins)
 
 	def change(self, domain=None, flags=None, force=False):

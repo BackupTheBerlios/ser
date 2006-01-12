@@ -1,5 +1,5 @@
 #
-# $Id: config.py,v 1.3 2006/01/12 12:13:15 janakj Exp $
+# $Id: config.py,v 1.4 2006/01/12 17:07:18 hallik Exp $
 #
 # serctl configuration file
 #
@@ -28,7 +28,7 @@ DB_URI = 'mysql://ser:heslo@localhost/ser'
 # Comment out the previous line and uncomment the line
 # below to connect to postgresql based database
 #
-#DB_URI = 'postgres://ser:heslo@localhost/ser'
+# DB_URI = 'postgres://ser:heslo@localhost/ser'
 
 #
 # Name of environment variable used to pass the database

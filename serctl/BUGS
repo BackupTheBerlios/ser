@@ -1,2 +1,3 @@
 
-  * Describe method in DBpostgres not implemented.
+  * Timestamp representation ('show' command for domains) is dependent on used
+    database engine.

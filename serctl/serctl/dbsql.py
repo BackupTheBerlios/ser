@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbsql.py,v 1.3 2006/01/12 14:00:47 hallik Exp $
+# $Id: dbsql.py,v 1.4 2006/01/12 17:07:18 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -38,6 +38,7 @@ class DBsql(DBbase):
 		ss = ', '.join(ss)
 		sql = 'INSERT INTO ' + tab + ' (' + names + ') VALUES (' + ss + ')'
 		db.execute(sql, values)
+		self.db.commit()
 		db.close()
 
 	def _where(self, cond):
@@ -92,6 +93,7 @@ class DBsql(DBbase):
 		if limit:
 			sql += ' LIMIT ' + str(limit)
 		db.execute(sql, values)
+		self.db.commit()
 		db.close()
 
 	def delete(self, tab, conds, limit=0):
@@ -100,4 +102,5 @@ class DBsql(DBbase):
 		if limit:
 			sql += ' LIMIT ' + str(limit)
 		db.execute(sql)
+		self.db.commit()
 		db.close()
