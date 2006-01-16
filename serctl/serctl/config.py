@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.5 2006/01/12 20:27:06 hallik Exp $
+# $Id: config.py,v 1.6 2006/01/16 17:35:14 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,11 +15,16 @@
 #
 # PATH to configuraton file
 #
-#CONFIG = '/etc/ser/serctl.conf'
-CONFIG = 'serctl.conf'
+CONFIG = '/etc/ser/serctl.conf'
+
+### CONFIG FILE FOR TESTING ###
+import os.path
+CONFIG = os.path.join(os.path.dirname(__file__), '../serctl.conf')
+del(os.path)
+###############################
 
 #
-# Disable debugging mode
+# Disable/enable debugging mode
 #
 DEBUG = False
 

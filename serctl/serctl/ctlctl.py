@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.4 2006/01/12 14:00:47 hallik Exp $
+# $Id: ctlctl.py,v 1.5 2006/01/16 17:35:14 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -18,7 +18,7 @@ from ctluser      import User
 from error        import Error, ENOARG, EINVAL, ENOSYS
 from options      import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
                          OPT_SER_URI
-from serxmlrpclib import ServerProxy
+from serxmlrpc    import ServerProxy
 from utils        import show_opts
 import ctlhelp
 
@@ -55,15 +55,11 @@ def purge(db, args, opts):
 		del(o)
 
 def flush(db, args, opts):
-	try:
-		uri = args[0]
-	except:
-		raise Error (ENOARG, 'uri')
 
-	server = ServerProxy(uri)
+	ser = ServerProxy(opts[OPT_SER_URI])
 
 	# FIX: TODO: what fn?
-	#server.fn(...)
+	# ser.fn(...)
 	raise Error (ENOSYS, 'flush')
 
 def publish(db, args, opts):

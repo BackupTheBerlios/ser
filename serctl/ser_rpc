@@ -3,15 +3,17 @@
 #
 # Stupid script for SER xml-rpc testing. 
 
-SER = 'http://localhost:5070/'
+SER = 'http://jan:heslo@localhost/'
 
-from serctl.serxmlrpclib import ServerProxy
+from serctl.serxmlrpc import ServerProxy
 import sys
+
 
 if len(sys.argv) < 2:
 	print "Usage: ser_rpc <command> [params...]"
 	sys.exit()
 
+# transport = Transport(SER)
 ser = ServerProxy(SER)
 
 cmd = 'ser.' + sys.argv[1]
