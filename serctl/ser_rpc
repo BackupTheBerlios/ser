@@ -3,9 +3,13 @@
 #
 # Stupid script for SER xml-rpc testing. 
 
-SER      = 'http://ser:heslo@localhost/'
-SSL_KEY  = 'key_file'
-SSL_CERT = 'cert_file'
+#SER      = 'http://ser:heslo@213.192.30.152/'
+SER      = 'https://ser:heslo@10.38.2.230/'
+#SSL_KEY  = 'eve_prik.key'
+#SSL_CERT = 'eve_cert.crt'
+
+SSL_CERT = None
+SSL_KEY  = None
 
 from serctl.serxmlrpc import ServerProxy
 import sys

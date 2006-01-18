@@ -1,6 +1,7 @@
 serctl (0.0.20)
 
   * Simple man page for serxmlrpc module added.
+  * Makefile update.
 
  -- Jan Halla <hallik@iptel.org> 
 

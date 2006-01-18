@@ -14,14 +14,19 @@ libexecdir    = $(usr_prefix)/lib
 datadir       = $(usr_prefix)/share
 docdir        = $(datadir)/doc
 localstatedir = $(var_prefix)
+mandir        = $(datadir)/man
 
 PYPKG_DIR     = $(libexecdir)/python$(python_ver)/site-packages/$(name)
 DOC_DIR       = $(docdir)/$(name)
+MAN3_DIR      = $(mandir)/man3
 PRECOMP_DIR   = serctl
 
 # ------------------------------------------------------------------------- #
 
-SRC_DOC_FILES = README TODO ChangeLog
+SRC_BIN_FILES  = ser_* 
+SRC_DOC_FILES  = README TODO ChangeLog
+SRC_CONF_FILES = serctl.conf
+SRC_MAN3_FILES = serxmlrpc.3
 
 # ========================================================================= #
 
@@ -52,13 +57,15 @@ install-lib: build
 install-bin: build
 	# python bins
 	mkdir -m 0755 -p $(bindir)
-	cp -a ser_* $(bindir)
+	cp -a $(SRC_BIN_FILES) $(bindir)
 
 install-doc: build
 	# documentation
 	mkdir -m 0755 -p $(DOC_DIR)
 	cp -a $(SRC_DOC_FILES) $(DOC_DIR)
 	chmod 0644 $(DOC_DIR)/*
+	mkdir -m 0755 -p $(MAN3_DIR)
+	cp -a $(SRC_MAN3_FILES) $(MAN3_DIR)
 
 clean:
 	find . -name '*~' -type f -exec rm -f \{\} \;

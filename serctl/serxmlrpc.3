@@ -5,7 +5,7 @@ persistent connection. Mainly for use with SER (Sip Express Router) as
 client side library.
 .SH SYNOPSIS
 .nf
-.B from serxmlrpc import *
+.B from serctl.serxmlrpc import *
 .sp
 .IB \fPclass\  Transport( uri =None, \ ssl =None)
 .sp
@@ -43,3 +43,5 @@ for xmlrpclib.
 ServerProxy function return xmlrpclib.ServerProxy instance.
 .SH PYTHON VERSION
 Module serxmlrpc is for python 2.2+. 
+.SH NOTE
+Serxmlrpc module can be used separately. It's not dependent on serctl package.

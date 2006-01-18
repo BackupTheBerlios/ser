@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.6 2006/01/16 17:35:14 hallik Exp $
+# $Id: config.py,v 1.7 2006/01/18 14:09:41 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,7 +15,7 @@
 #
 # PATH to configuraton file
 #
-CONFIG = '/etc/ser/serctl.conf'
+CONFIG = '/usr/local/etc/serctl/serctl.conf'
 
 ### CONFIG FILE FOR TESTING ###
 import os.path
@@ -53,13 +53,20 @@ ENV_DB = 'SERCTL_DB'
 #
 # Ser URI, this should be the SER URI for xmlrpc requests.
 #
-SER_URI = 'http://localhost:5060/'
+SER_URI = 'https://localhost:5060/'
 
 #
 # Name of environment variable used to pass the SER URI 
 # to serctl
 #
 ENV_SER = 'SERCTL_SER'
+
+#
+# Private key and certificate files for HTTPS
+# May be None (both!) if HTTPS transport do not require authentication.
+#
+SSL_KEY  = '/usr/local/etc/serctl/ser.key'
+SSL_CERT = '/usr/local/etc/serctl/ser.cert'
 
 #
 # Miscelaneous global contstants...
