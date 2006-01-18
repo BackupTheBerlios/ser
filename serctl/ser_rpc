@@ -3,18 +3,18 @@
 #
 # Stupid script for SER xml-rpc testing. 
 
-SER = 'http://jan:heslo@localhost/'
+SER      = 'http://ser:heslo@localhost/'
+SSL_KEY  = 'key_file'
+SSL_CERT = 'cert_file'
 
 from serctl.serxmlrpc import ServerProxy
 import sys
-
 
 if len(sys.argv) < 2:
 	print "Usage: ser_rpc <command> [params...]"
 	sys.exit()
 
-# transport = Transport(SER)
-ser = ServerProxy(SER)
+ser = ServerProxy(SER, (SSL_KEY, SSL_CERT))
 
 cmd = 'ser.' + sys.argv[1]
 params = ', '.join(sys.argv[2:])

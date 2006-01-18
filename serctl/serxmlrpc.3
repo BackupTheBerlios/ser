@@ -23,8 +23,9 @@ values are used: user='anonymous', password='', host='localhost', port=5060.
 User and password are used for digest authorization.
 .TP
 .B ssl
-is tuple of (ssl_key_file, ssl_cert_file), where ssl_key_file and ssl_cert_file are open
-file handlers (file objects).
+is tuple of strings (ssl_key_file, ssl_cert_file), where ssl_key_file and ssl_cert_file 
+are names of private PEM formated key file and PEM formated certificate
+chain file.
 .PP
 Exception
 .B UnsupportedAuthScheme
