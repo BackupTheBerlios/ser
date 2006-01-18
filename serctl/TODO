@@ -5,7 +5,7 @@ Important:
 
   * Ser_ctl flush command.
 
-  * Fifo and xmlrpc objects.
+  * Fifo module.
 
 Future:
 =======

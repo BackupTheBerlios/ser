@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.7 2006/01/18 14:09:41 hallik Exp $
+# $Id: config.py,v 1.8 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,13 +15,10 @@
 #
 # PATH to configuraton file
 #
-CONFIG = '/usr/local/etc/serctl/serctl.conf'
-
-### CONFIG FILE FOR TESTING ###
-import os.path
-CONFIG = os.path.join(os.path.dirname(__file__), '../serctl.conf')
-del(os.path)
-###############################
+try:
+	from localconfig import CONFIG
+except:
+	CONFIG = '/usr/local/etc/serctl/serctl.conf'
 
 #
 # Disable/enable debugging mode
@@ -67,6 +64,12 @@ ENV_SER = 'SERCTL_SER'
 #
 SSL_KEY  = '/usr/local/etc/serctl/ser.key'
 SSL_CERT = '/usr/local/etc/serctl/ser.cert'
+
+#
+# Name of environment variable used to pass the SSL_KEY and the SSL_CERT.
+#
+ENV_SSL_KEY  = 'SERCTL_SSL_KEY'
+ENV_SSL_CERT = 'SERCTL_SSL_CERT'
 
 #
 # Miscelaneous global contstants...

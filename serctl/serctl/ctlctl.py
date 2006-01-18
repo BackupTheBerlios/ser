@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.5 2006/01/16 17:35:14 hallik Exp $
+# $Id: ctlctl.py,v 1.6 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -17,13 +17,19 @@ from ctldomain    import Domain
 from ctluser      import User
 from error        import Error, ENOARG, EINVAL, ENOSYS
 from options      import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
-                         OPT_SER_URI
+                         OPT_SER_URI, CMD, CMD_HELP
 from serxmlrpc    import ServerProxy
 from utils        import show_opts
 import ctlhelp
 
 def main(args, opts):
-	cmd = args[2]
+	if len(args) < 3:
+		print help(args, opts)
+		return
+	try:
+		cmd = CMD[args[2]]
+	except KeyError:
+		raise Error (EINVAL, args[2])
 	db  = opts[OPT_DATABASE]
 
 	if   cmd == CMD_FLUSH:
@@ -32,6 +38,9 @@ def main(args, opts):
 		ret = publish(db, args[3:], opts)
 	elif cmd == CMD_PURGE:
 		ret = purge(db, args[3:], opts)
+	elif cmd == CMD_HELP:
+		print help(args, opts)
+		return
 	else:
 		raise Error (EINVAL, cmd)
 	return ret

@@ -1,29 +1,19 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# Stupid script for SER xml-rpc testing. 
+# $Id: ser_rpc,v 1.5 2006/01/18 17:49:20 hallik Exp $
+#
+# Copyright (C) 2005 iptelorg GmbH
+#
+# This is part of SER (SIP Express Router), a free SIP server project. 
+# You can redistribute it and/or modify it under the terms of GNU General
+# Public License as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# Created:     2005/11/14
+# Last update: 2005/11/27
 
-#SER      = 'http://ser:heslo@213.192.30.152/'
-SER      = 'https://ser:heslo@10.38.2.230/'
-#SSL_KEY  = 'eve_prik.key'
-#SSL_CERT = 'eve_cert.crt'
-
-SSL_CERT = None
-SSL_KEY  = None
-
-from serctl.serxmlrpc import ServerProxy
+from serctl.main import main
 import sys
 
-if len(sys.argv) < 2:
-	print "Usage: ser_rpc <command> [params...]"
-	sys.exit()
-
-ser = ServerProxy(SER, (SSL_KEY, SSL_CERT))
-
-cmd = 'ser.' + sys.argv[1]
-params = ', '.join(sys.argv[2:])
-
-cmd = cmd + '(' + params + ')'
-
-print cmd + ':'
-print eval(cmd)
+main(sys.argv)

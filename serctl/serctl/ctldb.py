@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlraw.py,v 1.3 2006/01/12 14:00:47 hallik Exp $
+# $Id: ctldb.py,v 1.1 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,14 +12,23 @@
 #
 
 from dbany   import DBany, DSC_NAME, DSC_DEFAULT
-from error   import Error, ENOARG
+from error   import Error, ENOARG, EINVAL
 from options import OPT_DATABASE, CMD_ADD, CMD_RM, CMD_SHOW, OPT_FORCE, \
-                    OPT_LIMIT
+                    OPT_LIMIT, CMD, CMD_HELP
 from utils   import show_opts, arg_pairs, tabprint
 import ctlhelp
 
 def main(args, opts):
-	cmd = args[2]
+	if len(args) < 3:
+		print help(args, opts)
+		return
+	try:
+		cmd = CMD[args[2]]
+	except KeyError:
+		raise Error (EINVAL, args[2])
+	if cmd == CMD_HELP:
+		print help(args, opts)
+		return
 	db  = opts[OPT_DATABASE]
 	if len(args) < 4:
 		raise Error (ENOARG, '<table_name>')
@@ -30,18 +39,22 @@ def main(args, opts):
 		ret = rm(db, tab, args[4:], opts)
 	elif cmd == CMD_SHOW:
 		ret = show(db, tab, args[4:], opts)
+        else:
+                raise Error (EINVAL, cmd)
 	return ret
 
 def help(args, opts):
 	return """
-Usage: serraw raw <add|rm|show> <table_name> [column_name column_value] ...
-""" % ctlhelp.options(args, opts)
+Usage:
+	ser_db [options...] [--] <add|rm|show> <table_name> [column_name column_value] ...
+
+""" + ctlhelp.options(args, opts)
 
 def show(db, tab, args, opts):
 
 	cols, numeric, limit, rsep, lsep,  astab = show_opts(opts)
 
-	u = Raw(db)
+	u = Db(db)
 	data, desc = u.show(tab, cols, None, limit)
 
 	tabprint(data, desc, rsep, lsep, astab)
@@ -49,7 +62,7 @@ def show(db, tab, args, opts):
 def add(db, tab, args, opts):
 	arg = arg_pairs(args)[0]
 
-	u = Raw(db)
+	u = Db(db)
 	u.add(tab, arg)
 
 def rm(db, tab, args, opts):
@@ -57,10 +70,10 @@ def rm(db, tab, args, opts):
 
 	limit = opts.get(OPT_LIMIT, 0)
 
-	u = Raw(db)
+	u = Db(db)
 	u.rm(tab, arg, limit)
 
-class Raw:
+class Db:
 
 	def __init__(self, dburi):
 		self.db = DBany(dburi)

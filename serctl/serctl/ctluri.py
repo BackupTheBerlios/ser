@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.4 2006/01/12 14:00:47 hallik Exp $
+# $Id: ctluri.py,v 1.5 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -20,12 +20,18 @@ from flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                     IS_FROM, flag_hex
 from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                     CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
-                    OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS
+                    OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
 from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
 import ctlhelp
 
 def main(args, opts):
-	cmd = args[2]
+	if len(args) < 3:
+		print help(args, opts)
+		return
+	try:
+		cmd = CMD[args[2]]
+	except KeyError:
+		raise Error (EINVAL, args[2])
 	db  = opts[OPT_DATABASE]
 
 	if   cmd == CMD_ADD:
@@ -44,6 +50,9 @@ def main(args, opts):
 		ret = show(db, args[3:], opts)
 	elif cmd == CMD_PURGE:
 		ret = purge(db, args[3:], opts)
+	elif cmd == CMD_HELP:
+		print help(args, opts)
+		return
 	else:
 		raise Error (EINVAL, cmd)
 	return ret

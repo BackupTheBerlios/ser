@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.5 2006/01/12 14:00:47 hallik Exp $
+# $Id: options.py,v 1.6 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,15 +12,16 @@
 #
 # Command line options.
 
-OBJ_ATTR       = 'attr'
-OBJ_CREDENTIAL = 'credential'
-OBJ_CTL        = 'ctl'
-OBJ_DOMAIN     = 'domain'
-OBJ_HELP       = 'help'
-OBJ_INTERCEPT  = 'intercept'
-OBJ_RAW        = 'raw'
-OBJ_URI        = 'uri'
-OBJ_USER       = 'user'
+MOD_ATTR       = 'attr'
+MOD_CREDENTIAL = 'credential'
+MOD_CTL        = 'ctl'
+MOD_DB         = 'db'
+MOD_DOMAIN     = 'domain'
+MOD_HELP       = 'help'
+MOD_INTERCEPT  = 'intercept'
+MOD_RPC        = 'rpc'
+MOD_URI        = 'uri'
+MOD_USER       = 'user'
 
 CMD_ADD        = 'add'
 CMD_CANONICAL  = 'canonical'
@@ -47,64 +48,76 @@ OPT_NUMERIC    = 'numeric'
 OPT_PASSWORD   = 'password'
 OPT_REC_SEP    = 'rsep'
 OPT_SER_URI    = 'ser-uri'
+OPT_SSL_KEY    = 'ssl-key'
+OPT_SSL_CERT   = 'ssl-cert'
 OPT_TABLE      = 'table'
 OPT_VERBOSE    = 'verbose'
 OPT_QUIET      = 'quiet'
 
-OBJ = {\
-	'attr'       : OBJ_ATTR,
-	'att'        : OBJ_ATTR,
-	'at'         : OBJ_ATTR,
-	'a'          : OBJ_ATTR,
+MOD = {\
+	'attr'       : MOD_ATTR,
+	'att'        : MOD_ATTR,
+	'at'         : MOD_ATTR,
+	'a'          : MOD_ATTR,
 
-	'credential' : OBJ_CREDENTIAL,
-	'credentia'  : OBJ_CREDENTIAL,
-	'credenti'   : OBJ_CREDENTIAL,
-	'credent'    : OBJ_CREDENTIAL,
-	'creden'     : OBJ_CREDENTIAL,
-	'crede'      : OBJ_CREDENTIAL,
-	'cred'       : OBJ_CREDENTIAL,
-	'cre'        : OBJ_CREDENTIAL,
-	'cr'         : OBJ_CREDENTIAL,
-	'c'          : OBJ_CREDENTIAL,
+	'credential' : MOD_CREDENTIAL,
+	'credentia'  : MOD_CREDENTIAL,
+	'credenti'   : MOD_CREDENTIAL,
+	'credent'    : MOD_CREDENTIAL,
+	'creden'     : MOD_CREDENTIAL,
+	'crede'      : MOD_CREDENTIAL,
+	'cred'       : MOD_CREDENTIAL,
+	'cre'        : MOD_CREDENTIAL,
+	'cr'         : MOD_CREDENTIAL,
+	'c'          : MOD_CREDENTIAL,
 
-	'ctl'        : OBJ_CTL,
-	'ct'         : OBJ_CTL,
-	'C'          : OBJ_CTL,
+	'ctl'        : MOD_CTL,
+	'ct'         : MOD_CTL,
+	'C'          : MOD_CTL,
 
-	'domain'     : OBJ_DOMAIN,
-	'domai'      : OBJ_DOMAIN,
-	'doma'       : OBJ_DOMAIN,
-	'dom'        : OBJ_DOMAIN,
-	'do'         : OBJ_DOMAIN,
-	'd'          : OBJ_DOMAIN,
+	'db'         : MOD_DB,
 
-	'help'       : OBJ_HELP,
-	'hel'        : OBJ_HELP,
-	'he'         : OBJ_HELP,
-	'h'          : OBJ_HELP,
+	'domain'     : MOD_DOMAIN,
+	'domai'      : MOD_DOMAIN,
+	'doma'       : MOD_DOMAIN,
+	'dom'        : MOD_DOMAIN,
+	'do'         : MOD_DOMAIN,
+	'd'          : MOD_DOMAIN,
 
-	'i'          : OBJ_URI,
+	'help'       : MOD_HELP,
+	'hel'        : MOD_HELP,
+	'he'         : MOD_HELP,
+	'h'          : MOD_HELP,
 
-	'intercept'  : OBJ_INTERCEPT,
-	'intercep'   : OBJ_INTERCEPT,
-	'interce'    : OBJ_INTERCEPT,
-	'interc'     : OBJ_INTERCEPT,
-	'inter'      : OBJ_INTERCEPT,
-	'inte'       : OBJ_INTERCEPT,
-	'int'        : OBJ_INTERCEPT,
-	'in'         : OBJ_INTERCEPT,
-	'I'          : OBJ_INTERCEPT,
+	'i'          : MOD_URI,
 
-	'raw'        : OBJ_RAW,
+	'intercept'  : MOD_INTERCEPT,
+	'intercep'   : MOD_INTERCEPT,
+	'interce'    : MOD_INTERCEPT,
+	'interc'     : MOD_INTERCEPT,
+	'inter'      : MOD_INTERCEPT,
+	'inte'       : MOD_INTERCEPT,
+	'int'        : MOD_INTERCEPT,
+	'in'         : MOD_INTERCEPT,
+	'I'          : MOD_INTERCEPT,
 
-	'uri'        : OBJ_URI,
-	'ur'         : OBJ_URI,
+	'rpc'        : MOD_RPC,
+	'rp'         : MOD_RPC,
+	'R'          : MOD_RPC,
 
-	'user'       : OBJ_USER,
-	'use'        : OBJ_USER,
-	'us'         : OBJ_USER,
-	'u'          : OBJ_USER,
+	'uri'        : MOD_URI,
+	'ur'         : MOD_URI,
+
+	'user'       : MOD_USER,
+	'use'        : MOD_USER,
+	'us'         : MOD_USER,
+	'u'          : MOD_USER,
+
+	'xmlrpc'     : MOD_RPC,
+	'xmlrp'      : MOD_RPC,
+	'xmlr'       : MOD_RPC,
+	'xml'        : MOD_RPC,
+	'x'          : MOD_RPC,
 }
 
 CMD = {\
@@ -184,8 +197,10 @@ OPT = {\
 	OPT_FORCE     : ('f', 'force',      False),
 	OPT_DEBUG     : ('g', 'debug',      False),
 	OPT_HELP      : ('h', 'help',       False),
+	OPT_SSL_KEY   : ('k', 'ssl-key',    True),
 	OPT_LIMIT     : ('l', 'limit',      True),
 	OPT_LINE_SEP  : ('L', 'line-sep',   True),
+	OPT_SSL_CERT  : ('m', 'ssl-cert',   True),
 	OPT_NUMERIC   : ('n', 'numeric',    False),
 	OPT_PASSWORD  : ('p', 'password',   True),
 	OPT_REC_SEP   : ('R', 'record-sep', True),

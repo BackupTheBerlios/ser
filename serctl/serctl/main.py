@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.5 2006/01/12 20:27:06 hallik Exp $
+# $Id: main.py,v 1.6 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -35,36 +35,39 @@ def parse_opts(cmd_line):
 	return args, opts
 
 def module(name):
-	if not OBJ.has_key(name):
+	if not MOD.has_key(name):
 		return None
-	name = OBJ[name]
-	if name == OBJ_CTL:
+	name = MOD[name]
+	if name == MOD_CTL:
 		import ctlctl
 		return ctlctl
-	if name == OBJ_ATTR:
+	if name == MOD_ATTR:
 		import ctlattr
 		return ctlattr
-	if name == OBJ_CREDENTIAL:
+	if name == MOD_CREDENTIAL:
 		import ctlcred
 		return ctlcred
-	if name == OBJ_DOMAIN:
+	if name == MOD_DB:
+		import ctldb
+		return ctldb
+	if name == MOD_DOMAIN:
 		import ctldomain
 		return ctldomain
-	if name == OBJ_HELP:
+	if name == MOD_HELP:
 		import ctlhelp
 		return ctlhelp
-	if name == OBJ_RAW:
-		import ctlraw
-		return ctlraw
-	if name == OBJ_USER:
+	if name == MOD_RPC:
+		import ctlrpc
+		return ctlrpc
+	if name == MOD_USER:
 		import ctluser
 		return ctluser
-	if name == OBJ_URI:
+	if name == MOD_URI:
 		import ctluri
 		return ctluri
 
 	# intercept module not in public release.
-	if name == OBJ_INTERCEPT:
+	if name == MOD_INTERCEPT:
 		try:
 			import ctlintercept
 		except:
@@ -74,15 +77,14 @@ def module(name):
 	return None
 
 def handle_help(args, opts):
-	if not (args[1] == OBJ_HELP or \
-	        args[2] == CMD_HELP or \
+	if not (args[1] == MOD_HELP or \
 	        opts.has_key(OPT_HELP)):
 		return
 	mod = module(args[1])
 	try:
 		print mod.help(args, opts)
 	except:
-		mod = module(OBJ_HELP)
+		mod = module(MOD_HELP)
 		print mod.help(args, opts)
 	sys.exit(0)
 
@@ -111,6 +113,30 @@ def handle_ser_uri(opts):
 	except:
 		raise Error (ENOSER)
 
+def handle_ssl_key(opts):
+	if opts.has_key(OPT_SSL_KEY):
+		return
+	key = os.getenv(config.ENV_SSL_KEY)
+	if key:
+		opts[OPT_SSL_KEY] = key
+		return
+	try:
+		opts[OPT_SSL_KEY] = config.SSL_KEY
+	except:
+		pass
+
+def handle_ssl_cert(opts):
+	if opts.has_key(OPT_SSL_CERT):
+		return
+	cert = os.getenv(config.ENV_SSL_CERT)
+	if cert:
+		opts[OPT_SSL_CERT] = cert
+		return
+	try:
+		opts[OPT_SSL_CERT] = config.SSL_CERT
+	except:
+		pass
+
 def handle_cmdname(args):
 	if not args:
 		return
@@ -118,8 +144,8 @@ def handle_cmdname(args):
 	name = name.lower().replace('_', '-')
 	if name.find('-') == -1:
 		return
-	obj = name.split('-')[1]
-	args.insert(1, obj)
+	mod = name.split('-')[1]
+	args.insert(1, mod)
 
 def main(argv):
 	args, opts = parse_opts(argv)
@@ -129,24 +155,17 @@ def main(argv):
 	if len(args) < 1:
 		raise Error (EINVAL)
 	if len(args) < 2:
-		args.append(OBJ_HELP)
-	if len(args) < 3:
-		args.append(CMD_HELP)
+		args.append(MOD_HELP)
 	try:
-		args[1] = OBJ[args[1]]
+		args[1] = MOD[args[1]]
 	except KeyError:
 		raise Error (EINVAL, args[1])
-	try:
-		args[2] = CMD[args[2]]
-	except KeyError:
-		raise Error (EINVAL, args[2])
-
-	if OPT_HELP in opts.keys():
-		args[2] = CMD_HELP
 
 	handle_help(args, opts)
 	handle_db(opts)
 	handle_ser_uri(opts)
+	handle_ssl_key(opts)
+	handle_ssl_cert(opts)
 
 	mod = module(args[1])
 	if mod:

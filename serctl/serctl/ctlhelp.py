@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.3 2006/01/12 14:00:47 hallik Exp $
+# $Id: ctlhelp.py,v 1.4 2006/01/18 17:49:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -40,15 +40,17 @@ Options:
 def help(args, opts):
 	return """\
 Usage:
-	ser_uri    [options...] [--] [[command] params...]
-	ser_cred   [options...] [--] [[command] params...]
-	ser_domain [options...] [--] [[command] params...]
-	ser_user   [options...] [--] [[command] params...]
+	ctlser     <module_name> [options...] [--] [[command] params...]
 	ser_ctl    [options...] [--] [[command] params...]
+	ser_cred   [options...] [--] [[command] params...]
+	ser_db     [options...] [--] [[command] params...]
+	ser_domain [options...] [--] [[command] params...]
+	ser_uri    [options...] [--] [[command] params...]
+	ser_user   [options...] [--] [[command] params...]
 
 %s
 Commands:
 	add, canonical, change, enable, disable, purge, rm, show
 
-Use 'ser_<obj> help' for params specification.
+Use 'ser_<module_name> -h' or 'ctlser <module_name> -h' for module params specification.
 """ % options(args, opts)

@@ -20,6 +20,7 @@ PYPKG_DIR     = $(libexecdir)/python$(python_ver)/site-packages/$(name)
 DOC_DIR       = $(docdir)/$(name)
 MAN3_DIR      = $(mandir)/man3
 PRECOMP_DIR   = serctl
+CONF_DIR      = $(sysconfdir)/$(name)
 
 # ------------------------------------------------------------------------- #
 
@@ -46,13 +47,19 @@ i:
 install-precomp: install
 	make precompile PRECOMP_DIR=$(prefix)
 
-install: install-lib install-bin install-doc
+install: install-lib install-conf install-bin install-doc
 
 install-lib: build
 	# python package
 	mkdir -m 0755 -p $(PYPKG_DIR)
 	find serctl -type d ! -path '*CVS*' -printf "$(PYPKG_DIR)/%P\n" | xargs -n1 mkdir -p
 	find serctl -type f ! -path '*CVS*' -name '*.py*' -printf "%p $(PYPKG_DIR)/%P\n" | xargs -n2 cp -a
+	rm -f $(PYPKG_DIR)/localconfig.py
+
+install-conf: build
+	# config file(s)
+	mkdir -m 0755 -p $(CONF_DIR)
+	cp -a $(SRC_CONF_FILES) $(CONF_DIR)
 
 install-bin: build
 	# python bins
@@ -89,5 +96,5 @@ tarball: tree
 version:
 	@echo $(ver)
 
-.PHONY: all build precompile i install install-lib install-bin install-doc clean
-.PHONY: nuke tree tarball version
+.PHONY: all build precompile i install install-lib install-conf install-bin 
+.PHONY: install-doc cleannuke tree tarball version
