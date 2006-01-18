@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: serxmlrpc.py,v 1.1 2006/01/16 17:35:14 hallik Exp $
+# $Id: serxmlrpc.py,v 1.2 2006/01/18 11:01:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -22,10 +22,10 @@ PASS   = 2
 HOST   = 3
 PORT   = 4
 
-EXP = re.compile('(^[^:]*)://([^/]*)/?.*$')
+_EXP = re.compile('(^[^:]*)://([^/]*)/?.*$')
 
 def _split_uri(uri):
-	exp      = EXP.match(uri)
+	exp      = _EXP.match(uri)
 	if not exp:
 		return ('http', None, '', 'localhost', '5060')
 	scheme   = exp.group(1)

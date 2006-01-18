@@ -1,3 +1,9 @@
+serctl (0.0.20)
+
+  * Simple man page for serxmlrpc module added.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.0.19)
 
   * Configuration file added.
