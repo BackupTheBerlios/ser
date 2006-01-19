@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.109 2006/01/09 19:42:35 tma0 Exp $
+ * $Id: cfg.y,v 1.110 2006/01/19 19:44:40 mma Exp $
  *
  *  cfg grammar
  *
@@ -1263,7 +1263,7 @@ select_params:
 	| select_param
 	;
 select_id:
-	SELECT_MARK { sel.n = 0; sel.f = 0; } select_params {
+	SELECT_MARK { sel.n = 0; sel.f[0] = 0; } select_params {
 		sel_ptr = (select_t*)pkg_malloc(sizeof(select_t));
 		if (!sel_ptr) {
 			yyerror("No memory left to allocate select structure\n");
