@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.28 2006/01/08 22:43:15 tma0 Exp $
+ * $Id: authdb_mod.c,v 1.29 2006/01/20 10:44:29 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -115,8 +115,12 @@ int credentials_n;         /* Number of credentials in the list */
 static cmd_export_t cmds[] = {
 	{"www_authenticate",   www_authenticate,    2, authdb_fixup, REQUEST_ROUTE},
 	{"www_authenticate",   www_authenticate1,   1, authdb_fixup, REQUEST_ROUTE},
+	{"www_authorize",      www_authenticate,    2, authdb_fixup, REQUEST_ROUTE},
+	{"www_authorize",      www_authenticate1,   1, authdb_fixup, REQUEST_ROUTE},
 	{"proxy_authenticate", proxy_authenticate,  2, authdb_fixup, REQUEST_ROUTE},
 	{"proxy_authenticate", proxy_authenticate1, 1, authdb_fixup, REQUEST_ROUTE},
+	{"proxy_authorize",    proxy_authenticate,  2, authdb_fixup, REQUEST_ROUTE},
+	{"proxy_authorize",    proxy_authenticate1, 1, authdb_fixup, REQUEST_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
