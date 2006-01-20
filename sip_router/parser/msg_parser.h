@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.60 2005/12/13 00:40:43 janakj Exp $
+ * $Id: msg_parser.h,v 1.61 2006/01/20 11:19:43 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -67,7 +67,8 @@
 
 /* number methods as power of two to allow bitmap matching */
 enum request_method { METHOD_UNDEF=0, METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_ACK=4, 
-	METHOD_BYE=8, METHOD_INFO=16, METHOD_OTHER=32 };
+	METHOD_BYE=8, METHOD_INFO=16, METHOD_REGISTER=32, METHOD_SUBSCRIBE=64,
+        METHOD_NOTIFY=128, METHOD_OTHER=256 };
 
 #define FL_FORCE_RPORT 1   /* force rport */
 #define FL_FORCE_ACTIVE 2  /* force active SDP */
