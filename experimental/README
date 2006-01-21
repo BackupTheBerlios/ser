@@ -103,3 +103,11 @@ have been difficult to backport to 0.9.x.
 Maintainer: Juha Heinanen <jh@tutpro.com>
 
 Backported Least Cost Routing module from HEAD. 
+
+dlgm module
+-----------
+COMMENT: Only found in head. Very early stage.
+Maintainer: Joao Filipe Placido Santos <jfkavaka@gmail.com>
+
+The intention is to build a module that will store dialog information and do
+manipulations on dialogs. First step is to send BYE for a given criteria.
