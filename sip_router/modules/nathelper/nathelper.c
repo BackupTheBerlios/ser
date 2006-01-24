@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.93 2006/01/09 10:24:42 ullstar Exp $
+/* $Id: nathelper.c,v 1.94 2006/01/24 18:28:58 andrei Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -1298,6 +1298,11 @@ rtpp_test(struct rtpp_node *node, int isdisabled, int force)
 			break;
 		}
 		cp = send_rtpp_command(node, vf, 4);
+		if (cp == NULL) {
+			LOG(L_WARN,"WARNING: rtpp_test: RTP proxy went down during "
+			    "version query\n");
+			break;
+		}
 		if (cp[0] == 'E' || atoi(cp) != 1) {
 			LOG(L_WARN, "WARNING: rtpp_test: of RTP proxy <%s>"
 			    "doesn't support required protocol version %s\n",
