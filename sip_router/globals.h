@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.59 2005/12/21 17:27:22 janakj Exp $
+ * $Id: globals.h,v 1.60 2006/01/27 09:52:58 janakj Exp $
  *
  * global variables
  *
@@ -94,6 +94,7 @@ extern int check_via;
 extern int received_dns;
 extern int syn_branch;
 /* extern int process_no; */
+extern int child_rank;
 extern int sip_warning;
 extern int server_signature;
 extern char* user;
