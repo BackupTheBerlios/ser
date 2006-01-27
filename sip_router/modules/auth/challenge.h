@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.h,v 1.5 2005/11/21 00:00:25 janakj Exp $
+ * $Id: challenge.h,v 1.6 2006/01/27 13:09:00 janakj Exp $
  *
  * Challenge related functions
  *
@@ -44,6 +44,18 @@ int www_challenge(struct sip_msg* msg, char* realm, char* str2);
  * Challenge a user agent using Proxy-Authenticate header field
  */
 int proxy_challenge(struct sip_msg* msg, char* realm, char* str2);
+
+
+/* 
+ * Challenge a user agent using WWW-Authenticate header field
+ */
+int www_challenge1(struct sip_msg* msg, char* qop, char* s2);
+
+
+/*
+ * Challenge a user agent using Proxy-Authenticate header field
+ */
+int proxy_challenge1(struct sip_msg* msg, char* qop, char* s2);
 
 
 /*

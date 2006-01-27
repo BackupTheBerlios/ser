@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.c,v 1.61 2006/01/08 22:43:14 tma0 Exp $
+ * $Id: auth_mod.c,v 1.62 2006/01/27 13:09:00 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -90,6 +90,8 @@ char* sec_rand = 0;
 static cmd_export_t cmds[] = {
 	{"www_challenge",       www_challenge,           2, challenge_fixup, REQUEST_ROUTE},
 	{"proxy_challenge",     proxy_challenge,         2, challenge_fixup, REQUEST_ROUTE},
+	{"www_challenge",       www_challenge1,          1, fixup_int_1,     REQUEST_ROUTE},
+	{"proxy_challenge",     proxy_challenge1,        1, fixup_int_1,     REQUEST_ROUTE},
 	{"consume_credentials", consume_credentials,     0, 0,               REQUEST_ROUTE},
 	{"bind_auth",           (cmd_function)bind_auth, 0, 0,               0            },
 	{0, 0, 0, 0, 0}

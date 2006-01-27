@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.25 2005/11/21 00:00:27 janakj Exp $
+ * $Id: challenge.c,v 1.26 2006/01/27 13:09:00 janakj Exp $
  *
  * Challenge related functions
  *
@@ -195,6 +195,27 @@ int www_challenge(struct sip_msg* msg, char* realm, char* qop)
 int proxy_challenge(struct sip_msg* msg, char* realm, char* qop)
 {
 	return challenge(msg, (str*)realm, (int)(long)qop, 407, MESSAGE_407, 
+			 PROXY_AUTH_CHALLENGE);
+}
+
+/*
+ * Challenge a user to send credentials using WWW-Authorize header field
+ */
+int www_challenge1(struct sip_msg* msg, char* qop, char* s2)
+{
+	static str realm = STR_STATIC_INIT("");
+	return challenge(msg, &realm, (int)(long)qop, 401, MESSAGE_401,
+			 WWW_AUTH_CHALLENGE);
+}
+
+
+/*
+ * Challenge a user to send credentials using Proxy-Authorize header field
+ */
+int proxy_challenge1(struct sip_msg* msg, char* qop, char* s2)
+{
+	static str realm = STR_STATIC_INIT("");
+	return challenge(msg, &realm, (int)(long)qop, 407, MESSAGE_407, 
 			 PROXY_AUTH_CHALLENGE);
 }
 
