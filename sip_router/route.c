@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.54 2006/01/09 19:42:35 tma0 Exp $
+ * $Id: route.c,v 1.55 2006/01/27 18:33:11 andrei Exp $
  *
  * SIP routing engine
  *
@@ -550,18 +550,18 @@ inline static int comp_avp(int op, avp_spec_t* spec, int rtype, union exp_op* r,
 	switch(op) {
 	case NO_OP:
 		if (avp->flags & AVP_VAL_STR) {
-			return val.s.len;
+			return val.s.len!=0;
 		} else {
 			return val.n != 0;
 		}
 		break;
 
 	case BINOR_OP:
-		return val.n | r->intval;
+		return (val.n | r->intval)!=0;
 		break;
 
 	case BINAND_OP:
-		return val.n & r->intval;
+		return (val.n & r->intval)!=0;
 		break;
 	}
 
