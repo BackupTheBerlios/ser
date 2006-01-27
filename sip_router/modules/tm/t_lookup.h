@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.16 2005/12/10 16:04:53 andrei Exp $
+ * $Id: t_lookup.h,v 1.17 2006/01/27 18:47:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -55,7 +55,8 @@ void init_t();
 int init_rb( struct retr_buf *rb, struct sip_msg *msg );
 struct cell* t_lookupOriginalT( struct sip_msg* p_msg );
 int t_reply_matching( struct sip_msg* , int* );
-int t_lookup_request( struct sip_msg* p_msg , int leave_new_locked );
+int t_lookup_request( struct sip_msg* p_msg , int leave_new_locked,
+						int* canceled);
 int t_newtran( struct sip_msg* p_msg );
 
 int _add_branch_label( struct cell *trans,

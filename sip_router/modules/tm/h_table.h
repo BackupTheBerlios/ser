@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.83 2005/12/21 17:25:32 janakj Exp $
+ * $Id: h_table.h,v 1.84 2006/01/27 18:47:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -180,6 +180,8 @@ struct totag_elem {
 /* set to one if you want to disallow silent transaction
    dropping when C timer hits */
 #define T_NOISY_CTIMER_FLAG  (1<<2)
+/* transaction canceled */
+#define T_CANCELED           (1<<3)
 
 #define T_IN_AGONY (1<<3) /* set if waiting to die (delete timer)
                              TODO: replace it with del on unref */
