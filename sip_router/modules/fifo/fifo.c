@@ -1,5 +1,5 @@
 /*
- * $Id: fifo.c,v 1.3 2006/01/11 11:53:35 janakj Exp $
+ * $Id: fifo.c,v 1.4 2006/01/28 13:11:57 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -40,6 +40,7 @@ MODULE_VERSION
 
 static int mod_init(void);
 static int child_init(int rank);
+static void mod_destroy(void);
 
 /*
  * Exported functions
@@ -62,8 +63,6 @@ static param_export_t params[] = {
 	{0, 0, 0}
 };
 
-static rpc_t func_param;
-
 struct module_exports exports = {
 	"fifo",
 	cmds,           /* Exported commands */
@@ -71,7 +70,7 @@ struct module_exports exports = {
 	params,         /* Exported parameters */
 	mod_init,       /* module initialization function */
 	0,              /* response function*/
-	0,              /* destroy function */
+	mod_destroy,    /* destroy function */
 	0,              /* oncancel function */
 	child_init      /* per-child init function */
 };
