@@ -1,5 +1,5 @@
 /*
- * $Id: pike.c,v 1.26 2006/01/08 22:43:18 tma0 Exp $
+ * $Id: pike.c,v 1.27 2006/01/28 13:11:02 janakj Exp $
  *
  * PIKE module
  *
@@ -136,8 +136,6 @@ static int pike_init(void)
 	register_timer( swap_routine , 0, time_unit );
 
 	return 0;
-error4:
-	shm_free( timer );
 error3:
 	destroy_ip_tree();
 error2:
