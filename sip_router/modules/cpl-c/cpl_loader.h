@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_loader.h,v 1.5 2005/12/20 11:36:33 janakj Exp $
+ * $Id: cpl_loader.h,v 1.6 2006/01/28 13:37:41 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -32,6 +32,10 @@
 
 #ifndef _CPL_LOADER_H
 #define _CPL_LOADER_H
+
+#include "../../str.h"
+
+int load_file( char *filename, str *xml);
 
 #endif
 

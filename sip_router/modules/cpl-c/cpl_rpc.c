@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_rpc.c,v 1.1 2005/12/20 11:36:33 janakj Exp $
+ * $Id: cpl_rpc.c,v 1.2 2006/01/28 13:37:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -43,6 +43,7 @@
 #include "../../mem/shm_mem.h"
 #include "cpl_db.h"
 #include "cpl_parser.h"
+#include "cpl_loader.h"
 #include "cpl_rpc.h"
 
 
