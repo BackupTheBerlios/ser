@@ -1,5 +1,5 @@
 /*
- * $Id: flatstore_mod.c,v 1.7 2006/01/08 22:43:16 tma0 Exp $
+ * $Id: flatstore_mod.c,v 1.8 2006/01/29 12:31:57 tma0 Exp $
  *
  * Flatstore module interface
  *
@@ -130,7 +130,7 @@ static int mod_init(void)
 		return -1;
 	}
 
-	if (strlen(flat_escape) > 0) {
+	if (strlen(flat_escape) > 1) {
 		LOG(L_ERR, "flatstore:mod_init: Escape char has to be max. one character\n");
 		return -1;
 	}
