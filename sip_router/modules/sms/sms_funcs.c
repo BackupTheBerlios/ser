@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.64 2005/11/17 03:50:52 sobomax Exp $
+ * $Id: sms_funcs.c,v 1.65 2006/01/30 15:59:51 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -351,6 +351,7 @@ int send_sip_msg_request(str *to, str *from_user, str *body)
 			&from,                    /* From */
 			&hdrs,                    /* Additional headers including CRLF */
 			body,                     /* Message body */
+			0,                        /* next hop */
 			0,                        /* Callback function */
 			0                         /* Callback parameter */
 		);

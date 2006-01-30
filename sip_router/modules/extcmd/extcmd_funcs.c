@@ -1,5 +1,5 @@
 /*
- * $Id: extcmd_funcs.c,v 1.16 2005/11/17 03:50:27 sobomax Exp $
+ * $Id: extcmd_funcs.c,v 1.17 2006/01/30 15:59:51 kubartv Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -430,6 +430,7 @@ int send_sip_req(str* msg_type, str *msg, int client_fd)
 			&from,                    /* From */
 			&hdrs,                    /* Additional headers including CRLF */
 			&body,                    /* Message body */
+			0,                        /* next hop */
 			tuac_callback,           /* Callback function */
 			(void*)pcbp               /* Callback parameter */
 		);

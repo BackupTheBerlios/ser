@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.1 2005/04/27 14:15:21 sobomax Exp $
+/* $Id: natping.c,v 1.2 2006/01/30 15:59:51 kubartv Exp $
  *
  * Copyright (C) 2005 Porta Software Ltd
  *
@@ -149,7 +149,7 @@ natping(unsigned int ticks, void *param)
 			p_from.s = "sip:registrar"; /* XXX */
 			p_from.len = strlen(p_from.s);
 			if (tmb.t_request(&p_method, &c, &c, &p_from,
-			    NULL, NULL, NULL, NULL) == -1) {
+			    NULL, NULL, NULL, NULL, NULL) == -1) {
 				LOG(L_ERR, "ERROR: nathelper::natping(): t_request() failed\n");
 			}
 		} else {
