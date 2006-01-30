@@ -1,5 +1,5 @@
 /*
- * $Id: error.c,v 1.11 2005/12/05 18:29:30 andrei Exp $
+ * $Id: error.c,v 1.12 2006/01/30 08:54:44 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -105,6 +105,11 @@ int err2reason_phrase(
 	        case E_Q_DEC_MISSING:
 			error_txt="Decimal part missing in q";
 			*sip_error=-E_BAD_REQ;
+			break;
+
+		case E_CANCELED:
+			error_txt="transaction canceled";
+			*sip_error=-ser_error;
 			break;
 
 		case E_OUT_OF_MEM:
