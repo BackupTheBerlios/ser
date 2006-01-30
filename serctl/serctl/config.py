@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.8 2006/01/18 17:49:20 hallik Exp $
+# $Id: config.py,v 1.9 2006/01/30 11:45:49 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -90,13 +90,14 @@ import sys, os.path
 # Config file parser.
 #
 
-fh = open(CONFIG)
-config_file = fh.read() + '\n'
-fh.close()
-config_file_code = compile(config_file, CONFIG, 'exec')
-del(config_file)
-exec config_file_code
-del(config_file_code)
+if CONFIG is not None:
+	fh = open(CONFIG)
+	config_file = fh.read() + '\n'
+	fh.close()
+	config_file_code = compile(config_file, CONFIG, 'exec')
+	del(config_file)
+	exec config_file_code
+	del(config_file_code)
 
 #
 # Determine command name
