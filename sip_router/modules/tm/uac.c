@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.57 2005/12/16 13:09:10 andrei Exp $
+ * $Id: uac.c,v 1.58 2006/01/30 15:56:29 kubartv Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -332,7 +332,7 @@ int req_outside(str* method, str* to, str* from, str* headers, str* body, dlg_t*
 /*
  * Send a transactional request, no dialogs involved
  */
-int request(str* m, str* ruri, str* to, str* from, str* h, str* b, transaction_cb c, void* cp)
+int request(str* m, str* ruri, str* to, str* from, str* h, str* b, str *next_hop, transaction_cb c, void* cp)
 {
 	str callid, fromtag;
 	dlg_t* dialog;
@@ -354,6 +354,9 @@ int request(str* m, str* ruri, str* to, str* from, str* h, str* b, transaction_c
 		dialog->hooks.request_uri = &dialog->rem_target;
 	}
 	w_calculate_hooks(dialog);
+
+	if (next_hop) 
+		if ((next_hop->len > 0) && next_hop->s) dialog->hooks.next_hop = next_hop;
 
 	res = t_uac(m, h, b, dialog, c, cp);
 	dialog->rem_target.s = 0;

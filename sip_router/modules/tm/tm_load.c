@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.23 2005/11/20 23:44:39 janakj Exp $
+ * $Id: tm_load.c,v 1.24 2006/01/30 15:56:29 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -150,6 +150,10 @@ int load_tm( struct tm_binds *tmb)
 	}
 	if (!(tmb->calculate_hooks=(calculate_hooks_f)find_export("calculate_hooks",NO_SCRIPT,0))) {
 		LOG( L_ERR, LOAD_ERROR "' calculate_hooks ' not found\n");
+		return -1;
+	}
+	if (!(tmb->t_uac=(t_uac_t)find_export("t_uac", NO_SCRIPT, 0)) ) {
+		LOG( L_ERR, LOAD_ERROR "'t_uac' not found\n");
 		return -1;
 	}
 
