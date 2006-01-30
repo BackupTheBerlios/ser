@@ -1,5 +1,5 @@
 /* 
- * $Id: my_con.c,v 1.6 2005/10/13 09:23:07 janakj Exp $
+ * $Id: my_con.c,v 1.7 2006/01/30 16:49:51 janakj Exp $
  *
  * Copyright (C) 2001-2004 iptel.org
  *
@@ -88,6 +88,9 @@ struct my_con* new_connection(struct db_id* id)
 		mysql_close(ptr->con);
 		goto err;
 	}
+
+	     /* Enable reconnection explicitly */
+	ptr->con->reconnect = 1;
 
 	DBG("new_connection: Connection type is %s\n", mysql_get_host_info(ptr->con));
 	DBG("new_connection: Protocol version is %d\n", mysql_get_proto_info(ptr->con));
