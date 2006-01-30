@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.16 2005/12/15 14:21:43 kubartv Exp $
+ * $Id: pa_mod.h,v 1.17 2006/01/30 16:25:14 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -69,6 +69,7 @@ extern int callback_update_db;
 extern int callback_lock_pdomain;
 extern int new_tuple_on_publish;
 extern int pa_pidf_priority;
+extern int use_callbacks;
 
 /*
  * compare two str's

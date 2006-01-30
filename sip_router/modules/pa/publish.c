@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.34 2006/01/05 14:31:59 kubartv Exp $
+ * $Id: publish.c,v 1.35 2006/01/30 16:25:14 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -755,6 +755,7 @@ static int publish_presentity(struct sip_msg* _m, struct pdomain* _d, struct pre
 			if (_m->callid)	callid = _m->callid->body;
 			LOG(L_WARN, "publish_presentity: no handler for event_package=%d"
 					" callid=%.*s\n", event_package, callid.len, ZSW(callid.s));
+			paerrno = PA_EVENT_UNSUPP;
 			res = -1;
 	}
 

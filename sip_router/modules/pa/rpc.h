@@ -1,5 +1,5 @@
 /*
- * $Id: rpc.h,v 1.1 2005/12/20 12:11:07 janakj Exp $
+ * $Id: rpc.h,v 1.2 2006/01/30 16:25:14 kubartv Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -28,7 +28,7 @@
 #ifndef _PA_RPC_H
 #define _PA_RPC_H
 
-#include "rpc.h"
+#include "../../rpc.h"
 
 extern rpc_export_t pa_rpc_methods[];
 
