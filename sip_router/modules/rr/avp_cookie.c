@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, avp cookie support
  *
- * $Id: avp_cookie.c,v 1.6 2006/01/30 09:44:04 ullstar Exp $
+ * $Id: avp_cookie.c,v 1.7 2006/01/30 16:20:42 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,7 +39,7 @@
 #define AVP_COOKIE_BUFFER 1024
 #define CRC_LEN 4
 
-regex_t *cookie_filter_re = 0;
+regex_t* cookie_filter_re = 0;
 
 int rr_before_script_cb(struct sip_msg *msg, void *param) {
 	DBG("rr_before_script_cb: inquired\n");

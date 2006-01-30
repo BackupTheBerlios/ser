@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.40 2006/01/08 23:53:06 mma Exp $
+ * $Id: rr_mod.c,v 1.41 2006/01/30 16:20:42 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -124,7 +124,10 @@ static int mod_init(void)
 {
 	DBG("rr - initializing\n");
 	register_script_cb(rr_before_script_cb, REQ_TYPE_CB | PRE_SCRIPT_CB, 0);
+
 	if (cookie_filter && strlen(cookie_filter)) {
+		cookie_filter_re = (regex_t*)pkg_malloc(sizeof(regex_t));
+		memset(cookie_filter_re, 0, sizeof(regex_t));
 		if (regcomp(cookie_filter_re, cookie_filter, REG_EXTENDED|REG_ICASE|REG_NEWLINE) ) {
 			LOG(L_ERR, "ERROR: %s : bad cookie_filter regex '%s'\n", exports.name, cookie_filter);
 			return E_BAD_RE;
