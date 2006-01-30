@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, avp cookie support
  *
- * $Id: avp_cookie.c,v 1.5 2006/01/28 14:34:53 mma Exp $
+ * $Id: avp_cookie.c,v 1.6 2006/01/30 09:44:04 ullstar Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@ str *rr_get_avp_cookies(void) {
 			else
 				avp_name = 0;  // dummy
 
-			get_avp_val(avp, &avp_value);
+			get_avp_val(avp, &avp_val);
 			
 			l = sizeof(rr_avp_flags_t);
 			if (avp->flags & AVP_NAME_STR )
