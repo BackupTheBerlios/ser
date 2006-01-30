@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.40 2006/01/08 23:53:06 mma Exp $
+ * $Id: loose.c,v 1.41 2006/01/30 23:16:09 tma0 Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -463,7 +463,7 @@ void get_avp_cookie_from_uri(str* _params, str *_avp_cookie) {
 				}
 				break;
 
-			case 101:	// no escape chars supported in base64 algorithm
+			case 101:	/* no escape chars supported in base64 algorithm */
 				switch(s.s[i]) {
 					case '\"': _avp_cookie->len = s.s+i - _avp_cookie->s; break;
 					case '\\':  state = 102; break;
