@@ -1,5 +1,5 @@
 /*
- * $Id: ul_rpc.c,v 1.3 2006/01/28 13:11:16 janakj Exp $
+ * $Id: ul_rpc.c,v 1.4 2006/02/01 15:53:41 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -360,7 +360,7 @@ static void rpc_show_contacts(rpc_t* rpc, void* c)
 
 
 rpc_export_t ul_rpc[] = {
-	{"usrloc.statistics",      rpc_stats,           rpc_stats_doc,          0},
+	{"usrloc.stats",           rpc_stats,           rpc_stats_doc,          RET_ARRAY},
 	{"usrloc.delete_uid",      rpc_delete_uid,      rpc_delete_uid_doc,     0},
 	{"usrloc.delete_contact",  rpc_delete_contact,  rpc_delete_contact_doc, 0},
 	{"usrloc.dump",            rpc_dump,            rpc_dump_doc,           0},
