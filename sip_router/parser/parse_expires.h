@@ -1,5 +1,5 @@
 /*
- * $Id: parse_expires.h,v 1.4 2004/08/24 09:01:25 janakj Exp $
+ * $Id: parse_expires.h,v 1.5 2006/02/01 16:08:15 calrissian Exp $
  *
  * Expires header field body parser
  *
@@ -38,7 +38,7 @@
 typedef struct exp_body {
 	str text;            /* Original text representation */
 	unsigned char valid; /* Was parsing successful ? */
-	int val;             /* Parsed value */
+	unsigned int val;    /* Parsed value */
 } exp_body_t;
 
 
