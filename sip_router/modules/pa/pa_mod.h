@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.18 2006/02/02 09:10:24 kubartv Exp $
+ * $Id: pa_mod.h,v 1.19 2006/02/02 17:05:45 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -57,6 +57,7 @@ extern str pa_domain;
 extern char *presentity_table;
 extern char *presentity_contact_table;
 extern char *presentity_notes_table;
+extern char *person_elements_table;
 extern char *watcherinfo_table;
 extern char *place_table;
 extern char *tuple_notes_table;
