@@ -3,7 +3,7 @@
    "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 
 <section id="pa">
-    <sectioninfo>
+<!--    <sectioninfo>
 	<authorgroup>
 	    <author>
 		<firstname>Jamey</firstname>
@@ -30,11 +30,11 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.5 $</revnumber>
-		<date>$Date: 2005/11/09 14:18:47 $</date>
+		<revnumber>$Revision: 1.6 $</revnumber>
+		<date>$Date: 2006/02/02 18:51:00 $</date>
 	    </revision>
 	</revhistory>
-    </sectioninfo>
+    </sectioninfo>-->
     
     <title>Pa Module</title>
 
