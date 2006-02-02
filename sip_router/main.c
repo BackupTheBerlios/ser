@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.210 2006/01/27 09:52:58 janakj Exp $
+ * $Id: main.c,v 1.211 2006/02/02 19:29:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -127,6 +127,7 @@
 #endif
 #include "usr_avp.h"
 #include "core_cmd.h"
+#include "flags.h"
 
 #include "stats.h"
 
@@ -135,7 +136,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.210 2006/01/27 09:52:58 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.211 2006/02/02 19:29:22 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1339,6 +1340,9 @@ try_again:
 
 	/*register builtin  modules*/
 	register_builtin_modules();
+
+	/* init named flags */
+	init_named_flags();
 
 	yyin=cfg_stream;
 	debug_save = debug;

@@ -1,5 +1,5 @@
 /*
- * $Id: clist.h,v 1.1 2005/12/05 18:29:30 andrei Exp $
+ * $Id: clist.h,v 1.2 2006/02/02 19:29:21 andrei Exp $
  *
  * circular list maintenance macros
  *
@@ -49,7 +49,7 @@
  */
 #define clist_insert_sublist(head, s, e, next, prev) \
 	do{ \
-		(s)->prev=(head); \
+		(s)->prev=(void*)(head); \
 		(e)->next=(head)->next; \
 		(e)->next->prev=(e); \
 		(head)->next=s;   \
