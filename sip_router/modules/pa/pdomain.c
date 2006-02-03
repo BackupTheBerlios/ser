@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.26 2006/01/30 16:25:14 kubartv Exp $
+ * $Id: pdomain.c,v 1.27 2006/02/03 16:25:58 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -225,7 +225,7 @@ void add_presentity(pdomain_t* _d, struct presentity* _p)
 	slot_add(&_d->table[sl], _p, &_d->first, &_d->last);
 
 	if (use_callbacks) {
-		DEBUG_LOG("! registering callback to %.*s, %p\n", _p->uuid.len, _p->uuid.s,_p);
+		DBG("! registering callback to %.*s, %p\n", _p->uuid.len, _p->uuid.s,_p);
 		_d->reg(&_p->uri, &_p->uuid, (void*)callback, _p);
 	}
 }
@@ -234,9 +234,9 @@ void add_presentity(pdomain_t* _d, struct presentity* _p)
 void remove_presentity(pdomain_t* _d, struct presentity* _p)
 {
 	if (use_callbacks) {
-		DEBUG_LOG("! unregistering callback to %.*s, %p\n", _p->uuid.len, _p->uuid.s,_p);
+		DBG("! unregistering callback to %.*s, %p\n", _p->uuid.len, _p->uuid.s,_p);
 		_d->unreg(&_p->uri, &_p->uuid, (void*)callback, _p);
-		DEBUG_LOG("! unregistered callback to %.*s, %p\n", _p->uuid.len, _p->uuid.s,_p);
+		DBG("! unregistered callback to %.*s, %p\n", _p->uuid.len, _p->uuid.s,_p);
 	}
 	
 	LOG(L_DBG, "remove_presentity _p=%p p_uri=%.*s\n", _p, _p->uri.len, _p->uri.s);
