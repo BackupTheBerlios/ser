@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.26 2006/01/08 18:52:16 mma Exp $
+ * $Id: usr_avp.c,v 1.27 2006/02/03 15:33:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -828,7 +828,7 @@ int parse_avp_ident( str *name, avp_ident_t* attr)
 			name->s +=3;
 			name->len -=3;
 		} else {
-			ERR("AVP unknown class prefix '%.*s'\n", p-name->s,name->s);
+			ERR("AVP unknown class prefix '%.*s'\n", name->len, name->s);
 			goto error;
 		}
 		if (name->len==0) {
