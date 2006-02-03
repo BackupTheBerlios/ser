@@ -1,5 +1,5 @@
 /*
- * $Id: pass_fd.c,v 1.9 2005/08/31 13:25:00 andrei Exp $
+ * $Id: pass_fd.c,v 1.10 2006/02/03 16:15:18 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -109,7 +109,8 @@ again:
 	if (n<0){
 			/* error */
 		if (errno==EINTR) goto again; /* signal, try again */
-		LOG(L_CRIT, "ERROR: send_all: send on %d failed: %s\n",
+		if ((errno!=EAGAIN) &&(errno!=EWOULDBLOCK))
+			LOG(L_CRIT, "ERROR: send_all: send on %d failed: %s\n",
 					socket, strerror(errno));
 	}
 	return n;
@@ -158,8 +159,9 @@ again:
 	ret=sendmsg(unix_socket, &msg, 0);
 	if (ret<0){
 		if (errno==EINTR) goto again;
-		LOG(L_CRIT, "ERROR: send_fd: sendmsg failed on %d: %s\n",
-				unix_socket, strerror(errno));
+		if ((errno!=EAGAIN) && (errno!=EWOULDBLOCK))
+			LOG(L_CRIT, "ERROR: send_fd: sendmsg failed on %d: %s\n",
+					unix_socket, strerror(errno));
 	}
 	
 	return ret;
