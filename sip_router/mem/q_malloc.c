@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.23 2005/12/12 12:18:19 andrei Exp $
+/* $Id: q_malloc.c,v 1.24 2006/02/03 21:06:44 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -37,6 +37,7 @@
  *  2005-03-02  added qm_info() (andrei)
  *  2005-12-12  fixed realloc shrink real_used & used accounting;
  *              fixed initial size (andrei)
+ *  2006-02-03  fixed realloc out of mem. free bug (andrei)
  */
 
 
@@ -599,7 +600,7 @@ void* qm_realloc(struct qm_block* qm, void* p, unsigned long size)
 	#else
 				ptr=qm_malloc(qm, size);
 	#endif
-				if (ptr)
+				if (ptr){
 					/* copy, need by libssl */
 					memcpy(ptr, p, orig_size);
 	#ifdef DBG_QM_MALLOC
@@ -607,6 +608,7 @@ void* qm_realloc(struct qm_block* qm, void* p, unsigned long size)
 	#else
 					qm_free(qm, p);
 	#endif
+				}
 				p=ptr;
 			}
 	}else{

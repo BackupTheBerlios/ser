@@ -1,4 +1,4 @@
-/* $Id: f_malloc.c,v 1.23 2005/12/14 16:24:32 andrei Exp $
+/* $Id: f_malloc.c,v 1.24 2006/02/03 21:06:44 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -36,6 +36,7 @@
  *  2005-03-02  added fm_info() (andrei)
  *  2005-12-12  fixed realloc shrink real_used accounting (andrei)
  *              fixed initial size (andrei)
+ *  2006-02-03  fixed realloc out of mem. free bug (andrei)
  */
 
 
@@ -456,7 +457,7 @@ void* fm_realloc(struct fm_block* qm, void* p, unsigned long size)
 	#else
 			ptr=fm_malloc(qm, size);
 	#endif
-			if (ptr)
+			if (ptr){
 				/* copy, need by libssl */
 				memcpy(ptr, p, orig_size);
 	#ifdef DBG_F_MALLOC
@@ -464,8 +465,9 @@ void* fm_realloc(struct fm_block* qm, void* p, unsigned long size)
 	#else
 				fm_free(qm, p);
 	#endif
-				p=ptr;
 			}
+			p=ptr;
+		}
 	}else{
 		/* do nothing */
 #ifdef DBG_F_MALLOC
