@@ -1,5 +1,5 @@
 /*
- * $Id: from.c,v 1.3 2005/03/26 20:10:20 ramona Exp $
+ * $Id: from.c,v 1.4 2006/02/06 16:20:07 ramona Exp $
  *
  * Copyright (C) 2005 Voice Sistem SRL
  *
@@ -50,9 +50,7 @@ static char enc_table64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 static int dec_table64[256];
 
-
-#define text3B64_len(_l)   ( ( ((_l)+1)/3 ) << 2 )
-
+#define text3B64_len(_l)   (( ((_l) / 3) + ((_l) % 3 ? 1 : 0) ) << 2)
 
 void init_from_replacer()
 {
