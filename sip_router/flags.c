@@ -1,5 +1,5 @@
 /*
- * $Id: flags.c,v 1.7 2006/02/02 19:29:22 andrei Exp $
+ * $Id: flags.c,v 1.8 2006/02/07 19:17:38 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -173,7 +173,7 @@ int register_flag(char* name, int pos)
 	/* check if the name already exists */
 	e=flag_search(&name2flags[h], name, len);
 	if (e){
-		LOG(L_WARN, "WARNING: register_flag: flag %.*s already registered\n",
+		LOG(L_ERR, "ERROR: register_flag: flag %.*s already registered\n",
 					len, name);
 		return -2;
 	}

@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.32 2006/01/09 19:42:35 tma0 Exp $
+/* $Id: sr_module.h,v 1.33 2006/02/07 19:17:38 andrei Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -206,5 +206,8 @@ int fixup_regex_2(void** param, int param_no);
 /* API function to get other parameters from fixup */
 action_u_t *fixup_get_param(void **cur_param, int cur_param_no, int required_param_no);
 int fixup_get_param_count(void **cur_param, int cur_param_no);
+
+int fix_flag( modparam_t type, void* val,
+					char* mod_name, char* param_name, int* flag);
 
 #endif /* sr_module_h */
