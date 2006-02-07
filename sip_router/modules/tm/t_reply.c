@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.115 2006/02/07 01:14:59 andrei Exp $
+ * $Id: t_reply.c,v 1.116 2006/02/07 19:52:39 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1494,6 +1494,8 @@ error:
 	return -1;
 }
 
+
+#if 0
 static int send_reply(struct cell *trans, unsigned int code, str* text, str* body, str* headers, str* to_tag)
 {
 	struct lump_rpl *hdr_lump, *body_lump;
@@ -1564,6 +1566,7 @@ static int send_reply(struct cell *trans, unsigned int code, str* text, str* bod
  sr_error:
 	return -1;
 }
+#endif
 
 
 const char* rpc_reply_doc[2] = {

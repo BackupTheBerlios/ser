@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.21 2006/01/10 14:59:44 janakj Exp $
+ * $Id: t_stats.c,v 1.22 2006/02/07 19:52:39 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -47,7 +47,6 @@ struct t_stats *tm_stats=0;
 
 int init_tm_stats(void)
 {
-	int size;
 
 	tm_stats = shm_malloc(sizeof(struct t_stats));
 	if (tm_stats==0) {
