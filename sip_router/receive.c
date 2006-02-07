@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.56 2005/12/15 23:37:19 janakj Exp $
+ *$Id: receive.c,v 1.57 2006/02/07 01:14:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -162,7 +162,7 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 			goto end; /* drop the request */
 
 		/* exec the routing script */
-		if (run_actions(rlist[DEFAULT_RT], msg)<0){
+		if (run_actions(main_rt.rlist[DEFAULT_RT], msg)<0){
 			LOG(L_WARN, "WARNING: receive_msg: "
 					"error while trying script\n");
 			goto error_req;
@@ -202,8 +202,8 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 		if (exec_pre_rpl_cb(msg)==0 )
 			goto end; /* drop the request */
 		/* exec the onreply routing script */
-		if (onreply_rlist[DEFAULT_RT]){
-			ret=run_actions(onreply_rlist[DEFAULT_RT], msg);
+		if (onreply_rt.rlist[DEFAULT_RT]){
+			ret=run_actions(onreply_rt.rlist[DEFAULT_RT], msg);
 			if (ret<0){
 				LOG(L_WARN, "WARNING: receive_msg: "
 						"error while trying onreply script\n");

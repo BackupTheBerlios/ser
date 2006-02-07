@@ -1,5 +1,5 @@
 /*
- * $Id: hashes.h,v 1.1 2006/02/02 19:29:22 andrei Exp $
+ * $Id: hashes.h,v 1.2 2006/02/07 01:14:58 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH 
  *
@@ -165,7 +165,7 @@ inline static struct str_hash_entry* str_hash_get(struct str_hash_table* ht,
 	int h;
 	struct str_hash_entry* e;
 	
-	h=get_hash1_raw(e->key.s, e->key.len) % ht->size;
+	h=get_hash1_raw(key, len) % ht->size;
 	clist_foreach(&ht->table[h], e, next){
 		if ((e->key.len==len) && (memcmp(e->key.s, key, len)==0))
 			return e;

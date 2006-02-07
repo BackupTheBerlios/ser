@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.40 2006/01/07 21:28:49 mma Exp $
+ *$Id: ut.h,v 1.41 2006/02/07 01:14:58 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -220,11 +220,29 @@ static inline char* int2str_base(unsigned int l, int* len, int base)
         return int2str_base_0pad(l, len, base, 0);
 }
 
+
+
 /* returns a pointer to a static buffer containing l in asciiz & sets len */
 static inline char* int2str(unsigned int l, int* len)
 {
-     return int2str_base(l, len, 10);
+	static char r[INT2STR_MAX_LEN];
+	int i;
+	
+	i=INT2STR_MAX_LEN-2;
+	r[INT2STR_MAX_LEN-1]=0; /* null terminate */
+	do{
+		r[i]=l%10+'0';
+		i--;
+		l/=10;
+	}while(l && (i>=0));
+	if (l && (i<0)){
+		LOG(L_CRIT, "BUG: int2str: overflow\n");
+	}
+	if (len) *len=(INT2STR_MAX_LEN-2)-i;
+	return &r[i+1];
 }
+
+
 
 /* faster memchr version */
 static inline char* q_memchr(char* p, int c, unsigned int size)
