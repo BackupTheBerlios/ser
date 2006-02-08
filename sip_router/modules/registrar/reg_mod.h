@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.20 2005/11/21 00:10:29 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.21 2006/02/08 12:20:28 tma0 Exp $ 
  *
  * registrar module interface
  *
@@ -44,6 +44,7 @@ extern int min_expires;
 extern int max_expires;
 extern int received_avp;
 extern float def_q;
+extern int received_to_uri; /*copy received to uri, don't add it to dst_uri*/
 
 extern str rcv_param;
 extern int rcv_avp_no;

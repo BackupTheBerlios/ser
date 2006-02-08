@@ -1,5 +1,5 @@
 /*
- * $Id: reg_mod.c,v 1.39 2006/02/07 19:17:39 andrei Exp $
+ * $Id: reg_mod.c,v 1.40 2006/02/08 12:20:28 tma0 Exp $
  *
  * Registrar module interface
  *
@@ -68,6 +68,8 @@ int max_expires     = 0;              /* Minimum expires the phones are allowed 
 int max_contacts = 0;                 /* Maximum number of contacts per AOR */
 int retry_after = 0;                  /* The value of Retry-After HF in 5xx replies */
 
+int received_to_uri = 0;  /* copy received to uri, don't add it to dst_uri */
+
 #define RCV_NAME "received"
 
 str rcv_param = STR_STATIC_INIT(RCV_NAME);
@@ -110,6 +112,7 @@ static param_export_t params[] = {
 	{"received_avp",    PARAM_INT, &rcv_avp_no     },
 	{"max_contacts",    PARAM_INT, &max_contacts   },
 	{"retry_after",     PARAM_INT, &retry_after    },
+	{"received_to_uri", PARAM_INT, &received_to_uri},
 	{0, 0, 0}
 };
 
