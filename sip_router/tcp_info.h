@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_info.h,v 1.1 2006/02/06 16:47:31 andrei Exp $
+ * $Id: tcp_info.h,v 1.2 2006/02/10 18:21:52 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -35,8 +35,6 @@ struct tcp_gen_info{
 	int tcp_readers;
 	int tcp_max_connections;
 	int tcp_connections_no; /* crt. number */
-	int tcp_inactive_connections;
-	unsigned int tcp_total_requests;
 };
 
 

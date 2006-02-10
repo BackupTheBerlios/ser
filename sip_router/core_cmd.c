@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.8 2006/02/06 16:47:31 andrei Exp $
+ * $Id: core_cmd.c,v 1.9 2006/02/10 18:21:51 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -267,12 +267,10 @@ static void core_tcpinfo(rpc_t* rpc, void* c)
 	if (!tcp_disable){
 		tcp_get_info(&ti);
 		rpc->add(c, "{", &handle);
-		rpc->struct_add(handle, "ddddd",
+		rpc->struct_add(handle, "ddd",
 			"readers", ti.tcp_readers,
 			"max_connections", ti.tcp_max_connections,
-			"opened_connections", ti.tcp_connections_no,
-			"inactive_connections", ti.tcp_inactive_connections,
-			"total_requests", ti.tcp_total_requests
+			"opened_connections", ti.tcp_connections_no
 		);
 	}else{
 		rpc->fault(c, 500, "tcp support disabled");
