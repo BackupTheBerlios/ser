@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.15 2005/12/12 20:27:16 andrei Exp $
+ * $Id: timer.c,v 1.16 2006/02/10 21:01:23 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -987,7 +987,11 @@ void slow_timer_main()
 	
 	in_slow_timer=1; /* mark this process as the slow timer */
 	while(1){
+#ifdef USE_SIGWAIT
+		n=sigwait(&slow_timer_sset, 0);
+#else
 		n=sigwaitinfo(&slow_timer_sset, 0);
+#endif
 		if (n==-1){
 			if (errno==EINTR) continue; /* some other signal, ignore it */
 			LOG(L_ERR, "ERROR: slow_timer_main: sigwaitinfo failed: %s [%d]\n",
