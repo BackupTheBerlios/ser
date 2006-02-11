@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.31 2004/12/08 19:06:12 andrei Exp $
+/* $Id: shm_mem.c,v 1.32 2006/02/11 10:07:54 andrei Exp $
  *
  * Shared memory functions
  *
@@ -128,7 +128,9 @@ int shm_getmem()
 {
 
 #ifdef SHM_MMAP
+#ifndef USE_ANON_MMAP
 	int fd;
+#endif
 #else
 	struct shmid_ds shm_info;
 #endif

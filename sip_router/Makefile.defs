@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.350 2006/02/10 21:01:23 andrei Exp $
+# $Id: Makefile.defs,v 1.351 2006/02/11 10:07:54 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -1159,7 +1159,8 @@ ifeq ($(OS), darwin)
 	DEFS+=-DHAVE_SOCKADDR_SA_LEN -DHAVE_GETHOSTBYNAME2 -DHAVE_UNION_SEMUN \
 		-DHAVE_SCHED_YIELD -DHAVE_MSGHDR_MSG_CONTROL \
 		-DUSE_ANON_MMAP \
-		-DNDEBUG -DHAVE_CONNECT_ECONNRESET_BUG -DHAVE_TIMEGM
+		-DNDEBUG -DHAVE_CONNECT_ECONNRESET_BUG -DHAVE_TIMEGM \
+		-DUSE_SIGWAIT
 	# -DNDEBUG used to turn off assert (assert wants to call
 	# eprintf which doesn't seem to be defined in any shared lib
 	ifneq ($(found_lock_method), yes)
