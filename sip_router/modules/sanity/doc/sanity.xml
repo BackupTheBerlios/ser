@@ -20,8 +20,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2006/02/05 20:01:39 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2006/02/12 18:10:35 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -55,8 +55,8 @@
 		</listitem>
 		<listitem>
 			<para>
-			ruri scheme - (2) - not working because parser fails already on
-			unknown URI schemes.
+			ruri scheme - (2) - checks if the URI scheme of the request URI is
+			supported (sip[s]|tel[s]) by SER.
 			</para>
 		</listitem>
 		<listitem>

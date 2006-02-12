@@ -1,5 +1,5 @@
 /*
- * $Id: mod_sanity.h,v 1.1 2006/02/05 19:00:39 calrissian Exp $
+ * $Id: mod_sanity.h,v 1.2 2006/02/12 18:10:34 calrissian Exp $
  *
  * Sanity Checks Module
  *
@@ -47,6 +47,7 @@
 
 /* RURI_SCHEME, VIA_SIP_VERSION and VIA_PROTOCOL do not work yet */
 #define SANITY_DEFAULT_CHECKS 	SANITY_RURI_SIP_VERSION | \
+								SANITY_RURI_SCHEME | \
 								SANITY_REQUIRED_HEADERS | \
 								SANITY_CSEQ_METHOD | \
 								SANITY_CSEQ_VALUE | \
