@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.16 2006/02/10 21:01:23 andrei Exp $
+ * $Id: timer.c,v 1.17 2006/02/14 17:48:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -899,8 +899,10 @@ static ticks_t compat_old_handler(ticks_t ti, struct timer_ln* tl,
 {
 	struct sr_timer* t;
 	
+#ifdef TIMER_DEBUG
 	DBG("timer: compat_old_handler: calling, ticks=%u/%u, tl=%p, t=%p\n",
 			prev_ticks, (unsigned)*ticks, tl, data);
+#endif
 	t=(struct sr_timer*)data;
 	t->timer_f(TICKS_TO_S(*ticks), t->t_param);
 	return (ticks_t)-1; /* periodic */
