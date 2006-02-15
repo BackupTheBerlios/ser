@@ -1,3 +1,17 @@
+serctl (0.0.23)
+
+  * Configuration changes.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 15 Feb 2006 19:48:15 +0100
+
+serctl (0.0.22)
+
+  * Help fixed.
+  * Rpc code cleanup and update.
+  * Another import statements fixed.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 15 Feb 2006 17:32:34 +0100
+
 serctl (0.0.21)
 
   * Configuration related changes.

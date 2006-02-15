@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.6 2006/01/18 17:49:20 hallik Exp $
+# $Id: ctlctl.py,v 1.7 2006/02/15 18:51:28 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,16 +11,16 @@
 # of the License, or (at your option) any later version.
 #
 
-from ctluri       import Uri
-from ctlcred      import Cred
-from ctldomain    import Domain
-from ctluser      import User
-from error        import Error, ENOARG, EINVAL, ENOSYS
-from options      import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
-                         OPT_SER_URI, CMD, CMD_HELP
-from serxmlrpc    import ServerProxy
-from utils        import show_opts
-import ctlhelp
+from serctl.ctluri    import Uri
+from serctl.ctlcred   import Cred
+from serctl.ctldomain import Domain
+from serctl.ctluser   import User
+from serctl.error     import Error, ENOARG, EINVAL, ENOSYS
+from serctl.options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
+                             OPT_SER_URI, CMD, CMD_HELP
+from serctl.serxmlrpc import ServerProxy
+from serctl.utils     import show_opts
+import serctl.ctlhelp
 
 def main(args, opts):
 	if len(args) < 3:
@@ -55,7 +55,7 @@ Commands & parameters:
 	ser_ctl flush   <uri>
 	ser_ctl publish <uri> <file_with_PIDF_doc> <expires_in_sec> [etag]
 	ser_ctl purge
-""" % ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options(args, opts)
 
 def purge(db, args, opts):
 	for c in (Uri, Cred, Domain, User):
@@ -106,3 +106,4 @@ def publish(db, args, opts):
 		ret = ser.pa.publish('registrar', uri, doc, expires)
 
 	print ret
+

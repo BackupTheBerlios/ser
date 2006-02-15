@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.10 2006/02/15 12:36:11 hallik Exp $
+# $Id: config.py,v 1.11 2006/02/15 18:51:28 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -77,9 +77,31 @@ except:
 	NAME = "serctl"
 
 #
-# Local settings for testing (if exist).
+# Try load local settings for testing.
 #
 try:
 	from serctl.localconfig import *
 except:
 	pass
+
+class Config:
+	def __setitem__(self, key, value):
+		if type(key) != str or key[:1] == '_':
+			return
+		self.__dict__[key] = value
+
+	def __delitem__(self, key):
+		if type(key) != str or key[:1] == '_':
+			return
+		try:
+			del self.__dict__[key]
+		except:
+			pass
+
+config = Config()
+
+for _k, _v in locals().items():
+	if _k in ['Config', 'config']: continue
+	config[_k] = _v
+del(_k)
+del(_v)

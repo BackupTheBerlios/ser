@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: __init__.py,v 1.3 2006/01/18 17:49:20 hallik Exp $
+# $Id: __init__.py,v 1.4 2006/02/15 18:51:28 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,9 +12,11 @@
 #
 
 from serctl.main import main
-# from ctlattr       import Attr
-from ctlcred       import Cred
-from ctldomain     import Domain
-from ctluser       import User
-from ctluri        import Uri
-from ctldb         import Db
+# from serctl.ctlattr       import Attr
+from serctl.ctlcred       import Cred
+from serctl.ctldomain     import Domain
+from serctl.ctluser       import User
+from serctl.ctluri        import Uri
+from serctl.ctldb         import Db
+from serctl.ctlrpc        import Xml_rpc
+from serctl.ctlrpc        import Fifo_rpc

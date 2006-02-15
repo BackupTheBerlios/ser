@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctldb.py,v 1.1 2006/01/18 17:49:20 hallik Exp $
+# $Id: ctldb.py,v 1.2 2006/02/15 18:51:28 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,12 +11,12 @@
 # of the License, or (at your option) any later version.
 #
 
-from dbany   import DBany, DSC_NAME, DSC_DEFAULT
-from error   import Error, ENOARG, EINVAL
-from options import OPT_DATABASE, CMD_ADD, CMD_RM, CMD_SHOW, OPT_FORCE, \
-                    OPT_LIMIT, CMD, CMD_HELP
-from utils   import show_opts, arg_pairs, tabprint
-import ctlhelp
+from serctl.dbany   import DBany, DSC_NAME, DSC_DEFAULT
+from serctl.error   import Error, ENOARG, EINVAL
+from serctl.options import OPT_DATABASE, CMD_ADD, CMD_RM, CMD_SHOW, OPT_FORCE, \
+                           OPT_LIMIT, CMD, CMD_HELP
+from serctl.utils   import show_opts, arg_pairs, tabprint
+import serctl.ctlhelp
 
 def main(args, opts):
 	if len(args) < 3:
@@ -48,7 +48,7 @@ def help(args, opts):
 Usage:
 	ser_db [options...] [--] <add|rm|show> <table_name> [column_name column_value] ...
 
-""" + ctlhelp.options(args, opts)
+""" + serctl.ctlhelp.options(args, opts)
 
 def show(db, tab, args, opts):
 

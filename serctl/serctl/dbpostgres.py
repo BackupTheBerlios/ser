@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbpostgres.py,v 1.4 2006/01/12 17:07:18 hallik Exp $
+# $Id: dbpostgres.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 
-from dbsql import DBsql
+from serctl.dbsql import DBsql
 
 class DBpostgres(DBsql):
 

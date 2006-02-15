@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.7 2006/02/15 12:36:11 hallik Exp $
+# $Id: options.py,v 1.8 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -40,6 +40,7 @@ OPT_COL_SEP    = 'csep'
 OPT_CONFIG     = 'config'
 OPT_DATABASE   = 'database'
 OPT_DEBUG      = 'debug'
+OPT_FIFO       = 'fifo'
 OPT_FLAGS      = 'flags'
 OPT_FORCE      = 'force'
 OPT_HELP       = 'help'
@@ -197,6 +198,7 @@ OPT = {\
 	OPT_FORCE     : ('f', 'force',       False),
 	OPT_DEBUG     : ('g', 'debug',       False),
 	OPT_HELP      : ('h', 'help',        False),
+	OPT_FIFO      : ('j', 'fifo',        False),
 	OPT_SSL_KEY   : ('k', 'ssl-key',     True),
 	OPT_LIMIT     : ('l', 'limit',       True),
 	OPT_LINE_SEP  : ('L', 'line-sep',    True),

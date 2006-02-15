@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbsql.py,v 1.4 2006/01/12 17:07:18 hallik Exp $
+# $Id: dbsql.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,9 +12,9 @@
 #
 # Base class for SQL databases.
 
-from dbbase import DBbase
-from opsql  import where
-from uri    import USER, PASS, HOST, PORT, DB
+from serctl.dbbase import DBbase
+from serctl.opsql  import where
+from serctl.uri    import USER, PASS, HOST, PORT, DB
 
 class DBsql(DBbase):
 

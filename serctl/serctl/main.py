@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.7 2006/02/15 12:36:11 hallik Exp $
+# $Id: main.py,v 1.8 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -11,11 +11,12 @@
 # of the License, or (at your option) any later version.
 #
 
-from error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
-from getopt  import gnu_getopt
-from options import *
-from os.path import basename
-import sys, os, os.path, config
+from getopt         import gnu_getopt
+from serctl.config  import config
+from serctl.error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
+from serctl.options import *
+from os.path        import basename
+import sys, os, os.path
 
 def parse_opts(cmd_line):
 	lineopts, args = gnu_getopt(cmd_line, GETOPT_SHORT, GETOPT_LONG)
@@ -75,12 +76,12 @@ def handle_config(path = None):
 	l = {}
 	execfile(path, {}, l)
 	for k, v in l.items():
-		config.__dict__[k] = v
+		config[k] = v
 
 def handle_debug(opts):
 	if opts.has_key(OPT_DEBUG):
-		config.DEBUG = True
-		set_excepthook()
+		config.DEBUG = not config.DEBUG
+	set_excepthook(config.DEBUG)
 
 def handle_cmdname(args):
 	if not args:

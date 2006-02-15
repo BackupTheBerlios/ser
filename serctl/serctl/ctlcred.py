@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.5 2006/01/18 17:49:20 hallik Exp $
+# $Id: ctlcred.py,v 1.6 2006/02/15 18:51:28 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,17 +11,17 @@
 # of the License, or (at your option) any later version.
 #
 
-from dbany   import DBany
-from error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
-                    ENOREC, ENODOMAIN, ENOUSER, ENOUID, ENOSYS, EUMAP
-from flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
-                    is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
-                    CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                    CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, OPT_PASSWORD, \
-                    OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
-from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
-import md5, ctlhelp
+from serctl.dbany   import DBany
+from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
+                           ENOREC, ENODOMAIN, ENOUSER, ENOUID, ENOSYS, EUMAP
+from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
+                           is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
+                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
+from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
+                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, OPT_PASSWORD, \
+                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
+from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
+import md5, serctl.ctlhelp
 
 def main(args, opts):
 	if len(args) < 3:
@@ -68,7 +68,7 @@ Commands & parameters:
 	ser_cred rm      [[[auth_username] realm] uid]
 	ser_cred purge
 	ser_cred show    [[[auth_username] realm] uid]
-""" % ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options(args, opts)
 
 def _get_username(args, mandatory=True):
 	try:

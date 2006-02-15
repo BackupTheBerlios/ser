@@ -9,19 +9,19 @@
 # of the License, or (at your option) any later version.
 #
 
-from ctlcred import Cred
-from ctluri  import Uri
-from dbany   import DBany
-from error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
-                    EMULTICANON
-from flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
-                    is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
-                    CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                    CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
-                    OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
-from utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, timestamp
-import ctlhelp
+from serctl.ctlcred import Cred
+from serctl.ctluri  import Uri
+from serctl.dbany   import DBany
+from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
+                           EMULTICANON
+from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
+                           is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
+                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
+from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
+                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
+                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
+from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, timestamp
+import serctl.ctlhelp
 
 def main(args, opts):
 	if len(args) < 3:
@@ -71,7 +71,7 @@ Commands & parameters:
 	ser_domain rm        [domain]
 	ser_domain purge
 	ser_domain show      [domain]
-""" % ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options(args, opts)
 
 def _get_domain(args, mandatory=True):
 	try:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbmysql.py,v 1.3 2006/01/12 14:00:47 hallik Exp $
+# $Id: dbmysql.py,v 1.4 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 
-from dbsql import DBsql
+from serctl.dbsql import DBsql
 
 class DBmysql(DBsql):
 

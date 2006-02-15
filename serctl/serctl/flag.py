@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.4 2006/01/12 17:07:18 hallik Exp $
+# $Id: flag.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 
-from error import Error, EIFLAG
+from serctl.error import Error, EIFLAG
 
 # Flag values from sip_router/db/db.h:
 LOAD_SER       = 1L << 0  # The row should be loaded by SER 

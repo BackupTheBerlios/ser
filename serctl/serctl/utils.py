@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.3 2006/02/15 12:36:11 hallik Exp $
+# $Id: utils.py,v 1.4 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,11 +11,12 @@
 # of the License, or (at your option) any later version.
 #
 
-from error   import Error, EINVAL, EMISMATCH, EALL
-from options import OPT_DATABASE, OPT_LIMIT, OPT_REC_SEP, OPT_LINE_SEP, \
-                    OPT_TABLE, OPT_COL_SEP, OPT_COLUMNS, OPT_FORCE, OPT_NUMERIC
+from serctl.error   import Error, EINVAL, EMISMATCH, EALL
+from serctl.options import OPT_DATABASE, OPT_LIMIT, OPT_REC_SEP, OPT_LINE_SEP, \
+                           OPT_TABLE, OPT_COL_SEP, OPT_COLUMNS, OPT_FORCE, OPT_NUMERIC
+from serctl.config  import config
 from time    import strftime, gmtime
-import sys, config
+import sys
 
 def arg_pairs(args):
 	n = len(args)

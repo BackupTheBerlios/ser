@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.1 2006/01/18 17:49:20 hallik Exp $
+# $Id: ctlrpc.py,v 1.2 2006/02/15 18:51:28 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,32 +11,89 @@
 # of the License, or (at your option) any later version.
 #
 
-from serxmlrpc import ServerProxy
-from options   import OPT_SSL_KEY, OPT_SSL_CERT, OPT_SER_URI
-import ctlhelp
+from serctl.error     import Error, ENOARG, ENOSYS
+from serctl.serxmlrpc import ServerProxy
+from serctl.options   import OPT_SSL_KEY, OPT_SSL_CERT, OPT_SER_URI, OPT_FIFO
+from serctl.utils     import show_opts, tabprint
+import serctl.ctlhelp
 
 def main(args, opts):
 	if len(args) < 3:
 		print help(args, opts)
 		return
 
+	if opts.has_key(OPT_FIFO):
+		ret = fifo_rpc(args[2:], opts)
+	else:
+		ret = xml_rpc(args[2:], opts)
+        return ret
+
+def _rpc2tab(data):
+	if type(data) == dict:
+		ret  = [ (str(k), str(v)) for k, v in data.items() ]
+		desc = [ ('key', '?', ''), ('value', '?', '') ]
+	elif type(data) == tuple or type(data) == list:
+		ret  = [ (str(i), ) for i in data ]
+		desc = [ ('value', '?', ''), ]
+	else:
+		ret  = [ (str(data), ) ] 
+		desc = [ ('value', '?', ''), ]
+	return ret, desc
+
+def xml_rpc(args, opts):
+	if len(args) < 1:
+		raise Error, (ENOARG, 'rpc_command')
+
 	ssl_key  = opts[OPT_SSL_KEY]
 	ssl_cert = opts[OPT_SSL_CERT]
-	ser      = opts[OPT_SER_URI]
+	ser_uri  = opts[OPT_SER_URI]
 
-	ser = ServerProxy(ser, (ssl_key, ssl_cert))
+        cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	cmd = 'ser.' + args[2]
-	params = ', '.join(args[3:])
+	rpc = Xml_rpc(ser_uri, (ssl_key, ssl_cert))
 
-	cmd = cmd + '(' + params + ')'
+	cmd    = args[0]
+	params = args[1:]
 
-	print eval(cmd)
+	ret = rpc.raw_cmd(cmd, params)
+	if astab:
+		ret, desc = _rpc2tab(ret)
+	        tabprint(ret, desc, rsep, lsep, astab)
+	else:
+		print repr(ret)
+	
+def fifo_rpc(args, opts):
+	if len(args) < 1:
+		raise Error, (ENOARG, 'rpc_command')
 
+	rpc = Fifo_rpc()
 
+	cmd    = args[0]
+	params = args[1:]
+
+	print rpc.raw_cmd(cmd, params)
+	
 
 def help(args, opts):
 	return """\
 Usage:
-	ser_rpc <xmlrpc_command> [xmlrpc_params...]
-"""
+	ser_rpc [options...] [--] <rpc_command> [rpc_params...]
+%s
+""" % serctl.ctlhelp.options(args, opts)
+
+class Xml_rpc:
+	def __init__(self, ser_uri, ssl=None):
+		self.ser = ServerProxy(ser_uri, ssl)
+
+	def raw_cmd(self, cmd, params=[]):
+		cmd = 'self.ser.' + cmd
+		params = ', '.join(params)
+		cmd = cmd + '(' + params + ')'
+		return eval(cmd)
+
+class Fifo_rpc:
+	def __init__(self):
+		pass
+
+	def raw_cmd(self, cmd, params=[]):
+		raise Error, (ENOSYS, 'fifo rpc call')

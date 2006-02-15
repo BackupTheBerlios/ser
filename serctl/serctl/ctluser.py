@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluser.py,v 1.5 2006/01/18 17:49:20 hallik Exp $
+# $Id: ctluser.py,v 1.6 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,19 +11,19 @@
 # of the License, or (at your option) any later version.
 #
 
-from ctlcred import Cred
-from ctluri  import Uri
-from dbany   import DBany
-from error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
-                    EMULTICANON, EUSER
-from flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
-                    is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
-                    CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                    CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
-                    OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
-from utils   import show_opts, tabprint, arg_pairs, idx_dict, timestamp, no_all
-import ctlhelp
+from serctl.ctlcred import Cred
+from serctl.ctluri  import Uri
+from serctl.dbany   import DBany
+from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
+                           EMULTICANON, EUSER
+from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
+                           is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
+                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
+from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
+                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
+                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
+from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, timestamp, no_all
+import serctl.ctlhelp
 
 def main(args, opts):
 	if len(args) < 3:
@@ -70,7 +70,7 @@ Commands & parameters:
 	ser_user rm      [user]
 	ser_user purge
 	ser_user show    [user]
-""" % ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options(args, opts)
 
 def _get_uid(args, mandatory=True):
 	try:

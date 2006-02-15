@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.4 2006/02/15 12:36:11 hallik Exp $
+# $Id: error.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,7 +12,8 @@
 #
 
 from errno  import *
-import os, sys, config
+from serctl.config import config
+import os, sys
 
 errorstr               = {}
 
@@ -126,11 +127,12 @@ def excepthook(type, value, traceback):
 			str_text = config.NAME + ': ' + type + '\n'
 	sys.stderr.write(str_text)
 
-def set_excepthook():
-	if config.DEBUG:
+def set_excepthook(debug=False):
+	if debug:
 		sys.excepthook = old_excepthook
 	else:
 		sys.excepthook = excepthook
 
 old_excepthook = sys.excepthook
-set_excepthook()
+set_excepthook(config.DEBUG)
+
