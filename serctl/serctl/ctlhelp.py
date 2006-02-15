@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.4 2006/01/18 17:49:20 hallik Exp $
+# $Id: ctlhelp.py,v 1.5 2006/02/15 12:36:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -17,24 +17,23 @@ def main(args, opts):
 def options(args, opts):
 	return """\
 Options:
-	-b --database   : Database URI,
-	-c --columns    : Show only specified columns,
-	-d --disable    : Enable,
-	-e --enable     : Disable,
-	-f --force      : Ignore warnings, silent operations,
-	-F --flags      : Numeric or symbolic flags,
-	-g --debug      : Switch on python backtrace listing,
-	-h --help       : This text,
-	-l --limit      : Show only limited number of records,
-	-L --line-sep   : Line separator (for show command),
-	-n --numeric    : Use numeric (raw) - not symbolic show,
-	-p --password   : Password,
-	-R --record-sep : Record separator (for show command),
-	-s --ser-uri    : Ser uri for xmlrpc operations,
-	-S --column-sep : Column separator for -c option, (default is comma),
-	-t --table      : Show output as table,
-	-v --verbose    : Verbose (multiple ocurence increase),
-	-q --quiet      : Be silent
+	-b --database    : Database URI,
+	-c --config-file : Path to config file,
+	-C --columns     : Show only specified columns,
+	-d --disable     : Enable,
+	-e --enable      : Disable,
+	-f --force       : Ignore warnings, silent operations,
+	-F --flags       : Numeric or symbolic flags,
+	-g --debug       : Switch on python backtrace listing,
+	-h --help        : This text,
+	-l --limit       : Show only limited number of records,
+	-L --line-sep    : Line separator (for show command),
+	-n --numeric     : Use numeric (raw) - not symbolic show,
+	-p --password    : Password,
+	-R --record-sep  : Record separator (for show command),
+	-s --ser-uri     : Ser uri for xmlrpc operations,
+	-S --column-sep  : Column separator for -c option, (default is comma),
+	-t --table       : Show output as table,
 """	
 
 def help(args, opts):

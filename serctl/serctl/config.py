@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.9 2006/01/30 11:45:49 hallik Exp $
+# $Id: config.py,v 1.10 2006/02/15 12:36:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -10,31 +10,19 @@
 # Public License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
 #
-# Global constant definitions.
+# Global variable definitions.
+
+import os.path
 
 #
-# PATH to configuraton file
+# Default path to config file.
 #
-try:
-	from localconfig import CONFIG
-except:
-	CONFIG = '/usr/local/etc/serctl/serctl.conf'
+CONFIG = "/usr/local/etc/serctl/serctl.conf"
 
 #
 # Disable/enable debugging mode
 #
 DEBUG = False
-
-#
-# Default visible name of the tool. 
-# Will be replaced by real command name (e.g. ser_domain).
-#
-NAME  = "serctl"
-
-#
-# Verbosity level
-#
-VERB  = 1
 
 #
 # Database URI, this should be the SER database
@@ -80,30 +68,18 @@ REC_SEP  = ' '
 LINE_SEP = '\n'
 COL_SEP  = ','
 
-###################################
-### END OF CONSTANT DEFINITIONS ###
-###################################
-
-import sys, os.path
-
 #
-# Config file parser.
+# Determine visible name of the tool.
 #
-
-if CONFIG is not None:
-	fh = open(CONFIG)
-	config_file = fh.read() + '\n'
-	fh.close()
-	config_file_code = compile(config_file, CONFIG, 'exec')
-	del(config_file)
-	exec config_file_code
-	del(config_file_code)
-
-#
-# Determine command name
-#
-
 try:
 	NAME = os.path.basename(sys.argv[0])
+except:
+	NAME = "serctl"
+
+#
+# Local settings for testing (if exist).
+#
+try:
+	from serctl.localconfig import *
 except:
 	pass

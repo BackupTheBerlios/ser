@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.6 2006/01/18 17:49:20 hallik Exp $
+# $Id: main.py,v 1.7 2006/02/15 12:36:11 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -11,13 +11,11 @@
 # of the License, or (at your option) any later version.
 #
 
-import config
-
 from error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
 from getopt  import gnu_getopt
 from options import *
 from os.path import basename
-import sys, os
+import sys, os, os.path, config
 
 def parse_opts(cmd_line):
 	lineopts, args = gnu_getopt(cmd_line, GETOPT_SHORT, GETOPT_LONG)
@@ -25,13 +23,6 @@ def parse_opts(cmd_line):
 	for o, v in lineopts:
 		o = OPTS[o]
 		opts[o] = v
-		if   o == OPT_VERBOSE:
-			config.VERB += 1
-		elif o == OPT_QUIET:
-			config.VERB = 0
-		elif o == OPT_DEBUG:
-			config.DEBUG = not config.DEBUG
-			set_excepthook()
 	return args, opts
 
 def module(name):
@@ -39,42 +30,67 @@ def module(name):
 		return None
 	name = MOD[name]
 	if name == MOD_CTL:
-		import ctlctl
-		return ctlctl
+		import serctl.ctlctl
+		return serctl.ctlctl
 	if name == MOD_ATTR:
-		import ctlattr
-		return ctlattr
+		import serctl.ctlattr
+		return serctl.ctlattr
 	if name == MOD_CREDENTIAL:
-		import ctlcred
-		return ctlcred
+		import serctl.ctlcred
+		return serctl.ctlcred
 	if name == MOD_DB:
-		import ctldb
-		return ctldb
+		import serctl.ctldb
+		return serctl.ctldb
 	if name == MOD_DOMAIN:
-		import ctldomain
-		return ctldomain
+		import serctl.ctldomain
+		return serctl.ctldomain
 	if name == MOD_HELP:
-		import ctlhelp
-		return ctlhelp
+		import serctl.ctlhelp
+		return serctl.ctlhelp
 	if name == MOD_RPC:
-		import ctlrpc
-		return ctlrpc
+		import serctl.ctlrpc
+		return serctl.ctlrpc
 	if name == MOD_USER:
-		import ctluser
-		return ctluser
+		import serctl.ctluser
+		return serctl.ctluser
 	if name == MOD_URI:
-		import ctluri
-		return ctluri
+		import serctl.ctluri
+		return serctl.ctluri
 
 	# intercept module not in public release.
 	if name == MOD_INTERCEPT:
 		try:
-			import ctlintercept
+			import serctl.ctlintercept
 		except:
 			raise Error (ENOSYS, 'Interception control')
-		return ctlintercept
+		return serctl.ctlintercept
 
 	return None
+
+def handle_config(path = None):
+	if path is None:
+		path = config.CONFIG
+	if path is None or not os.path.exists(path):
+		return
+	l = {}
+	execfile(path, {}, l)
+	for k, v in l.items():
+		config.__dict__[k] = v
+
+def handle_debug(opts):
+	if opts.has_key(OPT_DEBUG):
+		config.DEBUG = True
+		set_excepthook()
+
+def handle_cmdname(args):
+	if not args:
+		return
+	name = basename(args[0])
+	name = name.lower().replace('_', '-')
+	if name.find('-') == -1:
+		return
+	mod = name.split('-')[1]
+	args.insert(1, mod)
 
 def handle_help(args, opts):
 	if not (args[1] == MOD_HELP or \
@@ -137,19 +153,12 @@ def handle_ssl_cert(opts):
 	except:
 		pass
 
-def handle_cmdname(args):
-	if not args:
-		return
-	name = basename(args[0])
-	name = name.lower().replace('_', '-')
-	if name.find('-') == -1:
-		return
-	mod = name.split('-')[1]
-	args.insert(1, mod)
 
 def main(argv):
 	args, opts = parse_opts(argv)
 
+	handle_config(opts.get(OPT_CONFIG))
+	handle_debug(opts)
 	handle_cmdname(args)
 
 	if len(args) < 1:

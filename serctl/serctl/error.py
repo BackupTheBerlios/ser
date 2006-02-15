@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.3 2006/01/12 14:00:47 hallik Exp $
+# $Id: error.py,v 1.4 2006/02/15 12:36:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,8 +13,6 @@
 
 from errno  import *
 import os, sys, config
-
-OS_ERR_PREFIX          = config.NAME + ': '
 
 errorstr               = {}
 
@@ -120,12 +118,12 @@ def excepthook(type, value, traceback):
 	type  = str(type).split('.')[-1]
 	value = str(value)
 	if type == 'Error':
-		str_text = OS_ERR_PREFIX + value + '\n'
+		str_text = config.NAME + ': ' + value + '\n'
 	else:
 		if value:
-			str_text = OS_ERR_PREFIX + value + ': ' + type + '\n'
+			str_text = config.NAME + ': ' + value + ': ' + type + '\n'
 		else:
-			str_text = OS_ERR_PREFIX + type + '\n'
+			str_text = config.NAME + ': ' + type + '\n'
 	sys.stderr.write(str_text)
 
 def set_excepthook():

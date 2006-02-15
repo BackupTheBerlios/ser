@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.6 2006/01/18 17:49:20 hallik Exp $
+# $Id: options.py,v 1.7 2006/02/15 12:36:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -37,6 +37,7 @@ CMD_SHOW       = 'show'
 
 OPT_COLUMNS    = 'columns'
 OPT_COL_SEP    = 'csep'
+OPT_CONFIG     = 'config'
 OPT_DATABASE   = 'database'
 OPT_DEBUG      = 'debug'
 OPT_FLAGS      = 'flags'
@@ -51,8 +52,6 @@ OPT_SER_URI    = 'ser-uri'
 OPT_SSL_KEY    = 'ssl-key'
 OPT_SSL_CERT   = 'ssl-cert'
 OPT_TABLE      = 'table'
-OPT_VERBOSE    = 'verbose'
-OPT_QUIET      = 'quiet'
 
 MOD = {\
 	'attr'       : MOD_ATTR,
@@ -190,25 +189,24 @@ CMD = {\
 }
 
 OPT = {\
-#	name          : (short, long,       arg)
-	OPT_DATABASE  : ('b', 'database',   True),
-	OPT_COLUMNS   : ('c', 'columns',    True),
-	OPT_FLAGS     : ('F', 'flags',      True),
-	OPT_FORCE     : ('f', 'force',      False),
-	OPT_DEBUG     : ('g', 'debug',      False),
-	OPT_HELP      : ('h', 'help',       False),
-	OPT_SSL_KEY   : ('k', 'ssl-key',    True),
-	OPT_LIMIT     : ('l', 'limit',      True),
-	OPT_LINE_SEP  : ('L', 'line-sep',   True),
-	OPT_SSL_CERT  : ('m', 'ssl-cert',   True),
-	OPT_NUMERIC   : ('n', 'numeric',    False),
-	OPT_PASSWORD  : ('p', 'password',   True),
-	OPT_REC_SEP   : ('R', 'record-sep', True),
-	OPT_SER_URI   : ('s', 'ser-uri',    True),
-	OPT_COL_SEP   : ('S', 'column-sep', True),
-	OPT_TABLE     : ('t', 'table',      False),
-	OPT_VERBOSE   : ('v', 'verbose',    False),
-	OPT_QUIET     : ('q', 'quiet',      False),
+#	name          : (short, long,        arg)
+	OPT_DATABASE  : ('b', 'database',    True),
+	OPT_CONFIG    : ('c', 'config-file', True),
+	OPT_COLUMNS   : ('C', 'columns',     True),
+	OPT_FLAGS     : ('F', 'flags',       True),
+	OPT_FORCE     : ('f', 'force',       False),
+	OPT_DEBUG     : ('g', 'debug',       False),
+	OPT_HELP      : ('h', 'help',        False),
+	OPT_SSL_KEY   : ('k', 'ssl-key',     True),
+	OPT_LIMIT     : ('l', 'limit',       True),
+	OPT_LINE_SEP  : ('L', 'line-sep',    True),
+	OPT_SSL_CERT  : ('m', 'ssl-cert',    True),
+	OPT_NUMERIC   : ('n', 'numeric',     False),
+	OPT_PASSWORD  : ('p', 'password',    True),
+	OPT_REC_SEP   : ('R', 'record-sep',  True),
+	OPT_SER_URI   : ('s', 'ser-uri',     True),
+	OPT_COL_SEP   : ('S', 'column-sep',  True),
+	OPT_TABLE     : ('t', 'table',       False),
 }
 
 

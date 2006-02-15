@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.2 2006/01/12 14:00:47 hallik Exp $
+# $Id: utils.py,v 1.3 2006/02/15 12:36:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,12 +11,11 @@
 # of the License, or (at your option) any later version.
 #
 
-from config  import REC_SEP, LINE_SEP, COL_SEP, WHITESP
 from error   import Error, EINVAL, EMISMATCH, EALL
 from options import OPT_DATABASE, OPT_LIMIT, OPT_REC_SEP, OPT_LINE_SEP, \
                     OPT_TABLE, OPT_COL_SEP, OPT_COLUMNS, OPT_FORCE, OPT_NUMERIC
 from time    import strftime, gmtime
-import sys
+import sys, config
 
 def arg_pairs(args):
 	n = len(args)
@@ -47,14 +46,14 @@ def unesc_psep(str):
 
 def show_opts(opts):
 	limit = opts.get(OPT_LIMIT, 0)
-	rsep  = opts.get(OPT_REC_SEP, REC_SEP)
+	rsep  = opts.get(OPT_REC_SEP, config.REC_SEP)
 	rsep  = unesc_psep(rsep)
-	lsep  = opts.get(OPT_LINE_SEP, LINE_SEP)
+	lsep  = opts.get(OPT_LINE_SEP, config.LINE_SEP)
 	lsep  = unesc_psep(lsep)
 	astab = opts.has_key(OPT_TABLE)
-	csep  = opts.get(OPT_COL_SEP, COL_SEP)
+	csep  = opts.get(OPT_COL_SEP, config.COL_SEP)
 	cols  = opts.get(OPT_COLUMNS, '')
-	cols  = [ i.strip(WHITESP) for i in cols.split(csep) ]
+	cols  = [ i.strip(config.WHITESP) for i in cols.split(csep) ]
 	cols  = filter(None, cols)
 	num   = opts.has_key(OPT_NUMERIC)
 	return (cols, num, limit, rsep, lsep, astab)
@@ -68,7 +67,7 @@ def idx_dict(lst):
 		idx[lst[i]] = i
 	return idx
 
-def tabprint(data, desc, rsep=REC_SEP, lsep=LINE_SEP, tab=False):
+def tabprint(data, desc, rsep=config.REC_SEP, lsep=config.LINE_SEP, tab=False):
 	if not tab:
 		for row in data:
 			line = rsep.join(row)

@@ -1,3 +1,13 @@
+serctl (0.0.21)
+
+  * Configuration related changes.
+  * Option '-c' changed to '-C'.
+  * Config file may be set from command line by -c option.
+  * Configuration file is not mandatory, now.
+  * Submodule imports fix.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 15 Feb 2006 13:26:21 +0100
+
 serctl (0.0.20)
 
   * Simple man page for serxmlrpc module added.
