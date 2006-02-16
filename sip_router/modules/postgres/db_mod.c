@@ -1,5 +1,5 @@
 /*
- * $Id: db_mod.c,v 1.12 2006/01/10 22:16:07 janakj Exp $
+ * $Id: db_mod.c,v 1.13 2006/02/16 14:29:34 janakj Exp $
  *
  * Postgres module interface
  *
@@ -181,7 +181,7 @@ struct module_exports exports = {
 	cmds,
 	0,         /* RPC methods */
 	params,    /*  module parameters */
-        pg_test,   /* module initialization function */
+        0,         /* module initialization function */
 	0,         /* response function*/
 	0,         /* destroy function */
 	0,         /* oncancel function */
