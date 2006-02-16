@@ -1,4 +1,4 @@
-/* $Id: crc.h,v 1.3 2003/04/10 12:37:50 janakj Exp $*/
+/* $Id: crc.h,v 1.4 2006/02/16 15:52:00 tma0 Exp $*/
 
 #ifndef _CRC_H_
 #define _CRC_H_
@@ -11,6 +11,8 @@ extern unsigned long int crc_32_tab[];
 extern unsigned short int ccitt_tab[];
 extern unsigned short int crc_16_tab[];
 
+
+unsigned short crcitt_string_ex( char *s, int len, register unsigned short ccitt);
 unsigned short crcitt_string( char *s, int len );
 void crcitt_string_array( char *dst, str src[], int size );
 
