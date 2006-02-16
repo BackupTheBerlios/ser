@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.c,v 1.23 2006/01/08 22:43:15 tma0 Exp $
+ * $Id: authrad_mod.c,v 1.24 2006/02/16 14:26:34 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -75,6 +75,8 @@ static int service_type = -1;
 static cmd_export_t cmds[] = {
 	{"radius_www_authorize",   radius_www_authorize,   1, fixup_str_1, REQUEST_ROUTE},
 	{"radius_proxy_authorize", radius_proxy_authorize, 1, fixup_str_1, REQUEST_ROUTE},
+	{"radius_www_authenticate",   radius_www_authorize,   1, fixup_str_1, REQUEST_ROUTE},
+	{"radius_proxy_authenticate", radius_proxy_authorize, 1, fixup_str_1, REQUEST_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
