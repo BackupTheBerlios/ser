@@ -1,5 +1,5 @@
 /*
- * $Id: db.c,v 1.19 2005/02/28 20:34:34 janakj Exp $
+ * $Id: db.c,v 1.20 2006/02/16 14:49:30 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -78,6 +78,11 @@ int bind_dbmod(char* mod, db_func_t* mydbf)
 	}
 
 	dbf.cap = 0;
+
+	if (find_module_by_name(tmp) == 0) {
+		ERR("Database driver '%s' not found\n", tmp);
+		goto err;
+	}
 
 	     /* All modules must export db_use_table */
 	dbf.use_table = (db_use_table_f)find_mod_export(tmp, "db_use_table", 2, 0);
