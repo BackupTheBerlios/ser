@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.42 2006/02/16 12:35:13 tma0 Exp $
+ * $Id: loose.c,v 1.43 2006/02/16 15:57:11 tma0 Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -468,7 +468,10 @@ static int get_direction(struct sip_msg* _m, str* _params) {
 					case ' ':
 					case '\r':
 					case '\n':
-					case '\t': ftag.len = s.s+i - ftag.s; break;
+					case '\t': ftag.len = s.s+i - ftag.s; 
+						    i = s.len;
+						    state = 0;
+						    break;
 				}
 				break;
 
@@ -488,9 +491,12 @@ static int get_direction(struct sip_msg* _m, str* _params) {
 
 	if (state == 100)
 		ftag.len = s.s+i - ftag.s;
-		
-	if (ftag.len) {		/* compare if from.tag == ftag */
-		if (ftag.len!=get_from(_m)->tag_value.len || strncmp(ftag.s, get_from(_m)->tag_value.s, ftag.len)) return 1;
+
+	if (ftag.len) {
+		parse_from_header(_m);		
+		if (get_from(_m)) {		/* compare if from.tag == ftag */
+			if (ftag.len!=get_from(_m)->tag_value.len || strncmp(ftag.s, get_from(_m)->tag_value.s, ftag.len)) return 1;
+		}
 	}
 	return 0;
 }
@@ -597,7 +603,10 @@ static void get_avp_cookie_from_uri(str* _params, str *_avp_cookie) {
 					case ' ':
 					case '\r':
 					case '\n':
-					case '\t': _avp_cookie->len = s.s+i - _avp_cookie->s; break;
+					case '\t': _avp_cookie->len = s.s+i - _avp_cookie->s; 
+						    i = s.len;
+						    state = 0;
+						    break;
 				}
 				break;
 

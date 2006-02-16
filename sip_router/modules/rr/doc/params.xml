@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2006/01/08 23:53:07 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2006/02/16 15:57:12 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -105,6 +105,24 @@ route{
 	}
 ...
 }
+	    </programlisting>
+	</example>
+    </section>
+
+    <section id="cookie_secret">
+	<title><varname>cookie_secret</varname> (string)</title>
+	<para>
+	    Secret to distinguish cookies from different servers.
+	</para>
+	<para>
+	    Default value is empty string.
+	</para>
+	<example>
+	    <title>Set <varname>cookie_secret</varname> parameter, later use</title>
+	    <programlisting>
+...
+modparam("rr", "cookie_secret", "bflmpsvz")
+...
 	    </programlisting>
 	</example>
     </section>

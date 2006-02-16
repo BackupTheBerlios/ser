@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, avp cookie support
  *
- * $Id: avp_cookie.h,v 1.4 2006/02/16 12:35:13 tma0 Exp $
+ * $Id: avp_cookie.h,v 1.5 2006/02/16 15:57:11 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -45,6 +45,7 @@ typedef struct avp_save_item_t {
 } avp_save_item_t;
 
 extern regex_t* cookie_filter_re;
+extern unsigned short crc_secret;
 
 int rr_add_avp_cookie(struct sip_msg *msg, char *param1, char *param2);
 str *rr_get_avp_cookies(void);
