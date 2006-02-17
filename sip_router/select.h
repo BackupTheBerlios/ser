@@ -1,5 +1,5 @@
 /*
- * $Id: select.h,v 1.4 2006/01/19 19:44:41 mma Exp $
+ * $Id: select.h,v 1.5 2006/02/17 12:50:41 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -84,6 +84,13 @@
  * is the result str*
  */
 #define NESTED		1<<13
+
+/* "fixup call" would be done, when the structure is resolved to this node
+ * which means call with res and msg NULL
+ *
+ * if the fixup call return value <0, the select resolution will fail
+ */
+#define FIXUP_CALL	1<<14
 
 /*
  * Selector call parameter
