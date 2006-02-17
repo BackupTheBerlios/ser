@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.10 2006/02/16 23:40:19 andrei Exp $
+ * $Id: core_cmd.c,v 1.11 2006/02/17 17:03:49 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -163,7 +163,11 @@ static void core_uptime(rpc_t* rpc, void* c)
 	if (rpc->add(c, "{", &s) < 0) return;
 	rpc->struct_add(s, "s", "now", ctime(&now));
 	rpc->struct_add(s, "s", "up_since", up_since_ctime);
-	rpc->struct_add(s, "f", "uptime", difftime(now, up_since));
+	/* no need for a float here (unless you're concerned that your uptime)
+	rpc->struct_add(s, "f", "uptime",  difftime(now, up_since));
+	*/
+	/* on posix system we can substract time_t directly */
+	rpc->struct_add(s, "d", "uptime",  (int)(now-up_since));
 }
 
 
