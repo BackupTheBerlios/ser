@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.5 2006/02/17 12:50:41 mma Exp $
+ * $Id: select.c,v 1.6 2006/02/17 22:32:02 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -64,6 +64,9 @@ int resolve_select(select_t* s)
 			break;
 		case SEL_PARAM_INT:
 			DBG("resolve_select: [%d]\n", s->params[param_idx].v.i);
+			break;
+		case SEL_PARAM_DIV:
+			/* just to avoid the warning */
 			break;
 		}
 		for (t=select_list; t; t=t->next) {
