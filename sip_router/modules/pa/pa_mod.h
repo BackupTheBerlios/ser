@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.19 2006/02/02 17:05:45 kubartv Exp $
+ * $Id: pa_mod.h,v 1.20 2006/02/17 10:22:00 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -37,6 +37,7 @@
 #include "auth.h"
 
 extern int default_expires;
+extern int max_subscription_expiration;  /* max expires value for subscribe */
 extern double default_priority;
 extern int timer_interval;
 

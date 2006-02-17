@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.46 2006/02/03 16:25:58 kubartv Exp $
+ * $Id: subscribe.c,v 1.47 2006/02/17 10:22:00 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -417,7 +417,7 @@ int get_preferred_event_mimetype(struct sip_msg *_m, int et)
 	if (idx != -1) return em->mimes[idx]; /* found value with highest priority */
 
 	acc = em->mimes[0];
-	LOG(L_WARN, "%s: defaulting to mimetype %x for event_type=%d\n", __FUNCTION__, acc, et);
+	DBG("defaulting to mimetype %x for event_type=%d\n", acc, et);
 	return acc;
 }
 
@@ -543,6 +543,8 @@ static time_t get_expires(struct sip_msg *_m)
 	} else {
 		e = default_expires;
 	}
+	if (e > max_subscription_expiration) 
+		e = max_subscription_expiration;
 	return e;
 }
 
