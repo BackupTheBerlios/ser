@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.17 2006/02/14 17:48:08 andrei Exp $
+ * $Id: timer.c,v 1.18 2006/02/20 23:30:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -421,7 +421,7 @@ inline static void adjust_ticks()
 				/* fix the ticks */
 				if (delta>(s_ticks_t)TIMER_MAX_DRIFT){
 #ifndef TIMER_DEBUG
-					if (delta > 2*(s_ticks_t)TIMER_MAX_DRIFT)
+					if (delta > 2*(s_ticks_t)TIMER_MAX_DRIFT+1)
 #endif
 						LOG(L_INFO, "adjusting timer ticks (%lu) with %ld ms"
 								" (%ld ticks)\n",
