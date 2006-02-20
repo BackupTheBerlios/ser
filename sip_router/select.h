@@ -1,5 +1,5 @@
 /*
- * $Id: select.h,v 1.5 2006/02/17 12:50:41 mma Exp $
+ * $Id: select.h,v 1.6 2006/02/20 18:59:34 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -99,11 +99,13 @@ typedef enum {
 	SEL_PARAM_INT,  /* Integer parameter */
 	SEL_PARAM_STR,  /* String parameter */
 	SEL_PARAM_DIV,  /* Integer value got from parsing table */
+	SEL_PARAM_PTR   /* void* data got from e.g. fixup call */
 } select_param_type_t;
 	
 typedef union {
 	int i;  /* Integer value */
 	str s;  /* String value */
+	void* p;/* Any data ptr */
 } select_param_value_t;
 	
 typedef struct sel_param {
