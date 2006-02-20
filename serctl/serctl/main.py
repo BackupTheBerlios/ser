@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.8 2006/02/15 18:51:29 hallik Exp $
+# $Id: main.py,v 1.9 2006/02/20 15:49:08 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -118,6 +118,12 @@ def handle_db(opts):
 	except:
 		raise Error (ENODB)
 
+def update_ser_uri(opts):
+	opts[OPT_SER_URI] = opts[OPT_SER_URI].strip()
+	if opts[OPT_SER_URI][:7] != 'http://' and \
+	   opts[OPT_SER_URI][:8] != 'https://':
+		opts[OPT_SER_URI] = 'http://' + opts[OPT_SER_URI]
+
 def handle_ser_uri(opts):
 	if opts.has_key(OPT_SER_URI):
 		return
@@ -176,6 +182,7 @@ def main(argv):
 	handle_ser_uri(opts)
 	handle_ssl_key(opts)
 	handle_ssl_cert(opts)
+	update_ser_uri(opts)
 
 	mod = module(args[1])
 	if mod:

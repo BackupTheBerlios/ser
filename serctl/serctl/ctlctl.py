@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.7 2006/02/15 18:51:28 hallik Exp $
+# $Id: ctlctl.py,v 1.8 2006/02/20 15:49:08 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,11 +15,12 @@ from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
 from serctl.ctldomain import Domain
 from serctl.ctluser   import User
-from serctl.error     import Error, ENOARG, EINVAL, ENOSYS
+from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN
 from serctl.options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
-                             OPT_SER_URI, CMD, CMD_HELP
-from serctl.serxmlrpc import ServerProxy
-from serctl.utils     import show_opts
+                             OPT_SER_URI, CMD, CMD_HELP, CMD_DOMAIN, CMD, \
+                             CMD_ADD, CMD_RM, OPT_SSL_KEY, OPT_SSL_CERT
+from serctl.ctlrpc    import Xml_rpc
+from serctl.utils     import show_opts, var2tab, tabprint
 import serctl.ctlhelp
 
 def main(args, opts):
@@ -31,11 +32,15 @@ def main(args, opts):
 	except KeyError:
 		raise Error (EINVAL, args[2])
 	db  = opts[OPT_DATABASE]
+	ser = opts[OPT_SER_URI]
+	ssl = (opts[OPT_SSL_KEY], opts[OPT_SSL_CERT])
 
 	if   cmd == CMD_FLUSH:
-		ret = flush(db, args[3:], opts)
+		ret = flush(ser, ssl, args[3:], opts)
+	elif cmd == CMD_DOMAIN:
+		ret = domain(db, ser, ssl, args[3:], opts)
 	elif cmd == CMD_PUBLISH:
-		ret = publish(db, args[3:], opts)
+		ret = publish(ser, ssl, args[3:], opts)
 	elif cmd == CMD_PURGE:
 		ret = purge(db, args[3:], opts)
 	elif cmd == CMD_HELP:
@@ -53,7 +58,8 @@ Usage:
 %s
 Commands & parameters:
 	ser_ctl flush   <uri>
-	ser_ctl publish <uri> <file_with_PIDF_doc> <expires_in_sec> [etag]
+	ser_ctl domain [add|rm] <domain>
+	ser_ctl publish <uid> <file_with_PIDF_doc> <expires_in_sec> [etag]
 	ser_ctl purge
 """ % serctl.ctlhelp.options(args, opts)
 
@@ -63,19 +69,17 @@ def purge(db, args, opts):
 		o.purge()
 		del(o)
 
-def flush(db, args, opts):
-
-	ser = ServerProxy(opts[OPT_SER_URI])
-
+def flush(ser, ssl, args, opts):
+	rpc = Xml_rpc(ser, ssl)
 	# FIX: TODO: what fn?
-	# ser.fn(...)
+#	rpc.raw_cmd('???')
 	raise Error (ENOSYS, 'flush')
 
-def publish(db, args, opts):
+def publish(ser, ssl, args, opts):
 	try:
 		uri = args[0]
 	except:
-		raise Error (ENOARG, 'uri')
+		raise Error (ENOARG, 'uid')
 
 	try:
 		doc_file = args[1]
@@ -96,14 +100,61 @@ def publish(db, args, opts):
 
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	ser = ServerProxy(opts[OPT_SER_URI])
+	rpc = Xml_rpc(ser, ssl)
 	fh = open(doc_file)
 	doc = fh.read()
 	fh.close()
 	if etag:
-		ret = ser.pa.publish('registrar', uri, doc, expires, etag)
+		ret = rpc.ser.pa.publish('registrar', uri, doc, expires, etag)
 	else:
-		ret = ser.pa.publish('registrar', uri, doc, expires)
+		ret = rpc.ser.pa.publish('registrar', uri, doc, expires)
+	if astab:
+		ret, desc = var2tab(ret)
+		tabprint(ret, desc, rsep, lsep, astab)
+	else:
+		print repr(ret)
 
-	print ret
 
+def domain(db, ser, ssl, args, opts):
+	try:
+		cmd_ = args[0]
+	except:
+		raise Error (ENOARG, '<command>')
+	cmd = CMD.get(cmd_)
+	try:
+		dom = args[1]
+	except:
+		raise Error (ENOARG, 'domain')
+	if cmd == CMD_ADD:
+		d = Domain_ctl(db, ser, ssl)
+		d.add(dom)
+	elif cmd == CMD_RM:
+		d = Domain_ctl(db, ser, ssl)
+		d.rm(dom)
+	else:
+		raise Error (EINVAL, cmd_)
+		
+
+class Domain_ctl:
+	def __init__(self, dburi, seruri, ssl=None):
+		self.db  = dburi
+		self.ser = seruri
+		self.ssl = ssl
+
+	def add(self, domain):
+		dom = Domain(self.db)
+		did = dom.get_did(domain, True)
+		if did is not None:
+			raise Error (EDOMAIN, domain)
+		dom.add(domain, domain)
+		self._reload()
+
+	def rm(self, domain):
+		dom = Domain(self.db)
+		dom.rm(domain)
+		dom.purge()
+		self._reload()
+
+	def _reload(self):
+		rpc = Xml_rpc(self.ser, self.ssl)
+		rpc.raw_cmd('domain.reload')

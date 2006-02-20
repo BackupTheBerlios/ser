@@ -13,7 +13,7 @@ from serctl.ctlcred import Cred
 from serctl.ctluri  import Uri
 from serctl.dbany   import DBany
 from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
-                           EMULTICANON
+                           EMULTICANON, ENODOMAIN
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
@@ -409,6 +409,17 @@ class Domain:
 
 	def disable(self, domain=None, force=False):
 		return self.change(domain, flags='+d', force=force)
+
+	def get_did(self, domain, force=False):
+		cnd, err = self._cond(domain, all=True)
+		rows = self.db.select(self.T_DOM, ('did',), cnd, limit=1)
+		if not rows:
+			if force:
+				return None
+			else:
+				raise Error (ENODOMAIN, err)
+		did = rows[0][0]
+		return did
 
 	def _default_dra_flags(self): # default flags for digest_realm attr
 		return '0'

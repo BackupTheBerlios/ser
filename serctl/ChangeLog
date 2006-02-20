@@ -1,3 +1,11 @@
+serctl (0.0.24)
+
+  * SSL files are not set in default configuration.
+  * Xml_rpc class added.
+  * Xml-rpc code cleanup and update.
+
+ -- Jan Halla <hallik@iptel.org> Mon, 20 Feb 2006 16:45:30 +0100
+
 serctl (0.0.23)
 
   * Configuration changes.

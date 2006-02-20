@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.4 2006/02/15 18:51:29 hallik Exp $
+# $Id: utils.py,v 1.5 2006/02/20 15:49:08 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -110,3 +110,15 @@ def tabprint(data, desc, rsep=config.REC_SEP, lsep=config.LINE_SEP, tab=False):
 			line += rsep + row[i].ljust(width[i]) + rsep + '|'
 		sys.stdout.write(line + lsep)
 	sys.stdout.write(rule + lsep)
+
+def var2tab(data):
+	if type(data) == dict:
+		ret  = [ (str(k), str(v)) for k, v in data.items() ]
+		desc = [ ('key', '?', ''), ('value', '?', '') ]
+	elif type(data) == tuple or type(data) == list:
+		ret  = [ (str(i), ) for i in data ]
+		desc = [ ('value', '?', ''), ]
+	else:
+		ret  = [ (str(data), ) ] 
+		desc = [ ('value', '?', ''), ]
+	return ret, desc

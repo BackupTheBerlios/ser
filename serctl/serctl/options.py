@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.8 2006/02/15 18:51:29 hallik Exp $
+# $Id: options.py,v 1.9 2006/02/20 15:49:08 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -26,6 +26,7 @@ MOD_USER       = 'user'
 CMD_ADD        = 'add'
 CMD_CANONICAL  = 'canonical'
 CMD_DISABLE    = 'disable'
+CMD_DOMAIN     = 'domain'
 CMD_ENABLE     = 'enable'
 CMD_FLUSH      = 'flush'
 CMD_HELP       = 'help'
@@ -142,6 +143,12 @@ CMD = {\
 	'dis'        : CMD_DISABLE,
 	'di'         : CMD_DISABLE,
 	'd'          : CMD_DISABLE,
+
+	'domain'     : CMD_DOMAIN,
+	'domai'      : CMD_DOMAIN,
+	'doma'       : CMD_DOMAIN,
+	'dom'        : CMD_DOMAIN,
+	'do'         : CMD_DOMAIN,
 
 	'enable'     : CMD_ENABLE,
 	'enabl'      : CMD_ENABLE,

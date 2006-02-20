@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.11 2006/02/15 18:51:28 hallik Exp $
+# $Id: config.py,v 1.12 2006/02/20 15:49:07 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -50,8 +50,10 @@ ENV_SER = 'SERCTL_SER'
 # Private key and certificate files for HTTPS
 # May be None (both!) if HTTPS transport do not require authentication.
 #
-SSL_KEY  = '/usr/local/etc/serctl/ser.key'
-SSL_CERT = '/usr/local/etc/serctl/ser.cert'
+# SSL_KEY  = '/usr/local/etc/serctl/ser.key'
+# SSL_CERT = '/usr/local/etc/serctl/ser.cert'
+SSL_KEY  = None
+SSL_CERT = None
 
 #
 # Name of environment variable used to pass the SSL_KEY and the SSL_CERT.
