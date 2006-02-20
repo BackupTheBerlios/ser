@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.36 2006/02/08 12:20:28 tma0 Exp $
+ * $Id: lookup.c,v 1.37 2006/02/20 16:19:02 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -187,7 +187,7 @@ cont:
 	
  skip:
 	ul.unlock_udomain((udomain_t*)_t);
-	if (nat) setflag(_m, nat_flag);
+	if (nat) setflag(_m, load_nat_flag);
 	return 1;
 }
 
