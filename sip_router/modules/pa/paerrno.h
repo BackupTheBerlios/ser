@@ -1,7 +1,7 @@
 /*
  * Presence Agent, error reporting
  *
- * $Id: paerrno.h,v 1.8 2005/10/26 09:09:25 kubartv Exp $
+ * $Id: paerrno.h,v 1.9 2006/02/21 11:37:57 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -52,7 +52,8 @@ typedef enum paerr {
 	PA_INTERNAL_ERROR, /* Internal server error */
 	PA_SUBSCRIPTION_REJECTED,
 	PA_NO_MATCHING_TUPLE,	/* there is no tuple with published SIP-ETag */
-	PA_OK_WAITING_FOR_AUTH	/* OK but waiting for auth -> should return 202 */
+	PA_OK_WAITING_FOR_AUTH,	/* OK but waiting for auth -> should return 202 */
+	PA_SUBSCRIPTION_NOT_EXISTS /* -> 481 */
 } paerr_t;
 
 

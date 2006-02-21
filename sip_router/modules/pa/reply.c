@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.16 2006/01/05 15:59:46 kubartv Exp $
+ * $Id: reply.c,v 1.17 2006/02/21 11:37:57 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -180,6 +180,11 @@ int send_reply(struct sip_msg* _m)
 		case PA_OK_WAITING_FOR_AUTH:
 						msg = "Accepted"; 
 						code = 202;
+						break;
+						/* OK but waiting for auth -> should return 202 */
+		case PA_SUBSCRIPTION_NOT_EXISTS:
+						msg = "Subscription does not exist"; 
+						code = 481;
 						break;
 						/* OK but waiting for auth -> should return 202 */
 	}	
