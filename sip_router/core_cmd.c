@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.11 2006/02/17 17:03:49 andrei Exp $
+ * $Id: core_cmd.c,v 1.12 2006/02/21 21:02:18 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -118,6 +118,7 @@ static void system_methodHelp(rpc_t* rpc, void* c)
 				return;
 			}
 	}
+	rpc->fault(c, 400, "command not found");
 }
 
 
