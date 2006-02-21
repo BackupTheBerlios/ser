@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: uri.py,v 1.2 2006/01/12 14:00:47 hallik Exp $
+# $Id: uri.py,v 1.3 2006/02/21 21:34:27 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -67,6 +67,14 @@ def _unquote(i):
 def parse(uri):
 	return [ _unquote(i) for i in split(uri) ]
 
+def split_sip_uri(uri):
+	if uri is None:
+		return (None, None)
+	n = uri.find(':')
+	if n != -1:
+		uri = uri.split(':')[1]
+	uri  = uri + '@'
+	return uri.split('@')[:2]
 
 def _test():
 	"""Test strings:

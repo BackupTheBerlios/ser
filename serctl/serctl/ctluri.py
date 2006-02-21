@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.6 2006/02/15 18:51:29 hallik Exp $
+# $Id: ctluri.py,v 1.7 2006/02/21 21:34:27 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,14 +13,15 @@
 
 from serctl.dbany   import DBany
 from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
-                           ENODOMAIN, ENOUSER, ENOREC
+                           ENODOMAIN, ENOUSER, ENOREC, ENOCANON, ENOALIAS
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, IS_TO, \
-                           IS_FROM, flag_hex
+                           IS_FROM, flag_hex, CND_NO_CANONICAL
 from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
                            CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
                            OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
+from serctl.uri     import split_sip_uri
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
 import serctl.ctlhelp
 
@@ -232,15 +233,6 @@ class Uri:
 		err = ' '.join(err)
 		return (cnd, err)
 
-	def _split_uri(self, uri):
-		if uri is None:
-			return (None, None)
-		n = uri.find(':')
-		if n != -1:
-			uri = uri.split(':')[1]
-		uri  = uri + '@'
-		return uri.split('@')[:2]
-
 	def _get_did(self, domain):
 		if domain is None:
 			return None
@@ -263,7 +255,7 @@ class Uri:
 			cols = self.C_URI
 		cidx = self._col_idx(cols)
 		
-		username, domain = self._split_uri(uri)
+		username, domain = split_sip_uri(uri)
 		if did is None:
 			did = self._get_did(domain)
 
@@ -290,7 +282,7 @@ class Uri:
 		flags  = new_flags(dflags, fmask)
 		canonical = is_canonical(flags)
 
-		username, domain = self._split_uri(uri)
+		username, domain = split_sip_uri(uri)
 		if did is None:
 			did = self._get_did(domain)
 		if did is None:
@@ -340,7 +332,7 @@ class Uri:
 		nflags = new_flags(0, fmask)
 		canonical = is_canonical(nflags)
 
-		username, domain = self._split_uri(uri)
+		username, domain = split_sip_uri(uri)
 		if did is None:
 			did = self._get_did(domain)
 		if (did is None) and (uri is not None):
@@ -378,7 +370,7 @@ class Uri:
 			self.db.update(self.T_URI, {'flags':nf}, cnd)
 
 	def rm(self, uri=None, uid=None, did=None, force=False):
-		username, domain = self._split_uri(uri)
+		username, domain = split_sip_uri(uri)
 		if did is None:
 			did = self._get_did(domain)
 		if did is None:
@@ -417,6 +409,31 @@ class Uri:
 					upd = {'flags': nf}
 					self.db.update(self.T_URI, upd, cnd)
 
+	def rm_user(self, username, quiet=False, purge=False):
+
+		# rm username
+		cond, error = self._cond(uid=username)
+		rows = self.db.select(self.T_URI, self.C_URI, cond)
+
+		if not quiet:
+			if not rows and not force:
+				raise Error (ENOREC, error)
+		for row in rows:
+			nf = set_deleted(row[self.F_URI])
+			cnd = self._full_cond(row)
+			self.db.update(self.T_URI, {'flags': nf}, cnd)
+
+		if not purge: return
+
+		# rm uids == username
+		cond, error = self._cond(uid=username)
+		rows = self.db.select(self.T_URI, self.C_URI, cond)
+
+		for row in rows:
+			nf = set_deleted(row[self.F_URI])
+			cnd = self._full_cond(row)
+			self.db.update(self.T_URI, {'flags': nf}, cnd)
+
 	def purge(self):
 		self.db.delete(self.T_URI, CND_DELETED)
 
@@ -425,3 +442,19 @@ class Uri:
 
 	def disable(self, uri=None, uid=None, did=None, force=False):
 		return self.change(uri, uid, did, flags='+d', force=force)
+
+	def get_alias_info(self, username, canonical=False, force=False):
+		cnd, err = self._cond(username)
+		if canonical:
+			cnd.append(CND_CANONICAL)
+		else:
+			cnd.append(CND_NO_CANONICAL)
+		rows = self.db.select(self.T_URI, ['uid, ''did'], cnd, limit=1)
+		if not rows:
+			if force:
+				return None
+			if canonical:
+				raise Error (ENOCANON, err)
+			else:
+				raise Error (ENOALIAS, err)
+		return rows[0]

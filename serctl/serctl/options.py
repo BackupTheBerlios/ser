@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.9 2006/02/20 15:49:08 hallik Exp $
+# $Id: options.py,v 1.10 2006/02/21 21:34:27 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -24,6 +24,7 @@ MOD_URI        = 'uri'
 MOD_USER       = 'user'
 
 CMD_ADD        = 'add'
+CMD_ALIAS      = 'alias'
 CMD_CANONICAL  = 'canonical'
 CMD_DISABLE    = 'disable'
 CMD_DOMAIN     = 'domain'
@@ -31,10 +32,12 @@ CMD_ENABLE     = 'enable'
 CMD_FLUSH      = 'flush'
 CMD_HELP       = 'help'
 CMD_CHANGE     = 'change'
+CMD_PASS       = 'password'
 CMD_PUBLISH    = 'publish'
 CMD_PURGE      = 'purge'
 CMD_RM         = 'rm'
 CMD_SHOW       = 'show'
+CMD_USER       = 'user'
 
 OPT_COLUMNS    = 'columns'
 OPT_COL_SEP    = 'csep'
@@ -126,6 +129,13 @@ CMD = {\
 	'ad'         : CMD_ADD,
 	'a'          : CMD_ADD,
 
+	'alias'      : CMD_ALIAS,
+	'alia'       : CMD_ALIAS,
+	'ali'        : CMD_ALIAS,
+	'al'         : CMD_ALIAS,
+
+	'as'         : CMD_ALIAS,
+
 	'canonical'  : CMD_CANONICAL,
 	'canonica'   : CMD_CANONICAL,
 	'canonic'    : CMD_CANONICAL,
@@ -175,6 +185,14 @@ CMD = {\
 	'ch'         : CMD_CHANGE,
 	'C'          : CMD_CHANGE,
 
+	'password'   : CMD_PASS,
+	'passwor'    : CMD_PASS,
+	'passwo'     : CMD_PASS,
+	'passw'      : CMD_PASS,
+	'pass'       : CMD_PASS,
+	'pas'        : CMD_PASS,
+	'pa'         : CMD_PASS,
+
 	'publish'    : CMD_PUBLISH,
 	'publis'     : CMD_PUBLISH,
 	'publi'      : CMD_PUBLISH,
@@ -187,6 +205,9 @@ CMD = {\
 	'pu'         : CMD_PURGE,
 	'p'          : CMD_PURGE,
 
+	'pwd'        : CMD_PASS,
+	'pw'         : CMD_PASS,
+
 	'rm'         : CMD_RM,
 	'r'          : CMD_RM,
 
@@ -194,6 +215,11 @@ CMD = {\
 	'sho'        : CMD_SHOW,
 	'sh'         : CMD_SHOW,
 	's'          : CMD_SHOW,
+
+	'user'       : CMD_USER,
+	'use'        : CMD_USER,
+	'us'         : CMD_USER,
+	'u'          : CMD_USER,
 }
 
 OPT = {\

@@ -346,7 +346,7 @@ class Domain:
 		rows = self.db.select(self.T_CRED, 'realm', cnd)
 		if rows:
 			if not force:
-				raise Error (EDOMAIN, row[0])
+				raise Error (EDOMAIN, rows[0])
 			cdel = True
 		
 		if udel:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
+# $Id: error.py,v 1.6 2006/02/21 21:34:27 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -92,6 +92,14 @@ errorstr[EUMAP]        = 'Auth_username & realm mapped to many uids'
 ENOSER                 = 402
 errorcode[ENOSER]      = 'ENOSER'
 errorstr[ENOSER]       = 'SER URI not specified'
+
+ENOCANON               = 403
+errorcode[ENOCANON]    = 'ENOCANON'
+errorstr[ENOCANON]     = 'No canonical record found'
+
+ENOALIAS               = 403
+errorcode[ENOALIAS]    = 'ENOALIAS'
+errorstr[ENOALIAS]     = 'No username or alias found'
 
 
 def strerror(err):

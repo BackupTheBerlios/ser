@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
+# $Id: flag.py,v 1.6 2006/02/21 21:34:27 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -41,9 +41,10 @@ FLAGS = {
 	'x' : DELETED,
 }
 
-CND_NO_DELETED = ('not', ('!=', ('&', 'flags', DELETED), 0))
-CND_DELETED    =         ('!=', ('&', 'flags', DELETED), 0)
-CND_CANONICAL  =         ('!=', ('&', 'flags', CANON), 0)
+CND_NO_DELETED   = ('not', ('!=', ('&', 'flags', DELETED), 0))
+CND_DELETED      =         ('!=', ('&', 'flags', DELETED), 0)
+CND_CANONICAL    =         ('!=', ('&', 'flags', CANON), 0)
+CND_NO_CANONICAL =         ('=',  ('&', 'flags', CANON), 0)
 
 def _syms(flags):
 	d = {}
