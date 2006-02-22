@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.5 2006/02/20 15:49:08 hallik Exp $
+# $Id: utils.py,v 1.6 2006/02/22 22:53:21 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -111,7 +111,7 @@ def tabprint(data, desc, rsep=config.REC_SEP, lsep=config.LINE_SEP, tab=False):
 		sys.stdout.write(line + lsep)
 	sys.stdout.write(rule + lsep)
 
-def var2tab(data):
+def var2tab(data, dsc=None):
 	if type(data) == dict:
 		ret  = [ (str(k), str(v)) for k, v in data.items() ]
 		desc = [ ('key', '?', ''), ('value', '?', '') ]
@@ -121,4 +121,22 @@ def var2tab(data):
 	else:
 		ret  = [ (str(data), ) ] 
 		desc = [ ('value', '?', ''), ]
+	if dsc is not None:
+		if type(dsc) == str:
+			dsc = [dsc,]
+		desc = [ (i, '?', '') for i in dsc ]
 	return ret, desc
+
+def dict2tab(data, keys=None, dsc=None):
+	if keys is None:
+		keys = data.keys()
+		keys.sort()
+	if dsc is None:
+		dsc = [ str(i).replace('_', ' ') for i in keys ]
+	ret = []
+	for k in keys:
+		ret.append(str(data[k]))
+	ret = [ret]
+	desc = [ (i, '?', '') for i in dsc ]
+	return ret, desc
+

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.9 2006/02/21 21:34:27 hallik Exp $
+# $Id: ctlctl.py,v 1.10 2006/02/22 22:53:21 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -19,11 +19,13 @@ from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, ENODOMAIN
 from serctl.options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
                              OPT_SER_URI, CMD, CMD_HELP, CMD_DOMAIN, CMD, \
                              CMD_ADD, CMD_RM, OPT_SSL_KEY, OPT_SSL_CERT, \
-                             CMD_USER, CMD_PASS, CMD_ALIAS
+                             CMD_USER, CMD_PASS, CMD_ALIAS, CMD_PS, \
+                             CMD_VERSION, CMD_UPTIME, CMD_KILL, CMD_STAT, \
+                             CMD_RELOAD
 from serctl.ctlrpc    import Xml_rpc
 from serctl.uri       import split_sip_uri
-from serctl.utils     import show_opts, var2tab, tabprint
-import serctl.ctlhelp
+from serctl.utils     import show_opts, var2tab, tabprint, dict2tab
+import serctl.ctlhelp, xmlrpclib
 
 def main(args, opts):
 	if len(args) < 3:
@@ -43,17 +45,29 @@ def main(args, opts):
 		ret = flush(ser, ssl, args[3:], opts)
 	elif cmd == CMD_DOMAIN:
 		ret = domain(db, ser, ssl, args[3:], opts)
+	elif cmd == CMD_KILL:
+		ret = kill(ser, ssl, args[3:], opts)
+	elif cmd == CMD_HELP:
+		print help(args, opts)
+		return
 	elif cmd == CMD_PASS:
 		ret = password(db, ser, ssl, args[3:], opts)
+	elif cmd == CMD_PS:
+		ret = ps(ser, ssl, args[3:], opts)
 	elif cmd == CMD_PUBLISH:
 		ret = publish(ser, ssl, args[3:], opts)
 	elif cmd == CMD_PURGE:
 		ret = purge(db, args[3:], opts)
+	elif cmd == CMD_RELOAD:
+		ret = reload(ser, ssl, args[3:], opts)
+	elif cmd == CMD_STAT:
+		ret = stat(ser, ssl, args[3:], opts)
+	elif cmd == CMD_UPTIME:
+		ret = uptime(ser, ssl, args[3:], opts)
 	elif cmd == CMD_USER:
 		ret = user(db, ser, ssl, args[3:], opts)
-	elif cmd == CMD_HELP:
-		print help(args, opts)
-		return
+	elif cmd == CMD_VERSION:
+		ret = version(ser, ssl, args[3:], opts)
 	else:
 		raise Error (EINVAL, cmd)
 	return ret
@@ -65,9 +79,6 @@ Usage:
 
 %s
 Commands & parameters:
-  - flush the DB caches:
-	ser_ctl flush   <uri>
-
   - user and domain administration:
 	ser_ctl alias  add <username> <alias>
 	ser_ctl alias  rm  <alias>
@@ -77,8 +88,17 @@ Commands & parameters:
 	ser_ctl user   add <uri> <password>
 	ser_ctl user   rm  <uri>
 
-  - remove records marked as deleted from DB:
+  - remove database records marked as deleted:
 	ser_ctl purge
+
+  - SER control, info and statistics:
+	ser_ctl flush <uri>
+	ser_ctl kill  [sig]
+	ser_ctl ps
+	ser_ctl reload
+	ser_ctl stat
+	ser_ctl uptime
+	ser_ctl version
 
   - miscelaneous:
 	ser_ctl publish <uid> <file_with_PIDF_doc> <expires_in_sec> [etag]
@@ -220,6 +240,84 @@ def alias(db, ser, ssl, args, opts):
 	else:
 		raise Error (EINVAL, cmd_)
 		
+def ps(ser, ssl, args, opts):
+
+	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	rpc = Xml_rpc(ser, ssl)
+	ret = rpc.core_ps()
+
+	desc = [ ('id', '?', ''), ('process description', '?', '') ]
+	ret = [ (str(a), b) for a, b in ret ]
+	tabprint(ret, desc, rsep, lsep, astab)
+
+def version(ser, ssl, args, opts):
+
+	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	rpc = Xml_rpc(ser, ssl)
+	ret = rpc.core_version()
+
+	ret, desc = var2tab(ret, 'version')
+	tabprint(ret, desc, rsep, lsep, astab)
+
+def uptime(ser, ssl, args, opts):
+
+	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	rpc = Xml_rpc(ser, ssl)
+	ret = rpc.core_uptime()
+
+	ret, desc = dict2tab(ret, ('uptime', 'up_since', 'now'))
+	tabprint(ret, desc, rsep, lsep, astab)
+
+def kill(ser, ssl, args, opts):
+	try:
+		sig = args[0]
+	except:
+		sig = 15
+	sig = int(sig)
+
+	rpc = Xml_rpc(ser, ssl)
+	ret = rpc.core_kill(sig)
+
+def stat(ser, ssl, args, opts):
+
+	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	rpc = Xml_rpc(ser, ssl)
+
+	uptime  = rpc.core_uptime()
+	shmmem  = rpc.core_shmmem()
+	tcpinfo = rpc.core_tcp_info()
+	slstats = rpc.sl_stats()
+
+	ret, desc = dict2tab(uptime, ('uptime', 'up_since', 'now'))
+	tabprint(ret, desc, rsep, lsep, astab)
+
+	ret, desc = dict2tab(shmmem)
+	tabprint(ret, desc, rsep, lsep, astab)
+
+	ret, desc = dict2tab(tcpinfo)
+	tabprint(ret, desc, rsep, lsep, astab)
+
+	ret, desc = dict2tab(slstats)
+	tabprint(ret, desc, rsep, lsep, astab)
+
+	# FIX: add usrloc.stats, tm.stats
+	# FIX: page redesign
+
+def reload(ser, ssl, args, opts):
+
+	rpc = Xml_rpc(ser, ssl)
+
+	# FIX: determine what methods exists (call without try statement)
+	try:
+		ret = rpc.ser.domain.reload()
+	except xmlrpclib.Fault:
+		pass
+
+	# FIX: what more?
 
 class Domain_ctl:
 	def __init__(self, dburi, seruri, ssl=None):

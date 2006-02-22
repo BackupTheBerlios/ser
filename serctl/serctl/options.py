@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.10 2006/02/21 21:34:27 hallik Exp $
+# $Id: options.py,v 1.11 2006/02/22 22:53:21 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -32,12 +32,18 @@ CMD_ENABLE     = 'enable'
 CMD_FLUSH      = 'flush'
 CMD_HELP       = 'help'
 CMD_CHANGE     = 'change'
+CMD_KILL       = 'kill'
 CMD_PASS       = 'password'
+CMD_PS         = 'ps'
 CMD_PUBLISH    = 'publish'
 CMD_PURGE      = 'purge'
+CMD_RELOAD     = 'reload'
 CMD_RM         = 'rm'
 CMD_SHOW       = 'show'
+CMD_STAT       = 'stat'
 CMD_USER       = 'user'
+CMD_UPTIME     = 'uptime'
+CMD_VERSION    = 'version'
 
 OPT_COLUMNS    = 'columns'
 OPT_COL_SEP    = 'csep'
@@ -185,6 +191,11 @@ CMD = {\
 	'ch'         : CMD_CHANGE,
 	'C'          : CMD_CHANGE,
 
+	'kill'       : CMD_KILL,
+	'kil'        : CMD_KILL,
+	'ki'         : CMD_KILL,
+	'k'          : CMD_KILL,
+
 	'password'   : CMD_PASS,
 	'passwor'    : CMD_PASS,
 	'passwo'     : CMD_PASS,
@@ -192,6 +203,8 @@ CMD = {\
 	'pass'       : CMD_PASS,
 	'pas'        : CMD_PASS,
 	'pa'         : CMD_PASS,
+
+	'ps'         : CMD_PS,
 
 	'publish'    : CMD_PUBLISH,
 	'publis'     : CMD_PUBLISH,
@@ -208,6 +221,12 @@ CMD = {\
 	'pwd'        : CMD_PASS,
 	'pw'         : CMD_PASS,
 
+	'reload'     : CMD_RELOAD,
+	'reloa'      : CMD_RELOAD,
+	'relo'       : CMD_RELOAD,
+	'rel'        : CMD_RELOAD,
+	're'         : CMD_RELOAD,
+
 	'rm'         : CMD_RM,
 	'r'          : CMD_RM,
 
@@ -216,10 +235,28 @@ CMD = {\
 	'sh'         : CMD_SHOW,
 	's'          : CMD_SHOW,
 
+	'stat'       : CMD_STAT,
+	'sta'        : CMD_STAT,
+	'st'         : CMD_STAT,
+
+	'uptime'     : CMD_UPTIME,
+	'uptim'      : CMD_UPTIME,
+	'upti'       : CMD_UPTIME,
+	'upt'        : CMD_UPTIME,
+	'up'         : CMD_UPTIME,
+
 	'user'       : CMD_USER,
 	'use'        : CMD_USER,
 	'us'         : CMD_USER,
 	'u'          : CMD_USER,
+
+	'version'    : CMD_VERSION,
+	'versio'     : CMD_VERSION,
+	'versi'      : CMD_VERSION,
+	'vers'       : CMD_VERSION,
+	'ver'        : CMD_VERSION,
+	've'         : CMD_VERSION,
+	'v'          : CMD_VERSION,
 }
 
 OPT = {\

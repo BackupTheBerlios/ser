@@ -1,3 +1,11 @@
+serctl (0.0.26)
+
+  * Added methods (and commands) for Xml_rpc: ps, version, uptime, kill.
+  * Added reload command.
+  * Added stat command, (not finished).
+
+ -- Jan Halla <hallik@iptel.org> Wed, 22 Feb 2006 23:48:26 +0100
+
 serctl (0.0.25)
 
   * Fixed typo (row -> rows) in ctldomain.

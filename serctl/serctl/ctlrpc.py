@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.3 2006/02/20 15:49:08 hallik Exp $
+# $Id: ctlrpc.py,v 1.4 2006/02/22 22:53:21 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -89,6 +89,42 @@ class Xml_rpc:
 
 	def cmd(self, cmd, *par):
 		return self.raw_cmd(cmd, par)
+
+	def core_ps(self):
+		ps = self.ser.core.ps()
+		l = []
+		for i in range(0, len(ps), 2):
+			l.append((ps[i], ps[i+1]))
+		return l
+
+	def core_version(self):
+		ver = self.ser.core.version()
+		return ver
+
+	def core_uptime(self):
+		uptime = self.ser.core.uptime()
+		for k in uptime.keys():
+			uptime[k] = str(uptime[k]).strip()
+		uptime['uptime'] = float(uptime['uptime'])
+		return uptime
+
+	def core_kill(self, sig=15):
+		self.ser.core.kill(sig)
+
+	def core_shmmem(self):
+		return self.ser.core.shmmem()\
+
+	def core_tcp_info(self):
+		return self.ser.core.tcp_info()
+
+	def sl_stats(self):
+		return self.ser.sl.stats()
+
+	def tm_stats(self):
+		return self.ser.tm.stats()
+
+	def usrloc_stats(self):
+		return self.ser.usrloc.stats()
 
 class Fifo_rpc:
 	def __init__(self):
