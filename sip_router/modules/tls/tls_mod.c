@@ -1,5 +1,5 @@
 /*
- * $Id: tls_mod.c,v 1.1 2006/01/28 12:34:31 janakj Exp $
+ * $Id: tls_mod.c,v 1.2 2006/02/22 13:00:46 andrei Exp $
  *
  * TLS module interface
  *
@@ -206,7 +206,7 @@ static int parse_domain(int* type, struct ip_addr* ip, unsigned short* port, cha
 
 	if (!strchr(s.s, '=')) {
 		DBG("No TLS domain specifier found\n");
-		*text = val;
+		*text = s.s;
 		*type |= TLS_DOMAIN_DEF;
 		return 0;
 	}
