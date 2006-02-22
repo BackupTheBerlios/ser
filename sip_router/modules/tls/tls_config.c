@@ -1,5 +1,5 @@
 /*
- * $Id: tls_config.c,v 1.1 2006/02/22 23:37:20 janakj Exp $
+ * $Id: tls_config.c,v 1.2 2006/02/22 23:41:17 janakj Exp $
  *
  * TLS configuration file parser
  *
@@ -102,8 +102,10 @@ enum st {
 };
 
 
-/* If the lexer finds a token then all characters
- * untill EOL is scanned would belong to the token
+/* Extended tokens can contain also delimiters,
+ * in addition to alpha-numeric characters,
+ * this is used on the righ side of assignments
+ * where no quotes are used
  */
 #define EXTENDED_ALPHA_TOKEN (1 << 0)
 
