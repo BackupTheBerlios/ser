@@ -1,5 +1,5 @@
 /*
- * $Id: tls_domain.c,v 1.3 2006/02/22 13:10:27 andrei Exp $
+ * $Id: tls_domain.c,v 1.4 2006/02/22 13:34:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.
@@ -97,7 +97,7 @@ tls_domain_t* tls_new_domain(int type, struct ip_addr *ip, unsigned short port)
 			d->verify_cert = 0;
 			d->verify_depth = 3;
 			d->ca_file = TLS_CA_FILE;
-			d->require_cert = 1;
+			d->require_cert = 0;
 			d->method = TLS_USE_TLSv1;
 			tls_def_cli = d;
 		}		
