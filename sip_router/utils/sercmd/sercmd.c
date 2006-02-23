@@ -1,5 +1,5 @@
 /*
- * $Id: sercmd.c,v 1.1 2006/02/23 20:07:45 andrei Exp $
+ * $Id: sercmd.c,v 1.2 2006/02/23 23:36:54 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -78,7 +78,7 @@
 #define UNIX_PATH_MAX 108
 #endif
 
-static char id[]="$Id: sercmd.c,v 1.1 2006/02/23 20:07:45 andrei Exp $";
+static char id[]="$Id: sercmd.c,v 1.2 2006/02/23 23:36:54 andrei Exp $";
 static char version[]= NAME " " VERSION;
 static char compiled[]= __TIME__ " " __DATE__;
 static char help_msg[]="\
@@ -231,6 +231,11 @@ static struct sercmd_builtin builtins[]={
 
 
 #ifdef USE_READLINE
+
+/* instead of rl_attempted_completion_over which is not present in
+   some readline emulations */
+static int attempted_completion_over=0; 
+
 /* commands for which we complete the params to other command names */
 char* complete_params[]={
 	"?",
@@ -1173,7 +1178,6 @@ static int sercmd_warranty(int s, struct binrpc_cmd *cmd)
 
 #ifdef USE_READLINE
 
-
 /* readline command generator */
 static char* sercmd_generator(const char* text, int state)
 {
@@ -1181,6 +1185,9 @@ static char* sercmd_generator(const char* text, int state)
 	static int list; /* aliases, builtins, rpc_array */
 	static int len;
 	char* name;
+	
+	if (attempted_completion_over)
+		return 0;
 	
 	if (state==0){
 		/* init */
@@ -1229,10 +1236,10 @@ char** sercmd_completion(const char* text, int start, int end)
 	int r;
 	int i;
 	
-	rl_attempted_completion_over=1;
+	attempted_completion_over=1;
 	/* complete only at beginning */
 	if (start==0){
-		rl_attempted_completion_over=0;
+		attempted_completion_over=0;
 	}else{ /* or if this is a command for which we complete the parameters */
 		/* find first whitespace */
 		for(r=0; (r<start) && (rl_line_buffer[r]!=' ') && 
@@ -1240,7 +1247,7 @@ char** sercmd_completion(const char* text, int start, int end)
 		for(i=0; complete_params[i]; i++){
 			if ((r==strlen(complete_params[i])) &&
 					(strncmp(rl_line_buffer, complete_params[i], r)==0)){
-					rl_attempted_completion_over=0;
+					attempted_completion_over=0;
 					break;
 			}
 		}

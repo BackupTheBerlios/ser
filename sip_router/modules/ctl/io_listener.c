@@ -1,5 +1,5 @@
 /*
- * $Id: io_listener.c,v 1.1 2006/02/23 19:57:31 andrei Exp $
+ * $Id: io_listener.c,v 1.2 2006/02/23 23:36:50 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -30,6 +30,7 @@
  */
 
 #include "../../globals.h"
+#include "../../pt.h"  /* process_count */
 #include "../../timer.h"
 #include "../../timer_ticks.h"
 #include "../../tsend.h"

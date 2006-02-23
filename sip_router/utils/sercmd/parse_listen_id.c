@@ -1,5 +1,5 @@
 /*
- * $Id: parse_listen_id.c,v 1.2 2006/02/23 21:14:02 andrei Exp $
+ * $Id: parse_listen_id.c,v 1.3 2006/02/23 23:36:54 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -34,6 +34,7 @@
 #include <stdlib.h> /* malloc */
 #include <string.h>
 #include <netdb.h> /* getservbyname*/
+#include <arpa/inet.h> /* ntohs */
 
 #include "parse_listen_id.h"
 
