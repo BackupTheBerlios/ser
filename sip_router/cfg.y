@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.117 2006/02/15 17:29:18 mma Exp $
+ * $Id: cfg.y,v 1.118 2006/02/24 19:16:53 andrei Exp $
  *
  *  cfg grammar
  *
@@ -348,7 +348,7 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %type <attr> attr_id_ass
 %type <attr> attr_id_val
 %type <attr> attr_id_any
-//%type <intval> class_id
+/* %type <intval> class_id */
 %type <intval> assign_op
 %type <select> select_id
 %type <strval>	flag_name;

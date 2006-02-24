@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.212 2006/02/07 01:14:58 andrei Exp $
+ * $Id: main.c,v 1.213 2006/02/24 19:16:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -136,7 +136,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.212 2006/02/07 01:14:58 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.213 2006/02/24 19:16:53 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1096,7 +1096,8 @@ int main_loop()
 				/* start tcp+tls master proc */
 			process_no++;
 			if ((pid=fork())<0){
-				LOG(L_CRIT, "main_loop: cannot fork tcp main process\n");
+				LOG(L_CRIT, "main_loop: cannot fork tcp main process: %s\n",
+							strerror(errno));
 				goto error;
 			}else if (pid==0){
 				/* child */
