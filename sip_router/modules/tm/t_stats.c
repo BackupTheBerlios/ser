@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.c,v 1.22 2006/02/07 19:52:39 andrei Exp $
+ * $Id: t_stats.c,v 1.23 2006/02/24 18:35:36 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -156,5 +156,5 @@ void tm_rpc_stats(rpc_t* rpc, void* c)
 			"4xx", tm_stats->completed_4xx,
 			"3xx", tm_stats->completed_3xx,
 			"2xx", tm_stats->completed_2xx);
-	rpc->fault(c, 100, "Trying");
+	/* rpc->fault(c, 100, "Trying"); */
 }

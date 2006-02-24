@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.41 2006/02/07 01:14:58 andrei Exp $
+ *$Id: ut.h,v 1.42 2006/02/24 18:35:36 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -143,7 +143,7 @@ static inline unsigned short str2s(const char* s, unsigned int len,
 				i++;
 				if (i>5) goto error_digits;
 		}else{
-				//error unknown char
+				/* error unknown char */
 				goto error_char;
 		}
 	}

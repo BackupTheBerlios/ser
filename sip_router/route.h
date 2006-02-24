@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.12 2006/02/07 01:14:58 andrei Exp $
+ * $Id: route.h,v 1.13 2006/02/24 18:35:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -45,7 +45,7 @@
 struct route_list{
 	struct action** rlist;
 	int idx; /* first empty entry */ 
-	int entries; /* total number if entries */
+	int entries; /* total number of entries */
 	struct str_hash_table names; /* name to route index mappings */
 };
 
