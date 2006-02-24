@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.48 2006/02/24 12:09:11 janakj Exp $
+/*$Id: textops.c,v 1.49 2006/02/24 12:26:24 janakj Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -71,7 +71,7 @@
 #include "../../parser/parse_uri.h"
 #include "../../parser/parse_hname2.h"
 #include "../../onsend.h"
- #include "../../ut.h"
+#include "../../ut.h"
 #include "../../select.h"
 #include "../xlog/xl_lib.h"
 #include <stdio.h>
