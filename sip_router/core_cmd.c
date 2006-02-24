@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.12 2006/02/21 21:02:18 andrei Exp $
+ * $Id: core_cmd.c,v 1.13 2006/02/24 12:24:53 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -90,7 +90,7 @@ static void system_methodHelp(rpc_t* rpc, void* c)
 	rpc_export_t* ptr;
 	char* name;
 
-	if (rpc->scan(c, "s", &name) < 0) {
+	if (rpc->scan(c, "s", &name) < 1) {
 		rpc->fault(c, 400, "Method Name Expected");
 		return;
 	}
