@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.26 2006/02/17 22:32:02 mma Exp $
+ * $Id: xl_lib.c,v 1.27 2006/02/26 20:26:42 mma Exp $
  *
  * XLOG module
  *
@@ -1470,7 +1470,7 @@ int xl_parse_format(char *s, xl_elog_p *el)
 						goto sel_error;
 					}
 					name.s=p;
-					while (isalpha(*p))	p++;
+					while (isalpha(*p) || (*p=='_')) p++;
 					name.len=p-name.s;
 					sel->params[sel->n].type=SEL_PARAM_STR;
 					sel->params[sel->n].v.s=name;
@@ -1506,6 +1506,7 @@ int xl_parse_format(char *s, xl_elog_p *el)
 				}
 				e->itf = xl_get_select;
 				e->hparam.s = (char*)sel;
+				p--;
 				break;
 			case '%':
 				e->itf = xl_get_percent;
