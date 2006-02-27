@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.38 2006/02/02 09:10:23 kubartv Exp $
+ * $Id: notify.c,v 1.39 2006/02/27 11:43:03 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -293,7 +293,7 @@ static inline int create_headers(struct watcher* _w, str *dst, str *content_type
 
 	dstr_get_str(&buf, dst);
 	dstr_destroy(&buf);
-
+	
 	return 0;
 }
 
@@ -403,7 +403,7 @@ int send_winfo_notify_offline(struct presentity* _p,
 	str doc = STR_NULL;
 	str content_type = STR_NULL;
 	str headers = STR_NULL;
-
+	
 	switch (_w->preferred_mimetype) {
 		case DOC_WINFO:
 			create_winfo_document_offline(_p, _w, info, &doc, &content_type);
