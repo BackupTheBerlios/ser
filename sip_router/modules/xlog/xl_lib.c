@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.27 2006/02/26 20:26:42 mma Exp $
+ * $Id: xl_lib.c,v 1.28 2006/02/27 13:56:56 mma Exp $
  *
  * XLOG module
  *
@@ -1478,8 +1478,8 @@ int xl_parse_format(char *s, xl_elog_p *el)
 					sel->n++;
 					if (*p=='[') {
 						p++;c=*p;
-						if (*p=='-') p++;
 						name.s=p;
+						if (*p=='-') p++;
 						while (isdigit(*p)) p++;
 						name.len=p-name.s;
 						if (*p!=']') {
