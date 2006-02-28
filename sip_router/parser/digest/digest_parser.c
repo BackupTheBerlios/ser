@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.c,v 1.11 2004/08/24 09:01:29 janakj Exp $
+ * $Id: digest_parser.c,v 1.12 2006/02/28 09:21:16 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -360,7 +360,7 @@ int parse_digest_cred(str* _s, dig_cred_t* _c)
 	if (!strncasecmp(tmp.s, DIGEST_SCHEME, DIG_LEN) &&
 	    ((tmp.s[DIG_LEN] == ' ') ||     /* Test for one of LWS chars */
 	     (tmp.s[DIG_LEN] == '\r') || 
-	     (tmp.s[DIG_LEN] == 'n') || 
+	     (tmp.s[DIG_LEN] == '\n') || 
 	     (tmp.s[DIG_LEN] == '\t') ||
 	     (tmp.s[DIG_LEN] == ','))) {
 		     /* Scheme is Digest */
