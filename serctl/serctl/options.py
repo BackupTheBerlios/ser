@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.12 2006/03/01 14:06:47 hallik Exp $
+# $Id: options.py,v 1.13 2006/03/01 18:33:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -42,6 +42,7 @@ CMD_RM         = 'rm'
 CMD_SHOW       = 'show'
 CMD_STAT       = 'stat'
 CMD_USER       = 'user'
+CMD_USRLOC     = 'usrloc'
 CMD_UPTIME     = 'uptime'
 CMD_VERSION    = 'version'
 
@@ -201,6 +202,8 @@ CMD = {\
 	'li'         : CMD_SHOW,
 	'l'          : CMD_SHOW,
 
+	'loc'        : CMD_USRLOC,
+
 	'ls'         : CMD_SHOW,
 
 	'password'   : CMD_PASS,
@@ -246,6 +249,9 @@ CMD = {\
 	'sta'        : CMD_STAT,
 	'st'         : CMD_STAT,
 
+	'uloc'       : CMD_USRLOC,
+	'ul'         : CMD_USRLOC,
+
 	'uptime'     : CMD_UPTIME,
 	'uptim'      : CMD_UPTIME,
 	'upti'       : CMD_UPTIME,
@@ -256,6 +262,11 @@ CMD = {\
 	'use'        : CMD_USER,
 	'us'         : CMD_USER,
 	'u'          : CMD_USER,
+
+	'usrloc'     : CMD_USRLOC,
+	'usrlo'      : CMD_USRLOC,
+	'usrl'       : CMD_USRLOC,
+	'usr'        : CMD_USRLOC,
 
 	'version'    : CMD_VERSION,
 	'versio'     : CMD_VERSION,

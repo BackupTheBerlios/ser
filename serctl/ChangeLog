@@ -2,8 +2,10 @@ serctl (0.0.28)
 
   * Domain reload function updated.
   * Backport for python 2.2.
+  * Usrloc_ctl class and usrloc command added, (not finished).
+  * Duplications in uri table are not tolerated when user or alias added.
 
- -- Jan Halla <hallik@iptel.org> Wed, 01 Mar 2006 14:50:28 +0100
+ -- Jan Halla <hallik@iptel.org> Wed, 01 Mar 2006 19:26:38 +0100
 
 serctl (0.0.27)
 

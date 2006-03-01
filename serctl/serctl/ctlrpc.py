@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.4 2006/02/22 22:53:21 hallik Exp $
+# $Id: ctlrpc.py,v 1.5 2006/03/01 18:33:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -112,7 +112,7 @@ class Xml_rpc:
 		self.ser.core.kill(sig)
 
 	def core_shmmem(self):
-		return self.ser.core.shmmem()\
+		return self.ser.core.shmmem()
 
 	def core_tcp_info(self):
 		return self.ser.core.tcp_info()

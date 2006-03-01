@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.7 2006/02/21 21:34:27 hallik Exp $
+# $Id: ctluri.py,v 1.8 2006/03/01 18:33:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -458,3 +458,25 @@ class Uri:
 			else:
 				raise Error (ENOALIAS, err)
 		return rows[0]
+
+	def get_uids(self, uri, flags=[], force=False):
+		username, domain = split_sip_uri(uri)
+		did = self._get_did(domain)
+		if did is None:
+			if force:
+				return None
+			raise Error (ENODOMAIN, domain)
+
+		cnd, err = self._cond(username, did)
+		if flags is not None:
+			for flag in flags:
+				if flag < 0:
+					flag = ~flag
+					cnd.append(('=',  ('&', 'flags', flag), 0))
+				else:
+					cnd.append(('!=',  ('&', 'flags', flag), 0))
+		rows = self.db.select(self.T_URI, 'uid', cnd)
+		uids = {}
+		for row in rows:
+			uids[row[0]] = 0
+		return uids.keys()

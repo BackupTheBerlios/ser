@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.6 2006/02/21 21:34:27 hallik Exp $
+# $Id: flag.py,v 1.7 2006/03/01 18:33:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -24,6 +24,9 @@ PENDING        = 1L << 6
 DELETED        = 1L << 7
 CALLER_DELETED = 1L << 8  # Accounting table
 CALLEE_DELETED = 1L << 9  # Accounting table
+
+RESERVED       = 1L << 31 # Bit reserved for internal use.
+                          # Distinguish between set/unset flag
 
 AND_MASK       = 0xFFFFFFFFL
 OR_MASK        = 0L

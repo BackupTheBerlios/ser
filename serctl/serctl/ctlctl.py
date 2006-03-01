@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.12 2006/03/01 14:06:47 hallik Exp $
+# $Id: ctlctl.py,v 1.13 2006/03/01 18:33:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,18 +11,19 @@
 # of the License, or (at your option) any later version.
 #
 
+from serctl.flag      import IS_FROM
 from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
 from serctl.ctldomain import Domain
 from serctl.ctluser   import User
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
-                             ENODOMAIN, warning
+                             ENODOMAIN, warning, EDUPL, ENOUSER
 from serctl.options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
                              OPT_SER_URI, CMD, CMD_HELP, CMD_DOMAIN, CMD, \
                              CMD_ADD, CMD_RM, OPT_SSL_KEY, OPT_SSL_CERT, \
                              CMD_USER, CMD_PASS, CMD_ALIAS, CMD_PS, \
                              CMD_VERSION, CMD_UPTIME, CMD_KILL, CMD_STAT, \
-                             CMD_RELOAD
+                             CMD_RELOAD, CMD_USRLOC, CMD_SHOW
 from serctl.ctlrpc    import Xml_rpc
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab
@@ -67,6 +68,8 @@ def main(args, opts):
 		ret = uptime(ser, ssl, args[3:], opts)
 	elif cmd == CMD_USER:
 		ret = user(db, ser, ssl, args[3:], opts)
+	elif cmd == CMD_USRLOC:
+		ret = usrloc(db, ser, ssl, args[3:], opts)
 	elif cmd == CMD_VERSION:
 		ret = version(ser, ssl, args[3:], opts)
 	else:
@@ -81,13 +84,16 @@ Usage:
 %s
 Commands & parameters:
   - user and domain administration:
-	ser_ctl alias  add <username> <alias>
-	ser_ctl alias  rm  <alias>
-	ser_ctl domain add <domain>
-	ser_ctl domain rm  <domain>
-	ser_ctl password   <uri> <password>
-	ser_ctl user   add <uri> <password>
-	ser_ctl user   rm  <uri>
+	ser_ctl alias  add  <username> <alias>
+	ser_ctl alias  rm   <alias>
+	ser_ctl domain add  <domain>
+	ser_ctl domain rm   <domain>
+	ser_ctl password    <uri> <password>
+	ser_ctl user   add  <uri> <password>
+	ser_ctl user   rm   <uri>
+	ser_ctl usrloc add  <uri> <contact>
+	ser_ctl usrloc show <uri>
+	ser_ctl usrloc rm   <uri> [contact]
 
   - remove database records marked as deleted:
 	ser_ctl purge
@@ -241,6 +247,39 @@ def alias(db, ser, ssl, args, opts):
 	else:
 		raise Error (EINVAL, cmd_)
 		
+def usrloc(db, ser, ssl, args, opts):
+	try:
+		cmd_ = args[0]
+	except:
+		raise Error (ENOARG, '<command>')
+	cmd = CMD.get(cmd_)
+	try:
+		uri = args[1]
+	except:
+		raise Error (ENOARG, '<uri>')
+	if cmd == CMD_ADD:
+		try:
+			contact = args[2]
+		except:
+			raise Error (ENOARG, '<contact>')
+		u = Usrloc_ctl(db, ser, ssl)
+		u.add(uri, contact)
+	elif cmd == CMD_RM:
+		try:
+			contact = args[1]
+		except:
+			contact = None
+		u = Usrloc_ctl(db, ser, ssl)
+		u.rm(uri, contact)
+	elif cmd == CMD_SHOW:
+		u = Usrloc_ctl(db, ser, ssl)
+		ret = u.show(uri)
+		# FIX: update
+		print ret
+
+	else:
+		raise Error (EINVAL, cmd_)
+		
 def ps(ser, ssl, args, opts):
 
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
@@ -288,10 +327,13 @@ def stat(ser, ssl, args, opts):
 
 	rpc = Xml_rpc(ser, ssl)
 
-	uptime  = rpc.core_uptime()
-	shmmem  = rpc.core_shmmem()
-	tcpinfo = rpc.core_tcp_info()
-	slstats = rpc.sl_stats()
+	# FIX: determine what exists
+	uptime      = rpc.core_uptime()
+	shmmem      = rpc.core_shmmem()
+	tcpinfo     = rpc.core_tcp_info()
+	slstats     = rpc.sl_stats()
+	tmstats     = rpc.tm_stats()
+	usrlocstats = rpc.usrloc_stats()
 
 	ret, desc = dict2tab(uptime, ('uptime', 'up_since', 'now'))
 	tabprint(ret, desc, rsep, lsep, astab)
@@ -305,7 +347,12 @@ def stat(ser, ssl, args, opts):
 	ret, desc = dict2tab(slstats)
 	tabprint(ret, desc, rsep, lsep, astab)
 
-	# FIX: add usrloc.stats, tm.stats
+	ret, desc = dict2tab(tmstats)
+	tabprint(ret, desc, rsep, lsep, astab)
+
+	ret, desc = var2tab(usrlocstats)
+	tabprint(ret, desc, rsep, lsep, astab)
+
 	# FIX: page redesign
 
 def reload(ser, ssl, args, opts):
@@ -370,6 +417,9 @@ class User_ctl:
 		did = dom.get_did(domain, True)
 		if did is None:
 			raise Error (ENODOMAIN, domain)
+		exist = ur.get_uids(uri, force=True)
+		if exist != []:
+			raise Error (EDUPL, uri)
 		usr.add(user)
 		ur.add(uri, user)
 		cred.add(user, domain, user, password)
@@ -403,6 +453,9 @@ class Alias_ctl:
 		ur = Uri(self.db)
 		uid, did = ur.get_alias_info(username, canonical=True)
 		uri = alias + '@' + did
+		exist = ur.get_uids(uri, force=True)
+		if exist != []:
+			raise Error (EDUPL, uri)
 		ur.add(uri, username)
 
 	def rm(self, alias):
@@ -411,3 +464,34 @@ class Alias_ctl:
 		uri = alias + '@' + did
 		ur.rm(uri=uri, uid=uid, did=did)
 		ur.purge()
+
+class Usrloc_ctl:
+	def __init__(self, dburi, seruri, ssl=None):
+		self.db  = dburi
+		self.ser = seruri
+		self.ssl = ssl
+
+	def _get_uid(self, uri):
+		ur = Uri(self.db)
+		uids = ur.get_uids(uri, flags=[IS_FROM])
+		if not uids:
+			raise Error (ENOUSER, 'For uri=%s (with TO_FLAG set)' % uri)
+		return uids[0]
+
+	def show(self, uri):
+		uid = self._get_uid(uri)
+		rpc = Xml_rpc(self.ser, self.ssl)
+		return rpc.ser.usrloc.show_contacts('location', uid)
+
+	def add(self, uri, contact):
+		uid = self._get_uid(uri)
+		rpc = Xml_rpc(self.ser, self.ssl)
+		rpc.ser.usrloc.add_contact('location', uid, contact, 0, 1, 128)
+
+	def rm(self, uri, contact=None):
+		uid = self._get_uid(uri)
+		rpc = Xml_rpc(self.ser, self.ssl)
+		if contact is None:
+			rpc.ser.usrloc.delete_uid('location', uid)
+		else:
+			rpc.ser.usrloc.delete_contact('location', uid, contact)
