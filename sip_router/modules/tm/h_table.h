@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.84 2006/01/27 18:47:22 andrei Exp $
+ * $Id: h_table.h,v 1.85 2006/03/01 16:29:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -239,8 +239,12 @@ typedef struct cell
 	 * forwarded or passed to UAC; note that there can be arbitrarily 
 	 * many due to downstream forking; */
 	struct totag_elem *fwded_totags;
-	/* list with user avp */
-	struct usr_avp *user_avps;
+
+	     /* list with avp */
+	struct usr_avp *user_avps_from;
+	struct usr_avp *user_avps_to;
+	struct usr_avp *domain_avps_from;
+	struct usr_avp *domain_avps_to;
 	
 	/* protection against concurrent reply processing */
 	ser_lock_t   reply_mutex;

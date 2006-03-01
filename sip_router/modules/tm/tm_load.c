@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.24 2006/01/30 15:56:29 kubartv Exp $
+ * $Id: tm_load.c,v 1.25 2006/03/01 16:29:39 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -44,7 +44,7 @@ int load_tm( struct tm_binds *tmb)
 {
 	if (!tm_init) {
 		LOG(L_ERR, "tm:load_tm: Module not initialized yet, make sure that all modules that need"
-		    " tm module are loaded before tm in the configuration file\n");
+		    " tm module are loaded after tm in the configuration file\n");
 		return -1;
 	}
 
