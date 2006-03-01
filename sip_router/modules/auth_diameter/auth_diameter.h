@@ -1,5 +1,5 @@
 /*
- * $Id: auth_diameter.h,v 1.3 2004/08/24 08:58:25 janakj Exp $ 
+ * $Id: auth_diameter.h,v 1.4 2006/03/01 16:01:29 janakj Exp $ 
  * Digest Authentication - Diameter support
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -35,14 +35,14 @@
 #define AUTHDIAM_MOD_H
 
 #include "../../parser/msg_parser.h"
+#include "../sl/sl.h"
 #include "defs.h"
 #define M_NAME "auth_diameter"
 
 extern char *diameter_client_host;
 extern int diameter_client_port;
 
-/* Stateless reply function pointer */
-extern int (*sl_reply)(struct sip_msg* _m, char* _str1, char* _str2);
+extern sl_api_t sl;
 
 int sockfd;
 int use_domain;

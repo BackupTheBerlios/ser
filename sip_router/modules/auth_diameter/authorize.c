@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.8 2005/12/10 17:06:30 andrei Exp $
+ * $Id: authorize.c,v 1.9 2006/03/01 16:01:29 janakj Exp $
  *
  * Digest Authentication - Diameter support
  *
@@ -749,7 +749,7 @@ int send_resp(struct sip_msg* m, int code, char* reason,
 		}
 	}
 
-	return sl_reply(m, (char*)(long)code, reason);
+	return sl.reply(m, code, reason);
 }
 
 

@@ -1,9 +1,11 @@
-# $Id: Makefile,v 1.2 2005/06/01 22:25:05 andrei Exp $
+# $Id: Makefile,v 1.3 2006/03/01 16:01:29 janakj Exp $
 #
 # Digest Authentication - Diameter support
 #
 # 
 # WARNING: do not run this directly, it should be run by the master Makefile
+
+include ../../Makefile.defs
 
 auto_gen=
 NAME=auth_diameter.so
