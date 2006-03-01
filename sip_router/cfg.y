@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.118 2006/02/24 19:16:53 andrei Exp $
+ * $Id: cfg.y,v 1.119 2006/03/01 07:40:08 kubartv Exp $
  *
  *  cfg grammar
  *
@@ -440,7 +440,7 @@ id_lst:
 	;
 
 flags_decl:		FLAGS_DECL	flag_list
-			|	FLAGS_DECL error { yyerror("flag list expected\n"); };
+			|	FLAGS_DECL error { yyerror("flag list expected\n"); }
 ;
 flag_list:		flag_spec
 			|	flag_spec COMMA flag_list

@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.38 2006/01/19 10:29:10 tma0 Exp $
+ * $Id: route_struct.h,v 1.39 2006/03/01 07:40:07 kubartv Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -41,6 +41,7 @@
 #ifndef route_struct_h
 #define route_struct_h
 
+#include <sys/types.h>
 #include <regex.h>
 #include "select.h"
 #include "usr_avp.h"
