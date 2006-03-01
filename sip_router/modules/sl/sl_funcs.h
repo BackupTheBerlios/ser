@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.h,v 1.13 2004/08/24 09:00:38 janakj Exp $
+ * $Id: sl_funcs.h,v 1.14 2006/03/01 12:02:49 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -29,15 +29,16 @@
 #ifndef _SL_FUNCS_H
 #define _SL_FUNCS_H
 
+#include "../../sr_module.h"
 #include "../../parser/msg_parser.h"
 
-#define SL_RPL_WAIT_TIME  2  // in sec
+#define SL_RPL_WAIT_TIME  2  /* in sec */
 
 #define SL_TOTAG_SEPARATOR '.'
 
 int sl_startup();
 int sl_shutdown();
-int sl_send_reply(struct sip_msg*,int,char*);
+int sl_send_reply(struct sip_msg*, int code, char* reason);
 int sl_filter_ACK(struct sip_msg*, void *bar );
 int sl_reply_error(struct sip_msg *msg );
 
