@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.11 2006/03/01 10:51:22 hallik Exp $
+# $Id: ctlctl.py,v 1.12 2006/03/01 14:06:47 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -312,11 +312,10 @@ def reload(ser, ssl, args, opts):
 
 	rpc = Xml_rpc(ser, ssl)
 
-	# FIX: determine what methods exists (call without try statement)
-	try:
+	exist = rpc.ser.system.listMethods()
+
+	if 'domain.reload' in exist:
 		ret = rpc.ser.domain.reload()
-	except xmlrpclib.Fault:
-		pass
 
 	# FIX: what more?
 

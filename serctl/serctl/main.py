@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.9 2006/02/20 15:49:08 hallik Exp $
+# $Id: main.py,v 1.10 2006/03/01 14:06:47 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -10,8 +10,10 @@
 # Public License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
 #
-
-from getopt         import gnu_getopt
+try:
+	from getopt         import gnu_getopt
+except:
+	from serctl.backports.getopt import gnu_getopt
 from serctl.config  import config
 from serctl.error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
 from serctl.options import *

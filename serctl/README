@@ -20,7 +20,11 @@ DOCUMENTATION
 DEPENDENCIES
 ============
 
-python (2.2+)
+...
 
+Python versions
+---------------
+Developed and tested on python 2.3. 
+Sometimes, it's backported and simply tested for python 2.2.
 
 -- Hallik

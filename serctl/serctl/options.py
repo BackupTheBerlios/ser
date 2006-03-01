@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.11 2006/02/22 22:53:21 hallik Exp $
+# $Id: options.py,v 1.12 2006/03/01 14:06:47 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -195,6 +195,13 @@ CMD = {\
 	'kil'        : CMD_KILL,
 	'ki'         : CMD_KILL,
 	'k'          : CMD_KILL,
+
+	'list'       : CMD_SHOW,
+	'lis'        : CMD_SHOW,
+	'li'         : CMD_SHOW,
+	'l'          : CMD_SHOW,
+
+	'ls'         : CMD_SHOW,
 
 	'password'   : CMD_PASS,
 	'passwor'    : CMD_PASS,

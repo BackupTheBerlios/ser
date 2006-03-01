@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: serxmlrpc.py,v 1.2 2006/01/18 11:01:44 hallik Exp $
+# $Id: serxmlrpc.py,v 1.3 2006/03/01 14:06:47 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -162,5 +162,8 @@ class Transport:
 
 def ServerProxy(uri, ssl=None, encoding=None, verbose=0, allow_none=0):
 	transport = Transport(uri, ssl)
-	return xmlrpclib.ServerProxy(uri, transport, encoding, verbose, \
-	  allow_none)
+	if xmlrpclib.__version__ == '1.0.0': # FIX: probably too stupid test
+		return xmlrpclib.ServerProxy(uri, transport, encoding, verbose)
+	else:
+		return xmlrpclib.ServerProxy(uri, transport, encoding, verbose, \
+		  allow_none)
