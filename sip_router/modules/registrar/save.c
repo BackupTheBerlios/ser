@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.46 2006/02/20 16:19:02 janakj Exp $
+ * $Id: save.c,v 1.47 2006/03/01 16:05:12 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -599,6 +599,8 @@ static inline int contacts(struct sip_msg* _m, contact_t* _c, udomain_t* _d, str
 #define UA_DUMMY_STR "Unknown"
 #define UA_DUMMY_LEN 7
 
+
+
 /*
  * Process REGISTER request and save it's contacts
  */
@@ -644,9 +646,16 @@ static inline int save_real(struct sip_msg* _m, udomain_t* _t, char* _s, int dor
 		if (contacts(_m, c, _t, &uid, &ua) < 0) goto error;
 	}
 
-	if (doreply && (send_reply(_m) < 0)) return -1;
-	else return 1;
-	
+	if (doreply) {
+		if (send_reply(_m) < 0) return -1;
+	} else {
+		     /* No reply sent, create attributes with values
+		      * of reply code, reason text, and contacts
+		      */
+		if (setup_attrs(_m) < 0) return -1;
+	}
+	return 1;
+
  error:
 	if (doreply) send_reply(_m);
 	return 0;

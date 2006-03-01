@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.22 2006/02/20 16:19:02 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.23 2006/03/01 16:05:12 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -35,6 +35,7 @@
 #include "../../qvalue.h"
 #include "../../usr_avp.h"
 #include "../usrloc/usrloc.h"
+#include "../sl/sl.h"
 
 extern int default_expires;
 extern qvalue_t default_q;
@@ -48,10 +49,11 @@ extern float def_q;
 extern int received_to_uri; /*copy received to uri, don't add it to dst_uri*/
 extern str rcv_param;
 extern int max_contacts;
-extern int retry_after;
 
 usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
 
-extern int (*sl_reply)(struct sip_msg* _m, char* _s1, char* _s2);
+extern sl_api_t sl;
+
+extern avp_ident_t avpid_code, avpid_reason, avpid_contact;
 
 #endif /* REG_MOD_H */
