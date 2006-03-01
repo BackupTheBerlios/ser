@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.43 2006/02/03 16:25:58 kubartv Exp $
+ * $Id: presentity.c,v 1.44 2006/03/01 07:45:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -950,12 +950,29 @@ static void process_watchers(presentity_t* _p, int *changed)
 			if (use_db) db_remove_watcher(_p, w);
 			free_watcher(w);
 			w = next;
+			_p->flags |= PFLAG_WATCHERINFO_CHANGED; /* terminated status could be set before */
 			if (changed) *changed = 1;
 		}
 		else {
 			prev = w;
 			w = w->next;
 		}
+	}
+}
+
+void remove_watcher_if_expired(presentity_t* _p, watcher_t *w)
+{
+	int winfo = 0;
+	if (!w) return;
+	
+	if (w->event_package == EVENT_PRESENCE_WINFO) winfo = 1;
+	
+	if (is_watcher_terminated(w)) {
+		if (use_db) db_remove_watcher(_p, w);
+		if (winfo) remove_winfo_watcher(_p, w);
+		else remove_watcher(_p, w);
+		free_watcher(w);
+		if (!winfo) _p->flags |= PFLAG_WATCHERINFO_CHANGED;
 	}
 }
 

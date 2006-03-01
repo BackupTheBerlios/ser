@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.31 2006/01/03 15:14:24 kubartv Exp $
+ * $Id: watcher.c,v 1.32 2006/03/01 07:45:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,6 +39,7 @@
 #include "watcher.h"
 #include "presentity.h"
 #include "auth.h"
+#include "ptime.h"
 
 str watcher_status_names[] = {
      [WS_PENDING] = STR_STATIC_INIT("pending"),
@@ -608,6 +609,14 @@ void free_watcher(watcher_t* _w)
 int update_watcher(struct presentity *p, watcher_t* _w, time_t _e)
 {
 	_w->expires = _e;
+	
+	/* actualize watcher's status according to time */
+	if (_w->expires <= act_time) {
+		/* ERR("Updated watcher to expire: %.*s\n", _w->uri.len, _w->uri.s); */
+		_w->expires = 0;
+		set_watcher_terminated_status(_w);
+	}
+	
 	/*if (_w->status == WS_PENDING) {*/
 	if (!is_watcher_terminated(_w)) {
 		/* do reauthorization for non-terminated watchers (policy may

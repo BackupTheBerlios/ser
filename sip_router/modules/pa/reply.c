@@ -1,7 +1,7 @@
 /*
  * Presence Agent, reply building
  *
- * $Id: reply.c,v 1.17 2006/02/21 11:37:57 kubartv Exp $
+ * $Id: reply.c,v 1.18 2006/03/01 07:45:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -212,5 +212,5 @@ int send_reply(struct sip_msg* _m)
 	if (tmb.t_reply(_m, code, msg) == -1) {
 		LOG(L_ERR, "send_reply(): Error while sending %d %s\n", code, msg);
 		return -1;
-	} else return 0;	
+	} else return 0;
 }

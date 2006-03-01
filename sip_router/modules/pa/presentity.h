@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.30 2006/02/02 17:05:45 kubartv Exp $
+ * $Id: presentity.h,v 1.31 2006/03/01 07:45:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -262,6 +262,9 @@ int add_winfo_watcher(presentity_t* _p, struct watcher* _w);
  * Remove a watcher from the winfo watcher list
  */
 int remove_winfo_watcher(presentity_t* _p, watcher_t* _w);
+
+/* removes winfo/normal watcher if expired */
+void remove_watcher_if_expired(presentity_t* _p, watcher_t *w);
 
 /*
  * Notify all winfo watchers in the list
