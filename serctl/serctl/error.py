@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.6 2006/02/21 21:34:27 hallik Exp $
+# $Id: error.py,v 1.7 2006/03/01 10:51:22 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -140,6 +140,10 @@ def set_excepthook(debug=False):
 		sys.excepthook = old_excepthook
 	else:
 		sys.excepthook = excepthook
+
+
+def warning(msg):
+	sys.stderr.write('WARNING: ' + str(msg) + '\n')
 
 old_excepthook = sys.excepthook
 set_excepthook(config.DEBUG)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.10 2006/02/22 22:53:21 hallik Exp $
+# $Id: ctlctl.py,v 1.11 2006/03/01 10:51:22 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,7 +15,8 @@ from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
 from serctl.ctldomain import Domain
 from serctl.ctluser   import User
-from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, ENODOMAIN
+from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
+                             ENODOMAIN, warning
 from serctl.options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
                              OPT_SER_URI, CMD, CMD_HELP, CMD_DOMAIN, CMD, \
                              CMD_ADD, CMD_RM, OPT_SSL_KEY, OPT_SSL_CERT, \
@@ -350,7 +351,10 @@ class Domain_ctl:
 
 	def _reload(self):
 		rpc = Xml_rpc(self.ser, self.ssl)
-		rpc.ser.domain.reload()
+		try:
+			rpc.ser.domain.reload()
+		except xmlrpclib.Fault, inst:
+			warning('Domain reloading fail: ' +  repr(inst))
 
 class User_ctl:
 	def __init__(self, dburi, seruri, ssl=None):

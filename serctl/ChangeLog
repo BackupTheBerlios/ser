@@ -1,3 +1,9 @@
+serctl (0.0.27)
+
+  * Domain reloading error changed to warning, in Domain_ctl class.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 01 Mar 2006 11:48:50 +0100
+
 serctl (0.0.26)
 
   * Added methods (and commands) for Xml_rpc: ps, version, uptime, kill.
