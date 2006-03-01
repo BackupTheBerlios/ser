@@ -1,5 +1,5 @@
 /*
- * $Id: mod_sanity.h,v 1.2 2006/02/12 18:10:34 calrissian Exp $
+ * $Id: mod_sanity.h,v 1.3 2006/03/01 16:02:11 janakj Exp $
  *
  * Sanity Checks Module
  *
@@ -32,6 +32,7 @@
 #define MOD_SANITY_CHK_H
 
 #include "../../str.h"
+#include "../sl/sl.h"
 #include "../../parser/msg_parser.h"
 
 #define SANITY_RURI_SIP_VERSION        (1<<0)
@@ -76,9 +77,6 @@ typedef struct _strlist strl;
 extern int default_checks;
 extern strl* proxyrequire_list;
 
-/*
- * sl_send_reply function pointer
- */
-int (*sl_reply)(struct sip_msg* _m, char* _s1, char* _s2);
+extern sl_api_t sl;
 
 #endif /* MOD_SANITY_CHK_H */

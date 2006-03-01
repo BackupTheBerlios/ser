@@ -1,5 +1,5 @@
 /*
- * $Id: sdlookup.c,v 1.6 2005/12/13 00:19:31 janakj Exp $
+ * $Id: sdlookup.c,v 1.7 2006/03/01 16:02:24 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -177,13 +177,13 @@ int sd_lookup(struct sip_msg* _msg, char* _table, char* _str2)
 	return 1;
 
 err_server:
-	if (sl_reply(_msg, (char*)500, "Server Internal Error") == -1)
+	if (sl.reply(_msg, 500, "Server Internal Error") == -1)
 	{
 		LOG(L_ERR, "sd_lookup: Error while sending reply\n");
 	}
 	return 0;
 err_badreq:
-	if (sl_reply(_msg, (char*)400, "Bad Request") == -1)
+	if (sl.reply(_msg, 400, "Bad Request") == -1)
 	{
 		LOG(L_ERR, "sd_lookup: Error while sending reply\n");
 	}

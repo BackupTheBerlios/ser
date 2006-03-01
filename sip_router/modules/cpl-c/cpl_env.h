@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_env.h,v 1.3 2005/02/17 23:48:06 bogdan Exp $
+ * $Id: cpl_env.h,v 1.4 2006/03/01 16:01:43 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -33,6 +33,7 @@
 
 #include "../../str.h"
 #include "../../usr_avp.h"
+#include "../sl/sl.h"
 #include "../usrloc/usrloc.h"
 #include "../tm/tm_load.h"
 
@@ -57,7 +58,7 @@ struct cpl_enviroment {
 struct cpl_functions {
 	struct tm_binds tmb;     /* Structure with pointers to tm funcs */
 	usrloc_api_t ulb;        /* Structure with pointers to usrloc funcs */
-	int (*sl_reply)(struct sip_msg* _m, char* _s1, char* _s2);
+	sl_api_t sl;             /* sl module functions */
 };
 
 extern struct cpl_enviroment cpl_env;
