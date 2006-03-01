@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.18 2005/11/30 16:51:30 janakj Exp $
+ * $Id: common.c,v 1.19 2006/03/01 16:00:22 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -109,5 +109,5 @@ int send_resp(struct sip_msg* msg, int code, char* reason,
 		}
 	}
 
-	return sl_reply(msg, (char*)(long)code, reason);
+	return sl.reply(msg, code, reason);
 }
