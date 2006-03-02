@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.27 2006/02/03 16:25:58 kubartv Exp $
+ * $Id: pdomain.c,v 1.28 2006/03/02 17:22:27 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -194,7 +194,7 @@ int find_presentity_uid(pdomain_t* _d, str* uid, struct presentity** _p)
 	struct presentity* p;
 	int res = 1;
 
-	if (!uid) return -1;
+	if ((!uid) || (!_p)) return -1;
 
 	sl = hash_func(_d, uid->s, uid->len);
 	

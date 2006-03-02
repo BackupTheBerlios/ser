@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.49 2006/03/01 07:45:24 kubartv Exp $
+ * $Id: subscribe.c,v 1.50 2006/03/02 17:22:27 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -882,7 +882,10 @@ int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2)
 	}
 
 	if (p) {
-		p->flags |= PFLAG_WATCHERINFO_CHANGED;
+		/* changed at least expiration times of watcher, they should be
+		 * present in watcher info notifications => sending notifications
+		 * is needed ! */
+		p->flags |= PFLAG_WATCHERINFO_CHANGED; 
 	}
 	if (w) {
 		w->flags |= WFLAG_SUBSCRIPTION_CHANGED;
@@ -892,10 +895,11 @@ int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2)
 	    (w ? w->event_package : -1), (w ? w->preferred_mimetype : -1), (p ? p->flags : -1), (w ? w->flags : -1), w);
 
 	/* process and change this presentity and notify watchers */
-/*	timer_presentity(p); */
 	if (p && w) {
 		/* immediately send NOTIFY */
 		send_notify(p, w);
+		w->flags &= ~WFLAG_SUBSCRIPTION_CHANGED; /* already notified */
+
 		/* remove terminated watcher otherwise he will 
 		 * receive another NOTIFY generated from timer_pdomain */
 		remove_watcher_if_expired(p, w);
