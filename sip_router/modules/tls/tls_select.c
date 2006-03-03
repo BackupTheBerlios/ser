@@ -1,7 +1,7 @@
 /*
- * $Id: tls_select.c,v 1.3 2006/03/03 12:35:41 janakj Exp $
+ * $Id: tls_select.c,v 1.4 2006/03/03 15:52:11 janakj Exp $
  *
- * TLS module select interface
+ * TLS module - select interface
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.

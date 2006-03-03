@@ -1,4 +1,8 @@
 /*
+ * $Id: tls_server.h,v 1.3 2006/03/03 15:52:11 janakj Exp $
+ *
+ * TLS module - main server part
+ *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.
  * Copyright (C) 2005,2006 iptelorg GmbH

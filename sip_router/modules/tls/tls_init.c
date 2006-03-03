@@ -1,5 +1,7 @@
 /*
- * $Id: tls_init.c,v 1.2 2006/03/03 11:26:53 janakj Exp $
+ * $Id: tls_init.c,v 1.3 2006/03/03 15:52:11 janakj Exp $
+ *
+ * TLS module - OpenSSL initialization funtions
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.
@@ -27,14 +29,11 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
 #include <stdio.h>
 #include <netinet/tcp.h>
 #include <netinet/ip.h>
 #include <unistd.h>
-
 #include <openssl/ssl.h>
-
  
 #include "../../dprint.h"
 #include "../../mem/shm_mem.h"
@@ -141,11 +140,6 @@ static void init_ssl_methods(void)
 	ssl_methods[TLS_USE_SSLv23_srv - 1] = SSLv23_server_method();
 	ssl_methods[TLS_USE_SSLv23 - 1] = SSLv23_method();
 }
-
-
-
-
-
 
 
 /*

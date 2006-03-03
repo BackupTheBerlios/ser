@@ -1,6 +1,8 @@
 /*
- * $Id: tls_server.c,v 1.4 2006/03/03 11:26:53 janakj Exp $
+ * $Id: tls_server.c,v 1.5 2006/03/03 15:52:11 janakj Exp $
  *
+ * TLS module - main server part
+ * 
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.
  * Copyright (C) 2005,2006 iptelorg GmbH
@@ -37,11 +39,11 @@
 #include "../../timer.h"
 #include "../../globals.h"
 
-#include "tls_server.h"
 #include "tls_init.h"
 #include "tls_domain.h"
 #include "tls_util.h"
 #include "tls_mod.h"
+#include "tls_server.h"
 
 /* 
  * finish the ssl init (creates the SSL and set extra_data to it)

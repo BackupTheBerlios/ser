@@ -1,7 +1,7 @@
 /*
- * $Id: tls_verify.c,v 1.1 2006/01/28 12:34:31 janakj Exp $
+ * $Id: tls_verify.c,v 1.2 2006/03/03 15:52:11 janakj Exp $
  *
- * TLS module select interface
+ * TLS module - certificate verification function
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.

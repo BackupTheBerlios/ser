@@ -1,7 +1,7 @@
 /*
- * $Id: tls_mod.h,v 1.3 2006/03/03 11:26:53 janakj Exp $
+ * $Id: tls_mod.h,v 1.4 2006/03/03 15:52:11 janakj Exp $
  *
- * TLS module interface
+ * TLS module - module interface
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.
