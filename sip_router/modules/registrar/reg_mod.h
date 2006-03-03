@@ -1,5 +1,5 @@
 /* 
- * $Id: reg_mod.h,v 1.23 2006/03/01 16:05:12 janakj Exp $ 
+ * $Id: reg_mod.h,v 1.24 2006/03/03 09:58:11 janakj Exp $ 
  *
  * registrar module interface
  *
@@ -50,7 +50,7 @@ extern int received_to_uri; /*copy received to uri, don't add it to dst_uri*/
 extern str rcv_param;
 extern int max_contacts;
 
-usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
+extern usrloc_api_t ul;  /* Structure containing pointers to usrloc functions */
 
 extern sl_api_t sl;
 
