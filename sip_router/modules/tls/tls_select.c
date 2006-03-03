@@ -1,5 +1,5 @@
 /*
- * $Id: tls_select.c,v 1.2 2006/01/30 16:05:39 janakj Exp $
+ * $Id: tls_select.c,v 1.3 2006/03/03 12:35:41 janakj Exp $
  *
  * TLS module select interface
  *
@@ -35,6 +35,7 @@
 #include "../../tcp_server.h"
 #include "../../tcp_conn.h"
 #include "../../ut.h"
+#include "tls_server.h"
 #include "tls_select.h"
 
 enum {
@@ -81,11 +82,14 @@ struct tcp_connection* get_cur_connection(struct sip_msg* msg)
 
 static SSL* get_ssl(struct tcp_connection* c)
 {
+	struct tls_extra_data* extra;
+
 	if (!c || !c->extra_data) {
 		ERR("Unable to extract SSL data from TLS connection\n");
 		return 0;
 	}
-	return (SSL*)c->extra_data;
+	extra = (struct tls_extra_data*)c->extra_data;
+	return extra->ssl;
 }
 
 
