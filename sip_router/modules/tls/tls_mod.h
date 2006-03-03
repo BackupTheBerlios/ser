@@ -1,5 +1,5 @@
 /*
- * $Id: tls_mod.h,v 1.2 2006/02/22 23:37:19 janakj Exp $
+ * $Id: tls_mod.h,v 1.3 2006/03/03 11:26:53 janakj Exp $
  *
  * TLS module interface
  *
@@ -34,6 +34,8 @@
 #define _TLS_MOD_H
 
 #include "../../str.h"
+#include "../../locking.h"
+#include "tls_domain.h"
 
 extern int tls_handshake_timeout;
 extern int tls_send_timeout;
@@ -41,6 +43,14 @@ extern int tls_conn_timeout;
 extern int tls_log;
 extern int tls_session_cache;
 extern str tls_session_id;
-extern char* tls_config;
+
+/* Current TLS configuration */
+extern tls_cfg_t** tls_cfg;
+extern gen_lock_t* tls_cfg_lock;
+
+extern tls_domain_t cli_defaults;
+extern tls_domain_t srv_defaults;
+
+extern str tls_cfg_file;
 
 #endif /* _TLS_MOD_H */

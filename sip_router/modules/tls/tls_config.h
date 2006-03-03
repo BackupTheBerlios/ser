@@ -1,5 +1,5 @@
 /*
- * $Id: tls_config.h,v 1.1 2006/02/22 23:37:19 janakj Exp $
+ * $Id: tls_config.h,v 1.2 2006/03/03 11:26:53 janakj Exp $
  *
  * TLS configuration file parser
  *
@@ -34,7 +34,14 @@
 #define _TLS_CONFIG_H
 
 #include "../../str.h"
+#include "tls_domain.h"
 
-int load_tls_config(char* filename);
+tls_cfg_t* tls_load_config(str* filename);
+
+/*
+ * Convert TLS method string to integer
+ */
+int tls_parse_method(str* method);
+
 
 #endif /* _TLS_CONFIG_H */

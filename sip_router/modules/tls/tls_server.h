@@ -30,6 +30,12 @@
 
 #include <stdio.h>
 #include "../../tcp_conn.h"
+#include "tls_domain.h"
+
+struct tls_extra_data {
+	tls_cfg_t* cfg; /* Configuration used for this connection */
+	SSL* ssl;       /* SSL context used for the connection */
+};
 
 /*
  * dump ssl error stack 

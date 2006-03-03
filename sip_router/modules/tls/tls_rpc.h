@@ -1,9 +1,11 @@
 /*
- * $Id: tls_init.h,v 1.2 2006/03/03 11:26:53 janakj Exp $
- * 
+ * $Id: tls_rpc.h,v 1.1 2006/03/03 11:26:53 janakj Exp $
+ *
+ * TLS module interface
+ *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2004,2005 Free Software Foundation, Inc.
- * Copyright (C) 2005,2006 iptelorg GmbH
+ * Copyright (C) 2005 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
@@ -27,37 +29,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef _TLS_INIT_H
-#define _TLS_INIT_H
+#include "../../rpc.h"
 
-#include <openssl/ssl.h>
-#include "../../ip_addr.h"
-#include "tls_domain.h"
-
-extern SSL_METHOD* ssl_methods[];
-
-
-/*
- * just once, initialize the tls subsystem 
- */
-int init_tls(void);
-
-
-/*
- * just once before cleanup 
- */
-void destroy_tls(void);
-
-
-/*
- * for each socket 
- */
-int tls_init(struct socket_info *si);
-
-/*
- * Make sure that all server domains in the configuration have corresponding
- * listening socket in SER
- */
-int tls_check_sockets(tls_cfg_t* cfg);
-
-#endif /* _TLS_INIT_H */
+extern rpc_export_t tls_rpc[];
