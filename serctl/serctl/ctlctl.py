@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.13 2006/03/01 18:33:04 hallik Exp $
+# $Id: ctlctl.py,v 1.14 2006/03/03 18:28:04 janakj Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -23,7 +23,7 @@ from serctl.options   import CMD_FLUSH, CMD_PURGE, OPT_DATABASE, CMD_PUBLISH, \
                              CMD_ADD, CMD_RM, OPT_SSL_KEY, OPT_SSL_CERT, \
                              CMD_USER, CMD_PASS, CMD_ALIAS, CMD_PS, \
                              CMD_VERSION, CMD_UPTIME, CMD_KILL, CMD_STAT, \
-                             CMD_RELOAD, CMD_USRLOC, CMD_SHOW
+                             CMD_RELOAD, CMD_USRLOC, CMD_SHOW, CMD_LIST_TLS
 from serctl.ctlrpc    import Xml_rpc
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab
@@ -72,6 +72,8 @@ def main(args, opts):
 		ret = usrloc(db, ser, ssl, args[3:], opts)
 	elif cmd == CMD_VERSION:
 		ret = version(ser, ssl, args[3:], opts)
+	elif cmd == CMD_LIST_TLS:
+		ret = list_tls(ser, ssl, args[3:], opts)
 	else:
 		raise Error (EINVAL, cmd)
 	return ret
@@ -106,6 +108,7 @@ Commands & parameters:
 	ser_ctl stat
 	ser_ctl uptime
 	ser_ctl version
+        ser_ctl list_tls
 
   - miscelaneous:
 	ser_ctl publish <uid> <file_with_PIDF_doc> <expires_in_sec> [etag]
@@ -311,6 +314,16 @@ def uptime(ser, ssl, args, opts):
 	ret, desc = dict2tab(ret, ('uptime', 'up_since', 'now'))
 	tabprint(ret, desc, rsep, lsep, astab)
 
+def list_tls(ser, ssl, args, opts):
+        cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	rpc = Xml_rpc(ser, ssl)
+	ret = rpc.tls_list()
+
+	desc = [ ('ID', '?', ''), ('Timeout', '?', ''), ('Source', '?', ''), ('Destination', '?', ''), ('TLS', '?', '') ]
+	ret = [ (str(s['id']), str(s['timeout']), s['src_ip'] + ':' + str(s['src_port']), s['dst_ip'] + ':' + str(s['dst_port']), s['tls']) for s in ret ]
+	tabprint(ret, desc, rsep, lsep, astab)
+
 def kill(ser, ssl, args, opts):
 	try:
 		sig = args[0]
@@ -355,6 +368,12 @@ def stat(ser, ssl, args, opts):
 
 	# FIX: page redesign
 
+#
+# janakj: FIXME: Is is necessary to run system.listMethods
+# and test for function availability ? Wouldn't just trying
+# to execute a function and catching corresponding exception
+# be enough ?
+#
 def reload(ser, ssl, args, opts):
 
 	rpc = Xml_rpc(ser, ssl)
@@ -363,6 +382,9 @@ def reload(ser, ssl, args, opts):
 
 	if 'domain.reload' in exist:
 		ret = rpc.ser.domain.reload()
+
+	if 'tls.reload' in exist:
+		ret = rpc.ser.tls.reload()
 
 	# FIX: what more?
 

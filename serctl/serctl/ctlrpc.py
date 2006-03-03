@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.5 2006/03/01 18:33:04 hallik Exp $
+# $Id: ctlrpc.py,v 1.6 2006/03/03 18:28:04 janakj Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -125,6 +125,9 @@ class Xml_rpc:
 
 	def usrloc_stats(self):
 		return self.ser.usrloc.stats()
+
+	def tls_list(self):
+		return self.ser.tls.list()
 
 class Fifo_rpc:
 	def __init__(self):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.13 2006/03/01 18:33:04 hallik Exp $
+# $Id: options.py,v 1.14 2006/03/03 18:28:04 janakj Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -45,6 +45,7 @@ CMD_USER       = 'user'
 CMD_USRLOC     = 'usrloc'
 CMD_UPTIME     = 'uptime'
 CMD_VERSION    = 'version'
+CMD_LIST_TLS   = 'list_tls'
 
 OPT_COLUMNS    = 'columns'
 OPT_COL_SEP    = 'csep'
@@ -275,6 +276,8 @@ CMD = {\
 	'ver'        : CMD_VERSION,
 	've'         : CMD_VERSION,
 	'v'          : CMD_VERSION,
+
+	'list_tls'   : CMD_LIST_TLS
 }
 
 OPT = {\
