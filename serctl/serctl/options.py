@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.14 2006/03/03 18:28:04 janakj Exp $
+# $Id: options.py,v 1.15 2006/03/04 12:15:18 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -198,6 +198,10 @@ CMD = {\
 	'ki'         : CMD_KILL,
 	'k'          : CMD_KILL,
 
+	'list_tls'   : CMD_LIST_TLS,
+	'list_tl'    : CMD_LIST_TLS,
+	'list_t'     : CMD_LIST_TLS,
+
 	'list'       : CMD_SHOW,
 	'lis'        : CMD_SHOW,
 	'li'         : CMD_SHOW,
@@ -250,6 +254,10 @@ CMD = {\
 	'sta'        : CMD_STAT,
 	'st'         : CMD_STAT,
 
+	'tls'        : CMD_LIST_TLS,
+	'tl'         : CMD_LIST_TLS,
+	't'          : CMD_LIST_TLS,
+
 	'uloc'       : CMD_USRLOC,
 	'ul'         : CMD_USRLOC,
 
@@ -276,8 +284,6 @@ CMD = {\
 	'ver'        : CMD_VERSION,
 	've'         : CMD_VERSION,
 	'v'          : CMD_VERSION,
-
-	'list_tls'   : CMD_LIST_TLS
 }
 
 OPT = {\

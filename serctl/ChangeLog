@@ -1,3 +1,10 @@
+serctl (0.0.29)
+
+  * List_tls command added. Thnx Jan.
+  * Abbreviations for list_tls command added.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.0.28)
 
   * Domain reload function updated.
