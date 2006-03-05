@@ -2,6 +2,7 @@ serctl (0.0.29)
 
   * List_tls command added. Thnx Jan.
   * Abbreviations for list_tls command added.
+  * Bugfix: default ser uri set to http://localhost:5060/ not https.
 
  -- Jan Halla <hallik@iptel.org> 
 

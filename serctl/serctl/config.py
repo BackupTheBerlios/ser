@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.12 2006/02/20 15:49:07 hallik Exp $
+# $Id: config.py,v 1.13 2006/03/05 13:02:30 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -38,7 +38,7 @@ ENV_DB = 'SERCTL_DB'
 #
 # Ser URI, this should be the SER URI for xmlrpc requests.
 #
-SER_URI = 'https://localhost:5060/'
+SER_URI = 'http://localhost:5060/'
 
 #
 # Name of environment variable used to pass the SER URI 
