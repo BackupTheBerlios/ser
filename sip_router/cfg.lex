@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.84 2006/02/15 17:29:18 mma Exp $
+ * $Id: cfg.lex,v 1.85 2006/03/06 23:59:28 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -708,3 +708,10 @@ static void count()
 	}
 }
 
+
+
+/* replacement yywrap, removes libfl dependency */
+int yywrap()
+{
+	return 1;
+}
