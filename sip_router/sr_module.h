@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.34 2006/03/01 12:00:48 janakj Exp $
+/* $Id: sr_module.h,v 1.35 2006/03/08 15:31:04 tma0 Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -127,7 +127,7 @@ typedef struct fparam {
         int type;                  /* Type of parameter */
         union {
 		char* asciiz;      /* Zero terminated ASCII string */
-		str str;           /* pointer/len string */
+		struct _str str;   /* pointer/len string */
 		int i;             /* Integer value */
 		regex_t* regex;    /* Compiled regular expression */
 		avp_ident_t avp;   /* AVP identifier */
