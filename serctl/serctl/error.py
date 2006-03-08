@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.7 2006/03/01 10:51:22 hallik Exp $
+# $Id: error.py,v 1.8 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,95 +12,47 @@
 #
 
 from errno  import *
-from serctl.config import config
+from serctl.config import NAME
 import os, sys
 
+ERRORS = (\
+#	('ECODE', 	'Description')
+
+	('ERESERVED',	'Reserved error code for testing'),
+	('ENODB',	'Database URI not specified'),
+	('EMISMATCH',	'Argument mismatch'),
+	('ENOARG',	'Argument required'),
+	('ENOUSER',	'User not exist'),
+	('ENODOMAIN',	'Domain not exist'),
+	('EIFLAG',	'Invalid flag'),
+	('EDUPL',	'Duplicated'),
+	('ENOCOL',	'Invalid column name'),
+	('ERMCANON',	'Canonical item can not be deleted'),
+	('EDOMAIN',	'Domain identifier in use'),
+	('ENOREC',	'No record found'),
+	('ENOUID',	'User identifier not exist'),
+	('ENODID',	'Domain identifier not exist'),
+	('EMULTICANON',	'Multiple specifications for canonical flag'),
+	('EUSER',	'User identifier in use'),
+	('EALL',	'For operation with ALL items use force flag'),
+	('EUMAP',	'Auth_username & realm mapped to many uids'),
+	('ENOSER',	'SER URI not specified'),
+	('ENOCANON',	'No canonical record found'),
+	('ENOALIAS',	'No username or alias found'),
+	('EICONF',	'Invalid config file parameter'),
+	('EINAME',	'Invalid program name invocation'),
+	('ENOHELP',	'Sorry, help not yet done'),
+	('EEXTRA',	'Unknown extra argument(s)'),
+	('ECOLSPEC',	'Invalid column specification'),
+)
+
+i = 384
 errorstr               = {}
-
-ERESERVED              = 384
-errorcode[ERESERVED]   = 'ERESERVED'
-errorstr[ERESERVED]    = 'Reserved error code for testing'
-
-ENODB                  = 385
-errorcode[ENODB]       = 'ENODB'
-errorstr[ENODB]        = 'Database URI not specified'
-
-EMISMATCH              = 386
-errorcode[EMISMATCH]   = 'EMISMATCH'
-errorstr[EMISMATCH]    = 'Argument mismatch'
-
-ENOARG                 = 387
-errorcode[ENOARG]      = 'ENOARG'
-errorstr[ENOARG]       = 'Argument required'
-
-ENOUSER                = 388
-errorcode[ENOUSER]     = 'ENOUSER'
-errorstr[ENOUSER]      = 'User not exist'
-
-ENODOMAIN              = 389
-errorcode[ENODOMAIN]   = 'ENODOMAIN'
-errorstr[ENODOMAIN]    = 'Domain not exist'
-
-EIFLAG                 = 390
-errorcode[EIFLAG]      = 'EIFLAG'
-errorstr[EIFLAG]       = 'Invalid flag'
-
-EDUPL                  = 391
-errorcode[EDUPL]       = 'EDUPL'
-errorstr[EDUPL]        = 'Duplicated'
-
-ENOCOL                 = 392
-errorcode[ENOCOL]      = 'ENOCOL'
-errorstr[ENOCOL]       = 'Invalid column name'
-
-ERMCANON               = 393
-errorcode[ERMCANON]    = 'ERMCANON'
-errorstr[ERMCANON]     = 'Canonical item can not be deleted'
-
-EDOMAIN                = 394
-errorcode[EDOMAIN]     = 'EDOMAIN'
-errorstr[EDOMAIN]      = 'Domain identifier in use'
-
-ENOREC                 = 395
-errorcode[ENOREC]      = 'ENOREC'
-errorstr[ENOREC]       = 'No record found'
-
-ENOUID                 = 396
-errorcode[ENOUID]      = 'ENOUID'
-errorstr[ENOUID]       = 'User identifier not exist'
-
-ENODID                 = 397
-errorcode[ENODID]      = 'ENODID'
-errorstr[ENODID]       = 'Domain identifier not exist'
-
-EMULTICANON            = 398
-errorcode[EMULTICANON] = 'EMULTICANON'
-errorstr[EMULTICANON]  = 'Multiple specifications for canonical flag'
-
-EUSER                  = 399
-errorcode[EUSER]       = 'EUSER'
-errorstr[EUSER]        = 'User identifier in use'
-
-EALL                   = 400
-errorcode[EALL]        = 'EALL'
-errorstr[EALL]         = 'For operation with ALL items use force flag'
-
-EUMAP                  = 401
-errorcode[EUMAP]       = 'EUMAP'
-errorstr[EUMAP]        = 'Auth_username & realm mapped to many uids'
-
-ENOSER                 = 402
-errorcode[ENOSER]      = 'ENOSER'
-errorstr[ENOSER]       = 'SER URI not specified'
-
-ENOCANON               = 403
-errorcode[ENOCANON]    = 'ENOCANON'
-errorstr[ENOCANON]     = 'No canonical record found'
-
-ENOALIAS               = 403
-errorcode[ENOALIAS]    = 'ENOALIAS'
-errorstr[ENOALIAS]     = 'No username or alias found'
-
+for erc, desc in ERRORS:
+	exec erc + ' = ' + str(i)
+	errorcode[i] = erc
+	errorstr[i]  = desc
+del i, erc, desc
 
 def strerror(err):
 	if err < 256:
@@ -127,17 +79,17 @@ def excepthook(type, value, traceback):
 	type  = str(type).split('.')[-1]
 	value = str(value)
 	if type == 'Error':
-		str_text = config.NAME + ': ' + value + '\n'
+		str_text = NAME + ': ' + value + '\n'
 	else:
 		if value:
-			str_text = config.NAME + ': ' + value + ': ' + type + '\n'
+			str_text = NAME + ': ' + value + ': ' + type + '\n'
 		else:
-			str_text = config.NAME + ': ' + type + '\n'
+			str_text = NAME + ': ' + type + '\n'
 	sys.stderr.write(str_text)
 
 def set_excepthook(debug=False):
 	if debug:
-		sys.excepthook = old_excepthook
+		sys.excepthook = orig_excepthook
 	else:
 		sys.excepthook = excepthook
 
@@ -145,6 +97,5 @@ def set_excepthook(debug=False):
 def warning(msg):
 	sys.stderr.write('WARNING: ' + str(msg) + '\n')
 
-old_excepthook = sys.excepthook
-set_excepthook(config.DEBUG)
-
+orig_excepthook = sys.excepthook
+set_excepthook()

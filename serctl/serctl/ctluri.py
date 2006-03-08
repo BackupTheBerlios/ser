@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.8 2006/03/01 18:33:04 hallik Exp $
+# $Id: ctluri.py,v 1.9 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,54 +12,18 @@
 #
 
 from serctl.dbany   import DBany
-from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
+from serctl.error   import Error, EDUPL, ENOCOL, EMULTICANON, \
                            ENODOMAIN, ENOUSER, ENOREC, ENOCANON, ENOALIAS
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, IS_TO, \
                            IS_FROM, flag_hex, CND_NO_CANONICAL
-from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
-                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
 from serctl.uri     import split_sip_uri
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
 import serctl.ctlhelp
 
-def main(args, opts):
-	if len(args) < 3:
-		print help(args, opts)
-		return
-	try:
-		cmd = CMD[args[2]]
-	except KeyError:
-		raise Error (EINVAL, args[2])
-	db  = opts[OPT_DATABASE]
-
-	if   cmd == CMD_ADD:
-		ret = add(db, args[3:], opts)
-	elif cmd == CMD_CANONICAL:
-		ret = canonical(db, args[3:], opts)
-	elif cmd == CMD_ENABLE:
-		ret = enable(db, args[3:], opts)
-	elif cmd == CMD_DISABLE:
-		ret = disable(db, args[3:], opts)
-	elif cmd == CMD_CHANGE:
-		ret = change(db, args[3:], opts)
-	elif cmd == CMD_RM:
-		ret = rm(db, args[3:], opts)
-	elif cmd == CMD_SHOW:
-		ret = show(db, args[3:], opts)
-	elif cmd == CMD_PURGE:
-		ret = purge(db, args[3:], opts)
-	elif cmd == CMD_HELP:
-		print help(args, opts)
-		return
-	else:
-		raise Error (EINVAL, cmd)
-	return ret
-
 def help(args, opts):
-	return """\
+	print """\
 Usage:
         ser_uri [options...] [--] [command] [param...]
 
@@ -75,116 +39,64 @@ Commands & parameters:
 	ser_uri show      [[[uri] uid] did]
 """ % serctl.ctlhelp.options(args, opts)
 
-def _get_uri(args, mandatory=True):
-	try:
-		uri = args[0]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'uri')
-		else:
-			uri = None
-	return uri
-
-
-def _get_uid(args, mandatory=True):
-	try:
-		uid = args[1]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'uid')
-		else:
-			uid = None
-	return uid
-
-def _get_did(args, mandatory=True):
-	try:
-		did = args[2]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'did')
-		else:
-			did = None
-	return did
-
-def show(db, args, opts):
-	uri = _get_uri(args, False)
-	uid = _get_uid(args, False)
-	did = _get_did(args, False)
-
+def show(uri=None, uid=None, did=None, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	u = Uri(db)
+	u = Uri(opts['DB_URI'])
 	uri_list, desc = u.show(uri, uid, did, cols=cols, raw=numeric, \
 	  limit=limit)
 
 	tabprint(uri_list, desc, rsep, lsep, astab)
 
-def add(db, args, opts):
-	uri = _get_uri(args)
-	uid = _get_uid(args)
-	did = _get_did(args, False)
+def add(uri, uid, did=None, **opts):
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	force = opts.has_key(OPT_FORCE)
-	flags = opts.get(OPT_FLAGS)
-
-	u = Uri(db)
+	u = Uri(opts['DB_URI'])
 	u.add(uri, uid, did, flags=flags, force=force)
 
-def change(db, args, opts):
-	uri = _get_uri(args, False)
-	uid = _get_uid(args, False)
-	did = _get_did(args, False)
+def change(uri=None, uid=None, did=None, **opts):
+	return _change(uri, uid, did, opts)
 
+def _change(uri=None, uid=None, did=None, **opts):
 	no_all(opts, uri, uid, did)
 
-	force = opts.has_key(OPT_FORCE)
-	flags = opts.get(OPT_FLAGS)
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	u = Uri(db)
+	u = Uri(opts['DB_URI'])
 	u.change(uri, uid, did, flags=flags, force=force)
 
-def rm(db, args, opts):
-	uri = _get_uri(args, False)
-	uid = _get_uid(args, False)
-	did = _get_did(args, False)
-
+def rm(uri=None, uid=None, did=None, **opts):
 	no_all(opts, uri, uid, did)
 
-	force = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-	u = Uri(db)
+	u = Uri(opts['DB_URI'])
 	u.rm(uri, uid, did, force=force)
 
-def enable(db, args, opts):
-	uri = _get_uri(args, False)
-	uid = _get_uid(args, False)
-	did = _get_did(args, False)
-
+def enable(uri=None, uid=None, did=None, **opts):
 	no_all(opts, uri, uid, did)
 
-	force = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-	u = Uri(db)
+	u = Uri(opts['DB_URI'])
 	u.enable(uri, uid, did, force=force)
 
-def disable(db, args, opts):
-	uri = _get_uri(args, False)
-	uid = _get_uid(args, False)
-	did = _get_did(args, False)
-
+def disable(uri=None, uid=None, did=None, **opts):
 	no_all(opts, uri, uid, did)
 
-	force = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-	u = Uri(db)
+	u = Uri(opts['DB_URI'])
 	u.disable(uri, uid, did, force=force)
 
-def canonical(db, args, opts):
+def canonical(uri=None, uid=None, did=None, **opts):
 	opts['flags'] = '+c'
-	return change(db, args, opts)
+	return _change(uri, uid, did, opts)
 
-def purge(db, args, opts):
-	u = Uri(db)
+def purge(**opts):
+	u = Uri(opts['DB_URI'])
 	u.purge()
 
 class Uri:

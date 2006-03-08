@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.10 2006/03/01 14:06:47 hallik Exp $
+# $Id: main.py,v 1.11 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -14,180 +14,119 @@ try:
 	from getopt         import gnu_getopt
 except:
 	from serctl.backports.getopt import gnu_getopt
-from serctl.config  import config
-from serctl.error   import Error, EINVAL, ENODB, ENOSYS, ENOSER, set_excepthook
-from serctl.options import *
+from serctl.error   import set_excepthook, Error, EINVAL, ENODB, ENOSYS, \
+                           ENOSER, ENOENT, EICONF, EINAME, ENOHELP, ENOARG, \
+                           EEXTRA
+from serctl.uri     import adjust_ser_uri
 from os.path        import basename
 import sys, os, os.path
+import serctl.options as opt
+import serctl.config as config
 
-def parse_opts(cmd_line):
-	lineopts, args = gnu_getopt(cmd_line, GETOPT_SHORT, GETOPT_LONG)
+
+def parse_cmdline(argv):
+	lineopts, args = gnu_getopt(argv, opt.GETOPT_SHORT, opt.GETOPT_LONG)
 	opts = {}
+	for o, desc in opt.OPT.items():
+		if len(desc) < 4: continue
+		opts[o] = desc[3]
 	for o, v in lineopts:
-		o = OPTS[o]
+		o = opt.OPTS[o]
+		if opt.OPT[o][2] is False:
+			v = True
 		opts[o] = v
 	return args, opts
-
-def module(name):
-	if not MOD.has_key(name):
-		return None
-	name = MOD[name]
-	if name == MOD_CTL:
-		import serctl.ctlctl
-		return serctl.ctlctl
-	if name == MOD_ATTR:
-		import serctl.ctlattr
-		return serctl.ctlattr
-	if name == MOD_CREDENTIAL:
-		import serctl.ctlcred
-		return serctl.ctlcred
-	if name == MOD_DB:
-		import serctl.ctldb
-		return serctl.ctldb
-	if name == MOD_DOMAIN:
-		import serctl.ctldomain
-		return serctl.ctldomain
-	if name == MOD_HELP:
-		import serctl.ctlhelp
-		return serctl.ctlhelp
-	if name == MOD_RPC:
-		import serctl.ctlrpc
-		return serctl.ctlrpc
-	if name == MOD_USER:
-		import serctl.ctluser
-		return serctl.ctluser
-	if name == MOD_URI:
-		import serctl.ctluri
-		return serctl.ctluri
-
-	# intercept module not in public release.
-	if name == MOD_INTERCEPT:
-		try:
-			import serctl.ctlintercept
-		except:
-			raise Error (ENOSYS, 'Interception control')
-		return serctl.ctlintercept
-
-	return None
 
 def handle_config(path = None):
 	if path is None:
 		path = config.CONFIG
-	if path is None or not os.path.exists(path):
-		return
+		if not os.path.exists(path):
+			return {}
+	elif not os.path.exists(path):
+		raise Error (ENOENT, path)
 	l = {}
 	execfile(path, {}, l)
-	for k, v in l.items():
-		config[k] = v
+	for k in l.keys():
+		if not opt.OPT.has_key(k):
+			raise Error (EICONF, k)
+	return l
 
-def handle_debug(opts):
-	if opts.has_key(OPT_DEBUG):
-		config.DEBUG = not config.DEBUG
-	set_excepthook(config.DEBUG)
-
-def handle_cmdname(args):
-	if not args:
-		return
-	name = basename(args[0])
-	name = name.lower().replace('_', '-')
-	if name.find('-') == -1:
-		return
-	mod = name.split('-')[1]
-	args.insert(1, mod)
-
-def handle_help(args, opts):
-	if not (args[1] == MOD_HELP or \
-	        opts.has_key(OPT_HELP)):
-		return
-	mod = module(args[1])
-	try:
-		print mod.help(args, opts)
-	except:
-		mod = module(MOD_HELP)
-		print mod.help(args, opts)
-	sys.exit(0)
-
-
-def handle_db(opts):
-	if opts.has_key(OPT_DATABASE):
-		return
-	db = os.getenv(config.ENV_DB)
-	if db:
-		opts[OPT_DATABASE] = db
-		return
-	try:
-		opts[OPT_DATABASE] = config.DB_URI
-	except:
-		raise Error (ENODB)
-
-def update_ser_uri(opts):
-	opts[OPT_SER_URI] = opts[OPT_SER_URI].strip()
-	if opts[OPT_SER_URI][:7] != 'http://' and \
-	   opts[OPT_SER_URI][:8] != 'https://':
-		opts[OPT_SER_URI] = 'http://' + opts[OPT_SER_URI]
+def handle_db_uri(opts):
+	if opts['DB_URI'] is not None:
+		return opts['DB_URI']
+	return os.getenv(opts['ENV_DB'], config.DB_URI)
 
 def handle_ser_uri(opts):
-	if opts.has_key(OPT_SER_URI):
-		return
-	db = os.getenv(config.ENV_SER)
-	if db:
-		opts[OPT_SER_URI] = db
-		return
-	try:
-		opts[OPT_SER_URI] = config.SER_URI
-	except:
-		raise Error (ENOSER)
+	if opts['SER_URI'] is not None:
+		return adjust_ser_uri(opts['SER_URI'])
+	uri = os.getenv(opts['SER_URI'], config.SER_URI)
+	return adjust_ser_uri(uri)
 
-def handle_ssl_key(opts):
-	if opts.has_key(OPT_SSL_KEY):
-		return
-	key = os.getenv(config.ENV_SSL_KEY)
-	if key:
-		opts[OPT_SSL_KEY] = key
-		return
-	try:
-		opts[OPT_SSL_KEY] = config.SSL_KEY
-	except:
-		pass
+def handle_module_name(cmd_name):
+	bname = basename(cmd_name)
+	name = bname.lower().replace('-', '_')
+	if name[:4] == "ser_":
+		return name[4:]
+	else:
+		raise Error (EINAME, bname)
 
-def handle_ssl_cert(opts):
-	if opts.has_key(OPT_SSL_CERT):
-		return
-	cert = os.getenv(config.ENV_SSL_CERT)
-	if cert:
-		opts[OPT_SSL_CERT] = cert
-		return
-	try:
-		opts[OPT_SSL_CERT] = config.SSL_CERT
-	except:
-		pass
+def module(name):
+	name = 'ctl' + name
+	pkgname = 'serctl.' + name
+	mod = __import__(pkgname)
+	mod = getattr(mod, name)
+	return mod
 
+def call(func, args, opts):
+	vars = func.func_code.co_varnames[:func.func_code.co_argcount]
+	n = len(vars)
+	x = len(args)
+	if func.func_defaults is None:
+		m = 0
+	else:
+		m = len(func.func_defaults)
+	if x < (n - m):
+		raise Error (ENOARG, vars[x])
+	if not (func.func_code.co_flags & 0x04) and x > n:
+		raise Error (EEXTRA, args[n:])
+	if func.func_code.co_flags & 0x08:
+		return apply(func, args, opts)
+	return apply(func, args)
 
 def main(argv):
-	args, opts = parse_opts(argv)
-
-	handle_config(opts.get(OPT_CONFIG))
-	handle_debug(opts)
-	handle_cmdname(args)
-
+	args, opts = parse_cmdline(argv)
+	set_excepthook(opts['DEBUG'])
+	new_opts = handle_config(opts['CONFIG'])
+	opts.update(new_opts)
+	set_excepthook(opts['DEBUG'])
 	if len(args) < 1:
 		raise Error (EINVAL)
-	if len(args) < 2:
-		args.append(MOD_HELP)
+	opts['DB_URI']  = handle_db_uri(opts)
+	opts['SER_URI'] = handle_ser_uri(opts)
+
+	modname = handle_module_name(args[0])
+	mod = module(modname)
+
+	errarg = None
 	try:
-		args[1] = MOD[args[1]]
-	except KeyError:
-		raise Error (EINVAL, args[1])
+		funcname = mod._handler_
+		args = args[1:]
+	except:
+		try:
+			errarg = args[1]
+			funcname = opt.CMD.get(args[1])
+		except IndexError:
+			funcname = 'help'
+		if opts['HELP']:
+			funcname = 'help'
+		args = args[2:]
 
-	handle_help(args, opts)
-	handle_db(opts)
-	handle_ser_uri(opts)
-	handle_ssl_key(opts)
-	handle_ssl_cert(opts)
-	update_ser_uri(opts)
+	try:
+		func = getattr(mod, funcname)
+	except:
+		if errarg:
+			raise Error (EINVAL, errarg)
+		else:
+			raise Error (EINVAL,)
 
-	mod = module(args[1])
-	if mod:
-		return mod.main(args, opts)
-	else:
-		raise Error (EINVAL, str(args[1]))
+	return call(func, args, opts)

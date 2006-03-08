@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.6 2006/03/03 18:28:04 janakj Exp $
+# $Id: ctlrpc.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,63 +11,53 @@
 # of the License, or (at your option) any later version.
 #
 
-from serctl.error     import Error, ENOARG, ENOSYS
+_handler_ = 'main'
+
+from serctl.error     import Error, ENOSYS
 from serctl.serxmlrpc import ServerProxy
-from serctl.options   import OPT_SSL_KEY, OPT_SSL_CERT, OPT_SER_URI, OPT_FIFO
 from serctl.utils     import show_opts, tabprint, var2tab
 import serctl.ctlhelp
 
-def main(args, opts):
-	if len(args) < 3:
-		print help(args, opts)
-		return
-
-	if opts.has_key(OPT_FIFO):
-		ret = fifo_rpc(args[2:], opts)
+def main(rpc_command=None, *args, **opts):
+	if opts['HELP'] or rpc_command==None:
+		return help()
+	if opts['FIFO']:
+		ret = fifo_rpc(rpc_command, args, opts)
 	else:
-		ret = xml_rpc(args[2:], opts)
+		ret = xml_rpc(rpc_command, args, opts)
         return ret
 
-def xml_rpc(args, opts):
-	if len(args) < 1:
-		raise Error, (ENOARG, 'rpc_command')
+def help(*tmp):
+	print """\
+Usage:
+	ser_rpc [options...] [--] <rpc_command> [rpc_params...]
 
-	ssl_key  = opts[OPT_SSL_KEY]
-	ssl_cert = opts[OPT_SSL_CERT]
-	ser_uri  = opts[OPT_SER_URI]
+%s
+""" % serctl.ctlhelp.options()
+
+def xml_rpc(cmd, args, opts):
+	ssl_key  = opts['SSL_KEY']
+	ssl_cert = opts['SSL_CERT']
+	ser_uri  = opts['SER_URI']
 
         cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
 	rpc = Xml_rpc(ser_uri, (ssl_key, ssl_cert))
 
-	cmd    = args[0]
-	params = args[1:]
-
-	ret = rpc.shell_cmd(cmd, params)
+	ret = rpc.shell_cmd(cmd, args)
 	if astab:
 		ret, desc = var2tab(ret)
 	        tabprint(ret, desc, rsep, lsep, astab)
 	else:
 		print repr(ret)
 	
-def fifo_rpc(args, opts):
-	if len(args) < 1:
-		raise Error, (ENOARG, 'rpc_command')
-
+def fifo_rpc(cmd, args, opts):
 	rpc = Fifo_rpc()
 
-	cmd    = args[0]
-	params = args[1:]
-
-	print rpc.shell_cmd(cmd, params)
+	# FIX: todo
+	print rpc.shell_cmd(cmd, args)
 	
 
-def help(args, opts):
-	return """\
-Usage:
-	ser_rpc [options...] [--] <rpc_command> [rpc_params...]
-%s
-""" % serctl.ctlhelp.options(args, opts)
 
 class Xml_rpc:
 	def __init__(self, ser_uri, ssl=None):
@@ -129,9 +119,13 @@ class Xml_rpc:
 	def tls_list(self):
 		return self.ser.tls.list()
 
+	def system_listmethods(self):
+		return self.ser.system.listMethods()
+
 class Fifo_rpc:
 	def __init__(self):
 		pass
 
+	# FIX: todo
 	def shell_cmd(self, cmd, par=[]):
-		raise Error (ENOSYS, 'fifo rpc call')
+		raise Error (ENOSYS, 'fifo-rpc-call')

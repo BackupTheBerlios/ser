@@ -1,26 +1,106 @@
-                          ================
-                             sertctl-ng
-                          ================
+                                   =======
+                                   sertctl
+                                   =======
 
-Serctl-ng is low-level utility for SER administration.
+Serctl is utility for SER administration.
+
+FILES
+=====
+ser_*			command line tools,
+serctl.conf		config file
+serctl/config.py	global variables definitions,
+serctl/ctl*.py		modules,
+serctl/dbbase.py	base class for db backends, any classes for acces to
+			database should be derived from this class,
+serctl/dbsql.py		universal wrapper for SQL databases (use this for
+			new SQL backends),
+serctl/dbany.py		db wrapper for all db backends (for acces to database
+			use class from this module, not directly classes from
+			dbmysql, dbpostgres, etc.),
+serctl/db*.py		db backends for individual databases,
+serctl/error.py		error codes and description definitions,
+serctl/flag.py		flags related functions,
+serctl/main.py		main script,
+serctl/opsql.py		backend independent database operators definitions,
+serctl/options.py	options, subcommands and their abbrevations,
+serctl/serxmlrpc.py	wrapper for xmlrpc for ser,
+serctl/uri.py		functions useful for uri manipulations
+serctl/utils.py		miscelaneous function
 
 
-INSTALLATION
-============
+HOW TO ADD NEW FUNCTIONALITY
+============================
 
-1. ...
+  * Add new name for serctl tool, if necessary.
+  * Add new constants (if needed) and their default values into config.py.
+  * Add new error definitions (if needed) into error.py.
+  * Add module and/or functions implementig required functionality.
+  * Add name of module's functions and options and their abbrevations 
+    to options.py.
+  * Add description for new options into ctlhelp.py.
 
+New name for tool:
+------------------
+Copy or link any ser_* command as new command ser_<modname>. Where <modname>
+is name of new module. (e.g. ln -s ser_user ser_tea)
 
-DOCUMENTATION
-=============
+New module:
+-----------
+Module is file of name ctl<modname>.py in serctl directory.
+Module (in this form) is automaticaly recognized and used.
+Module functions are called with apropriare parameters determined from
+command line and function definition. Example:
 
-...
+Command:
+
+	$> ser_tea brew green sweet lemon --quantity 0.5
+
+automaticaly call function 'brew' from module tea (serctl/ctltea.py).
+Function brew may be declared such as:
+
+	>>> def brew(type, sweetness='bitter', *ingredients, **opts):
+	>>>     if int(opts['QUANTITY']) > 2:
+        >>> 	    raise 'Sorry, I have not that tea-cup.'
+            ...
+
+Serctl automaticaly recognizes which positional parameters on command line
+are mandatory (declared without default value) and which are optional
+(declared with default value, or passed to argument list, e.g. ingredients
+above). Options are passed to keyword-argument (**opts) if function declare
+it. Checks if command line is correct was done before function call. Function
+itself needn't deal with them. When error is ocured when command line params
+are parsed parameter's name from funcion declaration is used to report which
+parameter can't be processed.
+E.g. with example above, when it's call (without mandatory parameter type):
+
+	$> ser_tea brew 
+
+Folowing exception will be raised:
+
+	$> ser_tea: type: Argument required
+
+Any functions that should be visible as commands must be added to CMD
+dictionary in options.py. See options.py.
+
+Errors and exceptions:
+----------------------
+Please, keep all error codes in upper case characters and in the form E*.
+
+Error may be invoked from code as exception:
+
+	>>> from serctl.error import Error, ECODE
+	>>> raise Error (ECODE, 'what')
+
+Where 'what' is short description what cause error - parameter name or value,
+for example. This parameter may be omitted.
 
 
 DEPENDENCIES
 ============
 
-...
+  * python 
+  * python-mysqldb
+  
 
 Python versions
 ---------------

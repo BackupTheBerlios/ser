@@ -1,10 +1,23 @@
-serctl (0.0.29)
+serctl (0.1.1)
 
-  * List_tls command added. Thnx Jan.
+  * System of internal module call simplified.
+  * Code cleanup.
+  * Some changes and minor inkompatibilities in options was made:
+    * Long options changed: --table to --as-table, --database to --db-uri,
+      --record-sep to --rec-sep, --config-file to --config.
+    * Option --column-sep (-S) was removed. (Column separator for -C option
+      hardwired as comma.)
+    * New options added:  --env-db (-B), --env-ser (-S).
+  * Configuration parameters (in config file) unified with options.
+  * Help improved, little bit.
+  * List_tls command added. Thnx, Jan.
   * Abbreviations for list_tls command added.
   * Bugfix: default ser uri set to http://localhost:5060/ not https.
+  * Reload command call all *.reload rpc-functions reported from server.
+  * Error definitions simplified.
+  * List_methods subcommand (ser_ctl) added.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Thu, 09 Mar 2006 00:09:06 +0100
 
 serctl (0.0.28)
 

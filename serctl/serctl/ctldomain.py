@@ -17,51 +17,16 @@ from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
-                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, timestamp
 import serctl.ctlhelp
 
-def main(args, opts):
-	if len(args) < 3:
-		print help(args, opts)
-		return
-	try:
-		cmd = CMD[args[2]]
-	except KeyError:
-		raise Error (EINVAL, args[2])
-	db  = opts[OPT_DATABASE]
-
-	if   cmd == CMD_ADD:
-		ret = add(db, args[3:], opts)
-	elif cmd == CMD_CANONICAL:
-		ret = canonical(db, args[3:], opts)
-	elif cmd == CMD_ENABLE:
-		ret = enable(db, args[3:], opts)
-	elif cmd == CMD_DISABLE:
-		ret = disable(db, args[3:], opts)
-	elif cmd == CMD_CHANGE:
-		ret = change(db, args[3:], opts)
-	elif cmd == CMD_RM:
-		ret = rm(db, args[3:], opts)
-	elif cmd == CMD_SHOW:
-		ret = show(db, args[3:], opts)
-	elif cmd == CMD_PURGE:
-		ret = purge(db, args[3:], opts)
-	elif cmd == CMD_HELP:
-		print help(args, opts)
-		return
-	else:
-		raise Error (EINVAL, cmd)
-	return ret
-
-def help(args, opts):
-	return """\
+def help(*tmp):
+	print """\
 Usage:
 	ser_domain [options...] [--] [command] [param...]
 
 %s
+
 Commands & parameters:
 	ser_domain add       <domain> <did>
 	ser_domain canonical [domain]
@@ -71,97 +36,68 @@ Commands & parameters:
 	ser_domain rm        [domain]
 	ser_domain purge
 	ser_domain show      [domain]
-""" % serctl.ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options()
 
-def _get_domain(args, mandatory=True):
-	try:
-		domain = args[0]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'domain')
-		else:
-			domain = None
-	return domain
 
-def _get_did(args, mandatory=True):
-	try:
-		did = args[1]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'did')
-		else:
-			did = None
-	return did
-
-def show(db, args, opts):
-	domain = _get_domain(args, False)
-	did    = _get_did(args, False)
-
+def show(domain=None, did=None, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	u = Domain(db)
+	u = Domain(opts['DB_URI'])
 	uri_list, desc = u.show(domain, cols=cols, raw=numeric, limit=limit)
 
 	tabprint(uri_list, desc, rsep, lsep, astab)
 
-def add(db, args, opts):
-	domain = _get_domain(args)
-	did    = _get_did(args)
+def add(domain, did, **opts):
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	force = opts.has_key(OPT_FORCE)
-	flags = opts.get(OPT_FLAGS)
-
-	u = Domain(db)
+	u = Domain(opts['DB_URI'])
 	u.add(domain, did, flags=flags, force=force)
 
-def change(db, args, opts):
-	domain = _get_domain(args, False)
-
+def _change(domain=None, **opts):
 	no_all(opts, domain)
 
-	force = opts.has_key(OPT_FORCE)
-	flags = opts.get(OPT_FLAGS)
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	u = Domain(db)
+	u = Domain(opts['DB_URI'])
 	u.change(domain, flags=flags, force=force)
 
-def rm(db, args, opts):
-	domain = _get_domain(args, False)
+def change(domain=None, **opts):
+	return _change(domain, opts)
 
+def rm(domain=None, **opts):
 	no_all(opts, domain)
 
-	force = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-	u = Domain(db)
+	u = Domain(opts['DB_URI'])
 	u.rm(domain, force=force)
 
-def enable(db, args, opts):
-	domain = _get_domain(args, False)
-
+def enable(domain=None, **opts):
 	no_all(opts, domain)
 
-	force = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-	u = Domain(db)
+	u = Domain(opts['DB_URI'])
 	u.enable(domain, force=force)
 
-def disable(db, args, opts):
-	domain = _get_domain(args, False)
-
+def disable(domain=None, **opts):
 	no_all(opts, domain)
 
-	force = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-	u = Domain(db)
+	u = Domain(opts['DB_URI'])
 	u.disable(domain, force=force)
 
-def canonical(db, args, opts):
-	opts['flags'] = '+c'
-	return change(db, args, opts)
+def canonical(domain, **opts):
+	opts['FLAGS'] = '+c'
+	return _change(domain, opts)
 
-def purge(db, args, opts):
-	u = Domain(db)
+def purge(**opts):
+	u = Domain(opts['DB_URI'])
 	u.purge()
+
 
 class Domain:
 	T_DOM = 'domain'

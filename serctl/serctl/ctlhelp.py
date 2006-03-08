@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.6 2006/02/15 18:51:28 hallik Exp $
+# $Id: ctlhelp.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,46 +11,70 @@
 # of the License, or (at your option) any later version.
 #
 
-def main(args, opts):
-	print help()
+from serctl.options import OPT
+import serctl, glob, os.path
 
-def options(args, opts):
-	return """\
-Options:
-	-b --database    : Database URI,
-	-c --config-file : Path to config file,
-	-C --columns     : Show only specified columns,
-	-d --disable     : Enable,
-	-e --enable      : Disable,
-	-f --force       : Ignore warnings, silent operations,
-	-F --flags       : Numeric or symbolic flags,
-	-g --debug       : Switch on/off python backtrace listing,
-	-h --help        : This text,
-	-j --fifo        : Use fifo instead xml-rpc,
-	-l --limit       : Show only limited number of records,
-	-L --line-sep    : Line separator (for show command),
-	-n --numeric     : Use numeric (raw) - not symbolic show,
-	-p --password    : Password,
-	-R --record-sep  : Record separator for show command,
-	-s --ser-uri     : Ser uri for xml-rpc operations,
-	-S --column-sep  : Column separator for -C option, (default is comma),
-	-t --table       : Show output as table,
-"""	
+OPT_DESC = {\
+	'AS_TABLE' : 'Show output as table',
+	'COLUMNS'  : 'Show only specified columns (comma separated)',
+	'CONFIG'   : 'Path to config file',
+	'DB_URI'   : 'Database URI',
+	'DEBUG'    : 'Switch on python backtrace listing',
+	'DISABLE'  : 'Enable',
+	'ENABLE'   : 'Disable',
+	'ENV_DB'   : 'Env var used to pass database uri', 
+	'ENV_SER'  : 'Env var used to pass ser uri', 
+	'FIFO'     : 'Use fifo instead xml-rpc',
+	'FLAGS'    : 'Numeric or symbolic flags',
+	'FORCE'    : 'Ignore non-fatal errors',
+	'HELP'     : 'This text',
+	'LIMIT'    : 'Show only limited number of records',
+	'LINE_SEP' : 'Line separator (show command)',
+	'NUMERIC'  : 'Use numeric (raw) - not symbolic show',
+	'PASSWORD' : 'Password',
+	'REC_SEP'  : 'Record separator (show command)',
+	'SER_URI'  : 'Ser uri for xml-rpc operations',
+	'SSL_CERT' : 'Path to ssl cert file',
+	'SSL_KEY'  : 'Path to ssl key file',
+}
 
-def help(args, opts):
-	return """\
-Usage:
-	ctlser     <module_name> [options...] [--] [[command] params...]
-	ser_ctl    [options...] [--] [[command] params...]
-	ser_cred   [options...] [--] [[command] params...]
-	ser_db     [options...] [--] [[command] params...]
-	ser_domain [options...] [--] [[command] params...]
-	ser_uri    [options...] [--] [[command] params...]
-	ser_user   [options...] [--] [[command] params...]
+def _gt(a, b):
+	if len(a) > len(b): return a
+	return b
+
+def options():
+	x = {}
+	for k, v in OPT.items():
+		x[v[0]] = k
+	keys = x.keys()
+	keys.sort()
+	keys = [ x[k] for k in keys ]
+	longs = [ OPT[k][1] for k in keys ]
+	n = len(reduce(_gt, longs)) + 1
+	opts = []
+	for k in keys:
+		desc = OPT_DESC.get(k, '')
+		o = '\t-' + OPT[k][0] + ', --' + OPT[k][1].ljust(n) + ': ' + desc
+		opts.append(o)
+
+	return 'Options:\n' + '\n'.join(opts)
+
+def modules():
+	exp = serctl.__path__[0] + '/ctl*.py'
+	files = glob.glob(exp)
+	names = [ os.path.basename(i)[:-3][3:] for i in files ]
+	names.sort()
+	n = len(reduce(_gt, names)) + 1
+	mods = [ '\tser_' + i.ljust(n) + '[options...] [--] [[command] params...]' \
+	         for i in names ]
+	return 'Usage:\n' + '\n'.join(mods)
+
+
+def help(*tmp):
+	print """\
+%s
 
 %s
-Commands:
-	add, canonical, change, enable, disable, purge, rm, show
 
-Use 'ser_<module_name> -h' or 'ctlser <module_name> -h' for module params specification.
-""" % options(args, opts)
+For module's commands and params description use 'ser_<module_name> -h'.
+""" % (modules(), options())

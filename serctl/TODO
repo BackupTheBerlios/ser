@@ -1,11 +1,19 @@
 Important:
 ==========
 
+  * Inteligently reformat return value for usrloc's show.
+
+  * Usrloc's code testing.
+
+  * Check and improve ssl stuff.
+
+  * Consider how simplify xml-rpc stuff.
+
   * Remove pending flag.
 
   * Ser_ctl flush command.
 
-  * Fifo module.
+  * Fifo rpc commands.
 
 Future:
 =======

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.6 2006/02/22 22:53:21 hallik Exp $
+# $Id: utils.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,9 +12,7 @@
 #
 
 from serctl.error   import Error, EINVAL, EMISMATCH, EALL
-from serctl.options import OPT_DATABASE, OPT_LIMIT, OPT_REC_SEP, OPT_LINE_SEP, \
-                           OPT_TABLE, OPT_COL_SEP, OPT_COLUMNS, OPT_FORCE, OPT_NUMERIC
-from serctl.config  import config
+from serctl.options import OPT
 from time    import strftime, gmtime
 import sys
 
@@ -35,7 +33,7 @@ def no_all(opts, *args):
 	for arg in args:
 		if arg is not None:
 			return
-	if opts.has_key(OPT_FORCE):
+	if opts['FORCE']:
 		return
 	raise Error (EALL, )
 
@@ -46,17 +44,14 @@ def unesc_psep(str):
 	return '\\'.join(li)
 
 def show_opts(opts):
-	limit = opts.get(OPT_LIMIT, 0)
-	rsep  = opts.get(OPT_REC_SEP, config.REC_SEP)
-	rsep  = unesc_psep(rsep)
-	lsep  = opts.get(OPT_LINE_SEP, config.LINE_SEP)
-	lsep  = unesc_psep(lsep)
-	astab = opts.has_key(OPT_TABLE)
-	csep  = opts.get(OPT_COL_SEP, config.COL_SEP)
-	cols  = opts.get(OPT_COLUMNS, '')
-	cols  = [ i.strip(config.WHITESP) for i in cols.split(csep) ]
+	limit = opts['LIMIT']
+	rsep  = unesc_psep(opts['REC_SEP'])
+	lsep  = unesc_psep(opts['LINE_SEP'])
+	astab = opts['AS_TABLE']
+	cols  = opts['COLUMNS']
+	cols  = [ i.strip(' \t') for i in cols.split(',') ]
 	cols  = filter(None, cols)
-	num   = opts.has_key(OPT_NUMERIC)
+	num   = opts['NUMERIC']
 	return (cols, num, limit, rsep, lsep, astab)
 
 def timestamp():
@@ -68,7 +63,7 @@ def idx_dict(lst):
 		idx[lst[i]] = i
 	return idx
 
-def tabprint(data, desc, rsep=config.REC_SEP, lsep=config.LINE_SEP, tab=False):
+def tabprint(data, desc, rsep=OPT['REC_SEP'][3], lsep=OPT['LINE_SEP'][3], tab=False):
 	if not tab:
 		for row in data:
 			line = rsep.join(row)

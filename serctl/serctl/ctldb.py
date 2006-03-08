@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctldb.py,v 1.2 2006/02/15 18:51:28 hallik Exp $
+# $Id: ctldb.py,v 1.3 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -12,86 +12,83 @@
 #
 
 from serctl.dbany   import DBany, DSC_NAME, DSC_DEFAULT
-from serctl.error   import Error, ENOARG, EINVAL
-from serctl.options import OPT_DATABASE, CMD_ADD, CMD_RM, CMD_SHOW, OPT_FORCE, \
-                           OPT_LIMIT, CMD, CMD_HELP
+from serctl.error   import Error, EALL, ECOLSPEC
 from serctl.utils   import show_opts, arg_pairs, tabprint
 import serctl.ctlhelp
 
-def main(args, opts):
-	if len(args) < 3:
-		print help(args, opts)
-		return
-	try:
-		cmd = CMD[args[2]]
-	except KeyError:
-		raise Error (EINVAL, args[2])
-	if cmd == CMD_HELP:
-		print help(args, opts)
-		return
-	db  = opts[OPT_DATABASE]
-	if len(args) < 4:
-		raise Error (ENOARG, '<table_name>')
-	tab = args[3]
-	if   cmd == CMD_ADD:
-		ret = add(db, tab, args[4:], opts)
-	elif cmd == CMD_RM:
-		ret = rm(db, tab, args[4:], opts)
-	elif cmd == CMD_SHOW:
-		ret = show(db, tab, args[4:], opts)
-        else:
-                raise Error (EINVAL, cmd)
-	return ret
-
-def help(args, opts):
-	return """
+def help(*tmp):
+	print """
 Usage:
-	ser_db [options...] [--] <add|rm|show> <table_name> [column_name column_value] ...
+	ser_db [options...] [--] add  <table_name> [column=value] ...
+	ser_db [options...] [--] rm   <table_name> [column=value] ...
+	ser_db [options...] [--] show <table_name> [column=value] ...
 
-""" + serctl.ctlhelp.options(args, opts)
+%s
 
-def show(db, tab, args, opts):
+Note:
+	This is a simple and stupid command. It's don't handle NULL value.
+	Column values are allways strings. Condition for rm or show is created
+	as list of column=value pairs simply joined together with AND operator.
+""" % serctl.ctlhelp.options()
 
+def _columns(args):
+	l = []
+	for arg in args:
+		x = arg.split('=', 1)
+		if len(x) < 2:
+			raise Error (ECOLSPEC, arg)
+		l += [x[0], x[1]]
+	return arg_pairs(l)
+
+def show(table_name, *args, **opts):
+	clist = _columns(args)[1]
 	cols, numeric, limit, rsep, lsep,  astab = show_opts(opts)
 
-	u = Db(db)
-	data, desc = u.show(tab, cols, None, limit)
+	u = Db(opts['DB_URI'])
+	data, desc = u.show(table_name, cols, clist, limit)
 
 	tabprint(data, desc, rsep, lsep, astab)
 
-def add(db, tab, args, opts):
-	arg = arg_pairs(args)[0]
+def add(table_name, *args, **opts):
+	cdict = _columns(args)[0]
 
-	u = Db(db)
-	u.add(tab, arg)
+	u = Db(opts['DB_URI'])
+	u.add(table_name, cdict)
 
-def rm(db, tab, args, opts):
-	arg = arg_pairs(args)[1]
+def rm(table_name, *args, **opts):
+	if (not args) and (not opts['FORCE']):
+		raise Error (EALL, )
 
-	limit = opts.get(OPT_LIMIT, 0)
+	clist = _columns(args)[1]
+	limit = opts['LIMIT']
 
-	u = Db(db)
-	u.rm(tab, arg, limit)
+	u = Db(opts['DB_URI'])
+	u.rm(table_name, clist, limit)
 
 class Db:
 
 	def __init__(self, dburi):
 		self.db = DBany(dburi)
 
+	def _simple_and_cond(self, cond):
+		if not cond:
+			return None
+		cnd = ['and']
+		for c in cond:
+			cnd.append(('=', c[0], c[1]))
+		return cnd
+
 	def show(self, tab, cols, cond, limit=0):
 		desc = self.db.describe(tab)
 		if not cols:
 			cols = desc.keys()
 		head = [ desc[i] for i in cols ]
-		return self.db.select(tab, cols, None, limit), head
+		cond = self._simple_and_cond(cond)
+		return self.db.select(tab, cols, cond, limit), head
 
 	def add(self, tab, ins):
 		self.db.insert(tab, ins)
 
 	def rm(self, tab, cond, limit=0):
-		if not cond:
-			return
-		cnd = ['and']
-		for c in cond:
-			cnd.append(('=', c[0], c[1]))
-		self.db.delete(tab, cnd, limit)
+		cond = self._simple_and_cond(cond)
+		self.db.delete(tab, cond, limit)

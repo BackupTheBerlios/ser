@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluser.py,v 1.6 2006/02/15 18:51:29 hallik Exp $
+# $Id: ctluser.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -19,49 +19,16 @@ from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, \
-                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, timestamp, no_all
 import serctl.ctlhelp
 
-def main(args, opts):
-	if len(args) < 3:
-		print help(args, opts)
-		return
-	try:
-		cmd = CMD[args[2]]
-	except KeyError:
-		raise Error (EINVAL, args[2])
-	db  = opts[OPT_DATABASE]
-
-	if   cmd == CMD_ADD:
-		ret = add(db, args[3:], opts)
-	elif cmd == CMD_ENABLE:
-		ret = enable(db, args[3:], opts)
-	elif cmd == CMD_DISABLE:
-		ret = disable(db, args[3:], opts)
-	elif cmd == CMD_CHANGE:
-		ret = change(db, args[3:], opts)
-	elif cmd == CMD_RM:
-		ret = rm(db, args[3:], opts)
-	elif cmd == CMD_SHOW:
-		ret = show(db, args[3:], opts)
-	elif cmd == CMD_PURGE:
-		ret = purge(db, args[3:], opts)
-	elif cmd == CMD_HELP:
-		print help(args, opts)
-		return
-	else:
-		raise Error (EINVAL, cmd)
-	return ret
-
-def help(args, opts):
-	return """\
+def help(*tmp):
+	print """\
 Usage:
 	ser_user [options...] [--] [command] [param...]
 
 %s
+
 Commands & parameters:
 	ser_user add     <user>
 	ser_user change  [user] [-F flags]
@@ -70,72 +37,51 @@ Commands & parameters:
 	ser_user rm      [user]
 	ser_user purge
 	ser_user show    [user]
-""" % serctl.ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options()
 
-def _get_uid(args, mandatory=True):
-	try:
-		uid = args[0]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'uid')
-		else:
-			uid = None
-	return uid
 
-def show(db, args, opts):
-	uid = _get_uid(args, False)
-
+def show(uid=None, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	u = User(db)
+	u = User(opts['DB_URI'])
 	uri_list, desc = u.show(uid, cols=cols, raw=numeric, limit=limit)
 
 	tabprint(uri_list, desc, rsep, lsep, astab)
 
-def add(db, args, opts):
-	uid = _get_uid(args)
+def add(uid, **opts):
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	force = opts.has_key(OPT_FORCE)
-	flags = opts.get(OPT_FLAGS)
-
-	u = User(db)
+	u = User(opts['DB_URI'])
 	u.add(uid, flags=flags, force=force)
 
-def change(db, args, opts):
-	uid = _get_uid(args, False)
+def change(uid=None, **opts):
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	force = opts.has_key(OPT_FORCE)
-	flags = opts.get(OPT_FLAGS)
-
-	u = User(db)
+	u = User(opts['DB_URI'])
 	u.change(uid, flags=flags, force=force)
 
-def rm(db, args, opts):
-	uid = _get_uid(args, False)
+def rm(uid=None, **opts):
+	force = opts['FORCE']
 
-	force = opts.has_key(OPT_FORCE)
-
-	u = User(db)
+	u = User(opts['DB_URI'])
 	u.rm(uid, force=force)
 
-def enable(db, args, opts):
-	uid = _get_uid(args, False)
+def enable(uid=None, **opts):
+	force = opts['FORCE']
 
-	force = opts.has_key(OPT_FORCE)
-
-	u = User(db)
+	u = User(opts['DB_URI'])
 	u.enable(uid, force=force)
 
-def disable(db, args, opts):
-	uid = _get_uid(args, False)
+def disable(uid=None, **opts):
+	force = opts['FORCE']
 
-	force = opts.has_key(OPT_FORCE)
-
-	u = User(db)
+	u = User(opts['DB_URI'])
 	u.disable(uid, force=force)
 
-def purge(db, args, opts):
-	u = User(db)
+def purge(**opts):
+	u = User(opts['DB_URI'])
 	u.purge()
 
 class User:

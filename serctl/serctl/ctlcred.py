@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.6 2006/02/15 18:51:28 hallik Exp $
+# $Id: ctlcred.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -17,49 +17,17 @@ from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from serctl.options import CMD_ADD, CMD_CANONICAL, CMD_DISABLE, CMD_ENABLE, CMD_HELP, \
-                           CMD_CHANGE, CMD_RM, CMD_SHOW, CMD_PURGE, OPT_PASSWORD, \
-                           OPT_DATABASE, OPT_FORCE, OPT_LIMIT, OPT_FLAGS, CMD
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
 import md5, serctl.ctlhelp
 
-def main(args, opts):
-	if len(args) < 3:
-		print help(args, opts)
-		return
-	try:
-		cmd = CMD[args[2]]
-	except KeyError:
-		raise Error (EINVAL, args[2])
-	db  = opts[OPT_DATABASE]
 
-	if   cmd == CMD_ADD:
-		ret = add(db, args[3:], opts)
-	elif cmd == CMD_ENABLE:
-		ret = enable(db, args[3:], opts)
-	elif cmd == CMD_DISABLE:
-		ret = disable(db, args[3:], opts)
-	elif cmd == CMD_CHANGE:
-		ret = change(db, args[3:], opts)
-	elif cmd == CMD_RM:
-		ret = rm(db, args[3:], opts)
-	elif cmd == CMD_SHOW:
-		ret = show(db, args[3:], opts)
-	elif cmd == CMD_PURGE:
-		ret = purge(db, args[3:], opts)
-	elif cmd == CMD_HELP:
-		print help(args, opts)
-		return
-	else:
-		raise Error (EINVAL, cmd)
-	return ret
-
-def help(args, opts):
-	return """\
+def help(*tmp):
+	print """\
 Usage:
 	ser_cred [options...] [--] [command] [param...]
 
 %s
+
 Commands & parameters:
 	ser_cred add     <auth_username> <realm> <uid> <password>
 	ser_cred change  [[[auth_username] realm] uid] [-p password] [-F flags]
@@ -68,128 +36,66 @@ Commands & parameters:
 	ser_cred rm      [[[auth_username] realm] uid]
 	ser_cred purge
 	ser_cred show    [[[auth_username] realm] uid]
-""" % serctl.ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options()
 
-def _get_username(args, mandatory=True):
-	try:
-		username = args[0]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'auth_username')
-		else:
-			username = None
-	return username
 
-def _get_realm(args, mandatory=True):
-	try:
-		realm = args[1]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'realm')
-		else:
-			realm = None
-	return realm
-
-def _get_uid(args, mandatory=True):
-	try:
-		uid = args[2]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'uid')
-		else:
-			uid = None
-	return uid
-
-def _get_pass(args, mandatory=True):
-	try:
-		password = args[3]
-	except:
-		if mandatory:
-			raise Error (ENOARG, 'password')
-		else:
-			password = None
-	return password
-
-def show(db, args, opts):
-	username = _get_username(args, False)
-	realm    = _get_realm(args, False)
-	uid      = _get_uid(args, False)
+def show(auth_username=None, realm=None, uid=None, **opts):
 
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	u = Cred(db)
-	cred_list, desc = u.show(username, realm, uid, cols=cols, \
+	u = Cred(opts['DB_URI'])
+	cred_list, desc = u.show(auth_username, realm, uid, cols=cols, \
 	  raw=numeric, limit=limit)
 
 	tabprint(cred_list, desc, rsep, lsep, astab)
 
-def add(db, args, opts):
-	username = _get_username(args)
-	realm    = _get_realm(args)
-	uid      = _get_uid(args)
-	password = opts.get(OPT_PASSWORD)
+def add(auth_username, realm, uid, password=None, **opts):
+	password = opts.get('PASSWORD', password)
 	if password is None:
-		password = _get_pass(args)
+		raise Error (ENOARG, 'password')
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	force    = opts.has_key(OPT_FORCE)
-	flags    = opts.get(OPT_FLAGS)
+	u = Cred(opts['DB_URI'])
+	u.add(auth_username, realm, uid, password, flags=flags, force=force)
 
-	u = Cred(db)
-	u.add(username, realm, uid, password, flags=flags, force=force)
+def change(auth_username=None, realm=None, uid=None, password=None, **opts):
+	password = opts.get('PASSWORD', password)
 
-def change(db, args, opts):
-	username = _get_username(args, False)
-	realm    = _get_realm(args, False)
-	uid      = _get_uid(args, False)
-	password = _get_pass(args, False)
+	no_all(opts, auth_username, realm, uid)
 
-	no_all(opts, username, realm, uid)
+	force = opts['FORCE']
+	flags = opts['FLAGS']
 
-	force    = opts.has_key(OPT_FORCE)
-	flags    = opts.get(OPT_FLAGS)
-	password = opts.get(OPT_PASSWORD, password)
+	u = Cred(opts['DB_URI'])
+	u.change(auth_username, realm, uid, password, flags=flags, force=force)
 
-        u = Cred(db)
-        u.change(username, realm, uid, password, flags=flags, force=force)
+def rm(auth_username=None, realm=None, uid=None, **opts):
+	no_all(opts, auth_username, realm, uid)
 
-def rm(db, args, opts):
-	username = _get_username(args, False)
-	realm    = _get_realm(args, False)
-	uid      = _get_uid(args, False)
+	force = opts['FORCE']
 
-	no_all(opts, username, realm, uid)
+	u = Cred(opts['DB_URI'])
+	u.rm(auth_username, realm, uid, force=force)
 
-	force = opts.has_key(OPT_FORCE)
+def enable(auth_username=None, realm=None, uid=None, **opts):
+	no_all(opts, auth_username, realm, uid)
 
-	u = Cred(db)
-	u.rm(username, realm, uid, force=force)
+	force = opts['FORCE']
 
-def enable(db, args, opts):
-	username = _get_username(args, False)
-	realm    = _get_realm(args, False)
-	uid      = _get_uid(args, False)
+	u = Cred(opts['DB_URI'])
+	u.enable(auth_username, realm, uid, force=force)
 
-	no_all(opts, username, realm, uid)
+def disable(auth_username=None, realm=None, uid=None, **opts):
+	no_all(opts, auth_username, realm, uid)
 
-	force    = opts.has_key(OPT_FORCE)
+	force = opts['FORCE']
 
-        u = Cred(db)
-        u.enable(username, realm, uid, force=force)
+	u = Cred(opts['DB_URI'])
+	u.disable(auth_username, realm, uid, force=force)
 
-def disable(db, args, opts):
-	username = _get_username(args, False)
-	realm    = _get_realm(args, False)
-	uid      = _get_uid(args, False)
-
-	no_all(opts, username, realm, uid)
-
-	force    = opts.has_key(OPT_FORCE)
-
-        u = Cred(db)
-        u.disable(username, realm, uid, force=force)
-
-def purge(db, args, opts):
-	u = Cred(db)
+def purge(**opts):
+	u = Cred(opts['DB_URI'])
 	u.purge()
 
 class Cred:
