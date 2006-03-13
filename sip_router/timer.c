@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.18 2006/02/20 23:30:47 andrei Exp $
+ * $Id: timer.c,v 1.19 2006/03/13 20:20:48 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -56,6 +56,15 @@
 #endif
 #include "locking.h"
 
+#ifdef HAVE_SCHED_YIELD
+#include <sched.h>
+#else
+#include <unistd.h>
+	/* fake sched_yield */
+#ifndef sched_yield()
+#define sched_yield()	sleep(0)
+#endif
+#endif
 
 
 
