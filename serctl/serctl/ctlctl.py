@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.15 2006/03/08 23:27:52 hallik Exp $
+# $Id: ctlctl.py,v 1.16 2006/03/13 08:44:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -190,7 +190,7 @@ def ps(**opts):
 	rpc = _rpc(opts)
 	ret = rpc.core_ps()
 
-	desc = [ ('id', '?', ''), ('process description', '?', '') ]
+	desc = [ ('id', None, ''), ('process description', None, '') ]
 	ret = [ (str(a), b) for a, b in ret ]
 	tabprint(ret, desc, rsep, lsep, astab)
 
@@ -218,8 +218,12 @@ def list_tls(**opts):
 	rpc = _rpc(opts)
 	ret = rpc.tls_list()
 
-	desc = [ ('ID', '?', ''), ('Timeout', '?', ''), ('Source', '?', ''), ('Destination', '?', ''), ('TLS', '?', '') ]
-	ret = [ (str(s['id']), str(s['timeout']), s['src_ip'] + ':' + str(s['src_port']), s['dst_ip'] + ':' + str(s['dst_port']), s['tls']) for s in ret ]
+	desc = [ ('ID', None, ''),     ('Timeout', None, ''), \
+	         ('Source', None, ''), ('Destination', None, ''), \
+	         ('TLS', None, '') ]
+	ret = [ (str(s['id']), str(s['timeout']), \
+	        s['src_ip'] + ':' + str(s['src_port']), \
+	        s['dst_ip'] + ':' + str(s['dst_port']), s['tls']) for s in ret ]
 	tabprint(ret, desc, rsep, lsep, astab)
 
 def kill(sig=15, **opts):

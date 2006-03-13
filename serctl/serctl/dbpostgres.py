@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbpostgres.py,v 1.5 2006/02/15 18:51:29 hallik Exp $
+# $Id: dbpostgres.py,v 1.6 2006/03/13 08:44:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -43,8 +43,8 @@ class DBpostgres(DBsql):
                 descs = {}
                 for row in db.fetchall():
 			name    = row[0]
-			type    = '?'   # FIX: not-implemented
-			default = '?'   # FIX: not-implemented
+			type    = None   # FIX: not-implemented
+			default = None   # FIX: not-implemented
 			descs[name] = (name, type, default, )
                 db.close()
                 return descs

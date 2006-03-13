@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
+# $Id: utils.py,v 1.8 2006/03/13 08:44:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -109,17 +109,17 @@ def tabprint(data, desc, rsep=OPT['REC_SEP'][3], lsep=OPT['LINE_SEP'][3], tab=Fa
 def var2tab(data, dsc=None):
 	if type(data) == dict:
 		ret  = [ (str(k), str(v)) for k, v in data.items() ]
-		desc = [ ('key', '?', ''), ('value', '?', '') ]
+		desc = [ ('key', None, ''), ('value', None, '') ]
 	elif type(data) == tuple or type(data) == list:
 		ret  = [ (str(i), ) for i in data ]
-		desc = [ ('value', '?', ''), ]
+		desc = [ ('value', None, ''), ]
 	else:
 		ret  = [ (str(data), ) ] 
-		desc = [ ('value', '?', ''), ]
+		desc = [ ('value', None, ''), ]
 	if dsc is not None:
 		if type(dsc) == str:
 			dsc = [dsc,]
-		desc = [ (i, '?', '') for i in dsc ]
+		desc = [ (i, None, '') for i in dsc ]
 	return ret, desc
 
 def dict2tab(data, keys=None, dsc=None):
@@ -132,6 +132,6 @@ def dict2tab(data, keys=None, dsc=None):
 	for k in keys:
 		ret.append(str(data[k]))
 	ret = [ret]
-	desc = [ (i, '?', '') for i in dsc ]
+	desc = [ (i, None, '') for i in dsc ]
 	return ret, desc
 

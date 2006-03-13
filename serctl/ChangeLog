@@ -1,3 +1,10 @@
+serctl (0.1.2)
+
+  * Minor code cleanup.
+  * Stupid bug fixed: error code number is not only 384 ;)
+
+ -- Jan Halla <hallik@iptel.org> Mon, 13 Mar 2006 09:43:23 +0100
+
 serctl (0.1.1)
 
   * System of internal module call simplified.

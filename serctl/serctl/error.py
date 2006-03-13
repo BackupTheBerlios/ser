@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.8 2006/03/08 23:27:52 hallik Exp $
+# $Id: error.py,v 1.9 2006/03/13 08:44:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -52,6 +52,7 @@ for erc, desc in ERRORS:
 	exec erc + ' = ' + str(i)
 	errorcode[i] = erc
 	errorstr[i]  = desc
+	i += 1
 del i, erc, desc
 
 def strerror(err):
