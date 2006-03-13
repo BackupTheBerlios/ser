@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.c,v 1.1 2006/02/23 19:57:31 andrei Exp $
+ * $Id: fifo_server.c,v 1.2 2006/03/13 10:24:54 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1313,6 +1313,7 @@ static int rpc_printf(rpc_ctx_t* ctx, char* fmt, ...)
 				goto err;
 			}
 			append_chunk(ctx, l);
+			pkg_free(buf);
 			return 0;
 		}
 		     /* Else try again with more space. */
