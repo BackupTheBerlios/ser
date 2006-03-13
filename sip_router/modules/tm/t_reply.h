@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.21 2005/12/21 17:25:32 janakj Exp $
+ * $Id: t_reply.h,v 1.22 2006/03/13 08:48:45 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -72,6 +72,9 @@ typedef int (*treply_f)(struct sip_msg * , unsigned int , char * );
 typedef int (*treply_wb_f)( struct cell* trans,
 	unsigned int code, char * text, char * body, 
 	char * new_header, char * to_tag);
+
+/* wrapper function needed after changes in w_t_reply */
+int w_t_reply_wrp(struct sip_msg *m, unsigned int code, char *txt);
 
 #define LOCK_REPLIES(_t) lock(&(_t)->reply_mutex )
 #define UNLOCK_REPLIES(_t) unlock(&(_t)->reply_mutex )

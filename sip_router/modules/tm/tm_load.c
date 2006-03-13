@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.25 2006/03/01 16:29:39 janakj Exp $
+ * $Id: tm_load.c,v 1.26 2006/03/13 08:48:45 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -71,10 +71,12 @@ int load_tm( struct tm_binds *tmb)
 		LOG(L_ERR, LOAD_ERROR "'t_relay' not found\n");
 		return -1;
 	}
-	if (!(tmb->t_reply=(treply_f)find_export(T_REPLY, 2, 0)) ) {
+/*	if (!(tmb->t_reply=(treply_f)find_export(T_REPLY, 2, 0)) ) {
 		LOG( L_ERR, LOAD_ERROR "'t_reply' not found\n");
 		return -1;
-	}
+	}*/
+	tmb->t_reply = w_t_reply_wrp;
+	
 	if (!(tmb->t_reply_with_body=(treply_wb_f)find_export
 	(T_REPLY_WB, NO_SCRIPT, 0)) ) {
 		LOG( L_ERR, LOAD_ERROR "'t_reply_with_body' not found\n");
