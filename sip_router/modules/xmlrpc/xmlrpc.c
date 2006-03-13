@@ -1,5 +1,5 @@
 /*
- * $Id: xmlrpc.c,v 1.10 2006/03/01 16:02:34 janakj Exp $
+ * $Id: xmlrpc.c,v 1.11 2006/03/13 10:47:12 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -840,6 +840,7 @@ static int rpc_printf(rpc_ctx_t* ctx, char* fmt, ...)
 			if (add_xmlrpc_reply(reply, &string_suffix) < 0) goto err;
 			if (ctx->flags & RET_ARRAY && add_xmlrpc_reply(reply, &value_suffix) < 0) goto err;
 			if (add_xmlrpc_reply(reply, &lf) < 0) goto err;
+			pkg_free(buf);
 			return 0;
 		}
 		     /* Else try again with more space. */
