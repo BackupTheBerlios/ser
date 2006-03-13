@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.85 2006/03/01 16:29:39 janakj Exp $
+ * $Id: h_table.h,v 1.86 2006/03/13 15:43:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -183,7 +183,7 @@ struct totag_elem {
 /* transaction canceled */
 #define T_CANCELED           (1<<3)
 
-#define T_IN_AGONY (1<<3) /* set if waiting to die (delete timer)
+#define T_IN_AGONY (1<<4) /* set if waiting to die (delete timer)
                              TODO: replace it with del on unref */
 
 /* transaction context */
