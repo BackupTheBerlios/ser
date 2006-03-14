@@ -1,3 +1,11 @@
+serctl (0.1.3)
+
+  * Ser_ctl stat output changed.
+  * Environment variable SERCTL_SER processing fixed.
+  * Bugfix, added forgotten CONFIG variable into config.py.
+
+ -- Jan Halla <hallik@iptel.org> Tue, 14 Mar 2006 10:06:56 +0100
+
 serctl (0.1.2)
 
   * Minor code cleanup.

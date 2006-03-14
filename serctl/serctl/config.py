@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.14 2006/03/08 23:27:52 hallik Exp $
+# $Id: config.py,v 1.15 2006/03/14 09:11:10 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -16,7 +16,12 @@ import sys, os.path
 ### --- Global variable definitions --- ###
 
 #
-# Database URI, this should be the SER database
+# Default config file path.
+#
+CONFIG = '/etc/serctl/serctl.conf'
+
+#
+# Database URI, this should be the SER database.
 #
 DB_URI = 'mysql://ser:heslo@localhost/ser'
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.16 2006/03/13 08:44:20 hallik Exp $
+# $Id: ctlctl.py,v 1.17 2006/03/14 09:11:10 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -23,6 +23,14 @@ from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab
 import serctl.ctlhelp, xmlrpclib
+
+# xml-rpc method used in stats function (+ all *.stats)
+STATS = [ \
+	'core.uptime', 
+	'core.shmmem',
+	'core.tcp_info',
+]
+
 
 def help(*tmp):
 	print """\
@@ -237,33 +245,22 @@ def stat(**opts):
 
 	rpc = _rpc(opts)
 
-	# FIX: determine what exists
-	uptime      = rpc.core_uptime()
-	shmmem      = rpc.core_shmmem()
-	tcpinfo     = rpc.core_tcp_info()
-	slstats     = rpc.sl_stats()
-	tmstats     = rpc.tm_stats()
-	usrlocstats = rpc.usrloc_stats()
+	estats = [ i for i in rpc.ser.system.listMethods() if i[-6:] == '.stats' ]
+	exists = [ i for i in rpc.ser.system.listMethods() if i in STATS ] + estats
 
-	ret, desc = dict2tab(uptime, ('uptime', 'up_since', 'now'))
-	tabprint(ret, desc, rsep, lsep, astab)
-
-	ret, desc = dict2tab(shmmem)
-	tabprint(ret, desc, rsep, lsep, astab)
-
-	ret, desc = dict2tab(tcpinfo)
-	tabprint(ret, desc, rsep, lsep, astab)
-
-	ret, desc = dict2tab(slstats)
-	tabprint(ret, desc, rsep, lsep, astab)
-
-	ret, desc = dict2tab(tmstats)
-	tabprint(ret, desc, rsep, lsep, astab)
-
-	ret, desc = var2tab(usrlocstats)
-	tabprint(ret, desc, rsep, lsep, astab)
-
-	# FIX: page redesign
+	st = []
+	for fn in exists:
+		ret = rpc.cmd(fn)
+		if type(ret) is dict:
+			for k, v in ret.items():
+				st.append([fn, str(k), str(v).strip()])
+		elif type(ret) in [tuple, list]:
+			for v in ret:
+				st.append([fn, '', str(v).strip()])
+		else:
+			st.append([fn,'',str(ret).strip()])
+	dsc = [('function', None, ''), ('name', None, ''), ('value', None, '')]
+	tabprint(st, dsc, rsep, lsep, astab)
 
 def reload(**opts):
 
