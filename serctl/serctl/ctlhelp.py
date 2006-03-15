@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
+# $Id: ctlhelp.py,v 1.8 2006/03/15 23:19:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -19,6 +19,7 @@ OPT_DESC = {\
 	'COLUMNS'  : 'Show only specified columns (comma separated)',
 	'CONFIG'   : 'Path to config file',
 	'DB_URI'   : 'Database URI',
+	'DBG_ARGS' : 'Show arguments and options',
 	'DEBUG'    : 'Switch on python backtrace listing',
 	'DISABLE'  : 'Enable',
 	'ENABLE'   : 'Disable',
@@ -36,6 +37,7 @@ OPT_DESC = {\
 	'SER_URI'  : 'Ser uri for xml-rpc operations',
 	'SSL_CERT' : 'Path to ssl cert file',
 	'SSL_KEY'  : 'Path to ssl key file',
+	'VERSION'  : 'Show version and exit',
 }
 
 def _gt(a, b):

@@ -2,8 +2,10 @@ serctl (0.1.4)
 
   * Ser_rpc don't print '' if remote call return no value.
   * Some documentation added.
+  * Bugfix, commandline options has precedence befor config variables.
+  * -G and -V options added.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Thu, 16 Mar 2006 00:18:46 +0100
 
 serctl (0.1.3)
 

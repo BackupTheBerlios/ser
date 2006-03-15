@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.12 2006/03/14 09:11:10 hallik Exp $
+# $Id: main.py,v 1.13 2006/03/15 23:19:35 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -18,6 +18,8 @@ from serctl.error   import set_excepthook, Error, EINVAL, ENODB, ENOSYS, \
                            ENOSER, ENOENT, EICONF, EINAME, ENOHELP, ENOARG, \
                            EEXTRA
 from serctl.uri     import adjust_ser_uri
+from serctl.utils   import tabprint, var2tab
+from serctl.version import version
 from os.path        import basename
 import sys, os, os.path
 import serctl.options as opt
@@ -27,15 +29,17 @@ import serctl.config as config
 def parse_cmdline(argv):
 	lineopts, args = gnu_getopt(argv, opt.GETOPT_SHORT, opt.GETOPT_LONG)
 	opts = {}
+	defaults = {}
 	for o, desc in opt.OPT.items():
 		if len(desc) < 4: continue
-		opts[o] = desc[3]
+		defaults[o] = desc[3]
 	for o, v in lineopts:
 		o = opt.OPTS[o]
 		if opt.OPT[o][2] is False:
 			v = True
 		opts[o] = v
-	return args, opts
+		del defaults[o]
+	return args, opts, defaults
 
 def handle_config(path = None):
 	if path is None:
@@ -50,6 +54,12 @@ def handle_config(path = None):
 		if not opt.OPT.has_key(k):
 			raise Error (EICONF, k)
 	return l
+
+def handle_version(opts):
+	if not opts['VERSION']:
+		return
+	print 'serctl ' + version
+	sys.exit(0)
 
 def handle_db_uri(opts):
 	if opts['DB_URI'] is not None:
@@ -94,13 +104,20 @@ def call(func, args, opts):
 	return apply(func, args)
 
 def main(argv):
-	args, opts = parse_cmdline(argv)
-	set_excepthook(opts['DEBUG'])
-	new_opts = handle_config(opts['CONFIG'])
-	opts.update(new_opts)
+	set_excepthook(True)
+	args, opts, defaults = parse_cmdline(argv)
+	set_excepthook(opts.get('DEBUG', defaults.get('DEBUG')))
+	conf_opts = handle_config(opts.get('CONFIG', defaults.get('CONFIG')))
+	defaults.update(conf_opts)
+	defaults.update(opts)
+	opts = defaults
+	del defaults
 	set_excepthook(opts['DEBUG'])
 	if len(args) < 1:
 		raise Error (EINVAL)
+
+	handle_version(opts)
+
 	opts['DB_URI']  = handle_db_uri(opts)
 	opts['SER_URI'] = handle_ser_uri(opts)
 
@@ -128,5 +145,16 @@ def main(argv):
 			raise Error (EINVAL, errarg)
 		else:
 			raise Error (EINVAL,)
+
+	if opts['DBG_ARGS']:
+		vals = [('MOD', repr(modname)), ('FUN', repr(funcname))]
+		i = 0
+		for a in args:
+			vals.append((str(i),  repr(a)))
+			i += 1
+		tabprint(vals, [('ARG',),('VALUE',)], tab=True)
+		vals, desc = var2tab(opts, ('OPT', 'VALUE'))
+		vals = [ (k, repr(v)) for k, v in vals ]
+		tabprint(vals, desc, tab=True)
 
 	return call(func, args, opts)

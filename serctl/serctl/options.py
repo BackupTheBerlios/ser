@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.16 2006/03/08 23:27:52 hallik Exp $
+# $Id: options.py,v 1.17 2006/03/15 23:19:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -226,6 +226,7 @@ OPT_LIST = (\
 	('C', 'columns',  True,  ''),
 	('f', 'force',    False, False),
 	('F', 'flags',    True,  None),
+	('G', 'dbg-args', False, False),
 	('g', 'debug',    False, False),
 	('h', 'help',     False, False),
 	('j', 'fifo',     False, False),
@@ -239,6 +240,7 @@ OPT_LIST = (\
 	('s', 'ser-uri',  True,  None),
 	('S', 'env-ser',  True,  'SERCTL_SER'),
 	('t', 'as-table', False, False),
+	('V', 'version',  False, False),
 )
 
 

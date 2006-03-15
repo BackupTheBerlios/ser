@@ -140,6 +140,11 @@ set IS_FROM, LOAD_SER, all other flags unset
 B<Note:> Flags can be specified as decimal numbers, only. Hexadecimal notation
 (0x...) not yet supported, now. Will be in the future.
 
+=item B<-G>, B<--dbg-args>
+
+Debuging option. Show module name, function name, arguments and options befor
+action.
+
 =item B<-L>, B<--line-sep> I<line_separator>
 
 Line separator for show command. Delault is LF (0x0a).
@@ -152,6 +157,10 @@ Columns separator for show command. Default is space (0x20).
 
 Set environmemnt variable name which will be used to pass server URI if
 not specified by config file or from command line. Default 'I<SERCTL_SER>'.
+
+=item B<-V>, B<--version>
+
+Show version and exit.
 
 =item B<-b>, B<--db-uri> I<uri>
 

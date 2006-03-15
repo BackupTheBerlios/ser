@@ -36,8 +36,9 @@ SRC_MAN3_FILES = serxmlrpc.3
 all: build precompile
 
 build: doc
+	echo "version = '$(ver)'" > serctl/version.py
 
-precompile:
+precompile: build
 	python    -c 'import py_compile; py_compile.main()' \
 		`find $$PRECOMP_DIR -name '*.py'`
 	python -O -c 'import py_compile; py_compile.main()' \
