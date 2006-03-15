@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.17 2006/03/14 09:11:10 hallik Exp $
+# $Id: ctlctl.py,v 1.18 2006/03/15 15:44:16 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -56,7 +56,6 @@ Commands & parameters:
 	ser_ctl purge
 
   - SER control, info and statistics:
-	ser_ctl flush <uri>
 	ser_ctl kill  [sig]
 	ser_ctl ps
 	ser_ctl reload
@@ -78,12 +77,6 @@ def purge(**opts):
 
 def _rpc(opts):
 	return Xml_rpc(opts['SER_URI'], (opts['SSL_KEY'], opts['SSL_CERT']))
-
-def flush(**opts):
-	rpc = _rpc(opts)
-	# FIX: TODO: what fn?
-#	rpc.ser...()
-	raise Error (ENOSYS, 'flush')
 
 def publish(uid, file_with_PIDF_doc, expires_in_sec, etag=None, **opts):
 	expires = int(expires_in_sec)

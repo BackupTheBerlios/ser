@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
+# $Id: ctlrpc.py,v 1.8 2006/03/15 15:44:16 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -49,6 +49,8 @@ def xml_rpc(cmd, args, opts):
 		ret, desc = var2tab(ret)
 	        tabprint(ret, desc, rsep, lsep, astab)
 	else:
+		if ret == '':      # ignore empty string it's default
+			return     # value if nothing returns
 		print repr(ret)
 	
 def fifo_rpc(cmd, args, opts):

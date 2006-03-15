@@ -1,0 +1,63 @@
+=head1 NAME
+
+ser_user - Tool for low-level user management.
+
+=head1 SYNOPSIS
+
+=over 8
+
+=item ser_user [B<options...>] [--] B<add>     <I<user>>
+
+=item ser_user [B<options...>] [--] B<change>  [I<user>]
+
+=item ser_user [B<options...>] [--] B<disable> [I<user>]
+
+=item ser_user [B<options...>] [--] B<enable>  [I<user>]
+
+=item ser_user [B<options...>] [--] B<rm>      [I<user>]
+
+=item ser_user [B<options...>] [--] B<purge>
+
+=item ser_user [B<options...>] [--] B<show>    [I<user>]
+
+=head1 DESCRIPTION
+
+Command 'B<ser_ctl add>' simply add new username into ser database. 
+'B<Ser_ctl rm>' remove it. 
+
+Flags assigned to user may be specified by B<-F> option when new user is
+added or may be changed by 'B<ser_ctl change>', later.
+
+Command 'B<ser_ctl disable>' set DISABLED flag for user.
+
+Command 'B<ser_ctl enable>' unset DISABLED flag for user.
+
+Command 'B<ser_ctl purge>' remove all usernames marked as deleted from
+database.
+
+Command 'B<ser_ctl show>' print user list.
+
+
+=head1 OPTIONS
+
+For options description see B<serctl>(1) man page.
+
+=head1 BUGS
+
+Some things are not implemented yet, now.
+
+=head1 SEE ALSO
+
+Related man pages:  B<serctl>(1), B<ser_cred>(1), B<ser_domain>(1), B<ser_uri>(1), 
+B<ser_user>(1).
+
+=head1 AUTHOR
+
+Jan Halla <hallik@iptel.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005, 2006 iptelorg GmbH.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Sip Express Router itself.

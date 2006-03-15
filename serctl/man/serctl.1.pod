@@ -1,0 +1,278 @@
+=head1 NAME
+
+serctl - Next generation of SER control tool.
+
+=head1 SYNOPSIS
+
+ser_<module_name> [options...] [--] [[command] params...]
+
+=head1 DESCRIPTION
+
+The serctl is tool for local/remote SER management. Serctl can manage SER
+database (only new scheme is supported) and can call xml-rpc commans on
+server.
+
+Serctl is modularized. New module can be simply added to enhance
+functionality. See README for information how add module.
+
+=head1 MODULES
+
+=head2 Modules for low-level database management:
+
+=over 8
+
+=item cred
+
+Module for managing credential information. See B<ser_cred>(1). 
+
+=item domain
+
+Module for managing domain names. See B<ser_domain>(1). 
+
+=item db
+
+Simple (stupid) but universal module for acces to any table in SER database.
+Mainly for testing and debuging.
+
+=item uri
+
+Module for managing URIs. See B<ser_uri>(1). 
+
+=item user
+
+Module for low-level user management. See B<ser_user>(1). 
+
+=back
+
+=head2 Module for high-level user/alias/domain management, RPC and statistics:
+
+=over 8
+
+=item ctl
+
+By B<ser_ctl>(1) command is possible simply add/remove users, aliases and
+domains to/from SER database. There is also possible call remote procedures
+on server or view some statistics from server.
+
+=head1 OPTIONS
+
+Options are common for all modules, but not all options are used by all
+modules or commands. There are global description about all options, see
+individual man pages for more accurate description for some special case.
+
+=item B<-B>, B<--env-db> I<env_name>
+
+Set environmemnt variable name which will be used to pass database URI if
+not specified by config file or from command line. Default 'I<SERCTL_DB>'.
+
+=item B<-C>, B<--columns> I<colname1,colname2,...>
+
+This option is used by show command. Describe what columns will be printed
+and their order. Without this option all columns will be printed in random
+(database determined) order.
+
+=item B<-F>, B<--flags> I<flags>
+
+Flags may be specified as number or as symbolic string (like chmod uses):
+
+=over 8
+
+=item  B<'c'>, B<0x004> ... CANONICAL
+
+=item  B<'d'>, B<0x002> ... DISABLED
+
+=item  B<'e'>, B<0x200> ... CALLEE_DELETED
+
+=item  B<'f'>, B<0x010> ... IS_FROM
+
+=item  B<'p'>, B<0x040> ... PENDING
+
+=item  B<'r'>, B<0x100> ... CALLER_DELETED
+
+=item  B<'s'>, B<0x001> ... LOAD_SER
+
+=item  B<'t'>, B<0x008> ... IS_TO
+
+=item  B<'w'>, B<0x020> ... FOR_SERWEB
+
+=item  B<'x'>, B<0x080> ... DELETED
+
+=back
+
+When specified as number values are ORed.
+
+When specified as string there are three variants:
+
+=over 8
+
+=item B<set> individual flags
+
+prepend '+' befor flag string (e.g. '+ft')
+
+=item B<unset> individual flags
+
+prepend '-' befor flag string (e.g. '-ws')
+
+=item  B<set/unset> all flags
+
+prepend '=' befor flag string (e.g. '=ftw')
+
+=back
+
+Examples:
+
+=over 8
+
+=item B<-F> I<'+fs-t'>
+
+set IS_FROM, LOAD_SER and unset IS_TO flags, all others flags stay intact.
+
+=item B<-F> I<'=fwt'>
+
+set IS_FROM, FOR_SERWEB, IS_TO, all other flags unset
+
+=item  B<-F> I<17>
+
+set IS_FROM, LOAD_SER, all other flags unset
+
+=back
+
+B<Note:> Flags can be specified as decimal numbers, only. Hexadecimal notation
+(0x...) not yet supported, now. Will be in the future.
+
+=item B<-L>, B<--line-sep> I<line_separator>
+
+Line separator for show command. Delault is LF (0x0a).
+
+=item B<-R>, B<--rec-sep> I<record_separator>
+
+Columns separator for show command. Default is space (0x20).
+
+=item B<-S>, B<--env-ser> I<env_name>
+
+Set environmemnt variable name which will be used to pass server URI if
+not specified by config file or from command line. Default 'I<SERCTL_SER>'.
+
+=item B<-b>, B<--db-uri> I<uri>
+
+Database URI in the form: dbbackend://user:password@host:port/database.
+Default is mysql://ser:heslo@localhost:5060/ser.
+
+=head3 Supported database backends:
+
+=over 8
+
+=item B<mysql>
+
+MySQL backend (e.g.: mysql://...)
+
+=item B<postgres>
+
+Postgree SQL backend (e.g.: postgres://...)
+
+=back
+
+=item B<-c>, B<--config> I<path>
+
+Path to config file. Default is F</etc/serctl/serctl.conf>.
+
+=item B<-f>, B<--force>
+
+Ignore any non-fatal errors. Be silent.
+
+=item B<-g>, B<--debug>
+
+Switch on python backtrace listing when error occurred.
+
+=item B<-h>, B<--help>
+
+Help.
+
+=item B<-j>, B<--fifo>
+
+Use fifo instead xml-rpc for RPC. B<Note:> Not yet implemented, it's on TODO.
+
+=item B<-k>, B<--ssl-key> I<path>
+
+Path to SSL key file. Used with SSL encryption for RPC. No default value,
+this mean no client authentication used.
+
+=item B<-l>, B<--limit> I<num>
+
+Limit number of displayed rows to I<num>.
+
+=item B<-m>, B<--ssl-cert> I<path>
+
+Path to SSL certificate file.Used with SSL encryption for RPC. No default
+value, this mean no client authentication used.
+
+=item B<-n>, B<--numeric>
+
+Show flags numericaly.
+
+=item B<-p>, B<--password> I<password>
+
+Specify password (for some commands).
+
+=item B<-s>, B<--ser-uri> I<uri>
+
+Server uri for RPC operations in the form: http[s]://user:password@host:port. 
+Default is http://localhost:5060/.
+
+=item B<-t>, B<--as-table>
+
+Show output as table.
+
+
+=head1 CONFIG FILE
+
+Serctl use config file, if exist. Default path to config file is
+F</etc/serctl/serctl.conf>, may be specified by B<-c> option.
+
+Config file is common for all ser_* commands. It's processed at startup as
+python code block. After that, all variables that correspond to options
+are passed as default values for this options. All options have corresponding
+config file variable. Variable name may be determined from long-form option
+stripping first two dashes and converting remain string to upper case with
+dash '-' replaced by underscore '_' (e.g. --ser-uri option may be specified
+in config file as variable SER_URI).
+
+=head1 ENVIRONMENT
+
+=item SERCTL_DB
+
+Environmemnt variable which is used to pass database URI, if
+not specified by config file or from command line. 
+
+=item SERCTL_SER
+
+Environmemnt variable which is used to pass server URI, if
+not specified by config file or from command line. 
+
+=head1 FILES
+
+=item F</etc/serctl/serctl.conf>
+
+Default config file.
+
+=head1 BUGS
+
+Timestamp format is dependent on used database engine, when printed by 'show'
+subcommand.
+
+
+=head1 SEE ALSO
+
+Related man pages:  B<ser_cred>(1), B<ser_ctl>(1), B<ser_domain>(1), B<ser_uri>(1), 
+B<ser_user>(1).
+
+=head1 AUTHOR
+
+Jan Halla <hallik@iptel.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005, 2006 iptelorg GmbH.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Sip Express Router itself.

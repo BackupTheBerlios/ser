@@ -1,0 +1,138 @@
+=head1 NAME
+
+ser_ctl - Tool for user/alias/domain management and remote SER control.
+
+=head1 SYNOPSIS
+
+=head2 User, alias and domain administration:
+
+=over 8
+
+=item ser_ctl [B<options...>] [--] B<alias>  B<add>  <I<username>> <I<alias>>
+
+=item ser_ctl [B<options...>] [--] B<alias>  B<rm>   <I<alias>>
+
+=item ser_ctl [B<options...>] [--] B<domain> B<add>  <I<domain>>
+
+=item ser_ctl [B<options...>] [--] B<domain> B<rm>   <I<domain>>
+
+=item ser_ctl [B<options...>] [--] B<password>    <I<uri>> <I<password>>
+
+=item ser_ctl [B<options...>] [--] B<user>   B<add>  <I<uri>> <I<password>>
+
+=item ser_ctl [B<options...>] [--] B<user>   B<rm>   <I<username>>
+
+=item ser_ctl [B<options...>] [--] B<usrloc> B<add>  <I<uri>> <I<contact>>
+
+=item ser_ctl [B<options...>] [--] B<usrloc> B<show> <I<uri>>
+
+=item ser_ctl [B<options...>] [--] B<usrloc> B<rm>   <I<uri>> [I<contact>]
+
+=head2 SER control, info and statistics:
+
+=item ser_ctl [B<options...>] [--] B<kill> [I<sig>]
+
+=item ser_ctl [B<options...>] [--] B<ps>
+
+=item ser_ctl [B<options...>] [--] B<reload>
+
+=item ser_ctl [B<options...>] [--] B<stat>
+
+=item ser_ctl [B<options...>] [--] B<uptime>
+
+=item ser_ctl [B<options...>] [--] B<version>
+
+=item ser_ctl [B<options...>] [--] B<list_methods>
+
+=item ser_ctl [B<options...>] [--] B<list_tls>
+
+=head2 Miscelaneous:
+
+=item ser_ctl [B<options...>] [--] B<publish> <I<uid>> <I<file_with_PIDF_doc>> <I<expires_in_sec>> [I<etag>]
+
+=item ser_ctl [B<options...>] [--] B<purge>
+
+=head1 DESCRIPTION
+
+=head2 Aliases
+
+Command 'B<ser_ctl alias>' add or remove aliases for existing username. Aliases
+are stored in 'uri' table.
+
+=head2 Domains
+
+Command 'B<ser_ctl domain>' add/remove domain to/from 'domain' table. After
+domain is added or removed 'domain.reload' remote procedure is called on
+server, for cache update.
+
+=head2 Users
+
+Command 'B<ser_ctl user>' add/remove users. For B<add> command, user is pecified
+as his canonical I<uri> (username@domain.tld). Username part of uri is used as
+new username and domain part is checked for existence in domain table.
+Domain must exist (must be created by ser_ctl domain, before) in database.
+
+Password for new user may be specified as last parameter or by B<-p>
+option. 
+
+Password may be changed by 'B<ser_ctl password>' command.
+
+Note: Interactive and secure prompt for password is not implemented yet.
+
+=head2 User location
+
+FIX: TODO
+
+=head2 Remote call and statistics
+
+Command B<ser_ctl kill> send signal to SER. Signal should be specified numericaly.
+Default is 15 (TERM). Probably only some minor subset of signals are useful,
+because there are no way how remotely restart stopped or terminated SER.
+
+Command B<ser_ctl ps> list pids of running ser processes on server and
+descriptions for each process.
+
+Command B<ser_ctl reload> call all *.reload remote procedure calls actualy 
+presented by server.
+
+Command B<ser_ctl stat> show miscelaneous server statistics.
+
+Command B<ser_ctl uptime> show server uptime.
+
+Command B<ser_ctl version> show server version.
+
+Command B<ser_ctl list_methods> show all server's methods which may be remotely
+called.
+
+Command B<ser_ctl list_tls> show FIX: what? (some TLS statistics?)
+
+=head2 Miscelaneous
+
+Command B<ser_ctl publish> can manage presence information on server. FIX:
+update.
+
+Command B<ser_ctl purge> remove all records marked as deleted from database.
+
+=head1 OPTIONS
+
+For options description see B<serctl>(1) man page.
+
+=head1 BUGS
+
+Some things are not implemented yet, now.
+
+=head1 SEE ALSO
+
+Related man pages:  B<serctl>(1), B<ser_cred>(1), B<ser_domain>(1), B<ser_uri>(1), 
+B<ser_user>(1).
+
+=head1 AUTHOR
+
+Jan Halla <hallik@iptel.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005, 2006 iptelorg GmbH.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Sip Express Router itself.

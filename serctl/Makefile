@@ -18,6 +18,7 @@ mandir        = $(datadir)/man
 
 PYPKG_DIR     = $(libexecdir)/python$(python_ver)/site-packages/$(name)
 DOC_DIR       = $(docdir)/$(name)
+MAN1_DIR      = $(mandir)/man1
 MAN3_DIR      = $(mandir)/man3
 PRECOMP_DIR   = serctl
 CONF_DIR      = $(sysconfdir)/$(name)
@@ -27,19 +28,23 @@ CONF_DIR      = $(sysconfdir)/$(name)
 SRC_BIN_FILES  = ser_* 
 SRC_DOC_FILES  = README TODO ChangeLog
 SRC_CONF_FILES = serctl.conf
+SRC_MAN1_FILES = man/serctl.1
 SRC_MAN3_FILES = serxmlrpc.3
 
 # ========================================================================= #
 
 all: build precompile
 
-build:
+build: doc
 
 precompile:
 	python    -c 'import py_compile; py_compile.main()' \
 		`find $$PRECOMP_DIR -name '*.py'`
 	python -O -c 'import py_compile; py_compile.main()' \
 		`find $$PRECOMP_DIR -name '*.py'`
+
+doc:
+	cd man && make
 
 i:
 	make install-precomp prefix=install
@@ -71,7 +76,9 @@ install-doc: build
 	mkdir -m 0755 -p $(DOC_DIR)
 	cp -a $(SRC_DOC_FILES) $(DOC_DIR)
 	chmod 0644 $(DOC_DIR)/*
+	mkdir -m 0755 -p $(MAN1_DIR)
 	mkdir -m 0755 -p $(MAN3_DIR)
+	cp -a $(SRC_MAN1_FILES) $(MAN1_DIR)
 	cp -a $(SRC_MAN3_FILES) $(MAN3_DIR)
 
 clean:
@@ -82,6 +89,7 @@ clean:
 nuke: clean
 	rm -rf install $(pkg_name)
 	rm -f $(pkg_name).tar.bz2
+	cd man && make nuke
 
 tree:
 	rm -rf $(pkg_name)
@@ -96,5 +104,5 @@ tarball: tree
 version:
 	@echo $(ver)
 
-.PHONY: all build precompile i install install-lib install-conf install-bin 
-.PHONY: install-doc cleannuke tree tarball version
+.PHONY: all build doc precompile i install install-lib install-conf 
+.PHONY: install-bin install-doc cleannuke tree tarball version

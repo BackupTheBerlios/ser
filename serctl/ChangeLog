@@ -1,3 +1,10 @@
+serctl (0.1.4)
+
+  * Ser_rpc don't print '' if remote call return no value.
+  * Some documentation added.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.1.3)
 
   * Ser_ctl stat output changed.

@@ -1,6 +1,8 @@
 Important:
 ==========
 
+  * Show command for aliases.
+
   * Inteligently reformat return value for usrloc's show.
 
   * Usrloc's code testing.
@@ -14,6 +16,8 @@ Important:
   * Ser_ctl flush command.
 
   * Fifo rpc commands.
+
+  * Update ser_ctl's man for usrloc, tls and publish description.
 
 Future:
 =======
