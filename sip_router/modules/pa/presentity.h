@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.31 2006/03/01 07:45:24 kubartv Exp $
+ * $Id: presentity.h,v 1.32 2006/03/15 16:03:43 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -36,6 +36,7 @@
 #include "watcher.h"
 #include "hslot.h"
 #include "pstate.h"
+#include "trace.h"
 
 #include <xcap/pres_rules.h>
 #include <cds/msg_queue.h>

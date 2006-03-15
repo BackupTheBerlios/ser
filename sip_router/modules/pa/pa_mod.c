@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.53 2006/02/17 10:22:00 kubartv Exp $
+ * $Id: pa_mod.c,v 1.54 2006/03/15 16:03:43 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -284,7 +284,7 @@ static int pa_mod_init(void)
 {
 	load_tm_f load_tm;
 	bind_dlg_mod_f bind_dlg;
-
+	
 	test_mimetype_parser();
 	DBG("Presence Agent - initializing\n");
 
@@ -402,6 +402,10 @@ static int pa_child_init(int _rank)
 static void pa_destroy(void)
 {
 	DBG("PA module cleanup\n");
+
+	/* FIXME: only for testing */
+	return;
+	
 	DBG("destroying PA module\n");
 	DBG(" ... qsa interface\n");
 	pa_qsa_interface_destroy();

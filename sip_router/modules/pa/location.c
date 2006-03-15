@@ -1,7 +1,7 @@
 /*
  * Presence Agent, location package handling
  *
- * $Id: location.c,v 1.8 2005/12/20 12:11:07 janakj Exp $
+ * $Id: location.c,v 1.9 2006/03/15 16:03:43 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -260,7 +260,7 @@ int pa_location_init(void)
 	  if (res && res->n > 0) {
 	       int r;
 	       location_placeid_n_rows = res->n;
-	       location_placeid_table = shm_malloc(res->n * sizeof(struct location_placeid_row));
+	       location_placeid_table = mem_alloc(res->n * sizeof(struct location_placeid_row));
 	       for (r = 0; r < res->n; r++) {
 		    db_row_t *res_row = &res->rows[r];
 		    db_val_t *row_vals = ROW_VALUES(res_row);
@@ -270,7 +270,7 @@ int pa_location_init(void)
 		    char *s;
 		    room_name.s = row_vals[room_col].val.str_val.s;
 		    row->room_name.len = room_name.len = strlen(room_name.s);
-		    s = shm_malloc(row->room_name.len + 1);
+		    s = mem_alloc(row->room_name.len + 1);
 
 		    row->placeid = row_vals[placeid_col].val.int_val;
 
