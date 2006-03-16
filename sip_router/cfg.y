@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.119 2006/03/01 07:40:08 kubartv Exp $
+ * $Id: cfg.y,v 1.120 2006/03/16 12:13:16 janakj Exp $
  *
  *  cfg grammar
  *
@@ -1258,7 +1258,7 @@ host:
 fcmd:
 	cmd {
 		/* check if allowed */
-		if (rt==ONSEND_ROUTE) {
+		if ($1 && rt==ONSEND_ROUTE) {
 			switch($1->type) {
 				case DROP_T:
 				case SEND_T:
