@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.29 2006/01/08 22:43:16 tma0 Exp $
+ * $Id: domain_mod.c,v 1.30 2006/03/16 10:47:36 janakj Exp $
  *
  * Domain module
  *
@@ -348,10 +348,10 @@ static int db_get_did(str* did, str* domain)
 	if (res->n > 0) {
 		val = res->rows[0].values;
 
-		     /* Test flags firs, we are only interested in rows
+		     /* Test flags first, we are only interested in rows
 		      * that are not disabled
 		      */
-		if (val[1].nul || !(val[1].val.int_val & DB_DISABLED)){
+		if (val[1].nul || (val[1].val.int_val & DB_DISABLED)) {
 			db.free_result(con, res);
 			return 0;
 		}
