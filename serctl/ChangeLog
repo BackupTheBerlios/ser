@@ -1,3 +1,9 @@
+serctl (0.1.5)
+
+  * Command ser_ctl stat updated.
+
+ -- Jan Halla <hallik@iptel.org> Čt bře 16 18:24:29 CET 2006
+
 serctl (0.1.4)
 
   * Ser_rpc don't print '' if remote call return no value.

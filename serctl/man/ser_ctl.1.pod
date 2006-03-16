@@ -36,7 +36,7 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =item ser_ctl [B<options...>] [--] B<reload>
 
-=item ser_ctl [B<options...>] [--] B<stat>
+=item ser_ctl [B<options...>] [--] B<stat> [I<module_name>]
 
 =item ser_ctl [B<options...>] [--] B<uptime>
 
@@ -95,7 +95,10 @@ descriptions for each process.
 Command B<ser_ctl reload> call all *.reload remote procedure calls actualy 
 presented by server.
 
-Command B<ser_ctl stat> show miscelaneous server statistics.
+Command B<ser_ctl stat> show miscelaneous server statistics reported mainly
+by *.stats rpc. Optional parameter I<module_name> specified for which
+modules statistics will be printed. When omited, all available statistics
+will be shown.
 
 Command B<ser_ctl uptime> show server uptime.
 

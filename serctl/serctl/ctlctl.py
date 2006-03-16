@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.18 2006/03/15 15:44:16 hallik Exp $
+# $Id: ctlctl.py,v 1.19 2006/03/16 17:29:46 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -59,7 +59,7 @@ Commands & parameters:
 	ser_ctl kill  [sig]
 	ser_ctl ps
 	ser_ctl reload
-	ser_ctl stat
+	ser_ctl stat [module_name...]
 	ser_ctl uptime
 	ser_ctl version
         ser_ctl list_methods
@@ -233,16 +233,19 @@ def kill(sig=15, **opts):
 	rpc = _rpc(opts)
 	ret = rpc.core_kill(sig)
 
-def stat(**opts):
+def stat(*modules, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
 	rpc = _rpc(opts)
 
 	estats = [ i for i in rpc.ser.system.listMethods() if i[-6:] == '.stats' ]
-	exists = [ i for i in rpc.ser.system.listMethods() if i in STATS ] + estats
+	display = [ i for i in rpc.ser.system.listMethods() if i in STATS ] + estats
+
+	if modules:
+		display = [ i for i in display if i.split('.')[0] in modules ]
 
 	st = []
-	for fn in exists:
+	for fn in display:
 		ret = rpc.cmd(fn)
 		if type(ret) is dict:
 			for k, v in ret.items():

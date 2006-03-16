@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.17 2006/03/15 23:19:35 hallik Exp $
+# $Id: options.py,v 1.18 2006/03/16 17:29:46 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -178,6 +178,8 @@ CMD = {\
 	'sh'           : CMD_SHOW,
 	's'            : CMD_SHOW,
 
+	'status'       : CMD_STAT,
+	'statu'        : CMD_STAT,
 	'stat'         : CMD_STAT,
 	'sta'          : CMD_STAT,
 	'st'           : CMD_STAT,
