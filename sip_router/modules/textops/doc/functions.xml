@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.7 $</revnumber>
-		<date>$Date: 2006/03/01 09:16:12 $</date>
+		<revnumber>$Revision: 1.8 $</revnumber>
+		<date>$Date: 2006/03/17 18:35:56 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -612,6 +612,10 @@ if (@hf_value_exists.supported.path == "1") {
 		@hf_value2.HFNAME[IDX]   # returns value of idx's header
 		@hf_value2.HFNAME.PARAM_NAME
 		@hf_value2.HFNAME[IDX].PARAM_NAME
+
+		@hf_value.HFNAME[IDX].uri  # return URI, quotes excluded
+		@hf_value.HFNAME.p.uri  # returns param named uri, not URI itself
+		@hf_value.HFNAME[IDX].uri.name #  any sel_any_uri nested features may be used
 	</para>
 	<para>Meaning of the parameters is as follows:</para>
 	<itemizedlist>
