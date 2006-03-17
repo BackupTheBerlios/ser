@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.52 2006/03/01 09:16:11 tma0 Exp $
+/*$Id: textops.c,v 1.53 2006/03/17 18:31:59 tma0 Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -85,6 +85,7 @@
 
 MODULE_VERSION
 
+SELECT_F(select_any_uri)
 
 /* RFC822-conforming dates format:
 
@@ -1891,7 +1892,6 @@ static int sel_hf_value2_name_param_name(str* res, select_t* s, struct sip_msg* 
 	return sel_hf_value2_name(res, s, msg);
 }
 
-
 select_row_t sel_declaration[] = {
 	{ NULL, SEL_PARAM_STR, STR_STATIC_INIT("hf_value"), sel_hf_value, SEL_PARAM_EXPECTED},
 
@@ -1899,10 +1899,12 @@ select_row_t sel_declaration[] = {
 	{ sel_hf_value_name, SEL_PARAM_STR, STR_STATIC_INIT("param"), sel_hf_value_name_param_name2, CONSUME_NEXT_STR | FIXUP_CALL},
 	{ sel_hf_value_name, SEL_PARAM_STR, STR_STATIC_INIT("p"), sel_hf_value_name_param_name2, CONSUME_NEXT_STR | FIXUP_CALL},
 	{ sel_hf_value_name, SEL_PARAM_STR, STR_STATIC_INIT("uri"), sel_hf_value_name_uri, FIXUP_CALL},
+	{ sel_hf_value_name_uri, SEL_PARAM_INT, STR_NULL, select_any_uri, NESTED},
 	{ sel_hf_value_name, SEL_PARAM_STR, STR_NULL, sel_hf_value_name_param_name, FIXUP_CALL},
 
 	{ NULL, SEL_PARAM_STR, STR_STATIC_INIT("hf_value_exists"), sel_hf_value_exists, CONSUME_NEXT_STR | SEL_PARAM_EXPECTED},
 	{ sel_hf_value_exists, SEL_PARAM_STR, STR_NULL, sel_hf_value_exists_param, FIXUP_CALL},
+		
 
 	{ NULL, SEL_PARAM_STR, STR_STATIC_INIT("hf_value2"), sel_hf_value2, SEL_PARAM_EXPECTED},
 	{ sel_hf_value2, SEL_PARAM_STR, STR_NULL, sel_hf_value2_name, CONSUME_NEXT_INT | OPTIONAL | FIXUP_CALL},
