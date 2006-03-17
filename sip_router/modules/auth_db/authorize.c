@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.32 2006/03/01 16:01:13 janakj Exp $
+ * $Id: authorize.c,v 1.33 2006/03/17 19:22:41 calrissian Exp $
  *
  * Digest Authentication - Database support
  *
@@ -61,6 +61,13 @@ static inline int get_ha1(struct username* username, str* realm,
 	db_key_t* col;
 	str result;
 	int n, nc, i;
+
+#ifndef SUPPORT_EMPTY_AUTHNAME
+	/* sanity check first to avoid unnecessary DB lookups */
+	if (username->user.len == 0) {
+		return 1;
+	}
+#endif
 
 	val = 0; /* Fixes gcc warning */
 	col = pkg_malloc(sizeof(*col) * (credentials_n + 2));
