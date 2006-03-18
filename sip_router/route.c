@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.58 2006/02/15 17:29:18 mma Exp $
+ * $Id: route.c,v 1.59 2006/03/18 23:40:15 mma Exp $
  *
  * SIP routing engine
  *
@@ -73,7 +73,7 @@
 #include "select.h"
 #include "onsend.h"
 #include "hashes.h"
-
+#include "ut.h"
 
 #define RT_HASH_SIZE	8 /* route names hash */
 
@@ -584,7 +584,8 @@ inline static int comp_str(int op, str* left, int rtype, union exp_op* r, struct
 	int ret;
 	char backup;
 	regex_t* re;
-
+	unsigned int l;
+	
 	right=0; /* warning fix */
 
 	if (rtype == AVP_ST) {
@@ -599,6 +600,14 @@ inline static int comp_str(int op, str* left, int rtype, union exp_op* r, struct
 	} else if ((op == MATCH_OP && rtype == RE_ST)) {
 	} else if (op != MATCH_OP && rtype == STRING_ST) {
 		right = &r->str;
+	} else if (rtype == NUMBER_ST) {
+			/* "123" > 100 is not allowed by cfg.y rules
+			 * but can happen as @select or $avp evaluation
+			 * $test > 10
+			 * the right operator MUST be number to do the conversion
+			 */
+		str2int(left,&l);
+		return comp_num(op, l, rtype, r);
 	} else {
 		LOG(L_CRIT, "BUG: comp_str: Bad type %d, "
 		    "string or RE expected\n", rtype);
