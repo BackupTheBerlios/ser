@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.8 2006/02/17 22:32:02 mma Exp $
+ * $Id: select_core.c,v 1.9 2006/03/21 00:54:40 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -52,6 +52,14 @@
 #define TRIM_RET0_res(x) {*res=x;trim(res);return 0;} 
 #define TEST_RET_res_body(x) if (x){*res=x->body;return 0;}else return 1;
 #define TEST_RET_res_value(x) if (x){*res=x->value;return 0;}else return 1;
+
+int select_ruri(str* res, select_t* s, struct sip_msg* msg)
+{
+	if (msg->first_line.type==SIP_REQUEST) {
+		RETURN0_res(msg->first_line.u.request.uri);
+	}
+	return 1;
+}
 
 int select_from(str* res, select_t* s, struct sip_msg* msg)
 {
@@ -536,10 +544,10 @@ int select_anyheader(str* res, select_t* s, struct sip_msg* msg)
 
 ABSTRACT_F(select_any_uri)
 
+static struct sip_uri uri;
+
 int select_uri_type(str* res, select_t* s, struct sip_msg* msg)
 {
-	struct sip_uri uri;
-	
 	trim(res);
 	if (parse_uri(res->s, res->len, &uri)<0)
 		return -1;
@@ -561,8 +569,6 @@ int select_uri_type(str* res, select_t* s, struct sip_msg* msg)
 
 int select_uri_user(str* res, select_t* s, struct sip_msg* msg)
 {
-	struct sip_uri uri;
-
 	if (parse_uri(res->s, res->len, &uri)<0)
 		return -1;
 
@@ -571,8 +577,6 @@ int select_uri_user(str* res, select_t* s, struct sip_msg* msg)
 
 int select_uri_pwd(str* res, select_t* s, struct sip_msg* msg)
 {
-	struct sip_uri uri;
-
 	if (parse_uri(res->s, res->len, &uri)<0)
 		return -1;
 
@@ -581,8 +585,6 @@ int select_uri_pwd(str* res, select_t* s, struct sip_msg* msg)
 
 int select_uri_host(str* res, select_t* s, struct sip_msg* msg)
 {
-	struct sip_uri uri;
-
 	if (parse_uri(res->s, res->len, &uri)<0)
 		return -1;
 
@@ -591,8 +593,6 @@ int select_uri_host(str* res, select_t* s, struct sip_msg* msg)
 
 int select_uri_port(str* res, select_t* s, struct sip_msg* msg)
 {
-	struct sip_uri uri;
-	
 	if (parse_uri(res->s, res->len, &uri)<0)
 		return -1;
 
@@ -601,8 +601,6 @@ int select_uri_port(str* res, select_t* s, struct sip_msg* msg)
 
 int select_uri_params(str* res, select_t* s, struct sip_msg* msg)
 {
-	struct sip_uri uri;
-
 	if (parse_uri(res->s, res->len, &uri)<0)
 		return -1;
 		
