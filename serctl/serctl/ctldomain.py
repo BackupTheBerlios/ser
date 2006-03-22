@@ -134,7 +134,7 @@ class Domain:
 		return tuple(cnd)
 
 	def _cond(self, domain=None, did=None, all=False):
-		cnd =  ['and']
+		cnd =  ['and', 1]
 		if not all:
 			cnd.append(CND_NO_DELETED)
 		err = []

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.9 2006/03/08 23:27:52 hallik Exp $
+# $Id: ctluri.py,v 1.10 2006/03/22 12:10:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -128,10 +128,12 @@ class Uri:
 			cnd.append(('=', self.C_URI[i], row[i]))
 		return tuple(cnd)
 
-	def _cond(self, username=None,  did=None, uid=None, all=False):
-                cnd =  ['and']
+	def _cond(self, username=None,  did=None, uid=None, all=False, canonical=False):
+                cnd =  ['and', 1]
                 if not all:
                         cnd.append(CND_NO_DELETED)
+		if canonical:
+			cnd.append(CND_CANONICAL)
 		err = []
 		if username is not None:
 			cnd.append(('=', 'username', username))
@@ -162,7 +164,7 @@ class Uri:
 			uids[row[0]] = 0
 		return uids.keys()
 
-	def show(self, uri=None, uid=None, did=None, cols=None, raw=False, limit=0):
+	def show(self, uri=None, uid=None, did=None, cols=None, raw=False, limit=0, canonical=False):
 		if not cols:
 			cols = self.C_URI
 		cidx = self._col_idx(cols)
@@ -171,7 +173,7 @@ class Uri:
 		if did is None:
 			did = self._get_did(domain)
 
-		cnd, err = self._cond(username, did, uid, all=True)
+		cnd, err = self._cond(username, did, uid, all=True, canonical=canonical)
 		rows = self.db.select(self.T_URI, self.C_URI, cnd, limit)
 		new_rows = []
                 for row in rows:

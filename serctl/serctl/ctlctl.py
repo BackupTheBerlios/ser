@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.19 2006/03/16 17:29:46 hallik Exp $
+# $Id: ctlctl.py,v 1.20 2006/03/22 12:10:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -48,6 +48,7 @@ Commands & parameters:
 	ser_ctl password    <uri> <password>
 	ser_ctl user   add  <uri> <password>
 	ser_ctl user   rm   <username>
+	ser_ctl user   show
 	ser_ctl usrloc add  <uri> <contact>
 	ser_ctl usrloc show <uri>
 	ser_ctl usrloc rm   <uri> [contact]
@@ -134,6 +135,11 @@ def _user(command, uri_user, password, opts):
 			raise Error (ENOARG, 'username')
 		u = User_ctl(db, ser, ssl)
 		u.rm(uri_user)
+	elif cmd == CMD_SHOW:
+		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+		u = User_ctl(db, ser, ssl)
+		ret, desc = u.show(raw=numeric)
+		tabprint(ret, desc, rsep, lsep, astab)
 	elif cmd == CMD_PASSWORD:
 		if uri_user is None:
 			raise Error (ENOARG, 'uri')
@@ -163,6 +169,11 @@ def alias(command, user_alias=None, alias=None, **opts):
 			raise Error (ENOARG, 'alias')
 		a = Alias_ctl(db, ser, ssl)
 		a.rm(user_alias)
+	elif cmd == CMD_SHOW:
+		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+		u = Alias_ctl(db, ser, ssl)
+		ret, desc = u.show(raw=numeric)
+		tabprint(ret, desc, rsep, lsep, astab)
 	else:
 		raise Error (EINVAL, command)
 		
@@ -322,6 +333,19 @@ class User_ctl:
 		self.ser = seruri
 		self.ssl = ssl
 
+	def show(self, raw=False):
+		user = User(self.db)
+		uids, tmp = user.show(cols=['uid'])
+		uids = [ i[0] for i in uids ]
+		uri = Uri(self.db)
+		ret = []
+		for uid in uids:
+			uris, tmp = uri.show(uid=uid, cols=['username', 'did', 'flags'], raw=raw, canonical=True)
+			for u in uris:
+				ret.append((uid, '@'.join(u[:2]), u[2]))
+		desc = (('uid',),('uri',), ('flags',))
+		return ret, desc
+
 	def add(self, uri, password):
 		dom = Domain(self.db)
 		usr = User(self.db)
@@ -362,6 +386,20 @@ class Alias_ctl:
 		self.db  = dburi
 		self.ser = seruri
 		self.ssl = ssl
+
+	def show(self, raw=False):
+		user = User(self.db)
+		uids, tmp = user.show(cols=['uid'])
+		uids = [ i[0] for i in uids ]
+		uri = Uri(self.db)
+		ret = []
+		for uid in uids:
+			uris, tmp = uri.show(uid=uid, cols=['username', 'did', 'flags'], raw=raw)
+			for u in uris:
+				ret.append((uid, '@'.join(u[:2]), u[2]))
+		desc = (('uid',),('uri',), ('flags',))
+		return ret, desc
+
 
 	def add(self, username, alias):
 		ur = Uri(self.db)

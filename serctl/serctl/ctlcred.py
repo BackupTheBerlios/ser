@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.7 2006/03/08 23:27:52 hallik Exp $
+# $Id: ctlcred.py,v 1.8 2006/03/22 12:10:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -129,7 +129,7 @@ class Cred:
 		return tuple(cnd)
 
 	def _cond(self, username=None, realm=None, uid=None, all=False):
-		cnd =  ['and']
+		cnd =  ['and', 1]
 		if not all:
 			cnd.append(CND_NO_DELETED)
 		err = []

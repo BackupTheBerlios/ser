@@ -12,6 +12,8 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =item ser_ctl [B<options...>] [--] B<alias>  B<rm>   <I<alias>>
 
+=item ser_ctl [B<options...>] [--] B<alias>  B<show>
+
 =item ser_ctl [B<options...>] [--] B<domain> B<add>  <I<domain>>
 
 =item ser_ctl [B<options...>] [--] B<domain> B<rm>   <I<domain>>
@@ -21,6 +23,8 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 =item ser_ctl [B<options...>] [--] B<user>   B<add>  <I<uri>> <I<password>>
 
 =item ser_ctl [B<options...>] [--] B<user>   B<rm>   <I<username>>
+
+=item ser_ctl [B<options...>] [--] B<user>   B<show>
 
 =item ser_ctl [B<options...>] [--] B<usrloc> B<add>  <I<uri>> <I<contact>>
 
@@ -56,8 +60,12 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =head2 Aliases
 
-Command 'B<ser_ctl alias>' add or remove aliases for existing username. Aliases
+Command 'B<ser_ctl alias add/rm>' add or remove aliases for existing username. Aliases
 are stored in 'uri' table.
+
+Command 'B<ser_ctl alias show>' show existing users: their uid, uri and
+flags. This command show both canonical and non-canonical records (see
+'B<ser_ctl user show>' command).
 
 =head2 Domains
 
@@ -67,10 +75,18 @@ server, for cache update.
 
 =head2 Users
 
-Command 'B<ser_ctl user>' add/remove users. For B<add> command, user is pecified
-as his canonical I<uri> (username@domain.tld). Username part of uri is used as
-new username and domain part is checked for existence in domain table.
-Domain must exist (must be created by ser_ctl domain, before) in database.
+Command 'B<ser_ctl user add>' add new user. 
+
+Command 'B<ser_ctl user rm>' delete specified username completely from database. 
+
+Command 'B<ser_ctl user show>' show existing users: their uid, uri and
+flags. This command is the same as 'B<ser_ctl alias show>', but show only
+canonical records (no aliases).
+
+For B<add> command, user is pecified as his canonical I<uri>
+(username@domain.tld). Username part of uri is used as new username.
+Domain part is checked for existence in domain table. Domain must exist (must
+be created by ser_ctl domain, before) in database.
 
 Password for new user may be specified as last parameter or by B<-p>
 option. 
@@ -85,9 +101,10 @@ FIX: TODO
 
 =head2 Remote call and statistics
 
-Command B<ser_ctl kill> send signal to SER. Signal should be specified numericaly.
-Default is 15 (TERM). Probably only some minor subset of signals are useful,
-because there are no way how remotely restart stopped or terminated SER.
+Command B<ser_ctl kill> send signal to SER via xml-rpc or fifo. Signal should be
+specified numericaly. Default is 15 (TERM). Probably only some minor subset
+of signals are useful, because there are no way how remotely restart stopped
+or terminated SER.
 
 Command B<ser_ctl ps> list pids of running ser processes on server and
 descriptions for each process.

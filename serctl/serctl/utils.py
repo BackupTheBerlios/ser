@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.8 2006/03/13 08:44:20 hallik Exp $
+# $Id: utils.py,v 1.9 2006/03/22 12:10:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -70,6 +70,9 @@ def tabprint(data, desc, rsep=OPT['REC_SEP'][3], lsep=OPT['LINE_SEP'][3], tab=Fa
 			sys.stdout.write(line + lsep)
 		return
 
+	rrsep = list(rsep)
+	rrsep.reverse()
+	rrsep = ''.join(rrsep)
 	rl = len(rsep)
 	names = [ d[0] for d in desc ]
 	if data:
@@ -95,14 +98,14 @@ def tabprint(data, desc, rsep=OPT['REC_SEP'][3], lsep=OPT['LINE_SEP'][3], tab=Fa
 
 	line = '|'
 	for i in range(n):
-		line += rsep + names[i].ljust(width[i]) + rsep + '|'
+		line += rsep + names[i].ljust(width[i]) + rrsep + '|'
 	sys.stdout.write(line + lsep)
 	sys.stdout.write(rule + lsep)
 
 	for row in data:
 		line = '|'
 		for i in range(n):
-			line += rsep + row[i].ljust(width[i]) + rsep + '|'
+			line += rsep + row[i].ljust(width[i]) + rrsep + '|'
 		sys.stdout.write(line + lsep)
 	sys.stdout.write(rule + lsep)
 

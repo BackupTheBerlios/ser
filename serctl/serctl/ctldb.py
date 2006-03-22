@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctldb.py,v 1.3 2006/03/08 23:27:52 hallik Exp $
+# $Id: ctldb.py,v 1.4 2006/03/22 12:10:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -73,7 +73,7 @@ class Db:
 	def _simple_and_cond(self, cond):
 		if not cond:
 			return None
-		cnd = ['and']
+		cnd = ['and', 1]
 		for c in cond:
 			cnd.append(('=', c[0], c[1]))
 		return cnd

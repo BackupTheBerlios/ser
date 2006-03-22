@@ -1,3 +1,11 @@
+serctl (0.1.6)
+
+  * Unaccepted condition for one parameter only, bug fixed.
+  * Command 'ser_ctl user show' added.
+  * Command 'ser_ctl alias show' added.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 22 Mar 2006 13:09:33 +0100
+
 serctl (0.1.5)
 
   * Command ser_ctl stat updated.
