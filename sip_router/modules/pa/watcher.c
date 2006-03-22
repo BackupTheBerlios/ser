@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.33 2006/03/15 16:03:43 kubartv Exp $
+ * $Id: watcher.c,v 1.34 2006/03/22 09:43:19 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -608,7 +608,10 @@ void free_watcher(watcher_t* _w)
  */
 int update_watcher(struct presentity *p, watcher_t* _w, time_t _e)
 {
+	watcher_status_t old = _w->status; /* old status of subscription */
+	
 	_w->expires = _e;
+	_w->flags |= WFLAG_SUBSCRIPTION_CHANGED;
 	
 	/* actualize watcher's status according to time */
 	if (_w->expires <= act_time) {
@@ -625,6 +628,15 @@ int update_watcher(struct presentity *p, watcher_t* _w, time_t _e)
 		_w->status = authorize_watcher(p,_w);
 		/* handle rejected watchers here? */
 	}
+	
+	if ((old != _w->status) && (_w->event_package == EVENT_PRESENCE)) {
+		/* changed only when presence watcher changes status  */
+		/* FIXME: it could be changed when expires time changes too, 
+		 * but we don't send expiration in watcherinf notify thus
+		 * it is worthless */
+		p->flags |= PFLAG_WATCHERINFO_CHANGED;
+	}
+	
 	if (use_db) return db_update_watcher(p, _w);
 	else return 0;
 }
