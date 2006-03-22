@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.56 2006/03/22 18:40:35 tma0 Exp $
+/*$Id: textops.c,v 1.57 2006/03/22 20:24:26 tma0 Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -1750,6 +1750,7 @@ static int sel_hf_value_name(str* res, select_t* s, struct sip_msg* msg) {
 	}
 
 	res->len = 0;
+	res->s = retbuf_tail;
 	hname = s->params[1].v.p;
 
 	switch (hname->oper) {
