@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.52 2006/03/22 09:43:18 kubartv Exp $
+ * $Id: subscribe.c,v 1.53 2006/03/23 12:23:37 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -836,8 +836,8 @@ int handle_subscription(struct sip_msg* _m, char* _domain, char* _s2)
 	}
 
 	is_renewal = has_to_tag(_m);
-	if (is_renewal) TRACE("handling renewal subscription\n");
-	else TRACE("handling new subscription\n");
+	if (is_renewal) DBG("handling renewal subscription\n");
+	else DBG("handling new subscription\n");
 
 	d = (struct pdomain*)_domain;
 
