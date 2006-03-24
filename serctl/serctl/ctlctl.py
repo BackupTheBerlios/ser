@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.20 2006/03/22 12:10:35 hallik Exp $
+# $Id: ctlctl.py,v 1.21 2006/03/24 17:08:05 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -17,8 +17,8 @@ from serctl.ctlcred   import Cred
 from serctl.ctldomain import Domain
 from serctl.ctluser   import User
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
-                             ENODOMAIN, warning, EDUPL, ENOUSER
-from serctl.ctlrpc    import Xml_rpc
+                             ENODOMAIN, warning, EDUPL, ENOUSER, ERPC
+from serctl.ctlrpc    import any_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab
@@ -43,6 +43,7 @@ Commands & parameters:
   - user and domain administration:
 	ser_ctl alias  add  <username> <alias>
 	ser_ctl alias  rm   <alias>
+	ser_ctl alias  show
 	ser_ctl domain add  <domain>
 	ser_ctl domain rm   <domain>
 	ser_ctl password    <uri> <password>
@@ -76,15 +77,12 @@ def purge(**opts):
 		o.purge()
 		del(o)
 
-def _rpc(opts):
-	return Xml_rpc(opts['SER_URI'], (opts['SSL_KEY'], opts['SSL_CERT']))
-
 def publish(uid, file_with_PIDF_doc, expires_in_sec, etag=None, **opts):
 	expires = int(expires_in_sec)
 
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	fh = open(file_with_PIDF_doc)
 	doc = fh.read()
 	fh.close()
@@ -98,20 +96,13 @@ def publish(uid, file_with_PIDF_doc, expires_in_sec, etag=None, **opts):
 	else:
 		print repr(ret)
 
-def _ctl_parm(opts):
-	db  = opts['DB_URI']
-	ser = opts['SER_URI']
-	ssl = (opts['SSL_KEY'], opts['SSL_CERT'])
-	return (db, ser, ssl)
-
 def domain(command, domain, **opts):
-	db, ser, ssl = _ctl_parm(opts)
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		d = Domain_ctl(db, ser, ssl)
+		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
 		d.add(domain)
 	elif cmd == CMD_RM:
-		d = Domain_ctl(db, ser, ssl)
+		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
 		d.rm(domain)
 	else:
 		raise Error (EINVAL, command)
@@ -120,7 +111,6 @@ def user(command, uri_user=None, password=None, **opts):
 	return _user(command, uri_user, password, opts)
 
 def _user(command, uri_user, password, opts):
-	db, ser, ssl = _ctl_parm(opts)
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		if uri_user is None:
@@ -128,16 +118,16 @@ def _user(command, uri_user, password, opts):
 		password = opts.get('PASSWORD', password)
 		if password is None:
 			raise Error (ENOARG, 'password')
-		u = User_ctl(db, ser, ssl)
+		u = User_ctl(opts['DB_URI'], any_rpc(opts))
 		u.add(uri_user, password)
 	elif cmd == CMD_RM:
 		if uri_user is None:
 			raise Error (ENOARG, 'username')
-		u = User_ctl(db, ser, ssl)
+		u = User_ctl(opts['DB_URI'], any_rpc(opts))
 		u.rm(uri_user)
 	elif cmd == CMD_SHOW:
 		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
-		u = User_ctl(db, ser, ssl)
+		u = User_ctl(opts['DB_URI'], any_rpc(opts))
 		ret, desc = u.show(raw=numeric)
 		tabprint(ret, desc, rsep, lsep, astab)
 	elif cmd == CMD_PASSWORD:
@@ -146,7 +136,7 @@ def _user(command, uri_user, password, opts):
 		password = opts.get('PASSWORD', password)
 		if password is None:
 			raise Error (ENOARG, 'password')
-		u = User_ctl(db, ser, ssl)
+		u = User_ctl(opts['DB_URI'], any_rpc(opts))
 		u.passwd(uri_user, password)
 	else:
 		raise Error (EINVAL, command)
@@ -155,41 +145,39 @@ def password(uri, password=None, **opts):
 	return _user(CMD_PASSWORD, uri, password, opts)
 
 def alias(command, user_alias=None, alias=None, **opts):
-	db, ser, ssl = _ctl_parm(opts)
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		if user_alias is None:
 			raise Error (ENOARG, 'username')
 		if alias is None:
 			raise Error (ENOARG, 'alias')
-		a = Alias_ctl(db, ser, ssl)
+		a = Alias_ctl(opts['DB_URI'], any_rpc(opts))
 		a.add(user_alias, alias)
 	elif cmd == CMD_RM:
 		if user_alias is None:
 			raise Error (ENOARG, 'alias')
-		a = Alias_ctl(db, ser, ssl)
+		a = Alias_ctl(opts['DB_URI'], any_rpc(opts))
 		a.rm(user_alias)
 	elif cmd == CMD_SHOW:
 		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
-		u = Alias_ctl(db, ser, ssl)
+		u = Alias_ctl(opts['DB_URI'], any_rpc(opts))
 		ret, desc = u.show(raw=numeric)
 		tabprint(ret, desc, rsep, lsep, astab)
 	else:
 		raise Error (EINVAL, command)
 		
 def usrloc(command, uri, contact=None, **opts):
-	db, ser, ssl = _ctl_parm(opts)
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		if contact is None:
 			raise Error (ENOARG, 'contact')
-		u = Usrloc_ctl(db, ser, ssl)
+		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
 		u.add(uri, contact)
 	elif cmd == CMD_RM:
-		u = Usrloc_ctl(db, ser, ssl)
+		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
 		u.rm(uri, contact)
 	elif cmd == CMD_SHOW:
-		u = Usrloc_ctl(db, ser, ssl)
+		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
 		ret = u.show(uri)
 		# FIX: update
 		print ret
@@ -199,7 +187,7 @@ def usrloc(command, uri, contact=None, **opts):
 def ps(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	ret = rpc.core_ps()
 
 	desc = [ ('id', None, ''), ('process description', None, '') ]
@@ -209,7 +197,7 @@ def ps(**opts):
 def version(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	ret = rpc.core_version()
 
 	ret, desc = var2tab(ret, 'version')
@@ -218,7 +206,7 @@ def version(**opts):
 def uptime(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	ret = rpc.core_uptime()
 
 	ret, desc = dict2tab(ret, ('uptime', 'up_since', 'now'))
@@ -227,7 +215,7 @@ def uptime(**opts):
 def list_tls(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	ret = rpc.tls_list()
 
 	desc = [ ('ID', None, ''),     ('Timeout', None, ''), \
@@ -241,13 +229,13 @@ def list_tls(**opts):
 def kill(sig=15, **opts):
 	sig = int(sig)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	ret = rpc.core_kill(sig)
 
 def stat(*modules, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 
 	estats = [ i for i in rpc.ser.system.listMethods() if i[-6:] == '.stats' ]
 	display = [ i for i in rpc.ser.system.listMethods() if i in STATS ] + estats
@@ -271,7 +259,7 @@ def stat(*modules, **opts):
 
 def reload(**opts):
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 
 	exists = [ i for i in rpc.ser.system.listMethods() if i[-7:] == '.reload' ]
 
@@ -280,11 +268,16 @@ def reload(**opts):
 			rpc.raw_cmd(fn)
 		except xmlrpclib.Fault, inst:
                         warning("Function '%s' fail: " % fn +  repr(inst))
+		except Error, inst:
+			if inst.err == ERPC:
+				warning('Domain reloading fail: ' + str(inst.text))
+			else:
+				raise
 
 def methods(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
-	rpc = _rpc(opts)
+	rpc = any_rpc(opts)
 	ret = rpc.system_listmethods()
 
 	ret, desc = var2tab(ret, 'methods')
@@ -292,10 +285,9 @@ def methods(**opts):
 
 
 class Domain_ctl:
-	def __init__(self, dburi, seruri, ssl=None):
+	def __init__(self, dburi, rpc):
 		self.db  = dburi
-		self.ser = seruri
-		self.ssl = ssl
+		self.rpc = rpc
 
 	def add(self, domain):
 		dom = Domain(self.db)
@@ -321,17 +313,20 @@ class Domain_ctl:
 		self._reload()
 
 	def _reload(self):
-		rpc = Xml_rpc(self.ser, self.ssl)
 		try:
-			rpc.ser.domain.reload()
+			self.rpc.ser.domain.reload()
 		except xmlrpclib.Fault, inst:
 			warning('Domain reloading fail: ' +  repr(inst))
+		except Error, inst:
+			if inst.err == ERPC:
+				warning('Domain reloading fail: ' + str(inst.text))
+			else:
+				raise
 
 class User_ctl:
-	def __init__(self, dburi, seruri, ssl=None):
+	def __init__(self, dburi, rpc):
 		self.db  = dburi
-		self.ser = seruri
-		self.ssl = ssl
+		self.rpc = rpc
 
 	def show(self, raw=False):
 		user = User(self.db)
@@ -382,10 +377,9 @@ class User_ctl:
 		cred.change(username=user, realm=domain, password=password)
 
 class Alias_ctl:
-	def __init__(self, dburi, seruri, ssl=None):
+	def __init__(self, dburi, rpc):
 		self.db  = dburi
-		self.ser = seruri
-		self.ssl = ssl
+		self.rpc = rpc
 
 	def show(self, raw=False):
 		user = User(self.db)
@@ -418,10 +412,9 @@ class Alias_ctl:
 		ur.purge()
 
 class Usrloc_ctl:
-	def __init__(self, dburi, seruri, ssl=None):
+	def __init__(self, dburi, rpc):
 		self.db  = dburi
-		self.ser = seruri
-		self.ssl = ssl
+		self.rpc = rpc
 
 	def _get_uid(self, uri):
 		ur = Uri(self.db)
@@ -432,18 +425,15 @@ class Usrloc_ctl:
 
 	def show(self, uri):
 		uid = self._get_uid(uri)
-		rpc = Xml_rpc(self.ser, self.ssl)
-		return rpc.ser.usrloc.show_contacts('location', uid)
+		return self.rpc.ser.usrloc.show_contacts('location', uid)
 
 	def add(self, uri, contact):
 		uid = self._get_uid(uri)
-		rpc = Xml_rpc(self.ser, self.ssl)
-		rpc.ser.usrloc.add_contact('location', uid, contact, 0, 1, 128)
+		self.rpc.ser.usrloc.add_contact('location', uid, contact, 0, 1, 128)
 
 	def rm(self, uri, contact=None):
 		uid = self._get_uid(uri)
-		rpc = Xml_rpc(self.ser, self.ssl)
 		if contact is None:
-			rpc.ser.usrloc.delete_uid('location', uid)
+			self.rpc.ser.usrloc.delete_uid('location', uid)
 		else:
-			rpc.ser.usrloc.delete_contact('location', uid, contact)
+			self.rpc.ser.usrloc.delete_contact('location', uid, contact)

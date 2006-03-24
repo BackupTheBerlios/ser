@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.9 2006/03/13 08:44:20 hallik Exp $
+# $Id: error.py,v 1.10 2006/03/24 17:08:05 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -44,6 +44,7 @@ ERRORS = (\
 	('ENOHELP',	'Sorry, help not yet done'),
 	('EEXTRA',	'Unknown extra argument(s)'),
 	('ECOLSPEC',	'Invalid column specification'),
+	('ERPC',	'RPC error'),
 )
 
 i = 384

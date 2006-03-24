@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.18 2006/03/16 17:29:46 hallik Exp $
+# $Id: options.py,v 1.19 2006/03/24 17:08:05 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -231,7 +231,8 @@ OPT_LIST = (\
 	('G', 'dbg-args', False, False),
 	('g', 'debug',    False, False),
 	('h', 'help',     False, False),
-	('j', 'fifo',     False, False),
+	('j', 'use-fifo', False, False),
+	('J', 'fifo',     True,  '/tmp/ser_fifo'),
 	('k', 'ssl-key',  True,  None),
 	('l', 'limit',    True,  0),
 	('L', 'line-sep', True,  '\n'),

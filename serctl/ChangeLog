@@ -1,3 +1,13 @@
+serctl (0.1.7)
+
+  * Help for ser_ctl updated.
+  * Option --fifo changed to --use-fifo.
+  * Added new --fifo (-J) option.
+  * Fifo rpc added.
+  * *_rpc class API changed (constructor's parameters).
+
+ -- Jan Halla <hallik@iptel.org> Fri, 24 Mar 2006 18:06:57 +0100
+
 serctl (0.1.6)
 
   * Unaccepted condition for one parameter only, bug fixed.

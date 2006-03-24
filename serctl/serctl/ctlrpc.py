@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.8 2006/03/15 15:44:16 hallik Exp $
+# $Id: ctlrpc.py,v 1.9 2006/03/24 17:08:05 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,19 +13,16 @@
 
 _handler_ = 'main'
 
-from serctl.error     import Error, ENOSYS
+from os.path          import join, dirname
+from serctl.error     import Error, ENOSYS, ERPC
 from serctl.serxmlrpc import ServerProxy
 from serctl.utils     import show_opts, tabprint, var2tab
-import serctl.ctlhelp
+import os, sys, serctl.ctlhelp
 
 def main(rpc_command=None, *args, **opts):
 	if opts['HELP'] or rpc_command==None:
 		return help()
-	if opts['FIFO']:
-		ret = fifo_rpc(rpc_command, args, opts)
-	else:
-		ret = xml_rpc(rpc_command, args, opts)
-        return ret
+        return rpc(rpc_command, args, opts)
 
 def help(*tmp):
 	print """\
@@ -35,14 +32,20 @@ Usage:
 %s
 """ % serctl.ctlhelp.options()
 
-def xml_rpc(cmd, args, opts):
+def any_rpc(opts):
+	if opts['USE_FIFO']:
+		ser_fifo = opts['FIFO']
+		return Fifo_rpc(ser_fifo)
 	ssl_key  = opts['SSL_KEY']
 	ssl_cert = opts['SSL_CERT']
 	ser_uri  = opts['SER_URI']
+	return Xml_rpc(ser_uri, (ssl_key, ssl_cert))
+
+def rpc(cmd, args, opts):
+
+	rpc = any_rpc(opts)
 
         cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
-
-	rpc = Xml_rpc(ser_uri, (ssl_key, ssl_cert))
 
 	ret = rpc.shell_cmd(cmd, args)
 	if astab:
@@ -53,31 +56,18 @@ def xml_rpc(cmd, args, opts):
 			return     # value if nothing returns
 		print repr(ret)
 	
-def fifo_rpc(cmd, args, opts):
-	rpc = Fifo_rpc()
-
-	# FIX: todo
-	print rpc.shell_cmd(cmd, args)
-	
-
 
 class Xml_rpc:
 	def __init__(self, ser_uri, ssl=None):
 		self.ser = ServerProxy(ser_uri, ssl)
 
 	def raw_cmd(self, cmd, par=[]):
-		cmd = 'self.ser.' + str(cmd)
-		params = [ 'par[' + str(i) + ']' for i in range(len(par)) ]
-		params = ', '.join(params)
-		cmd = cmd + '(' + params + ')'
-		return eval(cmd)
+		method = getattr(self.ser, cmd)
+		return apply(method, par)
 
 	def shell_cmd(self, cmd, par=[]):
-		cmd = 'self.ser.' + str(cmd)
-		params = [ str(i) for i in par ]
-		params = ', '.join(params)
-		cmd = cmd + '(' + params + ')'
-		return eval(cmd)
+		params = [ eval(str(i)) for i in par ]
+		return self.raw_cmd(str(cmd), params)
 
 	def cmd(self, cmd, *par):
 		return self.raw_cmd(cmd, par)
@@ -124,10 +114,92 @@ class Xml_rpc:
 	def system_listmethods(self):
 		return self.ser.system.listMethods()
 
-class Fifo_rpc:
-	def __init__(self):
-		pass
+class _ser:
 
-	# FIX: todo
-	def shell_cmd(self, cmd, par=[]):
-		raise Error (ENOSYS, 'fifo-rpc-call')
+	def __init__(self, fn):
+		self._fn = fn
+
+	def __getattr__(self, what):
+		i = _ser(self._fn)
+		if self.__dict__.has_key('_name'):
+			i._name = self.__dict__['_name'] + '.' + what
+		else:
+			i._name = what
+		return i
+
+	def __call__(self, *params):
+		return self._fn(self._name, params)
+
+
+class Fifo_rpc(Xml_rpc):
+
+	LIST = (\
+		'core.ps',
+	)
+
+	def __init__(self, fifo='/tmp/ser_fifo'):
+		self.fifo = fifo
+		self.ser = _ser(self.raw_cmd)
+
+	def _escape(self, s):
+		s = s.replace('\n', '\\n')
+		s = s.replace('\r', '\\r')
+		s = s.replace('\t', '\\t')
+		s = s.replace('\\', '\\\\')
+		s = s.replace('\0', '\\0')
+		s = s.replace(':',  '\\o')
+		s = s.replace(',',  '\\c')
+		return s
+
+	def _unescape(self, s):
+		s = s.replace('\\n',  '\n')
+		s = s.replace('\\r',  '\r')
+		s = s.replace('\\t',  '\t')
+		s = s.replace('\\\\', '\\')
+		s = s.replace('\\0',  '\0')
+		s = s.replace('\\o',  ':')
+		s = s.replace('\\c',  ',')
+		return s
+
+	def _mkfifo(self):
+		name = 'ser_receiver_' +  str(os.getpid())
+		fifo = join('/tmp', name)
+		os.mkfifo(fifo)
+		os.chmod(fifo, 0666)
+		return name, fifo
+
+	def _read_reply(self, fifo):
+		fh = open(fifo, 'r')
+		reply = fh.read()
+		fh.close()
+		return reply
+
+	def raw_cmd(self, cmdname, params):
+		fname, rfifo = self._mkfifo()
+		cmd = ':' + cmdname + ':' + fname + '\n'
+
+		for p in params:
+			cmd += self._escape(self._escape(str(p))) + '\n'
+		cmd += '\n'
+		if os.fork() != 0:
+			fh = open(self.fifo, 'w')
+			fh.write(cmd)
+			fh.close()
+			ret = os.wait()
+			os.unlink(rfifo)
+			sys.exit()
+		reply = self._read_reply(rfifo)
+		st, reply = reply.split('\n', 1)
+		if st[:3] != '200':
+			raise Error (ERPC, st)
+		reply = reply.strip()
+		if cmdname not in self.LIST and reply.find(':') > 0:
+			ret = {}
+			for r in reply.split(','):
+				k, v = r.split(':', 1)
+				ret[self._unescape(k)] = self._unescape(v).lstrip()
+		else:
+			ret = []
+			for r in reply.split('\n'):
+				ret.append(self._unescape(r))
+		return ret

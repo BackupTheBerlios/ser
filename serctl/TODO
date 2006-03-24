@@ -15,8 +15,6 @@ Important:
 
   * Ser_ctl flush command.
 
-  * Fifo rpc commands.
-
   * Update ser_ctl's man for usrloc, tls and publish description.
 
 Future:
