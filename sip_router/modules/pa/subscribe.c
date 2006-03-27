@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.53 2006/03/23 12:23:37 kubartv Exp $
+ * $Id: subscribe.c,v 1.54 2006/03/27 07:39:35 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -530,8 +530,10 @@ static int create_watcher(struct sip_msg* _m, struct presentity* _p, struct watc
 	(*_w)->flags |= WFLAG_SUBSCRIPTION_CHANGED;
 	
 	/* changed only when presence watcher added  */
-	if (et == EVENT_PRESENCE)
+	if (et == EVENT_PRESENCE) {
 		_p->flags |= PFLAG_WATCHERINFO_CHANGED;
+		DEBUG("setting PFLAG_WATCHERINFO_CHANGED\n");
+	}
 	
 	return 0;
 }

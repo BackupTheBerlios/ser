@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.54 2006/03/15 16:03:43 kubartv Exp $
+ * $Id: pa_mod.c,v 1.55 2006/03/27 07:39:35 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -53,6 +53,7 @@
 
 #include "status_query.h"
 #include "offline_winfo.h"
+#include "message.h"
 
 MODULE_VERSION
 
@@ -127,6 +128,9 @@ static cmd_export_t cmds[]={
 	{"store_winfo",           store_offline_winfo,   1, 0, REQUEST_ROUTE | FAILURE_ROUTE},
 	{"dump_stored_winfo",     dump_offline_winfo,    2, subscribe_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 
+	/* TODO: move into XCAP module */
+	{"authorize_message",     authorize_message,    2, 0, REQUEST_ROUTE | FAILURE_ROUTE},
+	
 	/* FIXME: are these functions used to something by somebody */
 /*
  *
