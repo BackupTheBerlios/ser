@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.c,v 1.38 2006/03/22 09:43:18 kubartv Exp $
+ * $Id: publish.c,v 1.39 2006/03/28 11:37:09 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2003-2004 Hewlett-Packard Company
@@ -714,6 +714,8 @@ static int publish_presence(struct sip_msg* _m, struct presentity* presentity)
 			msg_expires = ((exp_body_t*)_m->expires->parsed)->val;
 		}
 	}
+	if (msg_expires > max_publish_expiration) 
+		msg_expires = max_publish_expiration;
 	if (msg_expires != 0) expires = msg_expires + act_time;
 
 	if (_m->sipifmatch) str_dup(&etag, (str*)_m->sipifmatch->parsed);
