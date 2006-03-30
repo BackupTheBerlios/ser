@@ -65,11 +65,34 @@ individual man pages for more accurate description for some special case.
 Set environmemnt variable name which will be used to pass database URI if
 not specified by config file or from command line. Default 'I<SERCTL_DB>'.
 
+=item B<-b>, B<--db-uri> I<uri>
+
+Database URI in the form: dbbackend://user:password@host:port/database.
+Default is 'I<mysql://ser:heslo@localhost:5060/ser>'.
+
+=head3 Supported database backends:
+
+=over 8
+
+=item B<mysql>
+
+MySQL backend (e.g.: mysql://...)
+
+=item B<postgres>
+
+Postgree SQL backend (e.g.: postgres://...)
+
+=back
+
 =item B<-C>, B<--columns> I<colname1,colname2,...>
 
 This option is used by show command. Describe what columns will be printed
 and their order. Without this option all columns will be printed in random
 (database determined) order.
+
+=item B<-c>, B<--config> I<path>
+
+Path to config file. Default is F</etc/serctl/serctl.conf>.
 
 =item B<-F>, B<--flags> I<flags>
 
@@ -140,54 +163,14 @@ set IS_FROM, LOAD_SER, all other flags unset
 B<Note:> Flags can be specified as decimal numbers, only. Hexadecimal notation
 (0x...) not yet supported, now. Will be in the future.
 
+=item B<-f>, B<--force>
+
+Ignore any non-fatal errors. Be silent.
+
 =item B<-G>, B<--dbg-args>
 
 Debuging option. Show module name, function name, arguments and options befor
 action.
-
-=item B<-L>, B<--line-sep> I<line_separator>
-
-Line separator for show command. Delault is LF (0x0a).
-
-=item B<-R>, B<--rec-sep> I<record_separator>
-
-Columns separator for show command. Default is space (0x20).
-
-=item B<-S>, B<--env-ser> I<env_name>
-
-Set environmemnt variable name which will be used to pass server URI if
-not specified by config file or from command line. Default 'I<SERCTL_SER>'.
-
-=item B<-V>, B<--version>
-
-Show version and exit.
-
-=item B<-b>, B<--db-uri> I<uri>
-
-Database URI in the form: dbbackend://user:password@host:port/database.
-Default is mysql://ser:heslo@localhost:5060/ser.
-
-=head3 Supported database backends:
-
-=over 8
-
-=item B<mysql>
-
-MySQL backend (e.g.: mysql://...)
-
-=item B<postgres>
-
-Postgree SQL backend (e.g.: postgres://...)
-
-=back
-
-=item B<-c>, B<--config> I<path>
-
-Path to config file. Default is F</etc/serctl/serctl.conf>.
-
-=item B<-f>, B<--force>
-
-Ignore any non-fatal errors. Be silent.
 
 =item B<-g>, B<--debug>
 
@@ -197,14 +180,22 @@ Switch on python backtrace listing when error occurred.
 
 Help.
 
-=item B<-j>, B<--fifo>
+=item B<-J>, B<--fifo> I<fifo_path>
 
-Use fifo instead xml-rpc for RPC. B<Note:> Not yet implemented, it's on TODO.
+Path to fifo. Used if B<-j> option is specified. Default: 'I</tmp/ser_fifo>'.
+
+=item B<-j>, B<--use-fifo>
+
+Use fifo instead xml-rpc for RPC.
 
 =item B<-k>, B<--ssl-key> I<path>
 
 Path to SSL key file. Used with SSL encryption for RPC. No default value,
 this mean no client authentication used.
+
+=item B<-L>, B<--line-sep> I<line_separator>
+
+Line separator for show command. Delault is LF (0x0a).
 
 =item B<-l>, B<--limit> I<num>
 
@@ -212,7 +203,7 @@ Limit number of displayed rows to I<num>.
 
 =item B<-m>, B<--ssl-cert> I<path>
 
-Path to SSL certificate file.Used with SSL encryption for RPC. No default
+Path to SSL certificate file. Used with SSL encryption for RPC. No default
 value, this mean no client authentication used.
 
 =item B<-n>, B<--numeric>
@@ -223,15 +214,27 @@ Show flags numericaly.
 
 Specify password (for some commands).
 
+=item B<-R>, B<--rec-sep> I<record_separator>
+
+Columns separator for show command. Default is space (0x20).
+
+=item B<-S>, B<--env-ser> I<env_name>
+
+Set environmemnt variable name which will be used to pass server URI if
+not specified by config file or from command line. Default 'I<SERCTL_SER>'.
+
 =item B<-s>, B<--ser-uri> I<uri>
 
 Server uri for RPC operations in the form: http[s]://user:password@host:port. 
-Default is http://localhost:5060/.
+Default is 'I<http://localhost:5060/>'.
 
 =item B<-t>, B<--as-table>
 
 Show output as table.
 
+=item B<-V>, B<--version>
+
+Show version and exit.
 
 =head1 CONFIG FILE
 

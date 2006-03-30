@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.10 2006/03/22 12:10:35 hallik Exp $
+# $Id: ctluri.py,v 1.11 2006/03/30 22:04:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -22,12 +22,13 @@ from serctl.uri     import split_sip_uri
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
 import serctl.ctlhelp
 
-def help(args, opts):
+def help(*tmp):
 	print """\
 Usage:
         ser_uri [options...] [--] [command] [param...]
 
 %s
+
 Commands & parameters:
 	ser_uri add       <uri> <uid> [did]
 	ser_uri canonical [[[uri] uid] did]
@@ -37,7 +38,7 @@ Commands & parameters:
 	ser_uri rm        [[[uri] uid] did]
 	ser_uri purge
 	ser_uri show      [[[uri] uid] did]
-""" % serctl.ctlhelp.options(args, opts)
+""" % serctl.ctlhelp.options()
 
 def show(uri=None, uid=None, did=None, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)

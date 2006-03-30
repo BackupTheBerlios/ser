@@ -1,3 +1,12 @@
+serctl (0.1.8)
+
+  * Help and documentation updated.
+  * Removed forgotten comment from main __init__.py. Serctl package api is
+    functional, again.
+  * Ser_uri help function fixed.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.1.7)
 
   * Help for ser_ctl updated.

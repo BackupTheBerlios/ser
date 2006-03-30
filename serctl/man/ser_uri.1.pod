@@ -1,0 +1,62 @@
+=head1 NAME
+
+ser_uri - Tool for low-level uri management.
+
+=head1 SYNOPSIS
+
+=over 8
+
+=item ser_uri [B<options...>] [--] B<add>       <I<uri>> <I<uid>> [I<did>]
+
+=item ser_uri [B<options...>] [--] B<canonical> [[[I<uri>] <I<uid>] I<did>]
+
+=item ser_uri [B<options...>] [--] B<change>    [[[I<uri>] <I<uid>] I<did>]
+
+=item ser_uri [B<options...>] [--] B<disable>   [[[I<uri>] <I<uid>] I<did>]
+
+=item ser_uri [B<options...>] [--] B<enable>    [[[I<uri>] <I<uid>] I<did>]
+
+=item ser_uri [B<options...>] [--] B<rm>        [[[I<uri>] <I<uid>] I<did>]
+
+=item ser_uri [B<options...>] [--] B<purge>
+
+=item ser_uri [B<options...>] [--] B<show>      [[[I<uri>] <I<uid>] I<did>]
+
+=head1 DESCRIPTION
+
+Command 'B<ser_uri add>' add new uri into ser database.
+
+Command 'B<ser_domain change>' change flags for I<uri> (or more precisely
+given also by I<uid> and I<did>). Flags should be specified by B<-F> option.
+
+Command 'B<ser_uri canonical>' set uri as canonical.
+
+Command 'B<ser_uri rm>' mark uri as deleted (set DELETED flag).
+
+Command 'B<ser_uri disable>' set DISABLED flag for uri.
+
+Command 'B<ser_uri enable>' unset DISABLED flag for uri.
+
+Command 'B<ser_uri purge>' remove all uris marked as deleted from
+database.
+
+Command 'B<ser_uri show>' print uris.
+
+=head1 OPTIONS
+
+For options description see B<serctl>(1) man page.
+
+=head1 SEE ALSO
+
+Related man pages:  B<serctl>(1), B<ser_domain>(1), B<ser_uri>(1), B<ser_user>(1).
+
+=head1 AUTHOR
+
+Jan Halla <hallik@iptel.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005, 2006 iptelorg GmbH.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Sip Express Router itself.

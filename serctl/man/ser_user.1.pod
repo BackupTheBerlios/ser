@@ -22,29 +22,27 @@ ser_user - Tool for low-level user management.
 
 =head1 DESCRIPTION
 
-Command 'B<ser_ctl add>' simply add new username into ser database. 
-'B<Ser_ctl rm>' remove it. 
+Command 'B<ser_user add>' simply add new username into ser database. 
 
 Flags assigned to user may be specified by B<-F> option when new user is
-added or may be changed by 'B<ser_ctl change>', later.
+added or may be changed by 'B<ser_user change>', later.
 
-Command 'B<ser_ctl disable>' set DISABLED flag for user.
+Command 'B<ser_user rm>' mark user deleted (set DELETED flag). 
 
-Command 'B<ser_ctl enable>' unset DISABLED flag for user.
 
-Command 'B<ser_ctl purge>' remove all usernames marked as deleted from
+Command 'B<ser_user disable>' set DISABLED flag for user.
+
+Command 'B<ser_user enable>' unset DISABLED flag for user.
+
+Command 'B<ser_user purge>' remove all usernames marked as deleted from
 database.
 
-Command 'B<ser_ctl show>' print user list.
+Command 'B<ser_user show>' print users.
 
 
 =head1 OPTIONS
 
 For options description see B<serctl>(1) man page.
-
-=head1 BUGS
-
-Some things are not implemented yet, now.
 
 =head1 SEE ALSO
 

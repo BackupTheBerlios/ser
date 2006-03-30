@@ -1,0 +1,63 @@
+=head1 NAME
+
+ser_cred - Tool for low-level credential management.
+
+=head1 SYNOPSIS
+
+=over 8
+
+=item ser_cred [B<options...>] [--] B<add>     <I<auth_username>> <I<realm>> <I<uid>> <I<password>>
+
+=item ser_cred [B<options...>] [--] B<change>  [[[I<auth_username>] I<realm>] I<uid>]
+
+=item ser_cred [B<options...>] [--] B<disable> [[[I<auth_username>] I<realm>] I<uid>]
+
+=item ser_cred [B<options...>] [--] B<enable>  [[[I<auth_username>] I<realm>] I<uid>]
+
+=item ser_cred [B<options...>] [--] B<rm>      [[[I<auth_username>] I<realm>] I<uid>]
+
+=item ser_cred [B<options...>] [--] B<purge>
+
+=item ser_cred [B<options...>] [--] B<show>    [[[I<auth_username>] I<realm>] I<uid>]
+
+=head1 DESCRIPTION
+
+Command 'B<ser_cred add>' add new credentials into ser database. (Appropriate
+hashes are generated automaticaly.)
+
+Command 'B<ser_domain change>' change password or flags for I<auth_username>
+(or more precisely given by I<realm> and I<uid>). Flags should be
+specified by B<-F> option, password by B<-p> option. (New correct hashes are
+regenerated automaticaly.)
+
+Command 'B<ser_cred rm>' mark credentials  as deleted
+(set DELETED flag).
+
+Command 'B<ser_cred disable>' set DISABLED flag for specified credentials.
+
+Command 'B<ser_cred enable>' unset DISABLED flag for specified credentials.
+
+Command 'B<ser_cred purge>' remove all credentials marked as deleted from
+database.
+
+Command 'B<ser_cred show>' print credentials.
+
+
+=head1 OPTIONS
+
+For options description see B<serctl>(1) man page.
+
+=head1 SEE ALSO
+
+Related man pages:  B<serctl>(1), B<ser_domain>(1), B<ser_uri>(1), B<ser_user>(1).
+
+=head1 AUTHOR
+
+Jan Halla <hallik@iptel.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005, 2006 iptelorg GmbH.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Sip Express Router itself.

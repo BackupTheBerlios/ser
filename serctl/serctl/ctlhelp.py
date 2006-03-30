@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.8 2006/03/15 23:19:35 hallik Exp $
+# $Id: ctlhelp.py,v 1.9 2006/03/30 22:04:52 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -25,7 +25,7 @@ OPT_DESC = {\
 	'ENABLE'   : 'Disable',
 	'ENV_DB'   : 'Env var used to pass database uri', 
 	'ENV_SER'  : 'Env var used to pass ser uri', 
-	'FIFO'     : 'Use fifo instead xml-rpc',
+	'FIFO'     : 'Path to fifo',
 	'FLAGS'    : 'Numeric or symbolic flags',
 	'FORCE'    : 'Ignore non-fatal errors',
 	'HELP'     : 'This text',
@@ -37,6 +37,7 @@ OPT_DESC = {\
 	'SER_URI'  : 'Ser uri for xml-rpc operations',
 	'SSL_CERT' : 'Path to ssl cert file',
 	'SSL_KEY'  : 'Path to ssl key file',
+	'USE_FIFO' : 'Use fifo instead xml-rpc',
 	'VERSION'  : 'Show version and exit',
 }
 

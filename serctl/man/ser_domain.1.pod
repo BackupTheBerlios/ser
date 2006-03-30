@@ -1,0 +1,61 @@
+=head1 NAME
+
+ser_domain - Tool for low-level domain management.
+
+=head1 SYNOPSIS
+
+=over 8
+
+=item ser_domain [B<options...>] [--] B<add>     <I<domain>> <I<did>>
+
+=item ser_domain [B<options...>] [--] B<change>  [I<domain>]
+
+=item ser_domain [B<options...>] [--] B<disable> [I<domain>]
+
+=item ser_domain [B<options...>] [--] B<enable>  [I<domain>]
+
+=item ser_domain [B<options...>] [--] B<rm>      [I<domain>]
+
+=item ser_domain [B<options...>] [--] B<purge>
+
+=item ser_domain [B<options...>] [--] B<show>    [I<domain>]
+
+=head1 DESCRIPTION
+
+Command 'B<ser_domain add>' add new I<domain> with identifier I<did> into
+ser database. 
+
+Command 'B<ser_domain change>' change flags for I<domain>. Flags should be
+specified by B<-F> option.
+
+Command 'B<ser_domain rm>' mark domain deleted (set DELETED flag). 
+
+Command 'B<ser_domain disable>' set DISABLED flag for domain.
+
+Command 'B<ser_domain enable>' unset DISABLED flag for domain.
+
+Command 'B<ser_domain purge>' remove all domains marked as deleted from
+database.
+
+Command 'B<ser_domain show>' print domains.
+
+
+=head1 OPTIONS
+
+For options description see B<serctl>(1) man page.
+
+=head1 SEE ALSO
+
+Related man pages:  B<serctl>(1), B<ser_cred>(1), B<ser_user>(1), B<ser_uri>(1), 
+B<ser_domain>(1).
+
+=head1 AUTHOR
+
+Jan Halla <hallik@iptel.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005, 2006 iptelorg GmbH.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Sip Express Router itself.
