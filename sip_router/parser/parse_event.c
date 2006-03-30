@@ -1,5 +1,5 @@
 /*
- * $Id: parse_event.c,v 1.8 2005/04/19 12:52:26 jamey Exp $
+ * $Id: parse_event.c,v 1.9 2006/03/30 10:37:55 andrei Exp $
  *
  * Event header field body parser.
  * The parser was written for Presence Agent module only.
@@ -81,7 +81,6 @@ static inline int event_parser(char* _s, int _l, event_t* _e)
 {
 	str tmp;
 	char* end;
-	char buf[128];
 
 	tmp.s = _s;
 	tmp.len = _l;
@@ -98,9 +97,6 @@ static inline int event_parser(char* _s, int _l, event_t* _e)
 	end = skip_token(tmp.s, tmp.len);
 
 	_e->text.len = end - tmp.s;
-
-	strncpy(buf, tmp.s, tmp.len);
-	buf[tmp.len] = 0;
 
 	if ((_e->text.len == PRES_STR_LEN) && 
 	    !strncasecmp(PRES_STR, tmp.s, _e->text.len)) {
