@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.213 2006/02/24 19:16:53 andrei Exp $
+ * $Id: main.c,v 1.214 2006/03/30 19:56:06 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -128,6 +128,7 @@
 #include "usr_avp.h"
 #include "core_cmd.h"
 #include "flags.h"
+#include "atomic_ops_init.h"
 
 #include "stats.h"
 
@@ -136,7 +137,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.213 2006/02/24 19:16:53 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.214 2006/03/30 19:56:06 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -390,6 +391,7 @@ void cleanup(show_status)
 	destroy_timer();
 	destroy_script_cb();
 	destroy_routes();
+	destroy_atomic_ops();
 #ifdef PKG_MALLOC
 	if (show_status){
 		LOG(memlog, "Memory status (pkg):\n");
@@ -1537,6 +1539,8 @@ try_again:
 	 *        the sems will have the correct euid)
 	 * --andrei */
 	if (init_shm_mallocs()==-1)
+		goto error;
+	if (init_atomic_ops()==-1)
 		goto error;
 	/*init timer, before parsing the cfg!*/
 	if (init_timer()<0){
