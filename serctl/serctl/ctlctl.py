@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.22 2006/03/31 11:20:01 hallik Exp $
+# $Id: ctlctl.py,v 1.23 2006/03/31 16:02:44 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -250,6 +250,14 @@ def stat(*modules, **opts):
 	st = []
 	for fn in display:
 		ret = rpc.cmd(fn)
+		if fn == 'usrloc.stats':	# FIX: Is this usrloc.stats processing correct?
+			d = {}
+			for x in ret:
+				name = x['domain']
+				for k, v in x.items():
+					if k == 'domain': continue
+					d[name + ' : ' + k] = v
+			ret = d
 		if type(ret) is dict:
 			for k, v in ret.items():
 				st.append([fn, str(k), str(v).strip()])
