@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.21 2006/03/24 17:08:05 hallik Exp $
+# $Id: ctlctl.py,v 1.22 2006/03/31 11:20:01 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -177,10 +177,14 @@ def usrloc(command, uri, contact=None, **opts):
 		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
 		u.rm(uri, contact)
 	elif cmd == CMD_SHOW:
+		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
 		ret = u.show(uri)
-		# FIX: update
-		print ret
+		if type(ret) == dict:	# FIX: Is this a bug in usrloc SER code?
+			ret = [ret]
+		ret = [ (str(i['contact']), str(i['expires']), str(i['q']) ) for i in ret ]
+		desc = (('contact',), ('expires',), ('q',))
+		tabprint(ret, desc, rsep, lsep, astab)
 	else:
 		raise Error (EINVAL, command)
 

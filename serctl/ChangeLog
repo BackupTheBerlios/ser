@@ -4,6 +4,7 @@ serctl (0.1.8)
   * Removed forgotten comment from main __init__.py. Serctl package api is
     functional, again.
   * Ser_uri help function fixed.
+  * User location code stuff updated.
 
  -- Jan Halla <hallik@iptel.org> 
 
