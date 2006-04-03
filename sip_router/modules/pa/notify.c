@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.41 2006/03/27 07:39:35 kubartv Exp $
+ * $Id: notify.c,v 1.42 2006/04/03 17:24:30 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -569,7 +569,7 @@ int send_notify(struct presentity* _p, struct watcher* _w)
 			break;
 		case EVENT_PRESENCE_WINFO:
 			rc = send_winfo_notify(_p, _w);
-			if (rc) LOG(L_ERR, "send_winfo_notify returned %d\n", rc);
+			if (rc < 0) LOG(L_ERR, "send_winfo_notify returned %d\n", rc);
 			break;
 		default: LOG(L_ERR, "sending notify for unknow package\n");
 	}
