@@ -1,5 +1,5 @@
 /* 
- * $Id: atomic_ops.c,v 1.4 2006/04/03 13:32:53 andrei Exp $
+ * $Id: atomic_ops.c,v 1.5 2006/04/04 11:08:31 andrei Exp $
  * 
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -36,7 +36,7 @@
 #include "atomic_ops_init.h"
 #include "atomic_ops.h"
 
-#if defined ATOMIC_OPS_USE_LOCK  || defines MEMBAR_USES_LOCK
+#if defined ATOMIC_OPS_USE_LOCK  || defined MEMBAR_USES_LOCK
 #include "locking.h"
 #endif
 
