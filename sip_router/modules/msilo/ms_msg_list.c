@@ -1,5 +1,5 @@
 /**
- * $Id: ms_msg_list.c,v 1.8 2004/08/24 08:58:31 janakj Exp $
+ * $Id: ms_msg_list.c,v 1.9 2006/04/04 09:45:29 kubartv Exp $
  *
  * MSILO module
  *
@@ -255,6 +255,7 @@ errorx:
 int msg_list_check(msg_list ml)
 {
 	msg_list_el p0;	
+	msg_list_el p0_next;	
 	
 	if(!ml)
 		goto errorx;
@@ -268,6 +269,7 @@ int msg_list_check(msg_list ml)
 	p0 = ml->lsent;
 	while(p0)
 	{
+		p0_next = p0->next;
 		if(p0->flag & MS_MSG_DONE || p0->flag & MS_MSG_ERRO)
 		{
 			DBG("MSILO: msg_list_check: mid:%d got reply\n", p0->msgid);
@@ -290,7 +292,7 @@ int msg_list_check(msg_list ml)
 			ml->ldone = p0;
 			ml->nrdone++;
 		}
-		p0 = p0->next;
+		p0 = p0_next;
 	}
 
 	lock_release(&ml->sem_done);
