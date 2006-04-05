@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.9 2006/03/22 12:10:35 hallik Exp $
+# $Id: utils.py,v 1.10 2006/04/05 14:52:51 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -28,6 +28,12 @@ def arg_pairs(args):
 		adict[k] = v
 		alist.append((k, v))
 	return adict, alist
+
+def arg_attrs(args):
+	aa = []
+	for a in args:
+		aa += a.split('=')
+	return arg_pairs(aa)
 
 def no_all(opts, *args):
 	for arg in args:

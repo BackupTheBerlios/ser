@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.9 2006/03/30 22:04:52 hallik Exp $
+# $Id: ctlhelp.py,v 1.10 2006/04/05 14:52:51 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -38,6 +38,7 @@ OPT_DESC = {\
 	'SSL_CERT' : 'Path to ssl cert file',
 	'SSL_KEY'  : 'Path to ssl key file',
 	'USE_FIFO' : 'Use fifo instead xml-rpc',
+	'UL_TABLE' : 'Usrloc table name',
 	'VERSION'  : 'Show version and exit',
 }
 

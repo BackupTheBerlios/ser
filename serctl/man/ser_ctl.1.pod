@@ -26,7 +26,7 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =item ser_ctl [B<options...>] [--] B<user>   B<show>
 
-=item ser_ctl [B<options...>] [--] B<usrloc> B<add>  <I<uri>> <I<contact>>
+=item ser_ctl [B<options...>] [--] B<usrloc> B<add>  <I<uri>> <I<contact>> [I<expires>=seconds] [I<q>=q] [I<flags>=flags]
 
 =item ser_ctl [B<options...>] [--] B<usrloc> B<show> <I<uri>>
 
@@ -97,7 +97,21 @@ Note: Interactive and secure prompt for password is not implemented yet.
 
 =head2 User location
 
-FIX: TODO
+Command 'B<ser_ctl usrloc add>' add new contact to user location table.
+
+Table name may be specified by B<-U> option. But only 'location' (default
+value) table name is implemented, now. 
+
+Optional attributes may be specified as key-value pairs. Attributes are:
+expiration time, flags and quality. Expiration time is in seconds. Default
+values are: I<q>=1, I<expires>=0, I<flags>=128. If flags is not
+specified and expires is set and differ from 0, then flags are assumed 0,
+(128 otherwise).
+
+Command 'B<ser_ctl usrloc rm>' remove contact (if specified) or all contacts
+from user location table for specified I<uri>.
+
+Command 'B<ser_ctl usrloc show>' prints user location table.
 
 =head2 Remote call and statistics
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.23 2006/03/31 16:02:44 hallik Exp $
+# $Id: ctlctl.py,v 1.24 2006/04/05 14:52:51 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -21,7 +21,8 @@ from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
 from serctl.ctlrpc    import any_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
-from serctl.utils     import show_opts, var2tab, tabprint, dict2tab
+from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
+                             arg_attrs
 import serctl.ctlhelp, xmlrpclib
 
 # xml-rpc method used in stats function (+ all *.stats)
@@ -50,9 +51,9 @@ Commands & parameters:
 	ser_ctl user   add  <uri> <password>
 	ser_ctl user   rm   <username>
 	ser_ctl user   show
-	ser_ctl usrloc add  <uri> <contact>
-	ser_ctl usrloc show <uri>
-	ser_ctl usrloc rm   <uri> [contact]
+	ser_ctl usrloc add  <uri> <contact> [expires=<seconds>] [q=<q>] [flags=<flags>] 
+	ser_ctl usrloc show <uri> [contact]
+	ser_ctl usrloc rm   <uri> [contact] 
 
   - remove database records marked as deleted:
 	ser_ctl purge
@@ -166,23 +167,32 @@ def alias(command, user_alias=None, alias=None, **opts):
 	else:
 		raise Error (EINVAL, command)
 		
-def usrloc(command, uri, contact=None, **opts):
+def usrloc(command, uri, contact=None, *args, **opts):
+	ad, al = arg_attrs(args)
+	table = opts['UL_TABLE']
+	q = float(ad.get('q', 1))
+	expires = ad.get('expires')
+	if expires is not None:
+		expires = int(expires)
+	flags = ad.get('flags')
+	if flags is not None:
+		flags = int(flags)
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		if contact is None:
 			raise Error (ENOARG, 'contact')
 		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
-		u.add(uri, contact)
+		u.add(uri, contact, table, expires, q, flags)
 	elif cmd == CMD_RM:
 		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
-		u.rm(uri, contact)
+		u.rm(uri, contact, table)
 	elif cmd == CMD_SHOW:
 		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 		u = Usrloc_ctl(opts['DB_URI'], any_rpc(opts))
-		ret = u.show(uri)
+		ret = u.show(uri, table)
 		if type(ret) == dict:	# FIX: Is this a bug in usrloc SER code?
 			ret = [ret]
-		ret = [ (str(i['contact']), str(i['expires']), str(i['q']) ) for i in ret ]
+		ret = [ (str(i['contact']), str(i['expires']), str(i['q'])) for i in ret ]
 		desc = (('contact',), ('expires',), ('q',))
 		tabprint(ret, desc, rsep, lsep, astab)
 	else:
@@ -435,17 +445,24 @@ class Usrloc_ctl:
 			raise Error (ENOUSER, 'For uri=%s (with TO_FLAG set)' % uri)
 		return uids[0]
 
-	def show(self, uri):
+	def show(self, uri, table='location'):
 		uid = self._get_uid(uri)
-		return self.rpc.ser.usrloc.show_contacts('location', uid)
+		return self.rpc.ser.usrloc.show_contacts(table, uid)
 
-	def add(self, uri, contact):
+	def add(self, uri, contact, table='location', expires=None, q=1.0, flags=None):
 		uid = self._get_uid(uri)
-		self.rpc.ser.usrloc.add_contact('location', uid, contact, 0, 1, 128)
+		if expires is None:
+			if flags is None:
+				flags = 128
+			expires = 0
+		else:
+			if flags is None:
+				flags = 0
+		self.rpc.ser.usrloc.add_contact(table, uid, contact, expires, q, flags)
 
-	def rm(self, uri, contact=None):
+	def rm(self, uri, contact=None, table='location'):
 		uid = self._get_uid(uri)
 		if contact is None:
-			self.rpc.ser.usrloc.delete_uid('location', uid)
+			self.rpc.ser.usrloc.delete_uid(table, uid)
 		else:
-			self.rpc.ser.usrloc.delete_contact('location', uid, contact)
+			self.rpc.ser.usrloc.delete_contact(table, uid, contact)

@@ -232,6 +232,10 @@ Default is 'I<http://localhost:5060/>'.
 
 Show output as table.
 
+=item B<-U>, B<--ul-table> I<table_name>
+
+Set user location table name. Default is I<'location'>.
+
 =item B<-V>, B<--version>
 
 Show version and exit.

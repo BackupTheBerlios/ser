@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.19 2006/03/24 17:08:05 hallik Exp $
+# $Id: options.py,v 1.20 2006/04/05 14:52:51 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -243,6 +243,7 @@ OPT_LIST = (\
 	('s', 'ser-uri',  True,  None),
 	('S', 'env-ser',  True,  'SERCTL_SER'),
 	('t', 'as-table', False, False),
+	('U', 'ul-table', True, 'location'),
 	('V', 'version',  False, False),
 )
 
