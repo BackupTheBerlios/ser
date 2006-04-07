@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.120 2006/03/16 12:13:16 janakj Exp $
+ * $Id: cfg.y,v 1.121 2006/04/07 14:55:27 andrei Exp $
  *
  *  cfg grammar
  *
@@ -236,6 +236,7 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token CHECK_VIA
 %token SYN_BRANCH
 %token MEMLOG
+%token MEMDBG
 %token SIP_WARNING
 %token SERVER_SIGNATURE
 %token REPLY_TO_VIA
@@ -504,6 +505,8 @@ assign_stm:
 	| SYN_BRANCH EQUAL error { yyerror("boolean value expected"); }
 	| MEMLOG EQUAL NUMBER { memlog=$3; }
 	| MEMLOG EQUAL error { yyerror("int value expected"); }
+	| MEMDBG EQUAL NUMBER { memdbg=$3; }
+	| MEMDBG EQUAL error { yyerror("int value expected"); }
 	| SIP_WARNING EQUAL NUMBER { sip_warning=$3; }
 	| SIP_WARNING EQUAL error { yyerror("boolean value expected"); }
 	| USER EQUAL STRING     { user=$3; }

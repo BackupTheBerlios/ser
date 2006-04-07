@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.32 2006/02/11 10:07:54 andrei Exp $
+/* $Id: shm_mem.c,v 1.33 2006/04/07 14:55:27 andrei Exp $
  *
  * Shared memory functions
  *
@@ -42,6 +42,7 @@
 #include "shm_mem.h"
 #include "../config.h"
 #include "../globals.h"
+#include "memdbg.h"
 
 #ifdef  SHM_MMAP
 
@@ -107,7 +108,7 @@ void* _shm_resize( void* p , unsigned int s)
 #	ifdef DBG_QM_MALLOC
 #	ifdef VQ_MALLOC
 	f=(struct  vqm_frag*) ((char*)p-sizeof(struct vqm_frag));
-	DBG("_shm_resize(%p, %d), called from %s: %s(%d)\n",  
+	MDBG("_shm_resize(%p, %d), called from %s: %s(%d)\n",  
 		p, s, file, func, line);
 	VQM_DEBUG_FRAG(shm_block, f);
 	if (p>(void *)shm_block->core_end || p<(void*)shm_block->init_core){

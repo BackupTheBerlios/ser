@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.60 2006/01/27 09:52:58 janakj Exp $
+ * $Id: globals.h,v 1.61 2006/04/07 14:55:27 andrei Exp $
  *
  * global variables
  *
@@ -139,6 +139,8 @@ extern int is_main;
 
 /* debugging level for dumping memory status */
 extern int memlog;
+/* debugging level for malloc debugging messages */
+extern int memdbg;
 
 /* debugging level for timer debugging (see -DTIMER_DEBUG) */
 extern int timerlog;
