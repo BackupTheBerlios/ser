@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.22 2006/03/30 14:13:23 kubartv Exp $
+ * $Id: pa_mod.h,v 1.23 2006/04/07 13:43:08 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -36,6 +36,9 @@
 #include "../dialog/dlg_mod.h"
 #include "auth.h"
 
+/* we have to use something from this module */
+#include "../xcap/xcap_mod.h"
+
 extern int default_expires;
 extern int max_subscription_expiration;  /* max expires value for SUBSCRIBE */
 extern int max_publish_expiration;  /* max expires value for PUBLISH */
@@ -50,6 +53,7 @@ extern dlg_func_t dlg_func;
 /* DB module bind */
 extern db_func_t pa_dbf;
 extern db_con_t* pa_db;
+extern fill_xcap_params_func fill_xcap_params;
 
 /* PA database */
 extern int use_db;

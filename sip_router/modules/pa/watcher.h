@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.h,v 1.19 2006/01/03 15:14:24 kubartv Exp $
+ * $Id: watcher.h,v 1.20 2006/04/07 13:43:08 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -128,7 +128,7 @@ void free_watcher(watcher_t* _w);
 /*
  * Update expires value of a watcher
  */
-int update_watcher(struct presentity *p, watcher_t* _w, time_t _e);
+int update_watcher(struct presentity *p, watcher_t* _w, time_t _e, struct sip_msg *m);
 
 /*
  * Read watcherinfo table from database for presentity _p
