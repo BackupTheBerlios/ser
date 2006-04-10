@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.h,v 1.3 2005/07/08 15:49:27 andrei Exp $
+ * $Id: dispatch.h,v 1.4 2006/04/10 10:50:48 kubartv Exp $
  *
  * dispatcher module
  * 
@@ -47,6 +47,7 @@ extern int ds_flags;
 int ds_load_list(char *lfile);
 int ds_destroy_list();
 int ds_select_dst(struct sip_msg *msg, char *set, char *alg);
+int ds_select_new(struct sip_msg *msg, char *set, char *alg);
 
 #endif
 
