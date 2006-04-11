@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.32 2006/03/15 16:03:43 kubartv Exp $
+ * $Id: presentity.h,v 1.33 2006/04/11 15:48:24 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -143,7 +143,7 @@ typedef enum pflag {
 typedef struct _internal_pa_subscription_t {
 	struct _internal_pa_subscription_t *prev, *next;
 	watcher_status_t status;
-	subscription_t *subscription;
+	qsa_subscription_t *subscription;
 	/* msg_queue_t *dst;
 	 * str_t package; 
 	 * str_t watcher_uri; */
