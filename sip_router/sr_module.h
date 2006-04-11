@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.35 2006/03/08 15:31:04 tma0 Exp $
+/* $Id: sr_module.h,v 1.36 2006/04/11 13:02:13 janakj Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -112,7 +112,7 @@ struct param_export_ {
 
 enum {
 	FPARAM_UNSPEC = 0,
-	FPARAM_ASCIIZ = (1 << 0),
+	FPARAM_STRING = (1 << 0),
 	FPARAM_STR    = (1 << 1),
 	FPARAM_INT    = (1 << 2),
 	FPARAM_REGEX  = (1 << 3),

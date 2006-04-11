@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.44 2006/03/01 12:00:49 janakj Exp $
+/* $Id: sr_module.c,v 1.45 2006/04/11 13:02:13 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -750,7 +750,7 @@ int fix_param(int type, void** param)
 		ERR("fix_param: Invalid type value\n");
 		goto error;
 
-	case FPARAM_ASCIIZ:
+	case FPARAM_STRING:
 		p->v.asciiz = *param;
 		break;
 
