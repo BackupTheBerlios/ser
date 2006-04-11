@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.45 2006/04/11 13:02:13 janakj Exp $
+/* $Id: sr_module.c,v 1.46 2006/04/11 13:12:17 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -764,9 +764,9 @@ int fix_param(int type, void** param)
 		if (err == 0) {
 			p->v.i = num;
 		} else {
-			ERR("Bad number <%s>\n",
-			    (char*)(*param));
-			goto error;
+			     /* Not a number */
+			pkg_free(p);
+			return 1;
 		}
 		break;
 
