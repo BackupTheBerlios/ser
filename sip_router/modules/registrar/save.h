@@ -1,5 +1,5 @@
 /*
- * $Id: save.h,v 1.9 2004/11/05 17:48:05 janakj Exp $
+ * $Id: save.h,v 1.10 2006/04/12 23:01:49 sobomax Exp $
  *
  * Functions that process REGISTER message 
  * and store data in usrloc
@@ -29,7 +29,7 @@
  *
  * History:
  * -------
- * 2003-03-21  save_noreply added, provided by Maxim Sobolev <sobomax@portaone.com> (janakj)
+ * 2003-03-21  save_noreply added, provided by Maxim Sobolev <sobomax@sippysoft.com> (janakj)
  */
 
 

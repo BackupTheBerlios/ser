@@ -1,5 +1,5 @@
 /*
- * $Id: reg_mod.c,v 1.42 2006/03/01 16:05:12 janakj Exp $
+ * $Id: reg_mod.c,v 1.43 2006/04/12 23:01:49 sobomax Exp $
  *
  * Registrar module interface
  *
@@ -31,7 +31,7 @@
  * --------
  *  2003-03-11  updated to the new module exports interface (andrei)
  *  2003-03-16  flags export parameter added (janakj)
- *  2003-03-21  save_noreply added, provided by Maxim Sobolev <sobomax@portaone.com> (janakj)
+ *  2003-03-21  save_noreply added, provided by Maxim Sobolev <sobomax@sippysoft.com> (janakj)
  *  2006-02-07  named flag support (andrei)
  */
 
