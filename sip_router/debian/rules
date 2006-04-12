@@ -2,7 +2,7 @@
 # Sample debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
 #
-# $Id: rules,v 1.12 2006/01/12 15:25:22 janakj Exp $
+# $Id: rules,v 1.13 2006/04/12 13:45:38 hallik Exp $
 #
 # History:
 # --------
@@ -176,14 +176,10 @@ install: build
 	# Install serctl only
 	cd $(SERCTL_PATH); \
 	$(MAKE) install \
-		usr_prefix=$(CURDIR)/debian/ser-ctl/usr \
-		var_prefix=$(CURDIR)/debian/ser-ctl/var \
-		sysconfdir=$(CURDIR)/debian/ser-ctl/etc \
-		bindir=$(CURDIR)/debian/ser-ctl/usr/bin \
-		libexecdir=$(CURDIR)/debian/ser-ctl/usr/lib \
-		datadir=$(CURDIR)/debian/ser-ctl/usr/share \
-		docdir=$(CURDIR)/debian/ser-ctl/usr/share/doc \
-		prefix=/usr
+		prefix=$(CURDIR)/debian/ser-ctl \
+		'usr_prefix=$$(prefix)/usr' \
+		'var_prefix=$$(prefix)/var' \
+		'DOC_DIR=$$(docdir)/ser-ctl'
 	#dh_movefiles
 
 
