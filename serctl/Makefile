@@ -28,8 +28,8 @@ CONF_DIR      = $(sysconfdir)/$(name)
 SRC_BIN_FILES  = ser_* 
 SRC_DOC_FILES  = README TODO ChangeLog
 SRC_CONF_FILES = serctl.conf
-SRC_MAN1_FILES = man/serctl.1
-SRC_MAN3_FILES = serxmlrpc.3
+SRC_MAN1_FILES = man/{serctl.1,ser_cred.1,ser_domain.1,ser_ctl.1,ser_uri.1,ser_user.1}
+SRC_MAN3_FILES = man/serxmlrpc.3
 
 # ========================================================================= #
 

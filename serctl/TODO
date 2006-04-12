@@ -1,39 +1,33 @@
 Important:
 ==========
 
-  * Show command for aliases.
-
   * Inteligently reformat return value for usrloc's show.
 
-  * Usrloc's code testing.
+  * Usrloc's code update and testing.
 
   * Check and improve ssl stuff.
 
-  * Consider how simplify xml-rpc stuff.
-
   * Remove pending flag.
 
-  * Ser_ctl flush command.
-
-  * Update ser_ctl's man for usrloc, tls and publish description.
+  * Update tls and publish description in man page.
 
 Future:
 =======
 
   * Hexadecimal flags.
 
-  * Fix the problem: duplicated unique key in domain_attrs for deleted
-    rows.
-
-  * Fix the problem: inconsistent timestamp - see BUGS.
-
   * Attribute manipulations.
 
   * API reference manual.
 
-  * Documentation.
+  * Ser_ctl flush command.
 
 Wishlist:
 =========
 
   * Interactive & secure prompt for password.
+
+  * Fix the problem: duplicated unique key in domain_attrs for deleted
+    rows.
+
+  * Fix the problem: inconsistent timestamp - see BUGS.

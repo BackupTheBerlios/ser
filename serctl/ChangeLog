@@ -1,3 +1,9 @@
+serctl (0.1.9)
+
+  * Manpage for serxmlrpc converted to POD format and moved to man dir.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.1.8)
 
   * Help and documentation updated.
