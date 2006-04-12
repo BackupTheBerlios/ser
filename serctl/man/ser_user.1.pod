@@ -22,22 +22,22 @@ ser_user - Tool for low-level user management.
 
 =head1 DESCRIPTION
 
-Command 'B<ser_user add>' simply add new username into ser database. 
+Command 'B<ser_user add>' adds a new username into SER database. 
 
-Flags assigned to user may be specified by B<-F> option when new user is
+Flags assigned to user may be specified by B<-F> option when a new user is
 added or may be changed by 'B<ser_user change>', later.
 
-Command 'B<ser_user rm>' mark user deleted (set DELETED flag). 
+Command 'B<ser_user rm>' marks user as deleted (set DELETED flag). 
 
 
-Command 'B<ser_user disable>' set DISABLED flag for user.
+Command 'B<ser_user disable>' sets DISABLED flag for user.
 
-Command 'B<ser_user enable>' unset DISABLED flag for user.
+Command 'B<ser_user enable>' resets DISABLED flag for user.
 
-Command 'B<ser_user purge>' remove all usernames marked as deleted from
+Command 'B<ser_user purge>' removes all usernames marked as deleted from
 database.
 
-Command 'B<ser_user show>' print users.
+Command 'B<ser_user show>' prints users.
 
 
 =head1 OPTIONS
@@ -58,4 +58,4 @@ Jan Halla <hallik@iptel.org>
 Copyright (C) 2005, 2006 iptelorg GmbH.
 
 This program is free software; you may redistribute it and/or modify
-it under the same terms as Sip Express Router itself.
+it under the same terms as SIP Express Router itself.

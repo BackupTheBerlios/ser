@@ -50,7 +50,7 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =item ser_ctl [B<options...>] [--] B<list_tls>
 
-=head2 Miscelaneous:
+=head2 Miscellaneous:
 
 =item ser_ctl [B<options...>] [--] B<publish> <I<uid>> <I<file_with_PIDF_doc>> <I<expires_in_sec>> [I<etag>]
 
@@ -60,35 +60,35 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =head2 Aliases
 
-Command 'B<ser_ctl alias add/rm>' add or remove aliases for existing username. Aliases
+Command 'B<ser_ctl alias add/rm>' adds or removes aliases of existing username. Aliases
 are stored in 'uri' table.
 
 Command 'B<ser_ctl alias show>' show existing users: their uid, uri and
-flags. This command show both canonical and non-canonical records (see
+flags. This command shows both canonical and non-canonical records (see
 'B<ser_ctl user show>' command).
 
 =head2 Domains
 
-Command 'B<ser_ctl domain>' add/remove domain to/from 'domain' table. After
-domain is added or removed 'domain.reload' remote procedure is called on
-server, for cache update.
+Command 'B<ser_ctl domain>' adds/removes domain to/from 'domain' table. After
+a domain is added or removed 'domain.reload' remote procedure is called to
+update the memory cache on the server.
 
 =head2 Users
 
-Command 'B<ser_ctl user add>' add new user. 
+Command 'B<ser_ctl user add>' adds a new user. 
 
-Command 'B<ser_ctl user rm>' delete specified username completely from database. 
+Command 'B<ser_ctl user rm>' deletes specified username completely from database. 
 
-Command 'B<ser_ctl user show>' show existing users: their uid, uri and
-flags. This command is the same as 'B<ser_ctl alias show>', but show only
+Command 'B<ser_ctl user show>' shows existing users: their uid, uri and
+flags. This command is the same as 'B<ser_ctl alias show>', but shows only
 canonical records (no aliases).
 
-For B<add> command, user is pecified as his canonical I<uri>
+For B<add> command, user is specified as his canonical I<uri>
 (username@domain.tld). Username part of uri is used as new username.
 Domain part is checked for existence in domain table. Domain must exist (must
 be created by ser_ctl domain, before) in database.
 
-Password for new user may be specified as last parameter or by B<-p>
+Password for new user may be specified as last parameter or using B<-p>
 option. 
 
 Password may be changed by 'B<ser_ctl password>' command.
@@ -100,7 +100,7 @@ Note: Interactive and secure prompt for password is not implemented yet.
 Command 'B<ser_ctl usrloc add>' add new contact to user location table.
 
 Table name may be specified by B<-U> option. But only 'location' (default
-value) table name is implemented, now. 
+value) table name is implemented now. 
 
 Optional attributes may be specified as key-value pairs. Attributes are:
 expiration time, flags and quality. Expiration time is in seconds. Default
@@ -115,32 +115,30 @@ Command 'B<ser_ctl usrloc show>' prints user location table.
 
 =head2 Remote call and statistics
 
-Command B<ser_ctl kill> send signal to SER via xml-rpc or fifo. Signal should be
-specified numericaly. Default is 15 (TERM). Probably only some minor subset
-of signals are useful, because there are no way how remotely restart stopped
-or terminated SER.
+Command B<ser_ctl kill> send signal to SER via XML-RPC or FIFO. Signal should be
+specified numerically. Default is 15 (TERM).
 
-Command B<ser_ctl ps> list pids of running ser processes on server and
-descriptions for each process.
+Command B<ser_ctl ps> list pids of running SER processes on server along with
+a short description of each process.
 
-Command B<ser_ctl reload> call all *.reload remote procedure calls actualy 
-presented by server.
+Command B<ser_ctl reload> calls all *.reload remote procedure calls
+available on the server.
 
-Command B<ser_ctl stat> show miscelaneous server statistics reported mainly
-by *.stats rpc. Optional parameter I<module_name> specified for which
-modules statistics will be printed. When omited, all available statistics
+Command B<ser_ctl stat> show miscellaneous server statistics reported mainly
+by *.stats rpc. Optional parameter I<module_name> specifies for which
+modules statistics will be printed. When omitted, all available statistics
 will be shown.
 
-Command B<ser_ctl uptime> show server uptime.
+Command B<ser_ctl uptime> shows server uptime.
 
-Command B<ser_ctl version> show server version.
+Command B<ser_ctl version> shows server version.
 
-Command B<ser_ctl list_methods> show all server's methods which may be remotely
+Command B<ser_ctl list_methods> shows all server's methods which may be remotely
 called.
 
 Command B<ser_ctl list_tls> show FIX: what? (some TLS statistics?)
 
-=head2 Miscelaneous
+=head2 Miscellaneous
 
 Command B<ser_ctl publish> can manage presence information on server. FIX:
 update.
@@ -153,7 +151,7 @@ For options description see B<serctl>(1) man page.
 
 =head1 BUGS
 
-Some things are not implemented yet, now.
+Some things are not implemented yet.
 
 =head1 SEE ALSO
 
@@ -169,4 +167,4 @@ Jan Halla <hallik@iptel.org>
 Copyright (C) 2005, 2006 iptelorg GmbH.
 
 This program is free software; you may redistribute it and/or modify
-it under the same terms as Sip Express Router itself.
+it under the same terms as the SIP Express Router itself.

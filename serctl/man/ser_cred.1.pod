@@ -1,6 +1,6 @@
 =head1 NAME
 
-ser_cred - Tool for low-level credential management.
+ser_cred - Tool for low-level management of authentication credentials.
 
 =head1 SYNOPSIS
 
@@ -22,25 +22,25 @@ ser_cred - Tool for low-level credential management.
 
 =head1 DESCRIPTION
 
-Command 'B<ser_cred add>' add new credentials into ser database. (Appropriate
-hashes are generated automaticaly.)
+Command 'B<ser_cred add>' adds new credentials into SER database. (Appropriate
+hashes are generated automatically.)
 
-Command 'B<ser_domain change>' change password or flags for I<auth_username>
+Command 'B<ser_domain change>' changes the password or flags for I<auth_username>
 (or more precisely given by I<realm> and I<uid>). Flags should be
 specified by B<-F> option, password by B<-p> option. (New correct hashes are
-regenerated automaticaly.)
+regenerated automatically.)
 
-Command 'B<ser_cred rm>' mark credentials  as deleted
+Command 'B<ser_cred rm>' marks credentials as deleted
 (set DELETED flag).
 
-Command 'B<ser_cred disable>' set DISABLED flag for specified credentials.
+Command 'B<ser_cred disable>' sets DISABLED flag for specified credentials.
 
-Command 'B<ser_cred enable>' unset DISABLED flag for specified credentials.
+Command 'B<ser_cred enable>' unsets DISABLED flag for specified credentials.
 
-Command 'B<ser_cred purge>' remove all credentials marked as deleted from
-database.
+Command 'B<ser_cred purge>' removes all credentials marked as deleted from
+the database.
 
-Command 'B<ser_cred show>' print credentials.
+Command 'B<ser_cred show>' prints credentials.
 
 
 =head1 OPTIONS
@@ -60,4 +60,4 @@ Jan Halla <hallik@iptel.org>
 Copyright (C) 2005, 2006 iptelorg GmbH.
 
 This program is free software; you may redistribute it and/or modify
-it under the same terms as Sip Express Router itself.
+it under the same terms as the SIP Express Router itself.

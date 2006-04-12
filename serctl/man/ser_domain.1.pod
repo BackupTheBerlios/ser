@@ -1,6 +1,6 @@
 =head1 NAME
 
-ser_domain - Tool for low-level domain management.
+ser_domain - Tool for low-level virtual domain management.
 
 =head1 SYNOPSIS
 
@@ -22,22 +22,22 @@ ser_domain - Tool for low-level domain management.
 
 =head1 DESCRIPTION
 
-Command 'B<ser_domain add>' add new I<domain> with identifier I<did> into
-ser database. 
+Command 'B<ser_domain add>' adds a new I<domain> with identifier I<did> into
+SER database. 
 
-Command 'B<ser_domain change>' change flags for I<domain>. Flags should be
+Command 'B<ser_domain change>' changes flags for I<domain>. Flags should be
 specified by B<-F> option.
 
-Command 'B<ser_domain rm>' mark domain deleted (set DELETED flag). 
+Command 'B<ser_domain rm>' marks domain as deleted (set DELETED flag). 
 
-Command 'B<ser_domain disable>' set DISABLED flag for domain.
+Command 'B<ser_domain disable>' sets DISABLED flag for domain.
 
-Command 'B<ser_domain enable>' unset DISABLED flag for domain.
+Command 'B<ser_domain enable>' resets DISABLED flag for domain.
 
-Command 'B<ser_domain purge>' remove all domains marked as deleted from
+Command 'B<ser_domain purge>' removes all domains marked as deleted from
 database.
 
-Command 'B<ser_domain show>' print domains.
+Command 'B<ser_domain show>' prints domains.
 
 
 =head1 OPTIONS
@@ -58,4 +58,4 @@ Jan Halla <hallik@iptel.org>
 Copyright (C) 2005, 2006 iptelorg GmbH.
 
 This program is free software; you may redistribute it and/or modify
-it under the same terms as Sip Express Router itself.
+it under the same terms as the SIP Express Router itself.

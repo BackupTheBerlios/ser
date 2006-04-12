@@ -1,6 +1,6 @@
 =head1 NAME
 
-ser_uri - Tool for low-level uri management.
+ser_uri - Tool for low-level SIP URI management.
 
 =head1 SYNOPSIS
 
@@ -24,23 +24,23 @@ ser_uri - Tool for low-level uri management.
 
 =head1 DESCRIPTION
 
-Command 'B<ser_uri add>' add new uri into ser database.
+Command 'B<ser_uri add>' adds a new URI into SER database.
 
-Command 'B<ser_domain change>' change flags for I<uri> (or more precisely
+Command 'B<ser_domain change>' changes flags for I<uri> (or more precisely
 given also by I<uid> and I<did>). Flags should be specified by B<-F> option.
 
-Command 'B<ser_uri canonical>' set uri as canonical.
+Command 'B<ser_uri canonical>' sets URI as canonical.
 
-Command 'B<ser_uri rm>' mark uri as deleted (set DELETED flag).
+Command 'B<ser_uri rm>' marks URI as deleted (set DELETED flag).
 
-Command 'B<ser_uri disable>' set DISABLED flag for uri.
+Command 'B<ser_uri disable>' sets DISABLED flag for URI.
 
-Command 'B<ser_uri enable>' unset DISABLED flag for uri.
+Command 'B<ser_uri enable>' resets DISABLED flag for URI.
 
-Command 'B<ser_uri purge>' remove all uris marked as deleted from
+Command 'B<ser_uri purge>' remove all URIs marked as deleted from
 database.
 
-Command 'B<ser_uri show>' print uris.
+Command 'B<ser_uri show>' prints URIs.
 
 =head1 OPTIONS
 
@@ -59,4 +59,4 @@ Jan Halla <hallik@iptel.org>
 Copyright (C) 2005, 2006 iptelorg GmbH.
 
 This program is free software; you may redistribute it and/or modify
-it under the same terms as Sip Express Router itself.
+it under the same terms as the SIP Express Router itself.

@@ -9,7 +9,7 @@ ser_<module_name> [options...] [--] [[command] params...]
 =head1 DESCRIPTION
 
 The serctl is tool for local/remote SER management. Serctl can manage SER
-database (only new scheme is supported) and can call xml-rpc commans on
+database (only new scheme is supported) and can call XML-RPC commans on
 server.
 
 Serctl is modularized. New module can be simply added to enhance
@@ -27,11 +27,11 @@ Module for managing credential information. See B<ser_cred>(1).
 
 =item domain
 
-Module for managing domain names. See B<ser_domain>(1). 
+Module for managing virtual domains. See B<ser_domain>(1). 
 
 =item db
 
-Simple (stupid) but universal module for acces to any table in SER database.
+Simple but universal module for acces to any table in SER database.
 Mainly for testing and debuging.
 
 =item uri
@@ -50,15 +50,15 @@ Module for low-level user management. See B<ser_user>(1).
 
 =item ctl
 
-By B<ser_ctl>(1) command is possible simply add/remove users, aliases and
-domains to/from SER database. There is also possible call remote procedures
-on server or view some statistics from server.
+By B<ser_ctl>(1) command it is possible to add/remove users, aliases and
+domains to/from SER database. It is also possible call remote procedures
+on server or view some statistics from the server.
 
 =head1 OPTIONS
 
-Options are common for all modules, but not all options are used by all
-modules or commands. There are global description about all options, see
-individual man pages for more accurate description for some special case.
+Many options are common for most serctl modules. There is a common 
+description of all options, see respective man pages for more accurate 
+description for some special case.
 
 =item B<-B>, B<--env-db> I<env_name>
 
@@ -291,4 +291,4 @@ Jan Halla <hallik@iptel.org>
 Copyright (C) 2005, 2006 iptelorg GmbH.
 
 This program is free software; you may redistribute it and/or modify
-it under the same terms as Sip Express Router itself.
+it under the same terms as the SIP Express Router itself.
