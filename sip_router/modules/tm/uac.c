@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.58 2006/01/30 15:56:29 kubartv Exp $
+ * $Id: uac.c,v 1.59 2006/04/12 18:04:24 andrei Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -235,7 +235,7 @@ int t_uac(str* method, str* headers, str* body, dlg_t* dialog,
 	request->dst.to = to_su;
 	request->dst.send_sock = send_sock;
 	request->dst.proto = send_sock->proto;
-	request->dst.proto_reserved1 = 0;
+	request->dst.id = 0;
 
 	hi=dlg2hash(dialog);
 	LOCK_HASH(hi);

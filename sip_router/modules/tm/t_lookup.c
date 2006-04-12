@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.102 2006/01/27 18:47:22 andrei Exp $
+ * $Id: t_lookup.c,v 1.103 2006/04/12 18:04:24 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -1002,7 +1002,7 @@ int init_rb( struct retr_buf *rb, struct sip_msg *msg)
 		proto=via->proto;
 	}
 	rb->dst.proto=proto;
-	rb->dst.proto_reserved1=msg->rcv.proto_reserved1;
+	rb->dst.id=msg->rcv.proto_reserved1;
 	/* turn off mhomed for generating replies -- they are ideally sent to where
 	   request came from to make life with NATs and other beasts easier
 	*/

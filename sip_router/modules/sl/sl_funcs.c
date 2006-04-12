@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.54 2006/03/01 15:59:35 janakj Exp $
+ * $Id: sl_funcs.c,v 1.55 2006/04/12 18:04:24 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -104,7 +104,7 @@ int sl_send_reply(struct sip_msg *msg , int code, char* reason)
 {
 	char *buf, *dset;
 	unsigned int len;
-	union sockaddr_union to;
+	struct dest_info dst;
 	struct bookmark dummy_bm;
 	int backup_mhomed, ret, dset_len;
 
@@ -116,14 +116,14 @@ int sl_send_reply(struct sip_msg *msg , int code, char* reason)
 	}
 
 	if (reply_to_via) {
-		if (update_sock_struct_from_via(  &(to), msg, msg->via1 )==-1)
+		if (update_sock_struct_from_via(  &dst.to, msg, msg->via1 )==-1)
 		{
 			LOG(L_ERR, "ERROR: sl_send_reply: "
 				"cannot lookup reply dst: %s\n",
 				msg->via1->host.s );
 			goto error;
 		}
-	} else update_sock_struct_from_ip( &to, msg );
+	} else update_sock_struct_from_ip( &dst.to, msg );
 
 	/* if that is a redirection message, dump current message set to it */
 	if (code>=300 && code<400) {
@@ -161,8 +161,10 @@ int sl_send_reply(struct sip_msg *msg , int code, char* reason)
 	backup_mhomed=mhomed;
 	mhomed=0;
 	/* use for sending the received interface -bogdan*/
-	ret = msg_send( msg->rcv.bind_address, msg->rcv.proto, &to,
-			msg->rcv.proto_reserved1, buf, len);
+	dst.proto=msg->rcv.proto;
+	dst.send_sock=msg->rcv.bind_address;
+	dst.id=msg->rcv.proto_reserved1;
+	ret = msg_send(&dst, buf, len);
 	mhomed=backup_mhomed;
 	if (ret<0) 
 		goto error;

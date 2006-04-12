@@ -1,5 +1,5 @@
 /*
- * $Id: sercmd.c,v 1.2 2006/02/23 23:36:54 andrei Exp $
+ * $Id: sercmd.c,v 1.3 2006/04/12 18:04:24 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -78,7 +78,7 @@
 #define UNIX_PATH_MAX 108
 #endif
 
-static char id[]="$Id: sercmd.c,v 1.2 2006/02/23 23:36:54 andrei Exp $";
+static char id[]="$Id: sercmd.c,v 1.3 2006/04/12 18:04:24 andrei Exp $";
 static char version[]= NAME " " VERSION;
 static char compiled[]= __TIME__ " " __DATE__;
 static char help_msg[]="\
@@ -103,7 +103,7 @@ cmd:\n\
 arg:\n\
      string or number; to force a number to be interpreted as string \n\
      prefix it by \"s:\", e.g. s:1\n\
-Example:\n\
+Examples:\n\
         " NAME " -s unixs:/tmp/ser_unix system.listMethods\n\
         " NAME " -f \"pid: %v  desc: %v\\n\" -s udp:localhost:2047 core.ps \n\
         " NAME " ps  # uses default ctl socket \n\

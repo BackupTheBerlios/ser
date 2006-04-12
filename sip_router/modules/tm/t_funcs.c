@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.185 2006/01/07 21:28:50 mma Exp $
+ * $Id: t_funcs.c,v 1.186 2006/04/12 18:04:24 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -82,8 +82,7 @@ int send_pr_buffer(	struct retr_buf *rb, void *buf, int len
 					)
 {
 	if (buf && len && rb )
-		return msg_send( rb->dst.send_sock, rb->dst.proto, &rb->dst.to,
-				         rb->dst.proto_reserved1, buf, len);
+		return msg_send( &rb->dst, buf, len);
 	else {
 #ifdef EXTRA_DEBUG
 		LOG(L_CRIT, "ERROR: send_pr_buffer: sending an empty buffer"
