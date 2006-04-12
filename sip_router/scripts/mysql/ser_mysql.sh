@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.1 2005/11/15 11:28:52 janakj Exp $
+# $Id: ser_mysql.sh,v 1.2 2006/04/12 15:11:38 janakj Exp $
 #
 # Script for adding and dropping ser MySQL tables
 #
@@ -88,7 +88,7 @@ db_save()
 	echo "ERROR: Bug in $COMMAND"
 	exit 1
     fi
-    $DUMP_CMD -t $PW $1 > $2
+    $DUMP_CMD $PW $1 > $2
 }
 
 
