@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.33 2006/04/11 15:48:24 kubartv Exp $
+ * $Id: presentity.h,v 1.34 2006/04/13 12:20:02 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -41,6 +41,7 @@
 #include <xcap/pres_rules.h>
 #include <cds/msg_queue.h>
 #include <presence/notifier.h>
+#include <presence/subscriber.h>
 #include <presence/pres_doc.h>
 
 enum prescaps {
@@ -168,10 +169,13 @@ typedef struct presentity {
 	msg_queue_t mq;	/* message queue supplying direct usrloc callback processing */
 	
 	pa_presence_note_t *notes;
-
 	pa_person_element_t *person_elements;
-	
 	str uuid; /* use after usrloc uuid-zation - callbacks are registered to this */
+	
+	/* data for internal subscriptions to presence */
+	/* reduces memory allocation count */
+	qsa_subscription_data_t presence_subscription_data;
+	qsa_subscription_t *presence_subscription;
 } presentity_t;
 
 /*
@@ -278,6 +282,8 @@ resource_list_t *resource_list_remove(resource_list_t *list, str *uri);
 int db_remove_presentity(presentity_t* presentity);
 
 /* helper functions */
+
+void free_tuple_change_info_content(tuple_change_info_t *i);
 
 /* 
  * gets UID from message (using get_to_uid) 

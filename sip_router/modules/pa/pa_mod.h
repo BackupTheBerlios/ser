@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.24 2006/04/10 07:32:40 kubartv Exp $
+ * $Id: pa_mod.h,v 1.25 2006/04/13 12:20:02 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -73,6 +73,8 @@ extern auth_params_t pa_auth_params;
 extern auth_params_t winfo_auth_params;
 extern int watcherinfo_notify;
 extern int use_callbacks;
+extern int subscribe_to_users;
+extern str pa_subscription_uri;
 extern int use_offline_winfo;
 extern char *offline_winfo_table;
 
