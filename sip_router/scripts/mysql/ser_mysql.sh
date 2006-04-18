@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.3 2006/04/18 08:47:11 janakj Exp $
+# $Id: ser_mysql.sh,v 1.4 2006/04/18 10:53:51 janakj Exp $
 #
 # Script for adding and dropping ser MySQL tables
 #
@@ -215,11 +215,18 @@ drop_db()
     sql_query "" "REVOKE ALL PRIVILEGES ON ${DBNAME}.* FROM '${ROUSER}'@'%'"
     sql_query "" "REVOKE ALL PRIVILEGES ON ${DBNAME}.* FROM '${ROUSER}'@'localhost'"
 
-    if [ ! $KEEP_USERS ] ; then
-	sql_query "" "DROP USER '${RWUSER}'@'%'"
-	sql_query "" "DROP USER '${RWUSER}'@'localhost'"
-	sql_query "" "DROP USER '${ROUSER}'@'%'"
-	sql_query "" "DROP USER '${ROUSER}'@'localhost'"
+    if [ ! -z "$KEEP_USERS" ] ; then
+	    # Works only with MySQL 4.1.1 and higher
+		#sql_query "" "DROP USER '${RWUSER}'@'%'"
+		#sql_query "" "DROP USER '${RWUSER}'@'localhost'"
+		#sql_query "" "DROP USER '${ROUSER}'@'%'"
+		#sql_query "" "DROP USER '${ROUSER}'@'localhost'"
+		
+		# Works with older MySQL versions
+		sql_query "" "DELETE FROM mysql.user WHERE User='${RWUSER}' and Host='%'"
+		sql_query "" "DELETE FROM mysql.user WHERE User='${RWUSER}' and Host='localhost'"
+		sql_query "" "DELETE FROM mysql.user WHERE User='${ROUSER}' and Host='%'"
+		sql_query "" "DELETE FROM mysql.user WHERE User='${ROUSER}' and Host='localhost'"
     fi
 
     sql_query "" "FLUSH PRIVILEGES"
