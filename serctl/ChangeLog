@@ -1,8 +1,10 @@
 serctl (0.1.9)
 
   * Manpage for serxmlrpc converted to POD format and moved to man dir.
+  * Def _change function in ctluri.py and ctldomain.py fixed.
+  * Ser_domain updated: column 'last_modified' removed.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Tue, 18 Apr 2006 12:41:46 +0200
 
 serctl (0.1.8)
 

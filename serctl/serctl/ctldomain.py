@@ -17,7 +17,7 @@ from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, timestamp
+from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
 import serctl.ctlhelp
 
 def help(*tmp):
@@ -54,7 +54,7 @@ def add(domain, did, **opts):
 	u = Domain(opts['DB_URI'])
 	u.add(domain, did, flags=flags, force=force)
 
-def _change(domain=None, **opts):
+def _change(domain, opts):
 	no_all(opts, domain)
 
 	force = opts['FORCE']
@@ -101,7 +101,7 @@ def purge(**opts):
 
 class Domain:
 	T_DOM = 'domain'
-	C_DOM = ('did', 'domain', 'last_modified', 'flags')
+	C_DOM = ('did', 'domain', 'flags')
 	I_DOM = idx_dict(C_DOM) # column index dict
 	F_DOM = I_DOM['flags']  # flags column index 
 
@@ -215,9 +215,7 @@ class Domain:
 			flags = set_canonical(flags)
 
 		# add new domain
-		stamp = timestamp()
-		ins = { 'did' : did, 'domain' : domain, \
-		        'last_modified' : stamp, 'flags' : flags }
+		ins = { 'did' : did, 'domain' : domain, 'flags' : flags }
 		self.db.insert(self.T_DOM, ins)
 
 	def change(self, domain=None, flags=None, force=False):

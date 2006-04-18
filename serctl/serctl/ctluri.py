@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.11 2006/03/30 22:04:52 hallik Exp $
+# $Id: ctluri.py,v 1.12 2006/04/18 10:43:12 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -59,7 +59,7 @@ def add(uri, uid, did=None, **opts):
 def change(uri=None, uid=None, did=None, **opts):
 	return _change(uri, uid, did, opts)
 
-def _change(uri=None, uid=None, did=None, **opts):
+def _change(uri, uid, did, opts):
 	no_all(opts, uri, uid, did)
 
 	force = opts['FORCE']
