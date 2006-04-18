@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.102 2006/04/12 18:04:23 andrei Exp $
+ * $Id: forward.c,v 1.103 2006/04/18 13:51:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -440,8 +440,7 @@ int forward_reply(struct sip_msg* msg)
 	char* s;
 	int len;
 #endif
-	
-	dst.id=0;
+	memset(&dst, 0, sizeof(struct dest_info));	
 	new_buf=0;
 	/*check if first via host = us */
 	if (check_via){
