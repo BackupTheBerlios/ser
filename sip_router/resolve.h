@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.24 2005/07/11 17:30:44 andrei Exp $
+ * $Id: resolve.h,v 1.25 2006/04/18 19:56:48 andrei Exp $
  *
  * resolver related functions
  *
@@ -359,4 +359,6 @@ skip_ipv4:
 
 int resolv_init();
 
+int sip_hostport2su(union sockaddr_union* su, str* host, unsigned short port,
+						int proto);
 #endif

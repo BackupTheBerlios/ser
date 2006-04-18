@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.8 2006/04/12 18:04:24 andrei Exp $
+/* $Id: functions.h,v 1.9 2006/04/18 19:56:48 andrei Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -71,6 +71,7 @@ pingClients(unsigned int ticks, void *param)
             break;
         contact.s = (char*)ptr + sizeof(contact.len);
         ptr = contact.s + contact.len;
+		init_dest_info(&dst);
 	memcpy(&dst.send_sock, ptr, sizeof(dst.send_sock));
 	ptr += sizeof(dst.send_sock);
         if (parse_uri(contact.s, contact.len, &uri) < 0) {

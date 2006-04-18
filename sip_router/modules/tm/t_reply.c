@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.119 2006/04/12 18:04:24 andrei Exp $
+ * $Id: t_reply.c,v 1.120 2006/04/18 19:56:49 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -322,7 +322,7 @@ static int send_local_ack(struct sip_msg* msg, str* next_hop,
 		LOG(L_ERR, "send_local_ack: Invalid parameter value\n");
 		return -1;
 	}
-
+	init_dest_info(&dst);
 	dst.send_sock = uri2sock(msg, next_hop, &dst.to, PROTO_NONE);
 	if (!dst.send_sock) {
 		LOG(L_ERR, "send_local_ack: no socket found\n");

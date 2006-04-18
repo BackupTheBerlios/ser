@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.13 2006/01/30 08:51:56 andrei Exp $
+ * $Id: error.h,v 1.14 2006/04/18 19:56:48 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -29,6 +29,7 @@
 #ifndef error_h
 #define error_h
 
+#define E_OK           0
 #define E_UNSPEC      -1
 #define E_OUT_OF_MEM  -2
 #define E_BAD_RE      -3

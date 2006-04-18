@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.3 2006/04/12 18:04:24 andrei Exp $
+/* $Id: natping.c,v 1.4 2006/04/18 19:56:49 andrei Exp $
  *
  * Copyright (C) 2005 Porta Software Ltd
  *
@@ -138,6 +138,7 @@ natping(unsigned int ticks, void *param)
 			break;
 		c.s = (char *)cp + sizeof(c.len);
 		cp =  (char *)cp + sizeof(c.len) + c.len;
+		init_dest_info(&dst);
 		memcpy(&dst.send_sock, cp, sizeof(dst.send_sock));
 		cp += sizeof(dst.send_sock);
 

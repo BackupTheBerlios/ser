@@ -1,5 +1,5 @@
 /*
- * $Id: error.c,v 1.12 2006/01/30 08:54:44 andrei Exp $
+ * $Id: error.c,v 1.13 2006/04/18 19:56:48 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -119,6 +119,10 @@ int err2reason_phrase(
 			*sip_error=500;
 			break;
 #endif
+		case E_OK:
+			error_txt="No error";
+			*sip_error=500;
+			break;
 		default:
 			error_txt="I'm terribly sorry, server error occurred";
 			*sip_error=500;

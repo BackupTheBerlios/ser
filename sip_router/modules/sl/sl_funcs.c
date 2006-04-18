@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.55 2006/04/12 18:04:24 andrei Exp $
+ * $Id: sl_funcs.c,v 1.56 2006/04/18 19:56:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -114,7 +114,7 @@ int sl_send_reply(struct sip_msg *msg , int code, char* reason)
 		LOG(L_WARN, "Warning: sl_send_reply: I won't send a reply for ACK!!\n");
 		goto error;
 	}
-
+	init_dest_info(&dst);
 	if (reply_to_via) {
 		if (update_sock_struct_from_via(  &dst.to, msg, msg->via1 )==-1)
 		{

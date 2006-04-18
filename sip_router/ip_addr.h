@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.36 2006/04/12 18:04:23 andrei Exp $
+/* $Id: ip_addr.h,v 1.37 2006/04/18 19:56:48 andrei Exp $
  *
  * ip address family related structures
  *
@@ -547,4 +547,16 @@ static inline struct hostent* ip_addr2he(str* name, struct ip_addr* ip)
 	he.h_name=hostname;
 	return &he;
 }
+
+
+
+/* init a dest_info structure */
+#define init_dest_info(dst) \
+	do{ \
+		(dst)->proto=0; \
+		(dst)->id=0; \
+		(dst)->send_sock=0; \
+		memset(&(dst)->to, 0, sizeof(union sockaddr_union)); \
+	} while(0) 
+
 #endif
