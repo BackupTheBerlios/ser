@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.80 2006/04/18 19:56:48 andrei Exp $
+ * $Id: action.c,v 1.81 2006/04/19 16:11:30 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -859,7 +859,7 @@ int run_actions(struct action* a, struct sip_msg* msg)
 	}
 
 	if (a==0){
-		LOG(L_ERR, "WARNING: run_actions: null action list (rec_level=%d)\n",
+		DBG("DEBUG: run_actions: null action list (rec_level=%d)\n",
 			rec_lev);
 		ret=0;
 	}
