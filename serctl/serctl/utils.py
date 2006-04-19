@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.10 2006/04/05 14:52:51 hallik Exp $
+# $Id: utils.py,v 1.11 2006/04/19 14:14:07 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -32,7 +32,7 @@ def arg_pairs(args):
 def arg_attrs(args):
 	aa = []
 	for a in args:
-		aa += a.split('=')
+		aa += a.split('=', 1)
 	return arg_pairs(aa)
 
 def no_all(opts, *args):

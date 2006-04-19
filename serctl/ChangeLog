@@ -1,3 +1,10 @@
+serctl (0.1.10)
+
+  * Minor incompatibility: abbrevation 'up' is 'update', now. Not 'uptime'.
+  * Fix in utils.py: arg_attrs - only first '=' is separator.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.1.9)
 
   * Manpage for serxmlrpc converted to POD format and moved to man dir.
