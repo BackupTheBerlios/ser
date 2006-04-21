@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.104 2006/04/18 19:56:48 andrei Exp $
+ * $Id: forward.c,v 1.105 2006/04/21 14:28:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -49,6 +49,7 @@
  *  2005-12-11  onsend_router support; forward_request to no longer
  *              pkg_malloc'ed (andrei)
  *  2006-04-12  forward_{request,reply} use now struct dest_info (andrei)
+ *  2006-04-21  basic comp via param support (andrei)
  */
 
 
@@ -315,8 +316,7 @@ int forward_request(struct sip_msg* msg, struct dest_info* send_info)
 		}
 	}
 
-	buf = build_req_buf_from_sip_req(msg, &len, send_info->send_sock,
-											send_info->proto);
+	buf = build_req_buf_from_sip_req(msg, &len, send_info);
 	if (!buf){
 		LOG(L_ERR, "ERROR: forward_request: building failed\n");
 		goto error;
@@ -468,7 +468,9 @@ int forward_reply(struct sip_msg* msg)
 
 	dst.proto=msg->via2->proto;
 	if (update_sock_struct_from_via( &dst.to, msg, msg->via2 )==-1) goto error;
-
+#ifdef USE_COMP
+	dst.comp=msg->via2->comp_no;
+#endif
 
 #ifdef USE_TCP
 	if (dst.proto==PROTO_TCP

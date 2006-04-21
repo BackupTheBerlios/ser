@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.15 2004/08/24 09:00:43 janakj Exp $
+ * $Id: t_msgbuilder.h,v 1.16 2006/04/21 14:28:37 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -89,7 +89,7 @@ char *build_dlg_ack(struct sip_msg* rpl, struct cell *Trans, unsigned int branch
  * Create a request
  */
 char* build_uac_req(str* method, str* headers, str* body, dlg_t* dialog, int branch, 
-		    struct cell *t, int* len, struct socket_info* send_sock);
+		    struct cell *t, int* len, struct dest_info* dst);
 
 
 int t_calc_branch(struct cell *t,

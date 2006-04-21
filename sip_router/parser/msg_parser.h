@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.61 2006/01/20 11:19:43 janakj Exp $
+ * $Id: msg_parser.h,v 1.62 2006/04/21 14:28:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -38,6 +38,7 @@
  *  2003-11-02  added diversion header field to sip_msg (jh)
  *  2004-11-08  added force_send_socket (andrei)
  *  2005-02-25  uri types added (sip, sips & tel)  (andrei)
+ *  2006-04-20  uri comp member (only if USE_COMP is defined) (andrei)
  */
 
 
@@ -140,6 +141,9 @@ struct sip_uri {
 	unsigned short port_no;
 	unsigned short proto; /* from transport */
 	uri_type type; /* uri scheme */
+#ifdef USE_COMP
+	unsigned short comp;
+#endif
 	/* parameters */
 	str transport;
 	str ttl;

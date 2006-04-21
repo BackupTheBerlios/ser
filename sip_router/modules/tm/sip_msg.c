@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.94 2006/01/10 23:17:44 janakj Exp $
+ * $Id: sip_msg.c,v 1.95 2006/04/21 14:28:37 andrei Exp $
  *
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -46,6 +46,7 @@
  *  2003-05-07  received, rport & i via shortcuts are also translated (andrei)
  *  2003-11-11  updated cloning of lump_rpl (bogdan)
  *  2004-03-31  alias shortcuts are also translated (andrei)
+ *  2006-04-20  via->comp is also translated (andrei)
  */
 
 #include "defs.h"
@@ -154,6 +155,12 @@ inline struct via_body* via_body_cloner( char* new_buf,
 					case PARAM_ALIAS:
 							new_via->alias = new_vp;
 							break;
+							
+#ifdef USE_COMP
+					case PARAM_COMP:
+							new_via->comp = new_vp;
+							break;
+#endif
 				}
 
 				if (last_new_vp)

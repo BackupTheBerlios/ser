@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.56 2006/04/18 19:56:49 andrei Exp $
+ * $Id: sl_funcs.c,v 1.57 2006/04/21 14:28:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -164,6 +164,9 @@ int sl_send_reply(struct sip_msg *msg , int code, char* reason)
 	dst.proto=msg->rcv.proto;
 	dst.send_sock=msg->rcv.bind_address;
 	dst.id=msg->rcv.proto_reserved1;
+#ifdef USE_COMP
+	dst.comp=msg->via1->comp_no;
+#endif
 	ret = msg_send(&dst, buf, len);
 	mhomed=backup_mhomed;
 	if (ret<0) 

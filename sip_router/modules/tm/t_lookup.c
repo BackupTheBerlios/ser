@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.103 2006/04/12 18:04:24 andrei Exp $
+ * $Id: t_lookup.c,v 1.104 2006/04/21 14:28:37 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -82,7 +82,6 @@
  * 2005-12-09  added t_set_fr()  (andrei)
  * 2006-01-27  transaction lookup function will set up a cancel flag
  *             if the searched transaction was pre-canceled (andrei)
- * 
  */
 
 #include "defs.h"
@@ -988,6 +987,7 @@ int init_rb( struct retr_buf *rb, struct sip_msg *msg)
 
 	/* rb. timers are init. init_t()/new_cell() */
 	via=msg->via1;
+	/* rb->dst is already init (0) by new_t()/build_cell() */
 	if (!reply_to_via) {
 		update_sock_struct_from_ip( &rb->dst.to, msg );
 		proto=msg->rcv.proto;
@@ -1003,6 +1003,9 @@ int init_rb( struct retr_buf *rb, struct sip_msg *msg)
 	}
 	rb->dst.proto=proto;
 	rb->dst.id=msg->rcv.proto_reserved1;
+#ifdef USE_COMP
+	rb->dst.comp=via->comp_no;
+#endif
 	/* turn off mhomed for generating replies -- they are ideally sent to where
 	   request came from to make life with NATs and other beasts easier
 	*/

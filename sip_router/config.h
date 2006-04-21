@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.70 2006/02/07 19:17:38 andrei Exp $
+ *  $Id: config.h,v 1.71 2006/04/21 14:28:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -98,6 +98,15 @@
 
 #define TRANSPORT_PARAM ";transport="
 #define TRANSPORT_PARAM_LEN (sizeof(TRANSPORT_PARAM) - 1)
+
+#define COMP_PARAM ";comp="
+#define COMP_PARAM_LEN (sizeof(COMP_PARAM)-1)
+
+#define SIGCOMP_NAME "sigcomp"
+#define SIGCOMP_NAME_LEN (sizeof(SIGCOMP_NAME)-1)
+
+#define SERGZ_NAME "sergz"
+#define SERGZ_NAME_LEN (sizeof(SERGZ_NAME)-1)
 
 #define TOTAG_TOKEN ";tag="
 #define TOTAG_TOKEN_LEN (sizeof(TOTAG_TOKEN)-1)
