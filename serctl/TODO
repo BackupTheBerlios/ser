@@ -11,6 +11,10 @@ Important:
 
   * Update tls and publish description in man page.
 
+  * Attrs management.
+
+  * Command: 'ser_ctl domain show'.
+
 Future:
 =======
 

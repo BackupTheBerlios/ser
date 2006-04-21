@@ -25,7 +25,7 @@ ser_cred - Tool for low-level management of authentication credentials.
 Command 'B<ser_cred add>' adds new credentials into SER database. (Appropriate
 hashes are generated automatically.)
 
-Command 'B<ser_domain change>' changes the password or flags for I<auth_username>
+Command 'B<ser_cred change>' changes the password or flags for I<auth_username>
 (or more precisely given by I<realm> and I<uid>). Flags should be
 specified by B<-F> option, password by B<-p> option. (New correct hashes are
 regenerated automatically.)

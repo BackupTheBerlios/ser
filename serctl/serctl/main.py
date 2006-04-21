@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.13 2006/03/15 23:19:35 hallik Exp $
+# $Id: main.py,v 1.14 2006/04/21 12:56:29 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -38,7 +38,8 @@ def parse_cmdline(argv):
 		if opt.OPT[o][2] is False:
 			v = True
 		opts[o] = v
-		del defaults[o]
+		if defaults.has_key(o):
+			del defaults[o]
 	return args, opts, defaults
 
 def handle_config(path = None):

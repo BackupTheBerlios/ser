@@ -2,6 +2,7 @@ serctl (0.1.10)
 
   * Minor incompatibility: abbrevation 'up' is 'update', now. Not 'uptime'.
   * Fix in utils.py: arg_attrs - only first '=' is separator.
+  * Fix delete non-existent default variable, in main.py.
 
  -- Jan Halla <hallik@iptel.org> 
 
