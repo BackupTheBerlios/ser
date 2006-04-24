@@ -1,5 +1,5 @@
 /*
- * $Id: api.c,v 1.13 2005/11/21 00:00:29 janakj Exp $
+ * $Id: api.c,v 1.14 2006/04/24 18:16:59 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -131,6 +131,7 @@ auth_result_t pre_auth(struct sip_msg* msg, str* realm, hdr_types_t hftype,
 {
 	int ret;
 	auth_body_t* c;
+	static str prack = STR_STATIC_INIT("PRACK");
 
 	     /* ACK and CANCEL must be always authenticated, there is
 	      * no way how to challenge ACK and CANCEL cannot be
@@ -139,6 +140,12 @@ auth_result_t pre_auth(struct sip_msg* msg, str* realm, hdr_types_t hftype,
 	      */
 
 	if ((msg->REQ_METHOD == METHOD_ACK) ||  (msg->REQ_METHOD == METHOD_CANCEL)) return AUTHENTICATED;
+	     /* PRACK is also not authenticated */
+	if ((msg->REQ_METHOD == METHOD_OTHER)) {
+		if (msg->first_line.u.request.method.len == prack.len &&
+		    !memcmp(msg->first_line.u.request.method.s, prack.s, prack.len))
+			return AUTHENTICATED;
+	}
 
 	if (realm->len == 0) {
 		if (get_realm(msg, hftype, realm) < 0) {
