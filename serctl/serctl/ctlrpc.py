@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.9 2006/03/24 17:08:05 hallik Exp $
+# $Id: ctlrpc.py,v 1.10 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -39,6 +39,22 @@ def any_rpc(opts):
 	ssl_key  = opts['SSL_KEY']
 	ssl_cert = opts['SSL_CERT']
 	ser_uri  = opts['SER_URI']
+
+	# FIX: Hack for multi-server rpc! --------------------------------
+	if type(ser_uri) is tuple or type(ser_uri) is list:
+		ret = None
+		for uri in ser_uri:
+			print uri
+			try:
+				if ret is None:
+					ret  = Xml_rpc(uri, (ssl_key, ssl_cert))
+				else:
+					ret += Xml_rpc(uri, (ssl_key, ssl_cert))
+			except:
+				warning("RPC on '%s' fail" % uri)
+		return ret
+	# End of hack --- cut & paste to /dev/null! -----------------------
+
 	return Xml_rpc(ser_uri, (ssl_key, ssl_cert))
 
 def rpc(cmd, args, opts):

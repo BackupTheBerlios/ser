@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluser.py,v 1.8 2006/03/22 12:10:35 hallik Exp $
+# $Id: ctluser.py,v 1.9 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,16 +11,15 @@
 # of the License, or (at your option) any later version.
 #
 
-from serctl.ctlcred import Cred
-from serctl.ctluri  import Uri
 from serctl.dbany   import DBany
 from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
                            EMULTICANON, EUSER
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
-                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, timestamp, no_all
-import serctl.ctlhelp
+                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, cv_flags
+from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, timestamp, \
+                           no_all, col_idx, cond, full_cond
+import serctl.ctlhelp, serctl.ctlcred, serctl.ctluri
 
 def help(*tmp):
 	print """\
@@ -30,121 +29,136 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_user add     <user>
-	ser_user change  [user] [-F flags]
-	ser_user disable [user]
-	ser_user enable  [user]
-	ser_user rm      [user]
+	ser_user add     <uid> [uid...]
+	ser_user change  [uid] [-F flags]
+	ser_user disable [uid]
+	ser_user enable  [uid]
+	ser_user rm      [uid]
 	ser_user purge
-	ser_user show    [user]
+	ser_user show    [uid]
 """ % serctl.ctlhelp.options()
 
 
 def show(uid=None, **opts):
-	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 
 	u = User(opts['DB_URI'])
-	uri_list, desc = u.show(uid, cols=cols, raw=numeric, limit=limit)
+	uri_list, desc = u.show(uid, cols, fformat, limit)
 
 	tabprint(uri_list, desc, rsep, lsep, astab)
 
-def add(uid, **opts):
+def add(*uids, **opts):
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
-	u = User(opts['DB_URI'])
-	u.add(uid, flags=flags, force=force)
+	if not uids:
+		raise Error (ENOARG, 'uid')
 
-def change(uid=None, **opts):
+	u = User(opts['DB_URI'])
+
+	if not force:
+		for uid in uids:
+			if u.exist(uid):
+				raise Error (EDUPL, uid)
+
+	for uid in uids:
+		u.add(uid, flags, force)
+
+def rm(uid=None, **opts):
+	no_all(opts, uid)
+	force = opts['FORCE']
+
+	u = User(opts['DB_URI'])
+	u.rm(uid, force=force)
+
+def _change(uid, opts):
+	no_all(opts, uid)
+
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
 	u = User(opts['DB_URI'])
 	u.change(uid, flags=flags, force=force)
 
-def rm(uid=None, **opts):
-	force = opts['FORCE']
-
-	u = User(opts['DB_URI'])
-	u.rm(uid, force=force)
+def change(uid=None, **opts):
+	return _change(uid, opts)
 
 def enable(uid=None, **opts):
-	force = opts['FORCE']
-
-	u = User(opts['DB_URI'])
-	u.enable(uid, force=force)
+	opts['FLAGS'] = '-d'
+	return _change(uid, opts)
 
 def disable(uid=None, **opts):
-	force = opts['FORCE']
-
-	u = User(opts['DB_URI'])
-	u.disable(uid, force=force)
+	opts['FLAGS'] = '+d'
+	return _change(uid, opts)
 
 def purge(**opts):
 	u = User(opts['DB_URI'])
 	u.purge()
 
 class User:
-	T_UATTR = 'user_attrs'
-	C_UATTR = ('uid', 'name', 'value', 'type',  'flags')
-	I_UATTR = idx_dict(C_UATTR)
-	F_UATTR = I_UATTR['flags']
+	TABLE = 'user_attrs'
+	COLUMNS = ('uid', 'name', 'value', 'type',  'flags')
+	COLIDXS = idx_dict(COLUMNS)
+	FLAGIDX = COLIDXS['flags']
 
-	T_URI   = 'uri'
-	T_CRED  = 'credentials'
-
-	def __init__(self, dburi):
+	def __init__(self, dburi, db=None):
+		self.Uri   = serctl.ctluri.Uri
+		self.Cred  = serctl.ctlcred.Cred
 		self.dburi = dburi
-		self.db = DBany(dburi)
+		if db is not None:
+			self.db = db
+		else:
+			self.db = DBany(dburi)
 
-	def _col_idx(self, cols):
-		idx = []
-		for col in cols:
-			try:
-				i = self.I_UATTR[col]
-			except KeyError:
-				raise Error (ENOCOL, col)
-			idx.append(i)
-		return tuple(idx)
+	def default_flags(self):
+		return '0'
 
-	def _full_cond(self, row):
-		cnd = ['and', CND_NO_DELETED]
-		for i in range(len(self.C_UATTR)):
-			cnd.append(('=', self.C_UATTR[i], row[i]))
-		return tuple(cnd)
+	def is_used(self, uid):
+		ur = self.Uri(self.dburi, self.db)
+		cr = self.Cred(self.dburi, self.db)
+		return ur.exist_uid(uid) or cr.exist_uid(uid)
 
-	def _cond(self, uid=None, all=False):
-		cnd =  ['and', 1]
-		if not all:
-			cnd.append(CND_NO_DELETED)
-		err = []
-		if uid is not None:
-			cnd.append(('=', 'uid', uid))
-			err.append('uid=' + uid)
-		err = ' '.join(err)
-		return (cnd, err)
+	def get(self, uid):
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
+		rows = self.db.select(self.TABLE, 'uid', cnd)
+		if not rows:
+			raise Error (ENOREC, err)
+		return [ i[0] for i in rows ]
 
-	def show(self, uid=None, cols=None, raw=False, limit=0):
+	def exist(self, uid):
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
+		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
+		return rows != []
+
+	def _try_rm_orphans(self, uid):
+		ur = self.Uri(self.dburi, self.db)
+		cr = self.Cred(self.dburi, self.db)
+		try:
+			ur.rm_uid(uid)
+		except:
+			pass
+		try:
+			cr.rm_realm(uid)
+		except:
+			pass
+
+	def show(self, uid=None, cols=None, fformat='raw', limit=0):
 		if not cols:
-			cols = self.C_UATTR
-		cidx = self._col_idx(cols)
+			cols = self.COLUMNS
+		cidx = col_idx(self.COLIDXS, cols)
 
-		cnd, err = self._cond(uid, all=True)
-		rows = self.db.select(self.T_UATTR, self.C_UATTR, cnd, limit)
+		cnd, err = cond(uid=uid)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
 		new_rows = []
 		for row in rows:
-			if not raw:
-				row[self.F_UATTR] = flag_syms(row[self.F_UATTR])
+			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
 			new_row = []
 			for i in cidx:
 				new_row.append(row[i])
 			new_rows.append(new_row)
-		desc = self.db.describe(self.T_UATTR)
+		desc = self.db.describe(self.TABLE)
 		desc = [ desc[i] for i in cols ]
 		return new_rows, desc
-
-	def default_flags(self):
-		return '0'
 
 	def add(self, uid, flags=None, force=False):
 		dflags = self.default_flags()
@@ -152,89 +166,50 @@ class User:
 		flags  = new_flags(dflags, fmask)
 
 		# exist uid?
-		cnd, err = self._cond(uid)
-		rows = self.db.select(self.T_UATTR, 'uid', cnd, limit=1)
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
+		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
 		if rows:
-			if not force:
-				raise Error (EDUPL, uid)
-			self.rm(uid, force=True)
+			if force: return
+			raise Error (EDUPL, uid)
 
 		# user add
 		ins = {'uid': uid, 'name': 'datetime_created', \
 		  'value': timestamp(), 'type': 2, 'flags': flags }
-		self.db.insert(self.T_UATTR, ins)
+		self.db.insert(self.TABLE, ins)
+
+	def rm(self, uid=None, force=False):
+		udel = cdel = False
+
+		if self.is_used(uid):
+			if force:
+				self._try_rm_orphans(uid)
+			else:
+				raise Error (EUSER, uid)
+
+		# rm all uids (FIX: or only datetime_created?)
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		if not rows and not force:
+			raise Error (ENOREC, err)
+		for row in rows:
+			nf = set_deleted(row[self.FLAGIDX])
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
 	def change(self, uid=None, flags=None, force=False):
 		fmask = parse_flags(flags)
 		nflags = new_flags(0, fmask)
 
-		cond, error = self._cond(uid)
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
 
 		# update flags
-		rows = self.db.select(self.T_UATTR, self.C_UATTR, cond)
-		if not rows and not force:
-			raise Error (ENOREC, error)
-		for row in rows:
-			nf = new_flags(row[self.F_UATTR], fmask)
-			cnd = self._full_cond(row)
-			self.db.update(self.T_UATTR, {'flags':nf}, cnd)
-
-	def rm(self, uid=None, force=False):
-		udel = cdel = False
-
-		# uid in uri?
-		cnd = ('and', ('=', 'uid', uid), CND_NO_DELETED)
-		rows = self.db.select(self.T_URI, 'uid', cnd, limit=1)
-		if rows:
-			if not force:
-				raise Error (EUSER, uid)
-			udel = True
-			
-		# uid in cred?
-		cnd = ('and', ('=', 'uid', uid), CND_NO_DELETED)
-		rows = self.db.select(self.T_CRED, 'uid', cnd, limit=1)
-		if rows:
-			if not force:
-				raise Error (EUSER, uid)
-			cdel = True
-
-		# delete in uri and cred
-		if udel:
-			udb = Uri(self.dburi)
-			udb.rm(uid=uid, force=True)
-			del(udb)
-		if cdel:
-			cdb = Cred(self.dburi)
-			cdb.rm(uid=uid, force=True)
-			del(cdb)
-
-		# rm all uids (FIX: or only datetime_created?)
-		cnd, err = self._cond(uid)
-		rows = self.db.select(self.T_UATTR, self.C_UATTR, cnd)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
 		if not rows and not force:
 			raise Error (ENOREC, err)
 		for row in rows:
-			nf = set_deleted(row[self.F_UATTR])
-			cnd = self._full_cond(row)
-			self.db.update(self.T_UATTR, {'flags': nf}, cnd)
+			nf = new_flags(row[self.FLAGIDX], fmask)
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'flags':nf}, cnd)
 
 	def purge(self):
-		self.db.delete(self.T_UATTR, CND_DELETED)
-
-	def enable(self, uid=None, force=False):
-		udb = Uri(self.dburi)
-		udb.enable(uid=uid, force=force)
-		del(udb)
-		cdb = Cred(self.dburi)
-		cdb.enable(uid=uid, force=force)
-		del(cdb)
-		return self.change(uid, flags='-d', force=force)
-
-	def disable(self, uid=None, force=False):
-		udb = Uri(self.dburi)
-		udb.disable(uid=uid, force=force)
-		del(udb)
-		cdb = Cred(self.dburi)
-		cdb.disable(uid=uid, force=force)
-		del(cdb)
-		return self.change(uid, flags='+d', force=force)
+		self.db.delete(self.TABLE, CND_DELETED)

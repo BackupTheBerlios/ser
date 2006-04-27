@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.10 2006/03/24 17:08:05 hallik Exp $
+# $Id: error.py,v 1.11 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -22,8 +22,8 @@ ERRORS = (\
 	('ENODB',	'Database URI not specified'),
 	('EMISMATCH',	'Argument mismatch'),
 	('ENOARG',	'Argument required'),
-	('ENOUSER',	'User not exist'),
-	('ENODOMAIN',	'Domain not exist'),
+	('ENOUSER',	'User does not exist'),
+	('ENODOMAIN',	'Domain does not exist'),
 	('EIFLAG',	'Invalid flag'),
 	('EDUPL',	'Duplicated'),
 	('ENOCOL',	'Invalid column name'),
@@ -34,8 +34,7 @@ ERRORS = (\
 	('ENODID',	'Domain identifier not exist'),
 	('EMULTICANON',	'Multiple specifications for canonical flag'),
 	('EUSER',	'User identifier in use'),
-	('EALL',	'For operation with ALL items use force flag'),
-	('EUMAP',	'Auth_username & realm mapped to many uids'),
+	('EALL',	'For operation on ALL records use force flag'),
 	('ENOSER',	'SER URI not specified'),
 	('ENOCANON',	'No canonical record found'),
 	('ENOALIAS',	'No username or alias found'),
@@ -45,6 +44,16 @@ ERRORS = (\
 	('EEXTRA',	'Unknown extra argument(s)'),
 	('ECOLSPEC',	'Invalid column specification'),
 	('ERPC',	'RPC error'),
+	('EFFORM',	'Unknown flag format'),
+	('EINT',	'Must be integer'),
+	('EDB',		'Database is inconsistent'),
+	('EIDTYPE',	'Unknown identifier type'),
+	('EATTR',	'Unknown attribute'),
+
+	('ETYPE',	'Unknown type'),
+	('ELINE',	'Malformed input line'),
+	('ENOGW',	'Missing gateway'),
+	('ENOGWTYPE',	'Missing gateway type'),
 )
 
 i = 384

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.11 2006/04/19 14:14:07 hallik Exp $
+# $Id: utils.py,v 1.12 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,8 +11,10 @@
 # of the License, or (at your option) any later version.
 #
 
-from serctl.error   import Error, EINVAL, EMISMATCH, EALL
+from serctl.error   import Error, EINVAL, EMISMATCH, EALL, ENOCOL, EINT, \
+                           EIDTYPE
 from serctl.options import OPT
+from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
 import sys
 
@@ -51,14 +53,21 @@ def unesc_psep(str):
 
 def show_opts(opts):
 	limit = opts['LIMIT']
+	try:
+		limit = int(limit)
+	except:
+		raise Error (EINT, '--limit')
 	rsep  = unesc_psep(opts['REC_SEP'])
 	lsep  = unesc_psep(opts['LINE_SEP'])
 	astab = opts['AS_TABLE']
 	cols  = opts['COLUMNS']
 	cols  = [ i.strip(' \t') for i in cols.split(',') ]
 	cols  = filter(None, cols)
-	num   = opts['NUMERIC']
-	return (cols, num, limit, rsep, lsep, astab)
+	if opts['RAW']:
+		fformat = 'raw'
+	else:
+		fformat = opts['FFORMAT']
+	return (cols, fformat, limit, rsep, lsep, astab)
 
 def timestamp():
 	return strftime('%Y-%m-%d %H:%M:%S', gmtime())
@@ -68,6 +77,42 @@ def idx_dict(lst):
 	for i in range(len(lst)):
 		idx[lst[i]] = i
 	return idx
+
+def col_idx(col_idx, cols):
+	idx = []
+	for col in cols:
+		try:
+			i = col_idx[col]
+		except KeyError:
+			raise Error (ENOCOL, col)
+		idx.append(i)
+	return tuple(idx)
+
+
+def cond(*args, **kwargs):
+	cnd =  ['and', 1]
+	for arg in args:
+		cnd.append(arg)
+	err = []
+	for k, v in kwargs.items():
+		if v is None: continue
+		cnd.append(('=', k, v))
+		err.append(k + '=' + str(v))
+	err = ' '.join(err)
+	return (cnd, err)
+
+def errstr(**kwargs):
+	err = []
+	for k, v in kwargs.items():
+		if not v: continue
+		err.append(k + '=' + str(v))
+	err = ' '.join(err)
+	return err
+
+def full_cond(columns, values):
+	cv = zip(columns, values)
+	cnd = ['and', CND_NO_DELETED] + [ ('=', c, v) for c, v in cv ]
+	return tuple(cnd)
 
 def tabprint(data, desc, rsep=OPT['REC_SEP'][3], lsep=OPT['LINE_SEP'][3], tab=False):
 	if not tab:
@@ -144,3 +189,13 @@ def dict2tab(data, keys=None, dsc=None):
 	desc = [ (i, None, '') for i in dsc ]
 	return ret, desc
 
+def uniq(items):
+	d = {}
+	for i in items:
+		d[i] = None
+	return d.keys()
+
+def id(s, idtype='orig'):
+	if idtype == 'orig':
+		return s
+	raise Error (EIDTYPE, idtype)

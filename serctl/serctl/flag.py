@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.7 2006/03/01 18:33:04 hallik Exp $
+# $Id: flag.py,v 1.8 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,7 +11,7 @@
 # of the License, or (at your option) any later version.
 #
 
-from serctl.error import Error, EIFLAG
+from serctl.error import Error, EIFLAG, EFFORM
 
 # Flag values from sip_router/db/db.h:
 LOAD_SER       = 1L << 0  # The row should be loaded by SER 
@@ -49,6 +49,47 @@ CND_DELETED      =         ('!=', ('&', 'flags', DELETED), 0)
 CND_CANONICAL    =         ('!=', ('&', 'flags', CANON), 0)
 CND_NO_CANONICAL =         ('=',  ('&', 'flags', CANON), 0)
 
+FFORMAT = { \
+	'raw'         : 'raw',
+	'ra'          : 'raw',
+	'r'           : 'raw',
+
+	'symbolic'    : 'sym',
+	'symboli'     : 'sym',
+	'symbol'      : 'sym',
+	'symbo'       : 'sym',
+	'symb'        : 'sym',
+	'sym'         : 'sym',
+	'sy'          : 'sym',
+	's'           : 'sym',
+
+	'hexadecimal' : 'hex',
+	'hexadecima'  : 'hex',
+	'hexadecim'   : 'hex',
+	'hexadeci'    : 'hex',
+	'hexadec'     : 'hex',
+	'hexade'      : 'hex',
+	'hexad'       : 'hex',
+	'hexa'        : 'hex',
+	'hex'         : 'hex',
+	'he'          : 'hex',
+	'h'           : 'hex',
+
+	'octal'       : 'oct',
+	'oct'         : 'oct',
+	'oc'          : 'oct',
+	'o'           : 'oct',
+
+	'decimal'     : 'dec',
+	'decima'      : 'dec',
+	'decim'       : 'dec',
+	'deci'        : 'dec',
+	'dec'         : 'dec',
+	'de'          : 'dec',
+	'd'           : 'dec',
+}
+
+
 def _syms(flags):
 	d = {}
 	for k, v in flags.items():
@@ -77,7 +118,20 @@ def flag_hex(flags):
 	flags = long(flags)
 	flags = hex(flags)
 	flags = str(flags)
-	flags = flags.lstrip('0x')
+	flags = flags.rstrip('L')
+	return flags
+
+def flag_oct(flags):
+	flags = long(flags)
+	flags = oct(flags)
+	flags = str(flags)
+	flags = flags.rstrip('L')
+	return flags
+
+def flag_dec(flags):
+	flags = long(flags)
+	flags = str(flags)
+	flags = flags.lstrip('0')
 	flags = flags.rstrip('L')
 	return flags
 
@@ -114,6 +168,22 @@ def parse_flags(flags):
 		mask = or_mask | ~and_mask
 		return (mask, mask)
 	return (and_mask, or_mask)
+
+
+def cv_flags(format, flags):
+	try:
+		format = FFORMAT[format]
+	except KeyError:
+		raise Error (EFFORM, format)
+	if format == 'raw':
+		return flags
+	if format == 'sym':
+		return flag_syms(flags)
+	if format == 'hex':
+		return flag_hex(flags)
+	if format == 'oct':
+		return flag_oct(flags)
+	return flag_dec(flags)
 
 def new_flags(old_flags, mask):
 	return str(long(old_flags) & mask[0] | mask[1])

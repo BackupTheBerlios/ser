@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.21 2006/04/19 14:14:07 hallik Exp $
+# $Id: options.py,v 1.22 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -16,6 +16,7 @@
 
 CMD_ADD        = 'add'
 CMD_ALIAS      = 'alias'
+CMD_ATTR_SHOW  = 'attr_show'
 CMD_CANONICAL  = 'canonical'
 CMD_DISABLE    = 'disable'
 CMD_DOMAIN     = 'domain'
@@ -24,6 +25,8 @@ CMD_FLUSH      = 'flush'
 CMD_HELP       = 'help'
 CMD_CHANGE     = 'change'
 CMD_KILL       = 'kill'
+CMD_LIST_TLS   = 'list_tls'
+CMD_LOAD       = 'load'
 CMD_METHODS    = 'methods'
 CMD_PASSWORD   = 'password'
 CMD_PS         = 'ps'
@@ -31,14 +34,16 @@ CMD_PUBLISH    = 'publish'
 CMD_PURGE      = 'purge'
 CMD_RELOAD     = 'reload'
 CMD_RM         = 'rm'
+CMD_RM_DID     = 'rm_did'
+CMD_SET        = 'set'
 CMD_SHOW       = 'show'
+CMD_SHOW_DID   = 'show_did'
 CMD_STAT       = 'stat'
 CMD_UPDATE     = 'update'
 CMD_USER       = 'user'
 CMD_USRLOC     = 'usrloc'
 CMD_UPTIME     = 'uptime'
 CMD_VERSION    = 'version'
-CMD_LIST_TLS   = 'list_tls'
 
 ### Modules and commands command-line representation and abbrevations:
 # Please keep this (almost) sorted alfabeticaly by abbrevations (keys).
@@ -53,7 +58,15 @@ CMD = {\
 	'ali'          : CMD_ALIAS,
 	'al'           : CMD_ALIAS,
 
-	'as'           : CMD_ALIAS,
+	'as'           : CMD_ATTR_SHOW,
+	'ash'          : CMD_ATTR_SHOW,
+	'ashow'        : CMD_ATTR_SHOW,
+	'attr_show'    : CMD_ATTR_SHOW,
+	'attr_sh'      : CMD_ATTR_SHOW,
+	'attr_s'       : CMD_ATTR_SHOW,
+	'attrshow'     : CMD_ATTR_SHOW,
+	'attrsh'       : CMD_ATTR_SHOW,
+	'attrs'        : CMD_ATTR_SHOW,
 
 	'canonical'    : CMD_CANONICAL,
 	'canonica'     : CMD_CANONICAL,
@@ -109,6 +122,8 @@ CMD = {\
 	'ki'           : CMD_KILL,
 	'k'            : CMD_KILL,
 
+	'ld'           : CMD_LOAD,
+
 	'list_methods' : CMD_METHODS,
 	'list_method'  : CMD_METHODS,
 	'list_metho'   : CMD_METHODS,
@@ -129,6 +144,9 @@ CMD = {\
 	'lm'           : CMD_METHODS,
 
 	'loc'          : CMD_USRLOC,
+
+	'load'         : CMD_LOAD,
+	'loa'          : CMD_LOAD,
 
 	'ls'           : CMD_SHOW,
 
@@ -165,6 +183,8 @@ CMD = {\
 	'pwd'          : CMD_PASSWORD,
 	'pw'           : CMD_PASSWORD,
 
+	'rd'           : CMD_RM_DID,
+
 	'reload'       : CMD_RELOAD,
 	'reloa'        : CMD_RELOAD,
 	'relo'         : CMD_RELOAD,
@@ -174,10 +194,33 @@ CMD = {\
 	'rm'           : CMD_RM,
 	'r'            : CMD_RM,
 
+	'rm_did'       : CMD_RM_DID,
+	'rmdid'        : CMD_RM_DID,
+	'rmd'          : CMD_RM_DID,
+
+	'sa'           : CMD_ATTR_SHOW,
+
+	'sd'           : CMD_SHOW_DID,
+
+	'set'          : CMD_SET,
+	'se'           : CMD_SET,
+
+	'shattr'       : CMD_ATTR_SHOW,
+	'sha'          : CMD_ATTR_SHOW,
+
+	'show_did'     : CMD_SHOW_DID,
+	'showdid'      : CMD_SHOW_DID,
+	'showd'        : CMD_SHOW_DID,
+
 	'show'         : CMD_SHOW,
 	'sho'          : CMD_SHOW,
 	'sh'           : CMD_SHOW,
 	's'            : CMD_SHOW,
+
+	'show_attrs'   : CMD_ATTR_SHOW,
+	'show_attr'    : CMD_ATTR_SHOW,
+	'show_a'       : CMD_ATTR_SHOW,
+	'showa'        : CMD_ATTR_SHOW,
 
 	'status'       : CMD_STAT,
 	'statu'        : CMD_STAT,
@@ -228,6 +271,7 @@ CMD = {\
 
 OPT_LIST = (\
 #	(short, long,     arg,   default_value)
+	('a', 'all',      False, False),
 	('b', 'db-uri',   True,  None),
 	('B', 'env-db',   True,  'SERCTL_DB'),
 	('c', 'config',   True,  None),
@@ -243,7 +287,8 @@ OPT_LIST = (\
 	('l', 'limit',    True,  0),
 	('L', 'line-sep', True,  '\n'),
 	('m', 'ssl-cert', True,  None),
-	('n', 'numeric',  False, False),
+	('n', 'raw',      False, False),
+	('N', 'fformat',  True, 'sym'),
 	('p', 'password', True,       ), # password don't have default value!
 	('R', 'rec-sep',  True,  ' '),
 	('s', 'ser-uri',  True,  None),

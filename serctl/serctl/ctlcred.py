@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.8 2006/03/22 12:10:35 hallik Exp $
+# $Id: ctlcred.py,v 1.9 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,12 +13,13 @@
 
 from serctl.dbany   import DBany
 from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EMULTICANON, \
-                           ENOREC, ENODOMAIN, ENOUSER, ENOUID, ENOSYS, EUMAP
+                           ENOREC, ENODOMAIN, ENOUSER, ENOUID, ENOSYS, EDB
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
-                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB
-from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all
-import md5, serctl.ctlhelp
+                           CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, cv_flags
+from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
+                           col_idx, cond, full_cond
+import md5, serctl.ctlhelp, serctl.ctldomain, serctl.ctluser
 
 
 def help(*tmp):
@@ -29,27 +30,26 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_cred add     <auth_username> <realm> <uid> <password>
-	ser_cred change  [[[auth_username] realm] uid] [-p password] [-F flags]
-	ser_cred disable [[[auth_username] realm] uid]
-	ser_cred enable  [[[auth_username] realm] uid]
-	ser_cred rm      [[[auth_username] realm] uid]
+	ser_cred add     <uid> <auth_username> <realm> <password>
+	ser_cred change  <auth_username> <realm> [-p password] [-F flags]
+	ser_cred disable <auth_username> <realm>
+	ser_cred enable  <auth_username> <realm>
+	ser_cred rm      <auth_username> <realm>
 	ser_cred purge
-	ser_cred show    [[[auth_username] realm] uid]
+	ser_cred show    [[realm] auth_username]
 """ % serctl.ctlhelp.options()
 
 
-def show(auth_username=None, realm=None, uid=None, **opts):
+def show(realm=None, auth_username=None, **opts):
 
-	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 
 	u = Cred(opts['DB_URI'])
-	cred_list, desc = u.show(auth_username, realm, uid, cols=cols, \
-	  raw=numeric, limit=limit)
+	clist, desc = u.show(realm, auth_username, cols, fformat, limit)
 
-	tabprint(cred_list, desc, rsep, lsep, astab)
+	tabprint(clist, desc, rsep, lsep, astab)
 
-def add(auth_username, realm, uid, password=None, **opts):
+def add(uid, auth_username, realm, password=None, **opts):
 	password = opts.get('PASSWORD', password)
 	if password is None:
 		raise Error (ENOARG, 'password')
@@ -57,118 +57,117 @@ def add(auth_username, realm, uid, password=None, **opts):
 	flags = opts['FLAGS']
 
 	u = Cred(opts['DB_URI'])
-	u.add(auth_username, realm, uid, password, flags=flags, force=force)
+	u.add(uid, auth_username, realm, password, flags, force)
 
-def change(auth_username=None, realm=None, uid=None, password=None, **opts):
+def rm(auth_username, realm, **opts):
+	force = opts['FORCE']
+
+	u = Cred(opts['DB_URI'])
+	u.rm(auth_username, realm, force=force)
+
+
+def change(auth_username, realm, password=None, **opts):
 	password = opts.get('PASSWORD', password)
-
-	no_all(opts, auth_username, realm, uid)
 
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
 	u = Cred(opts['DB_URI'])
-	u.change(auth_username, realm, uid, password, flags=flags, force=force)
+	u.change(auth_username, realm, password, flags, force)
 
-def rm(auth_username=None, realm=None, uid=None, **opts):
-	no_all(opts, auth_username, realm, uid)
-
+def _change_flags(auth_username, realm, flags, opts):
 	force = opts['FORCE']
-
 	u = Cred(opts['DB_URI'])
-	u.rm(auth_username, realm, uid, force=force)
+	u.change(auth_username, realm, None, flags, force)
 
-def enable(auth_username=None, realm=None, uid=None, **opts):
-	no_all(opts, auth_username, realm, uid)
+def enable(auth_username, realm, **opts):
+	_change_flags(auth_username, realm, '-d', opts)
 
-	force = opts['FORCE']
+def disable(auth_username, realm, **opts):
+	_change_flags(auth_username, realm, '+d', opts)
 
-	u = Cred(opts['DB_URI'])
-	u.enable(auth_username, realm, uid, force=force)
-
-def disable(auth_username=None, realm=None, uid=None, **opts):
-	no_all(opts, auth_username, realm, uid)
-
-	force = opts['FORCE']
-
-	u = Cred(opts['DB_URI'])
-	u.disable(auth_username, realm, uid, force=force)
 
 def purge(**opts):
 	u = Cred(opts['DB_URI'])
 	u.purge()
 
 class Cred:
-	T_CRED = 'credentials'
-	C_CRED = ('auth_username', 'realm', 'uid', 'password', 'ha1', \
-	  'ha1b', 'flags')
-	I_CRED = idx_dict(C_CRED)
-	F_CRED = I_CRED['flags']
+	TABLE = 'credentials'
+	COLUMNS = ('auth_username', 'realm', 'uid', 'password', 'ha1', \
+	           'ha1b', 'flags')
+	COLIDXS = idx_dict(COLUMNS)
+	FLAGIDX = COLIDXS['flags']
 
-	T_DATTR = 'domain_attrs'
-	T_UATTR = 'user_attrs'
-
-	def __init__(self, dburi):
+	def __init__(self, dburi, db=None):
+		self.Domain_attrs = serctl.ctldomain.Domain_attrs
+		self.User = serctl.ctluser.User
 		self.dburi = dburi
-		self.db = DBany(dburi)
+		if db is not None:
+			self.db = db
+		else:
+			self.db = DBany(dburi)
 
-	def _col_idx(self, cols):
-		idx = []
-		for col in cols:
-			try:
-				i = self.I_CRED[col]
-			except KeyError:
-				raise Error (ENOCOL, col)
-			idx.append(i)
-		return tuple(idx)
+	def default_flags(self):
+		return str(LOAD_SER | FOR_SERWEB)
 
-	def _full_cond(self, row):
-		cnd = ['and', CND_NO_DELETED]
-		for i in range(len(self.C_CRED)):
-			cnd.append(('=', self.C_CRED[i], row[i]))
-		return tuple(cnd)
+	def get_uid(self, username, realm):
+		cnd, err = cond(CND_NO_DELETED, auth_username=username, realm=realm)
+		rows = self.db.select(self.TABLE, 'uid', cnd)
+		if not rows:
+			raise Error (ENOREC, err)
+		uids = [ i[0] for i in rows ]
+		if len(uids) > 1:
+			raise Error (EDB, '%s@%s=%s' % (username, realm, str(uids)))
+		uid = uids[0]
+		return uid
 
-	def _cond(self, username=None, realm=None, uid=None, all=False):
-		cnd =  ['and', 1]
-		if not all:
-			cnd.append(CND_NO_DELETED)
-		err = []
-		if username is not None:
-			cnd.append(('=', 'auth_username', username))
-			err.append('auth_username=' + username)
-		if realm is not None:
-			cnd.append(('=', 'realm', realm))
-			err.append('realm=' + realm)
-		if uid is not None:
-			cnd.append(('=', 'uid', uid))
-			err.append('uid=' + uid)
-		err = ' '.join(err)
-		return (cnd, err)
+	def get_uids_for_username(self, username):
+		cnd, err = cond(CND_NO_DELETED, auth_username=username)
+		rows = self.db.select(self.TABLE, 'uid', cnd)
+		if not rows:
+			raise Error (ENOREC, err)
+		uids = [ i[0] for i in rows ]
+		return uids
 
-	def show(self, username=None, realm=None, uid=None, cols=None, \
-	  raw=False, limit=0):
+	def exist(self, username, realm):
+		cnd, err = cond(CND_NO_DELETED, auth_username=username, realm=realm)
+		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
+		return rows != []
+
+	def exist_uid(self, uid):
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
+		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
+		return rows != []
+
+	def exist_realm(self, realm):
+		cnd, err = cond(CND_NO_DELETED, realm=realm)
+		rows = self.db.select(self.TABLE, 'realm', cnd, limit=1)
+		return rows != []
+
+	def _show(self, cnd, err, cols, fformat, limit):
 		if not cols:
-			cols = self.C_CRED
-		cidx = self._col_idx(cols)
+			cols = self.COLUMNS
+		cidx = col_idx(self.COLIDXS, cols)
 
-		cnd, err = self._cond(username, realm, uid, all=True)
-		if len(cnd) < 3:
-			cnd = None
-		rows = self.db.select(self.T_CRED, self.C_CRED, cnd, limit)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
 		new_rows = []
 		for row in rows:
-			if not raw:
-				row[self.F_CRED] = flag_syms(row[self.F_CRED])
+			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
  			new_row = []
 			for i in cidx:
 				new_row.append(row[i])
 			new_rows.append(new_row)
-		desc = self.db.describe(self.T_CRED)
+		desc = self.db.describe(self.TABLE)
 		desc = [ desc[i] for i in cols ]
 		return new_rows, desc
 
-	def default_flags(self):
-		return str(LOAD_SER | FOR_SERWEB)
+	def show(self,  realm=None, username=None, cols=None, fformat='raw', limit=0):
+		cnd, err = cond(auth_username=username, realm=realm)
+		return self._show(cnd, err, cols, fformat, limit)
+
+	def show_uid(self, uid, cols=None, fformat='raw', limit=0):
+		cnd, err = cond(uid=uid)
+		return self._show(cnd, err, cols, fformat, limit)
 
 	def hashes(self, username, realm, password):
 		uri = '@'.join((username, realm))
@@ -178,47 +177,23 @@ class Cred:
 		ha1b = md5.new(hash_src1b).hexdigest()
 		return (ha1, ha1b)
 
-	def _chk_realm_in_dattr(self, realm):
-		cnd = ('and', ('=', 'name', 'digest_realm'), \
-		  ('=', 'value', realm), CND_NO_DELETED)
-		rows = self.db.select(self.T_DATTR, 'did', cnd, limit=1)
-		if not rows:
-			raise Error (ENODOMAIN, realm)
 
-	def _chk_uid_in_uattr(self, uid):
-		cnd = ('and', ('=', 'uid', uid), CND_NO_DELETED, \
-		  ('=', 'name', 'datetime_created'))
-		rows = self.db.select(self.T_UATTR, 'uid', cnd, limit=1)
-		if not rows:
-			raise Error (ENOUSER, uid)
-
-	def _chk_uid_map(self, username, realm, uid):
-		cnd = ('and', ('=', 'realm', realm), CND_NO_DELETED, \
-		  ('=', 'auth_username', username))
-		rows = self.db.select(self.T_CRED, 'uid', cnd)
-		for row in rows:
-			if row[0] != uid:
-				raise Error (EUMAP,)
-
-	def add(self, username, realm, uid, password, flags=None, \
-	  force=False):
+	def add(self, uid, username, realm, password, flags=None, force=False):
 		dflags = self.default_flags()
 		fmask  = parse_flags(flags)
 		flags  = new_flags(dflags, fmask)
 
-		# exist realm and uid? 
-		if not force:
-			self._chk_realm_in_dattr(realm)
-			self._chk_uid_in_uattr(uid)
-			self._chk_uid_map(username, realm, uid)
+		da = self.Domain_attrs(self.dburi, self.db)
+		if not da.exist_dra(realm) and not force:
+			raise Error (ENODOMAIN, realm)
 
-		# cred (if exist & force --> delete, else error)
-		cnd, err = self._cond(username, realm, uid)
-		rows = self.db.select(self.T_CRED, 'flags', cnd, limit=1)
-		if rows:
-			if not force:
-				raise Error (EDUPL, err)
-			self.rm(username, realm, uid, force=True)
+		us = self.User(self.dburi, self.db)
+		if not us.exist(uid) and not force:
+			raise Error (ENOUSER, 'uid='+uid)
+
+		if self.exist(username, realm):
+			if force: return
+			raise Error (EDUPL, )
 
 		# compute hashes
 		ha1, ha1b = self.hashes(username, realm, password)
@@ -228,57 +203,54 @@ class Cred:
 			'realm' : realm, 'password' : password, \
 			'ha1' : ha1, 'ha1b' : ha1b, 'flags' : flags \
 		}
-		self.db.insert(self.T_CRED, ins)
+		self.db.insert(self.TABLE, ins)
 
-	def change(self, username=None, realm=None, uid=None, password=None, \
-	  flags=None, force=False):
+	def _rm(self, cnd, err, force):
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		if not rows and not force:
+			raise Error (ENOREC, err)
+		for row in rows:
+			nf = set_deleted(row[self.FLAGIDX])
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'flags': nf}, cnd)
+
+	def rm(self, username, realm, force=False):
+		try:
+			uid = self.get_uid(username, realm)
+		except:
+			if force: return
+			raise
+		return self._rm(cnd, err, force)
+
+	def rm_realm(self, realm, force=False):
+		cnd, err = cond(CND_NO_DELETED, realm=realm)
+		return self._rm(cnd, err, force)
+
+	def rm_uid(self, uid, force=False):
+		cnd, err = cond(CND_NO_DELETED, uid=uid)
+		return self._rm(cnd, err, force)
+
+	def change(self, username, realm, password=None, flags=None, force=False):
 		upd = {}
 		# username & realm is required for password change
 		if password is not None:
-			if username is None:
-				raise Error (ENOARG, 'auth_username')
-			if realm is None:
-				raise Error (ENOARG, 'realm')
 			# compute hashes
 			ha1, ha1b = self.hashes(username, realm, password)
 			upd = {'ha1': ha1, 'ha1b': ha1b, 'password': password}
 
-		# exist realm and uid?
-		if not force:
-			if realm is not None:
-				self._chk_realm_in_dattr(realm)
-			if uid is not None:
-				self._chk_uid_in_uattr(uid)
-
 		fmask = parse_flags(flags)
 
 		# update
-		cnd, err = self._cond(username, realm, uid)
-		rows = self.db.select(self.T_CRED, self.C_CRED, cnd)
+		cnd, err = cond(CND_NO_DELETED, auth_username=username, realm=realm)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
 		if not rows and not force:
 			raise Error (ENOREC, err)
 		for row in rows:
-			cnd = self._full_cond(row)
+			cnd = full_cond(self.COLUMNS, row)
 			if flags is not None:
-				nf = new_flags(row[self.F_CRED], fmask)
+				nf = new_flags(row[self.FLAGIDX], fmask)
 				upd['flags'] = nf
-			self.db.update(self.T_CRED, upd, cnd)
-
-	def rm(self, username=None, realm=None, uid=None, force=False):
-		cnd, err = self._cond(username, realm, uid)
-		rows = self.db.select(self.T_CRED, self.C_CRED, cnd)
-		if not rows and not force:
-			raise Error (ENOREC, err)
-		for row in rows:
-			nf = set_deleted(row[self.F_CRED])
-			cnd = self._full_cond(row)
-			self.db.update(self.T_CRED, {'flags': nf}, cnd)
+			self.db.update(self.TABLE, upd, cnd)
 
 	def purge(self):
-		self.db.delete(self.T_CRED, CND_DELETED)
-
-	def enable(self, username=None, realm=None, uid=None, force=False):
-		return self.change(username, realm, uid, flags='-d', force=force)
-
-	def disable(self, username=None, realm=None, uid=None, force=False):
-		return self.change(username, realm, uid, flags='+d', force=force)
+		self.db.delete(self.TABLE, CND_DELETED)

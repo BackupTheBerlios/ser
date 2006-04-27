@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctldb.py,v 1.4 2006/03/22 12:10:35 hallik Exp $
+# $Id: ctldb.py,v 1.5 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -42,7 +42,7 @@ def _columns(args):
 
 def show(table_name, *args, **opts):
 	clist = _columns(args)[1]
-	cols, numeric, limit, rsep, lsep,  astab = show_opts(opts)
+	cols, fformat, limit, rsep, lsep,  astab = show_opts(opts)
 
 	u = Db(opts['DB_URI'])
 	data, desc = u.show(table_name, cols, clist, limit)

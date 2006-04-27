@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.24 2006/04/05 14:52:51 hallik Exp $
+# $Id: ctlctl.py,v 1.25 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -14,15 +14,17 @@
 from serctl.flag      import IS_FROM
 from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
-from serctl.ctldomain import Domain
+from serctl.ctldomain import Domain, Domain_attrs
 from serctl.ctluser   import User
+from serctl.dbany     import DBany
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
-                             ENODOMAIN, warning, EDUPL, ENOUSER, ERPC
+                             ENODOMAIN, warning, EDUPL, ENOUSER, ERPC, \
+                             ENOREC
 from serctl.ctlrpc    import any_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
-                             arg_attrs
+                             arg_attrs, uniq, id, errstr
 import serctl.ctlhelp, xmlrpclib
 
 # xml-rpc method used in stats function (+ all *.stats)
@@ -42,15 +44,14 @@ Usage:
 
 Commands & parameters:
   - user and domain administration:
-	ser_ctl alias  add  <username> <alias>
-	ser_ctl alias  rm   <alias>
-	ser_ctl alias  show
-	ser_ctl domain add  <domain>
-	ser_ctl domain rm   <domain>
-	ser_ctl password    <uri> <password>
-	ser_ctl user   add  <uri> <password>
-	ser_ctl user   rm   <username>
-	ser_ctl user   show
+	ser_ctl alias  add  <uri> <alias> [alias...]
+	ser_ctl alias  rm   <alias> [alias...]
+	ser_ctl domain add  [domain...]
+	ser_ctl domain rm   [domain...]
+	ser_ctl password    <uri> [-p] [password]
+	ser_ctl user   add  <uri> [-p password] [alias...] 
+	ser_ctl user   rm   <uri>
+	ser_ctl user   show <uri>
 	ser_ctl usrloc add  <uri> <contact> [expires=<seconds>] [q=<q>] [flags=<flags>] 
 	ser_ctl usrloc show <uri> [contact]
 	ser_ctl usrloc rm   <uri> [contact] 
@@ -97,73 +98,61 @@ def publish(uid, file_with_PIDF_doc, expires_in_sec, etag=None, **opts):
 	else:
 		print repr(ret)
 
-def domain(command, domain, **opts):
+def domain(command, *domain, **opts):
+	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
-		d.add(domain)
+		d.add(domain, 'orig', force)
 	elif cmd == CMD_RM:
 		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
-		d.rm(domain)
+		d.rm(domain, force)
 	else:
 		raise Error (EINVAL, command)
 		
-def user(command, uri_user=None, password=None, **opts):
-	return _user(command, uri_user, password, opts)
-
-def _user(command, uri_user, password, opts):
+def user(command, uri, *aliases, **opts):
+	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		if uri_user is None:
-			raise Error (ENOARG, 'uri')
-		password = opts.get('PASSWORD', password)
+		password = opts.get('PASSWORD')
 		if password is None:
 			raise Error (ENOARG, 'password')
 		u = User_ctl(opts['DB_URI'], any_rpc(opts))
-		u.add(uri_user, password)
+		u.add(uri, aliases, password, 'orig', force)
 	elif cmd == CMD_RM:
-		if uri_user is None:
-			raise Error (ENOARG, 'username')
 		u = User_ctl(opts['DB_URI'], any_rpc(opts))
-		u.rm(uri_user)
+		u.rm(uri, 'orig', force)
 	elif cmd == CMD_SHOW:
-		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+		cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 		u = User_ctl(opts['DB_URI'], any_rpc(opts))
-		ret, desc = u.show(raw=numeric)
+		ret, desc = u.show(uri, cols, fformat, limit)
 		tabprint(ret, desc, rsep, lsep, astab)
-	elif cmd == CMD_PASSWORD:
-		if uri_user is None:
-			raise Error (ENOARG, 'uri')
-		password = opts.get('PASSWORD', password)
-		if password is None:
-			raise Error (ENOARG, 'password')
-		u = User_ctl(opts['DB_URI'], any_rpc(opts))
-		u.passwd(uri_user, password)
 	else:
 		raise Error (EINVAL, command)
 
 def password(uri, password=None, **opts):
-	return _user(CMD_PASSWORD, uri, password, opts)
+	force = opts['FORCE']
+	password = opts.get('PASSWORD', password)
+	if password is None:
+		raise Error (ENOARG, 'password')
+	u = User_ctl(opts['DB_URI'], any_rpc(opts))
+	u.passwd(uri, password, force)
 
-def alias(command, user_alias=None, alias=None, **opts):
+def alias(command, *uri, **opts):
+	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		if user_alias is None:
-			raise Error (ENOARG, 'username')
-		if alias is None:
+		if len(uri) < 1:
+			raise Error (ENOARG, 'uri')
+		if len(uri) < 2:
 			raise Error (ENOARG, 'alias')
 		a = Alias_ctl(opts['DB_URI'], any_rpc(opts))
-		a.add(user_alias, alias)
+		a.add(uri[0], uri[1:], force)
 	elif cmd == CMD_RM:
-		if user_alias is None:
+		if len(uri) < 1:
 			raise Error (ENOARG, 'alias')
 		a = Alias_ctl(opts['DB_URI'], any_rpc(opts))
-		a.rm(user_alias)
-	elif cmd == CMD_SHOW:
-		cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
-		u = Alias_ctl(opts['DB_URI'], any_rpc(opts))
-		ret, desc = u.show(raw=numeric)
-		tabprint(ret, desc, rsep, lsep, astab)
+		a.rm(uri, force)
 	else:
 		raise Error (EINVAL, command)
 		
@@ -307,31 +296,63 @@ def methods(**opts):
 
 
 class Domain_ctl:
-	def __init__(self, dburi, rpc):
-		self.db  = dburi
+	def __init__(self, dburi, rpc, db=None):
+		self.dburi = dburi
+		if db is None:
+			self.db = DBany(dburi)
+		else:
+			self.db = db
 		self.rpc = rpc
 
-	def add(self, domain):
-		dom = Domain(self.db)
-		did = dom.get_did(domain, True)
-		if did is not None:
-			raise Error (EDOMAIN, domain)
-		dom.add(domain, domain)
+	def add(self, domains, idtype='orig', force=False):
+		do = Domain(self.dburi, self.db)
+		domains = uniq(domains)
+
+		doms = []
+		for d in domains:
+			i = id(d, idtype)
+			doms.append((i, d))
+			if do.exist(i, d) and not force:
+				raise Error (EDOMAIN, d)
+
+		for i, d in doms: 
+			do.add(i, d, force=force)
+
 		self._reload()
 
-	def rm(self, domain):
-		dom = Domain(self.db)
-		cred = Cred(self.db)
-		did = dom.get_did(domain, True)
-		if did is None:
-			raise Error (ENODOMAIN, domain)
-		try:
-			cred.rm(realm=domain)
-		except:
-			pass
-		dom.rm(domain)
-		dom.purge()
-		cred.purge()
+	def rm(self, domains, force=False):
+		do = Domain(self.dburi, self.db)
+		da = Domain_attrs(self.dburi, self.db)
+		ur = Uri(self.dburi, self.db)
+		cr = Cred(self.dburi, self.db)
+		domains = uniq(domains)
+
+		doms = []
+		for d in domains:
+			try:
+				dids = do.get_dids(d)
+			except:
+				if not force:
+					raise Error (ENODOMAIN, d)
+				dids = []
+			for i in dids:
+				doms.append((i, d))
+
+		for i, d in doms:
+			try:
+				ur.rm_did(i, force=force)
+			except:
+				pass
+			try:
+				cr.rm_realm(d, force=force)
+			except:
+				pass
+			do.rm(i, d, force=force)
+
+		do.purge()
+		ur.purge()
+		cr.purge()
+		da.purge()
 		self._reload()
 
 	def _reload(self):
@@ -346,92 +367,239 @@ class Domain_ctl:
 				raise
 
 class User_ctl:
-	def __init__(self, dburi, rpc):
-		self.db  = dburi
+	def __init__(self, dburi, rpc, db=None):
+		self.dburi = dburi
+		if db is None:
+			self.db = DBany(dburi)
+		else:
+			self.db = db
 		self.rpc = rpc
 
-	def show(self, raw=False):
-		user = User(self.db)
-		uids, tmp = user.show(cols=['uid'])
-		uids = [ i[0] for i in uids ]
-		uri = Uri(self.db)
-		ret = []
-		for uid in uids:
-			uris, tmp = uri.show(uid=uid, cols=['username', 'did', 'flags'], raw=raw, canonical=True)
-			for u in uris:
-				ret.append((uid, '@'.join(u[:2]), u[2]))
-		desc = (('uid',),('uri',), ('flags',))
-		return ret, desc
-
-	def add(self, uri, password):
-		dom = Domain(self.db)
-		usr = User(self.db)
-		ur  = Uri(self.db)
-		cred = Cred(self.db)
-		user, domain = split_sip_uri(uri)
-		did = dom.get_did(domain, True)
-		if did is None:
-			raise Error (ENODOMAIN, domain)
-		exist = ur.get_uids(uri, force=True)
-		if exist != []:
-			raise Error (EDUPL, uri)
-		usr.add(user)
-		ur.add(uri, user)
-		cred.add(user, domain, user, password)
-		
-	def rm(self, user):
-		usr = User(self.db)
-		uri = Uri(self.db)
-		cred = Cred(self.db)
+	def show(self, uri, cols=None, fformat=False, limit=0):
+		ur = Uri(self.dburi, self.db)
+		us = User(self.dburi, self.db)
+		do = Domain(self.dburi, self.db)
+		cr = Cred(self.dburi, self.db)
 		try:
-			cred.rm(uid=user)
+			uids = ur.get_uids(uri)
+		except:
+			try:
+				uids = ur.get_uids_for_username(uri)
+			except:
+				try:
+					uids = us.get(uri)
+				except:
+					u, d = split_sip_uri(uri)
+					try:
+						uids = [cr.get_uid(u, d)]
+					except:
+						try:
+							uids = cr.get_uids_for_username(u)
+						except:
+							try:
+								uids = cr.get_uids_for_username(uri)
+							except:
+								uids = []
+		uris = []
+		doms = []
+		for uid in uids:
+			u, d = ur.show_uid(uid, ['uid', 'username', 'did'], fformat=fformat, limit=limit)
+			uris += u
+		for row in uris:
+			try:
+				doms += do.get_domains(row[2])
+			except:
+				pass
+
+		creds = []
+		for uid in uids:
+			u, d = cr.show_uid(uid, ['uid', 'auth_username', 'realm', 'password'], fformat=fformat, limit=limit)
+			creds += u
+		for row in creds:
+			doms += row[2]
+		doms = uniq(doms)
+		domains = {}
+		for dom in doms:
+			try:
+				dids = do.get_dids(dom)
+			except:
+				continue
+			for did in dids:
+				domains[did] = dom
+		desc = [('uid',), ('attr',), ('value',)]
+		ret  = [] 
+		for u in uris:
+			dom = domains.get(u[2])
+			uri = '%s@%s' % (u[1], dom)
+			uid = u[0]
+			ret.append([uid, 'uri', uri ])
+		for c in creds:
+			cred = 'username=%s realm=%s password=%s' % (c[1], c[2], c[3])
+			uid = c[0]
+			ret.append([uid, 'credentials', cred ])
+		if limit > 0:
+			ret = ret[:limit]
+		return ret, desc
+			
+
+	def add(self, uri, aliases, password, idtype='orig', force=False):
+		do = Domain(self.dburi, self.db)
+		ur = Uri(self.dburi, self.db)
+		cr = Cred(self.dburi, self.db)
+		us = User(self.dburi, self.db)
+
+		user, domain = split_sip_uri(uri)
+		aliases = uniq(aliases)
+		try:
+			n = aliases.index(uri)
+			aliases = aliases[:n] + aliases[n+1:]
 		except:
 			pass
-		uri.rm_user(user, quiet=True)
-		usr.rm(user)
-		cred.purge()
-		uri.purge()
-		usr.purge()
+		aliases = [ split_sip_uri(a) for a in aliases ]
 
-	def passwd(self, uri, password):
+		uid = id(user, idtype)
+		if us.exist(uid):
+			if not force:
+				raise Error(EDUPL, errstr(uid=uid))
+		if cr.exist(user, domain):
+			if not force:
+				raise Error(EDUPL, errstr(auth_username=user, domain=domain))
+		if not do.exist_domain(domain):
+			if force:
+				i = id(domain, idtype)
+				do.add(i, domain, force=force)
+			else:
+				raise Error (ENODOMAIN, domain)
+		for u, d in aliases:
+			if not do.exist_domain(d):
+				if force:
+					i = id(d, idtype)
+					do.add(i, d, force=force)
+				else:
+					raise Error (ENODOMAIN, d)
+		did = do.get_dids(domain)[0]
+		if ur.exist(uid, user, did):
+			if not force:
+				raise Error(EDUPL, errstr(uid=uid, username=user, did=did))
+
+		us.add(uid, force=force)
+		cr.add(uid, user, domain, password, force=force)
+		ur.add(uid, uri, force=force)
+		for u, d in aliases:
+			uri = '%s@%s' % (u, d)
+			try:
+				ur.add(uid, uri, force=force)
+			except Error, inst:
+				warning(str(inst))
+		self._reload()
+
+	def rm(self, uri, idtype='orig', force=False):
+		us = User(self.dburi, self.db)
+		ur = Uri(self.dburi, self.db)
+		cr = Cred(self.dburi, self.db)
+		try:
+			uids = ur.get_uids(uri)
+		except:
+			if force: return
+			raise
+		ur.rm_uri(uri, force=force)
+		for uid in uids:
+			try:
+				cr.rm_uid(uid, force=force)
+			except:
+				pass
+			us.rm(uid)
+		us.purge()
+		ur.purge()
+		cr.purge()
+		self._reload()
+
+	def passwd(self, uri, password, force):
+		cred = Cred(self.dburi, self.db)
 		user, domain = split_sip_uri(uri)
-		cred = Cred(self.db)
 		cred.change(username=user, realm=domain, password=password)
+		self._reload()
+
+	def _reload(self):
+		# FIX: what fn to call (if needed)
+		pass
+#		try:
+#			self.rpc.ser.domain.reload()
+#		except xmlrpclib.Fault, inst:
+#			warning('Domain reloading fail: ' +  repr(inst))
+#		except Error, inst:
+#			if inst.err == ERPC:
+#				warning('Domain reloading fail: ' + str(inst.text))
+#			else:
+#				raise
 
 class Alias_ctl:
-	def __init__(self, dburi, rpc):
-		self.db  = dburi
+	def __init__(self, dburi, rpc, db=None):
+		self.dburi = dburi
+		if db is None:
+			self.db = DBany(dburi)
+		else:
+			self.db = db
 		self.rpc = rpc
 
-	def show(self, raw=False):
-		user = User(self.db)
-		uids, tmp = user.show(cols=['uid'])
-		uids = [ i[0] for i in uids ]
-		uri = Uri(self.db)
-		ret = []
-		for uid in uids:
-			uris, tmp = uri.show(uid=uid, cols=['username', 'did', 'flags'], raw=raw)
-			for u in uris:
-				ret.append((uid, '@'.join(u[:2]), u[2]))
-		desc = (('uid',),('uri',), ('flags',))
-		return ret, desc
+	def add(self, uri, aliases, force=False):
+		do = Domain(self.dburi, self.db)
+		ur = Uri(self.dburi, self.db)
+		us = User(self.dburi, self.db)
 
+		try:
+			user, did = ur.uri2id(uri)
+		except:
+			if force: return
+			raise
 
-	def add(self, username, alias):
-		ur = Uri(self.db)
-		uid, did = ur.get_alias_info(username, canonical=True)
-		uri = alias + '@' + did
-		exist = ur.get_uids(uri, force=True)
-		if exist != []:
-			raise Error (EDUPL, uri)
-		ur.add(uri, username)
+		if not us.exist(user):
+			if force: return
+			raise Error (ENOUSER, user)
 
-	def rm(self, alias):
-		ur = Uri(self.db)
-		uid, did = ur.get_alias_info(alias, canonical=False)
-		uri = alias + '@' + did
-		ur.rm(uri=uri, uid=uid, did=did)
+		aliases = uniq(aliases)
+		try:
+			n = aliases.index(uri)
+			aliases = aliases[:n] + aliases[n+1:]
+		except:
+			pass
+
+		for a in aliases:
+			if ur.exist_uri(a) and not force:
+				raise Error (EDUPL, a)
+			u, d =  split_sip_uri(a)
+			if not do.exist_domain(d) and not force:
+				raise Error (ENODOMAIN, d)
+		
+		for a in aliases:
+			try:
+				ur.add(user, a, force=force)
+			except Error, inst:
+				warning(str(inst))
+		self._reload()
+
+	def rm(self, aliases, force=False):
+		do = Domain(self.dburi, self.db)
+		ur = Uri(self.dburi, self.db)
+		us = User(self.dburi, self.db)
+
+		aliases = uniq(aliases)
+		for a in aliases:
+			if not ur.exist_uri(a) and not force:
+				raise Error (ENOREC, a)
+
+		for a in aliases:
+			try:
+				ur.rm_uri(a, force=force)
+			except Error, inst:
+				warning(str(inst))
+
 		ur.purge()
+		self._reload()
+
+	def _reload(self):
+		# FIX: what fn to call (if needed)
+		pass
 
 class Usrloc_ctl:
 	def __init__(self, dburi, rpc):

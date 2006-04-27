@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.10 2006/04/05 14:52:51 hallik Exp $
+# $Id: ctlhelp.py,v 1.11 2006/04/27 22:32:20 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,6 +15,7 @@ from serctl.options import OPT
 import serctl, glob, os.path
 
 OPT_DESC = {\
+	'ALL'      : 'Do for all corresponding records (uids/dids)',
 	'AS_TABLE' : 'Show output as table',
 	'COLUMNS'  : 'Show only specified columns (comma separated)',
 	'CONFIG'   : 'Path to config file',
@@ -26,13 +27,14 @@ OPT_DESC = {\
 	'ENV_DB'   : 'Env var used to pass database uri', 
 	'ENV_SER'  : 'Env var used to pass ser uri', 
 	'FIFO'     : 'Path to fifo',
-	'FLAGS'    : 'Numeric or symbolic flags',
+	'FFLAGS'   : 'Flags format: sym, hex, oct, dec',
+	'FLAGS'    : 'Flags',
 	'FORCE'    : 'Ignore non-fatal errors',
 	'HELP'     : 'This text',
 	'LIMIT'    : 'Show only limited number of records',
 	'LINE_SEP' : 'Line separator (show command)',
-	'NUMERIC'  : 'Use numeric (raw) - not symbolic show',
 	'PASSWORD' : 'Password',
+	'RAW'      : 'Show raw values instead symbolic',
 	'REC_SEP'  : 'Record separator (show command)',
 	'SER_URI'  : 'Ser uri for xml-rpc operations',
 	'SSL_CERT' : 'Path to ssl cert file',

@@ -1,10 +1,25 @@
+serctl (0.3.0)
+
+  * Backward INCOMPATIBILITY.
+  * Command-line syntax changed for all low-level utilities, little bit.
+  * API changed for all database related classes.
+  * New class for attributes manipulation created.
+  * New command "ser_attr" added.
+  * Hexadecimal and octal flags representation added.
+  * Command "ser_ctl user" changed totally.
+  * Command-line syntax changed for "ser_ctl domain|alias" command.
+  * Support for multi-server remote procedure call added.
+  * Manpages are NOT updated!
+
+ -- Jan Halla <hallik@iptel.org> Thu, 27 Apr 2006 14:33:01 +0200
+
 serctl (0.1.10)
 
   * Minor incompatibility: abbrevation 'up' is 'update', now. Not 'uptime'.
   * Fix in utils.py: arg_attrs - only first '=' is separator.
   * Fix delete non-existent default variable, in main.py.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Sat, 22 Apr 2006 12:28:12 +0200
 
 serctl (0.1.9)
 
