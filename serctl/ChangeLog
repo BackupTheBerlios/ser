@@ -1,3 +1,10 @@
+serctl (0.3.1)
+
+  * Iteration over multi servers changed.
+  * New option --servers (-A).
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.3.0)
 
   * Backward INCOMPATIBILITY.

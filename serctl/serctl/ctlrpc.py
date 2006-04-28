@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.10 2006/04/27 22:32:20 hallik Exp $
+# $Id: ctlrpc.py,v 1.11 2006/04/28 10:13:58 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -14,7 +14,7 @@
 _handler_ = 'main'
 
 from os.path          import join, dirname
-from serctl.error     import Error, ENOSYS, ERPC
+from serctl.error     import Error, ENOSYS, ERPC, warning
 from serctl.serxmlrpc import ServerProxy
 from serctl.utils     import show_opts, tabprint, var2tab
 import os, sys, serctl.ctlhelp
@@ -40,22 +40,14 @@ def any_rpc(opts):
 	ssl_cert = opts['SSL_CERT']
 	ser_uri  = opts['SER_URI']
 
-	# FIX: Hack for multi-server rpc! --------------------------------
-	if type(ser_uri) is tuple or type(ser_uri) is list:
-		ret = None
-		for uri in ser_uri:
-			print uri
-			try:
-				if ret is None:
-					ret  = Xml_rpc(uri, (ssl_key, ssl_cert))
-				else:
-					ret += Xml_rpc(uri, (ssl_key, ssl_cert))
-			except:
-				warning("RPC on '%s' fail" % uri)
-		return ret
-	# End of hack --- cut & paste to /dev/null! -----------------------
-
 	return Xml_rpc(ser_uri, (ssl_key, ssl_cert))
+
+def multi_rpc(opts):
+	ssl_key  = opts['SSL_KEY']
+	ssl_cert = opts['SSL_CERT']
+	servers  = opts['SERVERS']
+
+	return Multi_rpc(servers, (ssl_key, ssl_cert))
 
 def rpc(cmd, args, opts):
 
@@ -72,6 +64,53 @@ def rpc(cmd, args, opts):
 			return     # value if nothing returns
 		print repr(ret)
 	
+
+class Multi_rpc:
+	def __init__(self, servers, ssl=None):
+		self.servers = servers
+		self.ssl = ssl
+
+	def raw_cmd(self, cmd, par=[]):
+		for server in self.servers:
+			ser = ServerProxy(server, self.ssl)
+			method = getattr(ser, cmd)
+			try:
+				apply(method, par)
+			except:
+				warning("RPC on '%s' failed" % server)
+
+	def cmd(self, cmd, *par):
+		return self.raw_cmd(cmd, par)
+
+	def cmd_if_exist(self, cmd, par=[]):
+		for server in self.servers:
+			try:
+				ser = ServerProxy(server, self.ssl)
+				if cmd not in ser.system.listMethods(): continue
+			except:
+				warning("Connection to '%s' failed" % server)
+				continue
+			method = getattr(ser, cmd)
+			try:
+				apply(method, par)
+			except:
+				warning("RPC on '%s' failed" % server)
+
+	def reload(self):
+		for server in self.servers:
+			try:
+				ser = ServerProxy(server, self.ssl)
+				cmds = [ i for i in ser.system.listMethods() if i[-7:] == '.reload' ]
+			except:
+				warning("Connection to '%s' failed" % server)
+				continue
+			for cmd in cmds:
+				method = getattr(ser, cmd)
+				try:
+					apply(method)
+				except:
+					warning("Reload on '%s' failed" % server)
+
 
 class Xml_rpc:
 	def __init__(self, ser_uri, ssl=None):

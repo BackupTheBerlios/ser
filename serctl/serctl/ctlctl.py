@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.25 2006/04/27 22:32:20 hallik Exp $
+# $Id: ctlctl.py,v 1.26 2006/04/28 10:13:58 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -20,7 +20,7 @@ from serctl.dbany     import DBany
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
                              ENODOMAIN, warning, EDUPL, ENOUSER, ERPC, \
                              ENOREC
-from serctl.ctlrpc    import any_rpc
+from serctl.ctlrpc    import any_rpc, multi_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
@@ -284,6 +284,10 @@ def reload(**opts):
 				warning('Domain reloading fail: ' + str(inst.text))
 			else:
 				raise
+
+def reload_all(**opts):
+	rpc = multi_rpc(opts)
+	rpc.reload()
 
 def methods(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)

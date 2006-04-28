@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.22 2006/04/27 22:32:20 hallik Exp $
+# $Id: options.py,v 1.23 2006/04/28 10:13:58 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -33,6 +33,7 @@ CMD_PS         = 'ps'
 CMD_PUBLISH    = 'publish'
 CMD_PURGE      = 'purge'
 CMD_RELOAD     = 'reload'
+CMD_RELOAD_ALL = 'reload_all'
 CMD_RM         = 'rm'
 CMD_RM_DID     = 'rm_did'
 CMD_SET        = 'set'
@@ -183,7 +184,12 @@ CMD = {\
 	'pwd'          : CMD_PASSWORD,
 	'pw'           : CMD_PASSWORD,
 
+	'ra'           : CMD_RELOAD_ALL,
+	'rall'         : CMD_RELOAD_ALL,
+
 	'rd'           : CMD_RM_DID,
+
+	'reload_all'   : CMD_RELOAD_ALL,
 
 	'reload'       : CMD_RELOAD,
 	'reloa'        : CMD_RELOAD,
@@ -272,6 +278,7 @@ CMD = {\
 OPT_LIST = (\
 #	(short, long,     arg,   default_value)
 	('a', 'all',      False, False),
+	('A', 'servers',  True,  ''),
 	('b', 'db-uri',   True,  None),
 	('B', 'env-db',   True,  'SERCTL_DB'),
 	('c', 'config',   True,  None),

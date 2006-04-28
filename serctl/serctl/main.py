@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.15 2006/04/27 22:32:20 hallik Exp $
+# $Id: main.py,v 1.16 2006/04/28 10:13:58 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -67,18 +67,14 @@ def handle_db_uri(opts):
 		return opts['DB_URI']
 	return os.getenv(opts['ENV_DB'], config.DB_URI)
 
-def handle_ser_uri_prehack(opts):  # FIX: not used
+def handle_ser_uri(opts):
 	if opts['SER_URI'] is not None:
 		return adjust_ser_uri(opts['SER_URI'])
 	uri = os.getenv(opts['ENV_SER'], config.SER_URI)
 	return adjust_ser_uri(uri)
 
-def handle_ser_uri(opts):
-	if opts['SER_URI'] is not None:
-		return adjust_ser_uri(opts['SER_URI'])
-	uri = os.getenv(opts['ENV_SER'], config.SER_URI)
-
-	sul = uri.split(' ')
+def handle_servers(opts):
+	sul = opts['SERVERS'].split(' ')
 	if len(sul) < 2:
 		return adjust_ser_uri(uri)
 	uris = []
@@ -134,6 +130,7 @@ def main(argv):
 
 	opts['DB_URI']  = handle_db_uri(opts)
 	opts['SER_URI'] = handle_ser_uri(opts)
+	opts['SERVERS'] = handle_servers(opts)
 
 	modname = handle_module_name(args[0])
 	mod = module(modname)
