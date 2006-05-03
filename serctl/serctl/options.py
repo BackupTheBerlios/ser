@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.23 2006/04/28 10:13:58 hallik Exp $
+# $Id: options.py,v 1.24 2006/05/03 06:13:53 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -35,10 +35,8 @@ CMD_PURGE      = 'purge'
 CMD_RELOAD     = 'reload'
 CMD_RELOAD_ALL = 'reload_all'
 CMD_RM         = 'rm'
-CMD_RM_DID     = 'rm_did'
 CMD_SET        = 'set'
 CMD_SHOW       = 'show'
-CMD_SHOW_DID   = 'show_did'
 CMD_STAT       = 'stat'
 CMD_UPDATE     = 'update'
 CMD_USER       = 'user'
@@ -187,8 +185,6 @@ CMD = {\
 	'ra'           : CMD_RELOAD_ALL,
 	'rall'         : CMD_RELOAD_ALL,
 
-	'rd'           : CMD_RM_DID,
-
 	'reload_all'   : CMD_RELOAD_ALL,
 
 	'reload'       : CMD_RELOAD,
@@ -200,23 +196,13 @@ CMD = {\
 	'rm'           : CMD_RM,
 	'r'            : CMD_RM,
 
-	'rm_did'       : CMD_RM_DID,
-	'rmdid'        : CMD_RM_DID,
-	'rmd'          : CMD_RM_DID,
-
 	'sa'           : CMD_ATTR_SHOW,
-
-	'sd'           : CMD_SHOW_DID,
 
 	'set'          : CMD_SET,
 	'se'           : CMD_SET,
 
 	'shattr'       : CMD_ATTR_SHOW,
 	'sha'          : CMD_ATTR_SHOW,
-
-	'show_did'     : CMD_SHOW_DID,
-	'showdid'      : CMD_SHOW_DID,
-	'showd'        : CMD_SHOW_DID,
 
 	'show'         : CMD_SHOW,
 	'sho'          : CMD_SHOW,
@@ -277,12 +263,13 @@ CMD = {\
 
 OPT_LIST = (\
 #	(short, long,     arg,   default_value)
-	('a', 'all',      False, False),
 	('A', 'servers',  True,  ''),
 	('b', 'db-uri',   True,  None),
 	('B', 'env-db',   True,  'SERCTL_DB'),
 	('c', 'config',   True,  None),
 	('C', 'columns',  True,  ''),
+	('d', 'did',      False, False),
+	('D', 'depth',    False, False),
 	('f', 'force',    False, False),
 	('F', 'flags',    True,  None),
 	('G', 'dbg-args', False, False),
@@ -302,7 +289,7 @@ OPT_LIST = (\
 	('S', 'env-ser',  True,  'SERCTL_SER'),
 	('t', 'as-table', False, False),
 	('U', 'ul-table', True, 'location'),
-	('V', 'version',  False, False),
+	('V', 'version',  False, False), # should be False as default value. Will be internally changed to actual version number.
 )
 
 

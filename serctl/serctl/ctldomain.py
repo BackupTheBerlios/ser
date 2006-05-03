@@ -35,10 +35,8 @@ Commands & parameters:
 	ser_domain disable   [domain]
 	ser_domain enable    [domain]
 	ser_domain rm        [domain]
-	ser_domain rm_did    [did]
 	ser_domain purge
 	ser_domain show      [domain]
-	ser_domain show_did  [did]
 """ % serctl.ctlhelp.options()
 
 
@@ -46,18 +44,13 @@ def show(domain=None, **opts):
 	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 
 	u = Domain(opts['DB_URI'])
-	if opts['ALL']:
+
+	if opts['DID']:
+		uri_list, desc = u.show_did(domain, cols=cols, fformat=fformat, limit=limit)
+	elif opts['DEPTH']:
 		uri_list, desc = u.show_did_for_domain(domain, cols=cols, fformat=fformat, limit=limit)
 	else:
 		uri_list, desc = u.show_domain(domain, cols=cols, fformat=fformat, limit=limit)
-
-	tabprint(uri_list, desc, rsep, lsep, astab)
-
-def show_did(did=None, **opts):
-	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
-
-	u = Domain(opts['DB_URI'])
-	uri_list, desc = u.show_did(did, cols=cols, fformat=fformat, limit=limit)
 
 	tabprint(uri_list, desc, rsep, lsep, astab)
 
@@ -90,18 +83,13 @@ def rm(domain=None, **opts):
 	force = opts['FORCE']
 
 	u = Domain(opts['DB_URI'])
-	if opts['ALL']:
+
+	if opts['DID']:
+		u.rm_did(domain, force)
+	elif opts['DEPTH']:
 		u.rm_did_for_domain(domain, force)
 	else:
 		u.rm_domain(domain, force)
-
-def rm_did(did=None, **opts):
-	no_all(opts, did)
-	force = opts['FORCE']
-
-	u = Domain(opts['DB_URI'])
-	u.rm_did(did, force)
-
 
 def _change(domain, opts):
 	no_all(opts, domain)

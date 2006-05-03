@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.11 2006/04/27 22:32:20 hallik Exp $
+# $Id: ctlhelp.py,v 1.12 2006/05/03 06:13:53 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,19 +15,20 @@ from serctl.options import OPT
 import serctl, glob, os.path
 
 OPT_DESC = {\
-	'ALL'      : 'Do for all corresponding records (uids/dids)',
 	'AS_TABLE' : 'Show output as table',
 	'COLUMNS'  : 'Show only specified columns (comma separated)',
 	'CONFIG'   : 'Path to config file',
 	'DB_URI'   : 'Database URI',
 	'DBG_ARGS' : 'Show arguments and options',
 	'DEBUG'    : 'Switch on python backtrace listing',
+	'DEPTH'    : 'Process for all DIDs converted from domain name',
+	'DID'      : 'Use domain name as it is DID',
 	'DISABLE'  : 'Enable',
 	'ENABLE'   : 'Disable',
 	'ENV_DB'   : 'Env var used to pass database uri', 
-	'ENV_SER'  : 'Env var used to pass ser uri', 
+	'ENV_SER'  : 'Env var used to pass ser URI', 
 	'FIFO'     : 'Path to fifo',
-	'FFLAGS'   : 'Flags format: sym, hex, oct, dec',
+	'FFORMAT'  : 'Flags output format: sym, hex, oct, dec',
 	'FLAGS'    : 'Flags',
 	'FORCE'    : 'Ignore non-fatal errors',
 	'HELP'     : 'This text',
@@ -36,10 +37,11 @@ OPT_DESC = {\
 	'PASSWORD' : 'Password',
 	'RAW'      : 'Show raw values instead symbolic',
 	'REC_SEP'  : 'Record separator (show command)',
-	'SER_URI'  : 'Ser uri for xml-rpc operations',
-	'SSL_CERT' : 'Path to ssl cert file',
-	'SSL_KEY'  : 'Path to ssl key file',
-	'USE_FIFO' : 'Use fifo instead xml-rpc',
+	'SER_URI'  : 'Ser URI for XML-RPC operations',
+	'SERVERS'  : 'Servers URI list for multi-rpc call',
+	'SSL_CERT' : 'Path to SSL cert file',
+	'SSL_KEY'  : 'Path to SSL key file',
+	'USE_FIFO' : 'Use fifo instead XML-RPC',
 	'UL_TABLE' : 'Usrloc table name',
 	'VERSION'  : 'Show version and exit',
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.16 2006/04/28 10:13:58 hallik Exp $
+# $Id: main.py,v 1.17 2006/05/03 06:13:53 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -58,7 +58,7 @@ def handle_config(path = None):
 
 def handle_version(opts):
 	if not opts['VERSION']:
-		return
+		return version
 	print 'serctl ' + version
 	sys.exit(0)
 
@@ -126,7 +126,7 @@ def main(argv):
 	if len(args) < 1:
 		raise Error (EINVAL)
 
-	handle_version(opts)
+	opts['VERSION'] = handle_version(opts)
 
 	opts['DB_URI']  = handle_db_uri(opts)
 	opts['SER_URI'] = handle_ser_uri(opts)
