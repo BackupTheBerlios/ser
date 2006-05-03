@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.11 2006/04/28 10:13:58 hallik Exp $
+# $Id: ctlrpc.py,v 1.12 2006/05/03 09:37:17 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -17,7 +17,7 @@ from os.path          import join, dirname
 from serctl.error     import Error, ENOSYS, ERPC, warning
 from serctl.serxmlrpc import ServerProxy
 from serctl.utils     import show_opts, tabprint, var2tab
-import os, sys, serctl.ctlhelp
+import os, sys, serctl.ctlhelp, xmlrpclib
 
 def main(rpc_command=None, *args, **opts):
 	if opts['HELP'] or rpc_command==None:
@@ -67,6 +67,7 @@ def rpc(cmd, args, opts):
 
 class Multi_rpc:
 	def __init__(self, servers, ssl=None):
+		self.ser = _ser(self.raw_cmd)
 		self.servers = servers
 		self.ssl = ssl
 
@@ -76,8 +77,10 @@ class Multi_rpc:
 			method = getattr(ser, cmd)
 			try:
 				apply(method, par)
+			except xmlrpclib.Fault, inst:
+				warning("RPC on '%s' failed: %s" %  (server, str(inst)))
 			except:
-				warning("RPC on '%s' failed" % server)
+				warning("RPC on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
 
 	def cmd(self, cmd, *par):
 		return self.raw_cmd(cmd, par)
@@ -87,29 +90,39 @@ class Multi_rpc:
 			try:
 				ser = ServerProxy(server, self.ssl)
 				if cmd not in ser.system.listMethods(): continue
+			except xmlrpclib.Fault, inst:
+				warning("ListMethods on '%s' failed: %s" %  (server, str(inst)))
+				continue
 			except:
-				warning("Connection to '%s' failed" % server)
+				warning("ListMethods on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
 				continue
 			method = getattr(ser, cmd)
 			try:
 				apply(method, par)
+			except xmlrpclib.Fault, inst:
+				warning("RPC on '%s' failed: %s" %  (server, str(inst)))
 			except:
-				warning("RPC on '%s' failed" % server)
+				warning("RPC on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
 
 	def reload(self):
 		for server in self.servers:
 			try:
 				ser = ServerProxy(server, self.ssl)
 				cmds = [ i for i in ser.system.listMethods() if i[-7:] == '.reload' ]
+			except xmlrpclib.Fault, inst:
+				warning("ListMethods on '%s' failed: %s" %  (server, str(inst)))
+				continue
 			except:
-				warning("Connection to '%s' failed" % server)
+				warning("ListMethods on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
 				continue
 			for cmd in cmds:
 				method = getattr(ser, cmd)
 				try:
 					apply(method)
+				except xmlrpclib.Fault, inst:
+					warning("Reload on '%s' failed: %s" %  (server, str(inst)))
 				except:
-					warning("Reload on '%s' failed" % server)
+					warning("Reload on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
 
 
 class Xml_rpc:
@@ -126,6 +139,26 @@ class Xml_rpc:
 
 	def cmd(self, cmd, *par):
 		return self.raw_cmd(cmd, par)
+
+
+	def reload(self):
+		try:
+			exists = [ i for i in self.ser.system.listMethods() if i[-7:] == '.reload' ]
+		except xmlrpclib.Fault, inst:
+			warning("ListMethods failed: %s" %  str(inst))
+			return
+		except:
+			warning("ListMethods failed: %s" % str(sys.exc_info()[0]))
+			return
+		for fn in exists:
+			try:
+				self.raw_cmd(fn)
+			except xmlrpclib.Fault, inst:
+				warning('Reloading fail: ' +  str(inst))
+			except Error, inst:
+				warning('Reloading fail: ' + repr(inst))
+			except:
+				warning('Reloading fail: ' + str(sys.exc_info()[0]))
 
 	def core_ps(self):
 		ps = self.ser.core.ps()

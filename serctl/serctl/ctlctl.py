@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.26 2006/04/28 10:13:58 hallik Exp $
+# $Id: ctlctl.py,v 1.27 2006/05/03 09:37:17 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -25,7 +25,7 @@ from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
                              arg_attrs, uniq, id, errstr
-import serctl.ctlhelp, xmlrpclib
+import serctl.ctlhelp, xmlrpclib, sys
 
 # xml-rpc method used in stats function (+ all *.stats)
 STATS = [ \
@@ -102,10 +102,10 @@ def domain(command, *domain, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
+		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
 		d.add(domain, 'orig', force)
 	elif cmd == CMD_RM:
-		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
+		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
 		d.rm(domain, force)
 	else:
 		raise Error (EINVAL, command)
@@ -117,14 +117,14 @@ def user(command, uri, *aliases, **opts):
 		password = opts.get('PASSWORD')
 		if password is None:
 			raise Error (ENOARG, 'password')
-		u = User_ctl(opts['DB_URI'], any_rpc(opts))
+		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 		u.add(uri, aliases, password, 'orig', force)
 	elif cmd == CMD_RM:
-		u = User_ctl(opts['DB_URI'], any_rpc(opts))
+		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 		u.rm(uri, 'orig', force)
 	elif cmd == CMD_SHOW:
 		cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
-		u = User_ctl(opts['DB_URI'], any_rpc(opts))
+		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 		ret, desc = u.show(uri, cols, fformat, limit)
 		tabprint(ret, desc, rsep, lsep, astab)
 	else:
@@ -135,7 +135,7 @@ def password(uri, password=None, **opts):
 	password = opts.get('PASSWORD', password)
 	if password is None:
 		raise Error (ENOARG, 'password')
-	u = User_ctl(opts['DB_URI'], any_rpc(opts))
+	u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 	u.passwd(uri, password, force)
 
 def alias(command, *uri, **opts):
@@ -146,12 +146,12 @@ def alias(command, *uri, **opts):
 			raise Error (ENOARG, 'uri')
 		if len(uri) < 2:
 			raise Error (ENOARG, 'alias')
-		a = Alias_ctl(opts['DB_URI'], any_rpc(opts))
+		a = Alias_ctl(opts['DB_URI'], multi_rpc(opts))
 		a.add(uri[0], uri[1:], force)
 	elif cmd == CMD_RM:
 		if len(uri) < 1:
 			raise Error (ENOARG, 'alias')
-		a = Alias_ctl(opts['DB_URI'], any_rpc(opts))
+		a = Alias_ctl(opts['DB_URI'], multi_rpc(opts))
 		a.rm(uri, force)
 	else:
 		raise Error (EINVAL, command)
@@ -270,20 +270,8 @@ def stat(*modules, **opts):
 
 def reload(**opts):
 
-	rpc = any_rpc(opts)
-
-	exists = [ i for i in rpc.ser.system.listMethods() if i[-7:] == '.reload' ]
-
-	for fn in exists:
-		try:
-			rpc.raw_cmd(fn)
-		except xmlrpclib.Fault, inst:
-                        warning("Function '%s' fail: " % fn +  repr(inst))
-		except Error, inst:
-			if inst.err == ERPC:
-				warning('Domain reloading fail: ' + str(inst.text))
-			else:
-				raise
+	rpc = multi_rpc(opts)
+	rpc.reload()
 
 def reload_all(**opts):
 	rpc = multi_rpc(opts)
@@ -360,15 +348,7 @@ class Domain_ctl:
 		self._reload()
 
 	def _reload(self):
-		try:
-			self.rpc.ser.domain.reload()
-		except xmlrpclib.Fault, inst:
-			warning('Domain reloading fail: ' +  repr(inst))
-		except Error, inst:
-			if inst.err == ERPC:
-				warning('Domain reloading fail: ' + str(inst.text))
-			else:
-				raise
+		self.rpc.ser.domain.reload()
 
 class User_ctl:
 	def __init__(self, dburi, rpc, db=None):
@@ -527,15 +507,6 @@ class User_ctl:
 	def _reload(self):
 		# FIX: what fn to call (if needed)
 		pass
-#		try:
-#			self.rpc.ser.domain.reload()
-#		except xmlrpclib.Fault, inst:
-#			warning('Domain reloading fail: ' +  repr(inst))
-#		except Error, inst:
-#			if inst.err == ERPC:
-#				warning('Domain reloading fail: ' + str(inst.text))
-#			else:
-#				raise
 
 class Alias_ctl:
 	def __init__(self, dburi, rpc, db=None):
