@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.28 2006/05/03 11:01:05 hallik Exp $
+# $Id: ctlctl.py,v 1.29 2006/05/03 18:24:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -48,6 +48,7 @@ Commands & parameters:
 	ser_ctl alias  rm   <alias> [alias...]
 	ser_ctl domain add  [domain...]
 	ser_ctl domain rm   [domain...]
+	ser_ctl domain show [domain]
 	ser_ctl password    <uri> [-p] [password]
 	ser_ctl user   add  <uri> [-p password] [alias...] 
 	ser_ctl user   rm   <uri>
@@ -98,6 +99,7 @@ def publish(uid, file_with_PIDF_doc, expires_in_sec, etag=None, **opts):
 	else:
 		print repr(ret)
 
+
 def domain(command, *domain, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
@@ -107,9 +109,24 @@ def domain(command, *domain, **opts):
 	elif cmd == CMD_RM:
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
 		d.rm(domain, force)
+	elif cmd == CMD_SHOW:
+		if not domain:
+			domain = None
+		else:
+			domain = domain[0]
+		cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
+		u = Domain(opts['DB_URI'])
+		if opts['DID']:
+			uri_list, desc = u.show_did(domain, cols=cols, fformat=fformat, limit=limit)
+		elif opts['DEPTH']:
+			uri_list, desc = u.show_did_for_domain(domain, cols=cols, fformat=fformat, limit=limit)
+		else:
+			uri_list, desc = u.show_domain(domain, cols=cols, fformat=fformat, limit=limit)
+		tabprint(uri_list, desc, rsep, lsep, astab)
 	else:
 		raise Error (EINVAL, command)
-		
+
+
 def user(command, uri, *aliases, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)

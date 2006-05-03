@@ -18,7 +18,7 @@ from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonica
                            cv_flags
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
                            col_idx, cond, full_cond
-import serctl.ctlhelp, serctl.ctlcred, serctl.ctluri
+import serctl.ctlhelp, serctl.ctlcred, serctl.ctluri, serctl.ctlattr
 
 def help(*tmp):
 	print """\
@@ -29,7 +29,6 @@ Usage:
 
 Commands & parameters:
 	ser_domain add       <did> <domain> [domain...]
-	ser_domain attr_show [did]
 	ser_domain canonical [domain]
 	ser_domain change    [domain] [-F flags]
 	ser_domain disable   [domain]
@@ -51,14 +50,6 @@ def show(domain=None, **opts):
 		uri_list, desc = u.show_did_for_domain(domain, cols=cols, fformat=fformat, limit=limit)
 	else:
 		uri_list, desc = u.show_domain(domain, cols=cols, fformat=fformat, limit=limit)
-
-	tabprint(uri_list, desc, rsep, lsep, astab)
-
-def attr_show(did=None, **opts):
-	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
-
-	u = Domain_attrs(opts['DB_URI'])
-	uri_list, desc = u.show(did, cols=cols, fformat=fformat, limit=limit)
 
 	tabprint(uri_list, desc, rsep, lsep, astab)
 
@@ -118,7 +109,7 @@ def canonical(domain, **opts):
 def purge(**opts):
 	u = Domain(opts['DB_URI'])
 	u.purge()
-	u = Domain_attrs(opts['DB_URI'])
+	u = serctl.ctlattr.Domain_attrs(opts['DB_URI'])
 	u.purge()
 
 class Domain:
@@ -130,6 +121,7 @@ class Domain:
 	def __init__(self, dburi, db=None):
 		self.Uri   = serctl.ctluri.Uri
 		self.Cred  = serctl.ctlcred.Cred
+		self.Domain_attrs  = serctl.ctlattr.Domain_attrs
 		self.dburi = dburi
 		if db is not None:
 			self.db = db
@@ -234,7 +226,7 @@ class Domain:
 			raise Error (EDUPL, err)
 
 		# set digest realm attr
-		da = Domain_attrs(self.dburi, self.db)
+		da = self.Domain_attrs(self.dburi, self.db)
 		da.set_dra_if_not_set(did, domain)
 
 		# update canonical flag
@@ -290,7 +282,7 @@ class Domain:
 				self.db.update(self.TABLE, upd, cnd)
 
 	def rm_did(self, did, force=False):
-		da = Domain_attrs(self.dburi, self.db)
+		da = self.Domain_attrs(self.dburi, self.db)
 
 		if self.is_used(did):
 			if force:
@@ -385,67 +377,3 @@ class Domain:
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
 
-
-class Domain_attrs:
-
-	TABLE = 'domain_attrs'
-	COLUMNS = ('did', 'name', 'type', 'value', 'flags')
-	COLIDXS = idx_dict(COLUMNS)
-	FLAGIDX = COLIDXS['flags']
-
-	def __init__(self, dburi, db=None):
-		self.dburi = dburi
-		if db is not None:
-			self.db = db
-		else:
-			self.db = DBany(dburi)
-
-	def default_flags(self):
-		return '0'
-
-	def exist_dra(self, realm):
-		cnd, err = cond(CND_NO_DELETED, name='digest_realm', value=realm)
-		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
-		return rows != []
-
-	def add_dra(self, did, domain):
-		flags = self.default_flags()
-		ins = {'did': did, 'name': 'digest_realm', 'value': domain, \
-		  'type': 2, 'flags': flags }
-		self.db.insert(self.TABLE, ins)
-
-	def set_dra_if_not_set(self, did, domain):
-		# search for digest realm attr, return if set
-		cnd, err = cond(CND_NO_DELETED, did=did, name='digest_realm')
-		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
-		if rows:
-			return
-		self.add_dra(did, domain)
-
-	def rm_dra(self, did):
-		cnd, err = cond(CND_NO_DELETED, did=did, name='digest_realm')
-		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
-		for row in rows:
-			nf = set_deleted(row[self.FLAGIDX])
-			cnd = full_cond(self.COLUMNS, row)
-			self.db.update(self.TABLE, {'flags': nf}, cnd)
-
-	def show(self, did=None, cols=None, fformat='raw', limit=0):
-		if not cols:
-			cols = self.COLUMNS
-		cidx = col_idx(self.COLIDXS, cols)
-		cnd, err = cond(did=did)
-		rows = self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
-		new_rows = []
-		for row in rows:
-			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
-			new_row = []
-			for i in cidx:
-				new_row.append(row[i])
-			new_rows.append(new_row)
-		desc = self.db.describe(self.TABLE)
-		desc = [ desc[i] for i in cols ]
-		return new_rows, desc
-
-	def purge(self):
-		self.db.delete(self.TABLE, CND_DELETED)

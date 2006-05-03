@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.25 2006/05/03 11:01:05 hallik Exp $
+# $Id: options.py,v 1.26 2006/05/03 18:24:11 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -16,7 +16,6 @@
 
 CMD_ADD        = 'add'
 CMD_ALIAS      = 'alias'
-CMD_ATTR_SHOW  = 'attr_show'
 CMD_CANONICAL  = 'canonical'
 CMD_DISABLE    = 'disable'
 CMD_DOMAIN     = 'domain'
@@ -55,16 +54,6 @@ CMD = {\
 	'alia'         : CMD_ALIAS,
 	'ali'          : CMD_ALIAS,
 	'al'           : CMD_ALIAS,
-
-	'as'           : CMD_ATTR_SHOW,
-	'ash'          : CMD_ATTR_SHOW,
-	'ashow'        : CMD_ATTR_SHOW,
-	'attr_show'    : CMD_ATTR_SHOW,
-	'attr_sh'      : CMD_ATTR_SHOW,
-	'attr_s'       : CMD_ATTR_SHOW,
-	'attrshow'     : CMD_ATTR_SHOW,
-	'attrsh'       : CMD_ATTR_SHOW,
-	'attrs'        : CMD_ATTR_SHOW,
 
 	'canonical'    : CMD_CANONICAL,
 	'canonica'     : CMD_CANONICAL,
@@ -190,23 +179,13 @@ CMD = {\
 	'rm'           : CMD_RM,
 	'r'            : CMD_RM,
 
-	'sa'           : CMD_ATTR_SHOW,
-
 	'set'          : CMD_SET,
 	'se'           : CMD_SET,
-
-	'shattr'       : CMD_ATTR_SHOW,
-	'sha'          : CMD_ATTR_SHOW,
 
 	'show'         : CMD_SHOW,
 	'sho'          : CMD_SHOW,
 	'sh'           : CMD_SHOW,
 	's'            : CMD_SHOW,
-
-	'show_attrs'   : CMD_ATTR_SHOW,
-	'show_attr'    : CMD_ATTR_SHOW,
-	'show_a'       : CMD_ATTR_SHOW,
-	'showa'        : CMD_ATTR_SHOW,
 
 	'status'       : CMD_STAT,
 	'statu'        : CMD_STAT,

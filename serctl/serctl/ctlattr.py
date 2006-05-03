@@ -12,10 +12,10 @@
 #
 
 from serctl.dbany     import DBany
-from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC
+from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL
 from serctl.flag      import parse_flags, new_flags, flag_syms, CND_NO_DELETED, \
                              FOR_SERWEB, cv_flags, set_deleted, CND_DELETED
-from serctl.utils     import show_opts, tabprint, arg_pairs, idx_dict, \
+from serctl.utils     import show_opts, tabprint, idx_dict, arg_attrs, \
                              col_idx, cond, full_cond, uniq
 import serctl.ctlhelp
 
@@ -28,21 +28,56 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_uri add    <attr> <value> [attr value]...
-	ser_uri change <attr> <value> [attr value]...
-	ser_uri purge
-	ser_uri rm     <attr> [attr...]
-	ser_uri set    <attr> <value> [attr value]...
-	ser_uri show   [attr...]
+	ser_attr add    global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
+	ser_attr change global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
+	ser_attr purge
+	ser_attr rm     global | uid=<uid> | did=<did> <attr> [attr...]
+	ser_attr set    global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
+	ser_attr show   [attr...]
 """ % serctl.ctlhelp.options()
+
+def _attr_prep(attrs, opts):
+	if not attrs:
+		raise Error (ENOARG, 'global|uid|did')
+	if len(attrs) < 2:
+		raise Error (ENOARG, 'attr')
+	if attrs[0] == 'global':
+		obj = Global_attrs(opts['DB_URI'])
+		xid = None
+	elif attrs[0][:4] == 'uid=':
+		obj = User_attrs(opts['DB_URI'])
+		xid = attrs[0][4:]
+	elif attrs[0][:4] == 'did=':
+		obj = Domain_attrs(opts['DB_URI'])
+		xid = attrs[0][4:]
+	else:
+		raise Error (EINVAL, attrs[0])
+	return obj, attrs[1:], xid
 
 def show(*attrs, **opts):
 	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 
-	a = Attr(opts['DB_URI'])
-	alist, desc = a.show(attrs, cols, fformat, limit)
+	COLS = ['name', 'type', 'value', 'flags']
 
-	tabprint(alist, desc, rsep, lsep, astab)
+	lst = []
+
+	a = User_attrs(opts['DB_URI'])
+	ulist, desc = a.show(attrs, ['uid']+COLS, fformat, limit)
+	for l in ulist:
+		lst.append([''] + l) 
+
+	a = Domain_attrs(opts['DB_URI'])
+	dlist, desc = a.show(attrs, ['did']+COLS, fformat, limit)
+	for l in dlist:
+		lst.append([l[0], ''] + l[1:]) 
+
+	a = Global_attrs(opts['DB_URI'])
+	glist, desc = a.show(attrs, COLS, fformat, limit)
+	for l in glist:
+		lst.append(['GLOBAL', 'GLOBAL'] + l) 
+
+	desc = [('did', ), ('uid', )] + list(desc)
+	tabprint(lst, desc, rsep, lsep, astab)	
 
 def add(*attrs, **opts):
 	force = opts['FORCE']
@@ -51,52 +86,366 @@ def add(*attrs, **opts):
 	if not attrs:
 		raise Error (ENOARG, 'attr')
 
-	a = Attr(opts['DB_URI'])
+	a, attrs, xid = _attr_prep(attrs, opts)
+	adict, alist = arg_attrs(attrs)
 
-	adict, alist = arg_pairs(attrs)
-
-	a.add_many(adict, flags, force)
+	if xid is None:
+		a.add_many(adict, flags, force)
+	else:
+		a.add_many(xid, adict, flags, force)
 
 def rm(*attrs, **opts):
 	force = opts['FORCE']
-	if not attrs:
-		raise Error (ENOARG, 'attr')
-	a = Attr(opts['DB_URI'])
 
-	a.rm_many(attrs, force)
+	a, attrs, xid = _attr_prep(attrs, opts)
+	if xid is None:
+		a.rm_many(attrs, force)
+	else:
+		a.rm_many(xid, attrs, force)
 
 def change(*attrs, **opts):
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
-	if not attrs:
-		raise Error (ENOARG, 'attr')
+	a, attrs, xid = _attr_prep(attrs, opts)
+	adict, alist = arg_attrs(attrs)
 
-	a = Attr(opts['DB_URI'])
-
-	adict, alist = arg_pairs(attrs)
-
-	a.change_many(adict, flags, force)
+	if xid is None:
+		a.change_many(adict, flags, force)
+	else:
+		a.change_many(xid, adict, flags, force)
 
 def set(*attrs, **opts):
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
-	if not attrs:
-		raise Error (ENOARG, 'attr')
+	a, attrs, xid = _attr_prep(attrs, opts)
+	adict, alist = arg_attrs(attrs)
 
-	a = Attr(opts['DB_URI'])
-
-	adict, alist = arg_pairs(attrs)
-
-	a.set_many(adict, flags, force)
+	if xid is None:
+		a.set_many(adict, flags, force)
+	else:
+		a.set_many(xid, adict, flags, force)
 
 
 def purge(**opts):
-	a = Attr(opts['DB_URI'])
+	a = User_attrs(opts['DB_URI'])
+	a.purge()
+	a = Domain_attrs(opts['DB_URI'])
+	a.purge()
+	a = Global_attrs(opts['DB_URI'])
 	a.purge()
 
-class Attr:
+class User_attrs:
+	TABLE = 'user_attrs'
+	COLUMNS = ('uid', 'name', 'type', 'value', 'flags')
+	COLIDXS = idx_dict(COLUMNS)
+	FLAGIDX = COLIDXS['flags']
+
+	def __init__(self, dburi, db=None):
+		self.dburi  = dburi
+		if db is not None:
+			self.db = db
+		else:
+			self.db = DBany(dburi)
+
+	def exist(self, uid, attr):
+		cnd, err = cond(CND_NO_DELETED, name=attr, uid=uid)
+		rows = self.db.select(self.TABLE, 'name', cnd, limit=1)
+		return rows != []
+
+	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
+		if not cols:
+			cols = self.COLUMNS
+		cidx = col_idx(self.COLIDXS, cols)
+		
+
+		if not attrs:
+			attrs=[None]
+		rows = []
+		for attr in attrs:
+			cnd, err = cond(name=attr)
+			rows += self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
+		if limit > 0:
+			rows = rows[:limit]
+
+		new_rows = []
+		for row in rows:
+			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
+			new_row = []
+			for i in cidx:
+				new_row.append(row[i])
+			new_rows.append(new_row)
+		desc = self.db.describe(self.TABLE)
+		desc = [ desc[i] for i in cols ]
+		return new_rows, desc
+
+	def add(self, uid, attr, value, flags=None, force=False):
+		at = Attr_types(self.dburi, self.db)
+		dflags = at.get_default_flags(attr)
+		fmask  = parse_flags(flags)
+		flags  = new_flags(dflags, fmask)
+
+		if self.exist(uid, attr):
+			if force: return
+			raise Error (EDUPL, err)
+
+		at = Attr_types(self.dburi, self.db)
+		try:
+			type = at.get_type(attr)
+		except:
+			if force: return
+			raise
+
+		# add new attr
+		ins = { 'uid': uid, 'name' : attr, 'type' : type, \
+		        'value' : value, 'flags' : flags }
+		self.db.insert(self.TABLE, ins)
+
+	def add_many(self, uid, adict, flags=None, force=False):
+		if not force:
+			for a in adict.keys():
+				if self.exist(uid, a):
+					raise Error (EDUPL, a)
+		for a, v in adict.items():
+			self.add(uid, a, v, flags, force)
+
+	def rm(self, uid, attr, force=False):
+		if not self.exist(uid, attr):
+			if force: return
+			raise Error (ENOREC, attr)
+
+		cnd, err = cond(CND_NO_DELETED, uid=uid, name=attr)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		for row in rows:
+			nf = set_deleted(row[self.FLAGIDX])
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'flags': nf}, cnd)
+
+	def rm_many(self, uid, alist, force=False):
+		alist = uniq(alist)
+		if not force:
+			for a in alist:
+				if not self.exist(uid, a):
+					raise Error (ENOREC, a)
+		for a in alist:
+			self.rm(uid, a, force)
+
+	def change(self, uid, attr, value, flags=None, force=False):
+		fmask = parse_flags(flags)
+		nflags = new_flags(0, fmask)
+
+		if not self.exist(uid, attr):
+			if force: return
+			raise Error (ENOREC, err)
+
+		at = Attr_types(self.dburi, self.db)
+		try:
+			type = at.get_type(attr)
+		except:
+			if force: return
+			raise
+
+		cnd, err = cond(CND_NO_DELETED, uid=uid, name=attr)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		for row in rows:
+			nf = new_flags(row[self.FLAGIDX], fmask)
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'value':value, 'flags':nf}, cnd)
+
+	def change_many(self, uid, adict, flags=None, force=False):
+		if not force:
+			for a in adict.keys():
+				if not self.exist(uid, a):
+					raise Error (ENOREC, a)
+		for a, v in adict.items():
+			self.change(uid, a, v, flags, force)
+
+	def set(self, uid, attr, value, flags=None, force=False):
+		if self.exist(uid, attr):
+			self.change(uid, attr, value, flags, force)
+		else:
+			self.add(uid, attr, value, flags, force)
+
+	def set_many(self, adict, flags=None, force=False):
+		for a, v in adict.items():
+			self.set(uid, a, v, flags, force)
+
+	def purge(self):
+		self.db.delete(self.TABLE, CND_DELETED)
+
+class Domain_attrs:
+	TABLE = 'domain_attrs'
+	COLUMNS = ('did', 'name', 'type', 'value', 'flags')
+	COLIDXS = idx_dict(COLUMNS)
+	FLAGIDX = COLIDXS['flags']
+
+	def __init__(self, dburi, db=None):
+		self.dburi  = dburi
+		if db is not None:
+			self.db = db
+		else:
+			self.db = DBany(dburi)
+
+	def exist(self, did, attr):
+		cnd, err = cond(CND_NO_DELETED, name=attr, did=did)
+		rows = self.db.select(self.TABLE, 'name', cnd, limit=1)
+		return rows != []
+
+	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
+		if not cols:
+			cols = self.COLUMNS
+		cidx = col_idx(self.COLIDXS, cols)
+		
+
+		if not attrs:
+			attrs=[None]
+		rows = []
+		for attr in attrs:
+			cnd, err = cond(name=attr)
+			rows += self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
+		if limit > 0:
+			rows = rows[:limit]
+
+		new_rows = []
+		for row in rows:
+			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
+			new_row = []
+			for i in cidx:
+				new_row.append(row[i])
+			new_rows.append(new_row)
+		desc = self.db.describe(self.TABLE)
+		desc = [ desc[i] for i in cols ]
+		return new_rows, desc
+
+	def add(self, did, attr, value, flags=None, force=False):
+		at = Attr_types(self.dburi, self.db)
+		dflags = at.get_default_flags(attr)
+		fmask  = parse_flags(flags)
+		flags  = new_flags(dflags, fmask)
+
+		if self.exist(did, attr):
+			if force: return
+			raise Error (EDUPL, err)
+
+		at = Attr_types(self.dburi, self.db)
+		try:
+			type = at.get_type(attr)
+		except:
+			if force: return
+			raise
+
+		# add new attr
+		ins = { 'did': did, 'name' : attr, 'type' : type, \
+		        'value' : value, 'flags' : flags }
+		self.db.insert(self.TABLE, ins)
+
+	def add_many(self, did, adict, flags=None, force=False):
+		if not force:
+			for a in adict.keys():
+				if self.exist(did, a):
+					raise Error (EDUPL, a)
+		for a, v in adict.items():
+			self.add(did, a, v, flags, force)
+
+	def rm(self, did, attr, force=False):
+		if not self.exist(did, attr):
+			if force: return
+			raise Error (ENOREC, attr)
+
+		cnd, err = cond(CND_NO_DELETED, did=did, name=attr)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		for row in rows:
+			nf = set_deleted(row[self.FLAGIDX])
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'flags': nf}, cnd)
+
+	def rm_many(self, did, alist, force=False):
+		alist = uniq(alist)
+		if not force:
+			for a in alist:
+				if not self.exist(did, a):
+					raise Error (ENOREC, a)
+		for a in alist:
+			self.rm(did, a, force)
+
+	def change(self, did, attr, value, flags=None, force=False):
+		fmask = parse_flags(flags)
+		nflags = new_flags(0, fmask)
+
+		if not self.exist(did, attr):
+			if force: return
+			raise Error (ENOREC, err)
+
+		at = Attr_types(self.dburi, self.db)
+		try:
+			type = at.get_type(attr)
+		except:
+			if force: return
+			raise
+
+		cnd, err = cond(CND_NO_DELETED, did=did, name=attr)
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		for row in rows:
+			nf = new_flags(row[self.FLAGIDX], fmask)
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'value':value, 'flags':nf}, cnd)
+
+	def change_many(self, did, adict, flags=None, force=False):
+		if not force:
+			for a in adict.keys():
+				if not self.exist(did, a):
+					raise Error (ENOREC, a)
+		for a, v in adict.items():
+			self.change(did, a, v, flags, force)
+
+	def set(self, did, attr, value, flags=None, force=False):
+		if self.exist(did, attr):
+			self.change(did, attr, value, flags, force)
+		else:
+			self.add(did, attr, value, flags, force)
+
+	def set_many(self, adict, flags=None, force=False):
+		for a, v in adict.items():
+			self.set(did, a, v, flags, force)
+
+	def purge(self):
+		self.db.delete(self.TABLE, CND_DELETED)
+
+
+	def exist_dra(self, realm):
+		cnd, err = cond(CND_NO_DELETED, name='digest_realm', value=realm)
+		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
+		return rows != []
+
+	def add_dra(self, did, domain):
+		at = Attr_types(self.dburi, self.db)
+		flags = at.get_default_flags('digest_realm')
+		ins = {'did': did, 'name': 'digest_realm', 'value': domain, \
+		  'type': 2, 'flags': flags }
+		self.db.insert(self.TABLE, ins)
+
+	def set_dra_if_not_set(self, did, domain):
+		# search for digest realm attr, return if set
+		cnd, err = cond(CND_NO_DELETED, did=did, name='digest_realm')
+		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
+		if rows:
+			return
+		self.add_dra(did, domain)
+
+	def rm_dra(self, did):
+		cnd, err = cond(CND_NO_DELETED, did=did, name='digest_realm')
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+		for row in rows:
+			nf = set_deleted(row[self.FLAGIDX])
+			cnd = full_cond(self.COLUMNS, row)
+			self.db.update(self.TABLE, {'flags': nf}, cnd)
+	def purge(self):
+		self.db.delete(self.TABLE, CND_DELETED)
+
+
+
+class Global_attrs:
 	TABLE = 'global_attrs'
 	COLUMNS = ('name', 'type', 'value', 'flags')
 	COLIDXS = idx_dict(COLUMNS)
@@ -104,8 +453,6 @@ class Attr:
 
 
 	def __init__(self, dburi, db=None):
-		self.Domain = serctl.ctldomain.Domain
-		self.User   = serctl.ctluser.User
 		self.dburi  = dburi
 		if db is not None:
 			self.db = db
@@ -237,8 +584,6 @@ class Attr:
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
 
-
-
 class Attr_types:
 	TABLE = 'attr_types'
 	COLUMNS = ('name', 'rich_type', 'raw_type', 'priority', 'ordering',
@@ -248,8 +593,6 @@ class Attr_types:
 
 
 	def __init__(self, dburi, db=None):
-		self.Domain = serctl.ctldomain.Domain
-		self.User   = serctl.ctluser.User
 		self.dburi  = dburi
 		if db is not None:
 			self.db = db

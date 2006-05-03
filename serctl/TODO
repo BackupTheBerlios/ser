@@ -11,11 +11,9 @@ Important:
 
   * Update tls and publish description in man page.
 
-  * Attrs management.
+  * Interpret --columns in ctl_attrs show.
 
   * Command: 'ser_ctl domain show'.
-
-  * Change <user> --> <uid> in ctluser.py
 
 Future:
 =======
