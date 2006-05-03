@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.24 2006/05/03 06:13:53 hallik Exp $
+# $Id: options.py,v 1.25 2006/05/03 11:01:05 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -33,7 +33,6 @@ CMD_PS         = 'ps'
 CMD_PUBLISH    = 'publish'
 CMD_PURGE      = 'purge'
 CMD_RELOAD     = 'reload'
-CMD_RELOAD_ALL = 'reload_all'
 CMD_RM         = 'rm'
 CMD_SET        = 'set'
 CMD_SHOW       = 'show'
@@ -181,11 +180,6 @@ CMD = {\
 
 	'pwd'          : CMD_PASSWORD,
 	'pw'           : CMD_PASSWORD,
-
-	'ra'           : CMD_RELOAD_ALL,
-	'rall'         : CMD_RELOAD_ALL,
-
-	'reload_all'   : CMD_RELOAD_ALL,
 
 	'reload'       : CMD_RELOAD,
 	'reloa'        : CMD_RELOAD,

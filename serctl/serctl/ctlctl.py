@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.27 2006/05/03 09:37:17 hallik Exp $
+# $Id: ctlctl.py,v 1.28 2006/05/03 11:01:05 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -24,7 +24,7 @@ from serctl.ctlrpc    import any_rpc, multi_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
-                             arg_attrs, uniq, id, errstr
+                             arg_attrs, uniq, id, errstr, ID_ORIG
 import serctl.ctlhelp, xmlrpclib, sys
 
 # xml-rpc method used in stats function (+ all *.stats)
@@ -103,7 +103,7 @@ def domain(command, *domain, **opts):
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
-		d.add(domain, 'orig', force)
+		d.add(domain, ID_ORIG, force)
 	elif cmd == CMD_RM:
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
 		d.rm(domain, force)
@@ -118,10 +118,10 @@ def user(command, uri, *aliases, **opts):
 		if password is None:
 			raise Error (ENOARG, 'password')
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
-		u.add(uri, aliases, password, 'orig', force)
+		u.add(uri, aliases, password, ID_ORIG, force)
 	elif cmd == CMD_RM:
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
-		u.rm(uri, 'orig', force)
+		u.rm(uri, ID_ORIG, force)
 	elif cmd == CMD_SHOW:
 		cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
@@ -273,10 +273,6 @@ def reload(**opts):
 	rpc = multi_rpc(opts)
 	rpc.reload()
 
-def reload_all(**opts):
-	rpc = multi_rpc(opts)
-	rpc.reload()
-
 def methods(**opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
 
@@ -296,7 +292,7 @@ class Domain_ctl:
 			self.db = db
 		self.rpc = rpc
 
-	def add(self, domains, idtype='orig', force=False):
+	def add(self, domains, idtype=ID_ORIG, force=False):
 		do = Domain(self.dburi, self.db)
 		domains = uniq(domains)
 
@@ -426,7 +422,7 @@ class User_ctl:
 		return ret, desc
 			
 
-	def add(self, uri, aliases, password, idtype='orig', force=False):
+	def add(self, uri, aliases, password, idtype=ID_ORIG, force=False):
 		do = Domain(self.dburi, self.db)
 		ur = Uri(self.dburi, self.db)
 		cr = Cred(self.dburi, self.db)
@@ -441,7 +437,7 @@ class User_ctl:
 			pass
 		aliases = [ split_sip_uri(a) for a in aliases ]
 
-		uid = id(user, idtype)
+		uid = id(user + '@' + domain, idtype)
 		if us.exist(uid):
 			if not force:
 				raise Error(EDUPL, errstr(uid=uid))
@@ -477,7 +473,7 @@ class User_ctl:
 				warning(str(inst))
 		self._reload()
 
-	def rm(self, uri, idtype='orig', force=False):
+	def rm(self, uri, idtype=ID_ORIG, force=False):
 		us = User(self.dburi, self.db)
 		ur = Uri(self.dburi, self.db)
 		cr = Cred(self.dburi, self.db)

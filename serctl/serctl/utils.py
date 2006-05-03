@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.12 2006/04/27 22:32:20 hallik Exp $
+# $Id: utils.py,v 1.13 2006/05/03 11:01:06 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -17,6 +17,10 @@ from serctl.options import OPT
 from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
 import sys
+
+ID_ORIG = 0
+ID_INT  = 1
+ID_UUID = 2
 
 def arg_pairs(args):
 	n = len(args)
@@ -195,7 +199,7 @@ def uniq(items):
 		d[i] = None
 	return d.keys()
 
-def id(s, idtype='orig'):
-	if idtype == 'orig':
+def id(s, idtype=ID_ORIG):
+	if idtype == ID_ORIG:
 		return s
-	raise Error (EIDTYPE, idtype)
+	raise Error (EIDTYPE, str(idtype))
