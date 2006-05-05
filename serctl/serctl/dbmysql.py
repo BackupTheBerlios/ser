@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbmysql.py,v 1.4 2006/02/15 18:51:29 hallik Exp $
+# $Id: dbmysql.py,v 1.5 2006/05/05 11:27:19 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -26,7 +26,7 @@ class DBmysql(DBsql):
 		if host is not None:
 			params.append("host='%s'" % host)
 		if port is not None:
-			params.append("port='%s'" % port)
+			params.append("port=%s" % port)
 		if db is not None:
 			params.append("db='%s'" % db)
 		params = ', '.join(params)

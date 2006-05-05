@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbpostgres.py,v 1.6 2006/03/13 08:44:20 hallik Exp $
+# $Id: dbpostgres.py,v 1.7 2006/05/05 11:27:19 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -26,7 +26,7 @@ class DBpostgres(DBsql):
 		if host is not None:
 			params.append("host='%s'" % host)
 		if port is not None:
-			params.append("port='%s'" % port)
+			params.append("port=%s" % port)
 		if db is not None:
 			params.append("database='%s'" % db)
 		params = ', '.join(params)

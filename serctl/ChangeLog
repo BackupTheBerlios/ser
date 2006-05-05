@@ -4,6 +4,7 @@ serctl (0.3.2)
   * Reload command updated.
   * User ID creation fixed.
   * Ser_attr help fixed.
+  * Bugfix: port number from DB URI is pass to connect function as int.
 
  -- Jan Halla <hallik@iptel.org> 
 
