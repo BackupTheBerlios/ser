@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.9 2006/04/27 22:32:20 hallik Exp $
+# $Id: ctlcred.py,v 1.10 2006/05/05 10:42:31 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -19,7 +19,7 @@ from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonica
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, cv_flags
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
                            col_idx, cond, full_cond
-import md5, serctl.ctlhelp, serctl.ctldomain, serctl.ctluser
+import md5, serctl.ctlhelp, serctl.ctldomain, serctl.ctluser, serctl.ctlattr
 
 
 def help(*tmp):
@@ -99,7 +99,7 @@ class Cred:
 	FLAGIDX = COLIDXS['flags']
 
 	def __init__(self, dburi, db=None):
-		self.Domain_attrs = serctl.ctldomain.Domain_attrs
+		self.Domain_attrs = serctl.ctlattr.Domain_attrs
 		self.User = serctl.ctluser.User
 		self.dburi = dburi
 		if db is not None:

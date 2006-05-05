@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.29 2006/05/03 18:24:11 hallik Exp $
+# $Id: ctlctl.py,v 1.30 2006/05/05 10:42:32 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -14,7 +14,8 @@
 from serctl.flag      import IS_FROM
 from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
-from serctl.ctldomain import Domain, Domain_attrs
+from serctl.ctldomain import Domain
+from serctl.ctlattr   import Domain_attrs
 from serctl.ctluser   import User
 from serctl.dbany     import DBany
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
