@@ -1,26 +1,21 @@
 Important:
 ==========
 
-  * Inteligently reformat return value for usrloc's show.
+  * Fix 'ser_ctl user' and 'ser_ctl alias'.
 
   * Usrloc's code update and testing.
+    - Why returned 'Table not found' when addind contact?
 
-  * Check and improve ssl stuff.
+  * Interactive & secure prompt for password.
+
+  * Update man pages.
 
   * Remove pending flag.
-
-  * Update tls and publish description in man page.
-
-  * Interpret --columns in ctl_attrs show.
-
-  * Command: 'ser_ctl domain show'.
 
 Future:
 =======
 
-  * Hexadecimal flags.
-
-  * Attribute manipulations.
+  * Check and improve ssl stuff.
 
   * API reference manual.
 
@@ -28,10 +23,5 @@ Future:
 
 Wishlist:
 =========
-
-  * Interactive & secure prompt for password.
-
-  * Fix the problem: duplicated unique key in domain_attrs for deleted
-    rows.
 
   * Fix the problem: inconsistent timestamp - see BUGS.

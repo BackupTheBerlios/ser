@@ -3,10 +3,12 @@ serctl (0.3.2)
   * Command (and API) ser_attr updated.
   * Reload command updated.
   * User ID creation fixed.
-  * Ser_attr help fixed.
+  * Command ser_attr updated.
   * Bugfix: port number from DB URI is pass to connect function as int.
+  * Command 'ser_ctl domain' changed.
+  * Usrloc bugfix.
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Sun, 07 May 2006 10:54:27 +0200
 
 serctl (0.3.1)
 

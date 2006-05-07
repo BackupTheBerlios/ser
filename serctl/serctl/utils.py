@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.13 2006/05/03 11:01:06 hallik Exp $
+# $Id: utils.py,v 1.14 2006/05/07 13:11:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -14,6 +14,8 @@
 from serctl.error   import Error, EINVAL, EMISMATCH, EALL, ENOCOL, EINT, \
                            EIDTYPE
 from serctl.options import OPT
+from serctl.dbany   import DBany
+from serctl.flag    import cv_flags
 from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
 import sys
@@ -65,6 +67,8 @@ def show_opts(opts):
 	lsep  = unesc_psep(opts['LINE_SEP'])
 	astab = opts['AS_TABLE']
 	cols  = opts['COLUMNS']
+	if cols is None or cols == '*' or cols == '.':
+		cols = ''
 	cols  = [ i.strip(' \t') for i in cols.split(',') ]
 	cols  = filter(None, cols)
 	if opts['RAW']:
@@ -203,3 +207,42 @@ def id(s, idtype=ID_ORIG):
 	if idtype == ID_ORIG:
 		return s
 	raise Error (EIDTYPE, str(idtype))
+
+
+class Basectl:
+###	This variables should be defined by the child class
+#	TABLE = 'table_name'
+#	COLUMNS = ('col_name', ... , 'flags')
+#	COLIDXS = idx_dict(COLUMNS)
+#	FLAGIDX = COLIDXS['flags']
+
+	def __init__(self, dburi, db=None):
+		self.dburi  = dburi
+		if db is not None:
+			self.db = db
+		else:
+			self.db = DBany(dburi)
+
+	def exist_cnd(self, cnd_err):
+		cnd, err = cnd_err
+		rows = self.db.select(self.TABLE, None, cnd, limit=1)
+		return rows != []
+
+	def show_cnd(self, cnd_err, cols=None, fformat='raw', limit=0):
+		if not cols:
+			cols = self.COLUMNS
+		cidx = col_idx(self.COLIDXS, cols)
+		
+		cnd, err = cnd_err
+		rows = self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
+
+		new_rows = []
+		for row in rows:
+			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
+			new_row = []
+			for i in cidx:
+				new_row.append(row[i])
+			new_rows.append(new_row)
+		desc = self.db.describe(self.TABLE)
+		desc = [ desc[i] for i in cols ]
+		return new_rows, desc

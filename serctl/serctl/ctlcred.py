@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.10 2006/05/05 10:42:31 hallik Exp $
+# $Id: ctlcred.py,v 1.11 2006/05/07 13:11:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -100,6 +100,7 @@ class Cred:
 
 	def __init__(self, dburi, db=None):
 		self.Domain_attrs = serctl.ctlattr.Domain_attrs
+		self.Domain = serctl.ctldomain.Domain
 		self.User = serctl.ctluser.User
 		self.dburi = dburi
 		if db is not None:
@@ -183,9 +184,12 @@ class Cred:
 		fmask  = parse_flags(flags)
 		flags  = new_flags(dflags, fmask)
 
-		da = self.Domain_attrs(self.dburi, self.db)
-		if not da.exist_dra(realm) and not force:
-			raise Error (ENODOMAIN, realm)
+		do = self.Domain(self.dburi, self.db)
+		try:
+			did = do.get_did(realm)
+		except:
+			if force: return
+			raise
 
 		us = self.User(self.dburi, self.db)
 		if not us.exist(uid) and not force:

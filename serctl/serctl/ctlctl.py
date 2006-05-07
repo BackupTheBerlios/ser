@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.30 2006/05/05 10:42:32 hallik Exp $
+# $Id: ctlctl.py,v 1.31 2006/05/07 13:11:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,11 +11,11 @@
 # of the License, or (at your option) any later version.
 #
 
-from serctl.flag      import IS_FROM
+from serctl.flag      import IS_FROM, CND_NO_DELETED
 from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
 from serctl.ctldomain import Domain
-from serctl.ctlattr   import Domain_attrs
+from serctl.ctlattr   import Domain_attrs, User_attrs, Global_attrs
 from serctl.ctluser   import User
 from serctl.dbany     import DBany
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
@@ -25,7 +25,7 @@ from serctl.ctlrpc    import any_rpc, multi_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
-                             arg_attrs, uniq, id, errstr, ID_ORIG
+                             arg_attrs, uniq, id, errstr, ID_ORIG, cond
 import serctl.ctlhelp, xmlrpclib, sys
 
 # xml-rpc method used in stats function (+ all *.stats)
@@ -47,7 +47,7 @@ Commands & parameters:
   - user and domain administration:
 	ser_ctl alias  add  <uri> <alias> [alias...]
 	ser_ctl alias  rm   <alias> [alias...]
-	ser_ctl domain add  [domain...]
+	ser_ctl domain add  <domain> [domain_alias...]
 	ser_ctl domain rm   [domain...]
 	ser_ctl domain show [domain]
 	ser_ctl password    <uri> [-p] [password]
@@ -76,7 +76,7 @@ Commands & parameters:
 """ % serctl.ctlhelp.options()
 
 def purge(**opts):
-	for c in (Uri, Cred, Domain, User):
+	for c in (Uri, Cred, Domain, User, Domain_attrs, User_attrs, Global_attrs):
 		o = c(opts['DB_URI'])
 		o.purge()
 		del(o)
@@ -105,8 +105,10 @@ def domain(command, *domain, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
+		if len(domain) < 1:
+			raise Error (ENOARG, 'domain')
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
-		d.add(domain, ID_ORIG, force)
+		d.add(domain[0], domain[1:], ID_ORIG, force)
 	elif cmd == CMD_RM:
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
 		d.rm(domain, force)
@@ -310,20 +312,25 @@ class Domain_ctl:
 			self.db = db
 		self.rpc = rpc
 
-	def add(self, domains, idtype=ID_ORIG, force=False):
+	def add(self, domain, aliases=[], idtype=ID_ORIG, force=False):
 		do = Domain(self.dburi, self.db)
-		domains = uniq(domains)
 
-		doms = []
-		for d in domains:
-			i = id(d, idtype)
-			doms.append((i, d))
-			if do.exist(i, d) and not force:
-				raise Error (EDOMAIN, d)
+		did = id(domain, idtype)
+		if do.exist_did(did) and not force:
+			raise Error (EDOMAIN, errstr(did=did))
 
-		for i, d in doms: 
-			do.add(i, d, force=force)
+		ualiases = uniq(aliases)
+		aliases = []
+		for alias in ualiases:
+			if do.exist(did, alias):
+				if force: continue
+				raise Error (EDUPL, errstr(did=did, domain=alias))
+			else:
+				aliases.append(alias)
 
+		do.add(did, domain, None, force)
+		for alias in aliases:
+			do.add(did, alias, None, force)
 		self._reload()
 
 	def rm(self, domains, force=False):
@@ -336,13 +343,11 @@ class Domain_ctl:
 		doms = []
 		for d in domains:
 			try:
-				dids = do.get_dids(d)
+				did = do.get_did(d)
 			except:
 				if not force:
 					raise Error (ENODOMAIN, d)
-				dids = []
-			for i in dids:
-				doms.append((i, d))
+			doms.append((did, d))
 
 		for i, d in doms:
 			try:
@@ -376,6 +381,7 @@ class User_ctl:
 	def show(self, uri, cols=None, fformat=False, limit=0):
 		ur = Uri(self.dburi, self.db)
 		us = User(self.dburi, self.db)
+		ua = User_attrs(self.dburi, self.db)
 		do = Domain(self.dburi, self.db)
 		cr = Cred(self.dburi, self.db)
 		try:
@@ -398,6 +404,8 @@ class User_ctl:
 								uids = cr.get_uids_for_username(uri)
 							except:
 								uids = []
+
+		# get uris and uids
 		uris = []
 		doms = []
 		for uid in uids:
@@ -409,6 +417,7 @@ class User_ctl:
 			except:
 				pass
 
+		# get credentials
 		creds = []
 		for uid in uids:
 			u, d = cr.show_uid(uid, ['uid', 'auth_username', 'realm', 'password'], fformat=fformat, limit=limit)
@@ -419,12 +428,22 @@ class User_ctl:
 		domains = {}
 		for dom in doms:
 			try:
-				dids = do.get_dids(dom)
+				did = do.get_did(dom)
 			except:
 				continue
-			for did in dids:
-				domains[did] = dom
-		desc = [('uid',), ('attr',), ('value',)]
+			domains[did] = dom
+
+		attrs = {}
+		for uid in uids:
+			ce = cond(CND_NO_DELETED, uid=uid)
+			rows = ua.show_cnd(ce, ['name', 'value'], fformat, limit)[0]
+			line = []
+			for row in rows:
+				line.append('%s=%s' % tuple(row))
+			attrs[uid] = ', '.join(line)
+
+		# show
+		desc = [('uid',), ('source',), ('value',)]
 		ret  = [] 
 		for u in uris:
 			dom = domains.get(u[2])
@@ -435,6 +454,10 @@ class User_ctl:
 			cred = 'username=%s realm=%s password=%s' % (c[1], c[2], c[3])
 			uid = c[0]
 			ret.append([uid, 'credentials', cred ])
+		for uid, attr in attrs.items():
+			ret.append([uid, 'attr', attr ])
+
+		# limit output
 		if limit > 0:
 			ret = ret[:limit]
 		return ret, desc
@@ -475,7 +498,7 @@ class User_ctl:
 					do.add(i, d, force=force)
 				else:
 					raise Error (ENODOMAIN, d)
-		did = do.get_dids(domain)[0]
+		did = do.get_did(domain)
 		if ur.exist(uid, user, did):
 			if not force:
 				raise Error(EDUPL, errstr(uid=uid, username=user, did=did))
@@ -542,7 +565,7 @@ class Alias_ctl:
 			if force: return
 			raise
 
-		if not us.exist(user):
+		if not us.exist(uri):
 			if force: return
 			raise Error (ENOUSER, user)
 
@@ -562,7 +585,7 @@ class Alias_ctl:
 		
 		for a in aliases:
 			try:
-				ur.add(user, a, force=force)
+				ur.add(uri, a, force=force)
 			except Error, inst:
 				warning(str(inst))
 		self._reload()
@@ -591,15 +614,19 @@ class Alias_ctl:
 		pass
 
 class Usrloc_ctl:
-	def __init__(self, dburi, rpc):
-		self.db  = dburi
+	def __init__(self, dburi, rpc, db=None):
+		self.dburi = dburi
+		if db is None:
+			self.db = DBany(dburi)
+		else:
+			self.db = db
 		self.rpc = rpc
 
 	def _get_uid(self, uri):
-		ur = Uri(self.db)
-		uids = ur.get_uids(uri, flags=[IS_FROM])
+		ur = Uri(self.dburi, self.db)
+		uids = ur.get_uids(uri)
 		if not uids:
-			raise Error (ENOUSER, 'For uri=%s (with TO_FLAG set)' % uri)
+			raise Error (ENOUSER, errstr(uri=uri))
 		return uids[0]
 
 	def show(self, uri, table='location'):

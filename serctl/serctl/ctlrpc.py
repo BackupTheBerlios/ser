@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.12 2006/05/03 09:37:17 hallik Exp $
+# $Id: ctlrpc.py,v 1.13 2006/05/07 13:11:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -71,7 +71,12 @@ class Multi_rpc:
 		self.servers = servers
 		self.ssl = ssl
 
+	def _wnote(self, warn):
+		if warn:
+			print "For the change to take effect on all machines in the cluster once available, execute the following command: 'ser_ctl reload'."
+
 	def raw_cmd(self, cmd, par=[]):
+		warn = []
 		for server in self.servers:
 			ser = ServerProxy(server, self.ssl)
 			method = getattr(ser, cmd)
@@ -79,51 +84,66 @@ class Multi_rpc:
 				apply(method, par)
 			except xmlrpclib.Fault, inst:
 				warning("RPC on '%s' failed: %s" %  (server, str(inst)))
+				warn.append(server)
 			except:
 				warning("RPC on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
+				warn.append(server)
+		self._wnote(warn)
 
 	def cmd(self, cmd, *par):
 		return self.raw_cmd(cmd, par)
 
 	def cmd_if_exist(self, cmd, par=[]):
+		warn = []
 		for server in self.servers:
 			try:
 				ser = ServerProxy(server, self.ssl)
 				if cmd not in ser.system.listMethods(): continue
 			except xmlrpclib.Fault, inst:
 				warning("ListMethods on '%s' failed: %s" %  (server, str(inst)))
+				warn.append(server)
 				continue
 			except:
 				warning("ListMethods on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
+				warn.append(server)
 				continue
 			method = getattr(ser, cmd)
 			try:
 				apply(method, par)
 			except xmlrpclib.Fault, inst:
+				warn.append(server)
 				warning("RPC on '%s' failed: %s" %  (server, str(inst)))
 			except:
+				warn.append(server)
 				warning("RPC on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
+		self._wnote(warn)
 
 	def reload(self):
+		warn = []
 		for server in self.servers:
 			try:
 				ser = ServerProxy(server, self.ssl)
 				cmds = [ i for i in ser.system.listMethods() if i[-7:] == '.reload' ]
 			except xmlrpclib.Fault, inst:
 				warning("ListMethods on '%s' failed: %s" %  (server, str(inst)))
+				warn.append(server)
 				continue
 			except:
 				warning("ListMethods on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
+				warn.append(server)
 				continue
 			for cmd in cmds:
 				method = getattr(ser, cmd)
 				try:
 					apply(method)
 				except xmlrpclib.Fault, inst:
+					warn.append(server)
 					warning("Reload on '%s' failed: %s" %  (server, str(inst)))
 				except:
 					warning("Reload on '%s' failed: %s" % (server, str(sys.exc_info()[0])))
+					warn.append(server)
 
+		self._wnote(warn)
 
 class Xml_rpc:
 	def __init__(self, ser_uri, ssl=None):

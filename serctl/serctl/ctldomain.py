@@ -17,7 +17,7 @@ from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonica
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, \
                            cv_flags
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
-                           col_idx, cond, full_cond
+                           col_idx, cond, full_cond, errstr
 import serctl.ctlhelp, serctl.ctlcred, serctl.ctluri, serctl.ctlattr
 
 def help(*tmp):
@@ -28,7 +28,7 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_domain add       <did> <domain> [domain...]
+	ser_domain add       <did> <domain> [domain_alias...]
 	ser_domain canonical [domain]
 	ser_domain change    [domain] [-F flags]
 	ser_domain disable   [domain]
@@ -131,12 +131,12 @@ class Domain:
 	def default_flags(self):
 		return str(LOAD_SER | FOR_SERWEB)
 
-	def get_dids(self, domain):
+	def get_did(self, domain):
 		cnd, err = cond(CND_NO_DELETED, domain=domain)
-		rows = self.db.select(self.TABLE, ('did',), cnd)
+		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
 		if not rows:
 			raise Error (ENOREC, err)
-		return [ row[0] for row in rows ]
+		return rows[0][0]
 
 	def get_domains(self, did):
 		cnd, err = cond(CND_NO_DELETED, did=did)
@@ -199,20 +199,14 @@ class Domain:
 		if domain is None:
 			return self.show_did(None, cols, fformat, limit)
 		try:
-			dids = self.get_dids(domain)
+			did = self.get_did(domain)
 		except:
 			if not cols:
 				cols = self.COLUMNS
 			desc = self.db.describe(self.TABLE)
 			desc = [ desc[i] for i in cols ]
 			return [], desc
-		rows = []
-		for did in dids:
-			r, desc = self.show_did(did, cols, fformat, limit)
-			rows += r
-		limit = int(limit)
-		if limit > 0:
-			rows = rows[:limit]
+		rows, desc = self.show_did(did, cols, fformat, limit)
 		return rows, desc
 
 	def add(self, did, domain, flags=None, force=False):
@@ -305,25 +299,21 @@ class Domain:
 
 	def rm_domain(self, domain, force=False):
 		try:
-			dids = self.get_dids(domain)
+			did = self.get_did(domain)
 		except:
 			if force: return
 			raise
-		for did in dids:
-			self.rm(did, domain, force)
+		self.rm(did, domain, force)
 
 	def rm_did_for_domain(self, domain, force):
 		try:
-			dids = self.get_dids(domain)
+			did = self.get_did(domain)
 		except:
 			if force: return
 			raise
-		if not force:
-			for did in dids:
-				if self.is_used(did):
-					raise Error (EDOMAIN, 'did=%s' % did)
-		for did in dids:
-			self.rm_did(did, force)
+		if self.is_used(did) and not force:
+			raise Error (EDOMAIN, errstr(did=did))
+		self.rm_did(did, force)
 
 	def _try_rm_orphans(self, did):
 		ur = self.Uri(self.dburi, self.db)
@@ -345,23 +335,21 @@ class Domain:
 
 		# get did
 		try:
-			dids = self.get_dids(domain)
+			did = self.get_did(domain)
 		except:
 			if force: return
 			raise
 
 		# clear canon
 		if canonical:
-			for did in dids:
-				cnd, err = cond(CND_NO_DELETED, did=did)
-				cnd.append(CND_CANONICAL)
-				rows = self.db.select(self.TABLE, self.COLUMNS, \
-				  cnd)
-				for row in rows:
-					nf = clear_canonical(row[self.FLAGIDX])
-					cnd = full_cond(self.COLUMNS, row)
-					upd = {'flags':nf}
-					self.db.update(self.TABLE, upd, cnd)
+			cnd, err = cond(CND_NO_DELETED, did=did)
+			cnd.append(CND_CANONICAL)
+			rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
+			for row in rows:
+				nf = clear_canonical(row[self.FLAGIDX])
+				cnd = full_cond(self.COLUMNS, row)
+				upd = {'flags':nf}
+				self.db.update(self.TABLE, upd, cnd)
 
 		# update flags
 		cnd, err = cond(CND_NO_DELETED, domain=domain)

@@ -1,3 +1,10 @@
 
   * Timestamp representation ('show' command for domains) is dependent on used
     database engine.
+
+  * Manpages are out of date.
+
+  * Determine if usrloc stuff is correct.
+
+  * High-level commands 'ser_ctl user' and 'ser_ctl alias' handle usernames
+    incorrectly.

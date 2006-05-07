@@ -16,7 +16,7 @@ from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL
 from serctl.flag      import parse_flags, new_flags, flag_syms, CND_NO_DELETED, \
                              FOR_SERWEB, cv_flags, set_deleted, CND_DELETED
 from serctl.utils     import show_opts, tabprint, idx_dict, arg_attrs, \
-                             col_idx, cond, full_cond, uniq
+                             col_idx, cond, full_cond, uniq, Basectl
 import serctl.ctlhelp
 
 
@@ -29,11 +29,12 @@ Usage:
 
 Commands & parameters:
 	ser_attr add    global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
+	ser_attr attr   [attr]
 	ser_attr change global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
 	ser_attr purge
 	ser_attr rm     global | uid=<uid> | did=<did> <attr> [attr...]
 	ser_attr set    global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
-	ser_attr show   [attr...]
+	ser_attr show   [global | uid=<uid> | did=<did>]
 """ % serctl.ctlhelp.options()
 
 def _attr_prep(attrs, opts):
@@ -54,7 +55,7 @@ def _attr_prep(attrs, opts):
 		raise Error (EINVAL, attrs[0])
 	return obj, attrs[1:], xid
 
-def show(*attrs, **opts):
+def OLD_show(*attrs, **opts):
 	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 
 	COLS = ['name', 'type', 'value', 'flags']
@@ -78,6 +79,66 @@ def show(*attrs, **opts):
 
 	desc = [('did', ), ('uid', )] + list(desc)
 	tabprint(lst, desc, rsep, lsep, astab)	
+
+def show_all(opts):
+	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
+
+	COLS = ['name', 'type', 'value', 'flags']
+	if not cols:
+		cols = ['did', 'uid'] + COLS
+	CIDX = idx_dict(['did', 'uid'] + COLS)
+	cidx = col_idx(CIDX, cols)
+
+	lst = []
+
+	a = User_attrs(opts['DB_URI'])
+	ulist, desc = a.show(None, ['uid']+COLS, fformat, limit)
+	for l in ulist:
+		lst.append([''] + l) 
+
+	a = Domain_attrs(opts['DB_URI'])
+	dlist, desc = a.show(None, ['did']+COLS, fformat, limit)
+	for l in dlist:
+		lst.append([l[0], ''] + l[1:]) 
+
+	a = Global_attrs(opts['DB_URI'])
+	glist, desc = a.show(None, COLS, fformat, limit)
+	for l in glist:
+		lst.append(['GLOBAL', 'GLOBAL'] + l) 
+	
+	alist = []
+	for row in lst:
+		nr = []
+		for i in cidx:
+			nr.append(row[i])
+		alist.append(nr)
+
+	desc = [('did', ), ('uid', )] + list(desc)
+	dsc = []
+	for i in cidx:
+		dsc.append(desc[i])
+	tabprint(alist, dsc, rsep, lsep, astab)	
+
+def show(global_uid_did=None, **opts):
+	if global_uid_did is None:
+		return show_all(opts)
+	COLS = ['name', 'type', 'value', 'flags']
+	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
+	if global_uid_did == 'global':
+		obj = Global_attrs(opts['DB_URI'])
+		alist, desc = obj.show(None, cols, fformat, limit)
+	elif global_uid_did[:4] == 'uid=':
+		obj = User_attrs(opts['DB_URI'])
+		uid=global_uid_did[4:]
+		alist, desc = obj.show_uid(uid, cols, fformat, limit)
+	elif global_uid_did[:4] == 'did=':
+		obj = Domain_attrs(opts['DB_URI'])
+		did=global_uid_did[4:]
+		alist, desc = obj.show_did(did, cols, fformat, limit)
+	else:
+		raise Error (EINVAL, global_uid_did)
+
+	tabprint(alist, desc, rsep, lsep, astab)	
 
 def add(*attrs, **opts):
 	force = opts['FORCE']
@@ -136,23 +197,22 @@ def purge(**opts):
 	a = Global_attrs(opts['DB_URI'])
 	a.purge()
 
-class User_attrs:
+def attrs(attr=None, **opts):
+	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
+	if opts['COLUMNS'] is None:
+		cols = ['name']
+	obj = Attr_types(opts['DB_URI'])
+	alist, desc = obj.show(attr, cols, fformat, limit)
+	tabprint(alist, desc, rsep, lsep, astab)	
+	
+class User_attrs(Basectl):
 	TABLE = 'user_attrs'
 	COLUMNS = ('uid', 'name', 'type', 'value', 'flags')
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
-	def __init__(self, dburi, db=None):
-		self.dburi  = dburi
-		if db is not None:
-			self.db = db
-		else:
-			self.db = DBany(dburi)
-
 	def exist(self, uid, attr):
-		cnd, err = cond(CND_NO_DELETED, name=attr, uid=uid)
-		rows = self.db.select(self.TABLE, 'name', cnd, limit=1)
-		return rows != []
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, uid=uid))
 
 	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
 		if not cols:
@@ -179,6 +239,9 @@ class User_attrs:
 		desc = self.db.describe(self.TABLE)
 		desc = [ desc[i] for i in cols ]
 		return new_rows, desc
+
+	def show_uid(self, uid=None, cols=None, fformat='raw', limit=0):
+		return self.show_cnd(cond(uid=uid), cols, fformat, limit)
 
 	def add(self, uid, attr, value, flags=None, force=False):
 		at = Attr_types(self.dburi, self.db)
@@ -267,30 +330,24 @@ class User_attrs:
 		else:
 			self.add(uid, attr, value, flags, force)
 
-	def set_many(self, adict, flags=None, force=False):
+	def set_many(self, uid, adict, flags=None, force=False):
 		for a, v in adict.items():
 			self.set(uid, a, v, flags, force)
 
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
 
-class Domain_attrs:
+class Domain_attrs(Basectl):
 	TABLE = 'domain_attrs'
 	COLUMNS = ('did', 'name', 'type', 'value', 'flags')
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
-	def __init__(self, dburi, db=None):
-		self.dburi  = dburi
-		if db is not None:
-			self.db = db
-		else:
-			self.db = DBany(dburi)
-
 	def exist(self, did, attr):
-		cnd, err = cond(CND_NO_DELETED, name=attr, did=did)
-		rows = self.db.select(self.TABLE, 'name', cnd, limit=1)
-		return rows != []
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, did=did))
+
+	def show_did(self, did=None, cols=None, fformat='raw', limit=0):
+		return self.show_cnd(cond(did=did), cols, fformat, limit)
 
 	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
 		if not cols:
@@ -405,7 +462,7 @@ class Domain_attrs:
 		else:
 			self.add(did, attr, value, flags, force)
 
-	def set_many(self, adict, flags=None, force=False):
+	def set_many(self, did, adict, flags=None, force=False):
 		for a, v in adict.items():
 			self.set(did, a, v, flags, force)
 
@@ -413,8 +470,8 @@ class Domain_attrs:
 		self.db.delete(self.TABLE, CND_DELETED)
 
 
-	def exist_dra(self, realm):
-		cnd, err = cond(CND_NO_DELETED, name='digest_realm', value=realm)
+	def exist_dra(self, did):
+		cnd, err = cond(CND_NO_DELETED, name='digest_realm', value=did)
 		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
 		return rows != []
 
@@ -445,24 +502,14 @@ class Domain_attrs:
 
 
 
-class Global_attrs:
+class Global_attrs(Basectl):
 	TABLE = 'global_attrs'
 	COLUMNS = ('name', 'type', 'value', 'flags')
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
-
-	def __init__(self, dburi, db=None):
-		self.dburi  = dburi
-		if db is not None:
-			self.db = db
-		else:
-			self.db = DBany(dburi)
-
 	def exist(self, attr):
-		cnd, err = cond(CND_NO_DELETED, name=attr)
-		rows = self.db.select(self.TABLE, 'name', cnd, limit=1)
-		return rows != []
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr))
 
 	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
 		if not cols:
@@ -584,7 +631,7 @@ class Global_attrs:
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
 
-class Attr_types:
+class Attr_types(Basectl):
 	TABLE = 'attr_types'
 	COLUMNS = ('name', 'rich_type', 'raw_type', 'priority', 'ordering',
 	           'type_spec', 'flags', 'default_flags', 'description')
@@ -592,12 +639,8 @@ class Attr_types:
 	FLAGIDX = COLIDXS['flags']
 
 
-	def __init__(self, dburi, db=None):
-		self.dburi  = dburi
-		if db is not None:
-			self.db = db
-		else:
-			self.db = DBany(dburi)
+	def show(self, attr=None, cols=None, fformat='raw', limit=0):
+		return self.show_cnd(cond(name=attr), cols, fformat, limit)
 
 	def get_type(self, attr):
 		cnd, err = cond(CND_NO_DELETED, name=attr)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.13 2006/04/27 22:32:20 hallik Exp $
+# $Id: ctluri.py,v 1.14 2006/05/07 13:11:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -124,10 +124,7 @@ class Uri:
 	def uri2id(self, uri):
 		username, domain = split_sip_uri(uri)
 		do = self.Domain(self.dburi, self.db)
-		dids = do.get_dids(domain)
-		if len(dids) > 1:
-			raise Error (EDB, '%s=%s' % (domain, str(dids)))
-		did = dids[0]
+		did = do.get_did(domain)
 		return username, did
 
 	def get_uids(self, uri):
@@ -184,16 +181,14 @@ class Uri:
 		username, domain = split_sip_uri(uri)
 		do = self.Domain(self.dburi, self.db)
 		try:
-			dids = do.get_dids(domain)
+			did = do.get_did(domain)
 		except:
-			dids = []
-		rows = []
-		for did in dids:
-			cnd, err = cond(username=username, did=did)
-			rows += self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
+			did = None
+			rows = []
+		cnd, err = cond(username=username, did=did)
+		if did is not None:
+			rows = self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
 		new_rows = []
-		if limit > 0:
-			rows = rows[:limit]
                 for row in rows:
 			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
 			new_row = []

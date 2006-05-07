@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: options.py,v 1.26 2006/05/03 18:24:11 hallik Exp $
+# $Id: options.py,v 1.27 2006/05/07 13:11:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -16,6 +16,7 @@
 
 CMD_ADD        = 'add'
 CMD_ALIAS      = 'alias'
+CMD_ATTRS      = 'attrs'
 CMD_CANONICAL  = 'canonical'
 CMD_DISABLE    = 'disable'
 CMD_DOMAIN     = 'domain'
@@ -54,6 +55,13 @@ CMD = {\
 	'alia'         : CMD_ALIAS,
 	'ali'          : CMD_ALIAS,
 	'al'           : CMD_ALIAS,
+
+	'attributes'   : CMD_ATTRS,
+	'attribs'      : CMD_ATTRS,
+	'attrib'       : CMD_ATTRS,
+	'attrs'        : CMD_ATTRS,
+	'attr'         : CMD_ATTRS,
+	'at'           : CMD_ATTRS,
 
 	'canonical'    : CMD_CANONICAL,
 	'canonica'     : CMD_CANONICAL,
@@ -240,7 +248,7 @@ OPT_LIST = (\
 	('b', 'db-uri',   True,  None),
 	('B', 'env-db',   True,  'SERCTL_DB'),
 	('c', 'config',   True,  None),
-	('C', 'columns',  True,  ''),
+	('C', 'columns',  True,  None),
 	('d', 'did',      False, False),
 	('D', 'depth',    False, False),
 	('f', 'force',    False, False),
