@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: main.py,v 1.18 2006/05/03 09:37:17 hallik Exp $
+# $Id: main.py,v 1.19 2006/05/08 21:24:47 hallik Exp $
 #
 # Copyright (C) 2005 FhG iptelorg GmbH
 #
@@ -78,7 +78,7 @@ def handle_servers(opts):
 		return [opts['SER_URI']]
 	sul = opts['SERVERS'].split(' ')
 	if len(sul) < 2:
-		return adjust_ser_uri(sul[0])
+		return [adjust_ser_uri(sul[0])]
 	uris = []
 	for uri in sul:
 		uris.append(adjust_ser_uri(uri))
