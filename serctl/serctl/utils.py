@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.14 2006/05/07 13:11:33 hallik Exp $
+# $Id: utils.py,v 1.15 2006/05/08 20:01:48 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -18,7 +18,7 @@ from serctl.dbany   import DBany
 from serctl.flag    import cv_flags
 from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
-import sys
+import sys, serctl.options
 
 ID_ORIG = 0
 ID_INT  = 1
@@ -42,6 +42,13 @@ def arg_attrs(args):
 	for a in args:
 		aa += a.split('=', 1)
 	return arg_pairs(aa)
+
+def uniarg(arg, argdict=serctl.options.CMD):
+	try:
+		a = argdict[arg]
+	except KeyError:
+		raise Error (EINVAL, str(arg))
+	return a
 
 def no_all(opts, *args):
 	for arg in args:
