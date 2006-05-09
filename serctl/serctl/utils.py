@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.15 2006/05/08 20:01:48 hallik Exp $
+# $Id: utils.py,v 1.16 2006/05/09 21:04:09 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -19,6 +19,9 @@ from serctl.flag    import cv_flags
 from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
 import sys, serctl.options
+
+CND_TRUE  = ['1']
+CND_FALSE = ['0']
 
 ID_ORIG = 0
 ID_INT  = 1

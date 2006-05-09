@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.11 2006/05/07 13:11:33 hallik Exp $
+# $Id: ctlcred.py,v 1.12 2006/05/09 21:04:09 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -116,7 +116,7 @@ class Cred:
 		rows = self.db.select(self.TABLE, 'uid', cnd)
 		if not rows:
 			raise Error (ENOREC, err)
-		uids = [ i[0] for i in rows ]
+		uids = uniq([ i[0] for i in rows ])
 		if len(uids) > 1:
 			raise Error (EDB, '%s@%s=%s' % (username, realm, str(uids)))
 		uid = uids[0]
@@ -128,7 +128,7 @@ class Cred:
 		if not rows:
 			raise Error (ENOREC, err)
 		uids = [ i[0] for i in rows ]
-		return uids
+		return uniq(uids)
 
 	def exist(self, username, realm):
 		cnd, err = cond(CND_NO_DELETED, auth_username=username, realm=realm)

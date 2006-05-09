@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.31 2006/05/07 13:11:33 hallik Exp $
+# $Id: ctlctl.py,v 1.32 2006/05/09 21:04:09 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -405,17 +405,15 @@ class User_ctl:
 							except:
 								uids = []
 
-		# get uris and uids
+		dids = []
+
+		# get uris
 		uris = []
-		doms = []
 		for uid in uids:
 			u, d = ur.show_uid(uid, ['uid', 'username', 'did'], fformat=fformat, limit=limit)
 			uris += u
 		for row in uris:
-			try:
-				doms += do.get_domains(row[2])
-			except:
-				pass
+			dids.append(row[2])
 
 		# get credentials
 		creds = []
@@ -423,12 +421,17 @@ class User_ctl:
 			u, d = cr.show_uid(uid, ['uid', 'auth_username', 'realm', 'password'], fformat=fformat, limit=limit)
 			creds += u
 		for row in creds:
-			doms += row[2]
-		doms = uniq(doms)
-		domains = {}
-		for dom in doms:
 			try:
-				did = do.get_did(dom)
+				did = do.get_did(row[2])
+			except:
+				continue
+			dids.append(did)
+	
+		dids = uniq(dids)
+		domains = {}
+		for did in dids:
+			try:
+				dom = do.get_domain(did)
 			except:
 				continue
 			domains[did] = dom
@@ -519,17 +522,16 @@ class User_ctl:
 		ur = Uri(self.dburi, self.db)
 		cr = Cred(self.dburi, self.db)
 		try:
-			uids = ur.get_uids(uri)
+			uid = ur.get_uid(uri)
 		except:
 			if force: return
 			raise
-		ur.rm_uri(uri, force=force)
-		for uid in uids:
-			try:
-				cr.rm_uid(uid, force=force)
-			except:
-				pass
-			us.rm(uid)
+		ur.rm_uid_uri(uid, uri, force=force)
+		try:
+			cr.rm_uid(uid, force=force)
+		except:
+			pass
+		us.rm(uid)
 		us.purge()
 		ur.purge()
 		cr.purge()
@@ -560,12 +562,17 @@ class Alias_ctl:
 		us = User(self.dburi, self.db)
 
 		try:
+			uid = ur.get_uid(uri)
+		except:
+			if force: return
+			raise
+		try:
 			user, did = ur.uri2id(uri)
 		except:
 			if force: return
 			raise
 
-		if not us.exist(uri):
+		if not us.exist(uid):
 			if force: return
 			raise Error (ENOUSER, user)
 
@@ -585,7 +592,7 @@ class Alias_ctl:
 		
 		for a in aliases:
 			try:
-				ur.add(uri, a, force=force)
+				ur.add(uid, a, force=force)
 			except Error, inst:
 				warning(str(inst))
 		self._reload()
@@ -624,10 +631,8 @@ class Usrloc_ctl:
 
 	def _get_uid(self, uri):
 		ur = Uri(self.dburi, self.db)
-		uids = ur.get_uids(uri)
-		if not uids:
-			raise Error (ENOUSER, errstr(uri=uri))
-		return uids[0]
+		uid = ur.get_uid(uri)
+		return uid
 
 	def show(self, uri, table='location'):
 		uid = self._get_uid(uri)

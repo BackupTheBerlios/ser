@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.14 2006/05/07 13:11:33 hallik Exp $
+# $Id: ctluri.py,v 1.15 2006/05/09 21:04:09 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -21,7 +21,8 @@ from serctl.flag      import parse_flags, new_flags, clear_canonical, set_canoni
                              IS_FROM, CND_NO_CANONICAL, cv_flags
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
-                             col_idx, cond, full_cond
+                             col_idx, cond, full_cond, Basectl, CND_TRUE, \
+                             CND_FALSE, uniq
 import serctl.ctlhelp, serctl.ctldomain
 
 
@@ -102,7 +103,7 @@ def purge(**opts):
 	u = Uri(opts['DB_URI'])
 	u.purge()
 
-class Uri:
+class Uri(Basectl):
 	TABLE = 'uri'
 	COLUMNS = ('uid', 'did', 'username', 'flags')
 	COLIDXS = idx_dict(COLUMNS)
@@ -110,13 +111,9 @@ class Uri:
 
 
 	def __init__(self, dburi, db=None):
+		Basectl.__init__(self, dburi, db)
 		self.Domain = serctl.ctldomain.Domain
 		self.User   = serctl.ctluser.User
-		self.dburi  = dburi
-		if db is not None:
-			self.db = db
-		else:
-			self.db = DBany(dburi)
 
 	def default_flags(self):
 		return str(LOAD_SER | FOR_SERWEB | IS_TO | IS_FROM)
@@ -133,14 +130,22 @@ class Uri:
 		rows = self.db.select(self.TABLE, 'uid', cnd)
 		if not rows:
 			raise Error (ENOREC, err)
-		return [ i[0] for i in rows ]
+		uids = [ i[0] for i in rows ]
+		return uniq(uids)
+
+	def get_uid(self, uri):
+		uids = self.get_uids(uri)
+		if len(uids) > 1:
+			raise Error (EDB, '%s=%s' % (uri, str(uids)))
+		return uids[0]
 
 	def get_uids_for_username(self, username):
 		cnd, err = cond(CND_NO_DELETED, username=username)
 		rows = self.db.select(self.TABLE, 'uid', cnd)
 		if not rows:
 			raise Error (ENOREC, err)
-		return [ i[0] for i in rows ]
+		uids = [ i[0] for i in rows ]
+		return uniq(uids)
 
 	def exist_did(self, did):
 		cnd, err = cond(CND_NO_DELETED, did=did)
@@ -174,30 +179,15 @@ class Uri:
 		return rows != []
 
 	def show(self, uri=None, cols=None, fformat='raw', limit=0):
-		if not cols:
-			cols = self.COLUMNS
-		cidx = col_idx(self.COLIDXS, cols)
-		
-		username, domain = split_sip_uri(uri)
-		do = self.Domain(self.dburi, self.db)
-		try:
-			did = do.get_did(domain)
-		except:
-			did = None
-			rows = []
-		cnd, err = cond(username=username, did=did)
-		if did is not None:
-			rows = self.db.select(self.TABLE, self.COLUMNS, cnd, limit)
-		new_rows = []
-                for row in rows:
-			row[self.FLAGIDX] = cv_flags(fformat, row[self.FLAGIDX])
-			new_row = []
-			for i in cidx:
-				new_row.append(row[i])
-			new_rows.append(new_row)
-		desc = self.db.describe(self.TABLE)
-		desc = [ desc[i] for i in cols ]
-		return new_rows, desc
+		if uri:
+			try:
+				user, did = self.uri2id(uri)
+				ce = cond(username=user, did=did)
+			except:
+				ce = (CND_FALSE, '')
+		else:
+			ce = (CND_TRUE, '')
+		return self.show_cnd(ce, cols, fformat, limit)
 
 	def show_uid(self, uid, cols=None, fformat='raw', limit=0):
 		if not cols:
@@ -305,12 +295,11 @@ class Uri:
 
 	def rm_uri(self, uri, force=False):
 		try:
-			uids = self.get_uids(uri)
+			uid = self.get_uid(uri)
 		except:
 			if force: return
 			raise
-		for uid in uids:
-			self.rm_uid_uri(uid, uri, force)
+		self.rm_uid_uri(uid, uri, force)
 
 	def rm_uid(self, uid, force=False):
 		cnd, err = cond(CND_NO_DELETED, uid=uid)

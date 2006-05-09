@@ -145,6 +145,16 @@ class Domain:
 			raise Error (ENOREC, err)
 		return [ row[0] for row in rows ]
 
+	def get_domain(self, did):
+		cnd, err = cond(CND_NO_DELETED, CND_CANONICAL, did=did)
+		rows = self.db.select(self.TABLE, 'domain', cnd, limit=1)
+		if not rows:
+			cnd, err = cond(CND_NO_DELETED, did=did)
+			rows = self.db.select(self.TABLE, 'domain', cnd, limit=1)
+		if not rows:
+			raise Error (ENOREC, err)
+		return rows[0][0]
+
 	def exist(self, did, domain):
 		cnd, err = cond(CND_NO_DELETED, did=did, domain=domain)
 		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.11 2006/04/27 22:32:20 hallik Exp $
+# $Id: error.py,v 1.12 2006/05/09 21:04:09 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -46,7 +46,7 @@ ERRORS = (\
 	('ERPC',	'RPC error'),
 	('EFFORM',	'Unknown flag format'),
 	('EINT',	'Must be integer'),
-	('EDB',		'Database is inconsistent'),
+	('EDB',		'Ambiguous identificator (Use low-level tools to solve this problem)'),
 	('EIDTYPE',	'Unknown identifier type'),
 	('EATTR',	'Unknown attribute'),
 

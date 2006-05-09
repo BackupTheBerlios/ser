@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: opsql.py,v 1.2 2006/01/12 14:00:47 hallik Exp $
+# $Id: opsql.py,v 1.3 2006/05/09 21:04:09 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -57,6 +57,12 @@ def bit_or_(arg):
 	arg = [str(i) for i in arg]
 	return ' & '.join(arg)
 
+def true(arg):
+	return '1'
+
+def false(arg):
+	return '0'
+
 OP = {
 	'"'   : quote_,
 	'='   : eq_cq,
@@ -66,4 +72,6 @@ OP = {
 	'or'  : or_,
 	'&'   : bit_and_,
 	'|'   : bit_or_,
+	'1'   : true,
+	'0'   : false,
 }
