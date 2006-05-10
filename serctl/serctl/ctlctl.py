@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.33 2006/05/10 18:23:00 hallik Exp $
+# $Id: ctlctl.py,v 1.34 2006/05/10 20:54:45 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,14 +15,16 @@ from serctl.flag      import IS_FROM, CND_NO_DELETED
 from serctl.ctluri    import Uri
 from serctl.ctlcred   import Cred
 from serctl.ctldomain import Domain
-from serctl.ctlattr   import Domain_attrs, User_attrs, Global_attrs
+from serctl.ctlattr   import Domain_attrs, User_attrs, Global_attrs, \
+                             _set
 from serctl.ctluser   import User
 from serctl.dbany     import DBany
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
                              ENODOMAIN, warning, EDUPL, ENOUSER, ERPC, \
                              ENOREC
 from serctl.ctlrpc    import any_rpc, multi_rpc
-from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
+from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW, \
+                             CMD_SET
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
                              arg_attrs, uniq, id, errstr, ID_ORIG, cond, \
@@ -48,6 +50,7 @@ Commands & parameters:
   - user and domain administration:
 	ser_ctl alias  add  <uri> <alias> [alias...]
 	ser_ctl alias  rm   <alias> [alias...]
+	ser_ctl attrs  set  <uri> <attr>=<value> [attr=value]...
 	ser_ctl domain add  <domain> [domain_alias...]
 	ser_ctl domain rm   [domain...]
 	ser_ctl domain show [domain]
@@ -75,6 +78,14 @@ Commands & parameters:
   - miscelaneous:
 	ser_ctl publish <uid> <file_with_PIDF_doc> <expires_in_sec> [etag]
 """ % serctl.ctlhelp.options()
+
+def attrs(command, uri, *attrs, **opts):
+	cmd = CMD.get(command)
+	if cmd == CMD_SET:
+		attrs = ('user='+uri,) + attrs
+		return _set(attrs, opts)
+	else:
+		raise Error (EINVAL, command)
 
 def purge(**opts):
 	for c in (Uri, Cred, Domain, User, Domain_attrs, User_attrs, Global_attrs):

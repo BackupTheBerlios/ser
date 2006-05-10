@@ -175,7 +175,7 @@ def rm(identificator, attr, value=None, **opts):
 	else:
 		obj.rm(id, attr, value, force)
 
-def set(*attrs, **opts):
+def _set(attrs, opts):
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
@@ -187,6 +187,8 @@ def set(*attrs, **opts):
 	else:
 		obj.set_many(id, alist, flags, force)
 
+def set(*attrs, **opts):
+	return _set(attrs, opts)
 
 def purge(**opts):
 	a = User_attrs(opts['DB_URI'])
