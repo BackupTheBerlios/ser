@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.12 2006/05/09 21:04:09 hallik Exp $
+# $Id: ctlcred.py,v 1.13 2006/05/10 18:23:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -18,7 +18,7 @@ from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonica
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, cv_flags
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
-                           col_idx, cond, full_cond
+                           col_idx, cond, full_cond, get_password
 import md5, serctl.ctlhelp, serctl.ctldomain, serctl.ctluser, serctl.ctlattr
 
 
@@ -30,13 +30,14 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_cred add     <uid> <auth_username> <realm> <password>
-	ser_cred change  <auth_username> <realm> [-p password] [-F flags]
-	ser_cred disable <auth_username> <realm>
-	ser_cred enable  <auth_username> <realm>
-	ser_cred rm      <auth_username> <realm>
+	ser_cred add      <uid> <auth_username> <realm> <password>
+	ser_cred change   <auth_username> <realm> [-p password] [-F flags]
+	ser_cred disable  <auth_username> <realm>
+	ser_cred enable   <auth_username> <realm>
+	ser_cred rm       <auth_username> <realm>
+	ser_cred password <auth_username> <realm> [-p password]
 	ser_cred purge
-	ser_cred show    [[realm] auth_username]
+	ser_cred show     [[realm] auth_username]
 """ % serctl.ctlhelp.options()
 
 
@@ -50,9 +51,7 @@ def show(realm=None, auth_username=None, **opts):
 	tabprint(clist, desc, rsep, lsep, astab)
 
 def add(uid, auth_username, realm, password=None, **opts):
-	password = opts.get('PASSWORD', password)
-	if password is None:
-		raise Error (ENOARG, 'password')
+	password = get_password(opts, password)
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
@@ -68,6 +67,15 @@ def rm(auth_username, realm, **opts):
 
 def change(auth_username, realm, password=None, **opts):
 	password = opts.get('PASSWORD', password)
+
+	force = opts['FORCE']
+	flags = opts['FLAGS']
+
+	u = Cred(opts['DB_URI'])
+	u.change(auth_username, realm, password, flags, force)
+
+def password(auth_username, realm, password=None, **opts):
+	password = get_password(opts, password)
 
 	force = opts['FORCE']
 	flags = opts['FLAGS']

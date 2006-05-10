@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.32 2006/05/09 21:04:09 hallik Exp $
+# $Id: ctlctl.py,v 1.33 2006/05/10 18:23:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -25,7 +25,8 @@ from serctl.ctlrpc    import any_rpc, multi_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
-                             arg_attrs, uniq, id, errstr, ID_ORIG, cond
+                             arg_attrs, uniq, id, errstr, ID_ORIG, cond, \
+                             get_password
 import serctl.ctlhelp, xmlrpclib, sys
 
 # xml-rpc method used in stats function (+ all *.stats)
@@ -134,9 +135,7 @@ def user(command, uri, *aliases, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		password = opts.get('PASSWORD')
-		if password is None:
-			raise Error (ENOARG, 'password')
+		password = get_password(opts)
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 		u.add(uri, aliases, password, ID_ORIG, force)
 	elif cmd == CMD_RM:
@@ -152,9 +151,7 @@ def user(command, uri, *aliases, **opts):
 
 def password(uri, password=None, **opts):
 	force = opts['FORCE']
-	password = opts.get('PASSWORD', password)
-	if password is None:
-		raise Error (ENOARG, 'password')
+	password = get_password(opts)
 	u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 	u.passwd(uri, password, force)
 

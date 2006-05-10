@@ -1,12 +1,8 @@
 Important:
 ==========
 
-  * Fix 'ser_ctl user' and 'ser_ctl alias'.
-
   * Usrloc's code update and testing.
     - Why returned 'Table not found' when addind contact?
-
-  * Interactive & secure prompt for password.
 
   * Update man pages.
 

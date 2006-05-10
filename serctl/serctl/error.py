@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.12 2006/05/09 21:04:09 hallik Exp $
+# $Id: error.py,v 1.13 2006/05/10 18:23:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -49,6 +49,8 @@ ERRORS = (\
 	('EDB',		'Ambiguous identificator (Use low-level tools to solve this problem)'),
 	('EIDTYPE',	'Unknown identifier type'),
 	('EATTR',	'Unknown attribute'),
+	('EPASSWORD',	'Password does not match'),
+	('ENOATTR',	'Attribute does not exist'),
 
 	('ETYPE',	'Unknown type'),
 	('ELINE',	'Malformed input line'),

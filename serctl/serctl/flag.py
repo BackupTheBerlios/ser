@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: flag.py,v 1.8 2006/04/27 22:32:20 hallik Exp $
+# $Id: flag.py,v 1.9 2006/05/10 18:23:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -24,6 +24,10 @@ PENDING        = 1L << 6
 DELETED        = 1L << 7
 CALLER_DELETED = 1L << 8  # Accounting table
 CALLEE_DELETED = 1L << 9  # Accounting table
+MULTIVALUE     = 1L << 10 # Attribute may be set multiple in *_attrs table
+FILL_ON_REG    = 1L << 11 # Attribute may be set multiple in *_attrs table
+REQUIRED       = 1L << 12 # Required by serweb
+DIR            = 1L << 13 # Directory for serweb
 
 RESERVED       = 1L << 31 # Bit reserved for internal use.
                           # Distinguish between set/unset flag
@@ -36,7 +40,11 @@ FLAGS = {
 	'd' : DISABLED,
 	'e' : CALLEE_DELETED,
 	'f' : IS_FROM,
+	'g' : FILL_ON_REG,
+	'i' : DIR,
+	'm' : MULTIVALUE,
 	'p' : PENDING,
+	'q' : REQUIRED,
 	'r' : CALLER_DELETED,
 	's' : LOAD_SER,
 	't' : IS_TO,

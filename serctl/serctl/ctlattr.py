@@ -12,12 +12,12 @@
 #
 
 from serctl.dbany     import DBany
-from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL
+from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL, ENOATTR
 from serctl.flag      import parse_flags, new_flags, flag_syms, CND_NO_DELETED, \
                              FOR_SERWEB, cv_flags, set_deleted, CND_DELETED
 from serctl.utils     import show_opts, tabprint, idx_dict, arg_attrs, \
-                             col_idx, cond, full_cond, uniq, Basectl
-import serctl.ctlhelp
+                             col_idx, cond, full_cond, uniq, Basectl, errstr
+import serctl.ctlhelp, serctl.ctldomain, serctl.ctluri
 
 
 def help(*tmp):
@@ -28,57 +28,66 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_attr add    global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
+	ser_attr add    <identificator> <attr>=<value> [attr=value]...
 	ser_attr attr   [attr]
-	ser_attr change global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
 	ser_attr purge
-	ser_attr rm     global | uid=<uid> | did=<did> <attr> [attr...]
-	ser_attr set    global | uid=<uid> | did=<did> <attr>=<value> [attr=value]...
-	ser_attr show   [global | uid=<uid> | did=<did>]
+	ser_attr rm     <identificator> <attr> [value]
+	ser_attr set    <identificator> <attr>=<value> [attr=value]...
+	ser_attr show   [identificator]
+
+Identificators:
+	* global
+	* uid=<uid>
+	* did=<did>
+	* user=<uri>
+	* domain=<domain>
 """ % serctl.ctlhelp.options()
+
+
+def _attr_id(ident, opts):
+	itmp = ident + '='
+	x, id = itmp.split('=', 1)
+	id = id[:-1]
+
+	if x[0] == 'g': # global
+		obj = Global_attrs(opts['DB_URI'])
+		id  = None
+		x   = 'g'
+	elif x[:2] == 'ui': # uid
+		obj = User_attrs(opts['DB_URI'])
+		x   = 'u'
+	elif x[:2] == 'us': #user
+		obj = User_attrs(opts['DB_URI'])
+		if id:
+			ur  = serctl.ctluri.Uri(opts['DB_URI'])
+			id = ur.get_uid(id)
+		else:
+			id = None
+		x   = 'u' 
+	elif x[:2] == 'di': #did
+		obj = Domain_attrs(opts['DB_URI'])
+		x   = 'd'
+	elif x[:2] == 'do': #domain
+		obj = Domain_attrs(opts['DB_URI'])
+		if id:
+			do  = serctl.ctldomain.Domain(opts['DB_URI'])
+			id  = do.get_did(id)
+		else:
+			id = None
+		x   = 'd'
+	else:
+		raise Error (EINVAL, ident)
+	return obj, id, x
 
 def _attr_prep(attrs, opts):
 	if not attrs:
-		raise Error (ENOARG, 'global|uid|did')
+		raise Error (ENOARG, 'identificator')
 	if len(attrs) < 2:
 		raise Error (ENOARG, 'attr')
-	if attrs[0] == 'global':
-		obj = Global_attrs(opts['DB_URI'])
-		xid = None
-	elif attrs[0][:4] == 'uid=':
-		obj = User_attrs(opts['DB_URI'])
-		xid = attrs[0][4:]
-	elif attrs[0][:4] == 'did=':
-		obj = Domain_attrs(opts['DB_URI'])
-		xid = attrs[0][4:]
-	else:
-		raise Error (EINVAL, attrs[0])
-	return obj, attrs[1:], xid
-
-def OLD_show(*attrs, **opts):
-	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
-
-	COLS = ['name', 'type', 'value', 'flags']
-
-	lst = []
-
-	a = User_attrs(opts['DB_URI'])
-	ulist, desc = a.show(attrs, ['uid']+COLS, fformat, limit)
-	for l in ulist:
-		lst.append([''] + l) 
-
-	a = Domain_attrs(opts['DB_URI'])
-	dlist, desc = a.show(attrs, ['did']+COLS, fformat, limit)
-	for l in dlist:
-		lst.append([l[0], ''] + l[1:]) 
-
-	a = Global_attrs(opts['DB_URI'])
-	glist, desc = a.show(attrs, COLS, fformat, limit)
-	for l in glist:
-		lst.append(['GLOBAL', 'GLOBAL'] + l) 
-
-	desc = [('did', ), ('uid', )] + list(desc)
-	tabprint(lst, desc, rsep, lsep, astab)	
+	obj, id, x = _attr_id(attrs[0], opts)
+	if not id and x != 'g':
+		 raise Error (EINVAL, attrs[0])
+	return obj, attrs[1:], id
 
 def show_all(opts):
 	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
@@ -119,24 +128,25 @@ def show_all(opts):
 		dsc.append(desc[i])
 	tabprint(alist, dsc, rsep, lsep, astab)	
 
-def show(global_uid_did=None, **opts):
-	if global_uid_did is None:
+def show(identificator=None, **opts):
+	if identificator is None:
 		return show_all(opts)
 	COLS = ['name', 'type', 'value', 'flags']
 	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
-	if global_uid_did == 'global':
+
+	obj, id, x = _attr_id(identificator, opts)
+
+	if x == 'g':
 		obj = Global_attrs(opts['DB_URI'])
 		alist, desc = obj.show(None, cols, fformat, limit)
-	elif global_uid_did[:4] == 'uid=':
+	elif x == 'u':
 		obj = User_attrs(opts['DB_URI'])
-		uid=global_uid_did[4:]
-		alist, desc = obj.show_uid(uid, cols, fformat, limit)
-	elif global_uid_did[:4] == 'did=':
+		alist, desc = obj.show_uid(id, cols, fformat, limit)
+	elif x == 'd':
 		obj = Domain_attrs(opts['DB_URI'])
-		did=global_uid_did[4:]
-		alist, desc = obj.show_did(did, cols, fformat, limit)
+		alist, desc = obj.show_did(id, cols, fformat, limit)
 	else:
-		raise Error (EINVAL, global_uid_did)
+		raise Error (EINVAL, identificator)
 
 	tabprint(alist, desc, rsep, lsep, astab)	
 
@@ -144,49 +154,38 @@ def add(*attrs, **opts):
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
-	if not attrs:
-		raise Error (ENOARG, 'attr')
-
-	a, attrs, xid = _attr_prep(attrs, opts)
+	obj, attrs, id = _attr_prep(attrs, opts)
 	adict, alist = arg_attrs(attrs)
 
-	if xid is None:
-		a.add_many(adict, flags, force)
+	if id is None:
+		obj.add_many(alist, flags, force)
 	else:
-		a.add_many(xid, adict, flags, force)
+		obj.add_many(id, alist, flags, force)
 
-def rm(*attrs, **opts):
+def rm(identificator, attr, value=None, **opts):
 	force = opts['FORCE']
 
-	a, attrs, xid = _attr_prep(attrs, opts)
-	if xid is None:
-		a.rm_many(attrs, force)
+	obj, id, x = _attr_id(identificator, opts)
+
+	if not id and x != 'g':
+		raise Error (EINVAL, identificator)
+
+	if x == 'g':
+		obj.rm(attr, value, force)
 	else:
-		a.rm_many(xid, attrs, force)
-
-def change(*attrs, **opts):
-	force = opts['FORCE']
-	flags = opts['FLAGS']
-
-	a, attrs, xid = _attr_prep(attrs, opts)
-	adict, alist = arg_attrs(attrs)
-
-	if xid is None:
-		a.change_many(adict, flags, force)
-	else:
-		a.change_many(xid, adict, flags, force)
+		obj.rm(id, attr, value, force)
 
 def set(*attrs, **opts):
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
-	a, attrs, xid = _attr_prep(attrs, opts)
+	obj, attrs, id = _attr_prep(attrs, opts)
 	adict, alist = arg_attrs(attrs)
 
-	if xid is None:
-		a.set_many(adict, flags, force)
+	if id is None:
+		obj.set_many(alist, flags, force)
 	else:
-		a.set_many(xid, adict, flags, force)
+		obj.set_many(id, alist, flags, force)
 
 
 def purge(**opts):
@@ -211,8 +210,8 @@ class User_attrs(Basectl):
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
-	def exist(self, uid, attr):
-		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, uid=uid))
+	def exist(self, uid, attr, value=None):
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, uid=uid, value=value))
 
 	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
 		if not cols:
@@ -249,10 +248,6 @@ class User_attrs(Basectl):
 		fmask  = parse_flags(flags)
 		flags  = new_flags(dflags, fmask)
 
-		if self.exist(uid, attr):
-			if force: return
-			raise Error (EDUPL, err)
-
 		at = Attr_types(self.dburi, self.db)
 		try:
 			type = at.get_type(attr)
@@ -265,74 +260,43 @@ class User_attrs(Basectl):
 		        'value' : value, 'flags' : flags }
 		self.db.insert(self.TABLE, ins)
 
-	def add_many(self, uid, adict, flags=None, force=False):
+	def add_many(self, uid, alist, flags=None, force=False):
 		if not force:
-			for a in adict.keys():
-				if self.exist(uid, a):
-					raise Error (EDUPL, a)
-		for a, v in adict.items():
+			at = Attr_types(self.dburi, self.db)
+			for a, v in alist:
+				if not at.exist(a):
+					raise Error (EATTR, a)
+		for a, v in alist:
 			self.add(uid, a, v, flags, force)
 
-	def rm(self, uid, attr, force=False):
-		if not self.exist(uid, attr):
+	def rm(self, uid, attr, value=None, force=False):
+		if not self.exist(uid, attr, value):
 			if force: return
-			raise Error (ENOREC, attr)
+			if value is None:
+				raise Error (ENOREC, errstr(uid=uid, attr=attr))
+			else:
+				raise Error (ENOREC, errstr(uid=uid, attr=attr, value=value))
 
-		cnd, err = cond(CND_NO_DELETED, uid=uid, name=attr)
+		cnd, err = cond(CND_NO_DELETED, uid=uid, name=attr, value=value)
 		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
 		for row in rows:
 			nf = set_deleted(row[self.FLAGIDX])
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
-	def rm_many(self, uid, alist, force=False):
-		alist = uniq(alist)
-		if not force:
-			for a in alist:
-				if not self.exist(uid, a):
-					raise Error (ENOREC, a)
-		for a in alist:
-			self.rm(uid, a, force)
-
-	def change(self, uid, attr, value, flags=None, force=False):
-		fmask = parse_flags(flags)
-		nflags = new_flags(0, fmask)
-
-		if not self.exist(uid, attr):
-			if force: return
-			raise Error (ENOREC, err)
-
-		at = Attr_types(self.dburi, self.db)
-		try:
-			type = at.get_type(attr)
-		except:
-			if force: return
-			raise
-
-		cnd, err = cond(CND_NO_DELETED, uid=uid, name=attr)
-		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
-		for row in rows:
-			nf = new_flags(row[self.FLAGIDX], fmask)
-			cnd = full_cond(self.COLUMNS, row)
-			self.db.update(self.TABLE, {'value':value, 'flags':nf}, cnd)
-
-	def change_many(self, uid, adict, flags=None, force=False):
-		if not force:
-			for a in adict.keys():
-				if not self.exist(uid, a):
-					raise Error (ENOREC, a)
-		for a, v in adict.items():
-			self.change(uid, a, v, flags, force)
-
 	def set(self, uid, attr, value, flags=None, force=False):
 		if self.exist(uid, attr):
-			self.change(uid, attr, value, flags, force)
-		else:
-			self.add(uid, attr, value, flags, force)
+			self.rm(uid, attr, force=force)
+		self.add(uid, attr, value, flags, force)
 
-	def set_many(self, uid, adict, flags=None, force=False):
-		for a, v in adict.items():
-			self.set(uid, a, v, flags, force)
+	def set_many(self, uid, alist, flags=None, force=False):
+		attrs = [ i[0] for i in alist ]
+		attrs = uniq(attrs)
+		for a in attrs:
+			if self.exist(uid, a):
+				self.rm(uid, a, force=force)
+		for a, v in alist: 
+			self.add(uid, a, v, flags, force)
 
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
@@ -343,8 +307,8 @@ class Domain_attrs(Basectl):
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
-	def exist(self, did, attr):
-		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, did=did))
+	def exist(self, did, attr, value=None):
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, did=did, value=value))
 
 	def show_did(self, did=None, cols=None, fformat='raw', limit=0):
 		return self.show_cnd(cond(did=did), cols, fformat, limit)
@@ -381,10 +345,6 @@ class Domain_attrs(Basectl):
 		fmask  = parse_flags(flags)
 		flags  = new_flags(dflags, fmask)
 
-		if self.exist(did, attr):
-			if force: return
-			raise Error (EDUPL, err)
-
 		at = Attr_types(self.dburi, self.db)
 		try:
 			type = at.get_type(attr)
@@ -397,74 +357,44 @@ class Domain_attrs(Basectl):
 		        'value' : value, 'flags' : flags }
 		self.db.insert(self.TABLE, ins)
 
-	def add_many(self, did, adict, flags=None, force=False):
+	def add_many(self, did, alist, flags=None, force=False):
 		if not force:
-			for a in adict.keys():
-				if self.exist(did, a):
-					raise Error (EDUPL, a)
-		for a, v in adict.items():
+			at = Attr_types(self.dburi, self.db)
+			for a, v in alist:
+				if not at.exist(a):
+					raise Error (EATTR, a)
+
+		for a, v in alist:
 			self.add(did, a, v, flags, force)
 
-	def rm(self, did, attr, force=False):
-		if not self.exist(did, attr):
+	def rm(self, did, attr, value=None, force=False):
+		if not self.exist(did, attr, value):
 			if force: return
-			raise Error (ENOREC, attr)
+                        if value is None:
+				raise Error (ENOREC, errstr(did=did, attr=attr))
+			else:
+				raise Error (ENOREC, errstr(did=did, attr=attr, value=value))
 
-		cnd, err = cond(CND_NO_DELETED, did=did, name=attr)
+		cnd, err = cond(CND_NO_DELETED, did=did, name=attr, value=value)
 		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
 		for row in rows:
 			nf = set_deleted(row[self.FLAGIDX])
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
-	def rm_many(self, did, alist, force=False):
-		alist = uniq(alist)
-		if not force:
-			for a in alist:
-				if not self.exist(did, a):
-					raise Error (ENOREC, a)
-		for a in alist:
-			self.rm(did, a, force)
-
-	def change(self, did, attr, value, flags=None, force=False):
-		fmask = parse_flags(flags)
-		nflags = new_flags(0, fmask)
-
-		if not self.exist(did, attr):
-			if force: return
-			raise Error (ENOREC, err)
-
-		at = Attr_types(self.dburi, self.db)
-		try:
-			type = at.get_type(attr)
-		except:
-			if force: return
-			raise
-
-		cnd, err = cond(CND_NO_DELETED, did=did, name=attr)
-		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
-		for row in rows:
-			nf = new_flags(row[self.FLAGIDX], fmask)
-			cnd = full_cond(self.COLUMNS, row)
-			self.db.update(self.TABLE, {'value':value, 'flags':nf}, cnd)
-
-	def change_many(self, did, adict, flags=None, force=False):
-		if not force:
-			for a in adict.keys():
-				if not self.exist(did, a):
-					raise Error (ENOREC, a)
-		for a, v in adict.items():
-			self.change(did, a, v, flags, force)
-
 	def set(self, did, attr, value, flags=None, force=False):
 		if self.exist(did, attr):
-			self.change(did, attr, value, flags, force)
-		else:
-			self.add(did, attr, value, flags, force)
+			self.rm(did, attr, force=force)
+		self.add(did, attr, value, flags, force)
 
-	def set_many(self, did, adict, flags=None, force=False):
-		for a, v in adict.items():
-			self.set(did, a, v, flags, force)
+	def set_many(self, did, alist, flags=None, force=False):
+		attrs = [ i[0] for i in alist ]
+		attrs = uniq(attrs)
+		for a in attrs:
+			if self.exist(did, a):
+				self.rm(did, a, force=force)
+		for a, v in alist: 
+			self.add(did, a, v, flags, force)
 
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
@@ -508,8 +438,8 @@ class Global_attrs(Basectl):
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
-	def exist(self, attr):
-		return self.exist_cnd(cond(CND_NO_DELETED, name=attr))
+	def exist(self, attr, value=None):
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, value=value))
 
 	def show(self, attrs=[], cols=None, fformat='raw', limit=0):
 		if not cols:
@@ -543,10 +473,6 @@ class Global_attrs(Basectl):
 		fmask  = parse_flags(flags)
 		flags  = new_flags(dflags, fmask)
 
-		if self.exist(attr):
-			if force: return
-			raise Error (EDUPL, err)
-
 		at = Attr_types(self.dburi, self.db)
 		try:
 			type = at.get_type(attr)
@@ -559,74 +485,44 @@ class Global_attrs(Basectl):
 			'flags' : flags }
 		self.db.insert(self.TABLE, ins)
 
-	def add_many(self, adict, flags=None, force=False):
+	def add_many(self, alist, flags=None, force=False):
 		if not force:
-			for a in adict.keys():
-				if self.exist(a):
-					raise Error (EDUPL, a)
-		for a, v in adict.items():
+			at = Attr_types(self.dburi, self.db)
+			for a, v in alist:
+				if not at.exist(a):
+					raise Error (EATTR, a)
+
+		for a, v in alist:
 			self.add(a, v, flags, force)
 
-	def rm(self, attr, force=False):
-		if not self.exist(attr):
+	def rm(self, attr, value=None, force=False):
+		if not self.exist(attr, value):
 			if force: return
-			raise Error (ENOREC, attr)
+                        if value is None:
+				raise Error (ENOREC, errstr(attr=attr))
+			else:
+				raise Error (ENOREC, errstr(attr=attr, value=value))
 
-		cnd, err = cond(CND_NO_DELETED, name=attr)
+		cnd, err = cond(CND_NO_DELETED, name=attr, value=value)
 		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
 		for row in rows:
 			nf = set_deleted(row[self.FLAGIDX])
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
-	def rm_many(self, alist, force=False):
-		alist = uniq(alist)
-		if not force:
-			for a in alist:
-				if not self.exist(a):
-					raise Error (ENOREC, a)
-		for a in alist:
-			self.rm(a, force)
-
-	def change(self, attr, value, flags=None, force=False):
-		fmask = parse_flags(flags)
-		nflags = new_flags(0, fmask)
-
-		if not self.exist(attr):
-			if force: return
-			raise Error (ENOREC, err)
-
-		at = Attr_types(self.dburi, self.db)
-		try:
-			type = at.get_type(attr)
-		except:
-			if force: return
-			raise
-
-		cnd, err = cond(CND_NO_DELETED, name=attr)
-		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
-		for row in rows:
-			nf = new_flags(row[self.FLAGIDX], fmask)
-			cnd = full_cond(self.COLUMNS, row)
-			self.db.update(self.TABLE, {'value':value, 'flags':nf}, cnd)
-
-	def change_many(self, adict, flags=None, force=False):
-		if not force:
-			for a in adict.keys():
-				if not self.exist(a):
-					raise Error (ENOREC, a)
-		for a, v in adict.items():
-			self.change(a, v, flags, force)
-
 	def set(self, attr, value, flags=None, force=False):
 		if self.exist(attr):
-			self.change(attr, value, flags, force)
-		else:
-			self.add(attr, value, flags, force)
+			self.rm(attr, force=force)
+		self.add(attr, value, flags, force)
 
-	def set_many(self, adict, flags=None, force=False):
-		for a, v in adict.items():
-			self.set(a, v, flags, force)
+	def set_many(self, alist, flags=None, force=False):
+		attrs = [ i[0] for i in alist ]
+		attrs = uniq(attrs)
+		for a in attrs:
+			if self.exist(a):
+				self.rm(a, force=force)
+		for a, v in alist: 
+			self.add(a, v, flags, force)
 
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
@@ -638,6 +534,9 @@ class Attr_types(Basectl):
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
+
+	def exist(self, attr):
+		return self.exist_cnd(cond(CND_NO_DELETED, name=attr))
 
 	def show(self, attr=None, cols=None, fformat='raw', limit=0):
 		return self.show_cnd(cond(name=attr), cols, fformat, limit)

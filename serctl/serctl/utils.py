@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.16 2006/05/09 21:04:09 hallik Exp $
+# $Id: utils.py,v 1.17 2006/05/10 18:23:00 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -11,8 +11,9 @@
 # of the License, or (at your option) any later version.
 #
 
+from getpass        import getpass
 from serctl.error   import Error, EINVAL, EMISMATCH, EALL, ENOCOL, EINT, \
-                           EIDTYPE
+                           EIDTYPE, EPASSWORD
 from serctl.options import OPT
 from serctl.dbany   import DBany
 from serctl.flag    import cv_flags
@@ -89,6 +90,15 @@ def show_opts(opts):
 
 def timestamp():
 	return strftime('%Y-%m-%d %H:%M:%S', gmtime())
+
+def get_password(opts, password=None, prompt='Password: ', confirm='Retype: '):
+	password = opts.get('PASSWORD', password)
+	if password is None:
+		password = getpass(prompt)
+		retype = getpass(confirm)
+		if password != retype:
+			raise Error (EPASSWORD, )
+	return password
 
 def idx_dict(lst):
 	idx = {}
