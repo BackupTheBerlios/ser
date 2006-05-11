@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.h,v 1.34 2006/04/13 12:20:02 kubartv Exp $
+ * $Id: presentity.h,v 1.35 2006/05/11 07:29:50 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -219,6 +219,8 @@ void add_presence_tuple(presentity_t *_p, presence_tuple_t *_t);
 void remove_presence_tuple(presentity_t *_p, presence_tuple_t *_t);
 
 int db_update_presence_tuple(presentity_t *_p, presence_tuple_t *t, int update_notes);
+int db_update_person_element(presentity_t *p, pa_person_element_t *n);
+int db_update_pres_note(presentity_t *p, pa_presence_note_t *n);
 
 void set_tuple_published(presentity_t *p, presence_tuple_t *t);
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.47 2006/04/13 12:20:02 kubartv Exp $
+ * $Id: presentity.c,v 1.48 2006/05/11 07:29:50 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -114,6 +114,7 @@ int new_presentity_no_wb(struct pdomain *pdomain, str* _uri, str *uid, presentit
 
 	size = sizeof(presentity_t) + _uri->len + 1 + uid->len + 1;
 	presentity = (presentity_t*)mem_alloc(size);
+	TRACE("allocating presentity: %d\n", size);
 	if (!presentity) {
 		paerrno = PA_NO_MEMORY;
 		LOG(L_ERR, "new_presentity_no_wb(): No memory left: size=%d\n", size);
@@ -1154,6 +1155,7 @@ int timer_presentity(presentity_t* _p)
 	int old_flags;
 	int presentity_changed;
 
+	PROF_START(pa_timer_presentity)
 	old_flags = _p->flags;
 
 	process_presentity_messages(_p);
@@ -1190,6 +1192,7 @@ int timer_presentity(presentity_t* _p)
 		db_update_presentity(_p);
 	} 
 */	
+	PROF_STOP(pa_timer_presentity)
 	return 0;
 }
 

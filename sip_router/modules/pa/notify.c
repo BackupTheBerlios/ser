@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.43 2006/04/04 09:25:38 kubartv Exp $
+ * $Id: notify.c,v 1.44 2006/05/11 07:29:50 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -351,14 +351,20 @@ static int send_presence_notify(struct presentity* _p, struct watcher* _w)
 	}
 
 	if (!is_str_empty(&doc)) body = doc;
-	tmb.t_request_within(&method, &headers, &body, _w->dialog, 0, 0);
+	res = tmb.t_request_within(&method, &headers, &body, _w->dialog, 0, 0);
+	if (res < 0) {
+		ERR("Can't send NOTIFY (%d) in dlg %.*s, %.*s, %.*s\n", res, 
+			FMT_STR(_w->dialog->id.call_id), 
+			FMT_STR(_w->dialog->id.rem_tag), 
+			FMT_STR(_w->dialog->id.loc_tag));
+	}
 	str_free_content(&doc);
 	str_free_content(&headers);
 	str_free_content(&content_type);
 		
 	if (use_db) db_update_watcher(_p, _w); /* dialog has changed */
 	
-	return 0;
+	return res;
 }
 
 static int send_winfo_notify(struct presentity* _p, struct watcher* _w)
@@ -571,11 +577,9 @@ int send_notify(struct presentity* _p, struct watcher* _w)
 	switch (_w->event_package) {
 		case EVENT_PRESENCE:
 			rc = send_presence_notify(_p, _w);
-			if (rc) LOG(L_ERR, "send_presence_notify returned %d\n", rc);
 			break;
 		case EVENT_PRESENCE_WINFO:
 			rc = send_winfo_notify(_p, _w);
-			if (rc < 0) LOG(L_ERR, "send_winfo_notify returned %d\n", rc);
 			break;
 		default: LOG(L_ERR, "sending notify for unknow package\n");
 	}
