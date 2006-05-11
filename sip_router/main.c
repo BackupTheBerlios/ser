@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.215 2006/04/07 14:55:27 andrei Exp $
+ * $Id: main.c,v 1.216 2006/05/11 11:29:31 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -137,7 +137,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.215 2006/04/07 14:55:27 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.216 2006/05/11 11:29:31 tma0 Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -245,6 +245,7 @@ int sig_flag = 0;              /* last signal received */
 int debug = L_DEFAULT; /* print only msg. < L_WARN */
 int dont_fork = 0;
 int log_stderr = 0;
+pid_t creator_pid = (pid_t) -1;
 /* log facility (see syslog(3)) */
 int log_facility = LOG_DAEMON;
 int config_check = 0;
@@ -1211,6 +1212,7 @@ int main(int argc, char** argv)
 	int debug_save, debug_flag = 0;
 
 	/*init*/
+	creator_pid = getpid();
 	ret=-1;
 	my_argc=argc; my_argv=argv;
 
