@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.96 2006/05/11 13:06:06 calrissian Exp $
+/* $Id: nathelper.c,v 1.97 2006/05/11 15:51:58 calrissian Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -2042,12 +2042,17 @@ create_rcv_uri(str* uri, struct sip_msg* m)
 	len += DSTIP_PARAM_LEN + dst_ip.len;
 	len += DSTPORT_PARAM_LEN + dst_port.len;
 
+	if (m->rcv.src_ip.af == AF_INET6) {
+		len += 2;
+	}
+
 	if (len > MAX_URI_SIZE) {
 		LOG(L_ERR, "create_rcv_uri: Buffer too small\n");
 		return -1;
 	}
 
 	p = buf;
+	/* as transport=tls is deprecated shouldnt this be sips in case of TLS? */
 	memcpy(p, "sip:", 4);
 	p += 4;
 
