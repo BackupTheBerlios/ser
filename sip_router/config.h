@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.71 2006/04/21 14:28:36 andrei Exp $
+ *  $Id: config.h,v 1.72 2006/05/15 09:56:40 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -77,11 +77,11 @@
 #define CONTENT_LENGTH_LEN (sizeof(CONTENT_LENGTH)-1)
 
 #define USER_AGENT "User-Agent: Sip EXpress router"\
-		"(" VERSION " (" ARCH "/" OS"))"
+		"(" VERSION " (" ARCH "/" OS_QUOTED "))"
 #define USER_AGENT_LEN (sizeof(USER_AGENT)-1)
 
 #define SERVER_HDR "Server: Sip EXpress router "\
-		"(" VERSION " (" ARCH "/" OS"))"
+		"(" VERSION " (" ARCH "/" OS_QUOTED "))"
 #define SERVER_HDR_LEN (sizeof(SERVER_HDR)-1)
 
 #define MAX_WARNING_LEN  256

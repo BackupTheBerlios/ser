@@ -1,5 +1,5 @@
 /*
- * $Id: version.h,v 1.4 2006/04/21 14:28:36 andrei Exp $
+ * $Id: version.h,v 1.5 2006/05/15 09:56:40 tma0 Exp $
  *
  * version and compile flags macros 
  *
@@ -31,8 +31,7 @@
 #ifndef version_h
 #define version_h
 
-#define SER_FULL_VERSION  NAME " " VERSION " (" ARCH "/" OS ")" 
-
+#define SER_FULL_VERSION  NAME " " VERSION " (" ARCH "/" OS_QUOTED ")" 
 
 #ifdef STATS
 #define STATS_STR  "STATS: On"
@@ -185,7 +184,6 @@
 #else
 #define USE_SYSV_SEM_STR ""
 #endif
-
 
 #ifdef NOSMP
 #define NOSMP_STR "-NOSMP"
