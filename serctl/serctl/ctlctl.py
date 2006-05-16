@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.34 2006/05/10 20:54:45 hallik Exp $
+# $Id: ctlctl.py,v 1.35 2006/05/16 09:43:39 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -492,10 +492,10 @@ class User_ctl:
 		uid = id(user + '@' + domain, idtype)
 		if us.exist(uid):
 			if not force:
-				raise Error(EDUPL, errstr(uid=uid))
+				raise Error (EDUPL, errstr(uid=uid))
 		if cr.exist(user, domain):
 			if not force:
-				raise Error(EDUPL, errstr(auth_username=user, domain=domain))
+				raise Error (EDUPL, errstr(auth_username=user, domain=domain))
 		if not do.exist_domain(domain):
 			if force:
 				i = id(domain, idtype)
@@ -509,6 +509,9 @@ class User_ctl:
 					do.add(i, d, force=force)
 				else:
 					raise Error (ENODOMAIN, d)
+			did = do.get_did(d)
+			if ur.exist_username_did(u, did) and not force:
+				raise Error (EDUPL, '%s@%s' % (u, d))
 		did = do.get_did(domain)
 		if ur.exist(uid, user, did):
 			if not force:

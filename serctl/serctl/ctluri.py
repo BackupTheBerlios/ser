@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.15 2006/05/09 21:04:09 hallik Exp $
+# $Id: ctluri.py,v 1.16 2006/05/16 09:43:39 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -169,14 +169,17 @@ class Uri(Basectl):
 			return False
 		return self.exist(uid, username, did)
 
+	def exist_username_did(self, username, did):
+		cnd, err = cond(CND_NO_DELETED, username=username, did=did)
+		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
+		return rows != []
+
 	def exist_uri(self, uri):
 		try:
 			username, did = self.uri2id(uri)
 		except:
 			return False
-		cnd, err = cond(CND_NO_DELETED, username=username, did=did)
-		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
-		return rows != []
+		return self.exist_username_did(username, did)
 
 	def show(self, uri=None, cols=None, fformat='raw', limit=0):
 		if uri:

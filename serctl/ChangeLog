@@ -1,3 +1,9 @@
+serctl (0.3.7)
+
+  * Check for existing alias added (for 'ser_ctl user' command).
+
+ -- Jan Halla <hallik@iptel.org> Tue, 16 May 2006 11:39:45 +0200
+
 serctl (0.3.6)
 
   * Tool ser_ctl has new command attrs.
