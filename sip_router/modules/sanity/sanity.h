@@ -1,5 +1,5 @@
 /*
- * $Id: sanity.h,v 1.1 2006/02/05 19:00:39 calrissian Exp $
+ * $Id: sanity.h,v 1.2 2006/05/23 09:57:42 calrissian Exp $
  *
  * Sanity Checks Module
  *
@@ -72,5 +72,8 @@ int check_ruri_sip_version(struct sip_msg* _msg);
 
 /* check if the r-uri scheme */
 int check_ruri_scheme(struct sip_msg* _msg);
+
+/* check if the typical URIs are parseable */
+int check_parse_uris(struct sip_msg* _msg, int checks);
 
 #endif /* SANITY_CHK_H */

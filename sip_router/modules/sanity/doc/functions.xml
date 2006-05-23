@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2006/02/05 20:01:39 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2006/05/23 09:57:42 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -56,6 +56,24 @@ if (method=="REGISTER" && sanity_check("256")) {
 ...
 ]]>
 	    </programlisting>
+	</example>
+	<para>
+		Optionally the function takes a second integer argument which
+		overwrites the global module parameter uri_checks and thus determines
+		which URIs will be checked if the parse uri test will be executed.
+	</para>
+	<example>
+		<title><fucntion>sanity_check</function> usage with two parameters</title>
+		<programlisting>
+<![CDATA[
+...
+if (method=="INVITE" && sanity_check("1024", "6")) {
+	/* the INVITE contains an invalid From or To header and is replied with a 400 */
+	break;
+}
+...
+]]>
+		</programlisting>
 	</example>
     </section>
 </section>
