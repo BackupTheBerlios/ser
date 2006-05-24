@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.13 2006/05/10 18:23:00 hallik Exp $
+# $Id: ctlcred.py,v 1.14 2006/05/24 16:01:51 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -30,14 +30,14 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_cred add      <uid> <auth_username> <realm> <password>
+	ser_cred add      <uid> <auth_username> <realm> [password]
 	ser_cred change   <auth_username> <realm> [-p password] [-F flags]
 	ser_cred disable  <auth_username> <realm>
 	ser_cred enable   <auth_username> <realm>
 	ser_cred rm       <auth_username> <realm>
 	ser_cred password <auth_username> <realm> [-p password]
 	ser_cred purge
-	ser_cred show     [[realm] auth_username]
+	ser_cred show     [realm [auth_username]]
 """ % serctl.ctlhelp.options()
 
 

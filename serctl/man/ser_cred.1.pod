@@ -6,19 +6,19 @@ ser_cred - Tool for low-level management of authentication credentials.
 
 =over 8
 
-=item ser_cred [B<options...>] [--] B<add>     <I<auth_username>> <I<realm>> <I<uid>> <I<password>>
+=item ser_cred [B<options...>] [--] B<add>     <I<uid>> <I<auth_username>> <I<realm>> [I<password>]
 
-=item ser_cred [B<options...>] [--] B<change>  [[[I<auth_username>] I<realm>] I<uid>]
+=item ser_cred [B<options...>] [--] B<change>  <I<auth_username>> <I<realm>>
 
-=item ser_cred [B<options...>] [--] B<disable> [[[I<auth_username>] I<realm>] I<uid>]
+=item ser_cred [B<options...>] [--] B<disable> <I<auth_username>> <I<realm>>
 
-=item ser_cred [B<options...>] [--] B<enable>  [[[I<auth_username>] I<realm>] I<uid>]
+=item ser_cred [B<options...>] [--] B<enable>  <I<auth_username>> <I<realm>>
 
-=item ser_cred [B<options...>] [--] B<rm>      [[[I<auth_username>] I<realm>] I<uid>]
+=item ser_cred [B<options...>] [--] B<rm>      <I<auth_username>> <I<realm>>
 
 =item ser_cred [B<options...>] [--] B<purge>
 
-=item ser_cred [B<options...>] [--] B<show>    [[[I<auth_username>] I<realm>] I<uid>]
+=item ser_cred [B<options...>] [--] B<show>    [I<realm> [I<auth_username>]]
 
 =head1 DESCRIPTION
 

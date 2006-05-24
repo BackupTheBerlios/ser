@@ -8,27 +8,29 @@ ser_ctl - Tool for user/alias/domain management and remote SER control.
 
 =over 8
 
-=item ser_ctl [B<options...>] [--] B<alias>  B<add>  <I<username>> <I<alias>>
+=item ser_ctl [B<options...>] [--] B<alias>  B<add>  <I<uri>> <I<alias>> [I<alias>]
 
-=item ser_ctl [B<options...>] [--] B<alias>  B<rm>   <I<alias>>
+=item ser_ctl [B<options...>] [--] B<alias>  B<rm>   <I<alias>> [I<alias>]
 
-=item ser_ctl [B<options...>] [--] B<alias>  B<show>
+=item ser_ctl [B<options...>] [--] B<attrs>  B<set>  <I<uri>> <I<attr>=I<value>> [I<attr>=I<value>]...
 
-=item ser_ctl [B<options...>] [--] B<domain> B<add>  <I<domain>>
+=item ser_ctl [B<options...>] [--] B<domain> B<add>  <I<domain>> [I<domain_alias>...]
 
-=item ser_ctl [B<options...>] [--] B<domain> B<rm>   <I<domain>>
+=item ser_ctl [B<options...>] [--] B<domain> B<rm>   [I<domain>...]
 
-=item ser_ctl [B<options...>] [--] B<password>    <I<uri>> <I<password>>
+=item ser_ctl [B<options...>] [--] B<domain> B<show> [I<domain>]
 
-=item ser_ctl [B<options...>] [--] B<user>   B<add>  <I<uri>> <I<password>>
+=item ser_ctl [B<options...>] [--] B<password>    <I<uri>>
 
-=item ser_ctl [B<options...>] [--] B<user>   B<rm>   <I<username>>
+=item ser_ctl [B<options...>] [--] B<user>   B<add>  <I<uri>> [I<alias>...]
 
-=item ser_ctl [B<options...>] [--] B<user>   B<show>
+=item ser_ctl [B<options...>] [--] B<user>   B<rm>   <I<uri>>
+
+=item ser_ctl [B<options...>] [--] B<user>   B<show> <I<uri>>
 
 =item ser_ctl [B<options...>] [--] B<usrloc> B<add>  <I<uri>> <I<contact>> [I<expires>=seconds] [I<q>=q] [I<flags>=flags]
 
-=item ser_ctl [B<options...>] [--] B<usrloc> B<show> <I<uri>>
+=item ser_ctl [B<options...>] [--] B<usrloc> B<show> <I<uri>> [I<contact>]
 
 =item ser_ctl [B<options...>] [--] B<usrloc> B<rm>   <I<uri>> [I<contact>]
 

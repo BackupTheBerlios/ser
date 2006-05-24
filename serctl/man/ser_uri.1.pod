@@ -20,14 +20,14 @@ ser_uri - Tool for low-level SIP URI management.
 
 =item ser_uri [B<options...>] [--] B<purge>
 
-=item ser_uri [B<options...>] [--] B<show>      <I<uid>> <I<uri>>
+=item ser_uri [B<options...>] [--] B<show>      [I<uri>]
 
 =head1 DESCRIPTION
 
 Command 'B<ser_uri add>' adds a new URI into SER database.
 
-Command 'B<ser_domain change>' changes flags for I<uri> (or more precisely
-given also by I<uid> and I<did>). Flags should be specified by B<-F> option.
+Command 'B<ser_domain change>' changes flags. Flags should be specified by
+B<-F> option.
 
 Command 'B<ser_uri canonical>' sets URI as canonical.
 
