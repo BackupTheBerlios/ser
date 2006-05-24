@@ -21,6 +21,10 @@ functionality. See README for information how add module.
 
 =over 8
 
+=item attr
+
+Module for managing attributes. See B<ser_attr>(1). 
+
 =item cred
 
 Module for managing credential information. See B<ser_cred>(1). 
@@ -33,6 +37,11 @@ Module for managing virtual domains. See B<ser_domain>(1).
 
 Simple but universal module for acces to any table in SER database.
 Mainly for testing and debuging.
+
+=item rpc
+
+Simple module for remote procedure call. Procedures may be called by XML-RPC
+or throught the fifo (localy only). See B<ser_rpc>(1).
 
 =item uri
 
@@ -59,6 +68,11 @@ on server or view some statistics from the server.
 Many options are common for most serctl modules. There is a common 
 description of all options, see respective man pages for more accurate 
 description for some special case.
+
+=item B<-A>, B<--servers> I<uri_list>
+
+Space separated list of URIs for multi-rpc call. Value from B<-s> option (or
+SER_URI config variable) is used when this option is not specified.
 
 =item B<-B>, B<--env-db> I<env_name>
 
@@ -93,6 +107,16 @@ and their order. Without this option all columns will be printed in random
 =item B<-c>, B<--config> I<path>
 
 Path to config file. Default is F</etc/serctl/serctl.conf>.
+
+=item B<-D>, B<--depth>
+
+Convert domain to corresponding DIDs first and return output for all acquired DIDs.
+
+=item B<-d>, B<--did>
+
+When this option is used, domain names set on command line are interpreted as
+DID. (No conversion from domain to DID is made, but raw string is used as
+DID.)
 
 =item B<-F>, B<--flags> I<flags>
 
@@ -206,9 +230,14 @@ Limit number of displayed rows to I<num>.
 Path to SSL certificate file. Used with SSL encryption for RPC. No default
 value, this mean no client authentication used.
 
+=item B<-N>, B<--fformat> I<flag_format>
+
+Flag output format. Should be one of 'sym', 'hex', 'oct' or 'dec' for
+symbolic, hexadecimal, octal or decimal format. Default is I<sym>.
+
 =item B<-n>, B<--numeric>
 
-Show flags numericaly.
+Show raw values. (Don't do any converions, e.g. for flags.)
 
 =item B<-p>, B<--password> I<password>
 
@@ -279,8 +308,8 @@ subcommand.
 
 =head1 SEE ALSO
 
-Related man pages:  B<ser_cred>(1), B<ser_ctl>(1), B<ser_domain>(1), B<ser_uri>(1), 
-B<ser_user>(1).
+Related man pages:  B<ser_attr>(1), B<ser_cred>(1), B<ser_ctl>(1), B<ser_domain>(1),
+B<ser_rpc>(1), B<ser_uri>(1), B<ser_user>(1).
 
 =head1 AUTHOR
 

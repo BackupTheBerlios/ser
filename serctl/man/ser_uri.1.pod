@@ -6,21 +6,21 @@ ser_uri - Tool for low-level SIP URI management.
 
 =over 8
 
-=item ser_uri [B<options...>] [--] B<add>       <I<uri>> <I<uid>> [I<did>]
+=item ser_uri [B<options...>] [--] B<add>       <I<uid>> <I<uri>> [I<uri> ...]
 
-=item ser_uri [B<options...>] [--] B<canonical> [[[I<uri>] <I<uid>] I<did>]
+=item ser_uri [B<options...>] [--] B<canonical> <I<uid>> <I<uri>>
 
-=item ser_uri [B<options...>] [--] B<change>    [[[I<uri>] <I<uid>] I<did>]
+=item ser_uri [B<options...>] [--] B<change>    <I<uid>> <I<uri>>
 
-=item ser_uri [B<options...>] [--] B<disable>   [[[I<uri>] <I<uid>] I<did>]
+=item ser_uri [B<options...>] [--] B<disable>   <I<uid>> <I<uri>>
 
-=item ser_uri [B<options...>] [--] B<enable>    [[[I<uri>] <I<uid>] I<did>]
+=item ser_uri [B<options...>] [--] B<enable>    <I<uid>> <I<uri>>
 
-=item ser_uri [B<options...>] [--] B<rm>        [[[I<uri>] <I<uid>] I<did>]
+=item ser_uri [B<options...>] [--] B<rm>        <I<uid>> <I<uri>>
 
 =item ser_uri [B<options...>] [--] B<purge>
 
-=item ser_uri [B<options...>] [--] B<show>      [[[I<uri>] <I<uid>] I<did>]
+=item ser_uri [B<options...>] [--] B<show>      <I<uid>> <I<uri>>
 
 =head1 DESCRIPTION
 

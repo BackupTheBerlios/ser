@@ -6,23 +6,23 @@ ser_user - Tool for low-level user management.
 
 =over 8
 
-=item ser_user [B<options...>] [--] B<add>     <I<user>>
+=item ser_user [B<options...>] [--] B<add>     <I<uid>> [I<uid>...]
 
-=item ser_user [B<options...>] [--] B<change>  [I<user>]
+=item ser_user [B<options...>] [--] B<change>  [I<uid>]
 
-=item ser_user [B<options...>] [--] B<disable> [I<user>]
+=item ser_user [B<options...>] [--] B<disable> [I<uid>]
 
-=item ser_user [B<options...>] [--] B<enable>  [I<user>]
+=item ser_user [B<options...>] [--] B<enable>  [I<uid>]
 
-=item ser_user [B<options...>] [--] B<rm>      [I<user>]
+=item ser_user [B<options...>] [--] B<rm>      [I<uid>]
 
 =item ser_user [B<options...>] [--] B<purge>
 
-=item ser_user [B<options...>] [--] B<show>    [I<user>]
+=item ser_user [B<options...>] [--] B<show>    [I<uid>]
 
 =head1 DESCRIPTION
 
-Command 'B<ser_user add>' adds a new username into SER database. 
+Command 'B<ser_user add>' adds a new user (user id) into SER database. 
 
 Flags assigned to user may be specified by B<-F> option when a new user is
 added or may be changed by 'B<ser_user change>', later.
@@ -34,7 +34,7 @@ Command 'B<ser_user disable>' sets DISABLED flag for user.
 
 Command 'B<ser_user enable>' resets DISABLED flag for user.
 
-Command 'B<ser_user purge>' removes all usernames marked as deleted from
+Command 'B<ser_user purge>' removes all UIDs marked as deleted from
 database.
 
 Command 'B<ser_user show>' prints users.

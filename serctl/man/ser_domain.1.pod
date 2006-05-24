@@ -6,19 +6,21 @@ ser_domain - Tool for low-level virtual domain management.
 
 =over 8
 
-=item ser_domain [B<options...>] [--] B<add>     <I<domain>> <I<did>>
+=item ser_domain [B<options...>] [--] B<add>       <I<did>> <I<domain>>
 
-=item ser_domain [B<options...>] [--] B<change>  [I<domain>]
+=item ser_domain [B<options...>] [--] B<canonical> [I<domain>]
 
-=item ser_domain [B<options...>] [--] B<disable> [I<domain>]
+=item ser_domain [B<options...>] [--] B<change>    [I<domain>]
 
-=item ser_domain [B<options...>] [--] B<enable>  [I<domain>]
+=item ser_domain [B<options...>] [--] B<disable>   [I<domain>]
 
-=item ser_domain [B<options...>] [--] B<rm>      [I<domain>]
+=item ser_domain [B<options...>] [--] B<enable>    [I<domain>]
+
+=item ser_domain [B<options...>] [--] B<rm>        [I<domain>]
 
 =item ser_domain [B<options...>] [--] B<purge>
 
-=item ser_domain [B<options...>] [--] B<show>    [I<domain>]
+=item ser_domain [B<options...>] [--] B<show>      [I<domain>]
 
 =head1 DESCRIPTION
 
