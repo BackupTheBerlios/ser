@@ -286,6 +286,9 @@ class User_attrs(Basectl):
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
+		# FIX: purge hack
+		self.purge()
+
 	def set(self, uid, attr, value, flags=None, force=False):
 		if self.exist(uid, attr):
 			self.rm(uid, attr, force=force)
@@ -384,6 +387,9 @@ class Domain_attrs(Basectl):
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
+		# FIX: purge hack
+		self.purge()
+
 	def set(self, did, attr, value, flags=None, force=False):
 		if self.exist(did, attr):
 			self.rm(did, attr, force=force)
@@ -397,9 +403,6 @@ class Domain_attrs(Basectl):
 				self.rm(did, a, force=force)
 		for a, v in alist: 
 			self.add(did, a, v, flags, force)
-
-	def purge(self):
-		self.db.delete(self.TABLE, CND_DELETED)
 
 
 	def exist_dra(self, did):
@@ -429,6 +432,7 @@ class Domain_attrs(Basectl):
 			nf = set_deleted(row[self.FLAGIDX])
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
+
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
 
@@ -511,6 +515,9 @@ class Global_attrs(Basectl):
 			nf = set_deleted(row[self.FLAGIDX])
 			cnd = full_cond(self.COLUMNS, row)
 			self.db.update(self.TABLE, {'flags': nf}, cnd)
+
+		# FIX: purge hack
+		self.purge()
 
 	def set(self, attr, value, flags=None, force=False):
 		if self.exist(attr):
