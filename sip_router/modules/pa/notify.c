@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.45 2006/05/25 09:32:36 kubartv Exp $
+ * $Id: notify.c,v 1.46 2006/05/25 12:03:26 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -396,6 +396,9 @@ static inline int create_headers(struct watcher* _w, str *dst, str *content_type
 	dstr_init(&buf, 256);
 	str_clear(dst);
 
+	/* required by RFC 3261 */
+	dstr_append_zt(&buf, "Max-Forwards: 70\r\n"); 
+	
 	/* Event header */
 
 	dstr_append_zt(&buf, "Event: ");
