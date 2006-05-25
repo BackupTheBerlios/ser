@@ -12,7 +12,8 @@
 #
 
 from serctl.dbany     import DBany
-from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL, ENOATTR
+from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL, \
+                             ENOATTR, ENODRA
 from serctl.flag      import parse_flags, new_flags, flag_syms, CND_NO_DELETED, \
                              FOR_SERWEB, cv_flags, set_deleted, CND_DELETED
 from serctl.utils     import show_opts, tabprint, idx_dict, arg_attrs, \
@@ -406,9 +407,16 @@ class Domain_attrs(Basectl):
 
 
 	def exist_dra(self, did):
-		cnd, err = cond(CND_NO_DELETED, name='digest_realm', value=did)
+		cnd, err = cond(CND_NO_DELETED, name='digest_realm', did=did)
 		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
 		return rows != []
+
+	def get_dra(self, did):
+		cnd, err = cond(CND_NO_DELETED, name='digest_realm', did=did)
+		rows = self.db.select(self.TABLE, 'value', cnd, limit=1)
+		if not rows:
+			raise Error (ENODRA, did)
+		return rows[0][0]
 
 	def add_dra(self, did, domain):
 		at = Attr_types(self.dburi, self.db)

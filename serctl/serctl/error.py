@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.13 2006/05/10 18:23:00 hallik Exp $
+# $Id: error.py,v 1.14 2006/05/25 11:14:40 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -51,6 +51,7 @@ ERRORS = (\
 	('EATTR',	'Unknown attribute'),
 	('EPASSWORD',	'Password does not match'),
 	('ENOATTR',	'Attribute does not exist'),
+	('ENODRA',	'Digest realm attribute not found'),
 
 	('ETYPE',	'Unknown type'),
 	('ELINE',	'Malformed input line'),

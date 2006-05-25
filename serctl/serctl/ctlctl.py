@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.36 2006/05/25 09:15:04 hallik Exp $
+# $Id: ctlctl.py,v 1.37 2006/05/25 11:14:40 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -476,6 +476,7 @@ class User_ctl:
 
 	def add(self, uri, aliases, password, idtype=ID_ORIG, force=False):
 		do = Domain(self.dburi, self.db)
+		da = Domain_attrs(self.dburi, self.db)
 		ur = Uri(self.dburi, self.db)
 		cr = Cred(self.dburi, self.db)
 		us = User(self.dburi, self.db)
@@ -504,12 +505,12 @@ class User_ctl:
 				raise Error (ENODOMAIN, domain)
 		did = do.get_did(domain)
 		try:
-			realm = do.get_domain(did)
+			realm = da.get_dra(did)
 		except:
 			if force:
 				realm = domain
 			else:
-				raise Error(ENOCANON, domain)
+				raise
 		for u, d in aliases:
 			if not do.exist_domain(d):
 				if force:
