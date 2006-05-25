@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.35 2006/05/16 09:43:39 hallik Exp $
+# $Id: ctlctl.py,v 1.36 2006/05/25 09:15:04 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -21,7 +21,7 @@ from serctl.ctluser   import User
 from serctl.dbany     import DBany
 from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
                              ENODOMAIN, warning, EDUPL, ENOUSER, ERPC, \
-                             ENOREC
+                             ENOREC, ENOCANON
 from serctl.ctlrpc    import any_rpc, multi_rpc
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW, \
                              CMD_SET
@@ -502,6 +502,14 @@ class User_ctl:
 				do.add(i, domain, force=force)
 			else:
 				raise Error (ENODOMAIN, domain)
+		did = do.get_did(domain)
+		try:
+			realm = do.get_domain(did)
+		except:
+			if force:
+				realm = domain
+			else:
+				raise Error(ENOCANON, domain)
 		for u, d in aliases:
 			if not do.exist_domain(d):
 				if force:
@@ -518,7 +526,7 @@ class User_ctl:
 				raise Error(EDUPL, errstr(uid=uid, username=user, did=did))
 
 		us.add(uid, force=force)
-		cr.add(uid, user, domain, password, force=force)
+		cr.add(uid, user, realm, password, force=force)
 		ur.add(uid, uri, force=force)
 		for u, d in aliases:
 			uri = '%s@%s' % (u, d)
