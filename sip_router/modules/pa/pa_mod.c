@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.61 2006/05/11 07:29:50 kubartv Exp $
+ * $Id: pa_mod.c,v 1.62 2006/05/25 09:32:36 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -115,6 +115,9 @@ int offline_winfo_timer_interval = 3600;
 int subscribe_to_users = 0;
 str pa_subscription_uri = STR_NULL;
 
+/* ignore 408 response on NOTIFY messages (don't destroy the subscription in the case of it if set */
+int ignore_408_on_notify = 0;
+
 /*
  * Exported functions
  */
@@ -167,6 +170,7 @@ static param_export_t params[]={
 	{"pres_rules_file",      PARAM_STR,    &pres_rules_file },
 	
 	/* undocumented still (TODO) */
+	{"ignore_408_on_notify", PARAM_INT, &ignore_408_on_notify }, /* ignore 408 responses on NOTIFY */
 	{"subscribe_to_users",   PARAM_INT,    &subscribe_to_users },
 	{"pa_subscription_uri",  PARAM_STR,    &pa_subscription_uri },
 	
