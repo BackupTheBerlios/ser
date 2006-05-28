@@ -2,6 +2,7 @@ serctl (0.3.8)
 
   * Minor manpages update.
   * Command 'ser_ctl user add' fill realm with digest realm attribute.
+  * Copy&paste mistake in error report in ctldomain.py fixed.
 
  -- Jan Halla <hallik@iptel.org>
 

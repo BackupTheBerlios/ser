@@ -227,7 +227,7 @@ class Domain:
 
 		if self.exist(did, domain):
 			if force: return
-			raise Error (EDUPL, err)
+			raise Error (EDUPL, errstr(did=did, domain=domain))
 
 		# set digest realm attr
 		da = self.Domain_attrs(self.dburi, self.db)
