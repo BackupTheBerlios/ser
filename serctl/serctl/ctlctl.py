@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.37 2006/05/25 11:14:40 hallik Exp $
+# $Id: ctlctl.py,v 1.38 2006/05/29 17:09:40 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -146,7 +146,8 @@ def user(command, uri, *aliases, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		password = get_password(opts)
+		prompt='Please, enter new user password.\nPassword: '
+		password = get_password(opts, prompt=prompt)
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 		u.add(uri, aliases, password, ID_ORIG, force)
 	elif cmd == CMD_RM:
@@ -162,7 +163,8 @@ def user(command, uri, *aliases, **opts):
 
 def password(uri, password=None, **opts):
 	force = opts['FORCE']
-	password = get_password(opts)
+	prompt='Please, enter new user password.\nPassword: '
+	password = get_password(opts, prompt=prompt)
 	u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 	u.passwd(uri, password, force)
 
@@ -551,7 +553,10 @@ class User_ctl:
 			cr.rm_uid(uid, force=force)
 		except:
 			pass
-		us.rm(uid)
+		try:
+			us.rm(uid, force=force)
+		except:
+			pass
 		us.purge()
 		ur.purge()
 		cr.purge()
