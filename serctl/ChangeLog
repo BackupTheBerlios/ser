@@ -1,3 +1,11 @@
+serctl (0.3.9)
+
+  * Command ser_rpc changed: params which not appears as numbers are quoted
+    automaticaly.
+  * RPC requested URI for usrloc commands enhanced to be useful with LB
+
+ -- Jan Halla <hallik@iptel.org> Tue, 30 May 2006 17:32:08 +0200
+
 serctl (0.3.8)
 
   * Minor manpages update.

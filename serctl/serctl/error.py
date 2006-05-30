@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.14 2006/05/25 11:14:40 hallik Exp $
+# $Id: error.py,v 1.15 2006/05/30 20:06:27 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -57,6 +57,7 @@ ERRORS = (\
 	('ELINE',	'Malformed input line'),
 	('ENOGW',	'Missing gateway'),
 	('ENOGWTYPE',	'Missing gateway type'),
+	('EPREFIX',	'Invalid PSTN prefix'),
 )
 
 i = 384
