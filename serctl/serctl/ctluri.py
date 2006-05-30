@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.16 2006/05/16 09:43:39 hallik Exp $
+# $Id: ctluri.py,v 1.17 2006/05/30 15:32:24 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -146,6 +146,13 @@ class Uri(Basectl):
 			raise Error (ENOREC, err)
 		uids = [ i[0] for i in rows ]
 		return uniq(uids)
+
+	def get_canonical_uri(self, uid):
+		cnd, err = cond(CND_NO_DELETED, CND_CANONICAL, uid=uid)
+		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
+		if not rows:
+			raise Error (ENOCANON, err)
+		return rows[0][0]
 
 	def exist_did(self, did):
 		cnd, err = cond(CND_NO_DELETED, did=did)

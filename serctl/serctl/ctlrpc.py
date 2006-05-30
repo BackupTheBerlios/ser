@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.13 2006/05/07 13:11:33 hallik Exp $
+# $Id: ctlrpc.py,v 1.14 2006/05/30 15:32:24 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -54,6 +54,15 @@ def rpc(cmd, args, opts):
 	rpc = any_rpc(opts)
 
         cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
+
+	# quote unquoted string that not appear as number
+	args = list(args)
+	for i in range(len(args)):
+		try:
+			tmp = float(args[i])
+		except:
+			if args[i][:1] not in ('"', "'"):
+				args[i] = '"' + str(args[i]) + '"'
 
 	ret = rpc.shell_cmd(cmd, args)
 	if astab:

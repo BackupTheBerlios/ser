@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.38 2006/05/29 17:09:40 hallik Exp $
+# $Id: ctlctl.py,v 1.39 2006/05/30 15:32:24 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -196,6 +196,16 @@ def usrloc(command, uri, contact=None, *args, **opts):
 	flags = ad.get('flags')
 	if flags is not None:
 		flags = int(flags)
+
+	# LB hack
+	ur = Uri(opts['DB_URI'])
+	uid = ur.get_uid(uri)
+	curi = ur.get_canonical_uri(uid)
+	del(ur)
+	if opts['SER_URI'][:-1] != '/':
+		opts['SER_URI'] = opts['SER_URI'] + '/'
+	opts['SER_URI'] = opts['SER_URI'] + 'sip:' + curi
+
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
 		if contact is None:
