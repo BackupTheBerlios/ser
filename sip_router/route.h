@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.13 2006/02/24 18:35:35 andrei Exp $
+ * $Id: route.h,v 1.14 2006/05/30 19:20:52 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -62,6 +62,7 @@ extern struct route_list onsend_rt;
 int init_routes();
 void destroy_routes();
 int route_get(struct route_list* rt, char* name);
+int route_lookup(struct route_list* rt, char* name);
 
 void push(struct action* a, struct action** head);
 int add_actions(struct action* a, struct action** head);

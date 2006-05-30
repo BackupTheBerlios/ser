@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.13 2005/09/12 17:08:07 andrei Exp $
+ * $Id: io_wait.h,v 1.14 2006/05/30 19:20:51 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -823,7 +823,7 @@ again:
 	if (n!=SIGIO){
 #ifdef SIGINFO64_WORKARROUND
 		/* on linux siginfo.si_band is defined as long in userspace
-		 * and as int kernel => on 64 bits things will break!
+		 * and as int kernel (< 2.6.5) => on 64 bits things will break!
 		 * (si_band will include si_fd, and si_fd will contain
 		 *  garbage)
 		 *  see /usr/src/linux/include/asm-generic/siginfo.h and
