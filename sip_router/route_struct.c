@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.38 2006/01/09 19:42:35 tma0 Exp $
+ * $Id: route_struct.c,v 1.39 2006/05/31 23:02:46 tma0 Exp $
  *
  * route structures helping functions
  *
@@ -321,6 +321,9 @@ void print_action(struct action* t)
 			break;
 		case ISFLAGSET_T:
 			DBG("isflagset(");
+			break;
+		case AVPFLAG_OPER_T:
+			DBG("avpflagoper(");
 			break;
 		case SET_HOST_T:
 			DBG("sethost(");

@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.86 2006/04/07 14:55:27 andrei Exp $
+ * $Id: cfg.lex,v 1.87 2006/05/31 23:02:46 tma0 Exp $
  *
  * scanner for cfg files
  *
@@ -131,6 +131,10 @@ SETFLAG		setflag
 RESETFLAG	resetflag
 ISFLAGSET	isflagset
 FLAGS_DECL	"flags"|"bool"
+SETAVPFLAG	setavpflag
+RESETAVPFLAG	resetavpflag
+ISAVPFLAGSET	isavpflagset
+AVPFLAGS_DECL	avpflags
 SET_HOST		"rewritehost"|"sethost"|"seth"
 SET_HOSTPORT	"rewritehostport"|"sethostport"|"sethp"
 SET_USER		"rewriteuser"|"setuser"|"setu"
@@ -336,6 +340,10 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{RESETFLAG}	{ count(); yylval.strval=yytext; return RESETFLAG; }
 <INITIAL>{ISFLAGSET}	{ count(); yylval.strval=yytext; return ISFLAGSET; }
 <INITIAL>{FLAGS_DECL}	{ count(); yylval.strval=yytext; return FLAGS_DECL; }
+<INITIAL>{SETAVPFLAG}	{ count(); yylval.strval=yytext; return SETAVPFLAG; }
+<INITIAL>{RESETAVPFLAG}	{ count(); yylval.strval=yytext; return RESETAVPFLAG; }
+<INITIAL>{ISAVPFLAGSET}	{ count(); yylval.strval=yytext; return ISAVPFLAGSET; }
+<INITIAL>{AVPFLAGS_DECL}	{ count(); yylval.strval=yytext; return AVPFLAGS_DECL; }
 <INITIAL>{MSGLEN}	{ count(); yylval.strval=yytext; return MSGLEN; }
 <INITIAL>{RETCODE}	{ count(); yylval.strval=yytext; return RETCODE; }
 <INITIAL>{ROUTE}	{ count(); yylval.strval=yytext; return ROUTE; }

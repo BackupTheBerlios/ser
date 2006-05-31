@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.39 2006/03/01 07:40:07 kubartv Exp $
+ * $Id: route_struct.h,v 1.40 2006/05/31 23:02:46 tma0 Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -71,6 +71,7 @@ enum { FORWARD_T=1, SEND_T, DROP_T, LOG_T, ERROR_T, ROUTE_T, EXEC_T,
 		SET_HOST_T, SET_HOSTPORT_T, SET_USER_T, SET_USERPASS_T,
 		SET_PORT_T, SET_URI_T, IF_T, MODULE_T,
 		SETFLAG_T, RESETFLAG_T, ISFLAGSET_T ,
+		AVPFLAG_OPER_T,
 		LEN_GT_T, PREFIX_T, STRIP_T,STRIP_TAIL_T,
 		APPEND_BRANCH_T,
 		REVERT_URI_T,
