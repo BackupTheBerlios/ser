@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.39 2006/05/30 15:32:24 hallik Exp $
+# $Id: ctlctl.py,v 1.40 2006/05/31 09:27:56 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -146,7 +146,7 @@ def user(command, uri, *aliases, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
 	if cmd == CMD_ADD:
-		prompt='Please, enter new user password.\nPassword: '
+		prompt='Please, enter password for the new subscriber.\nPassword: '
 		password = get_password(opts, prompt=prompt)
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 		u.add(uri, aliases, password, ID_ORIG, force)
@@ -163,7 +163,7 @@ def user(command, uri, *aliases, **opts):
 
 def password(uri, password=None, **opts):
 	force = opts['FORCE']
-	prompt='Please, enter new user password.\nPassword: '
+	prompt="Please, enter new subscriber's password.\nPassword: "
 	password = get_password(opts, prompt=prompt)
 	u = User_ctl(opts['DB_URI'], multi_rpc(opts))
 	u.passwd(uri, password, force)
@@ -558,14 +558,17 @@ class User_ctl:
 		except:
 			if force: return
 			raise
-		ur.rm_uid_uri(uid, uri, force=force)
+		try:
+			ur.rm_uid(uid, force=force)
+		except Error:
+			pass
 		try:
 			cr.rm_uid(uid, force=force)
-		except:
+		except Error:
 			pass
 		try:
 			us.rm(uid, force=force)
-		except:
+		except Error:
 			pass
 		us.purge()
 		ur.purge()
