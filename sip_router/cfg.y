@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.122 2006/05/31 23:02:46 tma0 Exp $
+ * $Id: cfg.y,v 1.123 2006/05/31 23:29:27 tma0 Exp $
  *
  *  cfg grammar
  *
@@ -1437,7 +1437,9 @@ attr_id_any_str:
 			yyerror("Not enough memory");
 			YYABORT;
 		}
-		s.s = $1+1; /* skip $ */
+		s.s = $1;
+		if (s.s[0] == '$')
+			s.s++;
 		s.len = strlen(s.s);
 		if (parse_avp_name(&s, &type, &avp_spec->name, &idx)) {
 			yyerror("error when parsing AVP");
