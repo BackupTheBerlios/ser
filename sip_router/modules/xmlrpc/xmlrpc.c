@@ -1,5 +1,5 @@
 /*
- * $Id: xmlrpc.c,v 1.11 2006/03/13 10:47:12 janakj Exp $
+ * $Id: xmlrpc.c,v 1.12 2006/05/31 19:51:39 calrissian Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -253,12 +253,6 @@ static int add_xmlrpc_reply_offset(struct xmlrpc_reply* reply, unsigned int offs
 {
 	char* p;
 	if (text->len > (reply->buf.len - reply->body.len)) {
-		p = pkg_malloc(reply->buf.len + text->len + 1024);
-		if (!p) {
-			set_fault(reply, 500, "Internal Server Error (No memory left)");
-			ERR("No memory left: %d\n", reply->buf.len + text->len + 1024);
-			return -1;
-		}
 		p = pkg_malloc(reply->buf.len + text->len + 1024);
 		if (!p) {
 			set_fault(reply, 500, "Internal Server Error (No memory left)");
