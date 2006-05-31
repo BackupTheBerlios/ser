@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.46 2006/03/18 16:46:43 mma Exp $
+ * $Id: rr_mod.c,v 1.47 2006/05/31 08:37:13 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -91,6 +91,7 @@ static cmd_export_t cmds[] = {
 	{"record_route_strict" , record_route_strict, 0, 0,           0            },
 	{"rr_add_avp_cookie",    rr_add_avp_cookie,   1, fixup_avp_list, REQUEST_ROUTE},
         {"rr_store",             rr_add_avp_cookie,   1, fixup_avp_list, REQUEST_ROUTE},
+	{"remove_record_route",  remove_record_route, 0, 0,           REQUEST_ROUTE|FAILURE_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 

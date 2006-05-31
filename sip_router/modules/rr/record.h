@@ -1,5 +1,5 @@
 /*
- * $Id: record.h,v 1.2 2004/08/24 09:00:38 janakj Exp $
+ * $Id: record.h,v 1.3 2006/05/31 08:37:13 tirpi Exp $
  *
  * Route & Record-Route module
  *
@@ -55,5 +55,9 @@ int record_route_preset(struct sip_msg* _m, char* _ip, char* _s2);
  */
 int record_route_strict(struct sip_msg* _m, char* _s1, char* _s2);
 
+/*
+ * Remove Record-Route header from message lumps
+ */
+int remove_record_route(struct sip_msg* _m, char* _s1, char* _s2);
 
 #endif /* RECORD_H */
