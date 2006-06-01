@@ -1,7 +1,7 @@
 /*
  * Record-Route & Route module interface
  *
- * $Id: rr_mod.h,v 1.11 2006/03/18 16:46:43 mma Exp $
+ * $Id: rr_mod.h,v 1.12 2006/06/01 09:46:18 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -22,8 +22,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * History:
@@ -49,5 +49,7 @@ extern int append_fromtag;
 extern int enable_double_rr;
 extern int enable_full_lr;
 extern int add_username;
+
+#define AVP_FLAG_DIALOG_COOKIE "dialog_cookie"
 
 #endif /* RR_MOD_H */
