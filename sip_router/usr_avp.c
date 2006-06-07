@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.29 2006/05/31 23:02:46 tma0 Exp $
+ * $Id: usr_avp.c,v 1.30 2006/06/07 21:55:25 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -795,7 +795,7 @@ int parse_avp_ident( str *name, avp_ident_t* attr)
 
 	attr->index = 0;
 	DBG("Parsing '%.*s'\n", name->len, name->s);
-	if (name->len>=2 && name->s[1]==':') { // old fashion i: or s:
+	if (name->len>=2 && name->s[1]==':') { /* old fashion i: or s: */
 		WARN("i: and s: avp name syntax is deprecated!\n");
 		c = name->s[0];
 		name->s += 2;
@@ -874,7 +874,7 @@ int parse_avp_ident( str *name, avp_ident_t* attr)
 				goto error;
 			}
 			s.s=p+1;
-			s.len=name->len-(p-name->s)-2; // [ and ]
+			s.len=name->len-(p-name->s)-2; /* [ and ] */
 			if (s.len == 0) {
 				attr->flags |= AVP_INDEX_ALL;
 			} else {
