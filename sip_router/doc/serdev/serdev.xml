@@ -28,8 +28,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:28 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2006/06/09 16:46:54 $</date>
 	    </revision>
 	</revhistory>
 	<abstract>
@@ -60,6 +60,8 @@
     <xi:include href="modiface.xml"/>
     <xi:include href="db_interface.xml"/>
     <xi:include href="locking.xml"/>
+
+	<xi:include href="select_module.xml"/>
 
     <!--    
     TODO:
