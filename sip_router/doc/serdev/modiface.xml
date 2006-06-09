@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2006/01/07 23:24:58 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2006/06/09 15:13:27 $</date>
 	    </revision>
 	</revhistory>
 	<abstract>
@@ -441,8 +441,8 @@ str bar_bar = STR_STATIC_INIT("default");
 
 static param_export params[] = {
     {"foo_bar", PARAM_INT, &amp;foo_bar},
-    {"bar_foo", PARAM_STRING, &bar_foo},
-    {"bar_bar", PARAM_STR, &bar_bar.s},
+    {"bar_foo", PARAM_STRING, &amp;bar_foo},
+    {"bar_bar", PARAM_STR, &amp;ar_bar.s},
     {0, 0, 0}
 }; 
 	</programlisting>
