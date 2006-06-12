@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.42 2006/06/12 10:54:46 hallik Exp $
+# $Id: ctlctl.py,v 1.43 2006/06/12 11:19:58 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -199,8 +199,7 @@ def usrloc(command, uri, contact=None, *args, **opts):
 
 	# LB hack
 	ur = Uri(opts['DB_URI'])
-	uid = ur.get_uid(uri)
-	curi = ur.get_canonical_uri(uid)
+	curi = ur.canonize(uri)
 	del(ur)
 	if opts['SER_URI'][-1:] != '/':
 		opts['SER_URI'] = opts['SER_URI'] + '/'

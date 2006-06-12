@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.17 2006/05/30 15:32:24 hallik Exp $
+# $Id: ctluri.py,v 1.18 2006/06/12 11:19:58 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -147,12 +147,19 @@ class Uri(Basectl):
 		uids = [ i[0] for i in rows ]
 		return uniq(uids)
 
-	def get_canonical_uri(self, uid):
-		cnd, err = cond(CND_NO_DELETED, CND_CANONICAL, uid=uid)
-		rows = self.db.select(self.TABLE, 'uid', cnd, limit=1)
+	def canonize(self, uri):
+		domain = split_sip_uri(uri)[1]
+		do = self.Domain(self.dburi, self.db)
+		did = do.get_did(domain)
+		cdomain = do.get_domain(did)
+
+		uid = self.get_uid(uri)
+		cnd, err = cond(CND_NO_DELETED, CND_CANONICAL, did=did, uid=uid)
+		rows = self.db.select(self.TABLE, 'username', cnd, limit=1)
 		if not rows:
-			raise Error (ENOCANON, err)
-		return rows[0][0]
+			raise Error (ENOREC, err)
+		username = rows[0][0]
+		return username + '@' + cdomain
 
 	def exist_did(self, did):
 		cnd, err = cond(CND_NO_DELETED, did=did)

@@ -1,6 +1,7 @@
 serctl (0.3.11)
 
   * Incorrect slash handling in request URI header in usrloc xml-rpc fixed.
+  * Canonical URI creation fixed for usrloc xml-rpc.
 
  -- Jan Halla <hallik@iptel.org>
 
