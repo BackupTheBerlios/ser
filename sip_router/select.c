@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.11 2006/06/09 16:46:53 mma Exp $
+ * $Id: select.c,v 1.12 2006/06/12 11:40:16 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -128,6 +128,7 @@ int parse_select (char** p, select_t** s)
 		return -1;
 	}
 	if (w_parse_select(p, sel)<0) {
+		pkg_free(sel);
 		return -2;
 	}
 	*s=sel;
@@ -144,6 +145,7 @@ int shm_parse_select (char** p, select_t** s)
 		return -1;
 	}
 	if (w_parse_select(p, sel)<0) {
+		shm_free(sel);
 		return -2;
 	}
 	*s=sel;
