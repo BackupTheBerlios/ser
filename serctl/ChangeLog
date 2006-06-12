@@ -1,6 +1,13 @@
+serctl (0.3.11)
+
+  * Incorrect slash handling in request URI header in usrloc xml-rpc fixed.
+
+ -- Jan Halla <hallik@iptel.org>
+
 serctl (0.3.10)
 
   * Command 'ser_ctl user rm' wipe all records corresponding to appropriate UID.
+  * Incorrect slash handling in request URI header in usrloc xml-rpc fixed.
 
  -- Jan Halla <hallik@iptel.org> Wed, 31 May 2006 11:24:39 +0200
 
