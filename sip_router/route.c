@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.61 2006/06/07 21:55:25 andrei Exp $
+ * $Id: route.c,v 1.62 2006/06/12 21:14:24 mma Exp $
  *
  * SIP routing engine
  *
@@ -816,7 +816,7 @@ inline static int comp_select(int op, select_t* sel, int rtype, union exp_op* r,
 	if (ret > 0) return 0;
 
 	switch(op) {
-	case NO_OP: return 1;
+	case NO_OP: return (val.len>0);
 	case BINOR_OP:
 	case BINAND_OP:
 		ERR("Binary operators cannot be used with string selects\n");
