@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.41 2006/06/12 10:51:40 hallik Exp $
+# $Id: ctlctl.py,v 1.42 2006/06/12 10:54:46 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -201,7 +201,6 @@ def usrloc(command, uri, contact=None, *args, **opts):
 	ur = Uri(opts['DB_URI'])
 	uid = ur.get_uid(uri)
 	curi = ur.get_canonical_uri(uid)
-	print curi
 	del(ur)
 	if opts['SER_URI'][-1:] != '/':
 		opts['SER_URI'] = opts['SER_URI'] + '/'
