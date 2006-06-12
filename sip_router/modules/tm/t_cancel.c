@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.16 2005/12/21 17:25:32 janakj Exp $
+ * $Id: t_cancel.c,v 1.17 2006/06/12 08:40:54 rco Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -94,6 +94,8 @@ void cancel_branch( struct cell *t, int branch )
 		abort();
 	}
 #	endif
+
+	stop_rb_timers( irb );
 
 	if (t->uac[branch].last_received < 100) {
 		DBG("DEBUG: cancel_branch: no response ever received: "
