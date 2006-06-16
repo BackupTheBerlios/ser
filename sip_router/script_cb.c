@@ -1,5 +1,5 @@
 /*
- * $Id: script_cb.c,v 1.7 2005/02/13 18:25:11 bogdan Exp $
+ * $Id: script_cb.c,v 1.8 2006/06/16 11:48:39 tma0 Exp $
  *
  * Script callbacks -- they add the ability to register callback
  * functions which are always called when script for request
@@ -97,7 +97,7 @@ int register_script_cb( cb_function f, int type, void *param )
 				goto add_error;
 		}
 	}
-	if (type&REQ_TYPE_CB) {
+	if (type&RPL_TYPE_CB) {
 		/* callback (also) for reply script */
 		if (type&PRE_SCRIPT_CB) {
 			if (add_callback( &pre_rpl_cb, f, param)<0)
