@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.12 2006/05/03 06:13:53 hallik Exp $
+# $Id: ctlhelp.py,v 1.13 2006/06/16 12:17:16 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -32,6 +32,7 @@ OPT_DESC = {\
 	'FLAGS'    : 'Flags',
 	'FORCE'    : 'Ignore non-fatal errors',
 	'HELP'     : 'This text',
+	'ID_TYPE'  : 'Type of unique identifiers: uri, int, uuid',
 	'LIMIT'    : 'Show only limited number of records',
 	'LINE_SEP' : 'Line separator (show command)',
 	'PASSWORD' : 'Password',

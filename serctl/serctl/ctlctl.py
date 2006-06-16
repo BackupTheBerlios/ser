@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.43 2006/06/12 11:19:58 hallik Exp $
+# $Id: ctlctl.py,v 1.44 2006/06/16 12:17:16 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -23,12 +23,12 @@ from serctl.error     import Error, ENOARG, EINVAL, ENOSYS, EDOMAIN, \
                              ENODOMAIN, warning, EDUPL, ENOUSER, ERPC, \
                              ENOREC, ENOCANON
 from serctl.ctlrpc    import any_rpc, multi_rpc
+from serctl.uniqid    import get_idtype, ID_URI, id
 from serctl.options   import CMD, CMD_ADD, CMD_RM, CMD_PASSWORD, CMD_SHOW, \
                              CMD_SET
 from serctl.uri       import split_sip_uri
 from serctl.utils     import show_opts, var2tab, tabprint, dict2tab, \
-                             arg_attrs, uniq, id, errstr, ID_ORIG, cond, \
-                             get_password
+                             arg_attrs, uniq, errstr, cond, get_password
 import serctl.ctlhelp, xmlrpclib, sys
 
 # xml-rpc method used in stats function (+ all *.stats)
@@ -116,11 +116,12 @@ def publish(uid, file_with_PIDF_doc, expires_in_sec, etag=None, **opts):
 def domain(command, *domain, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
+	idtype = get_idtype(opts)
 	if cmd == CMD_ADD:
 		if len(domain) < 1:
 			raise Error (ENOARG, 'domain')
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
-		d.add(domain[0], domain[1:], ID_ORIG, force)
+		d.add(domain[0], domain[1:], idtype, force)
 	elif cmd == CMD_RM:
 		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
 		d.rm(domain, force)
@@ -145,14 +146,15 @@ def domain(command, *domain, **opts):
 def user(command, uri, *aliases, **opts):
 	force = opts['FORCE']
 	cmd = CMD.get(command)
+	idtype = get_idtype(opts)
 	if cmd == CMD_ADD:
 		prompt='Please, enter password for the new subscriber.\nPassword: '
 		password = get_password(opts, prompt=prompt)
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
-		u.add(uri, aliases, password, ID_ORIG, force)
+		u.add(uri, aliases, password, idtype, force)
 	elif cmd == CMD_RM:
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
-		u.rm(uri, ID_ORIG, force)
+		u.rm(uri, idtype, force)
 	elif cmd == CMD_SHOW:
 		cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 		u = User_ctl(opts['DB_URI'], multi_rpc(opts))
@@ -331,12 +333,15 @@ class Domain_ctl:
 			self.db = db
 		self.rpc = rpc
 
-	def add(self, domain, aliases=[], idtype=ID_ORIG, force=False):
+	def add(self, domain, aliases=[], idtype=ID_URI, force=False):
 		do = Domain(self.dburi, self.db)
 
 		did = id(domain, idtype)
 		if do.exist_did(did) and not force:
 			raise Error (EDOMAIN, errstr(did=did))
+
+		if do.exist_domain(domain) and not force:
+			raise Error (EDOMAIN, domain)
 
 		ualiases = uniq(aliases)
 		aliases = []
@@ -485,7 +490,7 @@ class User_ctl:
 		return ret, desc
 			
 
-	def add(self, uri, aliases, password, idtype=ID_ORIG, force=False):
+	def add(self, uri, aliases, password, idtype=ID_URI, force=False):
 		do = Domain(self.dburi, self.db)
 		da = Domain_attrs(self.dburi, self.db)
 		ur = Uri(self.dburi, self.db)
@@ -548,7 +553,7 @@ class User_ctl:
 				warning(str(inst))
 		self._reload()
 
-	def rm(self, uri, idtype=ID_ORIG, force=False):
+	def rm(self, uri, idtype=ID_URI, force=False):
 		us = User(self.dburi, self.db)
 		ur = Uri(self.dburi, self.db)
 		cr = Cred(self.dburi, self.db)

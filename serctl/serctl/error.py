@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.15 2006/05/30 20:06:27 hallik Exp $
+# $Id: error.py,v 1.16 2006/06/16 12:17:16 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -28,7 +28,7 @@ ERRORS = (\
 	('EDUPL',	'Duplicated'),
 	('ENOCOL',	'Invalid column name'),
 	('ERMCANON',	'Canonical item can not be deleted'),
-	('EDOMAIN',	'Domain identifier in use'),
+	('EDOMAIN',	'Domain in use'),
 	('ENOREC',	'No record found'),
 	('ENOUID',	'User identifier not exist'),
 	('ENODID',	'Domain identifier not exist'),
@@ -52,6 +52,7 @@ ERRORS = (\
 	('EPASSWORD',	'Password does not match'),
 	('ENOATTR',	'Attribute does not exist'),
 	('ENODRA',	'Digest realm attribute not found'),
+	('EUUIDCMD',	'Uuid command failed'),
 
 	('ETYPE',	'Unknown type'),
 	('ELINE',	'Malformed input line'),

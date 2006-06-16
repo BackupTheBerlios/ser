@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.17 2006/05/10 18:23:00 hallik Exp $
+# $Id: utils.py,v 1.18 2006/06/16 12:17:17 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -13,13 +13,13 @@
 
 from getpass        import getpass
 from serctl.error   import Error, EINVAL, EMISMATCH, EALL, ENOCOL, EINT, \
-                           EIDTYPE, EPASSWORD
+                           EPASSWORD
 from serctl.options import OPT
 from serctl.dbany   import DBany
 from serctl.flag    import cv_flags
 from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
-import sys, serctl.options
+import sys, serctl.options, commands
 
 CND_TRUE  = ['1']
 CND_FALSE = ['0']
@@ -222,12 +222,6 @@ def uniq(items):
 	for i in items:
 		d[i] = None
 	return d.keys()
-
-def id(s, idtype=ID_ORIG):
-	if idtype == ID_ORIG:
-		return s
-	raise Error (EIDTYPE, str(idtype))
-
 
 class Basectl:
 ###	This variables should be defined by the child class

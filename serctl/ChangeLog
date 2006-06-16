@@ -1,3 +1,10 @@
+serctl (0.3.12)
+
+  * Identifiers may be UUID, too.
+  * Added new option --id-type (-I).
+
+ -- Jan Halla <hallik@iptel.org> Fri, 16 Jun 2006 14:12:55 +0200
+
 serctl (0.3.11)
 
   * Incorrect slash handling in request URI header in usrloc xml-rpc fixed.
