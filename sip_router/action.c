@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.85 2006/06/07 21:55:25 andrei Exp $
+ * $Id: action.c,v 1.86 2006/06/16 14:15:51 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -915,7 +915,7 @@ int run_actions(struct action* a, struct sip_msg* msg)
 	if (a==0){
 		DBG("DEBUG: run_actions: null action list (rec_level=%d)\n",
 			rec_lev);
-		ret=0;
+		ret=1;
 	}
 
 	for (t=a; t!=0; t=t->next){
