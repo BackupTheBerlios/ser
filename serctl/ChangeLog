@@ -1,3 +1,10 @@
+serctl (0.3.13)
+
+  * Correct serctl version is sent in User-agent header field by xml-rpc
+    request.
+
+ -- Jan Halla <hallik@iptel.org> Fri, 16 Jun 2006 14:52:21 +0200
+
 serctl (0.3.12)
 
   * Identifiers may be UUID, too.

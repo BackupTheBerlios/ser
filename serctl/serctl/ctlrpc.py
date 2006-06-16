@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.14 2006/05/30 15:32:24 hallik Exp $
+# $Id: ctlrpc.py,v 1.15 2006/06/16 12:56:18 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -15,9 +15,11 @@ _handler_ = 'main'
 
 from os.path          import join, dirname
 from serctl.error     import Error, ENOSYS, ERPC, warning
-from serctl.serxmlrpc import ServerProxy
 from serctl.utils     import show_opts, tabprint, var2tab
-import os, sys, serctl.ctlhelp, xmlrpclib
+import os, sys, serctl.ctlhelp, xmlrpclib, serctl.serxmlrpc, version
+
+serctl.serxmlrpc.Transport.HEADERS['User-Agent'] = 'serctl/' + version.version
+ServerProxy = serctl.serxmlrpc.ServerProxy
 
 def main(rpc_command=None, *args, **opts):
 	if opts['HELP'] or rpc_command==None:

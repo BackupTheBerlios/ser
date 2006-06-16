@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: serxmlrpc.py,v 1.3 2006/03/01 14:06:47 hallik Exp $
+# $Id: serxmlrpc.py,v 1.4 2006/06/16 12:56:18 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -72,7 +72,7 @@ class UnsupportedAuthScheme(httplib.HTTPException):
 
 class Transport:
 	HEADERS = {"Content-type": "application/x-www-form-urlencoded",
-	           "User-Agent"  : "serctl/1.0" }
+	           "User-Agent"  : 'serctl/1.0' }
 
 	def __init__(self, uri=None, ssl=None):
 		puri = _parse_uri(uri)
