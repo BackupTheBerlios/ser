@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.5 2006/06/16 16:56:14 tma0 Exp $
+/* $Id: natping.c,v 1.6 2006/06/17 00:11:25 sobomax Exp $
  *
  * Copyright (C) 2005 Porta Software Ltd
  *
@@ -143,7 +143,8 @@ natping(unsigned int ticks, void *param)
 	pkg_free(buf);
 }
 
-int natping_contact(str contact, struct dest_info *dst) {
+static int
+natping_contact(str contact, struct dest_info *dst) {
 	struct sip_uri curi;
 	struct hostent* he;
 	str p_method, p_from;
@@ -185,5 +186,5 @@ int natping_contact(str contact, struct dest_info *dst) {
 		dst->proto=PROTO_UDP;
 		udp_send(dst, (char *)sbuf, sizeof(sbuf));
 	}
-	return 1;
+	return 0;
 }
