@@ -1,5 +1,5 @@
 /*
- * $Id: nathelper.h,v 1.2 2006/06/16 16:56:14 tma0 Exp $
+ * $Id: nathelper.h,v 1.3 2006/06/17 00:21:27 sobomax Exp $
  *
  *
  * Copyright (C) 2005 Porta Software Ltd.
@@ -39,7 +39,7 @@ extern struct socket_info* force_socket;
 /* Functions from natping.c */
 int natpinger_init(void);
 
-int natping_contact(str contact, struct dest_info *dst);
+int natping_contact(str, struct dest_info *);
 
 /* Variables from natping.c referenced from nathelper.c */
 extern int natping_interval;
