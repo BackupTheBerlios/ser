@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2006/02/24 20:24:08 andrei Exp $
+# $Id: Makefile,v 1.3 2006/06/19 09:11:22 greger Exp $
 
 include ../../Makefile.defs
 
@@ -27,7 +27,7 @@ endif
 
 ifeq ($(use_readline),1)
 	DEFS+=-DUSE_READLINE
-	LIBS+=-lreadline
+	LIBS+=-lreadline -lncurses
 endif
 
 
