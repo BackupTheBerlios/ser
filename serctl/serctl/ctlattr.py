@@ -13,7 +13,7 @@
 
 from serctl.dbany     import DBany
 from serctl.error     import Error, EDUPL, EATTR, ENOARG, ENOREC, EINVAL, \
-                             ENOATTR, ENODRA
+                             ENOATTR, ENODRA, ENOVAL
 from serctl.flag      import parse_flags, new_flags, flag_syms, CND_NO_DELETED, \
                              FOR_SERWEB, cv_flags, set_deleted, CND_DELETED
 from serctl.utils     import show_opts, tabprint, idx_dict, arg_attrs, \
@@ -246,6 +246,9 @@ class User_attrs(Basectl):
 		return self.show_cnd(cond(uid=uid), cols, fformat, limit)
 
 	def add(self, uid, attr, value, flags=None, force=False):
+		if not value:
+			if force: return
+			raise Error (ENOVAL, attr)
 		at = Attr_types(self.dburi, self.db)
 		dflags = at.get_default_flags(attr)
 		fmask  = parse_flags(flags)
@@ -316,6 +319,13 @@ class Domain_attrs(Basectl):
 	def exist(self, did, attr, value=None):
 		return self.exist_cnd(cond(CND_NO_DELETED, name=attr, did=did, value=value))
 
+	def get(self, did, attr):
+		cnd, err = cond(CND_NO_DELETED, name=attr, did=did)
+		rows = self.db.select(self.TABLE, 'value', cnd, limit=1)
+		if not rows:
+			raise Error (ENODRA, did)
+		return rows[0][0]
+
 	def show_did(self, did=None, cols=None, fformat='raw', limit=0):
 		return self.show_cnd(cond(did=did), cols, fformat, limit)
 
@@ -346,6 +356,9 @@ class Domain_attrs(Basectl):
 		return new_rows, desc
 
 	def add(self, did, attr, value, flags=None, force=False):
+		if not value:
+			if force: return
+			raise Error (ENOVAL, attr)
 		at = Attr_types(self.dburi, self.db)
 		dflags = at.get_default_flags(attr)
 		fmask  = parse_flags(flags)
@@ -391,9 +404,19 @@ class Domain_attrs(Basectl):
 		# FIX: purge hack
 		self.purge()
 
+	def rm_exist(self, did, attr, value=None, force=False):
+		# search for attr, return if set
+		if not self.exist(did, attr): return
+		self.rm(did, attr, value, force)
+
 	def set(self, did, attr, value, flags=None, force=False):
 		if self.exist(did, attr):
 			self.rm(did, attr, force=force)
+		self.add(did, attr, value, flags, force)
+
+	def set_default(self, did, attr, value, flags=None, force=False):
+		# search for attr, return if set
+		if self.exist(did, attr): return
 		self.add(did, attr, value, flags, force)
 
 	def set_many(self, did, alist, flags=None, force=False):
@@ -404,42 +427,6 @@ class Domain_attrs(Basectl):
 				self.rm(did, a, force=force)
 		for a, v in alist: 
 			self.add(did, a, v, flags, force)
-
-
-	def exist_dra(self, did):
-		cnd, err = cond(CND_NO_DELETED, name='digest_realm', did=did)
-		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
-		return rows != []
-
-	def get_dra(self, did):
-		cnd, err = cond(CND_NO_DELETED, name='digest_realm', did=did)
-		rows = self.db.select(self.TABLE, 'value', cnd, limit=1)
-		if not rows:
-			raise Error (ENODRA, did)
-		return rows[0][0]
-
-	def add_dra(self, did, domain):
-		at = Attr_types(self.dburi, self.db)
-		flags = at.get_default_flags('digest_realm')
-		ins = {'did': did, 'name': 'digest_realm', 'value': domain, \
-		  'type': 2, 'flags': flags }
-		self.db.insert(self.TABLE, ins)
-
-	def set_dra_if_not_set(self, did, domain):
-		# search for digest realm attr, return if set
-		cnd, err = cond(CND_NO_DELETED, did=did, name='digest_realm')
-		rows = self.db.select(self.TABLE, 'did', cnd, limit=1)
-		if rows:
-			return
-		self.add_dra(did, domain)
-
-	def rm_dra(self, did):
-		cnd, err = cond(CND_NO_DELETED, did=did, name='digest_realm')
-		rows = self.db.select(self.TABLE, self.COLUMNS, cnd)
-		for row in rows:
-			nf = set_deleted(row[self.FLAGIDX])
-			cnd = full_cond(self.COLUMNS, row)
-			self.db.update(self.TABLE, {'flags': nf}, cnd)
 
 	def purge(self):
 		self.db.delete(self.TABLE, CND_DELETED)
@@ -482,6 +469,9 @@ class Global_attrs(Basectl):
 		return new_rows, desc
 
 	def add(self, attr, value, flags=None, force=False):
+		if not value:
+			if force: return
+			raise Error (ENOVAL, attr)
 		at = Attr_types(self.dburi, self.db)
 		dflags = at.get_default_flags(attr)
 		fmask  = parse_flags(flags)

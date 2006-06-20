@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.44 2006/06/16 12:17:16 hallik Exp $
+# $Id: ctlctl.py,v 1.45 2006/06/20 10:19:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -521,7 +521,7 @@ class User_ctl:
 				raise Error (ENODOMAIN, domain)
 		did = do.get_did(domain)
 		try:
-			realm = da.get_dra(did)
+			realm = da.get(did, 'digest_realm')
 		except:
 			if force:
 				realm = domain

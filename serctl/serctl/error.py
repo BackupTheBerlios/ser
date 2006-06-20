@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.16 2006/06/16 12:17:16 hallik Exp $
+# $Id: error.py,v 1.17 2006/06/20 10:19:35 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -53,6 +53,7 @@ ERRORS = (\
 	('ENOATTR',	'Attribute does not exist'),
 	('ENODRA',	'Digest realm attribute not found'),
 	('EUUIDCMD',	'Uuid command failed'),
+	('ENOVAL',	'No value specified'),
 
 	('ETYPE',	'Unknown type'),
 	('ELINE',	'Malformed input line'),

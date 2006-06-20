@@ -1,3 +1,10 @@
+serctl (0.3.14)
+
+  * Domain attribute sop_vm_domain are set when new domain is added.
+  * Check for empty attribute value added.
+
+ -- Jan Halla <hallik@iptel.org> Tue, 20 Jun 2006 12:16:44 +0200
+
 serctl (0.3.13)
 
   * Correct serctl version is sent in User-agent header field by xml-rpc
