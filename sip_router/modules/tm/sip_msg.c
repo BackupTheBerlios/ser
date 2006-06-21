@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.96 2006/06/21 08:18:53 tma0 Exp $
+ * $Id: sip_msg.c,v 1.97 2006/06/21 13:33:01 kubartv Exp $
  *
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -379,6 +379,7 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg, int *sip_msg_len )
 		case HDR_SIPIFMATCH_T:
 		case HDR_SESSIONEXPIRES_T:
 		case HDR_MIN_SE_T:
+		case HDR_SUBSCRIPTION_STATE_T:
 		case HDR_ACCEPTCONTACT_T:
 		case HDR_ALLOWEVENTS_T:
 		case HDR_CONTENTENCODING_T:
@@ -757,6 +758,11 @@ do { \
 		case HDR_MIN_SE_T:
 			if (!HOOK_SET(min_se)) {
 				new_msg->min_se = new_hdr;
+			}
+			break;
+		case HDR_SUBSCRIPTION_STATE_T:
+			if (!HOOK_SET(subscription_state)) {
+				new_msg->subscription_state = new_hdr;
 			}
 			break;
 		case HDR_SIPIFMATCH_T:

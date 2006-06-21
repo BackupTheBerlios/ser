@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.28 2006/06/21 08:18:54 tma0 Exp $
+ * $Id: hf.c,v 1.29 2006/06/21 13:33:01 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -44,6 +44,7 @@
 #include "parse_expires.h"
 #include "parse_sipifmatch.h"
 #include "parse_rr.h"
+#include "parse_subscription_state.h"
 #include "contact/parse_contact.h"
 #include "parse_disposition.h"
 #include "../ut.h"
@@ -165,6 +166,10 @@ void clean_hdr_field(struct hdr_field* hf)
 
 		case HDR_REFER_TO_T:
 			free_to(hf->parsed);
+			break;
+		
+		case HDR_SUBSCRIPTION_STATE_T:
+			free_subscription_state((subscription_state_t**)hf->parsed);
 			break;
 
 		case HDR_SESSIONEXPIRES_T:

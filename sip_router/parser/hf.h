@@ -1,5 +1,5 @@
 /*
- * $Id: hf.h,v 1.25 2006/06/21 08:18:54 tma0 Exp $
+ * $Id: hf.h,v 1.26 2006/06/21 13:33:01 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -89,6 +89,7 @@ enum _hdr_types_t {
 	HDR_SIPIFMATCH_T                   /* SIP-If-Match header field */,
 	HDR_SESSIONEXPIRES_T                           /* Session-Expires header */,
 	HDR_MIN_SE_T                                   /* Min-SE */,
+	HDR_SUBSCRIPTION_STATE_T                       /* Subscription-State */,
 	HDR_ACCEPTCONTACT_T                            /* Accept-Contact header */,
 	HDR_ALLOWEVENTS_T                              /* Allow-Events header */,
 	HDR_CONTENTENCODING_T                          /* Content-Encoding header */,
@@ -148,6 +149,7 @@ typedef unsigned long long hdr_flags_t;
 #define HDR_SIPIFMATCH_F			HDR_F_DEF(SIPIFMATCH)
 #define HDR_SESSIONEXPIRES_F			HDR_F_DEF(SESSIONEXPIRES)
 #define HDR_MIN_SE_F				HDR_F_DEF(MIN_SE)
+#define HDR_SUBSCRIPTION_STATE_F	HDR_F_DEF(SUBSCRIPTION_STATE)
 #define HDR_ACCEPTCONTACT_F			HDR_F_DEF(HDR_ACCEPTCONTACT_T)
 #define HDR_ALLOWEVENTS_F			HDR_F_DEF(HDR_ALLOWEVENTS_T)
 #define HDR_CONTENTENCODING_F			HDR_F_DEF(HDR_CONTENTENCODING_T)
@@ -192,6 +194,7 @@ static inline int hdr_allocs_parse(struct hdr_field* hdr)
 		case HDR_DIVERSION_T:
 		case HDR_RPID_T:
 		case HDR_REFER_TO_T:
+		case HDR_SUBSCRIPTION_STATE_T:
 			return 1;
 		default:
 			return 0;

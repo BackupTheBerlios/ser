@@ -1,5 +1,5 @@
 /*
- * $Id: keys.h,v 1.17 2006/06/21 08:18:54 tma0 Exp $
+ * $Id: keys.h,v 1.18 2006/06/21 13:33:01 kubartv Exp $
  *
  * Fast 32-bit Header Field Name Parser -- keys
  *
@@ -110,6 +110,9 @@
 #define _prio_ 0x6f697270   /* "prio" */
 #define _rity_ 0x79746972   /* "rity" */
 #define _subj_ 0x6a627573   /* "subj" */
+#define _subs_ 0x73627573   /* "subs" */
+#define _crip_ 0x70697263   /* "crip" */
+#define __sta_ 0x6174732d   /* "-sta" */
 #define _ect2_ 0x20746365   /* "ect " */
 #define _ect1_ 0x3a746365   /* "ect:" */
 #define _user_ 0x72657375   /* "user" */
