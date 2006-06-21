@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.29 2006/06/21 13:33:01 kubartv Exp $
+ * $Id: hf.c,v 1.30 2006/06/21 13:42:40 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -169,7 +169,7 @@ void clean_hdr_field(struct hdr_field* hf)
 			break;
 		
 		case HDR_SUBSCRIPTION_STATE_T:
-			free_subscription_state((subscription_state_t**)hf->parsed);
+			free_subscription_state((subscription_state_t**)(&hf->parsed));
 			break;
 
 		case HDR_SESSIONEXPIRES_T:
