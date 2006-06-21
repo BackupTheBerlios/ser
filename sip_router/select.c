@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.13 2006/06/21 19:11:58 mma Exp $
+ * $Id: select.c,v 1.14 2006/06/21 21:36:52 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -243,12 +243,10 @@ int resolve_select(select_t* s)
 				goto not_found;
 			}
 		}
-		if (t->table[table_idx].flags & FIXUP_CALL) {
-			if (t->table[table_idx].new_f(NULL, s, NULL)<0) goto not_found;
-		}
 
 		if (t->table[table_idx].flags & NESTED) {
 			if (nested < MAX_NESTED_CALLS-1) { /* need space for final function */
+				s->lvl = nested;
 				s->f[nested++] = f;
 				s->param_offset[nested] = param_idx+1;
 			} else {
@@ -258,6 +256,11 @@ int resolve_select(select_t* s)
 		} else {
 			param_idx++;
 		}
+
+		if (t->table[table_idx].flags & FIXUP_CALL) {
+			if (t->table[table_idx].new_f(NULL, s, NULL)<0) goto not_found;
+		}
+
 		f = t->table[table_idx].new_f;
 	}
 
