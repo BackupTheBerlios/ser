@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.27 2006/06/18 23:15:22 tma0 Exp $
+ * $Id: hf.c,v 1.28 2006/06/21 08:18:54 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -168,6 +168,7 @@ void clean_hdr_field(struct hdr_field* hf)
 			break;
 
 		case HDR_SESSIONEXPIRES_T:
+		case HDR_MIN_SE_T:
 		case HDR_ACCEPTCONTACT_T:
 		case HDR_ALLOWEVENTS_T:
 		case HDR_CONTENTENCODING_T:

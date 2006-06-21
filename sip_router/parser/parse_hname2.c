@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname2.c,v 1.25 2006/06/18 23:15:23 tma0 Exp $
+ * $Id: parse_hname2.c,v 1.26 2006/06/21 08:18:54 tma0 Exp $
  *
  * Fast 32-bit Header Field Name Parser
  *
@@ -88,6 +88,7 @@ static inline char* skip_ws(char* p, unsigned int size)
 #include "case_refe.h"     /* Refer-To */
 #include "case_sess.h"     /* Session-Expires */
 #include "case_reje.h"     /* Reject-Contact */
+#include "case_min.h"      /* Min-SE */
 
 
 #define READ(val) \
@@ -123,6 +124,7 @@ static inline char* skip_ws(char* p, unsigned int size)
         case _refe_: refe_CASE; \
 	case _sess_: sess_CASE; \
 	case _reje_: reje_CASE; \
+	case _min__: min_CASE;  \
 
 
 
