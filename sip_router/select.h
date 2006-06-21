@@ -1,5 +1,5 @@
 /*
- * $Id: select.h,v 1.7 2006/06/09 16:46:53 mma Exp $
+ * $Id: select.h,v 1.8 2006/06/21 19:11:58 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -119,8 +119,10 @@ typedef int (*select_f)(str* res, struct select* s, struct sip_msg* msg);
 
 typedef struct select {
 	select_f f[MAX_NESTED_CALLS];
+	int param_offset[MAX_NESTED_CALLS+1];
 	select_param_t params[MAX_SELECT_PARAMS];
 	int n;
+	int lvl;
 } select_t;
 
 typedef struct {
