@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.30 2006/06/21 13:42:40 kubartv Exp $
+ * $Id: hf.c,v 1.31 2006/06/23 08:51:37 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -117,6 +117,9 @@ void clean_hdr_field(struct hdr_field* hf)
 		case HDR_SUPPORTED_T:
 			break;
 
+		case HDR_REQUIRE_T:
+			break;
+			
 		case HDR_PROXYREQUIRE_T:
 			break;
 

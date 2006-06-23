@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.64 2006/06/21 13:33:01 kubartv Exp $
+ * $Id: msg_parser.h,v 1.65 2006/06/23 08:51:37 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -193,6 +193,7 @@ struct sip_msg {
 	struct hdr_field* expires;
 	struct hdr_field* proxy_auth;
 	struct hdr_field* supported;
+	struct hdr_field* require;
 	struct hdr_field* proxy_require;
 	struct hdr_field* unsupported;
 	struct hdr_field* allow;
