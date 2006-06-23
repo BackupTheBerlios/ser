@@ -1,5 +1,5 @@
 /*
- * $Id: mod_options.h,v 1.2 2004/08/24 08:58:32 janakj Exp $
+ * $Id: mod_options.h,v 1.3 2006/06/23 11:15:34 calrissian Exp $
  *
  * Options Reply Module
  *
@@ -36,7 +36,7 @@
 #define ACPT_ENC_STR_LEN 17
 #define ACPT_LAN_STR "Accept-Language: "
 #define ACPT_LAN_STR_LEN 17
-#define SUPT_STR "Support: "
+#define SUPT_STR "Supported: "
 #define SUPT_STR_LEN 9
 #define HF_SEP_STR "\r\n"
 #define HF_SEP_STR_LEN 2
