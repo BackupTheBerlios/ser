@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.62 2006/05/25 09:32:36 kubartv Exp $
+ * $Id: pa_mod.c,v 1.63 2006/06/26 07:27:18 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -374,11 +374,6 @@ static int pa_mod_init(void)
 
 	fill_xcap_params = (fill_xcap_params_func)find_export("fill_xcap_params", 0, -1);
 
-	/* FIXME: memory tests only */
-	TRACE("sizeof(presentity_t): %d\n", sizeof(presentity_t));
-	TRACE("sizeof(watcher_t): %d\n", sizeof(watcher_t));
-	TRACE("sizeof(dlg_t): %d\n", sizeof(dlg_t));
-	
 	LOG(L_DBG, "pa_mod_init done\n");
 	return 0;
 }
@@ -410,7 +405,6 @@ static int pa_child_init(int _rank)
 	}
 
 #ifdef DO_TRACE
-	TRACE("initializing profiler\n");
 	SER_PROFILE_INIT
 #endif
 

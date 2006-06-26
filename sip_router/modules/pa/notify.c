@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.46 2006/05/25 12:03:26 kubartv Exp $
+ * $Id: notify.c,v 1.47 2006/06/26 07:27:18 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -519,6 +519,7 @@ static int send_presence_notify(struct presentity* _p, struct watcher* _w)
 			FMT_STR(_w->dialog->id.rem_tag), 
 			FMT_STR(_w->dialog->id.loc_tag));
 		/* FIXME: destroy subscription? */
+		/* FIXME: destroy cbd? */
 	}
 	str_free_content(&doc);
 	str_free_content(&headers);
