@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.32 2006/06/27 13:55:01 janakj Exp $
+ * $Id: domain_mod.c,v 1.33 2006/06/27 16:12:28 janakj Exp $
  *
  * Domain module
  *
@@ -748,9 +748,10 @@ static int lookup_domain_fixup(void** param, int param_no)
 			} else if (!strcasecmp(fp->orig, "To")) {
 				fp->v.i = LOAD_TO;
 			}
+		} else {
+			ERR("Unknown parameter\n");
+			return -1;
 		}
-		ERR("Unknown parameter\n");
-		return -1;
 	}
 
 	return 0;
