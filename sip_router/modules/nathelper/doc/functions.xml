@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2006/06/16 16:56:15 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2006/06/27 17:56:12 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -196,6 +196,7 @@ ping_contact($c);
 ...
 $c = @nathelper.rewrite_contact[1];
 ...
+$c2 = @nathelper.rewrite_contact[1].nameaddr.uri;
 	    </programlisting>
 	</example>
     </section>
