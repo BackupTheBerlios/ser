@@ -1,5 +1,5 @@
 /*
- * $Id: common.c,v 1.19 2006/03/01 16:00:22 janakj Exp $
+ * $Id: common.c,v 1.20 2006/06/27 13:57:01 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -48,7 +48,8 @@
 /* 
  * Find out the digest realm to be used in challenge in the following order:
  *
- * 1) "realm" avp
+ * 1) digest_realm of the virtual domain
+ * 2) Realm configured in the configuration file (passed in realm parameter)
  * 2) To/From URI host part
  */
 int get_realm(struct sip_msg* msg, hdr_types_t hftype, str* realm)
@@ -57,7 +58,9 @@ int get_realm(struct sip_msg* msg, hdr_types_t hftype, str* realm)
 	int_str name, val;
 	str u;
 	static str n = STR_STATIC_INIT(AVP_REALM);
-	
+
+	if (realm->len) return 0;
+
 	name.s = n;
 	if (search_first_avp(AVP_NAME_STR, name, &val, 0)) {
 		*realm = val.s;
