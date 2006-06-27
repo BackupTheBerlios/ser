@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.15 2006/06/27 11:43:40 mma Exp $
+ * $Id: select.c,v 1.16 2006/06/27 19:07:44 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -182,7 +182,7 @@ int resolve_select(select_t* s)
 			if (!t->table) continue;
 			while (t->table[table_idx].curr_f || t->table[table_idx].new_f) {
 				if (t->table[table_idx].curr_f == f) {
-					if (t->table[table_idx].flags & NESTED) {
+					if ((t->table[table_idx].flags & (NESTED | CONSUME_NEXT_INT | CONSUME_NEXT_STR)) == NESTED) {
 						accept = 1;
 					} else if (t->table[table_idx].type == s->params[param_idx].type) {
 						switch (t->table[table_idx].type) {
