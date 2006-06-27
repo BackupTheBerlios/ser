@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.123 2006/05/31 23:29:27 tma0 Exp $
+ * $Id: cfg.y,v 1.124 2006/06/27 13:46:13 janakj Exp $
  *
  *  cfg grammar
  *
@@ -1357,6 +1357,19 @@ select_param:
 		sel.n++;
 		sel.params[sel.n].type = SEL_PARAM_INT;
 		sel.params[sel.n].v.i = $3;
+		sel.n++;
+	}
+	| ID LBRACK STRING RBRACK {
+		if (sel.n >= MAX_SELECT_PARAMS-2) {
+			yyerror("Select identifier too long\n");
+		}
+		sel.params[sel.n].type = SEL_PARAM_STR;
+		sel.params[sel.n].v.s.s = $1;
+		sel.params[sel.n].v.s.len = strlen($1);
+		sel.n++;
+		sel.params[sel.n].type = SEL_PARAM_STR;
+		sel.params[sel.n].v.s.s = $3;
+		sel.params[sel.n].v.s.len = strlen($3);
 		sel.n++;
 	}
 	;
