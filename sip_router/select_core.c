@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.11 2006/06/21 19:11:58 mma Exp $
+ * $Id: select_core.c,v 1.12 2006/06/27 11:43:40 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -37,6 +37,7 @@
 #include "select_buf.h"
 #include "dprint.h"
 #include "trim.h"
+#include "parser/parser_f.h"
 #include "parser/hf.h"
 #include "parser/parse_from.h"
 #include "parser/parse_to.h"
@@ -792,3 +793,45 @@ int select_cseq_method(str* res, select_t* s, struct sip_msg* msg)
 	*res = cs->method;
 	return 0;
 }
+
+ABSTRACT_F(select_any_nameaddr)
+
+int select_nameaddr_name(str* res, select_t* s, struct sip_msg* msg)
+{
+	char *p;
+	
+	p=find_not_quoted(res, '<');
+	if (!p) {
+		DBG("select_nameaddr_name: no < found, whole string is uri\n");
+		res->len=0;
+		return 1;
+	}
+
+	res->len=p-res->s;
+	while (res->len && SP(res->s[res->len-1])) res->len--;
+	return 0;
+}
+
+int select_nameaddr_uri(str* res, select_t* s, struct sip_msg* msg)
+{
+	char *p;
+	
+	p=find_not_quoted(res, '<');
+	if (!p) {
+		DBG("select_nameaddr_uri: no < found, whole string is uri\n");
+		return 0;
+	}
+
+	res->len=res->len - (p-res->s) -1;
+	res->s=p +1;
+	
+	p=find_not_quoted(res, '>');
+	if (!p) {
+		ERR("select_nameaddr_uri: no > found, invalid nameaddr value\n");
+		return -1;
+	}
+
+	res->len=p-res->s;
+	return 0;
+}
+

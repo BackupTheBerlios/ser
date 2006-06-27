@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.14 2006/06/21 21:36:52 mma Exp $
+ * $Id: select.c,v 1.15 2006/06/27 11:43:40 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -248,7 +248,7 @@ int resolve_select(select_t* s)
 			if (nested < MAX_NESTED_CALLS-1) { /* need space for final function */
 				s->lvl = nested;
 				s->f[nested++] = f;
-				s->param_offset[nested] = param_idx+1;
+				s->param_offset[nested] = param_idx;
 			} else {
 				BUG("MAX_NESTED_CALLS too small to resolve select\n");
 				goto not_found;
