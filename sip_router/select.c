@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.16 2006/06/27 19:07:44 mma Exp $
+ * $Id: select.c,v 1.17 2006/06/27 21:34:50 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -86,18 +86,34 @@ int w_parse_select(char**p, select_t* sel)
 		sel->n++;
 		if (*(*p)=='[') {
 			(*p)++; 
-			name.s=(*p);
-			if (*(*p)=='-') (*p)++;
-			while (isdigit(*(*p))) (*p)++;
-			name.len=(*p)-name.s;
-			if (*(*p)!=']') {
-				ERR("parse_select: invalid index, no closing ]\n");
-				goto error;
-			};
-			(*p)++;
-			sel->params[sel->n].type=SEL_PARAM_INT;
-			sel->params[sel->n].v.i=atoi(name.s);
-			DBG("parse_select: part %d: [%d]\n", sel->n, sel->params[sel->n].v.i);
+			if (*(*p)=='"') {
+				(*p)++;	
+				name.s=(*p);
+				while (*(*p)!='"') (*p)++;
+				name.len=(*p)-name.s;
+				(*p)++;
+				if (*(*p)!=']') {
+					ERR("parse_select: invalid string index, no closing ]\n");
+					goto error;
+				};
+				(*p)++;
+				sel->params[sel->n].type=SEL_PARAM_STR;
+				sel->params[sel->n].v.s=name;
+				DBG("parse_select: part %d: [\"%.*s\"]\n", sel->n, sel->params[sel->n].v.s.len, sel->params[sel->n].v.s.s);
+			} else {
+				name.s=(*p);
+				if (*(*p)=='-') (*p)++;
+				while (isdigit(*(*p))) (*p)++;
+				name.len=(*p)-name.s;
+				if (*(*p)!=']') {
+					ERR("parse_select: invalid index, no closing ]\n");
+					goto error;
+				};
+				(*p)++;
+				sel->params[sel->n].type=SEL_PARAM_INT;
+				sel->params[sel->n].v.i=atoi(name.s);
+				DBG("parse_select: part %d: [%d]\n", sel->n, sel->params[sel->n].v.i);
+			}
 			sel->n++;
 		}
 		if (*(*p)!='.') break;
@@ -246,7 +262,6 @@ int resolve_select(select_t* s)
 
 		if (t->table[table_idx].flags & NESTED) {
 			if (nested < MAX_NESTED_CALLS-1) { /* need space for final function */
-				s->lvl = nested;
 				s->f[nested++] = f;
 				s->param_offset[nested] = param_idx;
 			} else {
@@ -258,6 +273,8 @@ int resolve_select(select_t* s)
 		}
 
 		if (t->table[table_idx].flags & FIXUP_CALL) {
+			s->lvl = nested;
+			s->param_offset[nested+1] = param_idx;
 			if (t->table[table_idx].new_f(NULL, s, NULL)<0) goto not_found;
 		}
 
