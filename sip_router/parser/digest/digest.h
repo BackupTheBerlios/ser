@@ -1,5 +1,5 @@
 /*
- * $Id: digest.h,v 1.7 2004/08/24 09:01:29 janakj Exp $
+ * $Id: digest.h,v 1.8 2006/06/27 13:51:32 janakj Exp $
  *
  * Digest credentials parser interface
  *
@@ -107,5 +107,11 @@ int get_authorized_cred(struct hdr_field* _f, struct hdr_field** _h);
  */
 dig_err_t check_dig_cred(dig_cred_t* _c);
 
+
+/*
+ * Find credentials with given realm in a SIP message header
+ */
+int find_credentials(struct sip_msg* msg, str* realm,
+		     hdr_types_t hftype, struct hdr_field** hdr);
 
 #endif /* DIGEST_H */
