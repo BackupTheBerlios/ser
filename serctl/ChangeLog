@@ -1,3 +1,9 @@
+serctl (0.3.15)
+
+  * Minor UUID stuff improvement.
+
+ -- Jan Halla <hallik@iptel.org> Wed, 28 Jun 2006 15:32:33 +0200
+
 serctl (0.3.14)
 
   * Domain attribute sop_vm_domain are set when new domain is added.
