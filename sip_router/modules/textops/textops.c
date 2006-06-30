@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.60 2006/06/30 17:31:12 tma0 Exp $
+/*$Id: textops.c,v 1.61 2006/06/30 18:32:01 tma0 Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -1722,7 +1722,7 @@ static int sel_hf_value_name(str* res, select_t* s, struct sip_msg* msg) {
 			hname = s->params[1].v.p;
 		}
 		n = s->param_offset[s->lvl+1] - s->param_offset[s->lvl];  /* number of values before NESTED */
-		if (n >= 2 && s->params[2].type == SEL_PARAM_INT) {
+		if (n > 2 && s->params[2].type == SEL_PARAM_INT) {
 			hname->idx = s->params[2].v.i;
 			hname->flags |= HNF_IDX;
 			if (hname->idx < -MAX_HF_VALUE_STACK) {
@@ -1817,6 +1817,7 @@ static int sel_hf_value_name(str* res, select_t* s, struct sip_msg* msg) {
 				hf = 0;
 				do {
 					r = find_next_hf(msg, hname, &hf);
+					
 					if (r < 0) break;
 					if (hf) {
 						char *p;
