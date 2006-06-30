@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.26 2006/03/13 08:48:45 kubartv Exp $
+ * $Id: tm_load.c,v 1.27 2006/06/30 13:04:18 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -158,7 +158,9 @@ int load_tm( struct tm_binds *tmb)
 		LOG( L_ERR, LOAD_ERROR "'t_uac' not found\n");
 		return -1;
 	}
-
+	tmb->prepare_request_within = prepare_req_within;
+	tmb->send_prepared_request = send_prepared_request;
+	
 	tmb->route_mode = &rmode;
 	return 1;
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.24 2006/01/30 15:56:29 kubartv Exp $
+ * $Id: tm_load.h,v 1.25 2006/06/30 13:04:18 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -100,6 +100,8 @@ struct tm_binds {
 	tgett_f            t_gett;
 	calculate_hooks_f  calculate_hooks;
 	t_uac_t            t_uac;
+	prepare_request_within_f  prepare_request_within;
+	send_prepared_request_f   send_prepared_request;
 	enum route_mode*   route_mode;
 };
 
