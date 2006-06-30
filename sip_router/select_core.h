@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.h,v 1.15 2006/06/30 15:03:55 mma Exp $
+ * $Id: select_core.h,v 1.16 2006/06/30 21:11:26 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -190,9 +190,8 @@ static select_row_t select_core[] = {
 
 	{ select_any_nameaddr, SEL_PARAM_STR, STR_STATIC_INIT("name"), select_nameaddr_name, 0},
 	{ select_any_nameaddr, SEL_PARAM_STR, STR_STATIC_INIT("uri"), select_nameaddr_uri, 0},
-	{ select_any_nameaddr, SEL_PARAM_STR, STR_STATIC_INIT("params"), select_nameaddr_params, 0},
+	{ select_any_nameaddr, SEL_PARAM_STR, STR_STATIC_INIT("params"), select_nameaddr_params, OPTIONAL | CONSUME_NEXT_STR},
 	{ select_nameaddr_uri, SEL_PARAM_INT, STR_NULL, select_any_uri, NESTED},
-	{ select_nameaddr_params, SEL_PARAM_STR, STR_NULL, select_any_params, 0},
 
 	{ NULL, SEL_PARAM_STR, STR_STATIC_INIT("msg"), select_msgheader, SEL_PARAM_EXPECTED},
 	{ select_msgheader, SEL_PARAM_STR, STR_NULL, select_anyheader, OPTIONAL | CONSUME_NEXT_INT | FIXUP_CALL},
