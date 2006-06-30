@@ -1,5 +1,5 @@
 /*
- * $Id: eval.c,v 1.5 2006/06/27 19:50:29 tma0 Exp $
+ * $Id: eval.c,v 1.6 2006/06/30 10:58:59 tma0 Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -876,14 +876,26 @@ static int eval_stack_oper_func(struct sip_msg *msg, char *param1, char *param2)
 			str s, *vals;
 			int i, n;
 			struct eval_str* es;
+			struct stack_item *si;
 			eval_location(msg, &so->loc, &v, 0);
 			get_as_str(&v, &s);
 			if ((parse_hf_values(s, &n, &vals) < 0) || n == 0) {
 				destroy_value(v);
 				return -1;
 			}
+			si = pkg_malloc(sizeof(*si));
+			if (!si) {
+				LOG(L_ERR, "ERROR: eval: out of memory\n");
+				destroy_value(v);
+				return -1;
+			}
+			si->value.type = evtInt;
+			si->value.u.n = n;
+			insert_stack_item(si, pivot, so->oper_type == esotAddValue);
+			if (so->oper_type == esotAddValue) {
+				pivot = si;
+			}
 			for (i=0; i<n; i++) {
-				struct stack_item *si;
 				si = pkg_malloc(sizeof(*si));
 				if (!si) {
 					LOG(L_ERR, "ERROR: eval: out of memory\n");
