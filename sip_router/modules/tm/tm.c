@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.140 2006/05/11 13:21:37 calrissian Exp $
+ * $Id: tm.c,v 1.141 2006/07/03 13:55:19 mma Exp $
  *
  * TM module
  *
@@ -948,7 +948,13 @@ inline static int w_t_newtran( struct sip_msg* p_msg, char* foo, char* bar )
 {
 	/* t_newtran returns 0 on error (negative value means
 	   'transaction exists' */
-	return t_newtran( p_msg );
+	int ret;
+	ret = t_newtran( p_msg );
+	if (ret==E_SCRIPT) {
+		LOG(L_ERR, "ERROR: t_newtran: "
+			"transaction already in process %p\n", get_t() );
+	}
+	return ret;
 }
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.c,v 1.189 2006/06/29 10:34:14 mma Exp $
+ * $Id: t_funcs.c,v 1.190 2006/07/03 13:55:19 mma Exp $
  *
  * transaction maintenance functions
  *
@@ -205,10 +205,9 @@ int t_relay_to( struct sip_msg  *p_msg , struct proxy_l *proxy, int proto,
 	struct dest_info dst;
 
 	ret=0;
-
+	
 	new_tran = t_newtran( p_msg );
 	
-
 	/* parsing error, memory alloc, whatever ... if via is bad
 	   and we are forced to reply there, return with 0 (->break),
 	   pass error status otherwise

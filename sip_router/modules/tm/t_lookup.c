@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.104 2006/04/21 14:28:37 andrei Exp $
+ * $Id: t_lookup.c,v 1.105 2006/07/03 13:55:19 mma Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -1126,7 +1126,8 @@ int t_newtran( struct sip_msg* p_msg )
 		" T on entrance=%p\n",p_msg->id,global_msg_id,T);
 
 	if ( T && T!=T_UNDEFINED  ) {
-		LOG(L_ERR, "ERROR: t_newtran: "
+		/* ERROR message moved to w_t_newtran */
+		DBG("DEBUG: t_newtran: "
 			"transaction already in process %p\n", T );
 		return E_SCRIPT;
 	}
