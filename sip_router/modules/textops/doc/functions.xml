@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.11 $</revnumber>
-		<date>$Date: 2006/06/30 17:31:13 $</date>
+		<revnumber>$Revision: 1.12 $</revnumber>
+		<date>$Date: 2006/07/03 10:37:49 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -606,7 +606,7 @@ if (@hf_value_exists.supported.path == "1") {
 		@hf_value.HFNAME[IDX].uri # (&lt; &amp; &gt; excluded)
 		@hf_value.HFNAME[*]     # return comma delimited list of all values (combines headers)
 		@hf_value.HFNAME        # the same as above [*] but may be parsed by cfg.y
-		@hf_value.HFNAME[*].uri # return comma delimited list of uris (&lt; &amp; &gt; included)
+		@hf_value.HFNAME[*].uri # return comma delimited list of uris (&lt; &amp; &gt; excluded)
 		@hf_value.HFNAME.uri    # the same as above [*] but may be parsed by cfg.y
 		@hf_value.HFNAME[IDX].name  # returns name part, quotes excluded
 		@hf_value.HFNAME.name   # returns name part of the first value
