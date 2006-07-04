@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.86 2006/03/13 15:43:00 andrei Exp $
+ * $Id: h_table.h,v 1.87 2006/07/04 12:51:27 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -241,6 +241,8 @@ typedef struct cell
 	struct totag_elem *fwded_totags;
 
 	     /* list with avp */
+	struct usr_avp *uri_avps_from;
+	struct usr_avp *uri_avps_to;
 	struct usr_avp *user_avps_from;
 	struct usr_avp *user_avps_to;
 	struct usr_avp *domain_avps_from;

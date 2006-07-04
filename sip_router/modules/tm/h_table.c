@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.101 2006/03/01 16:29:39 janakj Exp $
+ * $Id: h_table.c,v 1.102 2006/07/04 12:51:27 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -241,6 +241,14 @@ struct cell*  build_cell( struct sip_msg* p_msg )
 	init_rb_timers(&new_cell->uas.response);
 	/* timers */
 	init_cell_timers(new_cell);
+
+	old = set_avp_list(AVP_TRACK_FROM | AVP_CLASS_URI,  &new_cell->uri_avps_from );
+	new_cell->uri_avps_from = *old;
+	*old = 0;
+
+	old = set_avp_list(AVP_TRACK_TO | AVP_CLASS_URI,  &new_cell->uri_avps_to );
+	new_cell->uri_avps_to = *old;
+	*old = 0;
 
 	old = set_avp_list(AVP_TRACK_FROM | AVP_CLASS_USER,  &new_cell->user_avps_from );
 	new_cell->user_avps_from = *old;
