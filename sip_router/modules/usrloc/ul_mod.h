@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.21 2006/01/10 22:25:21 janakj Exp $
+ * $Id: ul_mod.h,v 1.22 2006/07/04 13:02:31 janakj Exp $
  *
  * User location module interface
  *
@@ -50,7 +50,7 @@
 #define WRITE_BACK    2
 #define READONLY      3
 
-#define TABLE_VERSION 8
+#define TABLE_VERSION 9
 
 extern str uid_col;
 extern str contact_col;
@@ -63,6 +63,7 @@ extern str flags_col;
 extern str user_agent_col;
 extern str received_col;
 extern str instance_col;
+extern str aor_col;
 extern str db_url;
 extern int timer_interval;
 extern int db_mode;
