@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.h,v 1.9 2004/11/05 17:48:05 janakj Exp $
+ * $Id: lookup.h,v 1.10 2006/07/04 13:09:49 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -38,6 +38,12 @@
  * Lookup a contact in usrloc and rewrite R-URI if found
  */
 int lookup(struct sip_msg* _m, char* _t, char* _s);
+
+
+/*
+ * Lookup a contact in usrloc and rewrite R-URI if found
+ */
+int lookup2(struct sip_msg* msg, char* table, char* aor);
 
 
 /*
