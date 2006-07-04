@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.124 2006/06/27 13:46:13 janakj Exp $
+ * $Id: cfg.y,v 1.125 2006/07/04 12:46:30 janakj Exp $
  *
  *  cfg grammar
  *
@@ -290,6 +290,8 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token SELECT_MARK
 %token ATTR_FROM
 %token ATTR_TO
+%token ATTR_FROMURI
+%token ATTR_TOURI
 %token ATTR_FROMUSER
 %token ATTR_TOUSER
 %token ATTR_FROMDOMAIN
@@ -1390,6 +1392,8 @@ select_id:
 attr_class_spec:
 	ATTR_FROM { s_attr->type |= AVP_TRACK_FROM; }
 	| ATTR_TO { s_attr->type |= AVP_TRACK_TO; }
+        | ATTR_FROMURI { s_attr->type |= AVP_TRACK_FROM | AVP_CLASS_URI; }
+        | ATTR_TOURI { s_attr->type |= AVP_TRACK_TO | AVP_CLASS_URI; }
 	| ATTR_FROMUSER { s_attr->type |= AVP_TRACK_FROM | AVP_CLASS_USER; }
 	| ATTR_TOUSER { s_attr->type |= AVP_TRACK_TO | AVP_CLASS_USER; }
 	| ATTR_FROMDOMAIN { s_attr->type |= AVP_TRACK_FROM | AVP_CLASS_DOMAIN; }
