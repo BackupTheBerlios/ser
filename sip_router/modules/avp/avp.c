@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.21 2006/05/11 13:19:46 calrissian Exp $
+ * $Id: avp.c,v 1.22 2006/07/04 13:10:15 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -515,6 +515,20 @@ static int dump_avp(struct sip_msg* m, char* x, char* y)
 	}
 	avp_list=get_avp_list(AVP_CLASS_USER | AVP_TRACK_TO);
 	INFO("track=TO class=USER\n");
+	if (!avp_list) {
+		LOG(L_INFO,"INFO: No AVP present\n");
+	} else {
+		dump_avp_reverse(avp_list);
+	}
+	avp_list=get_avp_list(AVP_CLASS_URI | AVP_TRACK_FROM);
+	INFO("track=FROM class=URI\n");
+	if (!avp_list) {
+		LOG(L_INFO,"INFO: No AVP present\n");
+	} else {
+		dump_avp_reverse(avp_list);
+	}
+	avp_list=get_avp_list(AVP_CLASS_URI | AVP_TRACK_TO);
+	INFO("track=TO class=URI\n");
 	if (!avp_list) {
 		LOG(L_INFO,"INFO: No AVP present\n");
 	} else {
