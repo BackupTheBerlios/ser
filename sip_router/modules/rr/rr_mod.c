@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.49 2006/06/01 09:46:18 tma0 Exp $
+ * $Id: rr_mod.c,v 1.50 2006/07/07 18:40:43 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -51,6 +51,7 @@
 #include "../../script_cb.h"
 #include "../../usr_avp.h"
 #include "../../crc.h"
+#include "../../select.h"
 
 #ifdef ENABLE_USER_CHECK
 #include <string.h>
@@ -125,6 +126,19 @@ struct module_exports exports = {
 };
 
 
+ABSTRACT_F(select_rrmod)
+int select_rr_avpcookie(str* res, struct select* s, struct sip_msg* msg) {
+	*res=*rr_get_avp_cookies();
+	return (res->len==0?1:0);
+}
+
+static select_row_t rr_select_table[] = {
+	{ NULL, SEL_PARAM_STR, STR_STATIC_INIT("rr"), select_rrmod, SEL_PARAM_EXPECTED},
+	{ select_rrmod, SEL_PARAM_STR, STR_STATIC_INIT("dialog_cookie"), select_rr_avpcookie, 0},
+	{ NULL, SEL_PARAM_INT, STR_NULL, NULL, 0}
+};
+ 
+
 static int mod_init(void)
 {
 	DBG("rr - initializing\n");
@@ -157,5 +171,8 @@ static int mod_init(void)
 		LOG(L_ERR, "ERROR: %s: cannot register avpflag \"%s\"\n", exports.name, AVP_FLAG_DIALOG_COOKIE);
 		return E_CFG;
 	}
+
+	register_select_table(rr_select_table);
+	
 	return 0;
 }
