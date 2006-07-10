@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.h,v 1.3 2004/08/24 08:58:32 janakj Exp $
+ * $Id: notify.h,v 1.4 2006/07/10 12:39:17 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -33,28 +33,14 @@
 
 #include "presentity.h"
 #include "watcher.h"
-
-
-/* Subscription State */
-typedef enum subs_state {
-	SS_ACTIVE = 0,
-	SS_TERMINATED,
-	SS_PENDING
-} subs_state_t;
-
-
-/* Reason parameter of Subscription-State header */
-typedef enum ss_reason {
-	SR_DEACTIVATED = 0,
-	SR_NORESOURCE,
-	SR_PROBATION,
-	SR_REJECTED,
-	SR_TIMEOUT,
-	SR_GIVEUP
-} ss_reason_t;
-
+#include "../tm/uac.h"
 
 int send_notify(struct presentity* _p, struct watcher* _w);
 
+/* prepares notify to be sent */
+int prepare_notify(struct retr_buf **dst,
+		struct presentity* _p, struct watcher* _w);
+
+int send_prepared_notify(struct retr_buf *request);
 
 #endif /* NOTIFY_H */
