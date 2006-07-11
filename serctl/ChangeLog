@@ -1,3 +1,10 @@
+serctl (0.3.16)
+
+  * Minor code cleanup.
+  * Command 'ser_attr attr' changed to 'ser_attr show types'.
+
+ -- Jan Halla <hallik@iptel.org> 
+
 serctl (0.3.15)
 
   * Minor UUID stuff improvement.

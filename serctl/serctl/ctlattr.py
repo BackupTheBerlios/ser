@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $$
+# $id:$
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -30,7 +30,6 @@ Usage:
 
 Commands & parameters:
 	ser_attr add    <identificator> <attr>=<value> [attr=value]...
-	ser_attr attr   [attr]
 	ser_attr purge
 	ser_attr rm     <identificator> <attr> [value]
 	ser_attr set    <identificator> <attr>=<value> [attr=value]...
@@ -42,6 +41,7 @@ Identificators:
 	* did=<did>
 	* user=<uri>
 	* domain=<domain>
+        * types
 """ % serctl.ctlhelp.options()
 
 
@@ -76,6 +76,10 @@ def _attr_id(ident, opts):
 		else:
 			id = None
 		x   = 'd'
+	elif x[0] == 't': #types
+		obj = Attr_types(opts['DB_URI'])
+		id  = None
+		x   = 't'
 	else:
 		raise Error (EINVAL, ident)
 	return obj, id, x
@@ -86,7 +90,7 @@ def _attr_prep(attrs, opts):
 	if len(attrs) < 2:
 		raise Error (ENOARG, 'attr')
 	obj, id, x = _attr_id(attrs[0], opts)
-	if not id and x != 'g':
+	if not id and x != 'g' and x != 't':
 		 raise Error (EINVAL, attrs[0])
 	return obj, attrs[1:], id
 
@@ -138,14 +142,13 @@ def show(identificator=None, **opts):
 	obj, id, x = _attr_id(identificator, opts)
 
 	if x == 'g':
-		obj = Global_attrs(opts['DB_URI'])
 		alist, desc = obj.show(None, cols, fformat, limit)
 	elif x == 'u':
-		obj = User_attrs(opts['DB_URI'])
 		alist, desc = obj.show_uid(id, cols, fformat, limit)
 	elif x == 'd':
-		obj = Domain_attrs(opts['DB_URI'])
 		alist, desc = obj.show_did(id, cols, fformat, limit)
+	elif x == 't':
+		alist, desc = obj.show(None, cols, fformat, limit)
 	else:
 		raise Error (EINVAL, identificator)
 
@@ -199,14 +202,6 @@ def purge(**opts):
 	a = Global_attrs(opts['DB_URI'])
 	a.purge()
 
-def attrs(attr=None, **opts):
-	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
-	if opts['COLUMNS'] is None:
-		cols = ['name']
-	obj = Attr_types(opts['DB_URI'])
-	alist, desc = obj.show(attr, cols, fformat, limit)
-	tabprint(alist, desc, rsep, lsep, astab)	
-	
 class User_attrs(Basectl):
 	TABLE = 'user_attrs'
 	COLUMNS = ('uid', 'name', 'type', 'value', 'flags')
