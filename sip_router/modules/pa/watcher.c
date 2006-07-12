@@ -1,7 +1,7 @@
 /*
  * Presence Agent, watcher structure and related functions
  *
- * $Id: watcher.c,v 1.38 2006/07/10 12:39:17 kubartv Exp $
+ * $Id: watcher.c,v 1.39 2006/07/12 11:08:40 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -599,6 +599,9 @@ void free_watcher(watcher_t* _w)
 int update_watcher(struct presentity *p, watcher_t* _w, time_t _e, struct sip_msg *m)
 {
 	watcher_status_t old = _w->status; /* old status of subscription */
+
+	INFO("updating watcher dialog\n");
+	tmb.dlg_request_uas(_w->dialog, m, IS_TARGET_REFRESH);
 	
 	_w->expires = _e;
 	_w->flags |= WFLAG_SUBSCRIPTION_CHANGED;
