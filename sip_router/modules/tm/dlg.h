@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.h,v 1.7 2005/10/26 07:14:54 kubartv Exp $
+ * $Id: dlg.h,v 1.8 2006/07/12 09:39:20 kubartv Exp $
  * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
@@ -105,6 +105,11 @@ typedef struct dlg {
 				 */
 } dlg_t;
 
+typedef enum {
+	IS_TARGET_REFRESH,
+	IS_NOT_TARGET_REFRESH,
+	TARGET_REFRESH_UNKNOWN
+} target_refresh_t;
 
 /*
  * Create a new dialog
@@ -116,8 +121,8 @@ typedef int (*new_dlg_uac_f)(str* _cid, str* _ltag, unsigned int _lseq, str* _lu
 /*
  * A response arrived, update dialog
  */
-int dlg_response_uac(dlg_t* _d, struct sip_msg* _m);
-typedef int (*dlg_response_uac_f)(dlg_t* _d, struct sip_msg* _m);
+int dlg_response_uac(dlg_t* _d, struct sip_msg* _m, target_refresh_t is_target_refresh);
+typedef int (*dlg_response_uac_f)(dlg_t* _d, struct sip_msg* _m, target_refresh_t is_target_refresh);
 
 /*
  * Establishing a new dialog, UAS side
@@ -129,8 +134,8 @@ typedef int (*new_dlg_uas_f)(struct sip_msg* _req, int _code, dlg_t** _d);
 /*
  * UAS side - update a dialog from a request
  */
-int dlg_request_uas(dlg_t* _d, struct sip_msg* _m);
-typedef int (*dlg_request_uas_f)(dlg_t* _d, struct sip_msg* _m);
+int dlg_request_uas(dlg_t* _d, struct sip_msg* _m, target_refresh_t is_target_request);
+typedef int (*dlg_request_uas_f)(dlg_t* _d, struct sip_msg* _m, target_refresh_t is_target_request);
 
 
 /*
