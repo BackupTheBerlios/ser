@@ -1,5 +1,5 @@
 /*
- *$Id: ut.c,v 1.2 2005/12/15 23:17:40 janakj Exp $
+ *$Id: ut.c,v 1.3 2006/07/17 13:16:39 janakj Exp $
  *
  * various general purpose functions
  *
@@ -28,12 +28,16 @@
  *
  */
 
+
+#include <string.h>
 #include <sys/types.h>
 #include <pwd.h>
 #include <grp.h>
 #include <stdlib.h>
 #include <time.h>
 #include "ut.h"
+#include "mem/mem.h"
+
 
 /* converts a username into uid:gid,
  * returns -1 on error & 0 on success */
@@ -117,4 +121,23 @@ time_t _timegm(struct tm* t)
 		tb += 3600;
 	}
 	return (tl - (tb - tl));
+}
+
+
+/*
+ * Return str as zero terminated string allocated
+ * using pkg_malloc
+ */
+char* as_asciiz(str* s)
+{
+    char* r;
+
+    r = (char*)pkg_malloc(s->len + 1);
+    if (!r) {
+	ERR("Out of memory\n");
+	return 0;
+    }
+    memcpy(r, s->s, s->len);
+    r[s->len] = '\0';
+    return r;
 }

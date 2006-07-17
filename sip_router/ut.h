@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.42 2006/02/24 18:35:36 andrei Exp $
+ *$Id: ut.h,v 1.43 2006/07/17 13:16:39 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -478,5 +478,12 @@ int group2gid(int* gid, char* group);
  * http://lists.samba.org/archive/samba-technical/2002-November/025737.html
  */
 time_t _timegm(struct tm* t);
+
+
+/*
+ * Return str as zero terminated string allocated
+ * using pkg_malloc
+ */
+char* as_asciiz(str* s);
 
 #endif
