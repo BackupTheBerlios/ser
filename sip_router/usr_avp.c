@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.31 2006/07/04 12:46:30 janakj Exp $
+ * $Id: usr_avp.c,v 1.32 2006/07/18 11:51:25 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -624,6 +624,24 @@ inline void destroy_avp_list(avp_list_t* list)
 	*list = 0;
 }
 
+int reset_avp_list(int flags)
+{
+    int i;
+    if (flags & AVP_CLASS_URI) {
+	if (flags & AVP_TRACK_FROM) i = IDX_FROM_URI;
+	else i = IDX_TO_URI;
+    } else if (flags & AVP_CLASS_USER) {
+	if (flags & AVP_TRACK_FROM) i = IDX_FROM_USER;
+	else i = IDX_TO_USER;
+    } else if (flags & AVP_CLASS_DOMAIN) {
+	if (flags & AVP_TRACK_FROM) i = IDX_FROM_DOMAIN;
+	else i = IDX_TO_DOMAIN;
+    } else return -1;
+
+    crt_list[i] = &def_list[i];
+    destroy_avp_list(crt_list[i]);
+    return 0;
+}
 
 void reset_avps(void)
 {
