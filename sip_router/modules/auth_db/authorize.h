@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.h,v 1.5 2005/11/21 00:04:15 janakj Exp $
+ * $Id: authorize.h,v 1.6 2006/07/18 12:00:11 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -48,17 +48,5 @@ int proxy_authenticate(struct sip_msg* msg, char* realm, char* table);
  * Authorize using WWW-Authorization header field
  */
 int www_authenticate(struct sip_msg* msg, char* realm, char* table);
-
-/*
- * Authorize using Proxy-Authorization header field
- */
-int proxy_authenticate1(struct sip_msg* msg, char* table, char* s);
-
-
-/*
- * Authorize using WWW-Authorization header field
- */
-int www_authenticate1(struct sip_msg* msg, char* table, char* s);
-
 
 #endif /* AUTHORIZE_H */

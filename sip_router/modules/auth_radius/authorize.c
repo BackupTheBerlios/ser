@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.16 2005/11/21 00:06:10 janakj Exp $
+ * $Id: authorize.c,v 1.17 2006/07/18 12:00:31 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include "../../mem/mem.h"
 #include "../../str.h"
+#include "../../sr_module.h"
 #include "../../parser/hf.h"
 #include "../../parser/digest/digest.h"
 #include "../../parser/parse_uri.h"
@@ -134,18 +135,32 @@ static inline int authorize(struct sip_msg* _msg, str* _realm,
 /*
  * Authorize using Proxy-Authorize header field
  */
-int radius_proxy_authorize(struct sip_msg* _msg, char* _realm, char* _s2)
+int radius_proxy_authorize(struct sip_msg* _msg, char* p1, char* p2)
 {
-	/* realm parameter is converted to str* in str_fixup */
-	return authorize(_msg, (str*)_realm, HDR_PROXYAUTH_T);
+    str realm;
+
+    if (get_str_fparam(&realm, _msg, (fparam_t*)p1) < 0) {
+	ERR("Cannot obtain digest realm from parameter '%s'\n", ((fparam_t*)p1)->orig);
+	return -1;
+    }
+    
+	 /* realm parameter is converted to str* in str_fixup */
+    return authorize(_msg, &realm, HDR_PROXYAUTH_T);
 }
 
 
 /*
  * Authorize using WWW-Authorize header field
  */
-int radius_www_authorize(struct sip_msg* _msg, char* _realm, char* _s2)
+int radius_www_authorize(struct sip_msg* _msg, char* p1, char* p2)
 {
-	return authorize(_msg, (str*)_realm, HDR_AUTHORIZATION_T);
+    str realm;
+
+    if (get_str_fparam(&realm, _msg, (fparam_t*)p1) < 0) {
+	ERR("Cannot obtain digest realm from parameter '%s'\n", ((fparam_t*)p1)->orig);
+	return -1;
+    }
+    
+    return authorize(_msg, &realm, HDR_AUTHORIZATION_T);
 }
 

@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.h,v 1.6 2006/01/27 13:09:00 janakj Exp $
+ * $Id: challenge.h,v 1.7 2006/07/18 11:59:46 janakj Exp $
  *
  * Challenge related functions
  *
@@ -37,31 +37,31 @@
 /* 
  * Challenge a user agent using WWW-Authenticate header field
  */
-int www_challenge(struct sip_msg* msg, char* realm, char* str2);
+int www_challenge2(struct sip_msg* msg, char* p1, char* p2);
 
 
 /*
  * Challenge a user agent using Proxy-Authenticate header field
  */
-int proxy_challenge(struct sip_msg* msg, char* realm, char* str2);
+int proxy_challenge2(struct sip_msg* msg, char* p1, char* p2);
 
 
 /* 
  * Challenge a user agent using WWW-Authenticate header field
  */
-int www_challenge1(struct sip_msg* msg, char* qop, char* s2);
+int www_challenge1(struct sip_msg* msg, char* p1, char* p2);
 
 
 /*
  * Challenge a user agent using Proxy-Authenticate header field
  */
-int proxy_challenge1(struct sip_msg* msg, char* qop, char* s2);
+int proxy_challenge1(struct sip_msg* msg, char* p1, char* p2);
 
 
 /*
  * Remove used credentials from a SIP message header
  */
-int consume_credentials(struct sip_msg* msg, char* s1, char* s2);
+int consume_credentials(struct sip_msg* msg, char* p1, char* p2);
 
 
 #endif /* AUTH_H */
