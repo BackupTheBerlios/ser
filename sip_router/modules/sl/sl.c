@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.29 2006/04/11 13:02:12 janakj Exp $
+ * $Id: sl.c,v 1.30 2006/07/18 12:15:14 janakj Exp $
  *
  * sl module
  *
@@ -84,11 +84,11 @@ static void mod_destroy();
 static int fixup_sl_reply(void** param, int param_no);
 
 static cmd_export_t cmds[]={
-	{"sl_send_reply",  w_sl_send_reply,       2, fixup_sl_reply, REQUEST_ROUTE},
-	{"sl_reply",       w_sl_send_reply,       2, fixup_sl_reply, REQUEST_ROUTE},
-	{"sl_reply_error", w_sl_reply_error,      0, 0,              REQUEST_ROUTE},
-	{"bind_sl",        (cmd_function)bind_sl, 0, 0,              0},
-	{"api_sl_reply",   sl_send_reply,         2, 0,              0},
+	{"sl_send_reply",  w_sl_send_reply,             2, fixup_sl_reply, REQUEST_ROUTE},
+	{"sl_reply",       w_sl_send_reply,             2, fixup_sl_reply, REQUEST_ROUTE},
+	{"sl_reply_error", w_sl_reply_error,            0, 0,              REQUEST_ROUTE},
+	{"bind_sl",        (cmd_function)bind_sl,       0, 0,              0},
+	{"api_sl_reply",   (cmd_function)sl_send_reply, 2, 0,              0},
 	{0,0,0,0,0}
 };
 
