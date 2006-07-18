@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.24 2006/07/18 15:01:39 calrissian Exp $
+ * $Id: avp.c,v 1.25 2006/07/18 15:40:18 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -199,7 +199,7 @@ static int get_avp_id(avp_ident_t* id, fparam_t* p, struct sip_msg* msg)
 	    DBG("get_avp_id: AVP %s does not exist\n", p->orig);
 	    return -1;
 	}
-	if (avp->flags & (AVP_VAL_STR == 0)) {
+	if ((avp->flags & AVP_VAL_STR) == 0) {
 	    DBG("get_avp_id: Not a string AVP\n");
 	    return -1;
 	}
@@ -442,8 +442,9 @@ static int fixup_part(void** param, int param_no)
 	}
 	
 	ERR("Invalid parameter value: '%s'\n", fp->orig);
+	return -1;
     }
-    return -1;
+    return 0;
 }
 
 
