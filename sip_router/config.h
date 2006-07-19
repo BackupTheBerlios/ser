@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.72 2006/05/15 09:56:40 tma0 Exp $
+ *  $Id: config.h,v 1.73 2006/07/19 12:49:32 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -199,6 +199,6 @@
 /* minimum packet size; smaller packets will be dropped silently */
 #define MIN_UDP_PACKET        32
 
-
+#define DEFAULT_RADIUS_CONFIG "/usr/local/etc/radiusclient/radiusclient.conf"
 
 #endif
