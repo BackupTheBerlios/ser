@@ -1,5 +1,5 @@
 /*
- * $Id: eval.c,v 1.7 2006/07/03 11:42:39 tma0 Exp $
+ * $Id: eval.c,v 1.8 2006/07/19 14:01:00 mma Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -1012,9 +1012,14 @@ static int eval_remove_func(struct sip_msg *msg, char *param1, char *param2) {
 }
 
 static int eval_clear_func(struct sip_msg *msg, char *param1, char *param2) {
-	if ((int)param1 & 1)
+	int n;
+	if (get_int_fparam(&n, msg, (fparam_t*)param1)<0) {
+		ERR("eval_clear: Invalid number specified");
+		return -1;
+	}
+	if (n & 1)
 		destroy_stack();
-	if ((int)param1 & 2)
+	if (n & 2)
 		destroy_register_values();
 	return 1;
 }
