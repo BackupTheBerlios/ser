@@ -1,5 +1,5 @@
 /*
- * $Id: sl_funcs.c,v 1.57 2006/04/21 14:28:37 andrei Exp $
+ * $Id: sl_funcs.c,v 1.58 2006/07/19 15:17:57 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -186,14 +186,14 @@ error:
 
 int sl_reply_error(struct sip_msg *msg )
 {
-	char err_buf[MAX_REASON_LEN];
+	static char err_buf[MAX_REASON_LEN];
 	int sip_error;
 	int ret;
 
 	ret=err2reason_phrase( prev_ser_error, &sip_error, 
 		err_buf, sizeof(err_buf), "SL");
 	if (ret>0) {
-		sl_send_reply( msg, sip_error, err_buf );
+	        sl_send_reply( msg, sip_error, err_buf );
 		LOG(L_ERR, "ERROR: sl_reply_error used: %s\n", 
 			err_buf );
 		return 1;
