@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.h,v 1.5 2004/08/24 08:58:29 janakj Exp $
+ * $Id: exec.h,v 1.6 2006/07/19 11:37:30 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -30,8 +30,8 @@
 #ifndef _EXEC_H
 #define _EXEC_H
 
-int exec_str(struct sip_msg *msg, char *cmd, char *param, int param_len);
-int exec_msg(struct sip_msg *msg, char *cmd );
+int exec_str(struct sip_msg *msg, str* cmd, char *param, int param_len);
+int exec_msg(struct sip_msg *msg, str* cmd );
 
 #endif
 
