@@ -1,5 +1,5 @@
 /*
- * $Id: enum_mod.h,v 1.5 2004/05/16 11:49:16 jih Exp $
+ * $Id: enum_mod.h,v 1.6 2006/07/19 11:23:44 janakj Exp $
  *
  * Enum module headers
  *
@@ -34,13 +34,9 @@
 
 #include "../../str.h"
 
-
-/*
- * Internal module variables
- */
-extern str suffix;           /* str version of domain_suffix */
-extern str param;            /* str version of tel_uri_params */
-extern str service;          /* default (empty) service */
+extern str domain_suffix;
+extern str tel_uri_params;
+extern str default_service;
 
 
 #endif /* ENUM_MOD_H */
