@@ -4,14 +4,14 @@
 #
 # $FreeBSD$
 #
-# $Id: Makefile,v 1.1 2006/07/20 14:17:14 janakj Exp $
+# $Id: Makefile,v 1.2 2006/07/20 14:51:38 janakj Exp $
 #
 
 
 PORTNAME= ser
 PORTVERSION= 0.9.4
 CATEGORIES= net
-MASTER_SITES= ftp://ftp.berlios.de/pub/ser/0.9.4/src/
+MASTER_SITES= ftp://ftp.iptel.org/pub/ser/0.9.4/src/
 
 MAINTAINER= andrei@iptel.org
 
