@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.50 2006/07/18 18:06:53 calrissian Exp $
+ * $Id: save.c,v 1.51 2006/07/21 14:01:07 mma Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -667,8 +667,11 @@ static inline int save_real(struct sip_msg* _m, udomain_t* _t, char* _s, int dor
 	return 1;
 
  error:
-	if (doreply) send_reply(_m);
-	return 0;
+	if (doreply) {
+		send_reply(_m);
+		return 0;
+	}
+	return -2;
 }
 
 
