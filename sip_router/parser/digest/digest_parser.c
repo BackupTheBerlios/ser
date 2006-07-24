@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.c,v 1.13 2006/07/24 15:55:13 janakj Exp $
+ * $Id: digest_parser.c,v 1.14 2006/07/24 16:43:55 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -229,7 +229,9 @@ void parse_qop(struct qp* _q)
 
 	trim(&s);
 
-	if ((s.len == QOP_AUTH_STR_LEN) &&
+	if (s.len == 0) {
+	    _q->qop_parsed = QOP_UNSPEC;
+	} else if ((s.len == QOP_AUTH_STR_LEN) &&
 	    !strncasecmp(s.s, QOP_AUTH_STR, QOP_AUTH_STR_LEN)) {
 		_q->qop_parsed = QOP_AUTH;
 	} else if ((s.len == QOP_AUTHINT_STR_LEN) &&
