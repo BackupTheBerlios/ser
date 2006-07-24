@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.45 2006/07/24 09:36:58 janakj Exp $
+ * $Id: loose.c,v 1.46 2006/07/24 09:40:08 janakj Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -209,14 +209,10 @@ static inline int is_myself(str* _host, unsigned short _port)
     if (ret < 0) return 0;
     
     if (ret == 0 && dm_get_did) {
-	DBG("Checking domain: %.*s\n", _host->len, _host->s);
 	ret = dm_get_did(&did, _host);
 	if (ret < 0) return 0;
-    } else {
-	DBG("NOT Checking domain\n");
     }
 
-    DBG("It is my domain\n");
     return ret;
 }
 
