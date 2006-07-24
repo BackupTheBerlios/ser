@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.20 2006/07/12 09:39:20 kubartv Exp $
+ * $Id: dlg.c,v 1.21 2006/07/24 11:48:11 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -81,7 +81,6 @@ void get_raw_uri(str* _s)
                 _s->s = aq + 1;
         }
 }
-
 
 
 /*
@@ -430,6 +429,11 @@ static inline int response2dlg(struct sip_msg* _m, dlg_t* _d)
 	}
 	
 	if (get_contact_uri(_m, &contact) < 0) return -2;
+	if (_d->rem_target.s) {
+		shm_free(_d->rem_target.s);
+		_d->rem_target.s = 0; 
+		_d->rem_target.len = 0;
+	}
 	if (contact.len && str_duplicate(&_d->rem_target, &contact) < 0) return -3;
 	
 	if (get_to_tag(_m, &rtag) < 0) goto err1;
