@@ -1,5 +1,5 @@
 /*
- * $Id: record.c,v 1.16 2006/05/31 08:37:13 tirpi Exp $
+ * $Id: record.c,v 1.17 2006/07/24 09:36:58 janakj Exp $
  *
  * Route & Record-Route module
  *
@@ -138,17 +138,6 @@ static inline int build_rr(struct lump* _l, struct lump* _l2, int _lr, str* user
 	memcpy(prefix, RR_PREFIX, RR_PREFIX_LEN);
 	if (user->len) {
 		memcpy(prefix + RR_PREFIX_LEN, user->s, user->len);
-#ifdef ENABLE_USER_CHECK
-		/* don't add the ignored user into a RR */
-		if(i_user.len && i_user.len == user->len &&
-				!strncmp(i_user.s, user->s, i_user.len))
-		{
-			if(prefix[RR_PREFIX_LEN]=='x')
-				prefix[RR_PREFIX_LEN]='y';
-			else
-				prefix[RR_PREFIX_LEN]='x';
-		}
-#endif
 		prefix[RR_PREFIX_LEN + user->len] = '@';
 	}
 

@@ -1,7 +1,7 @@
 /*
  * Record-Route & Route module interface
  *
- * $Id: rr_mod.h,v 1.12 2006/06/01 09:46:18 tma0 Exp $
+ * $Id: rr_mod.h,v 1.13 2006/07/24 09:36:58 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -36,12 +36,9 @@
 #ifndef RR_MOD_H
 #define RR_MOD_H
 
-#ifdef ENABLE_USER_CHECK
-#include "../../str.h"
-extern str i_user;
-#endif
-
 #include "../../usr_avp.h"
+#include "../domain/domain.h"
+
 extern avp_ident_t user_part_avp_ident;
 extern avp_ident_t next_route_avp_ident;
 
@@ -49,6 +46,8 @@ extern int append_fromtag;
 extern int enable_double_rr;
 extern int enable_full_lr;
 extern int add_username;
+
+extern domain_get_did_t dm_get_did;
 
 #define AVP_FLAG_DIALOG_COOKIE "dialog_cookie"
 
