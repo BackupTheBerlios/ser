@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.c,v 1.12 2006/02/28 09:21:16 janakj Exp $
+ * $Id: digest_parser.c,v 1.13 2006/07/24 15:55:13 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -220,7 +220,7 @@ static inline int parse_digest_param(str* _s, dig_cred_t* _c)
 /*
  * Parse qop parameter body
  */
-static inline void parse_qop(struct qp* _q)
+void parse_qop(struct qp* _q)
 {
 	str s;
 

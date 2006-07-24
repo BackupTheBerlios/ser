@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.h,v 1.8 2005/02/01 12:35:17 janakj Exp $
+ * $Id: digest_parser.h,v 1.9 2006/07/24 15:55:13 janakj Exp $
  *
  * Digest credentials parser
  *
@@ -128,5 +128,10 @@ void init_dig_cred(dig_cred_t* _c);
  */
 int parse_digest_cred(str* _s, dig_cred_t* _c);
 
+
+/*
+ * Parse qop string
+ */
+void parse_qop(struct qp* _q);
 
 #endif /* DIGEST_PARSER_H */
