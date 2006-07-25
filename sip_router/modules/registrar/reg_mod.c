@@ -1,5 +1,5 @@
 /*
- * $Id: reg_mod.c,v 1.46 2006/07/19 12:49:03 janakj Exp $
+ * $Id: reg_mod.c,v 1.47 2006/07/25 11:45:56 janakj Exp $
  *
  * Registrar module interface
  *
@@ -104,6 +104,7 @@ static cmd_export_t cmds[] = {
 	{"lookup",                lookup,       1, domain_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{"lookup",                lookup2,      2, lookup2_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{"registered",            registered,   1, domain_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
+	{"registered",            registered2,  2, lookup2_fixup, REQUEST_ROUTE | FAILURE_ROUTE},
 	{0, 0, 0, 0, 0}
 };
 
