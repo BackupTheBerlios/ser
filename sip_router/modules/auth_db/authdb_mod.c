@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.34 2006/07/25 13:43:39 janakj Exp $
+ * $Id: authdb_mod.c,v 1.35 2006/07/25 15:27:21 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -215,7 +215,6 @@ static int authdb_fixup(void** param, int param_no)
 {
     db_con_t* dbh;
     int ver;
-    str name;
     fparam_t* p;
     
     if (param_no == 1) {
