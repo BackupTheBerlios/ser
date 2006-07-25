@@ -1,5 +1,5 @@
 /*
- * $Id: reply.h,v 1.6 2004/08/24 09:00:37 janakj Exp $
+ * $Id: reply.h,v 1.7 2006/07/25 15:46:45 janakj Exp $
  *
  * Send a reply
  *
@@ -51,5 +51,10 @@ int build_contact(ucontact_t* c);
  */
 void free_contact_buf(void);
 
+
+/*
+ * Sets the reason and contact attributes.
+ */
+int setup_attrs(struct sip_msg* msg);
 
 #endif /* REPLY_H */

@@ -1,5 +1,5 @@
 /*
- * $Id: reg_mod.c,v 1.47 2006/07/25 11:45:56 janakj Exp $
+ * $Id: reg_mod.c,v 1.48 2006/07/25 15:46:45 janakj Exp $
  *
  * Registrar module interface
  *
@@ -283,10 +283,6 @@ static int domain_fixup(void** param, int param_no)
  */
 static int lookup2_fixup(void** param, int param_no)
 {
-	int ret;
-	fparam_t* fp;
-	udomain_t* d;
-
 	if (param_no == 1) {
 	    return domain_fixup(param, param_no);
 	} else {

@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.51 2006/07/21 14:01:07 mma Exp $
+ * $Id: save.c,v 1.52 2006/07/25 15:46:45 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -269,7 +269,6 @@ static inline int insert(struct sip_msg* _m, str* aor, contact_t* _c, udomain_t*
 	str callid;
 	unsigned int flags;
 	str *recv, *inst;
-	str rcvuri;
 	int num;
 
 	if (isflagset(_m, save_nat_flag) == 1) flags = FL_NAT;
