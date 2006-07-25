@@ -1,5 +1,5 @@
 /*
- * $Id: sanity.c,v 1.9 2006/07/25 15:53:27 janakj Exp $
+ * $Id: sanity.c,v 1.10 2006/07/25 16:24:44 janakj Exp $
  *
  * Sanity Checks Module
  *
@@ -151,7 +151,6 @@ int parse_proxyrequire(struct hdr_field* _h) {
 
 /* check the SIP version in the request URI */
 int check_ruri_sip_version(struct sip_msg* _msg) {
-	int ret;
 	char *sep;
 	str version;
 

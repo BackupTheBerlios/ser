@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.c,v 1.65 2006/07/25 13:43:40 janakj Exp $
+ * $Id: auth_mod.c,v 1.66 2006/07/25 16:24:44 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -43,6 +43,7 @@
 #include "../../dprint.h"
 #include "../../mem/mem.h"
 #include "../../parser/digest/digest.h"
+#include "../../data_lump.h"
 #include "../../error.h"
 #include "../../ut.h"
 #include "../sl/sl.h"

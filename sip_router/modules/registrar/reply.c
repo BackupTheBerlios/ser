@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.30 2006/03/01 16:05:12 janakj Exp $
+ * $Id: reply.c,v 1.31 2006/07/25 16:24:44 janakj Exp $
  *
  * Send a reply
  *
@@ -346,6 +346,8 @@ int setup_attrs(struct sip_msg* msg)
 	str reason, c;
 	avp_value_t val;
 
+	reason.s = NULL;
+	reason.len = 0;
 	code = codes[rerrno];
 	switch(code) {
 	case 200: reason.s = MSG_200; reason.len = sizeof(MSG_200) - 1; break;
