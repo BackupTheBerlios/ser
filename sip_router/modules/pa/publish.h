@@ -1,7 +1,7 @@
 /*
  * Presence Agent, publish handling
  *
- * $Id: publish.h,v 1.5 2006/01/05 14:31:59 kubartv Exp $
+ * $Id: publish.h,v 1.6 2006/07/25 05:46:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,9 +39,9 @@
  */
 int handle_publish(struct sip_msg* _m, char* _domain, char* _s2);
 
-/*
- * Publish given parsed "presence document"
- */
-int process_published_presentity_info(presentity_t *presentity, presentity_info_t *p, str *etag, time_t expires);
+/* Publish given parsed "presence document", the etag must be given. If it
+ * was given by publisher, set has_tag to 1. If generated se has_tag to 0. */
+int process_published_presentity_info(presentity_t *presentity, presentity_info_t *p, str *etag, 
+		time_t expires, int has_tag);
 	
 #endif /* PUBLISH_H */

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.26 2006/05/25 09:32:36 kubartv Exp $
+ * $Id: pa_mod.h,v 1.27 2006/07/25 05:46:58 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -80,15 +80,6 @@ extern char *offline_winfo_table;
 extern int ignore_408_on_notify;
 
 extern str pres_rules_file; /* filename for XCAP queries */
-/*
- * compare two str's
- */
-int str_strcmp(const str *stra, const str *strb);
-/*
- * case-insensitive compare two str's
- */
-int str_strcasecmp(const str *stra, const str *strb);
-
 db_con_t* create_pa_db_connection();
 void close_pa_db_connection(db_con_t* db);
 

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.h,v 1.9 2006/01/03 15:14:24 kubartv Exp $
+ * $Id: subscribe.h,v 1.10 2006/07/25 05:46:59 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -31,11 +31,6 @@
 #define SUBSCRIBE_H
 
 #include "../../parser/msg_parser.h"
-
-/*
- * Check if a message received has been constructed properly
- */
-int check_message(struct sip_msg* _m);
 
 /*
  * Handle a subscribe Request
