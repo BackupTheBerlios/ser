@@ -1,7 +1,7 @@
 /*
  * execution module
  *
- * $Id: exec_mod.c,v 1.14 2006/07/19 11:37:30 janakj Exp $
+ * $Id: exec_mod.c,v 1.15 2006/07/25 15:32:53 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -111,7 +111,6 @@ inline static int w_exec_dset(struct sip_msg* msg, char* p1, char* foo)
 	str *uri;
 	environment_t *backup;
 	int ret;
-	char* c;
 
 	if (get_str_fparam(&cmd, msg, (fparam_t*)p1) < 0) {
 	    ERR("Error while obtaining command name\n");

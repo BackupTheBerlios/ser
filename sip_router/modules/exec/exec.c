@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.17 2006/07/19 12:48:36 janakj Exp $
+ * $Id: exec.c,v 1.18 2006/07/25 15:32:53 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -196,9 +196,9 @@ error02:
 		/* return false if script exited with non-zero status */
 		if (WEXITSTATUS(exit_status)!=0) ret=-1;
 	} else { /* exited erroneously */
-		LOG(L_ERR, "ERROR: exec_str: cmd %s failed. "
+		LOG(L_ERR, "ERROR: exec_str: cmd %.*s failed. "
 			"exit_status=%d, errno=%d: %s\n",
-			cmd, exit_status, errno, strerror(errno) );
+			cmd->len, ZSW(cmd->s), exit_status, errno, strerror(errno) );
 		ret=-1;
 	}
 error01:
