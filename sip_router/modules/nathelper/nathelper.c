@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.100 2006/06/27 17:56:11 tma0 Exp $
+/* $Id: nathelper.c,v 1.101 2006/07/25 14:05:59 tma0 Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -727,7 +727,7 @@ fix_nated_contact_f(struct sip_msg* msg, char* str1, char* str2)
 }
 
 static int sel_rewrite_contact(str* res, select_t* s, struct sip_msg* msg) {
-	static char buf[100];
+	static char buf[500];
 	contact_t* c;
 	int n, def_port_fl, len;
 	char *cp;
