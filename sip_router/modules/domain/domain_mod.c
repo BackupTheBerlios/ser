@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.36 2006/07/19 10:17:15 janakj Exp $
+ * $Id: domain_mod.c,v 1.37 2006/07/25 15:30:43 janakj Exp $
  *
  * Domain module
  *
@@ -516,8 +516,6 @@ int reload_domain_list(void)
 
 static int lookup_domain_fixup(void** param, int param_no)
 {
-    int ret;
-    fparam_t* fp;
     unsigned long flags;
     char* s;
     
