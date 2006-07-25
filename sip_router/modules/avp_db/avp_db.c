@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.19 2006/07/24 10:07:26 janakj Exp $
+ * $Id: avp_db.c,v 1.20 2006/07/25 15:29:37 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -353,8 +353,6 @@ static int load_attrs(struct sip_msg* msg, char* fl, char* fp)
 static int attrs_fixup(void** param, int param_no)
 {
     unsigned long flags;
-    int ret, err;
-    fparam_t* fp;
     char* s;
     
     if (param_no == 1) {
