@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.37 2006/07/25 16:24:44 janakj Exp $
+ * $Id: authorize.c,v 1.38 2006/07/26 10:25:23 mma Exp $
  *
  * Digest Authentication - Database support
  *
@@ -302,7 +302,9 @@ static inline int authenticate(struct sip_msg* msg, str* realm, str* table, hdr_
 	    ret = -1;
 	    break;
 	}
-    }
+    } else {
+		ret = -1;
+	}
     
  end:
     if (result) auth_dbf.free_result(auth_db_handle, result);
