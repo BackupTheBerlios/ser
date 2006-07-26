@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain support
  *
- * $Id: pdomain.c,v 1.33 2006/07/25 05:46:58 kubartv Exp $
+ * $Id: pdomain.c,v 1.34 2006/07/26 10:10:44 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -151,7 +151,7 @@ int timer_pdomain(pdomain_t* _d)
 				(!presentity->first_winfo_watcher) && 
 				(!presentity->data.first_tuple) &&
 				(!presentity->data.first_note) &&
-				(!presentity->data.first_person) &&
+				(!presentity->data.first_unknown_element) &&
 				(!presentity->first_qsa_subscription) &&
 				(presentity->ref_cnt == 0)) {
 			LOG(L_DBG, "timer_pdomain(): removing empty presentity\n");

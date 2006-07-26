@@ -1,7 +1,7 @@
 /*
  * Presence Agent, presentity structure and related functions
  *
- * $Id: presentity.c,v 1.51 2006/07/25 05:46:58 kubartv Exp $
+ * $Id: presentity.c,v 1.52 2006/07/26 10:10:44 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2004 Jamey Hicks
@@ -51,7 +51,7 @@
 #include "async_auth.h"
 #include "tuple.h"
 #include "pres_notes.h"
-#include "person_elements.h"
+#include "extension_elements.h"
 
 extern int use_db;
 extern char *presentity_table;
@@ -291,7 +291,7 @@ static inline int db_remove_presentity(presentity_t* presentity)
 	res = db_remove_presentity_data(presentity, tuple_notes_table) | res;
 	res = db_remove_presentity_data(presentity, watcherinfo_table) | res;
 	res = db_remove_presentity_data(presentity, presentity_notes_table) | res;
-	res = db_remove_presentity_data(presentity, person_elements_table) | res;
+	res = db_remove_presentity_data(presentity, extension_elements_table) | res;
 	res = db_remove_presentity_data(presentity, presentity_table) | res;
 	
 	return res;
@@ -449,7 +449,7 @@ int pdomain_load_presentities(pdomain_t *pdomain)
 		db_read_watcherinfo(presentity, db);
 		db_read_tuples(presentity, db);
 		db_read_notes(presentity, db);
-		db_read_person_elements(presentity, db);
+		db_read_extension_elements(presentity, db);
 	}
 	
 	close_pa_db_connection(db);
