@@ -1,5 +1,5 @@
 /*
- * $Id: db_ops.c,v 1.7 2006/07/19 14:35:56 mma Exp $
+ * $Id: db_ops.c,v 1.8 2006/07/30 18:47:19 mma Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -577,7 +577,7 @@ static int sel_get_field(str* res, int row_no, int field_no, db_res_t* result) {
 			return -1;
 		}
 		if (field_no >= RES_COL_N(result)) {
-			LOG(L_ERR, "ERROR: db_ops: field (%d) does not exist, num fields: %d\n", row_no, RES_COL_N(result));
+			LOG(L_ERR, "ERROR: db_ops: field (%d) does not exist, num fields: %d\n", field_no, RES_COL_N(result));
 			return -1;
 		}
 		if (row_no < 0) {
