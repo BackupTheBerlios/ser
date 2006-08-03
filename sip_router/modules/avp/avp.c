@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.25 2006/07/18 15:40:18 janakj Exp $
+ * $Id: avp.c,v 1.26 2006/08/03 12:07:02 tirpi Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -272,7 +272,9 @@ static int set_sattr(struct sip_msg* msg, char* p1, char* p2)
 static int avpid_fixup(void** param, int param_no)
 {
     if (param_no == 1) {
-	return fix_param(FPARAM_AVP, param);
+	if (fix_param(FPARAM_AVP, param)==0) return 0;
+	ERR("Invalid AVP identifier: '%s'\n", (char*)*param);
+	return -1;
     }
     return 0;
 }
