@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.125 2006/07/04 12:46:30 janakj Exp $
+ * $Id: cfg.y,v 1.126 2006/08/04 18:52:16 tma0 Exp $
  *
  *  cfg grammar
  *
@@ -1614,7 +1614,7 @@ cmd:
 	| SEND_TCP LPAREN ip COMMA NUMBER RPAREN { $$=mk_action(SEND_TCP_T, 2, IP_ST, (void*)$3, NUMBER_ST, (void*)$5); }
 	| SEND_TCP error { $$=0; yyerror("missing '(' or ')' ?"); }
 	| SEND_TCP LPAREN error RPAREN { $$=0; yyerror("bad send_tcp argument"); }
-	| DROP LPAREN RPAREN	{$$=mk_action(DROP_T,0, 2, NUMBER_ST, 0, NUMBER_ST, (void*)EXIT_R_F); }
+	| DROP LPAREN RPAREN		{$$=mk_action(DROP_T, 2, NUMBER_ST, 0, NUMBER_ST, (void*)EXIT_R_F); }
 	| DROP LPAREN NUMBER RPAREN	{$$=mk_action(DROP_T, 2, NUMBER_ST, (void*)$3, NUMBER_ST, (void*)EXIT_R_F); }
 	| DROP NUMBER 			{$$=mk_action(DROP_T, 2, NUMBER_ST, (void*)$2, NUMBER_ST, (void*)EXIT_R_F); }
 	| DROP RETCODE 			{$$=mk_action(DROP_T, 2, RETCODE_ST, 0, NUMBER_ST, (void*)EXIT_R_F); }
