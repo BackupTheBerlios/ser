@@ -1,5 +1,5 @@
 /*
- * $Id: db_ops.c,v 1.8 2006/07/30 18:47:19 mma Exp $
+ * $Id: db_ops.c,v 1.9 2006/08/14 12:40:32 tma0 Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -865,7 +865,10 @@ static int mod_init(void) {
 	}
 
 	for (p=dbops_actions; p; p=p->next) {
-		init_action(p);
+		int res;
+		res = init_action(p);
+		if (res < 0)
+			return res;
 	}
 
 	register_script_cb(dbops_pre_script_cb, REQ_TYPE_CB | RPL_TYPE_CB| PRE_SCRIPT_CB, 0);
