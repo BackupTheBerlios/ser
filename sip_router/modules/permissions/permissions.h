@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.h,v 1.8 2006/08/14 14:41:08 tirpi Exp $
+ * $Id: permissions.h,v 1.9 2006/08/22 08:51:42 tirpi Exp $
  *
  * PERMISSIONS module
  *
@@ -67,6 +67,7 @@ extern char* trusted_table; /* Name of trusted table */
 extern char* source_col;    /* Name of source address column */
 extern char* proto_col;     /* Name of protocol column */
 extern char* from_col;      /* Name of from pattern column */
+extern char* ipmatch_table; /* Name of trusted table */
 
 /* Database API */
 extern db_func_t	perm_dbf;

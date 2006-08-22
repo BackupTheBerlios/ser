@@ -1,4 +1,6 @@
 /*
+ * $Id: trusted.c,v 1.16 2006/08/22 08:51:43 tirpi Exp $
+ *
  * allow_trusted related functions
  *
  * Copyright (C) 2003 Juha Heinanen
@@ -37,7 +39,7 @@
 
 #include "trusted.h"
 #include "permissions.h"
-#include "hash.h"
+#include "trusted_hash.h"
 #include "../../config.h"
 #include "../../db/db.h"
 #include "../../ip_addr.h"

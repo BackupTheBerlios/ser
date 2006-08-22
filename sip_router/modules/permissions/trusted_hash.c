@@ -1,4 +1,6 @@
 /*
+ * $Id: trusted_hash.c,v 1.1 2006/08/22 08:51:43 tirpi Exp $
+ *
  * Hash functions for cached trusted table
  *
  * Copyright (C) 2003 Juha Heinanen
@@ -30,7 +32,7 @@
 #include "../../mem/shm_mem.h"
 #include "../../parser/parse_from.h"
 #include "../../ut.h"
-#include "hash.h"
+#include "trusted_hash.h"
 
 
 /*
