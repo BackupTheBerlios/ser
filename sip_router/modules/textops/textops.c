@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.63 2006/07/19 15:42:43 janakj Exp $
+/*$Id: textops.c,v 1.64 2006/08/23 22:36:34 tma0 Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -906,10 +906,12 @@ static int find_next_value(char** start, char* end, str* val, str* lump_val) {
 	}
 	val->len = *start - val->s;
 	while (val->len > 0 && is_space(val->s[val->len-1])) val->len--;
+/* we cannot automatically strip quotes!!! an example why: "name" <sip:ssss>;param="bar" 
 	if (val->len >= 2 && val->s[0] == '\"' && val->s[val->len-1] == '\"') {
 		val->s++;
 		val->len -= 2;
 	}
+*/
 	while (*start < end && **start != ',') (*start)++;
 	if (*start < end) {
 		(*start)++;

@@ -1,5 +1,5 @@
 /*
- * $Id: eval.c,v 1.8 2006/07/19 14:01:00 mma Exp $
+ * $Id: eval.c,v 1.9 2006/08/23 22:36:33 tma0 Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -234,10 +234,12 @@ static int find_next_value(char** start, char* end, str* val, str* lump_val) {
 	}
 	val->len = *start - val->s;
 	while (val->len > 0 && is_space(val->s[val->len-1])) val->len--;
+/* we cannot automatically strip quotes!!! an example why: "name" <sip:ssss>;param="bar"
 	if (val->len >= 2 && val->s[0] == '\"' && val->s[val->len-1] == '\"') {
 		val->s++;
 		val->len -= 2;
 	}
+*/
 	while (*start < end && **start != ',') (*start)++;
 	if (*start < end) {
 		(*start)++;
