@@ -1,5 +1,5 @@
 /*
- * $Id: daemonize.c,v 1.13 2006/05/15 09:56:40 tma0 Exp $
+ * $Id: daemonize.c,v 1.14 2006/08/25 15:27:08 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -198,7 +198,8 @@ int daemonize(char*  name)
 	}
 	
 	if (log_stderr==0)
-		openlog(name, LOG_PID|LOG_CONS, log_facility);
+		if (log_facility!=LOG_NONE)
+			openlog(name, LOG_PID|LOG_CONS, log_facility);
 		/* LOG_CONS, LOG_PERRROR ? */
 
 	return  0;

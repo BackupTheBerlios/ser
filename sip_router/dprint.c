@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.c,v 1.8 2004/08/24 08:45:10 janakj Exp $
+ * $Id: dprint.c,v 1.9 2006/08/25 15:27:08 tma0 Exp $
  *
  * debug print 
  *
@@ -45,15 +45,17 @@ static char* str_fac[]={"LOG_AUTH","LOG_CRON","LOG_DAEMON",
 #ifndef __OS_solaris
 					"LOG_AUTHPRIV","LOG_FTP","LOG_SYSLOG",
 #endif
+					"LOG_NONE",
 					0};
 static int int_fac[]={LOG_AUTH ,  LOG_CRON , LOG_DAEMON ,
 					LOG_KERN , LOG_LOCAL0 , LOG_LOCAL1 ,
 					LOG_LOCAL2 , LOG_LOCAL3 , LOG_LOCAL4 , LOG_LOCAL5 ,
 					LOG_LOCAL6 , LOG_LOCAL7 , LOG_LPR , LOG_MAIL ,
-					LOG_NEWS , LOG_USER , LOG_UUCP
+					LOG_NEWS , LOG_USER , LOG_UUCP,
 #ifndef __OS_solaris
-					,LOG_AUTHPRIV,LOG_FTP,LOG_SYSLOG
+					LOG_AUTHPRIV,LOG_FTP,LOG_SYSLOG,
 #endif
+					LOG_NONE
 					};
 
 
