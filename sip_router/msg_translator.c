@@ -1,5 +1,5 @@
 /*
- * $Id: msg_translator.c,v 1.143 2006/06/07 21:34:23 andrei Exp $
+ * $Id: msg_translator.c,v 1.144 2006/08/25 14:04:24 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -721,7 +721,7 @@ static inline int lumps_len(struct sip_msg* msg, struct lump* lumps,
 	else
 		send_address_str=&(send_sock->address_str);
 	if (msg->set_global_port.len)
-		send_port_str=&(msg->set_global_address);
+		send_port_str=&(msg->set_global_port);
 	else
 		send_port_str=&(send_sock->port_no_str);
 
@@ -1133,7 +1133,7 @@ static inline void process_lumps(	struct sip_msg* msg,
 	else
 		send_address_str=&(send_sock->address_str);
 	if (msg->set_global_port.len)
-		send_port_str=&(msg->set_global_address);
+		send_port_str=&(msg->set_global_port);
 	else
 		send_port_str=&(send_sock->port_no_str);
 
