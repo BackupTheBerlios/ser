@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.4 2006/07/19 14:34:59 mma Exp $
+ * $Id: timer.c,v 1.5 2006/08/30 17:12:55 tma0 Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -42,6 +42,7 @@
 #include "../../trim.h"
 #include "../../select.h"
 #include "../../ut.h"
+#include "../../select_buf.h"
 
 #include "../../receive.h"
 #include "../../ip_addr.h"
@@ -151,6 +152,7 @@ static ticks_t timer_handler(ticks_t ticks, struct timer_ln* tl, void* data) {
 		}
 		/* ... clear branches from previous message */
 		clear_branches();
+		reset_static_buffer();
 		if (exec_pre_req_cb(msg)==0 )
 			goto end; /* drop the request */
 		/* exec the routing script */
