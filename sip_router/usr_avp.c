@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.32 2006/07/18 11:51:25 janakj Exp $
+ * $Id: usr_avp.c,v 1.33 2006/08/31 13:18:34 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -330,7 +330,7 @@ inline void get_avp_val(avp_t *avp, avp_value_t *val)
 			break;
 		case AVP_VAL_STR:
 			/* avp type ID, str value */
-			val->s = *(str*)(avp->data);
+			val->s = *(str*)(&avp->data);
 			break;
 		case AVP_NAME_STR|AVP_VAL_STR:
 			/* avp type str, str value */
