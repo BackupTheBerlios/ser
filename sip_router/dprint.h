@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.13 2006/08/25 15:27:08 tma0 Exp $
+ * $Id: dprint.h,v 1.14 2006/09/01 10:51:11 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -32,8 +32,6 @@
 
 #include <syslog.h>
 
-/* define non existing facility to disable logging */
-#define LOG_NONE (~LOG_FACMASK)
 
 #define L_ALERT -3
 #define L_CRIT  -2
@@ -93,7 +91,7 @@ int str2facility(char *s);
 					if (log_stderr){ \
 						dprint (__VA_ARGS__); \
 					}else{ \
-						if (log_facility!=LOG_NONE) syslog(DPRINT_LEV|log_facility,  __VA_ARGS__); \
+						syslog(DPRINT_LEV|log_facility,  __VA_ARGS__); \
 					}\
 				} \
 			}while(0)
@@ -104,7 +102,7 @@ int str2facility(char *s);
 					if (log_stderr){ \
 						dprint (fmt, ## args); \
 					}else{ \
-						if (log_facility!=LOG_NONE) syslog(DPRINT_LEV|log_facility, fmt, ## args); \
+						syslog(DPRINT_LEV|log_facility, fmt, ## args); \
 					}\
 				} \
 			}while(0)
@@ -128,7 +126,7 @@ int str2facility(char *s);
 			do { \
 				if (debug>=(lev)){ \
 					if (log_stderr) dprint (__VA_ARGS__); \
-					else if (log_facility!=LOG_NONE) { \
+					else { \
 						switch(lev){ \
 							case L_CRIT: \
 								syslog(LOG_CRIT|log_facility, __VA_ARGS__); \
@@ -160,7 +158,7 @@ int str2facility(char *s);
 			do { \
 				if (debug>=(lev)){ \
 					if (log_stderr) dprint (fmt, ## args); \
-					else if (log_facility!=LOG_NONE) { \
+					else { \
 						switch(lev){ \
 							case L_CRIT: \
 								syslog(LOG_CRIT|log_facility, fmt, ##args); \
