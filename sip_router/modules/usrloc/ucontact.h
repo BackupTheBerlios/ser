@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.22 2006/07/04 13:02:31 janakj Exp $ 
+ * $Id: ucontact.h,v 1.23 2006/09/05 14:53:44 kubartv Exp $ 
  *
  * Usrloc contact structure
  *
@@ -41,7 +41,7 @@
 #include <time.h>
 #include "../../qvalue.h"
 #include "../../str.h"
-
+#include "../../usr_avp.h"
 
 
 typedef enum cstate {
@@ -86,6 +86,7 @@ typedef struct ucontact {
 	str instance;             /* sip.instance parameter */
 	struct ucontact* next;    /* Next contact in the linked list */
 	struct ucontact* prev;    /* Previous contact in the linked list */
+	avp_t *avps;
 } ucontact_t;
 
 

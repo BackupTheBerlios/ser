@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.46 2006/07/04 13:02:31 janakj Exp $ 
+ * $Id: ucontact.c,v 1.47 2006/09/05 14:53:44 kubartv Exp $ 
  *
  * Usrloc contact structure
  *
@@ -45,6 +45,7 @@
 #include "../../ip_addr.h"
 #include "ul_mod.h"
 #include "ul_callback.h"
+#include "reg_avps.h"
 
 #define	MIN(x, y)	((x) < (y) ? (x) : (y))
 
@@ -759,10 +760,12 @@ int update_ucontact(ucontact_t* _c, str* _u, str* aor, time_t _e, qvalue_t _q, s
 		return -1;
 	}
 	st_update_ucontact(_c);
+	update_reg_avps(_c);
 	if (db_mode == WRITE_THROUGH) {
 		if (db_update_ucontact(_c) < 0) {
 			LOG(L_ERR, "update_ucontact(): Error while updating database\n");
 		}
+		db_update_reg_avps(_c);
 	}
 	return 0;
 }
