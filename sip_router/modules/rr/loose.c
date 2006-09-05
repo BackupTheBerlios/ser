@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.46 2006/07/24 09:40:08 janakj Exp $
+ * $Id: loose.c,v 1.47 2006/09/05 14:54:16 calrissian Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -756,6 +756,7 @@ static inline int find_rem_target(struct sip_msg* _m, struct hdr_field** _h, rr_
 			return -2;
 		}
 
+		*_h = last;
 		*_p = 0;
 		*_l = (rr_t*)last->parsed;
 		while ((*_l)->next) {
