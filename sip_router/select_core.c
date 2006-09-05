@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.17 2006/06/30 15:03:54 mma Exp $
+ * $Id: select_core.c,v 1.18 2006/09/05 22:49:04 tma0 Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -968,7 +968,10 @@ int select_nameaddr_uri(str* res, select_t* s, struct sip_msg* msg)
 	
 	p=find_not_quoted(res, '<');
 	if (!p) {
-		DBG("select_nameaddr_uri: no < found, whole string is uri\n");
+		DBG("select_nameaddr_uri: no < found, string up to first semicolon is uri\n");
+		p = q_memchr(res->s, ';', res->len);
+		if (p)
+			res->len = p-res->s;
 		return 0;
 	}
 
