@@ -232,7 +232,6 @@ class Domain:
 		# set digest realm attr
 		da = self.Domain_attrs(self.dburi, self.db)
 		da.set_default(did, 'digest_realm', domain)
-		da.set_default(did, 'sop_vm_domain', domain)
 
 		# update canonical flag
 		cnd, err = cond(CND_NO_DELETED, did=did)
@@ -296,7 +295,6 @@ class Domain:
 				raise Error (EDOMAIN, 'did=%s' % did)
 
 		da.rm_exist(did, 'digest_realm')
-		da.rm_exist(did, 'sop_vm_domain')
 
 		# remove did
 		cnd, err = cond(CND_NO_DELETED, did=did)
