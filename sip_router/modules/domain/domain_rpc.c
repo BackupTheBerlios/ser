@@ -1,5 +1,5 @@
 /*
- * $Id: domain_rpc.c,v 1.4 2006/01/11 15:07:57 janakj Exp $
+ * $Id: domain_rpc.c,v 1.5 2006/09/14 14:10:18 janakj Exp $
  *
  * Domain module
  *
@@ -89,7 +89,7 @@ static const char* domain_reload_doc[2] = {
  */
 static void domain_reload(rpc_t* rpc, void* ctx)
 {
-	if (db_mode == 0) {
+	if (!db_mode) {
 		rpc->fault(ctx, 400, "Server Domain Cache Disabled");
 		return;
 	}
@@ -114,7 +114,7 @@ static void domain_dump(rpc_t* rpc, void* ctx)
 {
 	domain_t* list;
 
-	if (db_mode == 0) {
+	if (!db_mode) {
 		rpc->fault(ctx, 400, "Server Domain Cache Disabled");
 		return;
 	}
