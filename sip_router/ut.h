@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.43 2006/07/17 13:16:39 janakj Exp $
+ *$Id: ut.h,v 1.44 2006/09/15 10:37:45 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -92,6 +92,29 @@
 #define via_len(_via) \
 	((_via)->bsize-((_via)->name.s-\
 		((_via)->hdr.s+(_via)->hdr.len)))
+
+
+
+/* rounds to sizeof(type), but type must have a 2^k size (e.g. short, int,
+ * long, void*) */
+#define ROUND2TYPE(s, type) \
+	(((s)+(sizeof(type)-1))&(~(sizeof(type)-1)))
+
+
+/* rounds to sizeof(char*) - the first 4 byte multiple on 32 bit archs
+ * and the first 8 byte multiple on 64 bit archs */
+#define ROUND_POINTER(s) ROUND2TYPE(s, char*)
+
+/* rounds to sizeof(long) - the first 4 byte multiple on 32 bit archs
+ * and the first 8 byte multiple on 64 bit archs  (equiv. to ROUND_POINTER)*/
+#define ROUND_LONG(s)  ROUND2TYPE(s, long)
+
+/* rounds to sizeof(int) - the first t byte multiple on 32 and 64  bit archs */
+#define ROUND_INT(s) ROUND2TYPE(s, int)
+
+/* rounds to sizeof(short) - the first 2 byte multiple */
+#define ROUND_SHORT(s) ROUND2TYPE(s, short)
+
 
 
 /* links a value to a msgid */

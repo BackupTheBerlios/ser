@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.28 2006/06/07 21:34:23 andrei Exp $
+/*$Id: msg_translator.h,v 1.29 2006/09/15 10:37:45 andrei Exp $
  * 
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -46,7 +46,7 @@
 #define WARNING_PHRASE " \"Noisy feedback tells: "
 #define WARNING_PHRASE_LEN (sizeof(WARNING_PHRASE)-1)
 
-//#define MAX_CONTENT_LEN_BUF INT2STR_MAX_LEN /* see ut.h/int2str() */
+/*#define MAX_CONTENT_LEN_BUF INT2STR_MAX_LEN *//* see ut.h/int2str() */
 
 #include "parser/msg_parser.h"
 #include "ip_addr.h"

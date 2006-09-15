@@ -1,4 +1,4 @@
-/* $Id: socket_info.h,v 1.6 2005/02/25 18:32:01 bogdan Exp $
+/* $Id: socket_info.h,v 1.7 2006/09/15 10:37:45 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -52,9 +52,17 @@ struct socket_info* tls_listen;
 #endif
 
 
+/* flags for finding out the address types */
+#define SOCKET_T_IPV4 1
+#define SOCKET_T_IPV6 2
+#define SOCKET_T_UDP  4
+#define SOCKET_T_TCP  8
+#define SOCKET_T_TLS 16
+
+
 int add_listen_iface(char* name, unsigned short port, unsigned short proto,
 							enum si_flags flags);
-int fix_all_socket_lists();
+int fix_all_socket_lists(int* socket_types);
 void print_all_socket_lists();
 void print_aliases();
 

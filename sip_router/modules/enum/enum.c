@@ -1,5 +1,5 @@
 /*
- * $Id: enum.c,v 1.21 2006/07/19 11:23:44 janakj Exp $
+ * $Id: enum.c,v 1.22 2006/09/15 10:37:46 andrei Exp $
  *
  * Enum and E164 related functions
  *
@@ -382,7 +382,7 @@ int enum_query(struct sip_msg* msg, char* p1, char* p2)
 
 	memcpy(name + j, suffix.s, suffix.len + 1);
 
-	head = get_record(name, T_NAPTR);
+	head = get_record(name, T_NAPTR, RES_ONLY_TYPE);
 
 	if (head == 0) {
 		DBG("enum_query(): No NAPTR record found for %s.\n", name);

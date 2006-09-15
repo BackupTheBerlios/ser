@@ -1,5 +1,5 @@
 /*
- * $Id: error.h,v 1.14 2006/04/18 19:56:48 andrei Exp $
+ * $Id: error.h,v 1.15 2006/09/15 10:37:45 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -72,6 +72,8 @@
 
 /* error in server */
 #define E_BAD_SERVER	  -500
+#define E_ADM_PROHIBITED  -510
+#define E_BLACKLISTED	  -520
 
 
 #define MAX_REASON_LEN	128
