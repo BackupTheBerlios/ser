@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.h,v 1.25 2006/06/30 13:04:18 kubartv Exp $
+ * $Id: tm_load.h,v 1.26 2006/09/15 16:04:52 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -76,9 +76,9 @@
 
 struct tm_binds {
 	register_tmcb_f  register_tmcb;
-	cmd_function     t_relay_to_udp;
-	cmd_function     t_relay_to_tcp;
-	cmd_function     t_relay;
+	cmd_function     t_relay_to_udp; /* WARNING: failure_route unsafe */
+	cmd_function     t_relay_to_tcp; /* WARNING: failure_route unsafe */ 
+	cmd_function     t_relay;        /* WARNING: failure_route unsafe */
 	tnewtran_f       t_newtran;
 	treply_f         t_reply;
 	treply_wb_f      t_reply_with_body;
