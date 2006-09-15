@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.26 2006/08/03 12:07:02 tirpi Exp $
+ * $Id: avp.c,v 1.27 2006/09/15 22:10:00 mma Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -211,7 +211,7 @@ static int get_avp_id(avp_ident_t* id, fparam_t* p, struct sip_msg* msg)
 	if (ret < 0 || ret > 0) return -1;
 	break;
 
-    case FPARAM_STRING:
+	case FPARAM_STR:
 	str_id = p->v.str;
 	break;
 
