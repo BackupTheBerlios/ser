@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_init.h,v 1.3 2004/08/24 08:45:10 janakj Exp $
+ * $Id: tcp_init.h,v 1.4 2006/09/19 16:13:27 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -29,12 +29,22 @@
 #define tcp_init_h
 #include "ip_addr.h"
 
+struct tcp_child{
+	pid_t pid;
+	int proc_no; /* ser proc_no, for debugging */
+	int unix_sock; /* unix "read child" sock fd */
+	int busy;
+	int n_reqs; /* number of requests serviced so far */
+};
+
+
 int init_tcp();
 void destroy_tcp();
 int tcp_init(struct socket_info* sock_info);
 int tcp_init_children();
 void tcp_main_loop();
 void tcp_receive_loop(int unix_sock);
+int tcp_fix_child_sockets(int* fd);
 
 
 #endif

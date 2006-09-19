@@ -1,5 +1,5 @@
 /*
- * $Id: fifo.c,v 1.5 2006/02/17 18:16:51 andrei Exp $
+ * $Id: fifo.c,v 1.6 2006/09/19 16:13:28 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -82,7 +82,7 @@ static int mod_init(void)
 	     /* Signal to the core that we will be creating one
 	      * additional process
 	      */
-	if (fifo) process_count++;
+	if (fifo) register_procs(1);
 	return 0;
 }
 

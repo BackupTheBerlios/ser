@@ -1,5 +1,5 @@
 /*
- * $Id: fifo_server.h,v 1.1 2005/12/20 11:34:26 janakj Exp $
+ * $Id: fifo_server.h,v 1.2 2006/09/19 16:13:28 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -32,6 +32,7 @@
 #define _FIFO_SERVER_H
 
 #include <stdio.h>
+
 
 #define CMD_SEPARATOR ':'
 

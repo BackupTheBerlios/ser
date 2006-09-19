@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock.c,v 1.2 2006/01/08 22:43:19 tma0 Exp $
+ * $Id: unixsock.c,v 1.3 2006/09/19 16:13:31 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -80,7 +80,7 @@ static int mod_init(void)
 	     /* Signal to the core that we will be
 	      * creating additional processes
 	      */
-	if (unixsock_name) process_count += unixsock_children;
+	if (unixsock_name) register_procs(unixsock_children);
 	return 0;
 }
 

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: sl_stats.c,v 1.15 2006/01/10 15:27:53 janakj Exp $
+ * $Id: sl_stats.c,v 1.16 2006/09/19 16:13:30 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -59,12 +59,16 @@ static void rpc_stats(rpc_t* rpc, void* c)
 	void* st;
 	struct sl_stats total;
 	int p;
+	int procs_no;
 
 	memset(&total, 0, sizeof(struct sl_stats));
 	if (dont_fork) {
 		add_sl_stats(&total, &(*sl_stats)[0]);
-	} else for (p=0; p < process_count; p++)
+	} else{
+		procs_no=get_max_procs();
+		for (p=0; p < procs_no; p++)
 			add_sl_stats(&total, &(*sl_stats)[p]);
+	}
 
 	if (rpc->add(c, "{", &st) < 0) return;
 	
@@ -121,7 +125,7 @@ int init_sl_stats_child(void)
 {
 	int len;
 
-	len = sizeof(struct sl_stats) * process_count;
+	len = sizeof(struct sl_stats) * get_max_procs();
 	*sl_stats = shm_malloc(len);
 	if (*sl_stats == 0) {
 		ERR("No shmem\n");

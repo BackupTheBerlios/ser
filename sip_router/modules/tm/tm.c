@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.143 2006/07/25 15:52:38 janakj Exp $
+ * $Id: tm.c,v 1.144 2006/09/19 16:13:30 andrei Exp $
  *
  * TM module
  *
@@ -511,7 +511,7 @@ static int mod_init(void)
 
 	     /* First tm_stat initialization function only allocates the top level stat
 	      * structure in shared memory, the initialization will complete in child
-	      * init with init_tm_stats_child when the final value of process_count is
+	      * init with init_tm_stats_child when the final value of estimated_process_count is
 	      * known
 	      */
 	if (init_tm_stats() < 0) {

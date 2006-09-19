@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.14 2006/09/15 10:37:45 andrei Exp $
+ * $Id: core_cmd.c,v 1.15 2006/09/19 16:13:27 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -216,7 +216,7 @@ static void core_ps(rpc_t* rpc, void* c)
 {
 	int p;
 
-	for (p=0; p<process_count;p++) {
+	for (p=0; p<*process_count;p++) {
 		rpc->add(c, "d", pt[p].pid);
 		rpc->add(c, "s", pt[p].desc);
 	}
