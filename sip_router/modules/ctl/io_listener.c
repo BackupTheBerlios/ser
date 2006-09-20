@@ -1,5 +1,5 @@
 /*
- * $Id: io_listener.c,v 1.3 2006/09/19 16:13:28 andrei Exp $
+ * $Id: io_listener.c,v 1.4 2006/09/20 09:39:14 hscholz Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -199,8 +199,13 @@ void io_listen_loop(int fd_no, struct ctrl_socket* cs_lst)
 	
 	/* choose/fix the poll method */
 	/* FIXME: make it a config param? */
+#if USE_TCP
 	poll_method=tcp_poll_method; /* try to resue the tcp poll method */
 	poll_err=check_poll_method(poll_method);
+#else
+	poll_method = 0; /* make check for TCP poll method fail */
+	poll_err = NULL;
+#endif
 	
 	/* set an appropiate poll method */
 	if (poll_err || (poll_method==0)){
