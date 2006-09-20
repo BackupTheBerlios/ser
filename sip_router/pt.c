@@ -1,5 +1,5 @@
 /*
- * $Id: pt.c,v 1.1 2006/09/20 09:01:48 andrei Exp $
+ * $Id: pt.c,v 1.2 2006/09/20 09:22:48 hscholz Exp $
  *
  * Process Table
  *
@@ -188,6 +188,7 @@ inline int fork_process(int child_id, char *desc, int make_sock)
  * @param *reader_fd_1 - pointer to return the reader_fd[1]
  * @returns the pid of the new process
  */
+#ifdef USE_TCP
 inline int fork_tcp_process(int child_id,char *desc,int r,int *reader_fd_1)
 {
 	int pid,old_process_no;
@@ -267,6 +268,4 @@ inline int fork_tcp_process(int child_id,char *desc,int r,int *reader_fd_1)
 		return pid;
 	}
 }
-
-
-
+#endif
