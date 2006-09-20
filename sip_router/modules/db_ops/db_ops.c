@@ -1,5 +1,5 @@
 /*
- * $Id: db_ops.c,v 1.9 2006/08/14 12:40:32 tma0 Exp $
+ * $Id: db_ops.c,v 1.10 2006/09/20 17:15:34 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -134,7 +134,7 @@ static int get_next_part(char** s, char** part, char delim, int read_only) {
 	while (!(((*c2 == delim) && !flag) || *c2==0)) {
 		if (*c2=='\'')
 			flag = !flag;
-		*c2++;
+		c2++;
 	}
 	if ((*c2)==0 && flag) {
 		LOG(L_ERR, "ERROR: db_ops: string '%s' is not terminated\n", *s);

@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.22 2006/09/04 07:53:29 kubartv Exp $
+ * $Id: dlg.c,v 1.23 2006/09/20 17:15:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -236,6 +236,7 @@ static inline int get_contact_uri(struct sip_msg* _m, str* _uri)
 	contact_t* c;
 
 	_uri->len = 0;
+	_uri->s = 0;
 
 	if (!_m->contact) return 1;
 

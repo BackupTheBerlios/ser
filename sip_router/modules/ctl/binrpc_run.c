@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_run.c,v 1.2 2006/02/23 20:46:43 andrei Exp $
+ * $Id: binrpc_run.c,v 1.3 2006/09/20 17:15:34 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -136,6 +136,7 @@ error:
 
 
 
+#if 0 /* not used yet */
 /* doubles the size */
 static struct rpc_struct_l* grow_rpc_struct(struct rpc_struct_l *rs)
 {
@@ -153,6 +154,7 @@ static struct rpc_struct_l* grow_rpc_struct(struct rpc_struct_l *rs)
 	}
 	return new_rs;
 }
+#endif
 
 
 
