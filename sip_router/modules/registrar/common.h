@@ -1,5 +1,5 @@
 /*
- * $Id: common.h,v 1.11 2005/11/21 00:10:29 janakj Exp $
+ * $Id: common.h,v 1.12 2006/09/25 11:44:22 janakj Exp $
  *
  * Common stuff
  *
@@ -32,5 +32,9 @@
 #define COMMON_H
 
 #include "../../str.h"
+
+#define VALID_AOR(contact, aor_filter) \
+    ((aor_filter).len == (contact)->aor.len && \
+     !strncasecmp((aor_filter).s, (contact)->aor.s, (aor_filter.len)))
 
 #endif /* COMMON_H */

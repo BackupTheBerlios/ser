@@ -1,5 +1,5 @@
 /*
- * $Id: lookup.c,v 1.41 2006/07/25 15:46:45 janakj Exp $
+ * $Id: lookup.c,v 1.42 2006/09/25 11:44:22 janakj Exp $
  *
  * Lookup contacts in usrloc
  *
@@ -232,10 +232,6 @@ int registered(struct sip_msg* _m, char* _t, char* _s)
 	DBG("registered(): '%.*s' not found in usrloc\n", uid.len, ZSW(uid.s));
 	return -1;
 }
-
-#define VALID_AOR(contact, aor) \
-    ((aor).len == (contact)->aor.len && \
-     !strncasecmp((aor).s, (contact)->aor.s, (aor.len)))
 
 /*
  * Lookup contact in the database and rewrite Request-URI,
