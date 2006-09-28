@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.65 2006/06/23 08:51:37 kubartv Exp $
+ * $Id: msg_parser.h,v 1.66 2006/09/28 21:10:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -76,6 +76,10 @@ enum request_method { METHOD_UNDEF=0, METHOD_INVITE=1, METHOD_CANCEL=2, METHOD_A
 #define FL_SDP_IP_AFS 4    /* SDP IP rewritten */
 #define FL_SDP_PORT_AFS 8  /* SDP port rewritten */
 #define FL_SHM_CLONE   16  /* msg cloned in SHM as a single chunk */
+#define FL_TIMEOUT     32  /* message belongs to an "expired" branch
+                               (for failure route use) */
+#define FL_REPLIED     64  /* message branch received at least one reply
+                                (for failure route use) */
 
 
 #define IFISMETHOD(methodname,firstchar)                                  \
