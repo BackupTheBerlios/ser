@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.19 2006/02/14 17:41:23 andrei Exp $
+# $Id: Makefile.rules,v 1.20 2006/09/29 07:52:24 greger Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -44,6 +44,7 @@ clean:
 		if [ -d "$$r" ]; then \
 			echo "module $$r" ; \
 			$(MAKE) -C $$r clean ; \
+		        $(MAKE) -C $$r/doc clean ; \
 		fi ; \
 	done 
 	@if [ -n "$(modules)" ]; then \
@@ -62,6 +63,7 @@ proper realclean distclean: clean
 	-@for r in $(modules) "" ; do \
 		if [ -d "$$r" ]; then \
 			 $(MAKE) -C $$r proper ; \
+		        $(MAKE) -C $$r/doc proper ; \
 		fi ; \
 	done 
 	@if [ -n "$(modules)" ]; then \
