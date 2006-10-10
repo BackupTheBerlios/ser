@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.89 2006/09/28 21:10:44 andrei Exp $
+ * $Id: h_table.h,v 1.90 2006/10/10 19:21:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -190,8 +190,10 @@ struct totag_elem {
 #define T_NOISY_CTIMER_FLAG  (1<<2)
 /* transaction canceled */
 #define T_CANCELED           (1<<3)
+/* 6xx received => stop forking */
+#define T_6xx                (1<<4) 
 
-#define T_IN_AGONY (1<<4) /* set if waiting to die (delete timer)
+#define T_IN_AGONY (1<<5) /* set if waiting to die (delete timer)
                              TODO: replace it with del on unref */
 
 /* transaction context */

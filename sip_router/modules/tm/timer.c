@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.68 2006/09/28 21:10:44 andrei Exp $
+ * $Id: timer.c,v 1.69 2006/10/10 19:22:00 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -243,8 +243,6 @@ static void fake_reply(struct cell *t, int branch, int code )
 	enum rps reply_status;
 
 	do_cancel_branch = is_invite(t) && should_cancel_branch(t, branch);
-
-	cancel_bitmap=do_cancel_branch ? 1<<branch : 0;
 	if ( is_local(t) ) {
 		reply_status=local_reply( t, FAKED_REPLY, branch, 
 					  code, &cancel_bitmap );
@@ -276,7 +274,7 @@ static void fake_reply(struct cell *t, int branch, int code )
 
 	}
 	/* now when out-of-lock do the cancel I/O */
-	if (do_cancel_branch) cancel_branch(t, branch );
+	if (do_cancel_branch) cancel_branch(t, branch, 0);
 	/* it's cleaned up on error; if no error occurred and transaction
 	   completed regularly, I have to clean-up myself
 	*/
