@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.doc,v 1.7 2005/12/19 15:22:20 greger Exp $
+# $Id: Makefile.doc,v 1.8 2006/10/10 14:06:04 greger Exp $
 #
 
 #
@@ -102,6 +102,7 @@ pdf: $(pdf_files)
         --stringparam base.dir "$(OUTPUT_DIR)/" \
         --stringparam root.filename "$(basename $<)" \
         --stringparam html.ext ".html" \
+	--stringparam html.stylesheet ser.css \
         $(HTML_XSL) $<
 
 %.fo: %.xml $(alldep) $(FO_XSL)
