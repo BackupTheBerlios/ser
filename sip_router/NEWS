@@ -1,7 +1,7 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.56 2006/10/10 19:21:59 andrei Exp $
+$Id: NEWS,v 1.57 2006/10/13 13:29:05 vlada Exp $
 
 0.10.99-dev changes
 
@@ -81,6 +81,8 @@ modules:
               Vias a.s.o) and not on the original message
  
 core:
+ - added STUN keep-alive functionality in accordance with 
+   draft-ietf-behave-rfc3489bis-04.txt
  - dns cache and dns failover support added (see doc/dns.txt)
  - destination blacklist added -- destinations to which forwarding fails
    (send error, tm timeout a.s.o) are temporarily added to a blacklist which 
@@ -167,6 +169,10 @@ core:
    are available (see tm docs)
 - avps directly accessible from script with %avp_name (variable style)
 new config variables:
+   stun_refresh_interval = number in milisecond (default 0); value for attribute
+       REFRESH INTERVAL
+   stun_allow_stun = 0 | 1 (off | on - defaul 1); use STUN or not if compiled
+   stun_allow_fp = 0 | 1 (off | on - default 1); use FINGERPRINT attribute
    use_dns_cache = on | off  (default on)  
    use_dns_failover = on | off (default off)
    dns_cache_flags = number (default 0)
