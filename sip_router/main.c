@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.219 2006/09/19 16:13:27 andrei Exp $
+ * $Id: main.c,v 1.220 2006/10/13 13:08:42 vlada Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -62,6 +62,8 @@
  *               of them might use it "unset" (andrei)
  *  2005-07-25  use sigaction for setting the signal handlers (andrei)
  *  2006-07-13  added dns cache/failover init. (andrei)
+ *  2006-10-13  added global variables stun_refresh_interval, stun_allow_stun
+ *              and stun_allow_fp (vlada)
  */
 
 
@@ -144,7 +146,7 @@
 #endif
 #include "version.h"
 
-static char id[]="@(#) $Id: main.c,v 1.219 2006/09/19 16:13:27 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.220 2006/10/13 13:08:42 vlada Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -351,6 +353,15 @@ struct socket_info* sendipv6_tls;
 unsigned short port_no=0; /* default port*/
 #ifdef USE_TLS
 unsigned short tls_port_no=0; /* default port */
+#endif
+
+#ifdef USE_STUN
+/* refresh interval in miliseconds */
+unsigned int stun_refresh_interval=0;
+/* stun can be switch off even if it is compiled */
+int stun_allow_stun=1;
+/* use or don't use fingerprint */
+int stun_allow_fp=1;
 #endif
 
 struct host_alias* aliases=0; /* name aliases list */
