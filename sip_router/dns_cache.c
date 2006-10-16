@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.c,v 1.2 2006/10/06 11:02:58 andrei Exp $
+ * $Id: dns_cache.c,v 1.3 2006/10/16 18:40:55 andrei Exp $
  *
  * resolver related functions
  *
@@ -2212,6 +2212,7 @@ int dns_sip_resolve(struct dns_srv_handle* h,  str* name,
 						}
 #endif
 						*ip=*tmp_ip;
+						*port=h->port;
 						return 0;
 					}
 					
