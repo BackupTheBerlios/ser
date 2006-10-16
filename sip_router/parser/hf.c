@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.31 2006/06/23 08:51:37 kubartv Exp $
+ * $Id: hf.c,v 1.32 2006/10/16 18:44:02 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -183,6 +183,8 @@ void clean_hdr_field(struct hdr_field* hf)
 		case HDR_REFERREDBY_T:
 		case HDR_REJECTCONTACT_T:
 		case HDR_REQUESTDISPOSITION_T:
+		case HDR_WWW_AUTHENTICATE_T:
+		case HDR_PROXY_AUTHENTICATE_T:
 			break;
 		default:
 			LOG(L_CRIT, "BUG: clean_hdr_field: unknown header type %d\n",

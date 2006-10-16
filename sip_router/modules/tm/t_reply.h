@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.22 2006/03/13 08:48:45 kubartv Exp $
+ * $Id: t_reply.h,v 1.23 2006/10/16 18:44:02 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -38,6 +38,7 @@
 
 
 extern int restart_fr_on_each_reply;
+extern int tm_aggregate_auth; /* aggregate authorization header value */
 
 /* reply processing status */
 enum rps {
