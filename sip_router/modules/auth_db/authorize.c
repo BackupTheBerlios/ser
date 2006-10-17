@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.38 2006/07/26 10:25:23 mma Exp $
+ * $Id: authorize.c,v 1.39 2006/10/17 21:11:19 calrissian Exp $
  *
  * Digest Authentication - Database support
  *
@@ -127,7 +127,7 @@ static inline int get_ha1(struct username* username, str* did, str* realm,
     }
     
     if (i == (*res)->n) {
-	DBG("auth_db:get_ha1: Credentials for '%.*s'@'%.*s' not found",
+	DBG("auth_db:get_ha1: Credentials for '%.*s'@'%.*s' not found\n",
 	    username->user.len, ZSW(username->user.s), realm->len, ZSW(realm->s));
 	return 1;
     }		
