@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.128 2006/10/13 13:08:42 vlada Exp $
+ * $Id: cfg.y,v 1.129 2006/10/17 13:15:33 vlada Exp $
  *
  *  cfg grammar
  *
@@ -869,7 +869,6 @@ assign_stm:
 	| MCAST_TTL EQUAL error { yyerror("number expected"); }
 	| TOS EQUAL NUMBER { tos=$3; }
 	| TOS EQUAL error { yyerror("number expected"); }
-	| error EQUAL { yyerror("unknown config variable"); }
 	| STUN_REFRESH_INTERVAL EQUAL NUMBER { 
 		#ifdef USE_STUN
 			stun_refresh_interval=$3;
