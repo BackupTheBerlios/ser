@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.39 2006/10/17 21:11:19 calrissian Exp $
+ * $Id: authorize.c,v 1.40 2006/10/17 22:29:53 calrissian Exp $
  *
  * Digest Authentication - Database support
  *
@@ -269,7 +269,7 @@ static inline int authenticate(struct sip_msg* msg, str* realm, str* table, hdr_
     } else {
 	ret = get_from_did(&did, msg);
     }
-    if (ret != 0) did = default_did;
+    if (ret != 1) did = default_did;
     
     res = get_ha1(&cred->digest.username, &did, realm, table, ha1, &result, &row);
     if (res < 0) {
