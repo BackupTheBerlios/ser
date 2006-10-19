@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.29 2006/07/25 13:43:40 janakj Exp $
+ * $Id: challenge.c,v 1.30 2006/10/19 09:23:56 hscholz Exp $
  *
  * Challenge related functions
  *
@@ -128,6 +128,7 @@ int build_challenge_hf(struct sip_msg* msg, int stale, str* realm, int hftype)
 	pkg_free(hf.s);
 	return -1;
     }
+	pkg_free(hf.s);
 
     return 0;
 }
