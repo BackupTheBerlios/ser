@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.c,v 1.10 2006/09/01 10:51:11 tma0 Exp $
+ * $Id: dprint.c,v 1.11 2006/10/24 16:53:55 andrei Exp $
  *
  * debug print 
  *
@@ -36,6 +36,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <strings.h>
+
+volatile int dprint_crit=0; /* signal protection: !=0 when dprint/LOG/DBG are
+								printing */
 
 static char* str_fac[]={"LOG_AUTH","LOG_CRON","LOG_DAEMON",
 					"LOG_KERN","LOG_LOCAL0","LOG_LOCAL1",
