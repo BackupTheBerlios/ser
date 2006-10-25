@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.66 2006/10/25 16:44:21 andrei Exp $
+ * $Id: globals.h,v 1.67 2006/10/25 18:44:36 andrei Exp $
  *
  * global variables
  *
@@ -76,6 +76,7 @@ extern struct socket_info* sendipv6_tls; /* same as above for ipv6 */
 extern unsigned int maxbuffer;
 extern int children_no;
 #ifdef USE_TCP
+extern int tcp_main_pid;
 extern int tcp_children_no;
 extern int tcp_disable;
 extern int tcp_accept_aliases;
