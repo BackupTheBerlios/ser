@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.73 2006/07/19 12:49:32 janakj Exp $
+ *  $Id: config.h,v 1.74 2006/10/25 16:44:21 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -180,7 +180,7 @@
 								+ 1 /*sep*/ + 8 /*int2hex*/ + \
 								1 /*extra space, needed by t_calc_branch*/)
 
-
+#define DEFAULT_SER_KILL_TIMEOUT 60 /* seconds */
 
 /* maximum path length */
 #define PATH_MAX_GUESS	1024

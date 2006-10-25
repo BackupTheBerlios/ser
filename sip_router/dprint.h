@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.15 2006/10/24 16:53:55 andrei Exp $
+ * $Id: dprint.h,v 1.16 2006/10/25 16:44:21 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -50,9 +50,15 @@ extern int log_facility;
 extern volatile int dprint_crit; /* protection against "simultaneous"
 									printing from signal handlers */
 
+#ifdef NO_SIG_DEBUG
+#define DPRINT_NON_CRIT		(1)
+#define DPRINT_CRIT_ENTER
+#define DPRINT_CRIT_EXIT
+#else
 #define DPRINT_NON_CRIT		(dprint_crit==0)
 #define DPRINT_CRIT_ENTER	(dprint_crit++)
 #define DPRINT_CRIT_EXIT	(dprint_crit--)
+#endif
 
 #define DPRINT_LEV	1
 /* priority at which we log */

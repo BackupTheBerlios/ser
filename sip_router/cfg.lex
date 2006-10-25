@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.91 2006/10/13 13:08:42 vlada Exp $
+ * $Id: cfg.lex,v 1.92 2006/10/25 16:44:21 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -290,6 +290,7 @@ OPEN_FD_LIMIT		"open_files_limit"
 MCAST_LOOPBACK		"mcast_loopback"
 MCAST_TTL		"mcast_ttl"
 TOS			"tos"
+KILL_TIMEOUT	"exit_timeout"|"ser_kill_timeout"
 
 /* stun config variables */
 STUN_REFRESH_INTERVAL "stun_refresh_interval"
@@ -532,6 +533,8 @@ EAT_ABLE	[\ \t\b\r]
 									return MCAST_TTL; }
 <INITIAL>{TOS}			{	count(); yylval.strval=yytext;
 									return TOS; }
+<INITIAL>{KILL_TIMEOUT}			{	count(); yylval.strval=yytext;
+									return KILL_TIMEOUT; }
 <INITIAL>{LOADMODULE}	{ count(); yylval.strval=yytext; return LOADMODULE; }
 <INITIAL>{MODPARAM}     { count(); yylval.strval=yytext; return MODPARAM; }
 
