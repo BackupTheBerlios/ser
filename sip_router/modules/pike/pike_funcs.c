@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.25 2006/10/25 20:22:51 andrei Exp $
+ * $Id: pike_funcs.c,v 1.26 2006/10/25 20:24:20 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -185,11 +185,15 @@ void clean_routine(unsigned int ticks , void *param)
 	/* DBG("DEBUG:pike:clean_routine:  entering (%d)\n",ticks); */
 	/* before locking check first if the list is not empty and if can
 	 * be at least one element removed */
-	if ( is_list_empty( timer ) || ll2ipnode(timer->next)->expires>ticks )
-		return;
+	if ( is_list_empty( timer )) return; /* quick exit */
 
 	/* get the expired elements */
 	lock_get( timer_lock );
+	/* check again for empty list */
+	if (is_list_empty(timer) || (ll2ipnode(timer->next)->expires>ticks )){
+		lock_release( timer_lock );
+		return;
+	}
 	check_and_split_timer( timer, ticks, &head, mask);
 	/*print_timer_list(timer);*/ /* debug */
 	lock_release( timer_lock );
@@ -297,7 +301,8 @@ void swap_routine( unsigned int ticks, void *param)
 		node = get_tree_branch(i);
 		if (node) {
 			lock_tree_branch( i );
-			refresh_node( node );
+			node = get_tree_branch(i); /* again, to avoid races */
+			if (node) refresh_node( node );
 			unlock_tree_branch( i );
 		}
 	}

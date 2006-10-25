@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_tree.h,v 1.9 2006/10/25 20:22:51 andrei Exp $
+ * $Id: ip_tree.h,v 1.10 2006/10/25 20:24:20 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -63,7 +63,7 @@ struct ip_node
 	unsigned short    hits[2];
 	unsigned char     byte;
 	unsigned char     branch;
-	unsigned short    flags;
+	volatile unsigned short    flags;
 	struct list_link  timer_ll;
 	struct ip_node    *prev;
 	struct ip_node    *next;
