@@ -1,6 +1,6 @@
-#! /usr/bin/env pyhton
+#! /usr/bin/env python
 """
- * $Id: route_graph.py,v 1.1 2006/10/26 16:01:55 calrissian Exp $
+ * $Id: route_graph.py,v 1.2 2006/10/26 21:34:13 mma Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
