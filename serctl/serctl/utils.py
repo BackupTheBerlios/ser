@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: utils.py,v 1.18 2006/06/16 12:17:17 hallik Exp $
+# $Id: utils.py,v 1.19 2006/10/31 19:40:15 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -19,7 +19,7 @@ from serctl.dbany   import DBany
 from serctl.flag    import cv_flags
 from flag           import CND_NO_DELETED
 from time    import strftime, gmtime
-import sys, serctl.options, commands
+import sys, serctl.options
 
 CND_TRUE  = ['1']
 CND_FALSE = ['0']

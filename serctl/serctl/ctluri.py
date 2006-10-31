@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.18 2006/06/12 11:19:58 hallik Exp $
+# $Id: ctluri.py,v 1.19 2006/10/31 19:40:15 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -242,7 +242,7 @@ class Uri(Basectl):
 
 		if self.exist(uid, username, did):
 			if force: return
-			raise Error (EDUPL, err)
+			raise Error (EDUPL, username)
 
 		# update canonical flag
 		cnd, err = cond(CND_NO_DELETED, uid=uid)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluser.py,v 1.9 2006/04/27 22:32:20 hallik Exp $
+# $Id: ctluser.py,v 1.10 2006/10/31 19:40:15 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -178,8 +178,6 @@ class User:
 		self.db.insert(self.TABLE, ins)
 
 	def rm(self, uid=None, force=False):
-		udel = cdel = False
-
 		if self.is_used(uid):
 			if force:
 				self._try_rm_orphans(uid)
@@ -198,7 +196,6 @@ class User:
 
 	def change(self, uid=None, flags=None, force=False):
 		fmask = parse_flags(flags)
-		nflags = new_flags(0, fmask)
 
 		cnd, err = cond(CND_NO_DELETED, uid=uid)
 

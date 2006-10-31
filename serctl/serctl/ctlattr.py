@@ -136,7 +136,7 @@ def show_all(opts):
 def show(identificator=None, **opts):
 	if identificator is None:
 		return show_all(opts)
-	COLS = ['name', 'type', 'value', 'flags']
+#	COLS = ['name', 'type', 'value', 'flags']
 	cols, fformat, limit, rsep, lsep, astab = show_opts(opts)
 
 	obj, id, x = _attr_id(identificator, opts)

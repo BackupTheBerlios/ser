@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: dbsql.py,v 1.6 2006/03/13 08:44:20 hallik Exp $
+# $Id: dbsql.py,v 1.7 2006/10/31 19:40:15 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -18,7 +18,7 @@ from serctl.uri    import USER, PASS, HOST, PORT, DB
 
 class DBsql(DBbase):
 
-	def _connect(user, password, host, port, db):
+	def _connect(self, user, password, host, port, db):
 	# This function should be implemented in db<driver>.py
 	# See dbmysql.py for example.
 		pass

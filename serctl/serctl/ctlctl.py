@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.45 2006/06/20 10:19:35 hallik Exp $
+# $Id: ctlctl.py,v 1.46 2006/10/31 19:40:15 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -274,7 +274,7 @@ def kill(sig=15, **opts):
 	sig = int(sig)
 
 	rpc = any_rpc(opts)
-	ret = rpc.core_kill(sig)
+	return rpc.core_kill(sig)
 
 def stat(*modules, **opts):
 	cols, numeric, limit, rsep, lsep, astab = show_opts(opts)
@@ -344,16 +344,16 @@ class Domain_ctl:
 			raise Error (EDOMAIN, domain)
 
 		ualiases = uniq(aliases)
-		aliases = []
+		naliases = []
 		for alias in ualiases:
 			if do.exist(did, alias):
 				if force: continue
 				raise Error (EDUPL, errstr(did=did, domain=alias))
 			else:
-				aliases.append(alias)
+				naliases.append(alias)
 
 		do.add(did, domain, None, force)
-		for alias in aliases:
+		for alias in naliases:
 			do.add(did, alias, None, force)
 		self._reload()
 
@@ -640,9 +640,7 @@ class Alias_ctl:
 		self._reload()
 
 	def rm(self, aliases, force=False):
-		do = Domain(self.dburi, self.db)
 		ur = Uri(self.dburi, self.db)
-		us = User(self.dburi, self.db)
 
 		aliases = uniq(aliases)
 		for a in aliases:

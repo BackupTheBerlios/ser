@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.15 2006/10/31 18:52:46 hallik Exp $
+# $Id: ctlcred.py,v 1.16 2006/10/31 19:40:15 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -232,6 +232,7 @@ class Cred:
 		except:
 			if force: return
 			raise
+		cnd, err = cond(CND_NO_DELETED, uid=uid, realm=realm)
 		return self._rm(cnd, err, force)
 
 	def rm_realm(self, realm, force=False):
