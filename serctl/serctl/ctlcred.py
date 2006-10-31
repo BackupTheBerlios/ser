@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.14 2006/05/24 16:01:51 hallik Exp $
+# $Id: ctlcred.py,v 1.15 2006/10/31 18:52:46 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -18,7 +18,7 @@ from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonica
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, cv_flags
 from serctl.utils   import show_opts, tabprint, arg_pairs, idx_dict, no_all, \
-                           col_idx, cond, full_cond, get_password
+                           col_idx, cond, full_cond, get_password, uniq
 import md5, serctl.ctlhelp, serctl.ctldomain, serctl.ctluser, serctl.ctlattr
 
 
