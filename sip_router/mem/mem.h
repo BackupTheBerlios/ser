@@ -1,4 +1,4 @@
-/* $Id: mem.h,v 1.12 2006/04/07 14:55:27 andrei Exp $
+/* $Id: mem.h,v 1.13 2006/11/01 14:46:21 hscholz Exp $
  *
  * memory related stuff (malloc & friends)
  * 
@@ -124,7 +124,7 @@
 #	include "memdbg.h"
 #	define pkg_malloc(s) \
 	(  { void *v; v=malloc((s)); \
-	   MDBG("malloc %p size %d end %p\n", v, s, (char*)v+(s));\
+	   MDBG("malloc %p size %d end %p\n", v, (s), (char*)v+(s));\
 	   v; } )
 #	define pkg_free(p)  do{ MDBG("free %p\n", (p)); free((p)); }while(0);
 #	define pkg_status()
