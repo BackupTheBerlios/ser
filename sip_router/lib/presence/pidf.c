@@ -1,7 +1,7 @@
 /* 
  * PIDF parser
  *
- * $Id: pidf.c,v 1.18 2006/10/02 07:13:09 kubartv Exp $
+ * $Id: pidf.c,v 1.19 2006/11/01 14:49:51 kubartv Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -374,8 +374,8 @@ static int read_tuple(xmlNode *tuple, presence_tuple_info_t **dst, int ignore_ns
 
 	/* translate status */
 	status = presence_tuple_closed; /* default value */
-	if (strcmp(s, "open") == 0) status = presence_tuple_open;
-	if (strcmp(s, "closed") == 0) status = presence_tuple_closed;
+	if (strcasecmp(s, "open") == 0) status = presence_tuple_open;
+	if (strcasecmp(s, "closed") == 0) status = presence_tuple_closed;
 	/* FIXME: handle not standardized variants too (add note to basic status) */
 	
 	/* get ID from tuple node attribute? */
