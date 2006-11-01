@@ -1,7 +1,7 @@
 /*
  * Presence Agent, subscribe handling
  *
- * $Id: subscribe.c,v 1.61 2006/07/25 05:46:59 kubartv Exp $
+ * $Id: subscribe.c,v 1.62 2006/11/01 16:03:32 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -531,7 +531,7 @@ int handle_new_subscription(struct sip_msg* _m, struct pdomain *d)
 	
 	if (prepare_notify(&req, p, w) < 0) {
 		ERR("can't send notify\n");
-		goto err3;
+		goto err4;
 	}
 
 	set_last_subscription_status(w->status);
@@ -551,6 +551,9 @@ int handle_new_subscription(struct sip_msg* _m, struct pdomain *d)
 	}
 
 	return 1;
+	
+err4:
+	remove_watcher(p, w);
 
 err3:
 	unlock_pdomain(d);
