@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.87 2006/11/02 22:55:56 andrei Exp $
+ * $Id: tcp_main.c,v 1.88 2006/11/02 23:35:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1786,6 +1786,11 @@ error:
 void destroy_tcp()
 {
 		if (tcpconn_id_hash){
+			if (tcpconn_lock)
+				TCPCONN_UNLOCK; /* hack: force-unlock the tcp lock in case
+								   some process was terminated while holding 
+								   it; this will allow an almost gracious 
+								   shutdown */
 			tcpconn_timeout(1); /* force close/expire for all active tcpconns*/
 			shm_free(tcpconn_id_hash);
 			tcpconn_id_hash=0;
