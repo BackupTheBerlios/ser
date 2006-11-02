@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_server.h,v 1.6 2006/04/12 18:04:23 andrei Exp $
+ * $Id: tcp_server.h,v 1.7 2006/11/02 22:55:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -34,9 +34,6 @@
 
 /* "public" functions*/
 
-struct tcp_connection* tcpconn_get(int id, struct ip_addr* ip, int port, 
-									int timeout);
-void tcpconn_put(struct tcp_connection* c);
 int tcp_send(struct dest_info* dst, char* buf, unsigned len);
 
 int tcpconn_add_alias(int id, int port, int proto);
