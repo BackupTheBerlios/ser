@@ -1,0 +1,65 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+
+build:
+	dh_testdir
+	$(MAKE) build
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	$(MAKE) install \
+		prefix=$(CURDIR)/debian/serctl \
+		'usr_prefix=$$(prefix)/usr' \
+		'etc_prefix=$$(prefix)' \
+		'var_prefix=$$(prefix)/var'
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+#	dh_installdocs
+#	dh_installexamples
+#	dh_install
+#	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+#	dh_installman
+#	dh_link
+#	dh_strip
+#	dh_compress
+	dh_fixperms
+#	dh_perl
+#	dh_python
+#	dh_makeshlibs
+	dh_installdeb
+#	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: build install
+# nothing
+
+binary: binary-indep binary-arch
+# nothing
+
+clean:
+	dh_testdir
+	dh_testroot
+	-$(MAKE) clean
+	dh_clean 
+
+.PHONY: build install binary-indep binary-arch binary clean 

@@ -4,6 +4,11 @@
 
 Serctl is utility for SER administration.
 
+WARNING
+=======
+Manpages are mostly out-of-date.
+
+
 FILES
 =====
 ser_*			command line tools,
@@ -105,6 +110,5 @@ DEPENDENCIES
 Python versions
 ---------------
 Developed and tested on python 2.3. 
-Sometimes, it's backported and simply tested for python 2.2.
 
 -- Hallik

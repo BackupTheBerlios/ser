@@ -1,14 +1,15 @@
 ver           = $(shell head -n 1 ChangeLog | sed -e 's/.*(//;s/).*//')
-python_ver    = 2.3
+python_ver    = 2.4
 
 name          = serctl
 pkg_name      = $(name)-$(ver)
 
 prefix        = 
 usr_prefix    = $(prefix)/usr/local
+etc_prefix    = $(prefix)/usr/local
 var_prefix    = $(prefix)/var/local
 
-sysconfdir    = $(usr_prefix)/etc
+sysconfdir    = $(etc_prefix)/etc
 bindir        = $(usr_prefix)/bin
 libexecdir    = $(usr_prefix)/lib
 datadir       = $(usr_prefix)/share
@@ -26,7 +27,7 @@ CONF_DIR      = $(sysconfdir)/$(name)
 # ------------------------------------------------------------------------- #
 
 SRC_BIN_FILES  = ser_* 
-SRC_DOC_FILES  = README TODO ChangeLog
+SRC_DOC_FILES  = README TODO ChangeLog BUGS
 SRC_CONF_FILES = serctl.conf
 SRC_MAN1_FILES = man/{serctl.1,ser_cred.1,ser_domain.1,ser_ctl.1,ser_uri.1,ser_user.1}
 SRC_MAN3_FILES = man/serxmlrpc.3
@@ -87,9 +88,14 @@ clean:
 	find $(PRECOMP_DIR) -name '*.pyc' -type f -exec rm -f \{\} \;
 	find $(PRECOMP_DIR) -name '*.pyo' -type f -exec rm -f \{\} \;
 
+cvsclean:
+	find . -depth -name 'CVS' -type d -exec rm -rf \{\} \;
+	find . -name '.cvsignore' -type f -exec rm -f \{\} \;
+
 nuke: clean
 	rm -rf install $(pkg_name)
 	rm -f $(pkg_name).tar.bz2
+	rm -f debian/files *.deb *.dsc *.tar.gz *.changes
 	cd man && make nuke
 
 tree:
@@ -102,8 +108,14 @@ tarball: tree
 	tar -cjf $(pkg_name).tar.bz2 $(pkg_name)
 	rm -r $(pkg_name)
 
+deb: tree
+	cd $(pkg_name) && $(MAKE) cvsclean
+	cd $(pkg_name) && dpkg-buildpackage -rfakeroot -us -uc
+	rm -rf $(pkg_name)
+
 version:
 	@echo $(ver)
 
 .PHONY: all build doc precompile i install install-lib install-conf 
 .PHONY: install-bin install-doc cleannuke tree tarball version
+.PHONY: cvsclean

@@ -1,0 +1,16 @@
+Source: serctl
+Section: util
+Priority: optional
+Maintainer: Jan Halla <hallik@roztoky.net>
+Build-Depends: debhelper (>= 4.0.0), perl
+Standards-Version: 3.6.1
+
+Package: serctl
+Architecture: any
+Depends:  python (>= 2.3), python-mysqldb
+Description: SER command line administration tools
+ This package contains the SER command line administration tools written
+ in python. The tools can be used to administer SIP accounts, SIP domains,
+ and various settings of a SER based SIP server.
+ .
+ It can comunicate with SER through XML-RPC or FIFO interface.
