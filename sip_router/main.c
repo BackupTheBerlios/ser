@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.222 2006/10/25 18:44:36 andrei Exp $
+ * $Id: main.c,v 1.223 2006/11/04 01:31:06 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -157,7 +157,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.222 2006/10/25 18:44:36 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.223 2006/11/04 01:31:06 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -657,7 +657,7 @@ static void sig_usr(int signo)
 					pkg_status();
 					#endif
 #endif
-					exit(0);
+					_exit(0);
 					break;
 			case SIGUSR1:
 				/* statistics, do nothing, printed only from the main proc */
@@ -673,7 +673,7 @@ static void sig_usr(int signo)
 						"we do not worry about grand-children\n");
 #endif
 #else
-					exit(0); /* terminate if one child died */
+					_exit(0); /* terminate if one child died */
 #endif
 					break;
 		}
