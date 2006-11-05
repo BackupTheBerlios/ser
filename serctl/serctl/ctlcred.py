@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.16 2006/10/31 19:40:15 hallik Exp $
+# $Id: ctlcred.py,v 1.17 2006/11/05 07:29:15 calrissian Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -101,7 +101,7 @@ def purge(**opts):
 
 class Cred:
 	TABLE = 'credentials'
-	COLUMNS = ('auth_username', 'realm', 'uid', 'password', 'ha1', \
+	COLUMNS = ('auth_username', 'did', 'realm', 'uid', 'password', 'ha1', \
 	           'ha1b', 'flags')
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
@@ -187,17 +187,18 @@ class Cred:
 		return (ha1, ha1b)
 
 
-	def add(self, uid, username, realm, password, flags=None, force=False):
+	def add(self, uid, username, did, realm, password, flags=None, force=False):
 		dflags = self.default_flags()
 		fmask  = parse_flags(flags)
 		flags  = new_flags(dflags, fmask)
 
-		do = self.Domain(self.dburi, self.db)
-		try:
-			did = do.get_did(realm)
-		except:
-			if force: return
-			raise
+		if not did:
+			do = self.Domain(self.dburi, self.db)
+			try:
+				did = do.get_did(realm)
+			except:
+				if force: return
+				raise
 
 		us = self.User(self.dburi, self.db)
 		if not us.exist(uid) and not force:
@@ -212,7 +213,7 @@ class Cred:
 
 		# add new cred
 		ins = { 'uid' : uid, 'auth_username' : username, \
-			'realm' : realm, 'password' : password, \
+			'did' : did, 'realm' : realm, 'password' : password, \
 			'ha1' : ha1, 'ha1b' : ha1b, 'flags' : flags \
 		}
 		self.db.insert(self.TABLE, ins)

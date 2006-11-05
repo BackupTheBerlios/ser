@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.46 2006/10/31 19:40:15 hallik Exp $
+# $Id: ctlctl.py,v 1.47 2006/11/05 07:29:15 calrissian Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -543,7 +543,7 @@ class User_ctl:
 				raise Error(EDUPL, errstr(uid=uid, username=user, did=did))
 
 		us.add(uid, force=force)
-		cr.add(uid, user, realm, password, force=force)
+		cr.add(uid, user, did, realm, password, force=force)
 		ur.add(uid, uri, force=force)
 		for u, d in aliases:
 			uri = '%s@%s' % (u, d)
