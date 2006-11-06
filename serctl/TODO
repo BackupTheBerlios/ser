@@ -1,6 +1,8 @@
 Important:
 ==========
 
+  * Update credential's code stuff to use DID column correctly.
+
   * Usrloc's code update and testing.
     - Why returned 'Table not found' when addind contact?
 
