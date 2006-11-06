@@ -2,8 +2,10 @@ serctl (0.3.16)
 
   * Minor code cleanup.
   * Command 'ser_attr attr' changed to 'ser_attr show types'.
+  * DID column added to credentials.
+  * Command-line syntax for 'ser_cred add' updated (CHANGED!).
 
- -- Jan Halla <hallik@iptel.org> 
+ -- Jan Halla <hallik@iptel.org> Mon, 06 Nov 2006 08:29:54 +0000
 
 serctl (0.3.15)
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlcred.py,v 1.17 2006/11/05 07:29:15 calrissian Exp $
+# $Id: ctlcred.py,v 1.18 2006/11/06 08:35:01 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -30,7 +30,7 @@ Usage:
 %s
 
 Commands & parameters:
-	ser_cred add      <uid> <auth_username> <realm> [password]
+	ser_cred add      <uid> <auth_username> <did> <realm> [password]
 	ser_cred change   <auth_username> <realm> [-p password] [-F flags]
 	ser_cred disable  <auth_username> <realm>
 	ser_cred enable   <auth_username> <realm>
@@ -50,13 +50,13 @@ def show(realm=None, auth_username=None, **opts):
 
 	tabprint(clist, desc, rsep, lsep, astab)
 
-def add(uid, auth_username, realm, password=None, **opts):
+def add(uid, auth_username, did, realm, password=None, **opts):
 	password = get_password(opts, password)
 	force = opts['FORCE']
 	flags = opts['FLAGS']
 
 	u = Cred(opts['DB_URI'])
-	u.add(uid, auth_username, realm, password, flags, force)
+	u.add(uid, auth_username, did, realm, password, flags, force)
 
 def rm(auth_username, realm, **opts):
 	force = opts['FORCE']
