@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.106 2006/10/16 18:44:02 andrei Exp $
+ * $Id: t_lookup.c,v 1.107 2006/11/07 19:00:21 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -616,7 +616,6 @@ struct cell* t_lookupOriginalT(  struct sip_msg* p_msg )
 	 */
 	if (!p_msg->via1) {
 		LOG(L_ERR, "ERROR: t_lookupOriginalT: no via\n");
-		set_t(0);
 		return 0;
 	}
 	branch=p_msg->via1->branch;
