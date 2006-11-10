@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.44 2006/09/15 10:37:45 andrei Exp $
+ *$Id: ut.h,v 1.45 2006/11/10 10:25:08 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -174,11 +174,12 @@ static inline unsigned short str2s(const char* s, unsigned int len,
 	return ret;
 
 error_digits:
-	DBG("str2s: ERROR: too many letters in [%.*s]\n", (int)len, init);
+	/*DBG("str2s: ERROR: too many letters in [%.*s]\n", (int)len, init); */
 	if (err) *err=1;
 	return 0;
 error_char:
-	DBG("str2s: ERROR: unexpected char %c in %.*s\n", *str, (int)len, init);
+	/*DBG("str2s: ERROR: unexpected char %c in %.*s\n", *str, (int)len, init);
+	 * */
 	if (err) *err=1;
 	return 0;
 }
