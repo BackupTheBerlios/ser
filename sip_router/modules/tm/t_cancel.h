@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.h,v 1.9 2006/10/10 19:21:59 andrei Exp $
+ * $Id: t_cancel.h,v 1.10 2006/11/14 18:11:06 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -66,6 +66,9 @@
 void which_cancel( struct cell *t, branch_bm_t *cancel_bm );
 int cancel_uacs( struct cell *t, branch_bm_t cancel_bm, int flags );
 int cancel_branch( struct cell *t, int branch, int flags );
+
+typedef int(*cancel_uacs_f)( struct cell *t, branch_bm_t cancel_bm,
+								int flags );
 
 
 

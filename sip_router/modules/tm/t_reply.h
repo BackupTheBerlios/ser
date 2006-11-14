@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.23 2006/10/16 18:44:02 andrei Exp $
+ * $Id: t_reply.h,v 1.24 2006/11/14 18:11:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -86,6 +86,11 @@ int w_t_reply_wrp(struct sip_msg *m, unsigned int code, char *txt);
  *             1 - core router relay statelessly
  */
 int reply_received( struct sip_msg  *p_msg ) ;
+
+/* return 1 if a failure_route processes */
+int run_failure_handlers(struct cell *t, struct sip_msg *rpl,
+					int code, int extra_flags);
+typedef int (*run_failure_handlers_f)(struct cell*, struct sip_msg*, int, int);
 
 
 /* Retransmits the last sent inbound reply.
