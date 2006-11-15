@@ -1,5 +1,5 @@
 /*
- * $Id: pt.c,v 1.5 2006/10/25 18:44:36 andrei Exp $
+ * $Id: pt.c,v 1.6 2006/11/15 19:57:42 andrei Exp $
  *
  * Process Table
  *
@@ -115,6 +115,11 @@ int register_procs(int no)
 /* returns the maximum number of processes */
 int get_max_procs()
 {
+	if (pt==0){
+		LOG(L_CRIT, "BUG: get_max_procs() called too early "
+				"(it must _not_ be called from mod_init())\n");
+		abort(); /* crash to quickly catch offenders */
+	}
 	return estimated_proc_no;
 }
 
