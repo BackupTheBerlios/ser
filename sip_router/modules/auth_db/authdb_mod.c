@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.35 2006/07/25 15:27:21 janakj Exp $
+ * $Id: authdb_mod.c,v 1.36 2006/11/16 14:44:40 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -107,7 +107,7 @@ db_func_t auth_dbf;
 auth_api_t auth_api;
 
 str credentials_list        = STR_STATIC_INIT(DEFAULT_CRED_LIST);
-str default_did             = STR_STATIC_INIT("_none");
+str default_did             = STR_STATIC_INIT("_default");
 
 str* credentials;          /* Parsed list of credentials to load */
 int credentials_n;         /* Number of credentials in the list */
