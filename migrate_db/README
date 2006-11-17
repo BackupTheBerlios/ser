@@ -1,0 +1,204 @@
+SER Database Migration Script
+=============================
+
+(C) 2006 iptelorg GmbH
+
+Written by Jan Janak <jan@iptel.org>
+
+1. Overview
+===========
+
+migrate_ser_db is a Python script that can be used to migrate the contents of 
+SER database from release 0.9.x to the new schema used in newer SER releases i
+(starting with 0.10.x).
+
+The script works directly with data stored in MySQL server and thus you must
+have the server(s) up and running and accessible before you can use the script.
+
+Although the script does not modify the contents of the database being
+converted, I do recommend you to make a backup of the database before running 
+the script! You have been warned!
+
+2. Installation
+===============
+
+Installation should be pretty straightforward. The script is written in Python
+and thus you need working python interpreter in version 2.3 or higher. In
+addition to that make sure you have the MySQL database driver for python
+installed. The name of the package is MySQLdb and most distributions it is
+usually installed from package called python-mysqldb.
+
+The only executable file in migrate_ser_db is migrate_ser_db.py and this file
+must have the exec bit set.
+
+3. Running the script
+=====================
+
+The script needs access both the source (being converted) database and the
+destination database. They can both reside on the same MySQL server or they
+can be on different database servers. Both the source and destination database
+must exist and it is recommended that the destination database be empty.
+
+Both source and destination databases are identified using URIs that are same
+as database URIs used in ser.cfg configuration files. The default URI for the
+source database is:
+
+mysql://ser:heslo@localhost/ser
+
+The default URI of the destination database is:
+
+mysql://ser:heslo@localhost/ser_new
+(NOTE: the destination database must exist!)
+
+You can change the source and destination database URI using -i and -o
+command line options respectively.
+
+Run the script with -h command line option to get the list of all supported
+command line options.
+
+By default the script will produce only error messages on standard output,
+if you need more information on what's going on then you can use -v option
+to increase the verbosity level.
+
+By default the script tries to convert all the tables from the source database
+into the destination database. If you are not using all the tables or if you
+would like to skip the conversion of some table (for example, after previous
+unsuccessful run of the script when some of the tables have been converted
+and some not) then you can specify the list of tables to be converted using
+-t command line option.
+
+4. Internals
+============
+
+4.1 Virtual Domains
+-------------------
+As the first step the script tries to convert the list of domains from 
+domain table. It will take the list of all domain names from the domain table
+and organize them into a tree. For each sub-tree in that tree the script will
+generate a DID (unique domain identifier). The only supported format of dids
+is the UUID string, for example a03d7a97-b07f-4f49-aaed-c25ec2e47020.
+
+If you have rows iptel.org, sip.iptel.org, proxy.iptel.org, and foo.bar then
+the script will generate two virtual domains. One of them will have iptel.org,
+sip.iptel.org, and proxy.iptel.org as hostname aliases (they will all map to
+the same did). The other domain will contain single domain alias which will
+be foo.bar.
+
+In addition to that the script will also create domain-level attributes with
+the name "digest_realm" in domain_attrs table. The value of the attribute will
+be the shortest hostname in each virtual domain, in the previous example it
+will be 'iptel.org' and 'foo.bar'.
+
+NOTE: Subsequent steps use the result of domain table conversion, if
+corresponding virtual domain could not be found then the function will use
+a default did which is '_default'.
+
+4.1 Subscribers
+---------------
+
+The subscribers table in the old schema has been renamed to credentials table
+in the new schema. In addition to that the new table does not contain
+auxiliary columns, such as first_name, last_name, and email_address anymore.
+These are now stored in user-level attributes. In the new SER database schema
+each subscriber of the system is identified by uid (unique user id), not by
+SIP URIs. The credentials table is also used to map digest usernames and
+realms to uid hence the conversion script has to generate uids in this phase.
+
+In the first step the script will copy the data from subscriber table into
+credentials table and generate a uid for each entry. In the second step the
+script generate a user-level attributes for the auxiliary attributes and
+writes the data into user_attrs table. The user_attrs table will then contain
+attributes like "first_name=Jan", "last_name=Janak" and so on.
+
+The list of SIP URIs a subscriber is stored in uri table in the new schema and
+the script will also generate SIP URIs for the users it just created. The
+digest username will be used as SIP username, digest realm will be used to
+determine the host part of the SIP uri and the result is then written into
+uri table. This ensures that every subscriber has at least one valid SIP uri
+in the uri table and the username of that URI matches digest username.
+
+4.2 Pending table
+-----------------
+
+Pending table is used by serweb to store newly created accounts that haven't
+been confirmed by the user yet. Such accounts are not yet active. In the new
+schema they are stored in the same way as active accounts/subscribers 
+described in section 4.1, but a flag is used to indicate that the row/record
+is disabled and thus it should not be used by SER. In other words the contents
+of pending table is converted just like the contents of subscribers table
+but a special flag is set for every record to instruct SER that it should
+ignore it.
+
+4.3 Aliases table
+-----------------
+Not yet implemented.
+
+4.4 URI table
+-------------
+Entries from the old uri table are just copied over to the new uri table.
+The script will lookup uid for each entry from the old uri table, replace
+the host part with did and store it in the new uri table.
+
+4.5 Location table
+------------------
+
+In the new database schema all users are identified by uid, instead of
+usernames and domains. That applies to the user location entries as well,
+and thus the script needs to lookup the corresponding uid for every
+record in the old location table and write it into the new location table.
+When processing a REGISTER message SER 0.10.x looks-up the uid of the
+registering user and stores <uid,contact> pairs in the location table.
+
+4.6 CPL table
+-------------
+
+The contents of cpl table is copied almost verbatim, except that the
+username of the user is replaced with uid, just like in many other tables.
+
+4.7 msilo table
+---------------
+
+Username, domain pair gets converted into uid and the rest is copied almost
+verbatim.
+
+4.8 phonebook table
+-------------------
+Phonebook entries in the new database schema belong to users represented by
+uids, so username domain pairs from the original schema are converted into 
+uids and stored in the new table.
+
+4.9 admin_privileges table
+--------------------------
+
+Admin privileges are stored in the form of user-level attributes in the new
+schema, so the script will create a new user-level attribute for every
+row in the original admin_privileges table. By default the following
+privileges are converted: is_admin, acl_control, change_privileges. They
+are all used by serweb, not by ser.
+
+4.10 grp table
+--------------
+Group membership stored in grp table in the old schema is stored as
+user-level attributes in the new schema. For each row in the old grp table
+the script will generate a record in user_attrs table.
+
+4.11 user_preferences table
+---------------------------
+
+This is the old name for user_attrs table and thus entries from 
+user_preferences table are copied verbatim to user_attrs table.
+
+4.12 acc and missed_calls tables
+--------------------------------
+
+The script will lookup dids and uids where needed and copy the entries from
+old acc and missed_calls tables into the tables with same name in the new
+schema. See file acc.py for details on column conversions.
+
+5. TODO
+=======
+
+- Support for postgres
+- Support for other forms of uid and did
+- Support for non-standard table names
+- Convert aliases table properly
