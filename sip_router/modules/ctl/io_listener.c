@@ -1,5 +1,5 @@
 /*
- * $Id: io_listener.c,v 1.4 2006/09/20 09:39:14 hscholz Exp $
+ * $Id: io_listener.c,v 1.5 2006/11/17 20:07:36 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -98,7 +98,7 @@ typedef int (*send_ev_f)(void* send_h , struct iovec* v, size_t count);
 
 static io_wait_h io_h;
 static int io_read_connections=0;
-struct stream_connection stream_conn_lst; /* list head */
+static struct stream_connection stream_conn_lst; /* list head */
 
 static struct stream_connection* s_conn_new(int sock, 
 											struct ctrl_socket* cs,
@@ -734,6 +734,11 @@ void io_listen_who_rpc(rpc_t* rpc, void* ctx)
 	int i;
 	
 	i=0;
+	/* check if called from another process */
+	if (stream_conn_lst.next==0){
+		rpc->fault(ctx, 606, "rpc available only over binrpc (ctl)");
+		return;
+	}
 	/* p_proto transport from sport to tport*/
 	clist_foreach(&stream_conn_lst, sc, next){
 		i++;
@@ -775,5 +780,10 @@ void io_listen_who_rpc(rpc_t* rpc, void* ctx)
 
 void io_listen_conn_rpc(rpc_t* rpc, void* ctx)
 {
+	/* check if called from another process */
+	if (stream_conn_lst.next==0){
+		rpc->fault(ctx, 606, "rpc available only over binrpc (ctl)");
+		return;
+	}
 	rpc->add(ctx, "d", io_read_connections);
 }
