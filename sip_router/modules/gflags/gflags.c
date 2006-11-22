@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.15 2006/11/16 18:37:26 andrei Exp $
+/*$Id: gflags.c,v 1.16 2006/11/22 23:47:34 janakj Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour
@@ -145,7 +145,7 @@ static int is_gflag(struct sip_msg *bar, char *flag_par, char *foo)
 
 
 /*
- * Load attributes from domain_attrs table
+ * Load attributes from global_attrs table
  */
 static int load_attrs(void)
 {

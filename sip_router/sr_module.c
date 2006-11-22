@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.48 2006/07/18 11:54:44 janakj Exp $
+/* $Id: sr_module.c,v 1.49 2006/11/22 23:47:34 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -854,7 +854,7 @@ int fixup_str_12(void** param, int param_no)
     int ret;
 
     if ((ret = fix_param(FPARAM_STR, param)) <= 0) return ret;
-    ERR("Cannot function parameter to integer\n");
+    ERR("Cannot function parameter to string\n");
     return -1;
 }
 

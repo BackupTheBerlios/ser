@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.19 2006/10/20 11:59:47 mma Exp $
+ * $Id: select_core.c,v 1.20 2006/11/22 23:47:34 janakj Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -705,7 +705,7 @@ int select_any_params(str* res, select_t* s, struct sip_msg* msg)
 	}
 	free_params(list);
 
-	DBG("SELECT ...uri.params.%s NOT FOUND !", wanted->s);
+	DBG("SELECT ...uri.params.%s NOT FOUND !\n", wanted->s);
 	return -1;
 }
 
