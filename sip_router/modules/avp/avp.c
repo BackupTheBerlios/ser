@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.28 2006/11/22 23:40:56 janakj Exp $
+ * $Id: avp.c,v 1.29 2006/11/22 23:57:47 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -1032,7 +1032,7 @@ static int set_destination(struct sip_msg* msg, str* dest)
 	return set_dst_uri(msg, &nameaddr.uri);
     } else {
 	     /* it is just URI, pass it through */
-	return set_dst_urig(msg, dest);
+	return set_dst_uri(msg, dest);
     }
 }
 

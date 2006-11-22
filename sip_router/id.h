@@ -1,5 +1,5 @@
 /*
- * $Id: id.h,v 1.3 2005/11/24 15:04:41 janakj Exp $
+ * $Id: id.h,v 1.4 2006/11/22 23:57:47 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -37,7 +37,7 @@
 /*
  * Set From UID
  */
-void set_from_uid(str* uid);
+int set_from_uid(str* uid);
 
 
 /*
@@ -48,7 +48,7 @@ int get_from_uid(str* uid, struct sip_msg* msg);
 /*
  * Set To UID
  */
-void set_to_uid(str* uid);
+int set_to_uid(str* uid);
 
 
 /*

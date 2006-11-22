@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.c,v 1.15 2006/09/21 09:54:49 janakj Exp $
+ * $Id: uridb_mod.c,v 1.16 2006/11/22 23:57:46 janakj Exp $
  *
  * Various URI related functions
  *
@@ -491,7 +491,7 @@ static int lookup_user_fixup(void** param, int param_no)
 	    return -1;
 	}
 	return 0;
-    } else if (param_no == 2) {
+    } else {
 	return fixup_var_str_12(param, 2);
     }
 }
