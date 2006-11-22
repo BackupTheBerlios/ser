@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.27 2006/09/15 22:10:00 mma Exp $
+ * $Id: avp.c,v 1.28 2006/11/22 23:40:56 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -1032,7 +1032,7 @@ static int set_destination(struct sip_msg* msg, str* dest)
 	return set_dst_uri(msg, &nameaddr.uri);
     } else {
 	     /* it is just URI, pass it through */
-	return set_dst_uri(msg, dest);
+	return set_dst_urig(msg, dest);
     }
 }
 
@@ -1064,7 +1064,7 @@ static int xlset_destination(struct sip_msg* msg, char* format, char* p2)
     
     if (xl_printstr(msg, (xl_elog_t*) format, &val.s, &val.len) > 0) {
 	DBG("Setting dest to: '%.*s'\n", val.len, val.s);
-	if (set_destination(msg, &val)) {
+	if (set_destination(msg, &val) == 0) {
 	    return 1;
 	}
     }
