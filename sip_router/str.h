@@ -1,5 +1,5 @@
 /*
- * $Id: str.h,v 1.5 2005/11/17 03:49:37 sobomax Exp $
+ * $Id: str.h,v 1.6 2006/11/22 18:13:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,5 +39,8 @@ typedef struct _str str;
 
 #define STR_STATIC_INIT(v) {(v), sizeof(v) - 1}
 #define STR_NULL {NULL, 0}
+
+#define STR_FMT(_pstr_)	\
+  ((_pstr_) ? (_pstr_)->len : 0), ((_pstr_) ? (_pstr_)->s : "")
 
 #endif
