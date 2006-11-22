@@ -1,5 +1,5 @@
 /*
- * $Id: reply.c,v 1.32 2006/09/25 11:44:22 janakj Exp $
+ * $Id: reply.c,v 1.33 2006/11/22 23:44:19 janakj Exp $
  *
  * Send a reply
  *
@@ -82,7 +82,6 @@ static inline unsigned int calc_buf_len(ucontact_t* c, str* aor_filter)
 {
 	unsigned int len;
 	int qlen;
-	str ab;
 
 	len = 0;
 	while(c) {

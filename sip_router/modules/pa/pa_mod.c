@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.68 2006/07/26 10:10:44 kubartv Exp $
+ * $Id: pa_mod.c,v 1.69 2006/11/22 23:44:19 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -236,7 +236,7 @@ static void test_mimetype_parser(void)
 	struct mimetype_test *mt = &mimetype_tests[0];
 	LOG(L_DBG, "Presence Agent - testing mimetype parser\n");
 	while (mt->string) {
-		int pmt;
+		unsigned int pmt;
 		LOG(L_DBG, "Presence Agent - parsing mimetype %s\n", mt->string);
 		decode_mime_type(mt->string, mt->string+strlen(mt->string), &pmt);
 		if (pmt != mt->parsed) {
