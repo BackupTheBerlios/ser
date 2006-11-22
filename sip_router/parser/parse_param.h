@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.14 2005/12/25 18:43:17 janakj Exp $
+ * $Id: parse_param.h,v 1.15 2006/11/22 17:56:15 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -116,6 +116,16 @@ typedef union param_hooks {
 	struct contact_hooks contact; /* Contact hooks */
 	struct uri_hooks uri;         /* URI hooks */
 } param_hooks_t;
+
+/**
+ * Only parse one parameter
+ * @Return:
+ * 	t: out parameter
+ * 	-1: on error
+ * 	0: success, but expect a next paramter
+ * 	1: success and exepect no more parameters
+ */
+inline int parse_param(str *_s, pclass_t _c, param_hooks_t *_h, param_t *t);
 
 
 /*
