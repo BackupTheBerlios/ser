@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.22 2006/07/04 13:02:31 janakj Exp $
+ * $Id: ul_mod.h,v 1.23 2006/11/23 00:47:28 janakj Exp $
  *
  * User location module interface
  *
@@ -44,6 +44,13 @@
  * Module parameters
  */
 
+enum ul_db_type {
+    NO_DB = 0,     /* No DB access */
+    WRITE_THROUGH, /* Propagate changes to DB immediately */
+    WRITE_BACK,    /* Propagate changes with delay */
+    READONLY,      /* Perform initial raad and don't update */
+    UL_DB_MAX 
+};
 
 #define NO_DB         0
 #define WRITE_THROUGH 1
