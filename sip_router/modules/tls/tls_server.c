@@ -1,5 +1,5 @@
 /*
- * $Id: tls_server.c,v 1.5 2006/03/03 15:52:11 janakj Exp $
+ * $Id: tls_server.c,v 1.6 2006/11/24 07:37:28 janakj Exp $
  *
  * TLS module - main server part
  * 
@@ -55,7 +55,6 @@ static int tls_complete_init(struct tcp_connection* c)
 	tls_domain_t* dom;
 	struct tls_extra_data* data = 0;
 	tls_cfg_t* cfg;
-	SSL* ssl;
 
 	     /* Get current TLS configuration and increate reference
 	      * count immediately. There is no need to lock the structure
