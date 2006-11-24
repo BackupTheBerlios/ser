@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.21 2005/02/28 18:56:59 janakj Exp $
+ * $Id: dlist.c,v 1.22 2006/11/24 17:20:08 andrei Exp $
  *
  * List of registered domains
  *
@@ -198,7 +198,7 @@ static inline int new_dlist(str* _n, dlist_t** _d)
 	memcpy(ptr->name.s, _n->s, _n->len);
 	ptr->name.len = _n->len;
 
-	if (new_udomain(&(ptr->name), 512, &(ptr->d)) < 0) {
+	if (new_udomain(&(ptr->name), &(ptr->d)) < 0) {
 		LOG(L_ERR, "new_dlist(): Error while creating domain structure\n");
 		shm_free(ptr->name.s);
 		shm_free(ptr);
