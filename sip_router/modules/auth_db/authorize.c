@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.41 2006/11/22 18:19:10 janakj Exp $
+ * $Id: authorize.c,v 1.42 2006/11/24 10:48:28 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -247,6 +247,7 @@ static inline int authenticate(struct sip_msg* msg, str* realm, str* table, hdr_
     
     switch(auth_api.pre_auth(msg, realm, hftype, &h)) {
     case ERROR:
+    case BAD_CREDENTIALS:
 	ret = -3;
 	goto end;
 	
@@ -290,7 +291,8 @@ static inline int authenticate(struct sip_msg* msg, str* realm, str* table, hdr_
 	 /* Recalculate response, it must be same to authorize successfully */
     if (!check_response(&(cred->digest), &msg->first_line.u.request.method, ha1)) {
 	switch(auth_api.post_auth(msg, h)) {
-	case ERROR: 
+	case ERROR:
+	case BAD_CREDENTIALS:
 	    ret = -2; 
 	    break;
 	    

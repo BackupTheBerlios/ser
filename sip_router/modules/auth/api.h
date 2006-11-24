@@ -1,5 +1,5 @@
 /*
- * $Id: api.h,v 1.9 2006/07/25 13:43:40 janakj Exp $
+ * $Id: api.h,v 1.10 2006/11/24 10:48:28 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -42,7 +42,8 @@ typedef enum auth_result {
 	ERROR = -2 ,        /* Error occurred, a reply has been sent out -> return 0 to the ser core */
 	NOT_AUTHENTICATED,  /* Don't perform authentication, credentials missing */
 	DO_AUTHENTICATION,  /* Perform digest authentication */
-        AUTHENTICATED       /* Authenticated by default, no digest authentication necessary */
+        AUTHENTICATED,      /* Authenticated by default, no digest authentication necessary */
+	BAD_CREDENTIALS     /* Digest credentials are malformed */
 } auth_result_t;
 
 

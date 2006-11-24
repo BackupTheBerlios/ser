@@ -1,5 +1,5 @@
 /*
- * $Id: api.c,v 1.16 2006/07/25 13:43:40 janakj Exp $
+ * $Id: api.c,v 1.17 2006/11/24 10:48:28 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -82,7 +82,7 @@ auth_result_t pre_auth(struct sip_msg* msg, str* realm, hdr_types_t hftype,
 	     /* Check credentials correctness here */
 	if (check_dig_cred(&(c->digest)) != E_DIG_OK) {
 		LOG(L_ERR, "auth:pre_auth: Credentials are not filled properly\n");
-		return ERROR;
+		return BAD_CREDENTIALS;
 	}
 
 	if (check_nonce(&c->digest.nonce, &secret, msg) != 0) {
