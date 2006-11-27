@@ -1,5 +1,5 @@
 /*
- * $Id: tls_select.c,v 1.5 2006/11/24 07:37:28 janakj Exp $
+ * $Id: tls_select.c,v 1.6 2006/11/27 13:55:51 tirpi Exp $
  *
  * TLS module - select interface
  *
@@ -315,11 +315,13 @@ static int check_cert(str* res, select_t* s, struct sip_msg* msg)
 		goto err;
 	} else {
 		if ((cert = SSL_get_peer_certificate(ssl)) && SSL_get_verify_result(ssl) == err) {
-			res = &succ;
+			*res = succ;
 			ret = 0; /* Verified certificate */
 		} else {
-			res = &fail;
-			ret = 1; /* Certificate missing or not verified */
+			*res = fail;
+			/* I is better to return 0, because the select function
+			call is successful, only the result is false (Miklos) */
+			ret = 0; /* Certificate missing or not verified */
 		}
 	}
 
