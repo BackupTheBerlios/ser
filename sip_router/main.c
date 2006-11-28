@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.223 2006/11/04 01:31:06 andrei Exp $
+ * $Id: main.c,v 1.224 2006/11/28 19:04:54 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -157,7 +157,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.223 2006/11/04 01:31:06 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.224 2006/11/28 19:04:54 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1271,6 +1271,7 @@ try_again:
 	seed+=getpid()+time(0);
 	DBG("seeding PRNG with %u\n", seed);
 	srand(seed);
+	srandom(rand()+time(0));
 	DBG("test random number %u\n", rand());
 
 	/*register builtin  modules*/
