@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.c,v 1.66 2006/07/25 16:24:44 janakj Exp $
+ * $Id: auth_mod.c,v 1.67 2006/11/28 19:05:53 andrei Exp $
  *
  * Digest Authentication Module
  *
@@ -149,7 +149,7 @@ static inline int generate_random_secret(void)
 	return -1;
     }
     
-    srandom(time(0));
+    /* srandom(time(0));  -- seeded by core */
     
     for(i = 0; i < RAND_SECRET_LEN; i++) {
 	sec_rand[i] = 32 + (int)(95.0 * rand() / (RAND_MAX + 1.0));
