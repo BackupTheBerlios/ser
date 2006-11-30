@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.18 2006/11/24 10:48:27 janakj Exp $
+ * $Id: authorize.c,v 1.19 2006/11/30 15:29:36 tirpi Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -124,8 +124,6 @@ static inline int authorize(struct sip_msg* _msg, str* _realm,
 		ret = auth_api.post_auth(_msg, h);
 		switch(ret) {
 		case ERROR:             
-		case BAD_CREDENTIALS:
-		    return 0;
 		case BAD_CREDENTIALS:   return 0;
 		case NOT_AUTHENTICATED: return -1;
 		case AUTHENTICATED:     return 1;
