@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: error.py,v 1.17 2006/06/20 10:19:35 hallik Exp $
+# $Id: error.py,v 1.18 2006/11/30 11:55:19 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -30,7 +30,7 @@ ERRORS = (\
 	('ERMCANON',	'Canonical item can not be deleted'),
 	('EDOMAIN',	'Domain in use'),
 	('ENOREC',	'No record found'),
-	('ENOUID',	'User identifier not exist'),
+	('ENOUID',	'User identifier does not exist'),
 	('ENODID',	'Domain identifier not exist'),
 	('EMULTICANON',	'Multiple specifications for canonical flag'),
 	('EUSER',	'User identifier in use'),

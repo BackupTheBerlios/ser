@@ -11,7 +11,7 @@
 
 from serctl.dbany   import DBany
 from serctl.error   import Error, ENOARG, EINVAL, EDUPL, ENOCOL, EDOMAIN, ENOREC, \
-                           EMULTICANON, ENODOMAIN
+                           EMULTICANON, ENODOMAIN, ENODID
 from serctl.flag    import parse_flags, new_flags, clear_canonical, set_canonical, \
                            is_canonical, set_deleted, flag_syms, CND_NO_DELETED, \
                            CND_DELETED, CND_CANONICAL, LOAD_SER, FOR_SERWEB, \
@@ -199,11 +199,17 @@ class Domain:
 
 	def show_domain(self, domain=None, cols=None, fformat='raw', limit=0):
 		cnd, err = cond(domain=domain)
-		return self._show(cnd, err, cols, fformat, limit)
+		rows, desc = self._show(cnd, err, cols, fformat, limit)
+		if domain and not rows:
+			raise Error(ENODOMAIN, domain)
+		return rows, desc
 
 	def show_did(self, did=None, cols=None, fformat='raw', limit=0):
 		cnd, err = cond(did=did)
-		return self._show(cnd, err, cols, fformat, limit)
+		rows, desc = self._show(cnd, err, cols, fformat, limit)
+		if did and not rows:
+			raise Error(ENODID, did)
+		return rows, desc
 
 	def show_did_for_domain(self, domain=None, cols=None, fformat='raw', limit=0):
 		if domain is None:
