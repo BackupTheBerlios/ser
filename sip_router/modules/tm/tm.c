@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.149 2006/11/14 18:11:07 andrei Exp $
+ * $Id: tm.c,v 1.150 2006/12/06 16:07:15 andrei Exp $
  *
  * TM module
  *
@@ -192,8 +192,10 @@ static int t_any_replied(struct sip_msg* msg, char*, char*);
 static int t_is_canceled(struct sip_msg* msg, char*, char*);
 
 
-static char *fr_timer_param = FR_TIMER_AVP;
-static char *fr_inv_timer_param = FR_INV_TIMER_AVP;
+/* by default the fr timers avps are not set, so that the avps won't be
+ * searched for nothing each time a new transaction is created */
+static char *fr_timer_param = 0 /*FR_TIMER_AVP*/;
+static char *fr_inv_timer_param = 0 /*FR_INV_TIMER_AVP*/;
 
 static rpc_export_t tm_rpc[];
 
