@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.88 2006/09/15 10:37:45 andrei Exp $
+ * $Id: action.c,v 1.89 2006/12/06 15:59:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,6 +42,8 @@
  *  2005-12-19  select framework (mma)
  *  2006-04-12  updated *_send() calls to use a struct dest_info (andrei)
  *  2006-07-27  dns cache and dns based send address failover support (andrei)
+ *  2006-12-06  on popular request last_retcode set also by module functions
+ *              (andrei)
  */
 
 
@@ -681,6 +683,7 @@ int do_action(struct action* a, struct sip_msg* msg)
 					(char*)a->val[3].u.data
 				);
 				if (ret==0) run_flags|=EXIT_R_F;
+				last_retcode=ret;
 			} else {
 				LOG(L_CRIT,"BUG: do_action: bad module call\n");
 			}
