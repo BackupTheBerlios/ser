@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, avp cookie support
  *
- * $Id: avp_cookie.c,v 1.14 2006/07/04 13:11:20 janakj Exp $
+ * $Id: avp_cookie.c,v 1.15 2006/12/07 19:12:55 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -122,6 +122,7 @@ str *rr_get_avp_cookies(void) {
 	str *avp_name;
 	str *result = 0;
 	rr_avp_flags_t avp_flags;
+	void** p_data;
 
 	len = sizeof(crc);
 	for (avp_list_no=0; avp_list_no<MAX_AVP_DIALOG_LISTS; avp_list_no++) {
@@ -132,11 +133,13 @@ str *rr_get_avp_cookies(void) {
 
 			if ((avp->flags&(AVP_NAME_STR|AVP_VAL_STR)) == AVP_NAME_STR) {
 				/* avp type str, int value */
-				avp_name = & ((struct str_int_data*)&(avp->data))->name;
+				p_data=&avp->data;
+				avp_name = & ((struct str_int_data*)p_data)->name;
 			}
 			else if ((avp->flags&(AVP_NAME_STR|AVP_VAL_STR)) == (AVP_NAME_STR|AVP_VAL_STR)) {
 				/* avp type str, str value */
-				avp_name = & ((struct str_str_data*)&(avp->data))->name;
+				p_data=&avp->data;
+				avp_name = & ((struct str_str_data*)p_data)->name;
 			}
 			else
 				avp_name = 0;  /* dummy */

@@ -1,5 +1,5 @@
 /*
- * $Id: db_mod.c,v 1.13 2006/02/16 14:29:34 janakj Exp $
+ * $Id: db_mod.c,v 1.14 2006/12/07 19:12:55 andrei Exp $
  *
  * Postgres module interface
  *
@@ -92,6 +92,7 @@ static param_export_t params[] = {
  *                   'ab', 'a', 'abcde', 'abcdddd', B'00110011001100110011001100110011',
  *                    b'10101010101010101010101010101010');
  */
+#if 0
 static int pg_test(void)
 {
 	int row, col;
@@ -174,6 +175,7 @@ static int pg_test(void)
 	pg_close(con);
 	return -1;
 }
+#endif
 
 
 struct module_exports exports = {
