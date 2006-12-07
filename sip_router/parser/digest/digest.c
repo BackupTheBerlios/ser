@@ -1,5 +1,5 @@
 /*
- * $Id: digest.c,v 1.13 2006/06/27 13:51:32 janakj Exp $
+ * $Id: digest.c,v 1.14 2006/12/07 18:58:02 andrei Exp $
  *
  * Digest credentials parser interface
  *
@@ -68,6 +68,7 @@ static inline int new_credentials(struct hdr_field* _h)
 int parse_credentials(struct hdr_field* _h)
 {
 	int res;
+	void** ph_parsed;
 
 	if (_h->parsed) {
 		return 0;  /* Already parsed */
@@ -85,7 +86,8 @@ int parse_credentials(struct hdr_field* _h)
 	res = parse_digest_cred(&(_h->body), &(((auth_body_t*)(_h->parsed))->digest));
 	
 	if (res != 0) {
-		free_credentials((auth_body_t**)&(_h->parsed));
+		ph_parsed=&_h->parsed;
+		free_credentials((auth_body_t**)ph_parsed);
 	}
 
 	return res;
