@@ -1,5 +1,5 @@
 /*
- * $Id: ser_stun.c,v 1.2 2006/10/19 23:46:30 calrissian Exp $
+ * $Id: ser_stun.c,v 1.3 2006/12/07 14:52:08 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -103,7 +103,6 @@ int stun_process_msg(char* buf, unsigned len, struct receive_info* ri)
 	struct dest_info			dst;
 	struct stun_unknown_att*	unknown;
 	USHORT_T					error_code;
-	int ii;
 	 
 	memset(&msg_req, 0, sizeof(msg_req));
 	memset(&msg_res, 0, sizeof(msg_res));
