@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.c,v 1.25 2006/07/18 12:00:31 janakj Exp $
+ * $Id: authrad_mod.c,v 1.26 2006/12/09 00:37:08 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -42,6 +42,7 @@
 #include "../../error.h"
 #include "../../dprint.h"
 #include "../../mem/mem.h"
+#include "../../config.h"
 #include "authrad_mod.h"
 #include "authorize.h"
 
@@ -60,6 +61,8 @@ void *rh;
 auth_api_t auth_api;
 
 static int mod_init(void);                        /* Module initialization function */
+
+int use_did = 1;
 
 
 /*
@@ -87,6 +90,7 @@ static cmd_export_t cmds[] = {
 static param_export_t params[] = {
 	{"radius_config",    PARAM_STRING, &radius_config },
 	{"service_type",     PARAM_INT,   &service_type   },
+	{"use_did",          PARAM_INT,   &use_did },
 	{0, 0, 0}
 };
 
