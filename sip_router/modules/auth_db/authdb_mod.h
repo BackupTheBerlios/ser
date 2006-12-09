@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.h,v 1.12 2006/07/25 13:43:39 janakj Exp $
+ * $Id: authdb_mod.h,v 1.13 2006/12/09 00:36:15 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -61,7 +61,6 @@ extern auth_api_t auth_api;
 extern str* credentials;
 extern int credentials_n;
 
-extern str default_did;
 
 /*
  * Pointer to reply function in stateless module

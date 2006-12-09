@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.42 2006/11/24 10:48:28 janakj Exp $
+ * $Id: authorize.c,v 1.43 2006/12/09 00:36:15 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -271,7 +271,10 @@ static inline int authenticate(struct sip_msg* msg, str* realm, str* table, hdr_
 	} else {
 	    ret = get_from_did(&did, msg);
 	}
-	if (ret == 0) did = default_did;
+	if (ret == 0) {
+	    did.s = DEFAULT_DID;
+	    did.len = sizeof(DEFAULT_DID) - 1;
+	}
     } else {
 	did.len = 0;
 	did.s = 0;
