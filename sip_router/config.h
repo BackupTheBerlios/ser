@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.74 2006/10/25 16:44:21 andrei Exp $
+ *  $Id: config.h,v 1.75 2006/12/09 00:35:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -200,5 +200,7 @@
 #define MIN_UDP_PACKET        32
 
 #define DEFAULT_RADIUS_CONFIG "/usr/local/etc/radiusclient/radiusclient.conf"
+
+#define DEFAULT_DID "_default"
 
 #endif
