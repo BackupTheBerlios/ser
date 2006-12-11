@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.c,v 1.10 2006/01/20 11:19:43 janakj Exp $
+ * $Id: parse_fline.c,v 1.11 2006/12/11 15:47:32 andrei Exp $
  * 
  * sip first line parsing automaton
  * 
@@ -41,6 +41,8 @@
 #include "parser_f.h"
 #include "../mem/mem.h"
 #include "../ut.h"
+
+#define HTTP_REPLY_HACK /* allow HTTP replies */
 
 /* grammar:
 	request  =  method SP uri SP version CRLF

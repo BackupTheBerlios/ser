@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.224 2006/11/28 19:04:54 andrei Exp $
+ * $Id: main.c,v 1.225 2006/12/11 15:47:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -123,6 +123,7 @@
 #include "hash_func.h"
 #include "pt.h"
 #include "script_cb.h"
+#include "nonsip_hooks.h"
 #include "ut.h"
 #include "signals.h"
 #ifdef USE_TCP
@@ -157,7 +158,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.224 2006/11/28 19:04:54 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.225 2006/12/11 15:47:32 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -437,6 +438,7 @@ void cleanup(show_status)
 #endif
 	destroy_timer();
 	destroy_script_cb();
+	destroy_nonsip_hooks();
 	destroy_routes();
 	destroy_atomic_ops();
 #ifdef PKG_MALLOC
@@ -1242,6 +1244,7 @@ int main(int argc, char** argv)
 	}
 	
 	if (init_routes()<0) goto error;
+	if (init_nonsip_hooks()<0) goto error;
 	/* fill missing arguments with the default values*/
 	if (cfg_file==0) cfg_file=CFG_FILE;
 
