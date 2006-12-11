@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.21 2006/11/30 12:52:50 tirpi Exp $
+ * $Id: avp_db.c,v 1.22 2006/12/11 13:40:22 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -430,8 +430,12 @@ static int attrs_fixup(void** param, int param_no)
 	    return -1;
 	}
 
-	if (flags & AVP_CLASS_URI) {
+	if ((flags & AVP_CLASS_URI) && !dm_get_did) {
 	    dm_get_did = (domain_get_did_t)find_export("get_did", 0, 0);
+	    if (!dm_get_did) {
+		ERR("Domain module required but not found\n");
+		return -1;
+	    }
 	}
 	
 	pkg_free(*param);
