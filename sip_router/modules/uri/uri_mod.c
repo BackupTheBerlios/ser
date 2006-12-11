@@ -1,5 +1,5 @@
 /* 
- * $Id: uri_mod.c,v 1.22 2005/12/13 00:19:30 janakj Exp $ 
+ * $Id: uri_mod.c,v 1.23 2006/12/11 13:11:02 hscholz Exp $ 
  *
  * Various URI related functions
  *
@@ -56,7 +56,7 @@ MODULE_VERSION
  * Exported functions
  */
 static cmd_export_t cmds[] = {
-	{"is_user",        is_user,        1, fixup_str_1,  REQUEST_ROUTE},
+	{"is_user",        is_user,        1, fixup_var_str_1,  REQUEST_ROUTE},
 	{"has_totag", 	   has_totag,      0, 0,            REQUEST_ROUTE},
 	{"uri_param",      uri_param_1,    1, fixup_str_1,  REQUEST_ROUTE},
 	{"uri_param",      uri_param_2,    2, fixup_str_12, REQUEST_ROUTE},
