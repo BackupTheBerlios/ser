@@ -1,5 +1,5 @@
 /* 
- * $Id: udp_test_proxy.c,v 1.4 2004/08/24 09:01:29 janakj Exp $
+ * $Id: udp_test_proxy.c,v 1.5 2006/12/11 16:21:15 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -41,7 +41,7 @@
 
 
 
-static char *id="$Id: udp_test_proxy.c,v 1.4 2004/08/24 09:01:29 janakj Exp $";
+static char *id="$Id: udp_test_proxy.c,v 1.5 2006/12/11 16:21:15 andrei Exp $";
 static char *version="udp_test_proxy 0.1";
 static char* help_msg="\
 Usage: udp_test_proxy  -l address -s port -d address -p port [-n no] [-v]\n\
@@ -51,6 +51,7 @@ Options:\n\
     -d address    destination address\n\
     -p port       destination port\n\
     -n no         number of processes\n\
+    -2            use a different socket for sending\n\
     -v            increase verbosity level\n\
     -V            version number\n\
     -h            this help message\n\
@@ -61,6 +62,7 @@ static char buf[BUF_SIZE];
 int main(int argc, char** argv)
 {
 	int sock;
+	int s_sock;
 	pid_t pid;
 	struct sockaddr_in addr;
 	struct sockaddr_in to;
@@ -72,6 +74,7 @@ int main(int argc, char** argv)
 	char *dst;
 	char *src;
 	char* tmp;
+	int use_diff_ssock;
 
 
 	/* init */
@@ -80,10 +83,14 @@ int main(int argc, char** argv)
 	sport=dport=0;
 	src=dst=0;
 	n=0;
+	use_diff_ssock=0;
 	
 	opterr=0;
-	while ((c=getopt(argc,argv, "l:p:d:s:n:vhV"))!=-1){
+	while ((c=getopt(argc,argv, "l:p:d:s:n:2vhV"))!=-1){
 		switch(c){
+			case '2':
+				use_diff_ssock=1;
+				break;
 			case 'v':
 				verbose++;
 				break;
@@ -192,14 +199,27 @@ int main(int argc, char** argv)
 	addr.sin_port=htons(sport);
 	memcpy(&addr.sin_addr.s_addr, he->h_addr_list[0], he->h_length);
 
+	s_sock=-1;
 	sock = socket(he->h_addrtype, SOCK_DGRAM, 0);
-	if (sock==-1){
+	if (use_diff_ssock && (sock!=-1))
+		s_sock = socket(he->h_addrtype, SOCK_DGRAM, 0);
+	else
+		s_sock=sock;
+	
+	if ((sock==-1)||(s_sock==-1)){
 		fprintf(stderr, "ERROR: socket: %s\n", strerror(errno));
 		goto error;
 	}
 	if (bind(sock, (struct sockaddr*) &addr, sizeof(struct sockaddr_in))==-1){
 		fprintf(stderr, "ERROR: bind: %s\n", strerror(errno));
 		goto error;
+	}
+	if (use_diff_ssock){
+		if (connect(s_sock, (struct sockaddr*) &to,
+					sizeof(struct sockaddr_in))==-1){
+			fprintf(stderr, "ERROR: connect: %s\n", strerror(errno));
+			goto error;
+		}
 	}
 
 	for(r=1; r<n; r++){
@@ -219,10 +239,13 @@ int main(int argc, char** argv)
 		}
 		if (verbose>2) putchar('r');
 		/* send it back*/
-		len=sendto(sock, buf, len, 0, (struct sockaddr*) &to,
-				sizeof(struct sockaddr_in));
+		if (use_diff_ssock)
+			len=send(s_sock, buf, len, 0);
+		else
+			len=sendto(s_sock, buf, len, 0,
+					(struct sockaddr*) &to, sizeof(struct sockaddr_in));
 		if (len==-1){
-			fprintf(stderr, "ERROR: sendto: %s\n", strerror(errno));
+			fprintf(stderr, "ERROR: send: %s\n", strerror(errno));
 			continue;
 		}
 		if (verbose>1) putchar('.');
