@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.18 2006/12/07 14:46:51 andrei Exp $
+/*$Id: gflags.c,v 1.19 2006/12/12 15:31:08 mma Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour
@@ -295,15 +295,13 @@ static int child_init(int rank)
 
 static void mod_destroy(void)
 {
-	if (active_global_avps == &avps_1) {
-		if (avps_2 !=0)
-			destroy_avp_list(&avps_2);
-	}
-	else if (avps_1 != 0) {
+	if (avps_1 != 0) {
 		destroy_avp_list(&avps_1);
 	}
-	if (active_global_avps)
-		destroy_avp_list(active_global_avps);
+	if (avps_2 != 0) {
+		destroy_avp_list(&avps_2);
+	}
+	active_global_avps = 0;
 }
 
 
