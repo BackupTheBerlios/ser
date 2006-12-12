@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 2005/11/15 11:24:19 janakj Exp $
+# $Id: Makefile,v 1.3 2006/12/12 00:54:10 janakj Exp $
 #
 
 # File containing SER database description
@@ -43,6 +43,7 @@ mysql:
 	XML_CATALOG_FILES=$(CATALOG) $(XSLTPROC) $(XSLTPROC_FLAGS) \
 	    --stringparam dir "$(ROOT)/scripts/mysql" \
 	    --stringparam prefix "my_" \
+	    --stringparam db "mysql" \
 	    $(MYSQL_XSL) $(DOC_ROOT)
 
 mysql_clean:
@@ -53,6 +54,7 @@ postgres:
 	XML_CATALOG_FILES=$(CATALOG) $(XSLTPROC) $(XSLTPROC_FLAGS) \
 	    --stringparam dir "$(ROOT)/scripts/postgres" \
 	    --stringparam prefix "pg_" \
+	    --stringparam db "postgres" \
 	    $(POSTGRES_XSL) $(DOC_ROOT)
 
 postgres_clean:
@@ -63,6 +65,7 @@ oracle:
 	XML_CATALOG_FILES=$(CATALOG) $(XSLTPROC) $(XSLTPROC_FLAGS) \
 	    --stringparam dir "$(ROOT)/scripts/oracle" \
 	    --stringparam prefix "or_" \
+	    --stringparam db "oracle" \
 	    $(ORACLE_XSL) $(DOC_ROOT)
 
 oracle_clean:
@@ -73,6 +76,7 @@ dbtext:
 	XML_CATALOG_FILES=$(CATALOG) $(XSLTPROC) $(XSLTPROC_FLAGS) \
 	--stringparam dir "$(ROOT)/scripts/dbtext/ser_db" \
 	--stringparam prefix "" \
+	--stringparam db "dbtext" \
 	$(DBTEXT_XSL) $(DOC_ROOT)
 
 dbtext_clean:
