@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.20 2006/11/22 23:47:34 janakj Exp $
+ * $Id: select_core.c,v 1.21 2006/12/12 14:12:14 tirpi Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -69,6 +69,29 @@ int select_ruri(str* res, select_t* s, struct sip_msg* msg)
 {
 	if (msg->first_line.type==SIP_REQUEST) {
 		if(msg->new_uri.s) {
+			RETURN0_res(msg->new_uri);
+		}
+		else {
+			RETURN0_res(msg->first_line.u.request.uri);
+		}
+	}
+	return -1;
+}
+
+int select_dst_uri(str* res, select_t* s, struct sip_msg* msg)
+{
+	if (msg->first_line.type!=SIP_REQUEST)
+		return -1;
+	RETURN0_res(msg->dst_uri);
+}
+
+int select_next_hop(str* res, select_t* s, struct sip_msg* msg)
+{
+	if (msg->first_line.type==SIP_REQUEST) {
+		if(msg->dst_uri.s) {
+			RETURN0_res(msg->dst_uri);
+		}
+		else if(msg->new_uri.s) {
 			RETURN0_res(msg->new_uri);
 		}
 		else {
