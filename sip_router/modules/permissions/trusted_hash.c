@@ -1,5 +1,5 @@
 /*
- * $Id: trusted_hash.c,v 1.1 2006/08/22 08:51:43 tirpi Exp $
+ * $Id: trusted_hash.c,v 1.2 2006/12/13 13:27:16 tirpi Exp $
  *
  * Hash functions for cached trusted table
  *
@@ -124,7 +124,7 @@ int hash_table_insert(struct trusted_list** hash_table, char* src_ip, char* prot
 	} else if (strcmp(proto, "sctp") == 0) {
 		np->proto = PROTO_SCTP;
 	} else {
-		LOG(L_CRIT, "hash_table_insert(): Unknown protocol\n");
+		LOG(L_CRIT, "hash_table_insert(): Unknown protocol '%s'\n", proto);
 		return -1;
 	}
 		
