@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.62 2006/06/12 21:14:24 mma Exp $
+ * $Id: route.c,v 1.63 2006/12/13 22:50:47 andrei Exp $
  *
  * SIP routing engine
  *
@@ -72,7 +72,7 @@
 #include "mem/mem.h"
 #include "select.h"
 #include "onsend.h"
-#include "hashes.h"
+#include "str_hash.h"
 #include "ut.h"
 
 #define RT_HASH_SIZE	8 /* route names hash */

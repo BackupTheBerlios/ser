@@ -1,5 +1,5 @@
 /*
- * $Id: flags.c,v 1.9 2006/02/08 16:44:37 andrei Exp $
+ * $Id: flags.c,v 1.10 2006/12/13 22:50:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -40,6 +40,8 @@
 #include "error.h"
 #include "stdlib.h"
 #include "hashes.h"
+#include "clist.h"
+#include "mem/mem.h"
 
 int setflag( struct sip_msg* msg, flag_t flag ) {
 	msg->flags |= 1 << flag;

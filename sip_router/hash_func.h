@@ -1,5 +1,5 @@
 /*
- * $Id: hash_func.h,v 1.7 2004/08/24 08:45:10 janakj Exp $
+ * $Id: hash_func.h,v 1.8 2006/12/13 22:50:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -31,13 +31,16 @@
 #define _HASH_H
 
 #include "str.h"
+#include "hashes.h"
 
 /* always use a power of 2 for hash table size */
 #define T_TABLE_POWER    16 
 #define TABLE_ENTRIES    (1 << (T_TABLE_POWER))
 
-int new_hash( str  call_id, str cseq_nr );
-int new_hash2( str  call_id, str cseq_nr );
+unsigned int new_hash( str  call_id, str cseq_nr );
+
+#define new_hash2(call_id, cseq_nr) \
+	(get_hash2_raw(&(call_id), &(cseq_nr)) & (TABLE_ENTRIES-1))
 
 
 #define hash( cid, cseq) new_hash2( cid, cseq )

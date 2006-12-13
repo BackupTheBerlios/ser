@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.14 2006/05/30 19:20:52 andrei Exp $
+ * $Id: route.h,v 1.15 2006/12/13 22:50:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -37,7 +37,7 @@
 #include "error.h"
 #include "route_struct.h"
 #include "parser/msg_parser.h"
-#include "hashes.h"
+#include "str_hash.h"
 
 /*#include "cfg_parser.h" */
 
