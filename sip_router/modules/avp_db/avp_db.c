@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.22 2006/12/11 13:40:22 janakj Exp $
+ * $Id: avp_db.c,v 1.23 2006/12/13 16:50:28 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -61,9 +61,6 @@ static char* type_column      = "type";
 static char* val_column       = "value";
 static char* flags_column     = "flags";
 static char* scheme_column    = "scheme";
-
-/* default did value */
-static str default_did	= STR_STATIC_INIT("_default");
 
 db_con_t* con = 0;
 db_func_t db;
@@ -197,12 +194,14 @@ static int load_uri_attrs(struct sip_msg* msg, unsigned long flags, fparam_t* fp
 	/* domain name is present */
 	if (dm_get_did(&kv[1].val.str_val, &puri.host) < 0) {
 		DBG("Cannot lookup DID for domain %.*s, using default value\n", puri.host.len, ZSW(puri.host.s));
-		kv[1].val.str_val = default_did;
+		kv[1].val.str_val.s = DEFAULT_DID;
+		kv[1].val.str_val.len = sizeof(DEFAULT_DID) - 1;
 	}
     } else {
 	/* domain name is missing -- can be caused by tel: URI */
 	DBG("There is no domain name, using default value\n");
-	kv[1].val.str_val = default_did;
+	kv[1].val.str_val.s = DEFAULT_DID;
+	kv[1].val.str_val.len = sizeof(DEFAULT_DID) - 1;
     }
 
     uri_type_to_str(puri.type, &(kv[2].val.str_val));
