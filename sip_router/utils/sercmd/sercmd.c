@@ -1,5 +1,5 @@
 /*
- * $Id: sercmd.c,v 1.5 2006/11/03 00:43:45 andrei Exp $
+ * $Id: sercmd.c,v 1.6 2006/12/14 14:32:32 vlada Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -78,7 +78,7 @@
 #define UNIX_PATH_MAX 108
 #endif
 
-static char id[]="$Id: sercmd.c,v 1.5 2006/11/03 00:43:45 andrei Exp $";
+static char id[]="$Id: sercmd.c,v 1.6 2006/12/14 14:32:32 vlada Exp $";
 static char version[]= NAME " " VERSION;
 static char compiled[]= __TIME__ " " __DATE__;
 static char help_msg[]="\
@@ -864,6 +864,7 @@ error_cookie:
 	goto error;
 error_toobig:
 	fprintf(stderr, "ERROR: reply too big\n");
+	goto error;
 error_send:
 	fprintf(stderr, "ERROR: send packet failed: %s (%d)\n",
 			strerror(errno), errno);
