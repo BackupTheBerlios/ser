@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.70 2006/12/13 15:12:35 kubartv Exp $
+ * $Id: pa_mod.c,v 1.71 2006/12/14 08:58:11 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -130,7 +130,7 @@ char *col_accepts = "accepts";
 char *col_event = "event";
 char *col_dialog = "dialog";
 char *col_server_contact = "server_contact";
-char *col_doc_index = "doc_idnex";
+char *col_doc_index = "doc_index";
 
 char *col_watcher = "watcher";
 char *col_events = "events";
