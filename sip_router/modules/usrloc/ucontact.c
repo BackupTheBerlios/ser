@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.47 2006/09/05 14:53:44 kubartv Exp $ 
+ * $Id: ucontact.c,v 1.48 2007/01/03 16:09:33 calrissian Exp $ 
  *
  * Usrloc contact structure
  *
@@ -312,7 +312,8 @@ int mem_update_ucontact(ucontact_t* _c, str* _u, str* aor, time_t _e, qvalue_t _
 				return -1;
 			}
 			memcpy(ptr, _inst->s, _inst->len);
-			shm_free(_c->instance.s);
+			if (_c->instance.s)
+				shm_free(_c->instance.s);
 			_c->instance.s = ptr;
 		} else {
 			memcpy(_c->instance.s, _inst->s, _inst->len);
