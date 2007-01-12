@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.doc,v 1.9 2006/12/08 14:19:14 greger Exp $
+# $Id: Makefile.doc,v 1.10 2007/01/12 15:36:47 kubartv Exp $
 #
 
 #
@@ -77,7 +77,7 @@ ifeq ($(VALIDATE), 0)
 	override XSLTPROC_FLAGS := $(XSLTPROC_FLAGS) --novalid
 endif
 
-alldep = Makefile $(ROOT_DIR)/Makefile.doc $(DEP_XSL)
+alldep = Makefile $(ROOT_DIR)/Makefile.doc $(DEP_XSL) $(EXTRA_DEPS)
 
 all: xhtml
 
