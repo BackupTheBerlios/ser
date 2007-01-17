@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.19 2006/12/12 15:31:08 mma Exp $
+/*$Id: gflags.c,v 1.20 2007/01/17 11:11:36 janakj Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour
@@ -126,7 +126,13 @@ static int set_gflag(struct sip_msg *bar, char *flag_par, char *foo)
 {
 	unsigned long int flag;
 
-	flag=*((unsigned long int*)flag_par);
+	if (!flag_par || ((fparam_t*)flag_par)->type != FPARAM_INT) {
+	  LOG(L_ERR, "gflags:set_gflag: Invalid parameter\n");
+	  return -1;
+	}
+	
+	flag=((fparam_t*)flag_par)->v.i; 
+
 	(*gflags) |= 1 << flag;
 	return 1;
 }
@@ -135,7 +141,12 @@ static int reset_gflag(struct sip_msg *bar, char *flag_par, char *foo)
 {
 	unsigned long int flag;
 
-	flag=*((unsigned long int*)flag_par);
+	if (!flag_par || ((fparam_t*)flag_par)->type != FPARAM_INT) {
+	  LOG(L_ERR, "gflags:reset_gflag: Invalid parameter\n");
+	  return -1;
+	}
+	
+	flag=((fparam_t*)flag_par)->v.i; 
 	(*gflags) &= ~ (1 << flag);
 	return 1;
 }
@@ -144,7 +155,12 @@ static int is_gflag(struct sip_msg *bar, char *flag_par, char *foo)
 {
 	unsigned long int flag;
 
-	flag=*((unsigned long int*)flag_par);
+	if (!flag_par || ((fparam_t*)flag_par)->type != FPARAM_INT) {
+	  LOG(L_ERR, "gflags:is_gflag: Invalid parameter\n");
+	  return -1;
+	}
+	
+	flag=((fparam_t*)flag_par)->v.i; 
 	return ( (*gflags) & (1<<flag)) ? 1 : -1;
 }
 
