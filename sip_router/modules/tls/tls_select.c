@@ -1,5 +1,5 @@
 /*
- * $Id: tls_select.c,v 1.6 2006/11/27 13:55:51 tirpi Exp $
+ * $Id: tls_select.c,v 1.7 2007/01/17 20:24:05 andrei Exp $
  *
  * TLS module - select interface
  *
@@ -37,6 +37,7 @@
 #include "../../ut.h"
 #include "tls_server.h"
 #include "tls_select.h"
+#include "tls_mod.h"
 
 enum {
 	CERT_LOCAL = 1,   /* Select local certificate */
@@ -70,7 +71,7 @@ struct tcp_connection* get_cur_connection(struct sip_msg* msg)
 		return 0;
 	}
 
-	c = tcpconn_get(msg->rcv.proto_reserved1, 0, 0, tcp_con_lifetime);
+	c = tcpconn_get(msg->rcv.proto_reserved1, 0, 0, tls_con_lifetime);
 	if (c && c->type != PROTO_TLS) {
 		ERR("Connection found but is not TLS\n");
 		tcpconn_put(c);

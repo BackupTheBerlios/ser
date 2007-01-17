@@ -1,5 +1,5 @@
 /*
- * $Id: tls_mod.h,v 1.4 2006/03/03 15:52:11 janakj Exp $
+ * $Id: tls_mod.h,v 1.5 2007/01/17 20:24:05 andrei Exp $
  *
  * TLS module - module interface
  *
@@ -39,7 +39,7 @@
 
 extern int tls_handshake_timeout;
 extern int tls_send_timeout;
-extern int tls_conn_timeout;
+extern int tls_con_lifetime;
 extern int tls_log;
 extern int tls_session_cache;
 extern str tls_session_id;

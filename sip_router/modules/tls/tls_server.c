@@ -1,5 +1,5 @@
 /*
- * $Id: tls_server.c,v 1.6 2006/11/24 07:37:28 janakj Exp $
+ * $Id: tls_server.c,v 1.7 2007/01/17 20:24:05 andrei Exp $
  *
  * TLS module - main server part
  * 
@@ -580,7 +580,7 @@ int tls_tcpconn_init(struct tcp_connection *c, int sock)
 {
 	c->type = PROTO_TLS;
 	c->rcv.proto = PROTO_TLS;
-	c->timeout = get_ticks() + tls_conn_timeout;
+	c->timeout = get_ticks_raw() + tls_con_lifetime;
 	c->extra_data = 0;
 	return 0;
 }
