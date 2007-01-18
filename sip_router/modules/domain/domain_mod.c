@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.38 2006/09/14 14:10:18 janakj Exp $
+ * $Id: domain_mod.c,v 1.39 2007/01/18 20:35:01 andrei Exp $
  *
  * Domain module
  *
@@ -292,7 +292,7 @@ static int mod_init(void)
 static int child_init(int rank)
 {
 	 /* Check if database is needed by child */
-    if (rank > 0 || rank == PROC_FIFO || rank == PROC_UNIXSOCK) {
+    if (rank > 0 || rank == PROC_RPC || rank == PROC_UNIXSOCK) {
 	if (connect_db() < 0) return -1;
     }
     return 0;
