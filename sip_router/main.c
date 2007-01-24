@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.226 2007/01/18 20:01:37 andrei Exp $
+ * $Id: main.c,v 1.227 2007/01/24 18:01:54 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -160,7 +160,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.226 2007/01/18 20:01:37 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.227 2007/01/24 18:01:54 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1523,15 +1523,6 @@ try_again:
 			goto error;
 		}
 	}
-#ifdef USE_TLS
-	if (!tls_disable){
-		/* init tls*/
-		if (init_tls()<0){
-			LOG(L_CRIT, "could not initialize tls, exiting...\n");
-			goto error;
-		}
-	}
-#endif /* USE_TLS */
 #endif /* USE_TCP */
 	/* init_daemon? */
 	if (!dont_fork){
@@ -1559,6 +1550,17 @@ try_again:
 	 * processes registered from the modules*/
 	if (init_pt(calc_proc_no())==-1)
 		goto error;
+#ifdef USE_TCP
+#ifdef USE_TLS
+	if (!tls_disable){
+		/* init tls*/
+		if (init_tls()<0){
+			LOG(L_CRIT, "could not initialize tls, exiting...\n");
+			goto error;
+		}
+	}
+#endif /* USE_TLS */
+#endif /* USE_TCP */
 	
 	/* The total number of processes is now known, note that no
 	 * function being called before this point may rely on the

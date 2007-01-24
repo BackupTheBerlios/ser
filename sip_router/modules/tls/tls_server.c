@@ -1,5 +1,5 @@
 /*
- * $Id: tls_server.c,v 1.7 2007/01/17 20:24:05 andrei Exp $
+ * $Id: tls_server.c,v 1.8 2007/01/24 18:01:55 andrei Exp $
  *
  * TLS module - main server part
  * 
@@ -660,7 +660,8 @@ again:
 			     /* not all the contents was written => try again w/ the rest
 			      * (possible when SSL_MODE_ENABLE_PARTIAL_WRITE is set)
 			      */
-			DBG("%d bytes still need to be written\n", len - n);
+			DBG("%ld bytes still need to be written\n", 
+				(long)(len - n));
 			buf += n; 
 			len -= n;
 		} else {
