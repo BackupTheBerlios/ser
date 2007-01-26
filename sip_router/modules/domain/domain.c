@@ -1,5 +1,5 @@
 /* 
- * $Id: domain.c,v 1.22 2006/09/14 14:10:18 janakj Exp $
+ * $Id: domain.c,v 1.23 2007/01/26 10:20:09 hscholz Exp $
  *
  * Domain table related functions
  *
@@ -274,6 +274,11 @@ int load_domains(domain_t** dest)
 	unsigned int flags, i;
 	str did, domain;
 	domain_t* d, *list;
+
+	if (!con) {
+		LOG(L_ERR, "domain:load_domains: Invalid database handle\n");
+		return -1;
+	}
 
 	list = 0;
 	cols[0] = did_col.s;
