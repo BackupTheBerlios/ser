@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.48 2006/10/27 16:38:55 calrissian Exp $
+ * $Id: loose.c,v 1.49 2007/01/31 18:49:27 mma Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -1088,6 +1088,7 @@ int loose_route(struct sip_msg* _m, char* _s1, char* _s2)
 		if (is_myself(&puri.host, puri.port_no)) {
 			return after_loose(_m, &puri, 1, 0);
 		} else {
+			store_next_route_in_avps(uri);
 			LOG(L_WARN, "loose_route: no routing target is local\n");
 			return -1;
 		}
