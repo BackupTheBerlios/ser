@@ -1,5 +1,5 @@
 /*
- * $Id: tls_rpc.c,v 1.4 2006/11/15 19:55:13 andrei Exp $
+ * $Id: tls_rpc.c,v 1.5 2007/02/01 04:24:07 andrei Exp $
  *
  * TLS module - management interface
  *
@@ -32,6 +32,7 @@
 #include "../../rpc.h"
 #include "../../tcp_conn.h"
 #include "../../timer.h"
+#include "tls_init.h"
 #include "tls_mod.h"
 #include "tls_domain.h"
 #include "tls_config.h"

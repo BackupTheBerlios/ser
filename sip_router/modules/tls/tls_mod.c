@@ -1,5 +1,5 @@
 /*
- * $Id: tls_mod.c,v 1.9 2007/01/17 20:24:05 andrei Exp $
+ * $Id: tls_mod.c,v 1.10 2007/02/01 04:24:07 andrei Exp $
  *
  * TLS module - module interface
  *
@@ -197,6 +197,8 @@ static param_export_t params[] = {
 	{"session_cache",       PARAM_INT,    &tls_session_cache      },
 	{"session_id",          PARAM_STR,    &tls_session_id         },
 	{"config",              PARAM_STR,    &tls_cfg_file           },
+	{"tls_disable_compression", PARAM_INT,&tls_disable_compression},
+	{"tls_force_run",       PARAM_INT,    &tls_force_run},
 	{0, 0, 0}
 };
 
