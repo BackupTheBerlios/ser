@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.8 2005/12/12 20:27:16 andrei Exp $
+ * $Id: timer.h,v 1.9 2007/02/01 04:34:32 andrei Exp $
  *
  *
  * timer related functions (public interface)
@@ -43,6 +43,7 @@
 
 #include "clist.h"
 #include "dprint.h"
+#include "timer_ticks.h"
 
 #ifdef USE_SLOW_TIMER
 #include <sys/types.h>
@@ -51,8 +52,6 @@ typedef unsigned short slow_idx_t; /* type fot the slow index */
 extern pid_t slow_timer_pid;
 #endif
 
-typedef unsigned int ticks_t;/* type used to keep the ticks (must be 32 bits)*/
-typedef signed   int s_ticks_t; /* signed ticks type */
 
 
 

@@ -1,5 +1,5 @@
 /*
- * $Id: timer_ticks.h,v 1.1 2005/12/05 18:33:11 andrei Exp $
+ * $Id: timer_ticks.h,v 1.2 2007/02/01 04:34:32 andrei Exp $
  *
  *
  * timer frequency and ticks conversions
@@ -54,5 +54,7 @@
 #define TICKS_TO_MS(t) (((t)*1000U)/TIMER_TICKS_HZ)
 
 
+typedef unsigned int ticks_t;/* type used to keep the ticks (must be 32 bits)*/
+typedef signed   int s_ticks_t; /* signed ticks type */
 
 #endif
