@@ -1,5 +1,5 @@
 /*
- * $Id: tls_init.c,v 1.8 2007/02/02 15:17:52 andrei Exp $
+ * $Id: tls_init.c,v 1.9 2007/02/05 10:20:54 janakj Exp $
  *
  * TLS module - OpenSSL initialization funtions
  *
@@ -30,6 +30,9 @@
  */
 
 #include <stdio.h>
+#include <sys/types.h>
+#include <netinet/in_systm.h>
+#include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <netinet/ip.h>
 #include <unistd.h>
