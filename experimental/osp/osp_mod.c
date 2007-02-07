@@ -67,7 +67,7 @@ extern char _osp_LOCAL_CERTIFICATE[];
 extern char _osp_CA_CERTIFICATE[];
 extern OSPTPROVHANDLE _osp_provider;
 
-int osp_index[];
+int osp_index[OSP_DEF_SPS];
 static int ospInitMod(void);
 static void ospDestMod(void);
 static int ospInitChild(int);
