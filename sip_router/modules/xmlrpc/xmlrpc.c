@@ -1,5 +1,5 @@
 /*
- * $Id: xmlrpc.c,v 1.17 2007/02/05 15:16:21 janakj Exp $
+ * $Id: xmlrpc.c,v 1.18 2007/02/08 14:39:42 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -1529,7 +1529,7 @@ static int select_method(str* res, struct select* s, struct sip_msg* msg)
 	return -1;
 }
 
-ABSTRACT_F(select_xmlrpc);
+static ABSTRACT_F(select_xmlrpc);
 
 select_row_t xmlrpc_sel[] = {
         { NULL,          SEL_PARAM_STR, STR_STATIC_INIT("xmlrpc"), select_xmlrpc, 0},
