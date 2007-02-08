@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.52 2006/08/01 14:24:04 mma Exp $
+ * $Id: rr_mod.c,v 1.53 2007/02/08 14:33:32 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -125,8 +125,9 @@ struct module_exports exports = {
 };
 
 
-ABSTRACT_F(select_rrmod)
-int select_rr_avpcookie(str* res, struct select* s, struct sip_msg* msg) {
+static ABSTRACT_F(select_rrmod)
+
+static int select_rr_avpcookie(str* res, struct select* s, struct sip_msg* msg) {
 	*res=*rr_get_avp_cookies();
 	return (res->len==0?1:0);
 }
