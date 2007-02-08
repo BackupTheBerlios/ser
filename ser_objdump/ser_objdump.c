@@ -1,5 +1,5 @@
 /*
- * $Id: ser_objdump.c,v 1.1 2007/01/19 01:20:07 janakj Exp $
+ * $Id: ser_objdump.c,v 1.2 2007/02/08 17:33:18 janakj Exp $
  *
  * Copyright (C) 2007 iptel.org
  *
@@ -25,6 +25,8 @@
 #include <string.h>
 #include <strings.h>
 #include <bfd.h>
+#include "select.h"
+#include "ser_objdump.h"
 
 #define PARAM_STRING     (1U<<0)	/* String (char *) parameter type */
 #define PARAM_INT        (1U<<1)	/* Integer parameter type */
@@ -42,28 +44,41 @@
 #define FUNC_ONSEND_ROUTE  (1U<<4)	/* Function can be used in
 					 * onsend_route blocks */
 
-enum export_type {
-    TYPE_FUNC,
-    TYPE_RPC,
-    TYPE_PARAM
+/*
+ * This is a temporary table that maps modules to the names
+ * of symbols containing select tables. This is needed because
+ * we currently do not have a pointer to the select table in
+ * exports structure (to be fixed in the future)
+ */
+struct select_table_map {
+	char* module;
+	char* symbol_name;
+} sel_map[] = {{"core",      "select_core"},
+			   {"db_ops",    "sel_declaration"},
+			   {"eval",      "sel_declaration"},
+			   {"nathelper", "sel_declaration"},
+			   {"rr",        "rr_select_table"},
+			   {"textops",   "sel_declaration"},
+			   {"timer",     "sel_declaration"},
+			   {"tls",       "tls_sel"},
+			   {"xmlrpc",    "xmlrpc_sel"},
+			   {NULL,        NULL}
 };
 
-enum {
-    FMT_CSV,
-    FMT_SQL
-};
 
+char* lookup_sel_table(char* module)
+{
+	int i;
 
-static struct res {
-    char           *module;
-    char           *version;
-    char           *name;
-    enum export_type type;
-    int             params;
-    unsigned int    flags;
-    char           *doc;
-} res;
+	for(i = 0; sel_map[i].module; i++) {
+		if (!strcmp(module, sel_map[i].module)) {
+			return sel_map[i].symbol_name;
+		}
+	}
+	return NULL;
+}
 
+struct res res;
 
 struct section {
     asection       *hdr;
@@ -129,6 +144,7 @@ int             print_all = 1;	/* Print all symbols by default */
 int             print_funcs = 0;
 int             print_params = 0;
 int             print_rpc = 0;
+int             print_selects = 0;
 int             out_fmt = FMT_CSV;	/* The default output format is
 					 * CSV */
 char           *version_string = NULL;
@@ -140,6 +156,7 @@ char           *mod_name = NULL;
 static struct option long_options[] = {
     {"functions", no_argument, NULL, 'f'},
     {"parameters", no_argument, NULL, 'p'},
+    {"selects", no_argument, NULL, 'S'},
     {"rpc", no_argument, NULL, 'r'},
     {"csv", no_argument, NULL, 'c'},
     {"sql", no_argument, NULL, 's'},
@@ -159,6 +176,7 @@ usage(FILE * stream, int status)
     fprintf(stream, " The options are:\n\
   -f, --functions      List module function symbols (on by default)\n\
   -p, --parameters     List module parameter symbols (on by default)\n\
+  -S, --selects        List selects exported by module (on by default)\n\
   -r, --rpc            List module RPC functions (on by default)\n\
   -c, --csv            Display output in CSV format (default)\n\
   -s, --sql            Display output in SQL format\n\
@@ -169,6 +187,10 @@ usage(FILE * stream, int status)
 \n");
     if (status == 0) {
 	fprintf(stream, "Report bugs to serdev@lists.iptel.org.\n");
+	fprintf(stream, "\nKnown issues:\n");
+	fprintf(stream, "  Pointers to in select tables must point to static functions\n");
+	fprintf(stream, "  otherwise the linker would set the pointers to NULL and\n");
+	fprintf(stream, "  ser_objdump will report an error\n\n");
     }
     exit(status);
 }
@@ -182,7 +204,7 @@ section_match(bfd * abfd, asection * sect, void *addr)
 }
 
 
-static unsigned long
+unsigned long
 relocate(void *addr)
 {
     asection       *section;
@@ -261,8 +283,7 @@ print_res_sql(struct res *res)
 }
 
 
-static void
-print_res(struct res *res)
+void print_res(struct res *res)
 {
     if (out_fmt == FMT_CSV)
 	print_res_csv(res);
@@ -367,11 +388,26 @@ get_module_exports(void)
     asymbol        *exports_sym;
 
     exports_sym = get_module_symbol("exports");
-    if (exports_sym == NULL)
-	return NULL;
+    if (exports_sym == NULL) {
+		return NULL;
+	}
 
     return (struct module_exports *) (exports_sym->section->contents +
 				      exports_sym->value);
+}
+
+
+select_row_t* get_module_selects(char* name)
+{
+    asymbol        *selects_sym;
+
+    selects_sym = get_module_symbol(name);
+    if (selects_sym == NULL) {
+		return NULL;
+	}
+
+    return (select_row_t*)(selects_sym->section->contents +
+						   selects_sym->value);
 }
 
 
@@ -381,16 +417,18 @@ main(int argc, char **argv)
     struct module_exports *exports;
     struct cmd_export *cmd;
     struct rpc_export *rpc;
+	select_row_t* select;
     struct param_export *param;
     int             i,
                     c;
+	char* s_table;
 
     bfd_init();
 
     prog_name = argv[0];
 
     while ((c =
-	    getopt_long(argc, argv, "fprcst:m:hHv:", long_options,
+	    getopt_long(argc, argv, "fprScst:m:hHv:", long_options,
 			(int *) 0)) != EOF) {
 	switch (c) {
 	case 'f':
@@ -407,6 +445,11 @@ main(int argc, char **argv)
 	    print_all = 0;
 	    print_rpc = 1;
 	    break;
+
+	case 'S':
+		print_all = 0;
+		print_selects = 1;
+		break;
 
 	case 'c':
 	    out_fmt = FMT_CSV;
@@ -498,6 +541,16 @@ main(int argc, char **argv)
 	    print_res(&res);
 	}
     }
+
+	if (print_all || print_selects) {
+		s_table = lookup_sel_table(res.module);
+		if (s_table) {
+			select = get_module_selects(s_table);
+			if (select) {
+				scan_select_table(select);
+			}
+		}
+	}
 
     exit(0);
 }
