@@ -1,5 +1,5 @@
 /*
- * $Id: ser_objdump.h,v 1.1 2007/02/08 17:33:18 janakj Exp $
+ * $Id: ser_objdump.h,v 1.2 2007/02/09 11:30:55 janakj Exp $
  *
  * Copyright (C) 2007 iptel.org
  *
@@ -19,6 +19,7 @@
  */
 
 #ifndef _SER_OBJDUMP_H
+#define _SER_OBJDUMP_H
 
 enum export_type {
     TYPE_FUNC,

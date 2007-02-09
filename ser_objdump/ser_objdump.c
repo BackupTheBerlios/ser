@@ -1,5 +1,5 @@
 /*
- * $Id: ser_objdump.c,v 1.2 2007/02/08 17:33:18 janakj Exp $
+ * $Id: ser_objdump.c,v 1.3 2007/02/09 11:30:55 janakj Exp $
  *
  * Copyright (C) 2007 iptel.org
  *
@@ -543,6 +543,11 @@ main(int argc, char **argv)
     }
 
 	if (print_all || print_selects) {
+		res.type = TYPE_SELECT;
+		res.params = 0;
+		res.flags = 0;
+		res.doc = NULL;
+
 		s_table = lookup_sel_table(res.module);
 		if (s_table) {
 			select = get_module_selects(s_table);
