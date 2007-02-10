@@ -1,5 +1,5 @@
 /*
- * $Id: tls_domain.c,v 1.9 2007/02/01 04:24:06 andrei Exp $
+ * $Id: tls_domain.c,v 1.10 2007/02/10 19:02:04 andrei Exp $
  *
  * TLS module - virtual configuration domain support
  *
@@ -117,6 +117,29 @@ void tls_free_cfg(tls_cfg_t* cfg)
 	if (cfg->srv_default) tls_free_domain(cfg->srv_default);
 	if (cfg->cli_default) tls_free_domain(cfg->cli_default);
 }
+
+
+
+void tls_destroy_cfg(void)
+{
+	tls_cfg_t* ptr;
+
+	if (tls_cfg_lock) {
+		lock_destroy(tls_cfg_lock);
+		lock_dealloc(tls_cfg_lock);
+	}
+
+	if (tls_cfg) {
+		while(*tls_cfg) {
+			ptr = *tls_cfg;
+			*tls_cfg = (*tls_cfg)->next;
+			tls_free_cfg(ptr);
+		}
+		
+		shm_free(tls_cfg);
+	}
+}
+
 
 
 /*

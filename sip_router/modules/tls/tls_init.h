@@ -1,5 +1,5 @@
 /*
- * $Id: tls_init.h,v 1.5 2007/02/01 04:24:07 andrei Exp $
+ * $Id: tls_init.h,v 1.6 2007/02/10 19:02:04 andrei Exp $
  * 
  * TLS module - OpenSSL initialization funtions
  *
@@ -53,19 +53,19 @@ extern const SSL_METHOD* ssl_methods[];
 /*
  * just once, initialize the tls subsystem 
  */
-int init_tls(void);
+int init_tls_h(void);
 
 
 /*
  * just once before cleanup 
  */
-void destroy_tls(void);
+void destroy_tls_h(void);
 
 
 /*
  * for each socket 
  */
-int tls_init(struct socket_info *si);
+int tls_h_init_si(struct socket_info *si);
 
 /*
  * Make sure that all server domains in the configuration have corresponding

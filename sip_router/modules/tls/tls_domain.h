@@ -1,5 +1,5 @@
 /*
- * $Id: tls_domain.h,v 1.3 2006/03/03 15:52:11 janakj Exp $
+ * $Id: tls_domain.h,v 1.4 2007/02/10 19:02:04 andrei Exp $
  *
  * TLS module - virtual configuration domain support
  * 
@@ -150,5 +150,9 @@ tls_domain_t* tls_lookup_cfg(tls_cfg_t* cfg, int type, struct ip_addr* ip, unsig
  */
 void tls_free_cfg(tls_cfg_t* cfg);
 
+/*
+ * Destroy all the config data
+ */
+void tls_destroy_cfg(void);
 
 #endif /* _TLS_DOMAIN_H */
