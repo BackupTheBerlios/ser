@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.34 2006/11/02 22:55:56 andrei Exp $
+ * $Id: tcp_read.c,v 1.35 2007/02/10 18:52:48 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -61,8 +61,10 @@
 #include "receive.h"
 #include "timer.h"
 #include "ut.h"
-#ifdef USE_TLS
+#ifdef CORE_TLS
 #include "tls/tls_server.h"
+#else
+#include "tls_hooks.h"
 #endif
 
 #define HANDLE_IO_INLINE
