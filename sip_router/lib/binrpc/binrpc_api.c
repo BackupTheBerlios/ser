@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_api.c,v 1.1 2007/02/06 08:00:49 vlada Exp $
+ * $Id: binrpc_api.c,v 1.2 2007/02/11 08:46:42 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -40,7 +40,7 @@
 #include <errno.h>
 #include <ctype.h> /* isprint */
 #include <time.h> /* time */
-#include <stropts.h>
+/* #include <stropts.h>  - is this really needed? --andrei */
 
 #include "../../modules/ctl/ctl_defaults.h" /* default socket & port */
 #include "../../modules/ctl/init_socks.h"
