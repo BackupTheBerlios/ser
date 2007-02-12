@@ -1,5 +1,5 @@
 /**
- * $Id: xl_lib.c,v 1.30 2006/06/09 16:46:54 mma Exp $
+ * $Id: xl_lib.c,v 1.31 2007/02/12 20:19:39 andrei Exp $
  *
  * XLOG module
  *
@@ -594,7 +594,7 @@ static int xl_get_color(struct sip_msg *msg, str *res, str *hp, int hi, int hf)
 
 	if(hp->s[0]!='_')
 	{
-		if (islower(hp->s[0]))
+		if (islower((unsigned char)hp->s[0]))
 		{
 			/* normal font */
 			append_sstring(p, end, "0;");

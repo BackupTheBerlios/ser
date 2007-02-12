@@ -1,5 +1,5 @@
 /*
- * $Id: im_locks.h,v 1.1 2006/08/22 08:51:42 tirpi Exp $
+ * $Id: im_locks.h,v 1.2 2007/02/12 20:19:39 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -39,8 +39,8 @@ void reader_release_imhash(void);
 
 /* writer lock for ipmatch cache */
 #define writer_init_imhash_lock()	lock_init(&(IM_HASH)->write_lock);
-#define writer_lock_imhash(void)	lock_get(&(IM_HASH)->write_lock);
-#define writer_release_imhash(void)	lock_release(&(IM_HASH)->write_lock);
+#define writer_lock_imhash()	lock_get(&(IM_HASH)->write_lock);
+#define writer_release_imhash()	lock_release(&(IM_HASH)->write_lock);
 
 /* set writer demand on ipmatch cache */
 void set_wd_imhash(void);
