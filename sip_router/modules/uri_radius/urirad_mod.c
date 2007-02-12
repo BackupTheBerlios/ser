@@ -1,5 +1,5 @@
 /*
- * $Id: urirad_mod.c,v 1.14 2006/01/08 22:43:20 tma0 Exp $
+ * $Id: urirad_mod.c,v 1.15 2007/02/12 13:16:33 janakj Exp $
  *
  * URI checks using Radius
  *
@@ -104,8 +104,8 @@ static int mod_init(void)
 	attrs[A_USER_NAME].n	= "User-Name";
 	attrs[A_SERVICE_TYPE].n	= "Service-Type";
 
-	attrs[A_SER_ATTRS].n	= "SER-Attrs";
-	vals[V_CALL_CHECK].n	= "Call-Check";
+	attrs[A_SER_ATTR].n	= "SER-Attrs";
+	vals[V_CALL_CHECK].n = "Call-Check";
 
 	if ((rh = rc_read_config(radius_config)) == NULL) {
 		LOG(L_ERR, "uri_radius: Error opening configuration file \n");
