@@ -1,5 +1,5 @@
 /*
- * $Id: tls_init.h,v 1.6 2007/02/10 19:02:04 andrei Exp $
+ * $Id: tls_init.h,v 1.7 2007/02/13 13:22:57 andrei Exp $
  * 
  * TLS module - OpenSSL initialization funtions
  *
@@ -41,6 +41,7 @@
  * (kssl code uses libc malloc/free/calloc instead of OPENSSL_malloc & 
  * friends)*/
 #define TLS_KSSL_WORKARROUND
+extern int openssl_kssl_malloc_bug; /* is openssl bug #1467 present ? */
 #endif
 
 
