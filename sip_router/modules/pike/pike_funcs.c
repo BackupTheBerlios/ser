@@ -1,5 +1,5 @@
 /* 
- * $Id: pike_funcs.c,v 1.27 2006/10/25 20:29:44 andrei Exp $
+ * $Id: pike_funcs.c,v 1.28 2007/02/14 15:59:10 liborc Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -39,6 +39,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+//#include <arpa/inet.h>
 
 #include "../../mem/shm_mem.h"
 #include "../../locking.h"
@@ -116,6 +117,7 @@ int pike_check_req(struct sip_msg *msg, char *foo, char *bar)
 		/* put this node into the timer list and remove its
 		   father only if this has one kid and is not a LEAF_NODE*/
 		node->expires =  get_ticks() + timeout;
+		DBG("DEBUG:pike:pike_check_req: expires: %d, get_ticks: %d, timeout: %d", node->expires, node->expires-timeout, timeout);
 		append_to_timer( timer, &(node->timer_ll) );
 		node->flags |= NODE_INTIMER_FLAG;
 		if (father) {
