@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.64 2006/11/14 18:11:07 andrei Exp $
+ * $Id: uac.c,v 1.65 2007/02/16 11:28:42 kubartv Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -473,15 +473,27 @@ int request(str* m, str* ruri, str* to, str* from, str* h, str* b, str *next_hop
 	if (ruri) {
 		dialog->rem_target.s = ruri->s;
 		dialog->rem_target.len = ruri->len;
-		dialog->hooks.request_uri = &dialog->rem_target;
+		/* hooks will be set from w_calculate_hooks */
 	}
+
+	if (next_hop) dialog->dst_uri = *next_hop;
 	w_calculate_hooks(dialog);
 
-	if (next_hop) 
-		if ((next_hop->len > 0) && next_hop->s) dialog->hooks.next_hop = next_hop;
+	/* WARNING:
+	 * to be clean it should be called 
+	 *   set_dlg_target(dialog, ruri, next_hop);
+	 * which sets both uris if given [but it duplicates them in shm!]
+	 *
+	 * but in this case the _ruri parameter in set_dlg_target
+	 * must be optional (it is needed now) and following hacks
+	 *   dialog->rem_target.s = 0;
+	 *   dialog->dst_uri.s = 0;
+	 * before freeing dialog here must be removed
+	 */
 
 	res = t_uac(m, h, b, dialog, c, cp);
 	dialog->rem_target.s = 0;
+	dialog->dst_uri.s = 0;
 	free_dlg(dialog);
 	return res;
 
