@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.164 2007/02/10 19:41:30 andrei Exp $
+# $Id: Makefile,v 1.165 2007/02/16 15:49:46 janakj Exp $
 #
 # sip_router makefile
 #
@@ -105,7 +105,7 @@ module_group_stable=cpl-c dbtext jabber osp sms
 
 # Modules in this group are either not complete, untested, or without enough reports
 # of usage to allow the module into the stable group. They may or may not have dependencies
-module_group_experimental=tls
+module_group_experimental=tls oracle
 
 # if not set on the cmd. line or the env, exclude the below modules.
 ifneq ($(group_include),)
@@ -121,7 +121,7 @@ else
 							cpl-c \
 							auth_radius group_radius uri_radius avp_radius \
 							acc_radius dialog pa rls presence_b2b xcap xmlrpc\
-							osp tls \
+							osp tls oracle \
 							unixsock eval
 endif
 
