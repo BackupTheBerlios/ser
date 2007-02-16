@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.35 2007/02/10 18:52:48 andrei Exp $
+ * $Id: tcp_read.c,v 1.36 2007/02/16 21:34:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -856,11 +856,11 @@ again:
 			}
 			if (n==0){
 				LOG(L_ERR, "WARNING: tcp_receive: handle_io: 0 bytes read\n");
-				break;
+				goto error;
 			}
 			if (con==0){
 					LOG(L_CRIT, "BUG: tcp_receive: handle_io null pointer\n");
-					break;
+					goto error;
 			}
 			con->fd=s;
 			if (s==-1) {
