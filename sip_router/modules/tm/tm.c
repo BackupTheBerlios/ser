@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.150 2006/12/06 16:07:15 andrei Exp $
+ * $Id: tm.c,v 1.151 2007/02/18 14:05:45 tma0 Exp $
  *
  * TM module
  *
@@ -115,6 +115,7 @@
 #include "t_fifo.h"
 #include "timer.h"
 #include "t_msgbuilder.h"
+#include "select.h"
 
 MODULE_VERSION
 
@@ -339,7 +340,6 @@ static param_export_t params[]={
 	{0,0,0}
 };
 
-
 #ifdef STATIC_TM
 struct module_exports tm_exports = {
 #else
@@ -531,6 +531,11 @@ static int mod_init(void)
 	/* init static hidden values */
 	init_t();
 
+	if (tm_init_selects()==-1) {
+		LOG(L_ERR, "ERROR: mod_init: select init failed\n");
+		return -1;
+	}
+	
 	if (tm_init_timers()==-1) {
 		LOG(L_ERR, "ERROR: mod_init: timer init failed\n");
 		return -1;

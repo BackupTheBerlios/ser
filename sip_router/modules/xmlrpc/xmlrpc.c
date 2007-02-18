@@ -1,5 +1,5 @@
 /*
- * $Id: xmlrpc.c,v 1.19 2007/02/08 14:40:54 janakj Exp $
+ * $Id: xmlrpc.c,v 1.20 2007/02/18 14:05:45 tma0 Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -1302,7 +1302,7 @@ static char* http_xmlrpc2sip(struct sip_msg* msg, int* new_msg_len)
 	p+=CRLF_LEN;
 	memcpy(p, via, via_len);
 	p+=via_len;
-	memcpy(p, &msg->buf[msg->first_line.len], msg->len - msg->first_line.len);
+	memcpy(p, msg->first_line.line.s + msg->first_line.len, msg->len - msg->first_line.len);
 	new_msg[len]=0; /* null terminate, required by receive_msg() */
 	pkg_free(via);
 	*new_msg_len=len;

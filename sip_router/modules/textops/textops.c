@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.66 2006/08/31 08:38:10 tma0 Exp $
+/*$Id: textops.c,v 1.67 2007/02/18 14:05:45 tma0 Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -294,7 +294,7 @@ static int fixup_regex_xlstr(void** param, int param_no) {
 
 static char *get_header(struct sip_msg *msg)
 {
-	return msg->buf+msg->first_line.len;
+	return msg->first_line.line.s+msg->first_line.len;
 }
 
 static int search_f(struct sip_msg* msg, char* key, char* str2)
