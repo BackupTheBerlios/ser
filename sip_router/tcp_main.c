@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.91 2007/02/10 18:52:48 andrei Exp $
+ * $Id: tcp_main.c,v 1.92 2007/02/20 19:41:14 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1573,7 +1573,8 @@ inline static int handle_io(struct fd_map* fm, int idx)
 			ret=handle_ser_child((struct process_table*)fm->data, idx);
 			break;
 		case F_NONE:
-			LOG(L_CRIT, "BUG: handle_io: empty fd map\n");
+			LOG(L_CRIT, "BUG: handle_io: empty fd map: %p {%d, %d, %p},"
+						" idx %d\n", fm, fm->fd, fm->type, fm->data, idx);
 			goto error;
 		default:
 			LOG(L_CRIT, "BUG: handle_io: uknown fd type %d\n", fm->type); 

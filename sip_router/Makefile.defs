@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.398 2007/02/13 13:25:00 andrei Exp $
+# $Id: Makefile.defs,v 1.399 2007/02/20 19:41:14 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -113,7 +113,7 @@ ifeq ($(CORE_TLS), 1)
 	TLS_HOOKS:=0
 endif
 ifeq ($(TLS_HOOKS), 1)
-	RELEASE:=$(RELEASE)-tls
+#	RELEASE:=$(RELEASE)-tls
 endif
 
 # extra CC command line options (e.g  -march=athlon-mp)
