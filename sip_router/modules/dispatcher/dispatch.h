@@ -1,5 +1,5 @@
 /**
- * $Id: dispatch.h,v 1.5 2006/05/30 21:21:51 calrissian Exp $
+ * $Id: dispatch.h,v 1.6 2007/02/22 22:44:26 andrei Exp $
  *
  * dispatcher module
  * 
@@ -45,6 +45,8 @@
 #define DS_HASH_USER_OR_HOST 2  /* use user part of uri for hashing with
                                    fallback to host */
 extern int ds_flags; 
+
+int ds_set_hash_f(int n);
 
 int ds_load_list(char *lfile);
 int ds_destroy_list();
