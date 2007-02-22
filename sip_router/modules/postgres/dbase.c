@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.9 2007/02/22 00:24:17 andrei Exp $ 
+ * $Id: dbase.c,v 1.10 2007/02/22 15:56:48 andrei Exp $ 
  *
  * Postgres module core functions
  *
@@ -40,6 +40,7 @@
 #include "../../db/db_pool.h"
 #include "../../ut.h"
 #include "../../globals.h"
+#include "../../pt.h"
 #include "pg_con.h"
 #include "pg_type.h"
 #include "db_mod.h"
@@ -228,7 +229,8 @@ db_con_t* pg_init(const char* url)
 	id = 0;
 	res = 0;
 
-	if (is_main){
+	/* if called from PROC_MAIN, allow it only from mod_init( when pt==0)*/
+	if (is_main && pt){
 		LOG(L_ERR, "BUG: postgres: pg_init: called from the main process,"
 					" ignoring...\n");
 		return 0;
