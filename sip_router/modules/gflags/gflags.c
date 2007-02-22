@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.20 2007/01/17 11:11:36 janakj Exp $
+/*$Id: gflags.c,v 1.21 2007/02/22 00:24:16 andrei Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour
@@ -299,6 +299,8 @@ static int mod_init(void)
 static int child_init(int rank)
 {
 	if (load_global_attrs) {
+		if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+			return 0; /* do nothing for the main or tcp_main processes */
 		con = db.init(db_url);
 		if (!con) {
 			LOG(L_ERR, "gflags:mod_init: Error while connecting database\n");

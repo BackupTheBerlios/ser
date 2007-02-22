@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.23 2006/12/13 16:50:28 janakj Exp $
+ * $Id: avp_db.c,v 1.24 2007/02/22 00:24:16 andrei Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -132,6 +132,8 @@ static int mod_init(void)
 
 static int child_init(int rank)
 {
+	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+		return 0; /* do nothing for the main process */
     con = db.init(db_url);
     if (!con) {
 	LOG(L_ERR, "avp_db:child_init: Could not initialize connection to %s\n", db_url);

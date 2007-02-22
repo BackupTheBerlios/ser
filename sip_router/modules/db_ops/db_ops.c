@@ -1,5 +1,5 @@
 /*
- * $Id: db_ops.c,v 1.11 2006/12/08 14:08:35 andrei Exp $
+ * $Id: db_ops.c,v 1.12 2007/02/22 00:24:16 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -880,7 +880,7 @@ static int mod_init(void) {
 
 static int child_init(int rank) {
 	struct dbops_action *p, *p2;
-	if (rank > 0 || rank == PROC_TIMER) {
+	if (rank != PROC_MAIN && rank != PROC_TCP_MAIN) {
 		for (p=dbops_actions; p; p=p->next) {
 			for (p2=dbops_actions; p!=p2; p2=p2->next) {  /* check if database is already opened */
 				if (strcmp(p->db_url, p2->db_url) == 0) {

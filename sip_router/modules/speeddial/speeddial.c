@@ -1,5 +1,5 @@
 /*
- * $Id: speeddial.c,v 1.5 2006/03/01 16:02:24 janakj Exp $
+ * $Id: speeddial.c,v 1.6 2007/02/22 00:24:17 andrei Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -105,6 +105,8 @@ struct module_exports exports = {
  */
 static int child_init(int rank)
 {
+	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+		return 0; /* do nothing for the main or tcp_main processes */
 	db_handle = db_funcs.init(db_url);
 	if (!db_handle)
 	{

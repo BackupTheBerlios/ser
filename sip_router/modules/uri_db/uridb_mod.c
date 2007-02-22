@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.c,v 1.19 2007/01/23 10:41:35 kubartv Exp $
+ * $Id: uridb_mod.c,v 1.20 2007/02/22 00:24:17 andrei Exp $
  *
  * Various URI related functions
  *
@@ -154,6 +154,8 @@ struct module_exports exports = {
  */
 static int child_init(int rank)
 {
+	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+		return 0; /* do nothing for the main or tcp_main processes */
 	con = db.init(db_url.s);
 	if (con == 0) {
 		LOG(L_ERR, "uri_db:child_init: Unable to connect to the database\n");
