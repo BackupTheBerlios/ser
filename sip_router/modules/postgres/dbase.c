@@ -1,5 +1,5 @@
 /* 
- * $Id: dbase.c,v 1.10 2007/02/22 15:56:48 andrei Exp $ 
+ * $Id: dbase.c,v 1.11 2007/02/23 21:03:38 andrei Exp $ 
  *
  * Postgres module core functions
  *
@@ -230,10 +230,9 @@ db_con_t* pg_init(const char* url)
 	res = 0;
 
 	/* if called from PROC_MAIN, allow it only from mod_init( when pt==0)*/
-	if (is_main && pt){
+	if (is_main && fixup_complete){
 		LOG(L_ERR, "BUG: postgres: pg_init: called from the main process,"
 					" ignoring...\n");
-		return 0;
 	}
 	if (!url) {
 		ERR("Invalid parameter value\n");

@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.67 2006/10/25 18:44:36 andrei Exp $
+ * $Id: globals.h,v 1.68 2007/02/23 21:03:38 andrei Exp $
  *
  * global variables
  *
@@ -146,6 +146,7 @@ extern int process_no;
 extern int reply_to_via;
 
 extern int is_main;
+extern int fixup_complete;
 
 /* debugging level for dumping memory status */
 extern int memlog;

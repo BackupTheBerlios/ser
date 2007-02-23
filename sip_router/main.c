@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.228 2007/02/10 18:52:48 andrei Exp $
+ * $Id: main.c,v 1.229 2007/02/23 21:03:38 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -166,7 +166,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.228 2007/02/10 18:52:48 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.229 2007/02/23 21:03:38 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -422,6 +422,7 @@ extern int yyparse();
 
 
 int is_main=1; /* flag = is this the  "main" process? */
+int fixup_complete=0; /* flag = is the fixup complete ? */
 
 char* pid_file = 0; /* filename as asked by use */
 char* pgid_file = 0;
@@ -1591,6 +1592,7 @@ try_again:
 						r);
 		goto error;
 	};
+	fixup_complete=1;
 
 #ifdef STATS
 	if (init_stats(  dont_fork ? 1 : children_no  )==-1) goto error;
