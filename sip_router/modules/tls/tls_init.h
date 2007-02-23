@@ -1,5 +1,5 @@
 /*
- * $Id: tls_init.h,v 1.7 2007/02/13 13:22:57 andrei Exp $
+ * $Id: tls_init.h,v 1.8 2007/02/23 23:24:32 andrei Exp $
  * 
  * TLS module - OpenSSL initialization funtions
  *
@@ -43,6 +43,7 @@
 #define TLS_KSSL_WORKARROUND
 extern int openssl_kssl_malloc_bug; /* is openssl bug #1467 present ? */
 #endif
+extern int openssl_low_mem_bug; /* openssl bug #1491 workarround */
 
 
 extern int tls_disable_compression; /* by default enabled */
