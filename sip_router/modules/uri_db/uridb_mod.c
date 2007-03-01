@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.c,v 1.20 2007/02/22 00:24:17 andrei Exp $
+ * $Id: uridb_mod.c,v 1.21 2007/03/01 12:30:28 mma Exp $
  *
  * Various URI related functions
  *
@@ -219,23 +219,6 @@ static void destroy(void)
 	if (con && db.close) {
 		db.close(con);
 		con = 0;
-	}
-}
-
-static void uri_type_to_str(uri_type type, str *s) {
-	static str	s_sip  = STR_STATIC_INIT("sip");
-	static str	s_sips = STR_STATIC_INIT("sips");
-	static str	s_tel  = STR_STATIC_INIT("tel");
-	static str	s_tels = STR_STATIC_INIT("tels");
-	static str	s_null = STR_STATIC_INIT("");
-
-	switch (type) {
-
-	case SIP_URI_T:		*s = s_sip;	break;
-	case SIPS_URI_T:	*s = s_sips;	break;
-	case TEL_URI_T:		*s = s_tel;	break;
-	case TELS_URI_T:	*s = s_tels;	break;
-	default:		*s = s_null;
 	}
 }
 

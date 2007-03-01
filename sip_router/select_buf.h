@@ -1,5 +1,5 @@
 /*
- * $Id: select_buf.h,v 1.2 2007/02/18 14:05:44 tma0 Exp $
+ * $Id: select_buf.h,v 1.3 2007/03/01 12:30:27 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -54,6 +54,6 @@ int reset_static_buffer();
 int str_to_static_buffer(str* res, str* s);
 int int_to_static_buffer(str* res, int val);
 int uint_to_static_buffer(str* res, unsigned int val);
-int uint_ex_to_static_buffer(str* res, unsigned int val, int base, int pad);
+int uint_to_static_buffer_ex(str* res, unsigned int val, int base, int pad);
 
 #endif /* SELECT_BUFFER_H */
