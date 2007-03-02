@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.168 2007/03/01 17:11:09 andrei Exp $
+# $Id: Makefile,v 1.169 2007/03/02 13:31:08 kubartv Exp $
 #
 # sip_router makefile
 #
@@ -564,9 +564,11 @@ dep_mods += $(filter $(lib_dependent_modules), $(static_modules))
 ifneq ($(strip $(dep_mods)),)
 modules:	libs
 
+install-modules:	install-libs
+
 endif
 
-.PHONY: clean_libs libs
+.PHONY: clean_libs libs install-libs
 
 clean_libs:
 			$(MAKE) -f Makefile.ser -C lib proper
@@ -574,9 +576,9 @@ clean_libs:
 # cleaning in libs always when cleaning ser
 clean:	clean_libs
 
-# remove 'libs' target from targets
-lib_goals = $(patsubst libs,,$(MAKECMDGOALS))
-
 libs:	
-		$(MAKE) -C lib -f Makefile.ser $(lib_goals)
+		$(MAKE) -C lib -f Makefile.ser
+
+install-libs:	
+		$(MAKE) -C lib -f Makefile.ser install
 
