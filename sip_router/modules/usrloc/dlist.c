@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.22 2006/11/24 17:20:08 andrei Exp $
+ * $Id: dlist.c,v 1.23 2007/03/08 16:39:48 liborc Exp $
  *
  * List of registered domains
  *
@@ -169,18 +169,11 @@ int get_all_ucontacts(void *buf, int len, unsigned int flags)
  * Create a new domain structure
  * Returns 0 if everything went OK, otherwise value < 0
  * is returned
- *
- * The structure is NOT created in shared memory so the
- * function must be called before ser forks if it should
- * be available to all processes
  */
 static inline int new_dlist(str* _n, dlist_t** _d)
 {
 	dlist_t* ptr;
 
-	     /* Domains are created before ser forks,
-	      * so we can create them using pkg_malloc
-	      */
 	ptr = (dlist_t*)shm_malloc(sizeof(dlist_t));
 	if (ptr == 0) {
 		LOG(L_ERR, "new_dlist(): No memory left\n");
