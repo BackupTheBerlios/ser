@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.24 2007/03/08 14:56:10 gkovacs Exp $
+ * $Id: select_core.c,v 1.25 2007/03/14 17:28:04 andrei Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -459,7 +459,10 @@ int select_msg(str* res, select_t* s, struct sip_msg* msg)
 
 int select_msg_first_line(str* res, select_t* s, struct sip_msg* msg) 
 {
-	RETURN0_res(msg->first_line.line);
+	res->s=SIP_MSG_START(msg);
+	res->len=msg->first_line.len;
+	trim_trailing(res);
+	return 0;
 }
 
 int select_msg_type(str* res, select_t* s, struct sip_msg* msg) {
@@ -493,7 +496,7 @@ int select_msg_header(str* res, select_t* s, struct sip_msg* msg)
 {
 	/* get all headers */
 	char *c;
-	res->s = msg->first_line.line.s + msg->first_line.len; 
+	res->s = SIP_MSG_START(msg) + msg->first_line.len; 
 	c = get_body(msg);
 	res->len = c - res->s;
 	return 0;
