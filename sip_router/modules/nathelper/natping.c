@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.8 2006/06/17 00:21:27 sobomax Exp $
+/* $Id: natping.c,v 1.9 2007/03/14 21:40:09 tma0 Exp $
  *
  * Copyright (C) 2005 Porta Software Ltd
  *
@@ -112,7 +112,7 @@ natping(unsigned int ticks, void *param)
 	if (rval > 0) {
 		if (buf != NULL)
 			pkg_free(buf);
-		cblen = rval * 2;
+		cblen = (cblen + rval) * 2;
 		buf = pkg_malloc(cblen);
 		if (buf == NULL) {
 			LOG(L_ERR, "ERROR: nathelper::natping: out of memory\n");
