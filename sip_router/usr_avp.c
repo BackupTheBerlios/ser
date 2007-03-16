@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.34 2006/12/07 18:58:02 andrei Exp $
+ * $Id: usr_avp.c,v 1.35 2007/03/16 09:00:52 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1093,7 +1093,10 @@ avp_flags_t register_avpflag(char* name) {
 	avp_flags_t ret;
 	ret = get_avpflag_no(name);
 	if (ret == 0) {
-		if (registered_avpflags_no >= MAX_AVPFLAG) return -1;
+		if (registered_avpflags_no >= MAX_AVPFLAG) {
+			LOG(L_ERR, "register_avpflag: cannot register new avp flag ('%s'), max.number of flags (%d) reached\n", name, MAX_AVPFLAG);
+			return -1;
+		}
 		ret = 1<<(AVP_CUSTOM_FLAGS+registered_avpflags_no);
 		registered_avpflags[registered_avpflags_no++] = name;
 	}

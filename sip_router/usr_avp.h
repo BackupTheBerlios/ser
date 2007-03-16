@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.22 2006/07/18 11:51:25 janakj Exp $
+ * $Id: usr_avp.h,v 1.23 2007/03/16 09:00:52 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -84,7 +84,7 @@ typedef union {
 } int_str;
 
 #define avp_id_t	unsigned short
-#define avp_flags_t	unsigned short
+#define avp_flags_t	unsigned int
 #define avp_name_t	int_str
 #define avp_value_t	int_str
 #define avp_index_t	unsigned short
