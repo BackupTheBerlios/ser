@@ -1,5 +1,5 @@
 /*
- * $Id: avp_radius.c,v 1.15 2006/12/13 16:51:49 janakj Exp $
+ * $Id: avp_radius.c,v 1.16 2007/03/16 10:37:26 mma Exp $
  *
  * Copyright (C) 2004 Juha Heinanen <jh@tutpro.com>
  * Copyright (C) 2004 FhG Fokus
@@ -238,24 +238,6 @@ static int load_user_attrs(struct sip_msg* msg, unsigned long flags, fparam_t* f
     if (send) rc_avpair_free(send);
     if (received) rc_avpair_free(send);
     return -1;
-}
-
-
-static void uri_type_to_str(uri_type type, str *s) {
-    static str	s_sip  = STR_STATIC_INIT("sip");
-    static str	s_sips = STR_STATIC_INIT("sips");
-    static str	s_tel  = STR_STATIC_INIT("tel");
-    static str	s_tels = STR_STATIC_INIT("tels");
-    static str	s_null = STR_STATIC_INIT("");
-    
-    switch (type) {
-	
-    case SIP_URI_T:	*s = s_sip;	break;
-    case SIPS_URI_T:	*s = s_sips;	break;
-    case TEL_URI_T:	*s = s_tel;	break;
-    case TELS_URI_T:	*s = s_tels;	break;
-    default:		*s = s_null;
-    }
 }
 
 
