@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.108 2006/11/10 17:49:32 andrei Exp $
+ * $Id: t_lookup.c,v 1.109 2007/03/17 09:14:37 andrei Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -87,7 +87,9 @@
  * 2006-11-10  a valid msg->hash_index is now marked by FL_HASH_INDEX in 
  *              msg_flags
  *             t_lookupOriginalT computes the hash_index by itself  if 
-*               needed (andrei)
+ *               needed (andrei)
+ * 2007-03-17  added callbacks for retransmitted request, ack to negative 
+ *              replies and replies to local transactions (andrei)
  */
 
 #include "defs.h"
@@ -897,6 +899,9 @@ int t_reply_matching( struct sip_msg *p_msg , int *p_branch )
 		if (!is_local(p_cell)) {
 			run_trans_callbacks( TMCB_RESPONSE_IN, T, T->uas.request, p_msg,
 				p_msg->REPLY_STATUS);
+		}else{
+			run_trans_callbacks( TMCB_LOCAL_RESPONSE_IN, T, T->uas.request, 
+					p_msg, p_msg->REPLY_STATUS);
 		}
 		return 1;
 	} /* for cycle */
@@ -1193,8 +1198,12 @@ int t_newtran( struct sip_msg* p_msg )
 	/* transaction found, it's a retransmission  */
 	if (lret>0) {
 		if (p_msg->REQ_METHOD==METHOD_ACK) {
+			run_trans_callbacks(TMCB_ACK_NEG_IN, T, p_msg, 0, 
+									p_msg->REQ_METHOD);
 			t_release_transaction(T);
 		} else {
+			run_trans_callbacks(TMCB_REQ_RETR_IN, T, p_msg, 0,
+									p_msg->REQ_METHOD);
 			t_retransmit_reply(T);
 		}
 		/* things are done -- return from script */
