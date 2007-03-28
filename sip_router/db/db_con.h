@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.h,v 1.9 2004/08/24 08:45:12 janakj Exp $ 
+ * $Id: db_con.h,v 1.10 2007/03/28 15:45:04 liborc Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,7 +39,7 @@
 typedef struct {
 	const char* table;     /* Default table to use */
 	unsigned long tail;    /* Variable length tail
-				* database module specific */    
+	                        * database module specific */    
 } db_con_t;
 
 
