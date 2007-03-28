@@ -1,7 +1,7 @@
 /*
  * Presence Agent, domain list
  *
- * $Id: dlist.c,v 1.14 2006/03/15 16:03:43 kubartv Exp $
+ * $Id: dlist.c,v 1.15 2007/03/28 16:15:30 liborc Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -181,7 +181,7 @@ int register_pdomain(const char* _n, pdomain_t** _d)
 	}
 	
 	if (new_dlist(&s, &d) < 0) {
-		LOG(L_ERR, "register_udomain(): Error while creating new domain\n");
+		LOG(L_ERR, "register_pdomain(): Error while creating new domain\n");
 		return -1;
 	} 
 
