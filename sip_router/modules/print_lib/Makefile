@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2007/03/16 22:00:31 andrei Exp $
+# $Id: Makefile,v 1.2 2007/03/29 23:38:02 andrei Exp $
 #
 # print example module makefile
 #
@@ -9,11 +9,10 @@ include ../../Makefile.defs
 auto_gen=
 NAME=print_lib.so
 LIBS=
-SER_LIBS=-L../../lib/print/  -lprint
+SERLIBPATH=../../lib
+# ser libraries, in the format path/shortname , where shortname is
+# what will be used for -l
+SER_LIBS=$(SERLIBPATH)/print/print
 
-$(NAME): ../../lib/print/libprint.so
-
-../../lib/print/libprint.so: 
-	cd ../../lib/print; $(MAKE)
 
 include ../../Makefile.modules
