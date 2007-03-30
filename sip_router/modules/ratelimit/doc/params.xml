@@ -6,16 +6,16 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2006/01/25 09:46:18 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2007/03/30 11:49:24 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
 
     <title>Parameters</title>
 
-    <section id="timer_value">
-	<title><varname>timer_value</varname> (integer)</title>
+    <section id="timer_interval">
+	<title><varname>timer_interval</varname> (integer)</title>
 	<para>
 		The initial length of a timer interval in seconds.
 		All amounts of messages have to be divided by this timer to get a

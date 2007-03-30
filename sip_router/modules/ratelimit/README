@@ -7,7 +7,7 @@ Hendrik Scholz
 
    Copyright © 2006 Freenet Cityline GmbH
    Revision History
-   Revision $Revision: 1.1 $ $Date: 2006/01/25 09:46:18 $
+   Revision $Revision: 1.2 $ $Date: 2007/03/30 11:49:24 $
      _________________________________________________________________
 
 Overview
@@ -75,7 +75,7 @@ Random Early Detection (RED)
 
 Parameters
 
-timer_value (integer)
+timer_interval (integer)
 
    The initial length of a timer interval in seconds. All amounts of
    messages have to be divided by this timer to get a messages per second
