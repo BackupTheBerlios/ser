@@ -1,5 +1,5 @@
 /* 
- * $Id: db_pool.c,v 1.3 2007/04/04 09:06:43 janakj Exp $
+ * $Id: db_pool.c,v 1.4 2007/04/04 12:24:23 janakj Exp $
  *
  * Copyright (C) 2001-2005 iptel.org
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -26,7 +26,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-/** \ingroup DB_API @{ */
+/** \ingroup DB_API 
+ * @{ 
+ */
 
 #include <unistd.h>
 #include <string.h>
@@ -97,8 +99,6 @@ void db_pool_put(db_pool_entry_t* entry)
  */
 int db_pool_remove(db_pool_entry_t* entry)
 {
-	db_pool_entry_t* ptr, *tmp_ptr;
-
 	if (!entry) return -2;
 
 	if (entry->ref > 1) {

@@ -1,5 +1,5 @@
 /* 
- * $Id: db_drv.c,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
+ * $Id: db_drv.c,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -26,7 +26,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-/** \ingroup DB_API @{ */
+/** \ingroup DB_API 
+ * @{ 
+ */
 
 #include <string.h>
 #include <stdlib.h>

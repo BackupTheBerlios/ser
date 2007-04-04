@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.21 2007/04/04 09:06:43 janakj Exp $
+ * $Id: db.h,v 1.22 2007/04/04 12:24:23 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -31,9 +31,7 @@
 
 /**
  * \defgroup DB_API Database Abstraction Layer
- * \brief brief description
  *
- * I wonder where this text goes.
  * @{
  */
 

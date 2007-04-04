@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.h,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
+ * $Id: db_fld.h,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -29,7 +29,9 @@
 #ifndef _DB_FLD_H
 #define _DB_FLD_H  1
 
-/** \ingroup DB_API @{ */
+/** \ingroup DB_API 
+ * @{ 
+ */
 
 #include <time.h>
 #include "../str.h"
@@ -90,7 +92,7 @@ struct db_fld* db_fld(size_t n);
 void db_fld_free(struct db_fld* fld, size_t n);
 
 int db_fld_init(struct db_fld* fld, size_t n);
-void db_fld_release(struct db_fld* fld, size_t n);
+void db_fld_close(struct db_fld* fld, size_t n);
 
 
 #ifdef __cplusplus

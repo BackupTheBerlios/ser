@@ -1,5 +1,5 @@
 /* 
- * $Id: db_ctx.h,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
+ * $Id: db_ctx.h,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -29,7 +29,9 @@
 #ifndef _DB_CTX_H
 #define _DB_CTX_H  1
 
-/** \ingroup DB_API @{ */
+/** \ingroup DB_API 
+ * @{ 
+ */
 
 #include "../str.h"
 #include "../list.h"
