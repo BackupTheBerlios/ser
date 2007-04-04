@@ -1,9 +1,8 @@
 /* 
- * $Id: row.h,v 1.3 2004/08/24 08:58:31 janakj Exp $ 
- *
- * MySQL module row related functions
+ * $Id: my_fld.c,v 1.1 2007/04/04 11:48:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
+ * Copyright (C) 2006-2007 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
@@ -27,24 +26,39 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef ROW_H
-#define ROW_H
-
-#include "../../db/db_con.h"
-#include "../../db/db_res.h"
-#include "../../db/db_row.h"
-
-
-/*
- * Convert a row from result into db API representation
- */
-int convert_row(db_con_t* _h, db_res_t* _res, db_row_t* _r);
+#include <string.h>
+#include "../../mem/mem.h"
+#include "../../dprint.h"
+#include "../../db/db_gen.h"
+#include "my_fld.h"
 
 
-/*
- * Release memory used by row
- */
-int free_row(db_row_t* _r);
+static void my_fld_free(db_fld_t* fld, struct my_fld* payload)
+{
+	db_drv_free(&payload->gen);
+	if (payload->buf.s) pkg_free(payload->buf.s);
+	pkg_free(payload);
+}
 
 
-#endif /* ROW_H */
+int my_fld(db_fld_t* fld)
+{
+	struct my_fld* res;
+
+	ERR("my_fld executed\n");
+
+	res = (struct my_fld*)pkg_malloc(sizeof(struct my_fld));
+	if (res == NULL) {
+		ERR("No memory left\n");
+		return -1;
+	}
+	memset(res, '\0', sizeof(struct my_fld));
+	if (db_drv_init(&res->gen, my_fld_free) < 0) goto error;
+
+	DB_SET_PAYLOAD(fld, res);
+	return 0;
+
+ error:
+	if (res) pkg_free(res);
+	return -1;
+}

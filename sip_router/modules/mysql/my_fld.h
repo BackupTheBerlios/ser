@@ -1,7 +1,8 @@
 /* 
- * $Id: val.h,v 1.4 2004/08/24 08:58:31 janakj Exp $ 
+ * $Id: my_fld.h,v 1.1 2007/04/04 11:48:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
+ * Copyright (C) 2006-2007 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
@@ -25,23 +26,22 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef VAL_H
-#define VAL_H
+#ifndef _MY_FLD_H
+#define _MY_FLD_H  1
 
+#include "../../db/db_drv.h"
+#include "../../db/db_fld.h"
 #include <mysql/mysql.h>
-#include "../../db/db_val.h"
 
+struct my_fld {
+	db_drv_t gen;
 
-/*
- * Does not copy strings
- */
-int str2val(db_type_t _t, db_val_t* _v, const char* _s, int _l);
+	my_bool is_null;
+	MYSQL_TIME time;
+	unsigned long length;
+	str buf;
+};
 
+int my_fld(db_fld_t* fld);
 
-/*
- * Used when converting result from a query
- */
-int val2str(MYSQL* _c, db_val_t* _v, char* _s, int* _len);
-
-
-#endif /* VAL_H */
+#endif /* _MY_FLD_H */

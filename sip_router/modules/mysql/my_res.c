@@ -1,5 +1,5 @@
 /* 
- * $Id: my_con.h,v 1.6 2007/04/04 11:48:36 janakj Exp $
+ * $Id: my_res.c,v 1.1 2007/04/04 11:48:20 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -26,34 +26,51 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef _MY_CON_H
-#define _MY_CON_H  1
-
-#include "../../db/db_pool.h"
-#include "../../db/db_con.h"
-#include "../../db/db_uri.h"
-
-#include <time.h>
 #include <mysql/mysql.h>
+#include "../../mem/mem.h"
+#include "../../dprint.h"
+#include "../../db/db_gen.h"
+#include "my_cmd.h"
+#include "my_res.h"
 
-enum my_flags {
-	MY_CONNECTED = 1
-};
 
-struct my_con {
-	/* Generic part of the structure */
-	db_pool_entry_t gen;
+void my_res_free(db_res_t* res, struct my_res* payload)
+{
+	struct my_cmd* mcmd;
 
-	MYSQL* con;
-	unsigned int flags;
-	time_t timestamp;
-};
+	mcmd = DB_GET_PAYLOAD(res->cmd);
+
+	if (mysql_stmt_free_result(mcmd->st)) {
+		ERR("Error while freeing MySQL result: %s\n", mysql_stmt_error(mcmd->st));
+	}
+
+	db_drv_free(&payload->gen);
+	pkg_free(payload);
+}
 
 
 /*
- * Create a new connection structure,
- * open the MySQL connection and set reference count to 1
+ * Attach a mysql specific structure to db_res, this structure contains a pointer
+ * to my_res_free which releases the mysql result stored in the mysql statement
+ * and if there is a cursor open in the statement then it will be closed as well
  */
-int my_con(db_con_t* con);
+int my_res(db_res_t* res)
+{
+	struct my_res* mr;
 
-#endif /* _MY_CON_H */
+	mr = (struct my_res*)pkg_malloc(sizeof(struct my_res));
+	if (mr == NULL) {
+		ERR("No memory left\n");
+		return -1;
+	}
+	if (db_drv_init(&mr->gen, my_res_free) < 0) goto error;
+	DB_SET_PAYLOAD(res, mr);
+	return 0;
+	
+ error:
+	if (mr) {
+		db_drv_free(&mr->gen);
+		pkg_free(mr);
+	}
+	return -1;
+}

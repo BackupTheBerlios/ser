@@ -1,9 +1,8 @@
 /* 
- * $Id: defs.h,v 1.5 2004/08/24 08:58:31 janakj Exp $ 
- *
- * MySQL module various definitions
+ * $Id: my_cmd.h,v 1.1 2007/04/04 11:48:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
+ * Copyright (C) 2006-2007 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
@@ -27,11 +26,30 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+#ifndef _MY_CMD_H
+#define _MY_CMD_H  1
 
-#ifndef DEFS_H
-#define DEFS_H
+#include "../../db/db_drv.h"
+#include "../../db/db_cmd.h"
+#include <mysql/mysql.h>
 
-#define PARANOID
-#define SQL_BUF_LEN 65535
+struct my_cmd {
+	db_drv_t gen;
 
-#endif /* DEFS_H */
+	str query;
+	MYSQL_STMT* st;
+};
+
+int my_cmd(db_cmd_t* cmd);
+
+/* Runtime execution function for DB_GET */
+int my_cmd_read(db_res_t* res, db_cmd_t* cmd);
+
+/* Runtime execution function for DB_PUT and DB_DEL */
+int my_cmd_write(db_res_t* res, db_cmd_t* cmd);
+
+int my_cmd_first(db_res_t* res);
+
+int my_cmd_next(db_res_t* res);
+
+#endif /* _MY_CMD_H */

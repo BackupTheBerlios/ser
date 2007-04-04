@@ -1,9 +1,8 @@
 /* 
- * $Id: db_mod.h,v 1.3 2004/10/28 23:36:14 danp Exp $ 
- *
- * MySQL module interface
+ * $Id: my_res.h,v 1.1 2007/04/04 11:48:36 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
+ * Copyright (C) 2006-2007 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
@@ -26,17 +25,17 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-/*
- * History:
- * --------
- *  2003-03-11  updated to the new module exports interface (andrei)
- *  2003-03-16  flags export parameter added (janakj)
- */
 
-#ifndef DB_MOD_H
-#define DB_MOD_H
+#ifndef _MY_RES_H
+#define _MY_RES_H  1
 
-extern int ping_interval;
-extern int auto_reconnect;
+#include "../../db/db_drv.h"
+#include "../../db/db_res.h"
 
-#endif /* DB_MOD_H */
+struct my_res {
+	db_drv_t gen;
+};
+
+int my_res(db_res_t* cmd);
+
+#endif /* _MY_RES_H */

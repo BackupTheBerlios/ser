@@ -1,7 +1,7 @@
 /* 
- * $Id: utils.h,v 1.8 2005/02/07 15:21:08 janakj Exp $ 
+ * $Id: mysql_mod.h,v 1.1 2007/04/04 11:48:36 janakj Exp $ 
  *
- * MySQL module utilities
+ * MySQL module interface
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -26,24 +26,17 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-
-
-#ifndef UTILS_H
-#define UTILS_H
-
-#include <time.h>
-
-
 /*
- * Convert time_t structure to format accepted by MySQL database
+ * History:
+ * --------
+ *  2003-03-11  updated to the new module exports interface (andrei)
+ *  2003-03-16  flags export parameter added (janakj)
  */
-int time2mysql(time_t _time, char* _result, int _res_len);
 
+#ifndef _MYSQL_MOD_H
+#define _MYSQL_MOD_H
 
-/*
- * Convert MySQL time representation to time_t structure
- */
-time_t mysql2time(const char* _str);
+extern int ping_interval;
+extern int auto_reconnect;
 
-
-#endif /* UTILS_H */
+#endif /* _MYSQL_MOD_H */
