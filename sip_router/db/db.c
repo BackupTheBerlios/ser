@@ -1,5 +1,5 @@
 /*
- * $Id: db.c,v 1.21 2007/03/29 11:22:24 janakj Exp $
+ * $Id: db.c,v 1.22 2007/04/04 09:06:43 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -31,6 +31,9 @@
   *  2004-06-06  bind_dbmod takes dbf as parameter (andrei)
   */
 
+/** \ingroup DB_API
+ * @{
+ */
 
 #include "../dprint.h"
 #include "../sr_module.h"
@@ -42,3 +45,5 @@
 #include "db.h"
 
 struct db_root db = DBLIST_INITIALIZER(db);
+
+/** @} */

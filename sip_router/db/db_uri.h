@@ -1,5 +1,5 @@
 /* 
- * $Id: db_uri.h,v 1.1 2007/03/29 11:11:07 janakj Exp $
+ * $Id: db_uri.h,v 1.2 2007/04/04 09:06:43 janakj Exp $
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -28,6 +28,8 @@
 
 #ifndef _DB_URI_H
 #define _DB_URI_H  1
+
+/** \ingroup DB_API @{ */
 
 #include "../str.h"
 #include "db_gen.h"
@@ -62,5 +64,7 @@ db_uri_cmp_t db_uri_cmp;
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+/** @} */
 
 #endif /* _DB_URI_H */

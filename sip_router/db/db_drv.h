@@ -1,5 +1,5 @@
 /* 
- * $Id: db_drv.h,v 1.1 2007/03/29 11:10:27 janakj Exp $ 
+ * $Id: db_drv.h,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -29,16 +29,20 @@
 #ifndef _DB_DRV_H
 #define _DB_DRV_H  1
 
+/** \ingroup DB_API @{ */
+
 #include "../str.h"
 #include "../list.h"
+#include "db_gen.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
 struct db_drv;
+struct db_gen;
 
-typedef void db_drv_free_t(struct db_drv* data);
+typedef void db_drv_free_t(struct db_gen* db_struct, struct db_drv* payload);
 
 
 /*
@@ -80,5 +84,7 @@ int db_drv_call(str* module, char* func_name, void* db_struct, int offset);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+/** @} */
 
 #endif /* _DB_DRV_H */

@@ -1,5 +1,5 @@
 /* 
- * $Id: db_gen.c,v 1.1 2007/03/29 10:17:14 janakj Exp $ 
+ * $Id: db_gen.c,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -25,6 +25,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+/** \ingroup DB_API @{ */
 
 #include <string.h>
 #include "db_gen.h"
@@ -52,6 +54,8 @@ void db_gen_free(db_gen_t* gen)
 
 	/* Dispose all the attached data structures */
 	for(i = 0; i < DB_PAYLOAD_MAX && gen->data[i]; i++) {
-		if (gen->data[i]) gen->data[i]->free(gen->data[i]);
+		if (gen->data[i]) gen->data[i]->free(gen, gen->data[i]);
 	}
 }
+
+/** @} */

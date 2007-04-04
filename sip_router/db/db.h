@@ -1,5 +1,5 @@
 /*
- * $Id: db.h,v 1.20 2007/03/29 11:22:24 janakj Exp $
+ * $Id: db.h,v 1.21 2007/04/04 09:06:43 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -25,8 +25,18 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
 #ifndef _DB_H
 #define _DB_H  1
+
+/**
+ * \defgroup DB_API Database Abstraction Layer
+ * \brief brief description
+ *
+ * I wonder where this text goes.
+ * @{
+ */
+
 
 #include "db_gen.h"
 #include "db_ctx.h"
@@ -42,12 +52,20 @@ extern "C" {
 
 struct db_gen;
 
+
 DBLIST_HEAD(db_root);
 
+/** \brief The root of all DB API structures
+ *
+ *  This is the root linked list of all database
+ *  structures allocated in SER
+ */
 extern struct db_root db;
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+/** @} */
 
 #endif /* _DB_H */

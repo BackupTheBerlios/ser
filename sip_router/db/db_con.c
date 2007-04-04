@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.1 2007/03/29 11:12:40 janakj Exp $ 
+ * $Id: db_con.c,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -25,6 +25,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+/** \ingroup DB_API @{ */
 
 #include <string.h>
 #include <stdlib.h>
@@ -104,3 +106,5 @@ void db_con_free(db_con_t* con)
 	if (con->uri) db_uri_free(con->uri);
     pkg_free(con);
 }
+
+/** @} */

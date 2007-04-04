@@ -1,5 +1,5 @@
 /* 
- * $Id: db_drv.c,v 1.1 2007/03/29 11:10:27 janakj Exp $ 
+ * $Id: db_drv.c,v 1.2 2007/04/04 09:06:43 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -25,6 +25,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+/** \ingroup DB_API @{ */
 
 #include <string.h>
 #include <stdlib.h>
@@ -101,3 +103,5 @@ int db_drv_call(str* module, char* func_name, void* db_struct, int offset)
 		return 1;
 	}
 }
+
+/** @} */

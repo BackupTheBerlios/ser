@@ -1,5 +1,5 @@
 /* 
- * $Id: db_pool.c,v 1.2 2007/03/29 11:11:07 janakj Exp $
+ * $Id: db_pool.c,v 1.3 2007/04/04 09:06:43 janakj Exp $
  *
  * Copyright (C) 2001-2005 iptel.org
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -25,6 +25,8 @@
  * along with this program; if not, write to the Free Software 
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+/** \ingroup DB_API @{ */
 
 #include <unistd.h>
 #include <string.h>
@@ -113,3 +115,5 @@ int db_pool_remove(db_pool_entry_t* entry)
 	SLIST_REMOVE(&db_pool, entry, db_pool_entry, next);
 	return 1;
 }
+
+/** @} */

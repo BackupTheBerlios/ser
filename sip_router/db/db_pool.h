@@ -1,5 +1,5 @@
 /* 
- * $Id: db_pool.h,v 1.2 2007/03/29 11:11:07 janakj Exp $
+ * $Id: db_pool.h,v 1.3 2007/04/04 09:06:43 janakj Exp $
  *
  * Copyright (C) 2001-2005 iptel.org
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -28,6 +28,10 @@
 
 #ifndef _DB_POOL_H
 #define _DB_POOL_H  1
+
+/** \ingroup DB_API 
+ * @{ 
+ */
 
 #include <sys/types.h>
 #include "db_drv.h"
@@ -88,5 +92,7 @@ int db_pool_remove(struct db_pool_entry* entry);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+/** @} */
 
 #endif /* _DB_POOL_H */
