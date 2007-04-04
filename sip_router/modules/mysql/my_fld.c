@@ -1,5 +1,5 @@
 /* 
- * $Id: my_fld.c,v 1.1 2007/04/04 11:48:36 janakj Exp $
+ * $Id: my_fld.c,v 1.2 2007/04/04 13:59:17 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -44,8 +44,6 @@ static void my_fld_free(db_fld_t* fld, struct my_fld* payload)
 int my_fld(db_fld_t* fld)
 {
 	struct my_fld* res;
-
-	ERR("my_fld executed\n");
 
 	res = (struct my_fld*)pkg_malloc(sizeof(struct my_fld));
 	if (res == NULL) {

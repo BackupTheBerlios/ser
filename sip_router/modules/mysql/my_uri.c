@@ -1,5 +1,5 @@
 /* 
- * $Id: my_uri.c,v 1.1 2007/04/04 11:48:36 janakj Exp $ 
+ * $Id: my_uri.c,v 1.2 2007/04/04 13:59:17 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -256,8 +256,6 @@ static void my_uri_free(db_uri_t* uri, struct my_uri* payload)
 int my_uri(db_uri_t* uri)
 {
 	struct my_uri* res;
-
-	ERR("my_uri called\n");
 
 	res = (struct my_uri*)pkg_malloc(sizeof(struct my_uri));
 	if (res == NULL) {
