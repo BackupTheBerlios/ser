@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.h,v 1.1 2007/04/04 11:48:36 janakj Exp $
+ * $Id: my_cmd.h,v 1.2 2007/04/05 13:26:20 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -47,6 +47,9 @@ int my_cmd_read(db_res_t* res, db_cmd_t* cmd);
 
 /* Runtime execution function for DB_PUT and DB_DEL */
 int my_cmd_write(db_res_t* res, db_cmd_t* cmd);
+
+/* Raw SQL query */
+int my_cmd_sql(db_res_t* res, db_cmd_t* cmd);
 
 int my_cmd_first(db_res_t* res);
 

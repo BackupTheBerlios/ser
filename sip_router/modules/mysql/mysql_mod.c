@@ -1,5 +1,5 @@
 /*
- * $Id: mysql_mod.c,v 1.1 2007/04/04 11:48:36 janakj Exp $
+ * $Id: mysql_mod.c,v 1.2 2007/04/05 13:26:20 janakj Exp $
  *
  * MySQL module interface
  *
@@ -61,6 +61,7 @@ static cmd_export_t cmds[] = {
 	{"db_put",         (cmd_function)my_cmd_write, 0, 0, 0},
 	{"db_del",         (cmd_function)my_cmd_write, 0, 0, 0},
 	{"db_get",         (cmd_function)my_cmd_read, 0, 0, 0},
+	{"db_sql",         (cmd_function)my_cmd_sql, 0, 0, 0},
 	{"db_res",         (cmd_function)my_res,  0, 0, 0},
 	{"db_fld",         (cmd_function)my_fld,  0, 0, 0},
 	{"db_first",       (cmd_function)my_cmd_next, 0, 0, 0},

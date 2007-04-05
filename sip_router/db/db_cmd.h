@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.h,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_cmd.h,v 1.4 2007/04/05 13:26:10 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -60,7 +60,8 @@ typedef int (*db_next_func_t)(struct db_res* res);
 enum db_cmd_type {
 	DB_PUT,  /* Insert or update new record in database */
 	DB_DEL,  /* Delete all matching records from database */
-	DB_GET   /* Get matching records from database */
+	DB_GET,  /* Get matching records from database */
+	DB_SQL,  /* Raw SQL query */
 };
 
 typedef struct db_cmd {
