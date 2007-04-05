@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.h,v 1.2 2005/11/30 17:05:11 janakj Exp $
+ * $Id: avp_db.h,v 1.3 2007/04/05 14:58:42 kubartv Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -27,5 +27,4 @@
 
 #include "../../db/db.h"
 
-extern db_con_t* con;
-extern db_func_t db;
+extern db_ctx_t* ctx;
