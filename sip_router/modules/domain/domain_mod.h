@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.h,v 1.9 2005/11/21 16:43:14 janakj Exp $
+ * $Id: domain_mod.h,v 1.10 2007/04/05 12:00:08 janakj Exp $
  *
  * Domain module headers
  *
@@ -71,8 +71,7 @@ extern struct hash_entry*** hash;  /* Pointer to the current hash table */
 extern struct hash_entry** hash_1; /* Hash table 1 */
 extern struct hash_entry** hash_2; /* Hash table 2 */
 
-extern db_con_t* con;
-extern db_func_t db;
+extern db_cmd_t* load_domains_cmd, *get_did_cmd, *load_attrs_cmd;
 
 int reload_domain_list(void);
 
