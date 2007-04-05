@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_db.c,v 1.12 2007/04/04 17:12:58 janakj Exp $
+ * $Id: acc_db.c,v 1.13 2007/04/05 07:46:23 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -962,7 +962,7 @@ static int child_init(int rank)
 		}
 
 		write_mc = db_cmd(DB_PUT, acc_db, mc_table.s, NULL, fld);
-		if (write_acc == NULL) {
+		if (write_mc == NULL) {
 			ERR("Error while compiling database query\n");
 			db_cmd_free(write_acc);
 			db_ctx_free(acc_db);
