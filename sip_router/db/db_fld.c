@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.c,v 1.4 2007/04/04 17:12:12 janakj Exp $ 
+ * $Id: db_fld.c,v 1.5 2007/04/05 11:38:33 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -89,6 +89,7 @@ db_fld_t* db_fld_copy(db_fld_t* fld)
 	db_fld_t* newp;
 
 	for(n = 0; fld[n].name; n++);
+	n++; /* We need to copy the terminating element too */
 
 	newp = (db_fld_t*)pkg_malloc(sizeof(db_fld_t) * n);
 	if (newp == NULL) {

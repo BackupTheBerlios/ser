@@ -1,5 +1,5 @@
 /* 
- * $Id: db_ctx.c,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_ctx.c,v 1.4 2007/04/05 11:38:33 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -87,7 +87,7 @@ db_ctx_t* db_ctx(const char* id)
 	/* Insert the newly created context into the linked list
 	 * of all existing contexts
 	 */
-	DBLIST_INSERT_HEAD(&db, newp);
+	DBLIST_INSERT_HEAD(&db_root, newp);
     return newp;
 
  error:
@@ -114,7 +114,7 @@ void db_ctx_free(db_ctx_t* ctx)
 	/* Remove the context from the linked list of
 	 * all contexts
 	 */
-	DBLIST_REMOVE(&db, ctx);
+	DBLIST_REMOVE(&db_root, ctx);
 
 	/* Disconnect all connections */
 	db_disconnect(ctx);
