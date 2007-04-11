@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.57 2007/04/11 09:54:01 janakj Exp $
+ * $Id: ul_mod.c,v 1.58 2007/04/11 10:02:54 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -296,25 +296,18 @@ static void destroy(void)
 		free_all_udomains();
 	}
 
-	if (del_rec) {
-		for(i = 0; i < cmd_n; i++) {
-			if (del_rec[i]) db_cmd_free(del_rec[i]);
-		}
-		pkg_free(del_rec);
-	}
-
 	if (del_contact) {
 		for(i = 0; i < cmd_n; i++) {
 			if (del_contact[i]) db_cmd_free(del_contact[i]);
 		}
-		pkg_free(del_rec);
+		pkg_free(del_contact);
 	}
 
 	if (ins_contact) {
 		for(i = 0; i < cmd_n; i++) {
 			if (ins_contact[i]) db_cmd_free(ins_contact[i]);
 		}
-		pkg_free(del_rec);
+		pkg_free(ins_contact);
 	}
 
 	if (db) db_ctx_free(db);
