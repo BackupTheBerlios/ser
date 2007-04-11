@@ -1,5 +1,5 @@
 /* 
- * $Id: urecord.h,v 1.21 2006/07/04 13:02:30 janakj Exp $ 
+ * $Id: urecord.h,v 1.22 2007/04/11 09:09:53 janakj Exp $ 
  *
  * Usrloc record structure
  *
@@ -109,12 +109,6 @@ void mem_delete_ucontact(urecord_t* _r, ucontact_t* _c);
  * Timer handler
  */
 int timer_urecord(urecord_t* _r);
-
-
-/*
- * Delete the whole record from database
- */
-int db_delete_urecord(urecord_t* _r);
 
 
 /* ===== Module interface ======== */

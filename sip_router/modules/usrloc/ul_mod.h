@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.23 2006/11/23 00:47:28 janakj Exp $
+ * $Id: ul_mod.h,v 1.24 2007/04/11 09:09:53 janakj Exp $
  *
  * User location module interface
  *
@@ -57,8 +57,6 @@ enum ul_db_type {
 #define WRITE_BACK    2
 #define READONLY      3
 
-#define TABLE_VERSION 9
-
 extern str uid_col;
 extern str contact_col;
 extern str expires_col;
@@ -76,8 +74,11 @@ extern int timer_interval;
 extern int db_mode;
 extern int desc_time_order;
 
-extern db_con_t* ul_dbh;   /* Database connection handle */
-extern db_func_t ul_dbf;
-
+extern db_ctx_t* db;
+extern db_cmd_t** del_rec;
+extern db_cmd_t** del_contact;
+extern db_cmd_t** ins_contact;
+extern db_cmd_t** read_avps;
+extern int cmd_n, cur_cmd;
 
 #endif /* UL_MOD_H */

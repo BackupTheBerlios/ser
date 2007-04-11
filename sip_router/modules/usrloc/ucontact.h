@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.24 2007/03/05 16:03:47 liborc Exp $ 
+ * $Id: ucontact.h,v 1.25 2007/04/11 09:09:53 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -167,13 +167,7 @@ int st_flush_ucontact(ucontact_t* _c);
 /*
  * Insert contact into the database
  */
-int db_insert_ucontact(ucontact_t* _c);
-
-
-/*
- * Update contact in the database
- */
-int db_update_ucontact(ucontact_t* _c);
+int db_store_ucontact(ucontact_t* _c);
 
 
 /*

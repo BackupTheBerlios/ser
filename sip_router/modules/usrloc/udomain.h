@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.h,v 1.13 2006/11/24 17:20:08 andrei Exp $ 
+ * $Id: udomain.h,v 1.14 2007/04/11 09:09:53 janakj Exp $ 
  *
  * Usrloc domain structure
  *
@@ -62,6 +62,7 @@ typedef struct udomain {
 	str* name;                     /* Domain name */
 	int users;                     /* Number of registered users */
 	int expired;                   /* Number of expired contacts */
+	int db_cmd_idx;                /* Index into db_cmd arrays */
 	struct hslot* table;           /* Hash table - array of collision slots */
 	struct {                       /* Linked list of all elements in the domain */
 		int n;                 /* Number of element in the linked list */
@@ -98,7 +99,7 @@ void print_udomain(FILE* _f, udomain_t* _d);
 /*
  * Load data from a database
  */
-int preload_udomain(db_con_t* _c, udomain_t* _d);
+int preload_udomain(udomain_t* _d);
 
 
 /*
