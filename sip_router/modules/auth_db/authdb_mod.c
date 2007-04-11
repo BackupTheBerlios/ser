@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.40 2007/04/11 06:24:27 kubartv Exp $
+ * $Id: authdb_mod.c,v 1.41 2007/04/11 06:31:37 kubartv Exp $
  *
  * Digest Authentication Module
  *
@@ -219,7 +219,7 @@ static int generate_queries(authdb_table_info_t *info)
 	}
 
 	pkg_free(results);
-	if (info->query_pass && info->query_pass2) return 0;
+	if (info->query_pass && info->query_pass2 && info->query_password) return 0;
 	else return -1;
 }
 
