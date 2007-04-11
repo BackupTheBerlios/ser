@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.41 2007/04/11 06:31:37 kubartv Exp $
+ * $Id: authdb_mod.c,v 1.42 2007/04/11 11:15:05 kubartv Exp $
  *
  * Digest Authentication Module
  *
@@ -175,14 +175,12 @@ static int generate_queries(authdb_table_info_t *info)
 		{ .name = NULL }
 	};
 	db_fld_t *results = NULL;
-	char *t;
 	int len, i;
 
 	len = sizeof(*results) * (credentials_n + 2);
 	results = pkg_malloc(len);
 	if (!results) {
 		ERR("can't allocate pkg mem\n");
-		pkg_free(t);
 		return -1;
 	}
 	memset(results, 0, len);
