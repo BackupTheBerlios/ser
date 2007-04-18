@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.c,v 1.5 2007/04/05 11:38:33 janakj Exp $ 
+ * $Id: db_fld.c,v 1.6 2007/04/18 12:53:30 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -34,6 +34,20 @@
 #include "../mem/mem.h"
 #include "../dprint.h"
 #include "db_fld.h"
+
+
+char* db_fld_str[] = {
+	"DB_NONE",
+	"DB_INT",
+	"DB_FLOAT",
+	"DB_DOUBLE",
+	"DB_CSTR",
+	"DB_STR",
+	"DB_DATETIME",
+	"DB_BLOB",
+	"DB_BITMAP"
+};
+
 
 
 int db_fld_init(db_fld_t* fld)

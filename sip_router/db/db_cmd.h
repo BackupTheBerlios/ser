@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.h,v 1.4 2007/04/05 13:26:10 janakj Exp $ 
+ * $Id: db_cmd.h,v 1.5 2007/04/18 12:53:30 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -72,8 +72,10 @@ typedef struct db_cmd {
 	db_exec_func_t exec[DB_PAYLOAD_MAX]; /* Array of exec functions provided by modules */
 	db_first_func_t first[DB_PAYLOAD_MAX];
 	db_next_func_t next[DB_PAYLOAD_MAX];
-	db_fld_t* result;     /* Fields to to be returned in result */
-	db_fld_t* params;     /* Query parameters */
+	db_fld_t* result;        /* Fields to to be returned in result */
+	unsigned int res_fields; /* Number of fields in the result set */
+	db_fld_t* params;        /* Query parameters */
+	unsigned int param_fields; /* Number of fields in the parameter */
 } db_cmd_t;
 
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.c,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_res.c,v 1.4 2007/04/18 12:53:30 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -46,6 +46,7 @@ db_res_t* db_res(db_cmd_t* cmd)
 	memset(newp, '\0', sizeof(db_res_t));
 	if (db_gen_init(&newp->gen) < 0) goto err;
     newp->cmd = cmd;
+	newp->fields = cmd->res_fields;
 
 	ret = db_drv_call(&cmd->ctx->con[db_payload_idx]->uri->scheme, 
 					  "db_res", newp, db_payload_idx);

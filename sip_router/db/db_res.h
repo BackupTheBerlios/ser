@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.h,v 1.8 2007/04/04 09:06:43 janakj Exp $ 
+ * $Id: db_res.h,v 1.9 2007/04/18 12:53:30 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -42,9 +42,10 @@ extern "C" {
 #endif /* __cplusplus */
 
 typedef struct db_res {
-	db_gen_t gen;       /* Generic part of the structure */
-	struct db_rec* cur_rec;  /* Currently active record in the result */
-    struct db_cmd* cmd; /* Command that produced the result */
+	db_gen_t gen;           /* Generic part of the structure */
+	unsigned int fields;    /* Number of fields in the result */
+	struct db_rec* cur_rec; /* Currently active record in the result */
+    struct db_cmd* cmd;     /* Command that produced the result */
 } db_res_t;
 
 struct db_res* db_res(struct db_cmd* cmd);
