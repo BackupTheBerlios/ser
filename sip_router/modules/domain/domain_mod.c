@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.40 2007/04/05 12:00:08 janakj Exp $
+ * $Id: domain_mod.c,v 1.41 2007/04/18 13:08:46 janakj Exp $
  *
  * Domain module
  *
@@ -396,7 +396,7 @@ static int db_get_did(str* did, str* domain)
 		goto err;
     }
     
-	get_did_cmd->params[0].v.str = *domain;
+	get_did_cmd->params[0].v.lstr = *domain;
 
 	if (db_exec(&res, get_did_cmd) < 0) {
 		ERR("Error in database query\n");
@@ -419,13 +419,13 @@ static int db_get_did(str* did, str* domain)
 				did->s = 0;
 				WARN("Domain '%.*s' has NULL did\n", domain->len, ZSW(domain->s));
 			} else {
-				did->s = pkg_malloc(rec->fld[0].v.str.len);
+				did->s = pkg_malloc(rec->fld[0].v.lstr.len);
 				if (!did->s) {
 					ERR("No memory left\n");
 					goto err;
 				}
-				memcpy(did->s, rec->fld[0].v.str.s, rec->fld[0].v.str.len);
-				did->len = rec->fld[0].v.str.len;
+				memcpy(did->s, rec->fld[0].v.lstr.s, rec->fld[0].v.lstr.len);
+				did->len = rec->fld[0].v.lstr.len;
 			}
 		}
 		

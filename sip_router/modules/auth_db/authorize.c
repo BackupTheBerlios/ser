@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.45 2007/04/10 18:22:43 kubartv Exp $
+ * $Id: authorize.c,v 1.46 2007/04/18 13:08:46 janakj Exp $
  *
  * Digest Authentication - Database support
  *
@@ -74,10 +74,10 @@ static inline int get_ha1(struct username* username, str* did, str* realm,
 		}
 	}
     
-    q->params[0].v.str = username->user;
-    q->params[1].v.str = *realm;
+    q->params[0].v.lstr = username->user;
+    q->params[1].v.lstr = *realm;
 
-	if (use_did) q->params[2].v.str = *did;
+	if (use_did) q->params[2].v.lstr = *did;
 
 	if (db_exec(res, q) < 0 ) {
 		ERR("Error while querying database\n");
@@ -178,7 +178,7 @@ static int generate_avps(db_res_t* result, db_rec_t *row)
     str value;
     
 	for (i = 2; i < credentials_n + 2; i++) {
-		value = row->fld[i].v.str;
+		value = row->fld[i].v.lstr;
 
 		if (IS_NULL(row->fld[i]) || value.s == NULL) {
 			continue;

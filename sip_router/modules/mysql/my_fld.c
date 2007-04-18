@@ -1,5 +1,5 @@
 /* 
- * $Id: my_fld.c,v 1.2 2007/04/04 13:59:17 janakj Exp $
+ * $Id: my_fld.c,v 1.3 2007/04/18 13:08:46 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -41,7 +41,7 @@ static void my_fld_free(db_fld_t* fld, struct my_fld* payload)
 }
 
 
-int my_fld(db_fld_t* fld)
+int my_fld(db_fld_t* fld, char* table)
 {
 	struct my_fld* res;
 

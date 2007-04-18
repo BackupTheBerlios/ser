@@ -1,5 +1,5 @@
 /* 
- * $Id: my_fld.h,v 1.1 2007/04/04 11:48:36 janakj Exp $
+ * $Id: my_fld.h,v 1.2 2007/04/18 13:08:46 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -42,6 +42,6 @@ struct my_fld {
 	str buf;
 };
 
-int my_fld(db_fld_t* fld);
+int my_fld(db_fld_t* fld, char* table);
 
 #endif /* _MY_FLD_H */
