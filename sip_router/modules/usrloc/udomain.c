@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.54 2007/04/18 13:08:45 janakj Exp $ 
+ * $Id: udomain.c,v 1.55 2007/04/19 07:01:10 kubartv Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -284,7 +284,7 @@ int preload_udomain(udomain_t* _d)
 	db_fld_t columns[] = {
 		{.name = uid_col.s,        .type = DB_STR},
 		{.name = contact_col.s,    .type = DB_STR},
-		{.name = expires_col.s,    .type = DB_STR},
+		{.name = expires_col.s,    .type = DB_DATETIME},
 		{.name = q_col.s,          .type = DB_DOUBLE},
 		{.name = callid_col.s,     .type = DB_STR},
 		{.name = cseq_col.s,       .type = DB_INT},
