@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.24 2007/04/19 07:41:52 kubartv Exp $
+/*$Id: gflags.c,v 1.25 2007/04/19 09:16:25 kubartv Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour
@@ -311,7 +311,12 @@ static int mod_init(void)
 		set_avp_list(AVP_CLASS_GLOBAL, *active_global_avps);
 		
 		db_cmd_free(load_attrs_cmd);
+		db_cmd_free(save_gflags_cmd);
 		db_ctx_free(db);
+
+		load_attrs_cmd = NULL;
+		save_gflags_cmd = NULL;
+		db = NULL;
 	}
 
 	return 0;
@@ -339,9 +344,9 @@ static void mod_destroy(void)
 	}
 	active_global_avps = 0;
 
-	db_cmd_free(load_attrs_cmd);
-	db_cmd_free(save_gflags_cmd);
-	db_ctx_free(db);
+	if (load_attrs_cmd) db_cmd_free(load_attrs_cmd);
+	if (save_gflags_cmd) db_cmd_free(save_gflags_cmd);
+	if (db) db_ctx_free(db);
 }
 
 
