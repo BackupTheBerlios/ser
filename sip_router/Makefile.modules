@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.modules,v 1.10 2007/03/29 23:38:02 andrei Exp $
+# $Id: Makefile.modules,v 1.11 2007/04/23 16:53:43 andrei Exp $
 #
 # module Makefile
 #(to be included from each module)
@@ -13,11 +13,11 @@
 
 MOD_NAME=$(NAME:.so=)
 
-# allow place modules in separate directory apart from ser core
+# allow placing modules in separate directory apart from ser core
 COREPATH ?=../..
 
 ALLDEP=Makefile $(COREPATH)/Makefile.sources $(COREPATH)/Makefile.rules \
- $(COREPATH)/Makefile.modules
+ $(COREPATH)/Makefile.modules $(COREPATH)/Makefile.defs
 
 #override modules value, a module cannot have submodules
 override modules=
@@ -38,7 +38,7 @@ endif
 else
 # called by the main Makefile
 
-ALLDEP+=$(COREPATH)/Makefile $(COREPATH)/Makefile.defs
+ALLDEP+=$(COREPATH)/Makefile
 
 endif
 
