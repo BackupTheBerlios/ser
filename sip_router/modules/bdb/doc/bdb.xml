@@ -13,6 +13,9 @@
 		<affiliation><orgname>Sippy Software, Inc.</orgname></affiliation>
 		<address>
 		<email>devel@sippysoft.com</email>
+                <otheraddr>
+                <ulink url="http://www.sippysoft.com">http://www.sippysoft.com</ulink>
+                </otheraddr>
 		</address>
 	    </author>
 	</authorgroup>
@@ -22,8 +25,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2007/04/24 02:36:17 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2007/04/24 02:41:46 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
