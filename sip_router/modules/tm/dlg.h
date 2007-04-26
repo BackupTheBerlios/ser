@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.h,v 1.10 2007/04/24 06:01:51 andrei Exp $
+ * $Id: dlg.h,v 1.11 2007/04/26 17:05:19 andrei Exp $
  * Copyright (C) 2001-2003 FhG Fokus
  *
  * This file is part of ser, a free SIP server.
@@ -220,6 +220,9 @@ void run_trans_dlg_callbacks(dlg_t* dlg, struct cell* trans,
 								struct retr_buf* rbuf);
 /* cleanup on exit */
 void destroy_new_dlg_cbs();
+
+typedef int (*register_new_dlg_cb_f)(int, dialog_cb, void*);
+typedef int (*register_dlg_tmcb_f)(int, dlg_t*, transaction_cb, void*);
 #endif /* DIALOG_CALLBACKS */
 
 
