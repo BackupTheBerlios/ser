@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.70 2007/03/15 16:30:16 andrei Exp $
+ * $Id: timer.c,v 1.71 2007/04/27 14:52:06 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -308,7 +308,7 @@ inline static ticks_t retransmission_handler( struct retr_buf *r_buf )
 				return (ticks_t)-1;
 			}
 #ifdef TMCB_ONSEND
-			run_onsend_callbacks(TMCB_REQUEST_SENT, r_buf, 1);
+			run_onsend_callbacks(TMCB_REQUEST_SENT, r_buf, TMCB_RETR_F);
 #endif
 	} else {
 #ifdef EXTRA_DEBUG

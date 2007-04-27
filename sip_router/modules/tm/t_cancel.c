@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.20 2007/03/15 16:30:16 andrei Exp $
+ * $Id: t_cancel.c,v 1.21 2007/04/27 14:52:06 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -193,7 +193,7 @@ int cancel_branch( struct cell *t, int branch, int flags )
 	DBG("DEBUG: cancel_branch: sending cancel...\n");
 #ifdef TMCB_ONSEND
 	if (SEND_BUFFER( crb )>=0)
-		run_onsend_callbacks(TMCB_REQUEST_SENT, crb, 0);
+		run_onsend_callbacks(TMCB_REQUEST_SENT, crb, TMCB_LOCAL_F);
 #else
 	SEND_BUFFER( crb );
 #endif

@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.80 2007/03/15 16:30:16 andrei Exp $
+ * $Id: t_fwd.c,v 1.81 2007/04/27 14:52:06 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -511,7 +511,8 @@ void e2e_cancel( struct sip_msg *cancel_msg,
 #ifdef TMCB_ONSEND
 				else{
 					run_onsend_callbacks(TMCB_REQUEST_SENT, 
-											&t_cancel->uac[i].request, 0);
+											&t_cancel->uac[i].request,
+											TMCB_LOCAL_F);
 				}
 #endif
 				if (start_retr( &t_cancel->uac[i].request )!=0)
