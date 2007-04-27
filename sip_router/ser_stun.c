@@ -1,5 +1,5 @@
 /*
- * $Id: ser_stun.c,v 1.5 2007/02/07 14:37:19 vlada Exp $
+ * $Id: ser_stun.c,v 1.6 2007/04/27 09:02:00 vlada Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -33,10 +33,9 @@
 #ifdef USE_STUN 
  
 #include <arpa/inet.h>
+#include <openssl/sha.h>
 #include "ser_stun.h"
 #include "forward.h"
-
-extern unsigned char* SHA1(const unsigned char* d, size_t m,unsigned char* md);
 
 /*
  * ****************************************************************************
