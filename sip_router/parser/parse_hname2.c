@@ -1,5 +1,5 @@
 /*
- * $Id: parse_hname2.c,v 1.30 2007/03/08 14:56:10 gkovacs Exp $
+ * $Id: parse_hname2.c,v 1.31 2007/05/01 21:25:53 sobomax Exp $
  *
  * Fast 32-bit Header Field Name Parser
  *
@@ -83,6 +83,7 @@ static inline char* skip_ws(char* p, unsigned int size)
 #include "case_prio.h"     /* Priority */
 #include "case_subj.h"     /* Subject */
 #include "case_user.h"     /* User-Agent */
+#include "case_serv.h"     /* Server */
 #include "case_supp.h"     /* Supported */
 #include "case_dive.h"     /* Diversion */
 #include "case_remo.h"     /* Remote-Party-ID */
@@ -128,6 +129,7 @@ static inline char* skip_ws(char* p, unsigned int size)
         case _subj_: subj_CASE; \
         case _subs_: subs_CASE; \
         case _user_: user_CASE; \
+        case _serv_: serv_CASE; \
         case _dive_: dive_CASE; \
         case _remo_: remo_CASE; \
         case _refe_: refe_CASE; \

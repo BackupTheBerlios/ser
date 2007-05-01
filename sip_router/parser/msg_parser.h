@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.71 2007/03/14 17:28:04 andrei Exp $
+ * $Id: msg_parser.h,v 1.72 2007/05/01 21:25:53 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -232,6 +232,7 @@ struct sip_msg {
 	struct hdr_field* priority;
 	struct hdr_field* subject;
 	struct hdr_field* user_agent;
+	struct hdr_field* server;
 	struct hdr_field* content_disposition;
 	struct hdr_field* accept_disposition;
 	struct hdr_field* diversion;

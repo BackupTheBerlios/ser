@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.34 2007/03/08 14:56:10 gkovacs Exp $
+ * $Id: hf.c,v 1.35 2007/05/01 21:25:53 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -155,6 +155,9 @@ void clean_hdr_field(struct hdr_field* hf)
 			break;
 
 		case HDR_USERAGENT_T:
+			break;
+
+		case HDR_SERVER_T:
 			break;
 
 		case HDR_ACCEPTDISPOSITION_T:
