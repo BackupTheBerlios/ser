@@ -1,5 +1,5 @@
 /*
- * $Id: ul_rpc.c,v 1.8 2007/03/30 11:25:11 liborc Exp $
+ * $Id: ul_rpc.c,v 1.9 2007/05/02 09:28:21 liborc Exp $
  *
  * Usrloc module interface
  *
@@ -90,10 +90,10 @@ static inline int add_contact(udomain_t* _d, str* _u, str* _c, time_t _e, qvalue
         }
 
         cid.s = "RPC-Call-ID";
-        cid.len = sizeof(cid.s) - 1;
+        cid.len = strlen(cid.s);
 
         ua.s = "SER-RPC";
-        ua.len = sizeof(ua.s) - 1;
+        ua.len = strlen(ua.s);
 
         if (c) {
                 if (update_ucontact(c, &aor, _c, _e + act_time, _q, &cid, 42, _f, FL_NONE, &ua, 0, 0, 0) < 0) {
