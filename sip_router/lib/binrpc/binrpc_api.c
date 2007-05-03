@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_api.c,v 1.2 2007/02/11 08:46:42 andrei Exp $
+ * $Id: binrpc_api.c,v 1.3 2007/05/03 09:56:05 sobomax Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -34,6 +34,8 @@
  *  2006-12-20  extended by tma
  */
 
+#include <sys/types.h>
+#include <sys/uio.h>
 #include <stdlib.h> /* realloc, rand ... */
 #include <stdio.h>
 #include <unistd.h>
