@@ -1,5 +1,5 @@
 /*
- * $Id: unixsock_server.c,v 1.2 2006/09/19 16:13:31 andrei Exp $
+ * $Id: unixsock_server.c,v 1.3 2007/05/03 03:40:51 sobomax Exp $
  *
  * UNIX Domain Socket Server
  *
@@ -250,11 +250,8 @@ static void unix_server_loop(void)
  */
 int init_unixsock_children(void)
 {
-	int i, backup;
+	int i;
 	pid_t pid;
-#ifdef USE_TCP
-	int sockfd[2];
-#endif
 
 	if (!unixsock_name || *unixsock_name == '\0') {
 		return 1;
@@ -271,9 +268,6 @@ int init_unixsock_children(void)
 			unix_server_loop(); /* Never returns */
 		}
 		/* Parent */
-		snprintf(pt[last_process].desc, MAX_PT_DESC, 
-			"unix domain socket server @ %s", 
-			 unixsock_name);
 	}
 
 	DBG("Unix domain socket server successfully initialized @ %s\n", unixsock_name);
