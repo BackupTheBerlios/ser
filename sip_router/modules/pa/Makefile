@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.11 2006/01/05 09:36:46 kubartv Exp $
+# $Id: Makefile,v 1.12 2007/05/08 08:35:24 andrei Exp $
 #
 # Presence Agent
 #
@@ -14,8 +14,13 @@ LIBS=
 # LIBS+=-L/usr/include/lib  -L$(LOCALBASE)/lib -lxml2
 
 # experimental (vku)
-DEFS += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 -I$(LOCALBASE)/include -Wall -I../../lib -DSER -I../..
-# LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -L../../lib/xcap -L../../lib/presence -L../../lib/cds -lxcap -lpresence -lcds -lxml2 -lcurl 
-LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -L../../lib/xcap -L../../lib/presence -L../../lib/cds -l_ser_xcap -l_ser_presence -l_ser_cds
+DEFS+=-DSER
+INCLUDES += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 \
+			-I$(LOCALBASE)/include -I../../lib -I../..
+LIBS = -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2 
+SERLIBPATH=../../lib
+SER_LIBS=$(SERLIBPATH)/cds/ser_cds $(SERLIBPATH)/presence/ser_presence \
+			$(SERLIBPATH)/xcap/ser_xcap
+
 
 include ../../Makefile.modules

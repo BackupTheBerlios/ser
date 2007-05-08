@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.173 2007/05/04 16:13:27 andrei Exp $
+# $Id: Makefile,v 1.174 2007/05/08 08:35:24 andrei Exp $
 #
 # sip_router makefile
 #
@@ -141,7 +141,7 @@ else
 							auth_radius group_radius uri_radius avp_radius \
 							acc_radius dialog pa rls presence_b2b xcap xmlrpc\
 							osp tls oracle \
-							unixsock eval dbg print_lib
+							unixsock eval dbg print_lib auth_identity
 endif
 
 # always exclude the CVS dir
