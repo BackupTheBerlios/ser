@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.74 2007/02/22 00:24:17 andrei Exp $
+ * $Id: pa_mod.c,v 1.75 2007/05/10 11:34:00 kubartv Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -406,7 +406,6 @@ static int pa_mod_init(void)
 	DBG("Presence Agent - initializing\n");
 
 	DBG(" ... common libraries\n");
-	cds_initialize();
 	qsa_initialize();
 
 	if (subscribe_to_users) {
@@ -557,7 +556,6 @@ static void pa_destroy(void)
 
 	DBG(" ... cleaning common libs\n");
 	qsa_cleanup();
-	cds_cleanup();
 }
 
 
