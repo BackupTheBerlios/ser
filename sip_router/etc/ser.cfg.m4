@@ -16,7 +16,7 @@ declare(failure, PSTN_FAILURE, _1_FAILURE)
 ### End of m4 macro section
 
 #
-# $Id: ser.cfg.m4,v 1.2 2006/02/02 12:05:45 tma0 Exp $
+# $Id: ser.cfg.m4,v 1.3 2007/05/11 11:27:06 kubartv Exp $
 #
 # ser.cfg m4 template
 #
@@ -82,7 +82,7 @@ modparam("usrloc", "timer_interval", 10)
 
 # -- auth params --
 modparam("auth_db", "calculate_ha1", yes)
-modparam("auth_db", "password_column", "password")
+modparam("auth_db", "plain_password_column", "password")
 #modparam("auth_db", "use_rpid", 1)
 modparam("auth", "nonce_expire", 300)
 modparam("auth", "rpid_prefix", "<sip:")
