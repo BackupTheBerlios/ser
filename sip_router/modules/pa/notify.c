@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.50 2006/07/25 05:46:58 kubartv Exp $
+ * $Id: notify.c,v 1.51 2007/05/14 10:25:49 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -156,7 +156,7 @@ static void refresh_dialog(pa_notify_cb_param_t *cbd, struct sip_msg *m)
 	
 	lock_pdomain(cbd->domain);
 	if (get_watcher(cbd, &w, &p) >= 0)
-		tmb.dlg_response_uac(w->dialog, m, IS_TARGET_REFRESH);
+		tmb.dlg_response_uac(w->dialog, m, notify_is_refresh != 0 ? IS_TARGET_REFRESH : IS_NOT_TARGET_REFRESH);
 	unlock_pdomain(cbd->domain);
 }
 

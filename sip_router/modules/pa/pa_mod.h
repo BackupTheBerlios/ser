@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.h,v 1.29 2006/12/13 15:12:35 kubartv Exp $
+ * $Id: pa_mod.h,v 1.30 2007/05/14 10:25:49 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -119,6 +119,7 @@ extern str pa_subscription_uri;
 extern int use_offline_winfo;
 extern char *offline_winfo_table;
 extern int ignore_408_on_notify;
+extern int notify_is_refresh;
 
 extern str pres_rules_file; /* filename for XCAP queries */
 db_con_t* create_pa_db_connection();

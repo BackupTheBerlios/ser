@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.75 2007/05/10 11:34:00 kubartv Exp $
+ * $Id: pa_mod.c,v 1.76 2007/05/14 10:25:49 sobomax Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -159,6 +159,9 @@ str pa_subscription_uri = STR_NULL;
 /* ignore 408 response on NOTIFY messages (don't destroy the subscription in the case of it if set */
 int ignore_408_on_notify = 0;
 
+/* locally generated NOTIFY is terget refresh transaction */
+int notify_is_refresh = 1;
+
 /*
  * Exported functions
  */
@@ -312,6 +315,8 @@ static param_export_t params[]={
 	{"server_contact_column", PARAM_STRING, &col_server_contact },
 	{"dialog_column", PARAM_STRING, &col_dialog },
 	{"doc_index_column", PARAM_STRING, &col_doc_index },
+
+	{"notify_is_refresh", PARAM_INT, &notify_is_refresh },
 
 	{0, 0, 0}
 };
