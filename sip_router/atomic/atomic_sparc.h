@@ -1,5 +1,5 @@
 /* 
- * $Id: atomic_sparc.h,v 1.2 2007/05/11 20:44:15 andrei Exp $
+ * $Id: atomic_sparc.h,v 1.3 2007/05/14 17:29:31 andrei Exp $
  * 
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -40,10 +40,17 @@
 #define membar() asm volatile ("" : : : "memory") /* gcc do not cache barrier*/
 #define membar_read()  membar()
 #define membar_write() membar()
+/* lock barrriers: empty, not needed for NOSMP; the lock/unlock should already
+ * contain gcc barriers*/
+#define membar_enter_lock() 
+#define membar_leave_lock()
 #else /* SMP */
 #define membar_write() asm volatile ("stbar \n\t" : : : "memory") 
 #define membar() membar_write()
 #define membar_read() asm volatile ("" : : : "memory") 
+#define membar_enter_lock() 
+#define membar_leave_lock() asm volatile ("stbar \n\t" : : : "memory") 
+
 #endif /* NOSMP */
 
 
