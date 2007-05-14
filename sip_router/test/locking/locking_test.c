@@ -1,4 +1,4 @@
-/* $Id: locking_test.c,v 1.8 2004/08/24 09:01:30 janakj Exp $ */
+/* $Id: locking_test.c,v 1.9 2007/05/14 21:29:47 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -56,6 +56,12 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 #ifdef FAST_LOCK
 #include "../../fastlock.h"
 fl_lock_t lock;
+#endif
+
+#ifdef FUTEX
+#define USE_FUTEX
+#include "../../futexlock.h"
+futex_lock_t lock;
 #endif
 
 #ifdef SYSV_SEM
@@ -123,12 +129,17 @@ static int semid=-1;
 		get_lock(&lock)
 	#define UNLOCK() \
 		release_lock(&lock)
+#elif defined FUTEX
+	#define LOCK() \
+		futex_get(&lock)
+	#define UNLOCK() \
+		futex_release(&lock)
 #endif
 
 
 
 
-static char *id="$Id: locking_test.c,v 1.8 2004/08/24 09:01:30 janakj Exp $";
+static char *id="$Id: locking_test.c,v 1.9 2007/05/14 21:29:47 andrei Exp $";
 static char *version="locking_test 0.1-"
 #ifdef NO_LOCK
  "nolock"
@@ -139,9 +150,11 @@ static char *version="locking_test 0.1-"
 #elif defined POSIX_SEM
  "posix_sem"
 #elif defined PTHREAD_MUTEX
- "pthread_mutext"
+ "pthread_mutex"
 #elif defined FAST_LOCK
  "fast_lock"
+#elif defined FUTEX
+ "futex"
 #endif
 ;
 
@@ -263,6 +276,9 @@ int main (int argc, char** argv)
 #elif defined FAST_LOCK
 	puts("Initializing fast lock\n");
 	init_lock(lock);
+#elif defined FUTEX
+	puts("Initializing futex lock\n");
+	futex_init(&lock);
 #endif
 
 

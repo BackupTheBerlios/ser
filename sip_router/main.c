@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.230 2007/03/01 13:52:09 andrei Exp $
+ * $Id: main.c,v 1.231 2007/05/14 21:29:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -144,6 +144,7 @@
 #include "usr_avp.h"
 #include "core_cmd.h"
 #include "flags.h"
+#include "lock_ops_init.h"
 #include "atomic_ops_init.h"
 #ifdef USE_DNS_CACHE
 #include "dns_cache.h"
@@ -166,7 +167,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.230 2007/03/01 13:52:09 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.231 2007/05/14 21:29:46 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -470,6 +471,7 @@ void cleanup(show_status)
 	/* zero all shmem alloc vars that we still use */
 	shm_mem_destroy();
 #endif
+	destroy_lock_ops();
 	if (pid_file) unlink(pid_file);
 	if (pgid_file) unlink(pgid_file);
 }
@@ -1429,6 +1431,9 @@ try_again:
 		dont_daemonize = dont_fork == 2;
 		dont_fork = dont_fork == 1;
 	}
+	/* init locks first */
+	if (init_lock_ops()!=0)
+		goto error;
 	/* init the resolver, before fixing the config */
 	resolv_init();
 	/* fix parameters */

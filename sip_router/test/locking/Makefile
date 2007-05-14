@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2002/02/13 20:17:59 andrei Rel $
+# $Id: Makefile,v 1.5 2007/05/14 21:29:47 andrei Exp $
 #
 
 
@@ -45,6 +45,9 @@ $(NAME)_pmutex: $(NAME).c
 
 $(NAME)_fastlock: $(NAME).c
 	gcc $(CFLAGS) $(DEFS) -DFAST_LOCK -o $@ $(INCLUDE) $< $(LIBS) 
+
+$(NAME)_futex: $(NAME).c
+	gcc $(CFLAGS) $(DEFS) -DFUTEX -o $@ $(INCLUDE) $< $(LIBS) 
 
 all: $(NAME) $(NAME)_sysv  $(NAME)_posix $(NAME)_pmutex \
 		$(NAME)_fastlock
