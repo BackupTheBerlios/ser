@@ -4,8 +4,8 @@
   <chapterinfo>
     <revhistory>
       <revision>
-        <revnumber>$Revision: 1.4 $</revnumber>
-        <date>$Date: 2007/04/26 08:18:38 $</date>
+        <revnumber>$Revision: 1.2 $</revnumber>
+        <date>$Date: 2007/05/15 05:26:37 $</date>
       </revision>
     </revhistory>
   </chapterinfo>
@@ -15,6 +15,6 @@
 
 <!-- Keep this element at the end of the file
 Local Variables:
-sgml-parent-document: ("osp.sgml" "book" "chapter")
+xml-parent-document: ("osp.xml" "book" "chapter")
 End:
 -->
