@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.27 2007/05/16 18:56:42 andrei Exp $
+ * $Id: dlg.c,v 1.28 2007/05/17 11:04:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -169,7 +169,7 @@ static void destroy_trans_dlg_callbacks(dlg_t* dlg)
 			((dlg->dlg_callbacks.reg_types&TMCB_DESTROY)==0) )
 		return;
 	memset(&params, 0, sizeof(params));
-	for (cbp=dlg->dlg_callbacks.first; cbp; cbp=cbp->next){
+	for (cbp=(struct tm_callback*)dlg->dlg_callbacks.first;cbp;cbp=cbp->next){
 		if (cbp->types & TMCB_DESTROY){
 			params.param=&(cbp->param);
 			cbp->callback(0, 0, &params);

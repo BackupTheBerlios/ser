@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.27 2007/05/16 18:32:18 andrei Exp $
+ * $Id: t_hooks.h,v 1.28 2007/05/17 11:04:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -357,7 +357,7 @@ struct tm_callback {
 };
 
 struct tmcb_head_list {
-	struct tm_callback *first;
+	struct tm_callback volatile *first;
 	int reg_types;
 };
 

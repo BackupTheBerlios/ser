@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.106 2007/05/16 18:32:18 andrei Exp $
+ * $Id: h_table.c,v 1.107 2007/05/17 11:04:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -132,7 +132,7 @@ void free_cell( struct cell* dead_cell )
 		shm_free_unsafe( dead_cell->uas.response.buffer );
 
 	/* callbacks */
-	for( cbs=dead_cell->tmcb_hl.first ; cbs ; ) {
+	for( cbs=(struct tm_callback*)dead_cell->tmcb_hl.first ; cbs ; ) {
 		cbs_tmp = cbs;
 		cbs = cbs->next;
 		shm_free_unsafe( cbs_tmp );
