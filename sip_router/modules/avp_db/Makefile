@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2004/11/01 10:27:04 janakj Exp $
+# $Id: Makefile,v 1.2 2007/05/17 09:58:05 kubartv Exp $
 #
 # Digest Authentication - Database support
 #
@@ -9,5 +9,6 @@ include ../../Makefile.defs
 auto_gen=
 NAME=avp_db.so
 LIBS=
+DEFS += -Wall
 
 include ../../Makefile.modules
