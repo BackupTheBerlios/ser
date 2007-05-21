@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.modules,v 1.12 2007/05/08 09:03:12 andrei Exp $
+# $Id: Makefile.modules,v 1.13 2007/05/21 13:55:51 andrei Exp $
 #
 # module Makefile
 #(to be included from each module)
@@ -59,9 +59,12 @@ $(modules_prefix)/$(modules_dir):
 
 
 .PHONY: install
-install: $(NAME) $(modules_prefix)/$(modules_dir)
+.PHONY: install-libs
+install: install-libs $(NAME) $(modules_prefix)/$(modules_dir)
 	$(INSTALL_TOUCH) $(modules_prefix)/$(modules_dir)/$(NAME)
 	$(INSTALL_MODULES)  $(NAME)  $(modules_prefix)/$(modules_dir)
+
+install-libs:
 	@for lib in $(dir $(SER_LIBS)); do \
 		$(MAKE) -C "$${lib}" install-if-newer ;\
 	done
