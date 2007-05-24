@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.71 2007/04/27 14:52:06 andrei Exp $
+ * $Id: timer.c,v 1.72 2007/05/24 18:01:19 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -127,6 +127,7 @@
 #include "../../parser/parser_f.h"
 #include "../../ut.h"
 #include "../../timer_ticks.h"
+#include "../../compiler_opt.h"
 #include "t_funcs.h"
 #include "t_reply.h"
 #include "t_cancel.h"
@@ -308,7 +309,9 @@ inline static ticks_t retransmission_handler( struct retr_buf *r_buf )
 				return (ticks_t)-1;
 			}
 #ifdef TMCB_ONSEND
-			run_onsend_callbacks(TMCB_REQUEST_SENT, r_buf, TMCB_RETR_F);
+			if (unlikely(has_tran_tmcbs(r_buf->my_T, TMCB_REQUEST_SENT))) 
+				run_onsend_callbacks(TMCB_REQUEST_SENT, r_buf, 
+										0, 0, TMCB_RETR_F);
 #endif
 	} else {
 #ifdef EXTRA_DEBUG
