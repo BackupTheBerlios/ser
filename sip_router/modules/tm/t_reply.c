@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.136 2007/05/24 18:01:19 andrei Exp $
+ * $Id: t_reply.c,v 1.137 2007/05/25 16:15:11 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -500,7 +500,7 @@ static int _reply_light( struct cell *trans, char* buf, unsigned int len,
 		if (SEND_PR_BUFFER( rb, buf, len )>=0)
 			if (unlikely(has_tran_tmcbs(trans, TMCB_RESPONSE_SENT))){
 				INIT_TMCB_ONSEND_PARAMS(onsend_params, 0, 0, rb, &rb->dst, 
-								buf, buf_len, TMCB_LOCAL_F, rb->branch, code);
+								buf, len, TMCB_LOCAL_F, rb->branch, code);
 				run_onsend_callbacks2(TMCB_RESPONSE_SENT, &onsend_params);
 			}
 #else

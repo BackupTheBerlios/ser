@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.84 2007/05/24 18:01:19 andrei Exp $
+ * $Id: t_fwd.c,v 1.85 2007/05/25 16:15:11 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -478,7 +478,7 @@ void e2e_cancel( struct sip_msg *cancel_msg,
 	lowest_error=0;
 
 	if (unlikely(has_tran_tmcbs(t_invite, TMCB_E2ECANCEL_IN)))
-		run_trans_callbacks( TMCB_E2ECANCEL_IN, t_invite, cancel_msg, 0,
+		run_trans_callbacks( TMCB_E2ECANCEL_IN, t_cancel, cancel_msg, 0,
 								cancel_msg->REQ_METHOD);
 	/* first check if there are any branches */
 	if (t_invite->nr_of_outgoings==0){
