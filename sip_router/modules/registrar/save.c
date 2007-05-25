@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.53 2006/09/25 11:44:22 janakj Exp $
+ * $Id: save.c,v 1.54 2007/05/25 16:08:20 sobomax Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -321,7 +321,7 @@ static inline int insert(struct sip_msg* _m, str* aor, contact_t* _c, udomain_t*
 
 		if (_c->received) {
 			recv = &_c->received->body;
-		} else if (flags & FL_NAT) {
+		} else if (flags & FL_NAT && _m->first_line.type == SIP_REQUEST) {
 			if (create_rcv_uri(&recv, _m) < 0) {
 				ERR("Error while creating rcv URI\n");
 				ul.delete_urecord(_d, _u);
@@ -476,7 +476,7 @@ static inline int update(struct sip_msg* _m, urecord_t* _r, str* aor, contact_t*
 				
 				if (_c->received) {
 					recv = &_c->received->body;
-				} else if (nated & FL_NAT) {
+				} else if (nated & FL_NAT && _m->first_line.type == SIP_REQUEST) {
 					if (create_rcv_uri(&recv, _m) < 0) {
 						ERR("Error while creating rcv URI\n");
 						rerrno = R_UL_INS_C;
@@ -530,7 +530,7 @@ static inline int update(struct sip_msg* _m, urecord_t* _r, str* aor, contact_t*
 				
 				if (_c->received) {
 					recv = &_c->received->body;
-				} else if (nated & FL_NAT) {
+				} else if (nated & FL_NAT && _m->first_line.type == SIP_REQUEST) {
 					if (create_rcv_uri(&recv, _m) < 0) {
 						ERR("Error while creating rcv URI\n");
 					        rerrno = R_UL_UPD_C;
