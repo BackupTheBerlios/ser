@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2006/06/19 09:11:22 greger Exp $
+# $Id: Makefile,v 1.4 2007/05/25 15:50:11 andrei Exp $
 
 include ../../Makefile.defs
 
@@ -31,11 +31,19 @@ ifeq ($(use_readline),1)
 endif
 
 
-
 include ../../Makefile.sources
 include ../../Makefile.rules
 
-$(NAME).o: msg
+ifeq ($(use_readline),1)
+$(info readline detected ($(readline_path)) )
+$(info command completion enabled)
+else
+$(info "no readline include files detected, disabling readline support")
+$(info "command completion disabled" )
+$(info "(to force readline support try 'make use_readline=1')")
+endif
+
+$(NAME).o: 
 
 .PHONY: msg
 msg:

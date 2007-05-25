@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.176 2007/05/11 13:09:32 kubartv Exp $
+# $Id: Makefile,v 1.177 2007/05/25 15:50:11 andrei Exp $
 #
 # sip_router makefile
 #
@@ -501,8 +501,8 @@ install-modules-all: install-modules install-modules-doc
 install-doc: $(doc_prefix)/$(doc_dir) install-modules-doc
 	$(INSTALL_TOUCH) $(doc_prefix)/$(doc_dir)/INSTALL 
 	$(INSTALL_DOC) INSTALL $(doc_prefix)/$(doc_dir)
-	$(INSTALL_TOUCH) $(doc_prefix)/$(doc_dir)/README_MODULES 
-	$(INSTALL_DOC) README_MODULES $(doc_prefix)/$(doc_dir)
+	$(INSTALL_TOUCH) $(doc_prefix)/$(doc_dir)/README-MODULES 
+	$(INSTALL_DOC) README-MODULES $(doc_prefix)/$(doc_dir)
 	$(INSTALL_TOUCH) $(doc_prefix)/$(doc_dir)/AUTHORS 
 	$(INSTALL_DOC) AUTHORS $(doc_prefix)/$(doc_dir)
 	$(INSTALL_TOUCH) $(doc_prefix)/$(doc_dir)/NEWS
