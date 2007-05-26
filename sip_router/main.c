@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.231 2007/05/14 21:29:46 andrei Exp $
+ * $Id: main.c,v 1.232 2007/05/26 11:12:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -167,7 +167,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.231 2007/05/14 21:29:46 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.232 2007/05/26 11:12:29 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -644,7 +644,7 @@ void handle_sigs()
     - modified by andrei: moved most of the stuff to handle_sigs,
        made it safer for the "fork" case
 */
-static void sig_usr(int signo)
+void sig_usr(int signo)
 {
 
 
