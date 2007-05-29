@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.c,v 1.28 2006/12/13 16:49:52 janakj Exp $
+ * $Id: authrad_mod.c,v 1.29 2007/05/29 15:24:39 hscholz Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -122,7 +122,7 @@ static int mod_init(void)
 	DBG("auth_radius - Initializing\n");
 
 	memset(attrs, 0, sizeof(attrs));
-	memset(attrs, 0, sizeof(vals));
+	memset(vals, 0, sizeof(vals));
 
 	     /* RFC2865, RFC2866 */
 	attrs[A_USER_NAME].n			= "User-Name";
