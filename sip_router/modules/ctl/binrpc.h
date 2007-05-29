@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc.h,v 1.2 2006/11/03 00:43:45 andrei Exp $
+ * $Id: binrpc.h,v 1.3 2007/05/29 21:24:58 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -70,8 +70,8 @@
  *     (using str for it)      -> 0xB1 0x01 0x00 0x00 array 0x00
  *
  *     bytes (type=6) -like str but not 0 terminated
- *                  "abcdef"   -> 0x61 "abcdef"
- *     65535 bytes   *         -> 0xA1 0xff 0xff bytes
+ *                  "abcdef"   -> 0x66 "abcdef"
+ *     65535 bytes   *         -> 0xA6 0xff 0xff bytes
  *
  *     arrays (array type=4)
  *       arrays are implemented as anonymous value lists:
