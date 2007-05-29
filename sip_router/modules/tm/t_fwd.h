@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.h,v 1.14 2007/05/02 16:57:07 andrei Exp $
+ * $Id: t_fwd.h,v 1.15 2007/05/29 15:52:37 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -73,6 +73,7 @@ int t_forward_cancel(struct sip_msg* p_msg , struct proxy_l * proxy,
 int t_forward_ack( struct sip_msg* p_msg );
 int t_send_branch( struct cell *t, int branch, struct sip_msg* p_msg ,
 					struct proxy_l * proxy, int lock_replies);
+int t_relay_cancel(struct sip_msg* p_msg);
 
 
 #endif
