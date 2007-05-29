@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.c,v 1.29 2007/05/24 18:01:19 andrei Exp $
+ * $Id: t_hooks.c,v 1.30 2007/05/29 09:36:51 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -288,16 +288,14 @@ void run_onsend_callbacks(int type, struct retr_buf* rbuf,
 }
 
 
-void run_onsend_callbacks2(int type , struct tmcb_params* p)
+void run_onsend_callbacks2(int type, struct cell* trans, struct tmcb_params* p)
 {
-	struct cell * trans;
 
 	if (p->t_rbuf==0) return;
-	trans=p->t_rbuf->my_T;
 	if ( trans==0 || trans->tmcb_hl.first==0 || 
 			((trans->tmcb_hl.reg_types)&type)==0 )
 		return;
-	run_trans_callbacks_internal(&trans->tmcb_hl, type, trans, p);
+	run_trans_callbacks_internal(&trans->tmcb_hl, type, p->t_rbuf->my_T, p);
 }
 
 #endif
