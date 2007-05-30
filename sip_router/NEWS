@@ -1,7 +1,7 @@
 Release notes for SIP Express Router (ser)
 ***********************************************
 
-$Id: NEWS,v 1.62 2007/05/02 16:57:07 andrei Exp $
+$Id: NEWS,v 1.63 2007/05/30 12:48:24 hscholz Exp $
 
 
 2.1.0 changes
@@ -25,6 +25,12 @@ modules:
                            (since the CANCEL cannot be authenticated, each
                            received bogus CANCEL will create a new transaction 
                            that will live by default 30s).
+
+new config variables:
+  tcp_source_ipv4 = IPv4 address
+  tcp_source_ipv6 = IPv6 address
+    Set the given source IP for all outbound TCP connections.
+    If setting the IP fails the TCP connection will use the default.
 
 
 2.0.0 changes

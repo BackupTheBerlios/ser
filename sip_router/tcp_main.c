@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.92 2007/02/20 19:41:14 andrei Exp $
+ * $Id: tcp_main.c,v 1.93 2007/05/30 12:48:24 hscholz Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -171,6 +171,13 @@ int tcp_con_lifetime=DEFAULT_TCP_CONNECTION_LIFETIME;
 enum poll_types tcp_poll_method=0; /* by default choose the best method */
 int tcp_max_connections=DEFAULT_TCP_MAX_CONNECTIONS;
 int tcp_max_fd_no=0;
+
+int tcp_use_source_ipv4 = 0;
+struct sockaddr_in tcp_source_ipv4;
+#ifdef USE_IPV6
+int tcp_use_source_ipv6 = 0;
+struct sockaddr_in6 tcp_source_ipv6;
+#endif
 
 static int* tcp_connections_no=0; /* current open connections */
 
@@ -473,6 +480,8 @@ struct tcp_connection* tcpconn_connect(union sockaddr_union* server, int type)
 	socklen_t my_name_len;
 	struct tcp_connection* con;
 	struct ip_addr ip;
+	int do_bind = 0;
+	struct sockaddr *bind_addr;
 
 	s=-1;
 	
@@ -492,6 +501,34 @@ struct tcp_connection* tcpconn_connect(union sockaddr_union* server, int type)
 		LOG(L_ERR, "ERROR: tcpconn_connect: init_sock_opt failed\n");
 		goto error;
 	}
+
+	switch (server->s.sa_family) {
+		case AF_INET: {
+			if (tcp_use_source_ipv4) {
+				my_name_len = sizeof(tcp_source_ipv4);
+				bind_addr = (struct sockaddr *) &tcp_source_ipv4;
+				do_bind = 1;
+			}
+			break;
+		}
+#ifdef USE_IPV6
+		case AF_INET6: {
+			if (tcp_use_source_ipv6) {
+				my_name_len = sizeof(tcp_source_ipv6);
+				bind_addr = (struct sockaddr *) &tcp_source_ipv6;
+				do_bind = 1;
+			}
+			break;
+		}
+#endif
+		default: {
+			/* do nothing special */
+			break;
+		}
+	}
+	if (do_bind && bind(s, bind_addr, my_name_len) != 0)
+		LOG(L_WARN, "WARNING: tcpconn_connect: binding to source address failed: %s\n", strerror(errno));
+
 	if (tcp_blocking_connect(s, &server->s, sockaddru_len(*server))<0){
 		LOG(L_ERR, "ERROR: tcpconn_connect: tcp_blocking_connect failed\n");
 		goto error;

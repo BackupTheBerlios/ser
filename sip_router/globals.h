@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.68 2007/02/23 21:03:38 andrei Exp $
+ * $Id: globals.h,v 1.69 2007/05/30 12:48:24 hscholz Exp $
  *
  * global variables
  *
@@ -86,6 +86,12 @@ extern int tcp_con_lifetime; /* connection lifetime */
 extern enum poll_types tcp_poll_method;
 extern int tcp_max_fd_no;
 extern int tcp_max_connections;
+extern int tcp_use_source_ipv4;
+extern struct sockaddr_in tcp_source_ipv4;
+#ifdef USE_IPV6
+extern int tcp_use_source_ipv6;
+extern struct sockaddr_in6 tcp_source_ipv6;
+#endif
 #endif
 #ifdef USE_TLS
 extern int tls_disable;
