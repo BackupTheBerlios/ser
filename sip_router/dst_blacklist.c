@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.c,v 1.3 2007/05/30 22:22:42 andrei Exp $
+ * $Id: dst_blacklist.c,v 1.4 2007/05/31 16:17:20 andrei Exp $
  *
  * resolver related functions
  *
@@ -464,7 +464,7 @@ inline static int dst_blacklist_clean_expired(unsigned int target,
 	int i;
 	
 	now=start_time=get_ticks_raw();
-	for(h=start; h!=(start+DST_BLST_HASH_SIZE); h++){
+	for(h=start; h!=(start+(unsigned short)DST_BLST_HASH_SIZE); h++){
 		i=h%DST_BLST_HASH_SIZE;
 		if (dst_blst_hash[i].first){
 			LOCK_BLST(i);
