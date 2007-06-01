@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.28 2007/02/23 23:20:51 andrei Exp $*
+/* $Id: shm_mem.h,v 1.29 2007/06/01 09:20:35 hscholz Exp $*
  *
  * shared mem stuff
  *
@@ -92,6 +92,15 @@
 #	define MY_MEMINFO	fm_info
 #	define  shm_malloc_init fm_malloc_init
 #	define shm_available() fm_available(shm_block)
+#elif defined DL_MALLOC
+#	include "dl_malloc.h"
+	extern mspace shm_block;
+#	define MY_MALLOC mspace_malloc
+#	define MY_FREE mspace_free
+#	define MY_REALLOC mspace_realloc
+#	define MY_STATUS(...) 0
+#	define MY_MEMINFO	mspace_info
+#	define  shm_malloc_init(buf, len) create_mspace_with_base(buf, len, 0)
 #else
 #	include "q_malloc.h"
 	extern struct qm_block* shm_block;

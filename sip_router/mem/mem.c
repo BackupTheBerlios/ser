@@ -1,5 +1,5 @@
 /*
- * $Id: mem.c,v 1.11 2004/11/10 21:51:24 andrei Exp $
+ * $Id: mem.c,v 1.12 2007/06/01 09:20:35 hscholz Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -51,11 +51,16 @@
 #endif
 
 #ifdef PKG_MALLOC
+	#ifndef DL_MALLOC
 	char mem_pool[PKG_MEM_POOL_SIZE];
+	#endif
+
 	#ifdef VQ_MALLOC
 		struct vqm_block* mem_block;
 	#elif defined F_MALLOC
 		struct fm_block* mem_block;
+	#elif defined DL_MALLOC
+		/* don't need this */
 	#else
 		struct qm_block* mem_block;
 	#endif
@@ -70,15 +75,19 @@ int init_pkg_mallocs()
 		mem_block=vqm_malloc_init(mem_pool, PKG_MEM_POOL_SIZE);
 	#elif F_MALLOC
 		mem_block=fm_malloc_init(mem_pool, PKG_MEM_POOL_SIZE);
+	#elif DL_MALLOC
+		/* don't need this */
 	#else
 		mem_block=qm_malloc_init(mem_pool, PKG_MEM_POOL_SIZE);
 	#endif
+	#ifndef DL_MALLOC
 	if (mem_block==0){
 		LOG(L_CRIT, "could not initialize memory pool\n");
 		fprintf(stderr, "Too much pkg memory demanded: %d\n",
 			PKG_MEM_POOL_SIZE );
 		return -1;
 	}
+	#endif
 #endif
 	return 0;
 }

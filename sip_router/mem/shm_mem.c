@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.33 2006/04/07 14:55:27 andrei Exp $
+/* $Id: shm_mem.c,v 1.34 2007/06/01 09:20:35 hscholz Exp $
  *
  * Shared memory functions
  *
@@ -67,6 +67,8 @@ static void* shm_mempool=(void*)-1;
 	struct vqm_block* shm_block;
 #elif F_MALLOC
 	struct fm_block* shm_block;
+#elif DL_MALLOC
+	mspace shm_block;
 #else
 	struct qm_block* shm_block;
 #endif
