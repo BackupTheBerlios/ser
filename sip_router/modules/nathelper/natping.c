@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.10 2007/04/24 02:27:02 sobomax Exp $
+/* $Id: natping.c,v 1.11 2007/06/04 14:56:59 mma Exp $
  *
  * Copyright (C) 2005 Porta Software Ltd
  *
@@ -113,8 +113,8 @@ natpinger_child_init(int rank)
 	if (rank == PROC_MAIN || rank == PROC_TCP_MAIN)
 		return 0;
 
-	/* only child 1 will fork the aux process */
-	if (rank != 1)
+	/* only child 1 will fork the aux process, if ping requested */
+	if ((rank != 1) || (natping_interval == 0))
 		return 0;
 
 	aux_process = fork();
