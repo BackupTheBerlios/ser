@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.18 2006/11/14 18:11:06 andrei Exp $
+ * $Id: t_lookup.h,v 1.19 2007/06/05 14:12:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -99,6 +99,10 @@ int t_lookup_ident(struct cell** trans, unsigned int hash_index, unsigned int la
 int t_lookup_callid(struct cell** trans, str callid, str cseq);
 
 int t_set_fr(struct sip_msg* msg, unsigned int fr_inv_to, unsigned int fr_to );
+#ifdef TM_DIFF_RT_TIMEOUT
+int t_set_retr(struct sip_msg* msg, unsigned int t1_to, unsigned int t2_to);
+#endif
+int t_set_max_lifetime(struct sip_msg* msg, unsigned int eol_inv,
+											unsigned int eol_noninv);
 
 #endif
-

@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.66 2007/05/29 23:59:34 andrei Exp $
+ * $Id: t_funcs.h,v 1.67 2007/06/05 14:12:36 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -152,19 +152,19 @@ int fr_inv_avp2timer(unsigned int* timer);
 #ifdef TIMER_DEBUG
 #define start_retr(rb) \
 	_set_fr_retr((rb), \
-				((rb)->dst.proto==PROTO_UDP)?rt_t1_timeout:(ticks_t)(-1), \
+				((rb)->dst.proto==PROTO_UDP)?RT_T1_TIMEOUT(rb):(ticks_t)(-1), \
 				__FILE__, __FUNCTION__, __LINE__)
 
 #define force_retr(rb) \
-	_set_fr_retr((rb), rt_t1_timeout, __FILE__, __FUNCTION__, __LINE__)
+	_set_fr_retr((rb), RT_T1_TIMEOUT(rb), __FILE__, __FUNCTION__, __LINE__)
 
 #else
 #define start_retr(rb) \
 	_set_fr_retr((rb), \
-				((rb)->dst.proto==PROTO_UDP)?rt_t1_timeout:(ticks_t)(-1))
+				((rb)->dst.proto==PROTO_UDP)?RT_T1_TIMEOUT(rb):(ticks_t)(-1))
 
 #define force_retr(rb) \
-	_set_fr_retr((rb), rt_t1_timeout)
+	_set_fr_retr((rb), RT_T1_TIMEOUT(rb))
 
 #endif
 
