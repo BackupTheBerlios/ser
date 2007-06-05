@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.19 2007/06/05 14:12:36 andrei Exp $
+ * $Id: t_lookup.h,v 1.20 2007/06/05 15:16:45 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -50,6 +50,8 @@
 extern unsigned int     global_msg_id;
 extern int ruri_matching;
 extern int via1_matching;
+
+
 
 void init_t();
 int init_rb( struct retr_buf *rb, struct sip_msg *msg );

@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.25 2007/06/05 14:35:17 andrei Exp $
+ * $Id: t_cancel.c,v 1.26 2007/06/05 15:16:44 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -64,12 +64,14 @@
 void which_cancel( struct cell *t, branch_bm_t *cancel_bm )
 {
 	int i;
+	int branches_no;
 	
 	*cancel_bm=0;
-	for( i=0 ; i<t->nr_of_outgoings ; i++ ) {
+	branches_no=t->nr_of_outgoings;
+	membar_depends(); 
+	for( i=0 ; i<branches_no ; i++ ) {
 		if (should_cancel_branch(t, i, 1)) 
 			*cancel_bm |= 1<<i ;
-
 	}
 }
 

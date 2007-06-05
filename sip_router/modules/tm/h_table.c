@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.c,v 1.107 2007/05/17 11:04:56 andrei Exp $
+ * $Id: h_table.c,v 1.108 2007/06/05 15:16:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -62,6 +62,7 @@
 #include "h_table.h"
 #include "fix_lumps.h" /* free_via_clen_lump */
 #include "timer.h"
+
 
 static enum kill_reason kr;
 
