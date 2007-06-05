@@ -1,5 +1,5 @@
 /*
- * $Id: uac.c,v 1.73 2007/06/05 15:16:45 andrei Exp $
+ * $Id: uac.c,v 1.74 2007/06/05 21:25:35 andrei Exp $
  *
  * simple UAC for things such as SUBSCRIBE or SMS gateway;
  * no authentication and other UAC features -- just send
@@ -76,6 +76,7 @@
 #include "t_msgbuilder.h"
 #include "callid.h"
 #include "uac.h"
+#include "t_stats.h"
 
 
 #define FROM_TAG_LEN (MD5_LEN + 1 /* - */ + CRC16_LEN) /* length of FROM tags */
