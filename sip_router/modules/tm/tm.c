@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.155 2007/06/05 15:16:45 andrei Exp $
+ * $Id: tm.c,v 1.156 2007/06/05 21:24:12 andrei Exp $
  *
  * TM module
  *
@@ -519,7 +519,7 @@ static int script_init( struct sip_msg *foo, void *bar)
 	t_on_reply(0);
 	t_on_branch(0);
 	/* reset the kr status */
-	set_kr(0);
+	reset_kr(0);
 	/* set request mode so that multiple-mode actions know
 	 * how to behave */
 	rmode=MODE_REQUEST;

@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.96 2007/06/05 15:16:44 andrei Exp $
+ * $Id: h_table.h,v 1.97 2007/06/05 21:24:12 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -386,6 +386,7 @@ struct s_table
 #define has_noisy_ctimer(_t_)    ((_t_)->flags&T_NOISY_CTIMER_FLAG)
 
 
+void reset_kr();
 void set_kr( enum kill_reason kr );
 enum kill_reason get_kr();
 
