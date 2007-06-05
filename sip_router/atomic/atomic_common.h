@@ -1,5 +1,5 @@
 /* 
- * $Id: atomic_common.h,v 1.1 2007/05/14 17:29:31 andrei Exp $
+ * $Id: atomic_common.h,v 1.2 2007/06/05 16:35:27 andrei Exp $
  * 
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -38,10 +38,10 @@ typedef struct{ volatile int val; } atomic_t;
  * to implement mutexes you must use the mb_* versions or explicitely use
  * the barriers */
 
-#define atomic_set_int(pvar, i) (*(pvar)=i)
-#define atomic_set_long(pvar, i) (*(pvar)=i)
-#define atomic_get_int(pvar) (*(pvar))
-#define atomic_get_long(pvar) (*(pvar))
+#define atomic_set_int(pvar, i) (*(int*)(pvar)=i)
+#define atomic_set_long(pvar, i) (*(long*)(pvar)=i)
+#define atomic_get_int(pvar) (*(int*)(pvar))
+#define atomic_get_long(pvar) (*(long*)(pvar))
 
 #define atomic_set(at_var, value)	(atomic_set_int(&((at_var)->val), (value)))
 
