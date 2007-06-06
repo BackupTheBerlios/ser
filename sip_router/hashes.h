@@ -1,5 +1,5 @@
 /*
- * $Id: hashes.h,v 1.5 2007/02/22 20:58:32 andrei Exp $
+ * $Id: hashes.h,v 1.6 2007/06/06 21:56:27 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH 
  *
@@ -44,8 +44,16 @@
 			(v)=(*(p)<<24)+((p)[1]<<16)+((p)[2]<<8)+(p)[3]; \
 			(h)+=(v)^((v)>>3); \
 		} \
-		(v)=0; \
-		for (;(p)<(end); (p)++){ (v)<<=8; (v)+=*(p);} \
+		switch((end)-(p)){\
+			case 3: \
+				(v)=(*(p)<<16)+((p)[1]<<8)+(p)[2]; break; \
+			case 2: \
+				(v)=(*(p)<<8)+p[1]; break; \
+			case 1: \
+				(v)=*p; break; \
+			default: \
+				(v)=0; break; \
+		} \
 		(h)+=(v)^((v)>>3); \
 	}while(0)
 
