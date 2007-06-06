@@ -1,5 +1,5 @@
 /*
- * $Id: t_hooks.h,v 1.33 2007/05/30 18:35:54 andrei Exp $
+ * $Id: t_hooks.h,v 1.34 2007/06/06 17:36:52 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -325,7 +325,16 @@ struct tmcb_params {
 	struct sip_msg* req;
 	struct sip_msg* rpl;
 	void **param;
+	int code;
 #ifdef TMCB_ONSEND
+	unsigned short flags; /* set to a combination of:
+							 TMCB_RETR_F if this is a _ser_ retransmission
+							 (but not if if it's a "forwarded" retr., like a 
+							 retr. 200 Ok for example)
+							 TMCB_LOCAL_F if this is a local generated message
+							  (and not forwarded) */
+	unsigned short branch;
+	/* could also be: send_buf, dst, branch */
 	struct retr_buf* t_rbuf; /* transaction retr. buf., all the information
 								 regarding destination, data that is/was
 								 actually sent on the net, branch a.s.o is
@@ -333,16 +342,7 @@ struct tmcb_params {
 	struct dest_info* dst; /* destination */
 	str send_buf; /* what was/will be sent on the net, used for ACKs
 					(which don't have a retr_buf). */
-	short flags; /* set to a combination of:
-					TMCB_RETR_F if this is a _ser_ retransmission (but 
-					 not if if it's a "forwarded" retr., like a retr. 200 Ok
-					 for example)
-					 TMCB_LOCAL_F if this is a local generated message
-					  (and not forwarded) */
-	unsigned short branch;
-	/* could also be: send_buf, dst, branch */
 #endif
-	int code;
 };
 
 #define INIT_TMCB_PARAMS(tmcb, request, reply, r_code)\
