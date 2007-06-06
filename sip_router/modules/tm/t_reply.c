@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.142 2007/06/05 14:35:17 andrei Exp $
+ * $Id: t_reply.c,v 1.143 2007/06/06 14:54:04 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1100,7 +1100,7 @@ int t_retransmit_reply( struct cell *t )
 	UNLOCK_REPLIES( t );
 	SEND_PR_BUFFER( & t->uas.response, b, len );
 #ifdef TMCB_ONSEND
-	if (unlikely(has_tran_tmcbs(r_buf->my_T, TMCB_RESPONSE_SENT))){ 
+	if (unlikely(has_tran_tmcbs(t, TMCB_RESPONSE_SENT))){ 
 		/* we don't know if it's a retransmission of a local reply or a 
 		 * forwarded reply */
 		run_onsend_callbacks(TMCB_RESPONSE_SENT, &t->uas.response, 0, 0,
