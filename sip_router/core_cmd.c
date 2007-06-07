@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.15 2006/09/19 16:13:27 andrei Exp $
+ * $Id: core_cmd.c,v 1.16 2007/06/07 21:44:00 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -289,11 +289,11 @@ static void core_shmmem(rpc_t* rpc, void* c)
 	shm_info(&mi);
 	rpc->add(c, "{", &handle);
 	rpc->struct_add(handle, "ddddd",
-		"total", mi.total_size,
-		"free", mi.free,
-		"used", mi.real_used,
-		"max_used", mi.max_used,
-		"fragments", mi.total_frags
+		"total", (unsigned int)mi.total_size,
+		"free", (unsigned int)mi.free,
+		"used", (unsigned int)mi.real_used,
+		"max_used", (unsigned int)mi.max_used,
+		"fragments", (unsigned int)mi.total_frags
 	);
 }
 
