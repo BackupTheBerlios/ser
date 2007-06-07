@@ -1,5 +1,5 @@
 /*
- * $Id: avpops.c,v 1.15 2006/01/08 22:43:15 tma0 Exp $
+ * $Id: avpops.c,v 1.16 2007/06/07 21:46:57 andrei Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -192,7 +192,7 @@ static int avpops_child_init(int rank)
 	if (DB_URL==0)
 		return 0;
 	/* skip main process and TCP manager process */
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0;
 	/* init DB connection */
 	return avpops_db_init(DB_URL, DB_TABLE, db_columns);

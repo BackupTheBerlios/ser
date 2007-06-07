@@ -1,5 +1,5 @@
 /**
- * $Id: msilo.c,v 1.55 2007/05/16 09:21:23 kubartv Exp $
+ * $Id: msilo.c,v 1.56 2007/06/07 21:46:58 andrei Exp $
  *
  * MSILO module
  *
@@ -272,7 +272,7 @@ static int mod_init(void)
 static int child_init(int rank)
 {
 
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main or tcp_main processes */
 	DBG("MSILO: init_child #%d / pid <%d>\n", rank, getpid());
 	if (msilo_dbf.init==0)

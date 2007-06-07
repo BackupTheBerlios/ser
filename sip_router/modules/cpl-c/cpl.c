@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.62 2006/03/01 16:01:43 janakj Exp $
+ * $Id: cpl.c,v 1.63 2007/06/07 21:46:57 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -389,7 +389,7 @@ static int cpl_child_init(int rank)
 	pid_t pid;
 
 	/* don't do anything for main process and TCP manager process */
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0;
 
 	/* only child 1 will fork the aux process */

@@ -1,5 +1,5 @@
 /*
- * $Id: ctl.c,v 1.3 2007/01/18 20:35:01 andrei Exp $
+ * $Id: ctl.c,v 1.4 2007/06/07 21:46:57 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -281,6 +281,9 @@ static int mod_child(int rank)
 	struct ctrl_socket* cs;
 	static int rpc_handler=0;
 	
+	/* do nothing from PROC_INIT, is the same as PROC_MAIN */
+	if (rank==PROC_INIT)
+		return 0;
 	/* we want to fork(), but only from one process */
 	if ((rank == PROC_MAIN ) && (ctrl_sock_lst)){ /* FIXME: no fork ?? */
 		DBG("ctl: mod_child(%d), ctrl_sock_lst=%p\n", rank, ctrl_sock_lst);

@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.c,v 1.23 2007/04/18 13:08:46 janakj Exp $
+ * $Id: uridb_mod.c,v 1.24 2007/06/07 21:47:00 andrei Exp $
  *
  * Various URI related functions
  *
@@ -166,7 +166,7 @@ static int child_init(int rank)
 		{.name = NULL}
 	};
 
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main or tcp_main processes */
 
 	db = db_ctx("uri_db");

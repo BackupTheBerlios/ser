@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.43 2007/04/18 07:03:57 kubartv Exp $
+ * $Id: authdb_mod.c,v 1.44 2007/06/07 21:46:56 andrei Exp $
  *
  * Digest Authentication Module
  *
@@ -226,7 +226,7 @@ static int child_init(int rank)
 {
 	authdb_table_info_t *i;
 
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main process */
 
 	auth_db_handle = db_ctx("auth_db");

@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.76 2007/05/14 10:25:49 sobomax Exp $
+ * $Id: pa_mod.c,v 1.77 2007/06/07 21:46:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -523,7 +523,7 @@ static int pa_child_init(int _rank)
 {
 	/* Shall we use database ? */
 	if (use_db || use_offline_winfo) { /* Yes */
-		if (_rank==PROC_MAIN || _rank==PROC_TCP_MAIN)
+		if (_rank==PROC_INIT || _rank==PROC_MAIN || _rank==PROC_TCP_MAIN)
 			return 0; /* do nothing for the main or tcp_main processes */
 		pa_db = create_pa_db_connection();
 		if (!pa_db) {

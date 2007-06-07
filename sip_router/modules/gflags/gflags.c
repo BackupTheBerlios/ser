@@ -1,4 +1,4 @@
-/*$Id: gflags.c,v 1.25 2007/04/19 09:16:25 kubartv Exp $
+/*$Id: gflags.c,v 1.26 2007/06/07 21:46:58 andrei Exp $
  *
  * gflags module: global flags; it keeps a bitmap of flags
  * in shared memory and may be used to change behaviour
@@ -325,7 +325,7 @@ static int mod_init(void)
 static int child_init(int rank)
 {
 	if (load_global_attrs) {
-		if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+		if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 			return 0; /* do nothing for the main or tcp_main processes */
 
 		if (init_db() < 0) return -1;

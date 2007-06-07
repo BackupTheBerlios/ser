@@ -1,5 +1,5 @@
 /**
- * $Id: pdt.c,v 1.23 2007/02/22 00:24:17 andrei Exp $
+ * $Id: pdt.c,v 1.24 2007/06/07 21:46:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -261,7 +261,7 @@ static int child_init(int r)
 		}
 	}
 
-	if (r==PROC_MAIN || r==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || r==PROC_MAIN || r==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main or tcp_main processes */
 
 	db_con = pdt_dbf.init(db_url);

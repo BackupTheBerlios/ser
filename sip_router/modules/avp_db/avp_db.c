@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.c,v 1.30 2007/05/17 09:58:05 kubartv Exp $
+ * $Id: avp_db.c,v 1.31 2007/06/07 21:46:56 andrei Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -154,7 +154,7 @@ static int child_init(int rank)
 		{.name = NULL}
 	};
 
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main process */
 	
 	ctx = db_ctx("avp_db");

@@ -1,5 +1,5 @@
 /*
- * $Id: sl.c,v 1.31 2006/07/19 15:17:57 janakj Exp $
+ * $Id: sl.c,v 1.32 2007/06/07 21:46:59 andrei Exp $
  *
  * sl module
  *
@@ -141,7 +141,7 @@ static int mod_init(void)
 
 static int child_init(int rank)
 {
-	if (rank == 1) {
+	if (rank == PROC_INIT) {
 		if (init_sl_stats_child() < 0) {
 			ERR("init_sl_stats_child failed\n");
 			return -1;

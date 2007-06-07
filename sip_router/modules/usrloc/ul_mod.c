@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.58 2007/04/11 10:02:54 janakj Exp $
+ * $Id: ul_mod.c,v 1.59 2007/06/07 21:47:00 andrei Exp $
  *
  * Usrloc module interface
  *
@@ -260,7 +260,7 @@ static int build_db_cmds(void)
 
 static int child_init(int _rank)
 {
-	if (_rank==PROC_MAIN || _rank==PROC_TCP_MAIN)
+	if (_rank==PROC_INIT || _rank==PROC_MAIN || _rank==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main or tcp_main processes */
 	     /* Shall we use database ? */
 	if ( db_mode != NO_DB) { /* Yes */

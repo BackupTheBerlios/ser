@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_db.c,v 1.14 2007/04/18 13:08:46 janakj Exp $
+ * $Id: acc_db.c,v 1.15 2007/06/07 21:46:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -941,7 +941,7 @@ static void on_req(struct cell* t, int type, struct tmcb_params *ps)
 
 static int child_init(int rank)
 {
-	if (rank==PROC_MAIN || rank==PROC_TCP_MAIN)
+	if (rank==PROC_INIT || rank==PROC_MAIN || rank==PROC_TCP_MAIN)
 		return 0; /* do nothing for the main process */
 
 	if (db_url.s) {
