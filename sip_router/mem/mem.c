@@ -1,5 +1,5 @@
 /*
- * $Id: mem.c,v 1.12 2007/06/01 09:20:35 hscholz Exp $
+ * $Id: mem.c,v 1.13 2007/06/07 21:49:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -94,10 +94,10 @@ int init_pkg_mallocs()
 
 
 
-int init_shm_mallocs()
+int init_shm_mallocs(int force_alloc)
 {
 #ifdef SHM_MEM
-	if (shm_mem_init()<0) {
+	if (shm_mem_init(force_alloc)<0) {
 		LOG(L_CRIT, "could not initialize shared memory pool, exiting...\n");
 		 fprintf(stderr, "Too much shared memory demanded: %ld\n",
 			shm_mem_size );

@@ -1,4 +1,4 @@
-/* $Id: shm_mem.c,v 1.34 2007/06/01 09:20:35 hscholz Exp $
+/* $Id: shm_mem.c,v 1.35 2007/06/07 21:49:53 andrei Exp $
  *
  * Shared memory functions
  *
@@ -213,12 +213,14 @@ int shm_mem_init_mallocs(void* mempool, unsigned long pool_size)
 }
 
 
-int shm_mem_init()
+int shm_mem_init(int force_alloc)
 {
 	int ret;
 	
 	ret=shm_getmem();
 	if (ret<0) return ret;
+	if (force_alloc)
+		memset(shm_mempool, 0, shm_mem_size);
 	return shm_mem_init_mallocs(shm_mempool, shm_mem_size);
 }
 

@@ -1,4 +1,4 @@
-/* $Id: mem.h,v 1.16 2007/06/01 09:20:35 hscholz Exp $
+/* $Id: mem.h,v 1.17 2007/06/07 21:49:53 andrei Exp $
  *
  * memory related stuff (malloc & friends)
  * 
@@ -150,6 +150,6 @@
 #endif
 
 int init_pkg_mallocs();
-int init_shm_mallocs();
+int init_shm_mallocs(int force_alloc);
 
 #endif

@@ -1,4 +1,4 @@
-/* $Id: shm_mem.h,v 1.29 2007/06/01 09:20:35 hscholz Exp $*
+/* $Id: shm_mem.h,v 1.30 2007/06/07 21:49:53 andrei Exp $*
  *
  * shared mem stuff
  *
@@ -117,7 +117,7 @@
 	extern gen_lock_t* mem_lock;
 
 
-int shm_mem_init(); /* calls shm_getmem & shm_mem_init_mallocs */
+int shm_mem_init(int); /* calls shm_getmem & shm_mem_init_mallocs */
 int shm_getmem();   /* allocates the memory (mmap or sysv shmap) */
 int shm_mem_init_mallocs(void* mempool, unsigned long size); /* initialize
 																the mallocs
