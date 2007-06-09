@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.76 2007/06/05 21:26:44 andrei Exp $
+ * $Id: timer.c,v 1.77 2007/06/09 17:48:52 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -587,8 +587,13 @@ ticks_t retr_buf_handler(ticks_t ticks, struct timer_ln* tl, void *p)
 #endif
 	if (retr_remainder<fr_remainder)
 		return retr_remainder;
-	else
+	else{
+		/* hack to switch to the slow timer */
+#ifdef TM_FAST_RETR_TIMER
+		tl->flags&=~F_TIMER_FAST;
+#endif
 		return fr_remainder;
+	}
 disabled:
 	return rbuf->fr_expire-ticks;
 }
