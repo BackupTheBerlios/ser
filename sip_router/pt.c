@@ -1,5 +1,5 @@
 /*
- * $Id: pt.c,v 1.7 2006/11/28 19:04:54 andrei Exp $
+ * $Id: pt.c,v 1.8 2007/06/12 18:07:13 andrei Exp $
  *
  * Process Table
  *
@@ -197,6 +197,7 @@ int fork_process(int child_id, char *desc, int make_sock)
 		process_no=child_process_no;
 		srand(new_seed1);
 		srandom(new_seed2+time(0));
+		shm_malloc_on_fork();
 #ifdef PROFILING
 		monstartup((u_long) &_start, (u_long) &etext);
 #endif
@@ -330,6 +331,7 @@ int fork_tcp_process(int child_id, char *desc, int r, int *reader_fd_1)
 		process_no=child_process_no;
 		srand(new_seed1);
 		srandom(new_seed2+time(0));
+		shm_malloc_on_fork();
 #ifdef PROFILING
 		monstartup((u_long) &_start, (u_long) &etext);
 #endif

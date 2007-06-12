@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.233 2007/06/07 21:40:14 andrei Exp $
+ * $Id: main.c,v 1.234 2007/06/12 18:07:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -169,7 +169,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.233 2007/06/07 21:40:14 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.234 2007/06/12 18:07:13 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -453,10 +453,12 @@ char* pgid_file = 0;
 void cleanup(show_status)
 {
 	/*clean-up*/
+#ifndef SHM_SAFE_MALLOC
 	if (mem_lock)
 		shm_unlock(); /* hack: force-unlock the shared memory lock in case
 					 some process crashed and let it locked; this will
 					 allow an almost gracious shutdown */
+#endif
 	destroy_modules();
 #ifdef USE_DNS_CACHE
 	destroy_dns_cache();
