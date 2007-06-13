@@ -1,5 +1,5 @@
 /*
- * $Id: mod_options.h,v 1.4 2006/08/02 09:20:04 janakj Exp $
+ * $Id: mod_options.h,v 1.5 2007/06/13 11:02:02 calrissian Exp $
  *
  * Options Reply Module
  *
@@ -44,5 +44,8 @@
 
 #define SUPT_STR "Supported: "
 #define SUPT_STR_LEN (sizeof(SUPT_STR) - 1)
+
+#define CONT_STR "Contact: <sip:"
+#define CONT_STR_LEN (sizeof(CONT_STR) - 1)
 
 #endif /* _MOD_OPTIONS_H */
