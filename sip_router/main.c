@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.234 2007/06/12 18:07:13 andrei Exp $
+ * $Id: main.c,v 1.235 2007/06/14 23:23:47 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -154,6 +154,7 @@
 #ifdef USE_DST_BLACKLIST
 #include "dst_blacklist.h"
 #endif
+#include "rand/fastrand.h" /* seed */
 
 #include "stats.h"
 
@@ -169,7 +170,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.234 2007/06/12 18:07:13 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.235 2007/06/14 23:23:47 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1351,8 +1352,9 @@ try_again:
 	seed+=getpid()+time(0);
 	DBG("seeding PRNG with %u\n", seed);
 	srand(seed);
+	fastrand_seed(rand());
 	srandom(rand()+time(0));
-	DBG("test random number %u\n", rand());
+	DBG("test random numbers %u %lu %u\n", rand(), random(), fastrand());
 
 	/*register builtin  modules*/
 	register_builtin_modules();
