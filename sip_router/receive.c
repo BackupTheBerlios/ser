@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.60 2006/12/11 15:47:32 andrei Exp $
+ *$Id: receive.c,v 1.61 2007/06/14 23:17:57 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -84,6 +84,7 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 {
 	struct sip_msg* msg;
 	int ret;
+	struct run_act_ctx ra_ctx;
 #ifdef STATS
 	int skipped = 1;
 	struct timeval tvb, tve;	
@@ -168,7 +169,8 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 			goto end; /* drop the request */
 
 		/* exec the routing script */
-		if (run_actions(main_rt.rlist[DEFAULT_RT], msg)<0){
+		init_run_actions_ctx(&ra_ctx);
+		if (run_actions(&ra_ctx, main_rt.rlist[DEFAULT_RT], msg)<0){
 			LOG(L_WARN, "WARNING: receive_msg: "
 					"error while trying script\n");
 			goto error_req;
@@ -209,7 +211,8 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 			goto end; /* drop the request */
 		/* exec the onreply routing script */
 		if (onreply_rt.rlist[DEFAULT_RT]){
-			ret=run_actions(onreply_rt.rlist[DEFAULT_RT], msg);
+			init_run_actions_ctx(&ra_ctx);
+			ret=run_actions(&ra_ctx, onreply_rt.rlist[DEFAULT_RT], msg);
 			if (ret<0){
 				LOG(L_WARN, "WARNING: receive_msg: "
 						"error while trying onreply script\n");
