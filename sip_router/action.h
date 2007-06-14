@@ -1,5 +1,5 @@
 /*
- * $Id: action.h,v 1.6 2006/06/17 09:40:59 tma0 Exp $
+ * $Id: action.h,v 1.7 2007/06/14 23:12:26 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -30,14 +30,34 @@
 #ifndef action_h
 #define action_h
 
-#include "parser/msg_parser.h"
+#define USE_LONGJMP
+
 #include "route_struct.h"
 
-extern unsigned int run_flags;
-extern int last_retcode;
+#include "parser/msg_parser.h"
 
-int do_action(struct action* a, struct sip_msg* msg);
-int run_actions(struct action* a, struct sip_msg* msg);
+#ifdef USE_LONGJMP
+#include <setjmp.h>
+#endif
+
+
+struct run_act_ctx{
+	int rec_lev;
+	int run_flags;
+	int last_retcode; /* return from last route */
+#ifdef USE_LONGJMP
+	jmp_buf jmp_env;
+#endif
+};
+
+
+#define init_run_actions_ctx(ph) \
+	do{\
+		(ph)->rec_lev=(ph)->run_flags=(ph)->last_retcode=0; \
+	}while(0)
+
+int do_action(struct run_act_ctx* c, struct action* a, struct sip_msg* msg);
+int run_actions(struct run_act_ctx* c, struct action* a, struct sip_msg* msg);
 
 
 

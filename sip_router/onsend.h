@@ -1,5 +1,5 @@
 /*
- *  $Id: onsend.h,v 1.3 2006/04/12 18:04:23 andrei Exp $
+ *  $Id: onsend.h,v 1.4 2007/06/14 23:12:26 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -59,6 +59,7 @@ static inline int run_onsend(struct sip_msg* orig_msg, struct dest_info* dst,
 {
 	struct onsend_info onsnd_info;
 	int ret;
+	struct run_act_ctx ra_ctx;
 	
 	ret=1;
 	if (onsend_rt.rlist[DEFAULT_RT]){
@@ -67,7 +68,8 @@ static inline int run_onsend(struct sip_msg* orig_msg, struct dest_info* dst,
 		onsnd_info.buf=buf;
 		onsnd_info.len=len;
 		p_onsend=&onsnd_info;
-		ret=run_actions(onsend_rt.rlist[DEFAULT_RT], orig_msg);
+		init_run_actions_ctx(&ra_ctx);
+		ret=run_actions(&ra_ctx, onsend_rt.rlist[DEFAULT_RT], orig_msg);
 		p_onsend=0; /* reset it */
 	}
 	return ret;

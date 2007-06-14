@@ -1,5 +1,5 @@
 /*
- * $Id: route.h,v 1.15 2006/12/13 22:50:47 andrei Exp $
+ * $Id: route.h,v 1.16 2007/06/14 23:12:26 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -36,6 +36,7 @@
 #include "config.h"
 #include "error.h"
 #include "route_struct.h"
+#include "action.h"
 #include "parser/msg_parser.h"
 #include "str_hash.h"
 
@@ -69,7 +70,7 @@ int add_actions(struct action* a, struct action** head);
 void print_rls();
 int fix_rls();
 
-int eval_expr(struct expr* e, struct sip_msg* msg);
+int eval_expr(struct run_act_ctx* h, struct expr* e, struct sip_msg* msg);
 
 
 
