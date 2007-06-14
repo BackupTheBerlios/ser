@@ -1,6 +1,6 @@
 /*
  *
- * $Id: exec.c,v 1.18 2006/07/25 15:32:53 janakj Exp $
+ * $Id: exec.c,v 1.19 2007/06/14 23:14:27 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -118,6 +118,7 @@ int exec_str(struct sip_msg *msg, str* cmd, char *param, int param_len) {
 	int uri_cnt;
 	int uri_len;
 	int exit_status;
+	struct run_act_ctx ra_ctx;
 
 	/* pessimist: assume error by default */
 	ret=-1;
@@ -163,7 +164,8 @@ int exec_str(struct sip_msg *msg, str* cmd, char *param, int param_len) {
 			act.type = SET_URI_T;
 			act.val[0].type = STRING_ST;
 			act.val[0].u.string = uri_line;
-			if (do_action(&act, msg)<0) {
+			init_run_actions_ctx(&ra_ctx);
+			if (do_action(&ra_ctx, &act, msg)<0) {
 				LOG(L_ERR,"ERROR:exec_str : SET_URI_T action failed\n");
 				ser_error=E_OUT_OF_MEM;
 				goto error02;

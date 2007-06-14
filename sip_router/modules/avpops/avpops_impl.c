@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.c,v 1.17 2006/01/09 19:42:35 tma0 Exp $
+ * $Id: avpops_impl.c,v 1.18 2007/06/14 23:14:20 andrei Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -783,6 +783,7 @@ int ops_pushto_avp ( struct sip_msg* msg, struct fis_param* dst,
 	str            val;
 	int            act_type;
 	int            n;
+	struct run_act_ctx ra_ctx;
 
 	/* search for the avp */
 	name_type = (((ap->flags&AVPOPS_VAL_INT))?0:AVP_NAME_STR);
@@ -848,7 +849,8 @@ int ops_pushto_avp ( struct sip_msg* msg, struct fis_param* dst,
 			act.val[0].type = STRING_ST;
 			act.val[0].u.string = val.s;
 			act.type = act_type;
-			if (do_action(&act, msg)<0)
+			init_run_actions_ctx(&ra_ctx);
+			if (do_action(&ra_ctx, &act, msg)<0)
 			{
 				LOG(L_ERR,"ERROR:avpops:pushto_avp: SET_XXXX_T action"
 					" failed\n");

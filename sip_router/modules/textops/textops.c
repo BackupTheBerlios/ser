@@ -1,4 +1,4 @@
-/*$Id: textops.c,v 1.68 2007/03/14 17:28:04 andrei Exp $
+/*$Id: textops.c,v 1.69 2007/06/14 23:14:28 andrei Exp $
  *
  * Example ser module, it implements the following commands:
  * search_append("key", "txt") - insert a "txt" after "key"
@@ -536,6 +536,7 @@ static int subst_user_f(struct sip_msg* msg, char*  subst, char* ignored)
 	str user;
 	char c;
 	int nmatches;
+	struct run_act_ctx ra_ctx;
 
 	c=0;
 	if (parse_sip_msg_uri(msg)<0){
@@ -563,7 +564,8 @@ static int subst_user_f(struct sip_msg* msg, char*  subst, char* ignored)
 	act.type = SET_USER_T;
 	act.val[0].type = STRING_ST;
 	act.val[0].u.string = result->s;
-	rval = do_action(&act, msg);
+	init_run_actions_ctx(&ra_ctx);
+	rval = do_action(&ra_ctx, &act, msg);
 	pkg_free(result);
 	return rval;
 }

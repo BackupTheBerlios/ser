@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_sig.c,v 1.15 2006/02/16 14:27:50 janakj Exp $
+ * $Id: cpl_sig.c,v 1.16 2007/06/14 23:14:20 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -47,12 +47,14 @@ int cpl_proxy_to_loc_set( struct sip_msg *msg, struct location **locs,
 {
 	struct location *foo;
 	struct action act;
+	struct run_act_ctx ra_ctx;
 
 	if (!*locs) {
 		LOG(L_ERR,"ERROR:cpl_c:cpl_proxy_to_loc_set: empty loc set!!\n");
 		goto error;
 	}
-
+	
+	init_run_actions_ctx(&ra_ctx);
 	/* if it's the first time when this sip_msg is proxied, use the first addr
 	 * in loc_set to rewrite the RURI */
 	if (!(flag&CPL_PROXY_DONE)) {
@@ -65,7 +67,7 @@ int cpl_proxy_to_loc_set( struct sip_msg *msg, struct location **locs,
 		act.val[0].u.string = (*locs)->addr.uri.s;
 		act.next = 0;
 		/* push the action */
-		if (do_action(&act, msg) < 0) {
+		if (do_action(&ra_ctx, &act, msg) < 0) {
 			LOG(L_ERR,"ERROR:cpl_c:cpl_proxy_to_loc_set: do_action failed\n");
 			goto error;
 		}
@@ -96,7 +98,7 @@ int cpl_proxy_to_loc_set( struct sip_msg *msg, struct location **locs,
 
 	/* run what proxy route is set */
 	if (cpl_env.proxy_route) {
-		if (run_actions( main_rt.rlist[cpl_env.proxy_route], msg)<0) {
+		if (run_actions(&ra_ctx, main_rt.rlist[cpl_env.proxy_route], msg)<0) {
 			LOG(L_ERR,"ERROR:cpl_c:cpl_proxy_to_loc_set: "
 				"Error in do_action for proxy_route\n");
 		}
