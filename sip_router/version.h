@@ -1,5 +1,5 @@
 /*
- * $Id: version.h,v 1.11 2007/06/12 18:07:13 andrei Exp $
+ * $Id: version.h,v 1.12 2007/06/18 21:20:58 andrei Exp $
  *
  * version and compile flags macros 
  *
@@ -260,6 +260,12 @@
 #define USE_DNS_FAILOVER_STR ""
 #endif
 
+#ifdef USE_NAPTR
+#define USE_NAPTR_STR ", USE_NAPTR"
+#else
+#define USE_NAPTR_STR ""
+#endif
+
 #ifdef USE_DST_BLACKLIST
 #define USE_DST_BLACKLIST_STR ", USE_DST_BLACKLIST"
 #else
@@ -291,7 +297,7 @@
 	USE_FUTEX_STR \
 	FAST_LOCK_STR NOSMP_STR USE_PTHREAD_MUTEX_STR USE_POSIX_SEM_STR \
 	USE_SYSV_SEM_STR USE_COMP_STR USE_DNS_CACHE_STR USE_DNS_FAILOVER_STR \
-	USE_DST_BLACKLIST_STR
+	USE_NAPTR_STR USE_DST_BLACKLIST_STR
 
 
 #endif

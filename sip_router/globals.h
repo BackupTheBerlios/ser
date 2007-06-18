@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.70 2007/06/07 21:40:14 andrei Exp $
+ * $Id: globals.h,v 1.71 2007/06/18 21:20:58 andrei Exp $
  *
  * global variables
  *
@@ -212,6 +212,8 @@ extern unsigned int dns_cache_min_ttl; /* minimum ttl */
 extern unsigned int dns_timer_interval; /* gc timer interval in s */
 extern int dns_flags; /* default flags used for the  dns_*resolvehost 
                     (compatibility wrappers) */
+extern int dns_srv_lb; /* default SRV LB support value */
+
 #endif
 #ifdef USE_DST_BLACKLIST
 extern int use_dst_blacklist; /* 1 if the blacklist is enabled */

@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.91 2007/06/14 23:12:26 andrei Exp $
+ * $Id: action.c,v 1.92 2007/06/18 21:20:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -176,7 +176,8 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 											 from the uri */
 					switch(u->proto){
 						case PROTO_NONE:
-							dst.proto=PROTO_UDP;
+							/*dst.proto=PROTO_UDP; */
+							/* no proto, try to get it from the dns */
 							break;
 						case PROTO_UDP:
 #ifdef USE_TCP

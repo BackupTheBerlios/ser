@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.235 2007/06/14 23:23:47 andrei Exp $
+ * $Id: main.c,v 1.236 2007/06/18 21:20:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -170,7 +170,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.235 2007/06/14 23:23:47 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.236 2007/06/18 21:20:58 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1579,7 +1579,7 @@ try_again:
 		goto error;
 	}
 #ifdef USE_DNS_CACHE
-	if (init_dns_cache()<0){
+	if (use_dns_cache && init_dns_cache()<0){
 		LOG(L_CRIT, "could not initialize the dns cache, exiting...\n");
 		goto error;
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: dns_wrappers.h,v 1.1 2006/09/15 10:37:45 andrei Exp $
+ * $Id: dns_wrappers.h,v 1.2 2007/06/18 21:20:58 andrei Exp $
  *
  * resolver related functions
  *
@@ -36,6 +36,6 @@
 
 struct hostent* dns_resolvehost(char* name);
 struct hostent* dns_sip_resolvehost(str* name, unsigned short* port,
-										int proto);
+										char* proto);
 
 #endif
