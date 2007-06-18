@@ -1,4 +1,4 @@
-/* $Id: functions.h,v 1.9 2006/04/18 19:56:48 andrei Exp $
+/* $Id: functions.h,v 1.10 2007/06/18 21:23:54 andrei Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  * Copyright (C) 2003 Porta Software Ltd
@@ -37,6 +37,7 @@ pingClients(unsigned int ticks, void *param)
     void *buf, *ptr;
     str contact;
     int needed;
+    char proto;
 
     buf = pkg_malloc(length);
     if (buf == NULL) {
@@ -82,7 +83,8 @@ pingClients(unsigned int ticks, void *param)
             continue;
         if (uri.port_no == 0)
             uri.port_no = SIP_PORT;
-        hostent = sip_resolvehost(&uri.host, &uri.port_no, PROTO_UDP);
+        proto=PROTO_UDP;
+        hostent = sip_resolvehost(&uri.host, &uri.port_no, &proto);
         if (hostent == NULL){
             LOG(L_ERR, "error: mediaproxy/pingClients(): can't resolve host\n");
             continue;
