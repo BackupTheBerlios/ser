@@ -1,7 +1,7 @@
 /*
  * Presence Agent, notifications
  *
- * $Id: notify.c,v 1.51 2007/05/14 10:25:49 sobomax Exp $
+ * $Id: notify.c,v 1.52 2007/06/19 13:17:35 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -348,6 +348,7 @@ static int prepare_presence_notify(struct retr_buf **dst,
 	str headers = STR_NULL;
 	str body = STR_STATIC_INIT("");
 	int res = 0;
+	uac_req_t	uac_r;
 	
 	switch(_w->preferred_mimetype) {
 		case DOC_XPIDF:
@@ -384,8 +385,16 @@ static int prepare_presence_notify(struct retr_buf **dst,
 	if (!is_str_empty(&doc)) body = doc;
 /*	res = tmb.t_request_within(&notify, &headers, &body, 
 			_w->dialog, pa_notify_cb, cbd);*/
-	res = tmb.prepare_request_within(&notify, &headers, &body, 
-			_w->dialog, pa_notify_cb, cbd, dst);
+	set_uac_req(&uac_r,
+			&notify,
+			&headers,
+			&body, 
+			_w->dialog,
+			TMCB_LOCAL_COMPLETED,
+			pa_notify_cb,
+			cbd
+		);
+	res = tmb.prepare_request_within(&uac_r, dst);
 	if (res < 0) {
 		ERR("Can't send NOTIFY (%d) in dlg %.*s, %.*s, %.*s\n", res, 
 			FMT_STR(_w->dialog->id.call_id), 
@@ -409,6 +418,7 @@ static int prepare_winfo_notify(struct retr_buf **dst,
 	str headers = STR_NULL;
 	int res = 0;
 	str body = STR_STATIC_INIT("");
+	uac_req_t	uac_r;
 	
 	switch (_w->preferred_mimetype) {
 		case DOC_WINFO:
@@ -430,8 +440,16 @@ static int prepare_winfo_notify(struct retr_buf **dst,
 
 	if (!is_str_empty(&doc)) body = doc;
 	/* res = tmb.t_request_within(&notify, &headers, &body, _w->dialog, 0, 0); */
-	res = tmb.prepare_request_within(&notify, &headers, &body, 
-			_w->dialog, pa_notify_cb, cbd, dst);
+	set_uac_req(&uac_r,
+			&notify,
+			&headers,
+			&body, 
+			_w->dialog,
+			TMCB_LOCAL_COMPLETED,
+			pa_notify_cb,
+			cbd
+		);
+	res = tmb.prepare_request_within(&uac_r, dst);
 	if (res < 0) {
 		ERR("Can't send watcherinfo notification (%d)\n", res);
 	}
@@ -453,6 +471,7 @@ int prepare_unauthorized_notify(struct retr_buf **dst,
 	str headers = STR_NULL;
 	str body = STR_STATIC_INIT("");
 	int res;
+	unc_req_t	uac_r;
 
 	/* send notifications to unauthorized (pending) watchers */
 	if (create_headers(_w, &headers, NULL) < 0) {
@@ -460,8 +479,16 @@ int prepare_unauthorized_notify(struct retr_buf **dst,
 		return -7;
 	}
 
-	res = tmb.prepare_request_within(&notify, &headers, &body, 
-			_w->dialog, pa_notify_cb, cbd, dst);
+	set_uac_req(&uac_r,
+			&notify,
+			&headers,
+			&body, 
+			_w->dialog,
+			TMCB_LOCAL_COMPLETED,
+			pa_notify_cb,
+			cbd
+		);
+	res = tmb.prepare_request_within(&uac_r, dst);
 	if (res < 0) {
 		ERR("Can't send NOTIFY (%d) in dlg %.*s, %.*s, %.*s\n", res, 
 			FMT_STR(_w->dialog->id.call_id), 
@@ -542,6 +569,7 @@ int send_winfo_notify_offline(struct presentity* _p,
 	str content_type = STR_NULL;
 	str headers = STR_NULL;
 	str body = STR_STATIC_INIT("");
+	uac_req_t	uac_r;
 	
 	switch (_w->preferred_mimetype) {
 		case DOC_WINFO:
@@ -561,7 +589,16 @@ int send_winfo_notify_offline(struct presentity* _p,
 	}
 
 	if (!is_str_empty(&doc)) body = doc;
-	tmb.t_request_within(&notify, &headers, &body, _w->dialog, completion_cb, cbp);
+	set_uac_req(&uac_r,
+			&notify,
+			&headers,
+			&body, 
+			_w->dialog,
+			TMCB_LOCAL_COMPLETED,
+			completion_cb,
+			cbp
+		);
+	tmb.t_request_within(&uac_r);
 
 	str_free_content(&doc);
 	str_free_content(&headers);
