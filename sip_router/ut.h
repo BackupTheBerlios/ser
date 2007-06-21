@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.47 2007/06/05 13:53:41 andrei Exp $
+ *$Id: ut.h,v 1.48 2007/06/21 11:38:42 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -526,6 +526,11 @@ int group2gid(int* gid, char* group);
  */
 time_t _timegm(struct tm* t);
 
+/* Convert time_t value that is relative to local timezone to UTC */
+time_t local2utc(time_t in);
+
+/* Convert time_t value in UTC to to value relative to local time zone */
+time_t utc2local(time_t in);
 
 /*
  * Return str as zero terminated string allocated
