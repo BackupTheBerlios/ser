@@ -1,5 +1,5 @@
 /* 
- * $Id: db_res.h,v 1.9 2007/04/18 12:53:30 janakj Exp $ 
+ * $Id: db_res.h,v 1.10 2007/06/25 17:51:29 liborc Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -43,7 +43,7 @@ extern "C" {
 
 typedef struct db_res {
 	db_gen_t gen;           /* Generic part of the structure */
-	unsigned int fields;    /* Number of fields in the result */
+	unsigned int field_count;    /* Number of fields in the result */
 	struct db_rec* cur_rec; /* Currently active record in the result */
     struct db_cmd* cmd;     /* Command that produced the result */
 } db_res_t;

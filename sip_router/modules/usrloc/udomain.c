@@ -1,5 +1,5 @@
 /* 
- * $Id: udomain.c,v 1.55 2007/04/19 07:01:10 kubartv Exp $ 
+ * $Id: udomain.c,v 1.56 2007/06/25 17:51:29 liborc Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -309,7 +309,7 @@ int preload_udomain(udomain_t* _d)
 	urecord_t* r;
 	ucontact_t* c;
 
-	get_all = db_cmd(DB_GET, db, _d->name->s, columns, NULL);
+	get_all = db_cmd(DB_GET, db, _d->name->s, columns, NULL, NULL);
 	if (get_all == NULL) {
 		ERR("Error while compiling DB_GET command\n");
 		return -1;

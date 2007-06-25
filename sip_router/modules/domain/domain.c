@@ -1,5 +1,5 @@
 /* 
- * $Id: domain.c,v 1.26 2007/04/18 13:08:46 janakj Exp $
+ * $Id: domain.c,v 1.27 2007/06/25 17:51:30 liborc Exp $
  *
  * Domain table related functions
  *
@@ -183,7 +183,7 @@ int db_load_domain_attrs(domain_t* d)
 	db_rec_t* rec;
     unsigned short flags;
     
-	load_attrs_cmd->params[0].v.lstr = d->did;
+	load_attrs_cmd->match[0].v.lstr = d->did;
 
 	if (db_exec(&res, load_attrs_cmd) < 0) {
 		ERR("Error while quering database\n");
