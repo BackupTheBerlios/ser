@@ -1,5 +1,5 @@
 /* 
- * $Id: db_drv.c,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_drv.c,v 1.4 2007/06/25 17:54:03 liborc Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -94,7 +94,10 @@ int db_drv_call(str* module, char* func_name, void* db_struct, int offset)
 	int ret;
 
 	ret = db_drv_func(&func, module, func_name);
-	if (ret < 0) return -1;
+	if (ret < 0) {
+		ERR("db: db_drv_call failed\n");
+		return -1;
+	}
 
 	if (ret == 0) {
 		db_payload_idx = offset;

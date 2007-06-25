@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.c,v 1.6 2007/04/18 12:53:30 janakj Exp $ 
+ * $Id: db_fld.c,v 1.7 2007/06/25 17:54:03 liborc Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -115,6 +115,7 @@ db_fld_t* db_fld_copy(db_fld_t* fld)
 	return newp;
 
  error:
+ 	ERR("db_fld_copy() failed\n");
 	if (newp) {
 		db_gen_free(&newp->gen);
 		pkg_free(newp);

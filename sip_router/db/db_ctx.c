@@ -1,5 +1,5 @@
 /* 
- * $Id: db_ctx.c,v 1.4 2007/04/05 11:38:33 janakj Exp $ 
+ * $Id: db_ctx.c,v 1.5 2007/06/25 17:54:03 liborc Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -233,6 +233,7 @@ int db_add_db(db_ctx_t* ctx, const char* uri)
 
  error:
 	if (parsed_uri) db_uri_free(parsed_uri);
+	ERR("db: db_add_db failed\n");
 	return -1;
 }
 
