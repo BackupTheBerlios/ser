@@ -1,5 +1,5 @@
 /* 
- * $Id: mysql_mod.h,v 1.1 2007/04/04 11:48:36 janakj Exp $ 
+ * $Id: mysql_mod.h,v 1.2 2007/06/25 15:39:09 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -38,5 +38,11 @@
 
 extern int ping_interval;
 extern int auto_reconnect;
+
+extern unsigned int my_connect_to;
+extern unsigned int my_send_to;
+extern unsigned int my_recv_to;
+
+extern unsigned long my_client_ver;
 
 #endif /* _MYSQL_MOD_H */
