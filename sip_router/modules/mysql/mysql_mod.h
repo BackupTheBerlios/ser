@@ -1,5 +1,5 @@
 /* 
- * $Id: mysql_mod.h,v 1.2 2007/06/25 15:39:09 janakj Exp $ 
+ * $Id: mysql_mod.h,v 1.3 2007/06/25 17:53:12 liborc Exp $ 
  *
  * MySQL module interface
  *
@@ -36,6 +36,10 @@
 #ifndef _MYSQL_MOD_H
 #define _MYSQL_MOD_H
 
+/** @defgroup mysql MySQL db driver
+ *  @ingroup DB-API
+ */
+/** @{ */
 extern int ping_interval;
 extern int auto_reconnect;
 
@@ -44,5 +48,6 @@ extern unsigned int my_send_to;
 extern unsigned int my_recv_to;
 
 extern unsigned long my_client_ver;
+/** @} */
 
 #endif /* _MYSQL_MOD_H */
