@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.h,v 1.3 2007/06/26 15:30:07 andrei Exp $
+ * $Id: dst_blacklist.h,v 1.4 2007/06/26 15:35:06 andrei Exp $
  *
  * resolver related functions
  *
@@ -58,7 +58,7 @@
 
 #ifdef DST_BLACKLIST_HOOKS
 struct blacklist_hook{
-	int (*on_blst_add)(struct dest_info* si, unsigned char* err_flags);
+	int (*on_blst_action)(struct dest_info* si, unsigned char* err_flags);
 	/* called before ser shutdown */
 	void (*destroy)(void);
 };
