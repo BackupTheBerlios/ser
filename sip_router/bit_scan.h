@@ -1,5 +1,5 @@
 /* 
- * $Id: bit_scan.h,v 1.1 2007/06/25 17:20:34 andrei Exp $
+ * $Id: bit_scan.h,v 1.2 2007/06/26 13:32:54 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -150,8 +150,8 @@
  *  ("Using de Bruijn Sequences to Index a 1 in a Computer Word")
  */
 
-extern int _debruijn_hash32[32]; /* see bit_scan.c */
-extern int _debruijn_hash64[64]; /* see bit_scan.c */
+extern unsigned char _debruijn_hash32[32]; /* see bit_scan.c */
+extern unsigned char _debruijn_hash64[64]; /* see bit_scan.c */
 
 #define DEBRUIJN_CT32  0x04653ADFU
 #define DEBRUIJN_CT64  0x0218A392CD3D5DBFULL 
