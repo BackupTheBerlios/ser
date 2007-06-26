@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.h,v 1.2 2007/05/30 22:22:42 andrei Exp $
+ * $Id: dst_blacklist.h,v 1.3 2007/06/26 15:30:07 andrei Exp $
  *
  * resolver related functions
  *
@@ -46,11 +46,15 @@
 #define BLST_ADM_PROHIBITED	(1<<6)	/* administratively prohibited */
 #define BLST_PERMANENT		(1<<7)  /* never deleted, never expires */
 
-
+/* uncomment the define above to enable blacklist callbacks support */
 /*#define DST_BLACKLIST_HOOKS*/
 
-#define DST_BLACKLIST_ACCEPT 0
-#define DST_BLACKLIST_DENY  -1
+#define DST_BLACKLIST_CONTINUE 0 /* add: do nothing/ignore, search: ignore */
+#define DST_BLACKLIST_ACCEPT 1   /* add: force accept, search: force match */
+#define DST_BLACKLIST_DENY  -1   /* add: deny, search: force no match */
+
+#define DST_BLACKLIST_ADD_CB 1
+#define DST_BLACKLIST_SEARCH_CB 2
 
 #ifdef DST_BLACKLIST_HOOKS
 struct blacklist_hook{
@@ -59,7 +63,7 @@ struct blacklist_hook{
 	void (*destroy)(void);
 };
 
-int register_blacklist_hook(struct blacklist_hook *h);
+int register_blacklist_hook(struct blacklist_hook *h, int type);
 #endif /* DST_BLACKLIST_HOOKS */
 
 int init_dst_blacklist();
