@@ -1,6 +1,6 @@
 /*
  *
- * $Id: t_stats.h,v 1.13 2007/06/07 21:45:56 andrei Exp $
+ * $Id: t_stats.h,v 1.14 2007/06/27 21:11:33 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -143,5 +143,8 @@ void free_tm_stats();
 
 extern const char* tm_rpc_stats_doc[2];
 void tm_rpc_stats(rpc_t* rpc, void* c);
+
+extern const char* tm_rpc_hash_stats_doc[2];
+void tm_rpc_hash_stats(rpc_t* rpc, void* c);
 
 #endif

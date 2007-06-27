@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.157 2007/06/07 21:45:56 andrei Exp $
+ * $Id: tm.c,v 1.158 2007/06/27 21:11:33 andrei Exp $
  *
  * TM module
  *
@@ -1343,6 +1343,7 @@ static rpc_export_t tm_rpc[] = {
 	{"tm.cancel", rpc_cancel,   rpc_cancel_doc,   0},
 	{"tm.reply",  rpc_reply,    rpc_reply_doc,    0},
 	{"tm.stats",  tm_rpc_stats, tm_rpc_stats_doc, 0},
+	{"tm.hash_stats",  tm_rpc_hash_stats, tm_rpc_hash_stats_doc, 0},
 	{0, 0, 0, 0}
 };
 
