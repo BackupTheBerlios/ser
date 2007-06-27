@@ -1,5 +1,5 @@
 /*
- * $Id: sercmd.c,v 1.7 2007/05/29 21:25:53 andrei Exp $
+ * $Id: sercmd.c,v 1.8 2007/06/27 21:09:27 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -78,7 +78,7 @@
 #define UNIX_PATH_MAX 108
 #endif
 
-static char id[]="$Id: sercmd.c,v 1.7 2007/05/29 21:25:53 andrei Exp $";
+static char id[]="$Id: sercmd.c,v 1.8 2007/06/27 21:09:27 andrei Exp $";
 static char version[]= NAME " " VERSION;
 static char compiled[]= __TIME__ " " __DATE__;
 static char help_msg[]="\
@@ -335,6 +335,9 @@ void print_binrpc_val(struct binrpc_val* v, int ident)
 			break;
 		case BINRPC_T_STRUCT:
 			printf("%c", (v->u.end)?'}':'{');
+			break;
+		case BINRPC_T_DOUBLE:
+			printf("%f", v->u.fval);
 			break;
 		default:
 			printf("ERROR: unknown type %d\n", v->type);
