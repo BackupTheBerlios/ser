@@ -1,5 +1,5 @@
 /*
- * $Id: mysql_mod.c,v 1.4 2007/06/25 17:51:28 liborc Exp $
+ * $Id: mysql_mod.c,v 1.5 2007/07/03 15:16:14 liborc Exp $
  *
  * MySQL module interface
  *
@@ -33,6 +33,10 @@
  *  2003-03-16  flags export parameter added (janakj)
  */
 
+/** @addtogroup mysql
+ *  @{
+ */
+ 
 #include "../../sr_module.h"
 #include "../../db/db.h"
 #include "my_uri.h"
@@ -134,3 +138,5 @@ static int mysql_mod_init(void)
 #endif
 	return 0;
 }
+
+/** @} */
