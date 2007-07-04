@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.237 2007/06/19 14:37:54 andrei Exp $
+ * $Id: main.c,v 1.238 2007/07/04 17:27:33 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -170,7 +170,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.237 2007/06/19 14:37:54 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.238 2007/07/04 17:27:33 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1157,6 +1157,7 @@ int main_loop()
 		fprintf(stderr, "% 3d   % 5d - %s\n", r, pt[r].pid, pt[r].desc);
 	}
 #endif
+	DBG("Expect maximum %d  open fds\n", get_max_open_fds());
 
 	for(;;){
 			handle_sigs();

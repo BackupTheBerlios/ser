@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.38 2007/02/21 01:42:25 andrei Exp $
+ * $Id: tcp_read.c,v 1.39 2007/07/04 17:27:33 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -963,7 +963,7 @@ void tcp_receive_loop(int unix_sock)
 	
 	/* init */
 	tcpmain_sock=unix_sock; /* init com. socket */
-	if (init_io_wait(&io_w, tcp_max_fd_no, tcp_poll_method)<0)
+	if (init_io_wait(&io_w, get_max_open_fds(), tcp_poll_method)<0)
 		goto error;
 	/* add the unix socket */
 	if (io_watch_add(&io_w, tcpmain_sock, F_TCPMAIN, 0)<0){

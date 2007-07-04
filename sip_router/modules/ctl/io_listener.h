@@ -1,5 +1,5 @@
 /*
- * $Id: io_listener.h,v 1.1 2006/02/23 19:57:31 andrei Exp $
+ * $Id: io_listener.h,v 1.2 2007/07/04 17:27:34 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -32,6 +32,8 @@
 #ifndef _io_listener_h
 #define _io_listener_h
 #include "ctrl_socks.h"
+
+#define MAX_IO_READ_CONNECTIONS		128 /* FIXME: make it a config var */
 
 enum sock_con_type { S_CONNECTED, S_DISCONNECTED
 #ifdef USE_FIFO

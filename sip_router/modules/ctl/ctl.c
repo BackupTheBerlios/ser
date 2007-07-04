@@ -1,5 +1,5 @@
 /*
- * $Id: ctl.c,v 1.4 2007/06/07 21:46:57 andrei Exp $
+ * $Id: ctl.c,v 1.5 2007/07/04 17:27:34 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -264,6 +264,7 @@ static int mod_init(void)
 	if (ctrl_sock_lst){
 		/* we will fork */
 		register_procs(1); /* we will be creating an extra process */
+		register_fds(fd_no);
 	}
 #ifdef USE_FIFO
 	fifo_rpc_init();
@@ -290,6 +291,8 @@ static int mod_child(int rank)
 		/* fork, but make sure we know not to close our own sockets when
 		 * ctl child_init will be called for the new child */
 		rpc_handler=1;
+		/* child should start with a correct estimated used fds number*/
+		register_fds(MAX_IO_READ_CONNECTIONS);
 		pid=fork_process(PROC_RPC, "ctl handler", 1);
 		DBG("ctl: mod_child(%d), fork_process=%d, csl=%p\n",
 				rank, pid, ctrl_sock_lst);
@@ -302,6 +305,8 @@ static int mod_child(int rank)
 					rank, fd_no, ctrl_sock_lst);
 			io_listen_loop(fd_no, ctrl_sock_lst);
 		}else{ /* parent */
+			/* not used in parent */
+			register_fds(-MAX_IO_READ_CONNECTIONS);
 			rpc_handler=0;
 		}
 	}
