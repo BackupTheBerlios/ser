@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.16 2006/09/20 10:28:42 andrei Exp $
+ * $Id: pt.h,v 1.17 2007/07/07 00:33:02 andrei Exp $
  *
  * Process Table
  *
@@ -33,6 +33,7 @@
  * --------
  *  2003-04-15  added tcp_disable support (andrei)
  *  2006-06-14	added process table in shared mem (dragos)
+ *  2007-07-04	added register_fds() and get_max_open_fds(() (andrei)
  */
 
 
@@ -69,6 +70,8 @@ extern struct tcp_child* tcp_children;
 int init_pt();
 int get_max_procs();
 int register_procs(int no);
+int get_max_open_fds();
+int register_fds(int no);
 
 /* return processes pid */
 int my_pid();
