@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.411 2007/06/18 21:20:58 andrei Exp $
+# $Id: Makefile.defs,v 1.412 2007/07/07 00:40:59 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -726,7 +726,7 @@ ifeq		($(CC_NAME), gcc)
 ifeq			($(CC_SHORTVER), 4.x)
 					CPU ?= ultrasparc
 					#use 32bit for now
-					CFLAGS+=-mcpu=ultrasparc -minline-all-stringops \
+					CFLAGS+=-mcpu=ultrasparc  \
 							-mtune=$(CPU) \
 							-ftree-vectorize
 else
