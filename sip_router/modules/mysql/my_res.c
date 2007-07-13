@@ -1,5 +1,5 @@
 /* 
- * $Id: my_res.c,v 1.1 2007/04/04 11:48:20 janakj Exp $
+ * $Id: my_res.c,v 1.2 2007/07/13 08:52:29 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -40,7 +40,7 @@ void my_res_free(db_res_t* res, struct my_res* payload)
 
 	mcmd = DB_GET_PAYLOAD(res->cmd);
 
-	if (mysql_stmt_free_result(mcmd->st)) {
+	if (mcmd->st && mysql_stmt_free_result(mcmd->st)) {
 		ERR("Error while freeing MySQL result: %s\n", mysql_stmt_error(mcmd->st));
 	}
 
