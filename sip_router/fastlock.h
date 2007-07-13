@@ -1,7 +1,7 @@
 /*
  * fast architecture specific locking
  *
- * $Id: fastlock.h,v 1.35 2007/05/11 20:44:15 andrei Exp $
+ * $Id: fastlock.h,v 1.36 2007/07/13 15:12:46 andrei Exp $
  *
  * 
  *
@@ -63,14 +63,7 @@
 #ifndef fastlock_h
 #define fastlock_h
 
-#ifdef HAVE_SCHED_YIELD
-#include <sched.h>
-#else
-#include <unistd.h>
-	/* fake sched_yield */
-	#define sched_yield()	sleep(0)
-#endif
-
+#include "sched_yield.h"
 
 
 #define SPIN_OPTIMIZE /* if defined optimize spining on the lock:

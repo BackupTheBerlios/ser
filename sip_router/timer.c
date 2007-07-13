@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.22 2007/07/02 15:27:39 andrei Exp $
+ * $Id: timer.c,v 1.23 2007/07/13 15:12:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -59,17 +59,7 @@
 #include "mem/shm_mem.h"
 #endif
 #include "locking.h"
-
-#ifdef HAVE_SCHED_YIELD
-#include <sched.h>
-#else
-#include <unistd.h>
-	/* fake sched_yield */
-#ifndef sched_yield()
-#define sched_yield()	sleep(0)
-#endif
-#endif
-
+#include "sched_yield.h"
 
 
 /* how often will the timer handler be called (in ticks) */
