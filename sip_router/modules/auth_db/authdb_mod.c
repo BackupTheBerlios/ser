@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.c,v 1.45 2007/06/25 17:51:28 liborc Exp $
+ * $Id: authdb_mod.c,v 1.46 2007/07/13 08:45:46 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -102,7 +102,7 @@ str flags_column    = STR_STATIC_INIT(FLAGS_COL);
 str plain_password_column   = STR_STATIC_INIT(PLAIN_PASS_COL);
 
 int calc_ha1 = 0;
-int use_did = 1;
+int use_did = 0;
 
 db_ctx_t* auth_db_handle = 0;      /* database connection handle */
 auth_api_t auth_api;
@@ -248,7 +248,10 @@ static int child_init(int rank)
 
 err:
 
-	if (auth_db_handle) db_ctx_free(auth_db_handle);
+	if (auth_db_handle) {
+		auth_db_handle = NULL;
+		db_ctx_free(auth_db_handle);
+	}
 
 	ERR("Error while initializing database layer\n");
 	return -1;
