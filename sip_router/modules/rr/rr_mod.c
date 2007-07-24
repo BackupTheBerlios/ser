@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module
  *
- * $Id: rr_mod.c,v 1.53 2007/02/08 14:33:32 janakj Exp $
+ * $Id: rr_mod.c,v 1.54 2007/07/24 12:17:27 tma0 Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -53,6 +53,7 @@
 #include "../../crc.h"
 #include "../../select.h"
 #include "../domain/domain.h"
+#include "../../select_buf.h"
 
 int append_fromtag = 1;
 int enable_double_rr = 1; /* Enable using of 2 RR by default */
@@ -128,8 +129,16 @@ struct module_exports exports = {
 static ABSTRACT_F(select_rrmod)
 
 static int select_rr_avpcookie(str* res, struct select* s, struct sip_msg* msg) {
-	*res=*rr_get_avp_cookies();
-	return (res->len==0?1:0);
+	str *s2;
+	int ret;
+	s2 = rr_get_avp_cookies();
+	if (s2) {
+	    ret = str_to_static_buffer(res, s2);
+	    pkg_free(s2);
+	    return ret;
+	}
+	else
+	    return -1;
 }
 
 static select_row_t rr_select_table[] = {
