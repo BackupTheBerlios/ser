@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.39 2007/06/18 21:20:58 andrei Exp $
+/* $Id: ip_addr.h,v 1.40 2007/07/25 19:40:32 andrei Exp $
  *
  * ip address family related structures
  *
@@ -187,6 +187,22 @@ void print_net(struct net* net);
 /* Returns 1 if the given address is a multicast address */
 int is_mcast(struct ip_addr* ip);
 #endif /* USE_MCAST */
+
+/* returns 1 if the given ip address is INADDR_ANY or IN6ADDR_ANY,
+ * 0 otherwise */
+inline static int ip_addr_any(struct ip_addr* ip)
+{
+	int r;
+	int l;
+	
+	l=ip->len/4;
+	for (r=0; r<l; r++)
+		if (ip->u.addr32[r]!=0)
+			return 0;
+	return 1;
+}
+
+
 
 /* returns 1 if ip & net.mask == net.ip ; 0 otherwise & -1 on error 
 	[ diff. address families ]) */

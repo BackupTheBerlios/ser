@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_init.h,v 1.4 2006/09/19 16:13:27 andrei Exp $
+ * $Id: tcp_init.h,v 1.5 2007/07/25 19:40:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -46,5 +46,10 @@ void tcp_main_loop();
 void tcp_receive_loop(int unix_sock);
 int tcp_fix_child_sockets(int* fd);
 
+/* sets source address used when opening new sockets and no source is specified
+ *  (by default the address is choosen by the kernel)
+ * Should be used only on init.
+ * returns -1 on error */
+int tcp_set_src_addr(struct ip_addr* ip);
 
 #endif
