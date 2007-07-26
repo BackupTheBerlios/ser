@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.h,v 1.3 2007/06/18 21:20:58 andrei Exp $
+ * $Id: dns_cache.h,v 1.4 2007/07/26 11:18:35 tirpi Exp $
  *
  * resolver/dns related functions, dns cache and failover
  *
@@ -46,6 +46,10 @@
 
 #if defined(USE_DNS_FAILOVER) && !defined(USE_DNS_CACHE)
 #error "DNS FAILOVER requires DNS CACHE support (define USE_DNS_CACHE)"
+#endif
+
+#if defined(DNS_WATCHDOG_SUPPORT) && !defined(USE_DNS_CACHE)
+#error "DNS WATCHDOG requires DNS CACHE support (define USE_DNS_CACHE)"
 #endif
 
 /* uncomment the define below for SRV weight based load balancing */
@@ -308,4 +312,13 @@ inline static int dns_sip_resolve2su(struct dns_srv_handle* h,
 		init_su(su, &ip, port);
 	return ret;
 }
+
+#ifdef DNS_WATCHDOG_SUPPORT
+/* sets the state of the DNS servers:
+ * 1: at least one server is up
+ * 0: all the servers are down
+ */
+void dns_set_server_state(int state);
+#endif /* DNS_WATCHDOG_SUPPORT */
+
 #endif
