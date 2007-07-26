@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.h,v 1.4 2007/07/26 11:18:35 tirpi Exp $
+ * $Id: dns_cache.h,v 1.5 2007/07/26 11:32:01 tirpi Exp $
  *
  * resolver/dns related functions, dns cache and failover
  *
@@ -312,6 +312,9 @@ inline static int dns_sip_resolve2su(struct dns_srv_handle* h,
 		init_su(su, &ip, port);
 	return ret;
 }
+
+/* deletes all the entries from the cache */
+void dns_cache_flush(void);
 
 #ifdef DNS_WATCHDOG_SUPPORT
 /* sets the state of the DNS servers:
