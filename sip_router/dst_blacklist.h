@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.h,v 1.4 2007/06/26 15:35:06 andrei Exp $
+ * $Id: dst_blacklist.h,v 1.5 2007/07/26 11:42:53 tirpi Exp $
  *
  * resolver related functions
  *
@@ -72,4 +72,10 @@ void destroy_dst_blacklist();
 int dst_blacklist_add(unsigned char err_flags, struct dest_info* si);
 
 int dst_is_blacklisted(struct dest_info* si);
+
+/* deletes all the entries from the blacklist except the permanent ones
+ * (which are marked with BLST_PERMANENT)
+ */
+void dst_blst_flush(void);
+
 #endif
