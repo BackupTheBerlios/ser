@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.178 2007/06/07 21:52:30 andrei Exp $
+# $Id: Makefile,v 1.179 2007/07/30 21:42:21 tma0 Exp $
 #
 # sip_router makefile
 #
@@ -120,7 +120,7 @@ module_group_stable=cpl-c dbtext jabber osp sms
 # Modules in this group are either not complete, untested, or without enough
 # reports of usage to allow the module into the stable group. They may or may
 # not have dependencies
-module_group_experimental=tls oracle
+module_group_experimental=tls oracle iptrtpproxy
 
 # Doxygen directory
 doxygen_dir=doc/doxygen
@@ -145,7 +145,7 @@ else
 	# excluded because they do not compile (remove them only after they are
 	#  fixed) -- andrei
 	exclude_modules+= avpops  bdb db_ops dbtext flatstore lcr msilo pdt \
-						permissions speeddial
+						permissions speeddial iptrtpproxy
 endif
 
 # always exclude the CVS dir
