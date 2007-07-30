@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.413 2007/07/26 11:18:34 tirpi Exp $
+# $Id: Makefile.defs,v 1.414 2007/07/30 19:49:09 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -76,7 +76,7 @@ MAIN_NAME=ser
 VERSION = 2
 PATCHLEVEL = 1
 SUBLEVEL =  0
-EXTRAVERSION = -dev9-dns
+EXTRAVERSION = -dev10
 
 SER_VER = $(shell expr $(VERSION) \* 1000000 + $(PATCHLEVEL) \* 1000 + \
 			$(SUBLEVEL) )

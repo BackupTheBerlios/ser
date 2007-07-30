@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.101 2007/05/01 22:02:12 sobomax Exp $
+ * $Id: sip_msg.c,v 1.102 2007/07/30 19:49:10 andrei Exp $
  *
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -361,6 +361,7 @@ struct sip_msg*  sip_msg_cloner( struct sip_msg *org_msg, int *sip_msg_len )
 		case HDR_RECORDROUTE_T:
 		case HDR_CONTENTTYPE_T:
 		case HDR_CONTENTLENGTH_T:
+		case HDR_RETRY_AFTER_T:
 		case HDR_EXPIRES_T:
 		case HDR_SUPPORTED_T:
 		case HDR_REQUIRE_T:
@@ -538,6 +539,7 @@ do { \
 		case HDR_DATE_T:
 		case HDR_IDENTITY_T:
 		case HDR_IDENTITY_INFO_T:
+		case HDR_RETRY_AFTER_T:
 			break;
 
 		case HDR_VIA_T:

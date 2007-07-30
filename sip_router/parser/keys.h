@@ -1,5 +1,5 @@
 /*
- * $Id: keys.h,v 1.21 2007/05/01 21:25:53 sobomax Exp $
+ * $Id: keys.h,v 1.22 2007/07/30 19:49:09 andrei Exp $
  *
  * Fast 32-bit Header Field Name Parser -- keys
  *
@@ -173,5 +173,11 @@
 #define _est__ 0x2d747365   /* "est-" */
 
 #define _min__ 0x2d6e696d   /* "min-" */
+
+
+#define _retr_ 0x72746572   /* "retr" */
+#define _y_af_ 0x66612d79   /* "y-af" */
+#define _ter1_ 0x3a726574   /* "ter:" */
+#define _ter2_ 0x20726574   /* "ter " */
 
 #endif /* KEYS_H */
