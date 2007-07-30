@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.48 2007/06/21 11:38:42 janakj Exp $
+ *$Id: ut.h,v 1.49 2007/07/30 19:43:08 andrei Exp $
  *
  * - various general purpose functions
  *
@@ -129,6 +129,9 @@
 
 #define MIN_int(a, b) (((a)<(b))?(a):(b))
 #define MAX_int(a, b) (((a)>(b))?(a):(b))
+
+#define MIN_unsigned(a, b) (unsigned)(((unsigned)(a)<(unsigned)(b))?(a):(b))
+#define MAX_unsigned(a, b) (unsigned)(((unsigned)(a)>(unsigned)(b))?(a):(b))
 
 #if 0
 #define MIN_int(a, b) ((b)+(((a)-(b))& -((a)<(b))))
