@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.161 2007/07/30 19:57:39 andrei Exp $
+ * $Id: tm.c,v 1.162 2007/07/30 20:38:44 andrei Exp $
  *
  * TM module
  *
@@ -625,10 +625,6 @@ static int mod_init(void)
 		LOG(L_ERR,"ERROR:tm:mod_init: failed to process timer AVPs\n");
 		return -1;
 	}
-#ifdef USE_DST_BLACKLIST
-	tm_blst_503_default=blst_timeout; /* by default use blacklist's generic 
-										 value */
-#endif
 	tm_init = 1;
 	return 0;
 }
