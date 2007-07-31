@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_api.h,v 1.2 2007/05/10 11:21:22 kubartv Exp $
+ * $Id: binrpc_api.h,v 1.3 2007/07/31 10:21:25 mma Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -287,5 +287,15 @@ char *binrpc_get_last_errs();
  *
  * */
 void binrpc_clear_last_err();
+
+/**
+ * Function: binrpc_free_rpc_array
+ *
+ * Description:
+ *    The function frees memory allocated internally to store reply values
+ *    and finally frees the values array
+ *
+ * */
+void binrpc_free_rpc_array(struct binrpc_val* a, int size);
 
 #endif /*BINRPC_API_H_*/
