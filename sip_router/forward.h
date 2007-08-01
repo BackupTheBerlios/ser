@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.29 2006/09/15 10:37:45 andrei Exp $
+ *  $Id: forward.h,v 1.30 2007/08/01 00:05:40 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -112,7 +112,7 @@ static inline int msg_send(struct dest_info* dst, char* buf, int len)
 					" support is disabled\n");
 			goto error;
 		}else{
-			if (tcp_send(dst, buf, len)<0){
+			if (tcp_send(dst, 0, buf, len)<0){
 				STATS_TX_DROPS;
 				LOG(L_ERR, "msg_send: ERROR: tcp_send failed\n");
 				goto error;
@@ -127,7 +127,7 @@ static inline int msg_send(struct dest_info* dst, char* buf, int len)
 					" support is disabled\n");
 			goto error;
 		}else{
-			if (tcp_send(dst, buf, len)<0){
+			if (tcp_send(dst, 0, buf, len)<0){
 				STATS_TX_DROPS;
 				LOG(L_ERR, "msg_send: ERROR: tcp_send failed\n");
 				goto error;

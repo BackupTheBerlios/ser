@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_server.h,v 1.7 2006/11/02 22:55:56 andrei Exp $
+ * $Id: tcp_server.h,v 1.8 2007/08/01 00:05:40 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -34,7 +34,8 @@
 
 /* "public" functions*/
 
-int tcp_send(struct dest_info* dst, char* buf, unsigned len);
+int tcp_send(struct dest_info* dst, union sockaddr_union* from,
+				char* buf, unsigned len);
 
 int tcpconn_add_alias(int id, int port, int proto);
 

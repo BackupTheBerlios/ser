@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.92 2007/06/18 21:20:58 andrei Exp $
+ * $Id: action.c,v 1.93 2007/08/01 00:05:40 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -272,7 +272,7 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 						/*tcp*/
 						dst.proto=PROTO_TCP;
 						dst.id=0;
-						ret=tcp_send(&dst, tmp, len);
+						ret=tcp_send(&dst, 0, tmp, len);
 				}
 #endif
 			}else{
