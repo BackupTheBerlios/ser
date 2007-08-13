@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.73 2007/07/30 19:49:09 andrei Exp $
+ * $Id: msg_parser.h,v 1.74 2007/08/13 12:57:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -192,7 +192,7 @@ struct sip_uri {
 };
 
 
-struct sip_msg {
+typedef struct sip_msg {
 	unsigned int id;               /* message id, unique/process*/
 	struct msg_start first_line;   /* Message first line */
 	struct via_body* via1;         /* The first via */
@@ -293,7 +293,7 @@ struct sip_msg {
 	str set_global_port;
 	struct socket_info* force_send_socket; /* force sending on this socket,
 											  if ser */
-};
+} sip_msg_t;
 
 /* pointer to a fakes message which was never received ;
    (when this message is "relayed", it is generated out

@@ -1,5 +1,5 @@
 /*
- * $Id: hf.h,v 1.32 2007/07/30 19:49:09 andrei Exp $
+ * $Id: hf.h,v 1.33 2007/08/13 12:57:40 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -183,14 +183,14 @@ typedef enum _hdr_types_t hdr_types_t;
 /*
  * Format: name':' body
  */
-struct hdr_field {
+typedef struct hdr_field {
 	hdr_types_t type;       /* Header field type */
 	str name;               /* Header field name */
 	str body;               /* Header field body (may not include CRLF) */
 	int len;		/* length from hdr start until EoHF (incl.CRLF) */
 	void* parsed;           /* Parsed data structures */
 	struct hdr_field* next; /* Next header field in the list */
-};
+} hdr_field_t;
 
 
 
