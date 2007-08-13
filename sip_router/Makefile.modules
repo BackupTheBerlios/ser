@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.modules,v 1.13 2007/05/21 13:55:51 andrei Exp $
+# $Id: Makefile.modules,v 1.14 2007/08/13 12:37:02 janakj Exp $
 #
 # module Makefile
 #(to be included from each module)
@@ -68,3 +68,4 @@ install-libs:
 	@for lib in $(dir $(SER_LIBS)); do \
 		$(MAKE) -C "$${lib}" install-if-newer ;\
 	done
+

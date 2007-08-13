@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.26 2007/05/25 15:50:11 andrei Exp $
+# $Id: Makefile.rules,v 1.27 2007/08/13 12:37:02 janakj Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -171,6 +171,18 @@ mantainer-clean: distclean
 			$(MAKE) -C $$r mantainer-clean; \
 		fi ; \
 	 done 
+
+
+.PHONY: doxygen
+doxygen:
+	-@mkdir -p $(doxygen_dir)
+	doxygen ./$(COREPATH)/doc/doxygen/ser.doxygen
+
+
+.PHONY: clean_doxygen
+clean_doxygen:
+	-@rm -rf $(doxygen_dir)/{xml,man,rtf,latex,html}
+	-@rmdir --ignore-fail-on-non-empty -p $(doxygen_dir) || true
 
 
 .PHONY: TAGS

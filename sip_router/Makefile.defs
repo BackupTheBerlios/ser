@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.415 2007/07/31 13:26:05 gkovacs Exp $
+# $Id: Makefile.defs,v 1.416 2007/08/13 12:37:02 janakj Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -165,6 +165,9 @@ endif
 endif
 endif
 endif
+
+# Doxygen directory
+doxygen_dir=doc/doxygen
 
  # install location
 DESTDIR ?= $(LOCALBASE)
