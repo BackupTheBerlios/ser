@@ -1,5 +1,5 @@
 /*
- * $Id: sercmd.c,v 1.8 2007/06/27 21:09:27 andrei Exp $
+ * $Id: sercmd.c,v 1.9 2007/08/20 10:36:37 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -78,7 +78,7 @@
 #define UNIX_PATH_MAX 108
 #endif
 
-static char id[]="$Id: sercmd.c,v 1.8 2007/06/27 21:09:27 andrei Exp $";
+static char id[]="$Id: sercmd.c,v 1.9 2007/08/20 10:36:37 andrei Exp $";
 static char version[]= NAME " " VERSION;
 static char compiled[]= __TIME__ " " __DATE__;
 static char help_msg[]="\
@@ -576,7 +576,7 @@ static int get_reply(int s, unsigned char* reply_buf, int max_reply_size,
 	binrpc_errno=0;
 	do{
 		n=read(s, crt, (int)(msg_end-crt));
-		if (n<0){
+		if (n<=0){
 			if (errno==EINTR)
 				continue;
 			goto error_read;
