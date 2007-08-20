@@ -1,4 +1,4 @@
-/* $Id: q_malloc.c,v 1.26 2007/02/23 23:20:51 andrei Exp $
+/* $Id: q_malloc.c,v 1.27 2007/08/20 11:09:13 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -459,6 +459,10 @@ void qm_free(struct qm_block* qm, void* p)
 	qm->real_used-=size;
 
 #ifdef QM_JOIN_FREE
+	/* mark this fragment as used (might fall into the middle of joined frags)
+	  to give us an extra change of detecting a double free call (if the joined
+	  fragment has not yet been reused) */
+	f->u.nxt_free=(void*)0x1L; /* bogus value, just to mark it as free */
 	/* join packets if possible*/
 	next=FRAG_NEXT(f);
 	if (((char*)next < (char*)qm->last_frag_end) &&( next->u.is_free)){
