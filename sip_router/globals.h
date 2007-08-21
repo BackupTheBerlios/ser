@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.74 2007/07/31 13:26:05 gkovacs Exp $
+ * $Id: globals.h,v 1.75 2007/08/21 11:08:15 tirpi Exp $
  *
  * global variables
  *
@@ -206,6 +206,7 @@ extern unsigned int dns_timer_interval; /* gc timer interval in s */
 extern int dns_flags; /* default flags used for the  dns_*resolvehost
                     (compatibility wrappers) */
 extern int dns_srv_lb; /* default SRV LB support value */
+extern int dns_cache_del_nonexp; /* delete non-expired values from the cache when it is full */
 
 #ifdef USE_DNS_CACHE_STATS
 struct t_dns_cache_stats{

@@ -1,4 +1,4 @@
-# $Id: dns.txt,v 1.3 2007/06/18 21:20:59 andrei Exp $
+# $Id: dns.txt,v 1.4 2007/08/21 11:08:17 tirpi Exp $
 #
 # History:
 # --------
@@ -242,6 +242,12 @@ DNS Cache and Failover Config Variables
    dns_cache_gc_interval = how often (in s) the dns cache will be garbage 
       collected.
       Default:  120 s.
+      
+   dns_cache_del_nonexp = yes | no or
+   dns_cache_delete_nonexpired = yes | no - allow deletion of non-expired
+      records from the cache when there is no more space left for new
+      ones. The last-recently used entries are deleted first.
+      Default: no
 
 
 DNS Cache Compile Options
