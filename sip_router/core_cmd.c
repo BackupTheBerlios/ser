@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.21 2007/07/31 13:26:05 gkovacs Exp $
+ * $Id: core_cmd.c,v 1.22 2007/08/22 15:10:13 tirpi Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -122,6 +122,15 @@ static const char* dns_set_server_state_doc[] = {
 	"(0: all the servers are down, 1: at least one server is up)",    /* Documentation string */
 	0                              /* Method signature(s) */
 };
+
+void dns_get_server_state_rpc(rpc_t* rpc, void* ctx);
+
+static const char* dns_get_server_state_doc[] = {
+	"prints the state of the DNS servers " \
+	"(0: all the servers are down, 1: at least one server is up)",	/* Documentation string */
+	0				/* Method signature(s) */
+};
+
 #endif /* DNS_WATCHDOG_SUPPORT */
 #endif /* USE_DNS_CACHE */
 #ifdef USE_DST_BLACKLIST
@@ -573,6 +582,7 @@ rpc_export_t core_rpc_methods[] = {
 #endif /* USE_DNS_CACHE_STATS */
 #ifdef DNS_WATCHDOG_SUPPORT
 	{"dns.set_server_state",   dns_set_server_state_rpc, dns_set_server_state_doc, 0 },
+	{"dns.get_server_state",   dns_get_server_state_rpc, dns_get_server_state_doc, 0 },
 #endif
 #endif
 #ifdef USE_DST_BLACKLIST

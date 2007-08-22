@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.h,v 1.6 2007/07/31 13:27:09 gkovacs Exp $
+ * $Id: dns_cache.h,v 1.7 2007/08/22 15:10:13 tirpi Exp $
  *
  * resolver/dns related functions, dns cache and failover
  *
@@ -327,6 +327,9 @@ void dns_cache_flush(void);
  * 0: all the servers are down
  */
 void dns_set_server_state(int state);
+
+/* returns the state of the DNS servers */
+int dns_get_server_state(void);
 #endif /* DNS_WATCHDOG_SUPPORT */
 
 #endif
