@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.41 2007/08/01 00:05:40 andrei Exp $
+/* $Id: ip_addr.h,v 1.42 2007/08/23 20:43:58 andrei Exp $
  *
  * ip address family related structures
  *
@@ -84,7 +84,8 @@ union sockaddr_union{
 
 
 
-enum si_flags { SI_NONE=0, SI_IS_IP=1, SI_IS_LO=2, SI_IS_MCAST=4 };
+enum si_flags { SI_NONE=0, SI_IS_IP=1, SI_IS_LO=2, SI_IS_MCAST=4,
+				 SI_IS_ANY=8 };
 
 struct socket_info{
 	int socket;
