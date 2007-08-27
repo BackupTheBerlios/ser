@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.239 2007/07/31 13:26:05 gkovacs Exp $
+ * $Id: main.c,v 1.240 2007/08/27 23:05:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -171,7 +171,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.239 2007/07/31 13:26:05 gkovacs Exp $";
+static char id[]="@(#) $Id: main.c,v 1.240 2007/08/27 23:05:59 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -370,6 +370,7 @@ int use_dst_blacklist=0; /* 1 if the blacklist is enabled */
 #endif
 
 int tos = IPTOS_LOWDELAY;
+int pmtu_discovery = 0;
 
 #if 0
 char* names[MAX_LISTEN];              /* our names */

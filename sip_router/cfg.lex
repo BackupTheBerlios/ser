@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.97 2007/08/21 11:08:15 tirpi Exp $
+ * $Id: cfg.lex,v 1.98 2007/08/27 23:05:59 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -313,6 +313,7 @@ RT_TIMER2_POLICY	"rt_timer2_policy"|"rt_stimer_policy"
 MCAST_LOOPBACK		"mcast_loopback"
 MCAST_TTL		"mcast_ttl"
 TOS			"tos"
+PMTU_DISCOVERY	"pmtu_discovery"
 KILL_TIMEOUT	"exit_timeout"|"ser_kill_timeout"
 
 /* stun config variables */
@@ -591,6 +592,8 @@ EAT_ABLE	[\ \t\b\r]
 									return MCAST_TTL; }
 <INITIAL>{TOS}			{	count(); yylval.strval=yytext;
 									return TOS; }
+<INITIAL>{PMTU_DISCOVERY}		{	count(); yylval.strval=yytext;
+									return PMTU_DISCOVERY; }
 <INITIAL>{KILL_TIMEOUT}			{	count(); yylval.strval=yytext;
 									return KILL_TIMEOUT; }
 <INITIAL>{LOADMODULE}	{ count(); yylval.strval=yytext; return LOADMODULE; }

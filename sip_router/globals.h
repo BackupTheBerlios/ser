@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.75 2007/08/21 11:08:15 tirpi Exp $
+ * $Id: globals.h,v 1.76 2007/08/27 23:05:59 andrei Exp $
  *
  * global variables
  *
@@ -121,6 +121,7 @@ extern int stun_allow_fp;
 #endif
 
 extern int tos;
+extern int pmtu_discovery;
 
 /*
  * debug & log_stderr moved to dprint.h*/
