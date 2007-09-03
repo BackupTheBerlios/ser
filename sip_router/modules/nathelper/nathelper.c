@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.115 2007/09/03 19:49:51 sobomax Exp $
+/* $Id: nathelper.c,v 1.116 2007/09/03 19:52:36 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -470,7 +470,6 @@ mod_init(void)
 				pnode->rn_umode = 0;
 				pnode->rn_address += 5;
 			}
-			LOG(L_ERR, "DEB: IP address of RTPPROXY is %s", pnode->rn_address);
 		}
 	}
 	register_select_table(sel_declaration);
