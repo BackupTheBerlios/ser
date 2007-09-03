@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.113 2007/08/28 00:54:36 jiri Exp $
+/* $Id: nathelper.c,v 1.114 2007/09/03 18:55:33 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -279,7 +279,10 @@ static str sup_ptypes[] = {
 	{.s = "udp", .len = 3},
 	{.s = "udptl", .len = 5},
 	{.s = "rtp/avp", .len = 7},
+	{.s = "rtp/avpf", .len = 8},
+	{.s = "rtp/savp", .len = 8},
 	{.s = "rtp/savpf", .len = 9},
+	{.s = "udp/bfcp", .len = 8},
 	{.s = NULL, .len = 0}
 };
 
