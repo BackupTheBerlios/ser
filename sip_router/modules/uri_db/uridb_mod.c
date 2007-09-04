@@ -1,5 +1,5 @@
 /*
- * $Id: uridb_mod.c,v 1.25 2007/06/25 17:51:30 liborc Exp $
+ * $Id: uridb_mod.c,v 1.26 2007/09/04 22:16:16 jiri Exp $
  *
  * Various URI related functions
  *
@@ -376,6 +376,11 @@ static int lookup_user_2(struct sip_msg* msg, char* attr, char* select)
 		/* domain name is missing -- can be caused by Tel: URI */
 		DBG("There is no domain name, using default value\n");
 		did = default_did;
+    }
+
+    /* don't lookup users with empty username -- wasted DB time */
+    if (puri.user.len==0) {
+    	return -1;
     }
 
 	lookup_uid_cmd->match[0].v.lstr = puri.user;
