@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_init.h,v 1.5 2007/07/25 19:40:32 andrei Exp $
+ * $Id: tcp_init.h,v 1.6 2007/09/05 17:20:35 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -37,6 +37,13 @@ struct tcp_child{
 	int n_reqs; /* number of requests serviced so far */
 };
 
+#define TCP_ALIAS_FORCE_ADD 1
+#define TCP_ALIAS_REPLACE   2
+
+/* flags used for adding new aliases */
+extern int tcp_alias_flags;
+/* flags used for adding the default aliases of a new tcp connection */
+extern int tcp_new_conn_alias_flags;
 
 int init_tcp();
 void destroy_tcp();
