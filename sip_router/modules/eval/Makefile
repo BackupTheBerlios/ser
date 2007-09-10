@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2006/06/07 08:59:15 tma0 Exp $
+# $Id: Makefile,v 1.2 2007/09/10 19:02:58 tma0 Exp $
 #
 # eval module makefile
 #
@@ -9,7 +9,6 @@ include ../../Makefile.defs
 
 auto_gen=
 NAME=eval.so
-LIBS=-luuid
 
 include ../../Makefile.modules
 
