@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.240 2007/08/27 23:05:59 andrei Exp $
+ * $Id: main.c,v 1.241 2007/09/10 22:26:59 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -171,7 +171,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.240 2007/08/27 23:05:59 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.241 2007/09/10 22:26:59 mma Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -296,6 +296,8 @@ int log_facility = LOG_DAEMON;
 int config_check = 0;
 /* check if reply first via host==us */
 int check_via =  0;
+/* translate user=phone URIs to TEL URIs */
+int phone2tel = 1;
 /* shall use stateful synonym branches? faster but not reboot-safe */
 int syn_branch = 1;
 /* debugging level for memory stats */

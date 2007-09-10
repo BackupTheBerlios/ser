@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.76 2007/08/27 23:05:59 andrei Exp $
+ * $Id: globals.h,v 1.77 2007/09/10 22:26:59 mma Exp $
  *
  * global variables
  *
@@ -93,6 +93,7 @@ extern unsigned short tls_port_no;
 extern int dont_fork;
 extern int dont_daemonize;
 extern int check_via;
+extern int phone2tel;
 extern int received_dns;
 extern int syn_branch;
 /* extern int process_no; */
