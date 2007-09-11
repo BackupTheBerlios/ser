@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.67 2007/09/10 19:29:44 mma Exp $
+ * $Id: route.c,v 1.68 2007/09/11 15:20:02 mma Exp $
  *
  * SIP routing engine
  *
@@ -708,6 +708,7 @@ inline static int comp_string(int op, char* left, int rtype, union exp_op* r)
 	char* right;
 
 	ret=-1;
+	right=0;
 	if (rtype == AVP_ST) {
 		avp = search_avp_by_index(r->attr->type, r->attr->name, &val, r->attr->index);
 		if (avp && (avp->flags & AVP_VAL_STR)) right = val.s.s;
