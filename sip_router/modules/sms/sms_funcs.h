@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.h,v 1.22 2004/08/24 09:00:39 janakj Exp $
+ * $Id: sms_funcs.h,v 1.23 2007/09/14 15:52:07 sambucaro Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -62,6 +62,10 @@
 #define SMS_REPORT 1
 #define CDS_REPORT 2
 
+#define SMS_BODY_SCAN_NO	0
+#define SMS_BODY_SCAN		1
+#define SMS_BODY_SCAN_MIX	2
+
 struct network {
 	char name[MAX_CHAR_BUF+1];
 	int  max_sms_per_call;
@@ -80,6 +84,8 @@ struct modem {
 	int  looping_interval;
 	int  fd;
 	int  baudrate;
+	int  scan;
+	char to[MAX_CHAR_BUF+1];
 };
 
 struct sms_msg {
