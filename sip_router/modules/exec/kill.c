@@ -1,6 +1,6 @@
 /*
  *
- * $Id: kill.c,v 1.4 2004/08/24 08:58:29 janakj Exp $
+ * $Id: kill.c,v 1.5 2007/09/27 08:50:29 andrei Exp $
  *
  * in this file, we implement the ability to send a kill signal to
  * a child after some time; its a quick ugly hack, for example kill
@@ -166,7 +166,9 @@ void destroy_kill()
 	/* if disabled ... */
 	if (time_to_kill==0) 
 		return; 
-	lock_destroy(kill_lock);
-	lock_dealloc(kill_lock);
+	if (kill_lock){
+		lock_destroy(kill_lock);
+		lock_dealloc(kill_lock);
+	}
 	return;
 }
