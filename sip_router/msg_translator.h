@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.29 2006/09/15 10:37:45 andrei Exp $
+/*$Id: msg_translator.h,v 1.30 2007/10/01 12:42:54 andrei Exp $
  * 
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -112,6 +112,8 @@ int branch_builder( unsigned int hash_index,
 	int branch,
 	/* output value: string and actual length */
 	char *branch_str, int *len );
+
+char* id_builder(struct sip_msg* msg, unsigned int *id_len);
 
 /* check if IP address in Via != source IP address of signaling */
 int received_test( struct sip_msg *msg );
