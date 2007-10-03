@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.41 2007/06/09 17:48:52 andrei Exp $
+ * $Id: timer.h,v 1.42 2007/10/03 08:11:35 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -143,7 +143,7 @@ inline static int _set_fr_retr(struct retr_buf* rb, ticks_t retr)
 		((s_ticks_t)(eol-(ticks+timeout))<0)) ){ /* fr after end of life */
 		timeout=(((s_ticks_t)(eol-ticks))>0)?(eol-ticks):1; /* expire now */ 
 	}
-	rb->fr_expire=ticks+timeout;
+	atomic_cmpxchg_int((void*)&rb->fr_expire, 0, (int)(ticks+timeout));
 #ifdef TIMER_DEBUG
 	ret=timer_add_safe(&(rb)->timer, (timeout<retr)?timeout:retr,
 							file, func, line);
