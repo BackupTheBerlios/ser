@@ -1,5 +1,5 @@
 /*
- * $Id: select.h,v 1.8 2006/06/21 19:11:58 mma Exp $
+ * $Id: select.h,v 1.9 2007/10/03 14:56:32 tirpi Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -122,7 +122,6 @@ typedef struct select {
 	int param_offset[MAX_NESTED_CALLS+1];
 	select_param_t params[MAX_SELECT_PARAMS];
 	int n;
-	int lvl;
 } select_t;
 
 typedef struct {
@@ -137,6 +136,11 @@ typedef struct select_table {
   select_row_t *table;
   struct select_table *next;
 } select_table_t;
+
+/* the level of the select call that is beeing evaluated
+ * by the child process
+ */
+extern int select_level;
 
 /*
  * Lookup corresponding select function based on
