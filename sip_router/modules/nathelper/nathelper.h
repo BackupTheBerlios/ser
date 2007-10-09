@@ -1,5 +1,5 @@
 /*
- * $Id: nathelper.h,v 1.5 2007/08/28 00:54:36 jiri Exp $
+ * $Id: nathelper.h,v 1.6 2007/10/09 22:14:13 sobomax Exp $
  *
  *
  * Copyright (C) 2005 Porta Software Ltd.
@@ -43,11 +43,13 @@ int natpinger_cleanup(void);
 
 int natping_contact(str, struct dest_info *);
 
+int intercept_ping_reply(struct sip_msg* msg);
+
 /* Variables from natping.c referenced from nathelper.c */
 extern int natping_interval;
 extern int ping_nated_only;
 extern char *natping_method;
-extern int tcpping_crlf;
-
+extern int natping_stateful;
+extern int natping_crlf;
 
 #endif
