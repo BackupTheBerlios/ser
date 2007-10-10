@@ -1,5 +1,5 @@
 /* 
- * $Id: db_ctx.c,v 1.5 2007/06/25 17:54:03 liborc Exp $ 
+ * $Id: db_ctx.c,v 1.6 2007/10/10 13:25:52 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -261,8 +261,10 @@ void db_disconnect(db_ctx_t* ctx)
 {
 	int i;
 
-	for(i = 0; i < ctx->con_n; i++) {
-		if (ctx->con[i]->disconnect) ctx->con[i]->disconnect(ctx->con[i]);
+	if (ctx != NULL) {
+		for(i = 0; i < ctx->con_n; i++) {
+			if (ctx->con[i]->disconnect) ctx->con[i]->disconnect(ctx->con[i]);
+		}
 	}
 }
 
