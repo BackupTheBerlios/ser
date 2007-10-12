@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.78 2007/10/04 18:09:24 ondra Exp $
+ * $Id: globals.h,v 1.79 2007/10/12 22:25:40 mma Exp $
  *
  * global variables
  *
@@ -196,6 +196,7 @@ extern int dns_retr_time;
 extern int dns_retr_no;
 extern int dns_servers_no;
 extern int dns_search_list;
+extern int dns_search_fmatch;
 #ifdef USE_DNS_CACHE
 extern int use_dns_cache; /* 1 if the cache is enabled, 0 otherwise */
 extern int use_dns_failover; /* 1 if failover is enabled, 0 otherwise */
