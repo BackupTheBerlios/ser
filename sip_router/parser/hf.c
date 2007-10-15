@@ -1,5 +1,5 @@
 /*
- * $Id: hf.c,v 1.36 2007/07/30 19:49:09 andrei Exp $
+ * $Id: hf.c,v 1.37 2007/10/15 14:21:01 gkovacs Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -39,6 +39,8 @@
 #include "parse_to.h"
 #include "parse_cseq.h"
 #include "parse_date.h"
+#include "parse_identity.h"
+#include "parse_identityinfo.h"
 #include "../dprint.h"
 #include "../mem/mem.h"
 #include "parse_def.h"

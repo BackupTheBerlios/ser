@@ -1,5 +1,5 @@
 /*
- * $Id: msg_parser.h,v 1.74 2007/08/13 12:57:40 janakj Exp $
+ * $Id: msg_parser.h,v 1.75 2007/10/15 14:21:02 gkovacs Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -59,9 +59,6 @@
 #include "../config.h"
 #include "parse_def.h"
 #include "parse_cseq.h"
-#include "parse_date.h"
-#include "parse_identity.h"
-#include "parse_identityinfo.h"
 #include "parse_to.h"
 #include "parse_via.h"
 #include "parse_fline.h"
