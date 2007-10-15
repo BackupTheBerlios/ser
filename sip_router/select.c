@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.19 2007/10/03 14:56:32 tirpi Exp $
+ * $Id: select.c,v 1.20 2007/10/15 07:55:41 tirpi Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -92,11 +92,17 @@ int w_parse_select(char**p, select_t* sel)
 		sel->n++;
 		if (*(*p)=='[') {
 			(*p)++; 
+			if (*(*p)=='\\') (*p)++;
 			if (*(*p)=='"') {
 				(*p)++;	
 				name.s=(*p);
-				while (*(*p)!='"') (*p)++;
+				while ((*(*p)!='\0') && (*(*p)!='"')) (*p)++;
+				if (*(*p)!='"') {
+					ERR("parse_select: end of string is missing\n");
+					goto error;
+				}
 				name.len=(*p)-name.s;
+				if (*((*p)-1)=='\\') name.len--;
 				(*p)++;
 				if (*(*p)!=']') {
 					ERR("parse_select: invalid string index, no closing ]\n");
