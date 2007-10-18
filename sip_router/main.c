@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.243 2007/10/09 19:56:08 andrei Exp $
+ * $Id: main.c,v 1.244 2007/10/18 21:14:43 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -171,7 +171,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.243 2007/10/09 19:56:08 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.244 2007/10/18 21:14:43 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1006,7 +1006,7 @@ int main_loop()
 			if (udp_init(si)==-1) goto error;
 			/* get first ipv4/ipv6 socket*/
 			if ((si->address.af==AF_INET)&&
-					((sendipv4==0)||(sendipv4->flags&SI_IS_LO)))
+					((sendipv4==0)||(sendipv4->flags&(SI_IS_LO|SI_IS_MCAST))))
 				sendipv4=si;
 	#ifdef USE_IPV6
 			if((sendipv6==0)&&(si->address.af==AF_INET6))
@@ -1020,7 +1020,8 @@ int main_loop()
 				if (tcp_init(si)==-1)  goto error;
 				/* get first ipv4/ipv6 socket*/
 				if ((si->address.af==AF_INET)&&
-						((sendipv4_tcp==0)||(sendipv4_tcp->flags&SI_IS_LO)))
+						((sendipv4_tcp==0)||
+						 	(sendipv4_tcp->flags&(SI_IS_LO|SI_IS_MCAST))))
 					sendipv4_tcp=si;
 		#ifdef USE_IPV6
 				if((sendipv6_tcp==0)&&(si->address.af==AF_INET6))
@@ -1035,7 +1036,8 @@ int main_loop()
 				if (tls_init(si)==-1)  goto error;
 				/* get first ipv4/ipv6 socket*/
 				if ((si->address.af==AF_INET)&&
-						((sendipv4_tls==0)||(sendipv4_tls->flags&SI_IS_LO)))
+						((sendipv4_tls==0)||
+						 	(sendipv4_tls->flags&(SI_IS_LO|SI_IS_MCAST))))
 					sendipv4_tls=si;
 		#ifdef USE_IPV6
 				if((sendipv6_tls==0)&&(si->address.af==AF_INET6))
