@@ -1,5 +1,5 @@
 /*
- * $Id: ipmatch.c,v 1.2 2007/10/19 11:59:24 tirpi Exp $
+ * $Id: ipmatch.c,v 1.3 2007/10/19 16:58:37 tirpi Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -79,6 +79,12 @@ static int ipmatch(struct ip_addr *ip, unsigned short port,
 	avp_value_t	avp_val;
 
 	ret = 0;
+
+	if (!IM_HASH) {
+		LOG(L_CRIT, "ERROR: ipmatch(): ipmatch hash table is not initialied. "
+			"Have you set the database url?\n");
+		return 0;
+	}
 
 	/* lock hash table for reading */
 	reader_lock_imhash();
