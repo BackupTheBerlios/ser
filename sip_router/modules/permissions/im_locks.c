@@ -1,5 +1,5 @@
 /*
- * $Id: im_locks.c,v 1.1 2006/08/22 08:51:42 tirpi Exp $
+ * $Id: im_locks.c,v 1.2 2007/10/19 12:06:04 tirpi Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -26,6 +26,7 @@
  *
  */
 
+#include "../../sched_yield.h"
 #include "im_locks.h"
 
 /* reader lock for ipmatch cache */
