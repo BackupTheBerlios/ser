@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctluri.py,v 1.19 2006/10/31 19:40:15 hallik Exp $
+# $Id: ctluri.py,v 1.20 2007/10/19 20:27:24 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -105,7 +105,7 @@ def purge(**opts):
 
 class Uri(Basectl):
 	TABLE = 'uri'
-	COLUMNS = ('uid', 'did', 'username', 'flags')
+	COLUMNS = ('uid', 'did', 'username', 'flags', 'scheme')
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 

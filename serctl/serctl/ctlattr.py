@@ -532,7 +532,7 @@ class Global_attrs(Basectl):
 class Attr_types(Basectl):
 	TABLE = 'attr_types'
 	COLUMNS = ('name', 'rich_type', 'raw_type', 'priority', 'ordering',
-	           'type_spec', 'flags', 'default_flags', 'description')
+	           'type_spec', 'flags', 'default_flags', 'description', 'access', 'grp')
 	COLIDXS = idx_dict(COLUMNS)
 	FLAGIDX = COLIDXS['flags']
 
