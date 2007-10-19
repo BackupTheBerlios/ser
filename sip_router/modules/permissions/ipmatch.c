@@ -1,5 +1,5 @@
 /*
- * $Id: ipmatch.c,v 1.1 2006/08/22 08:51:42 tirpi Exp $
+ * $Id: ipmatch.c,v 1.2 2007/10/19 11:59:24 tirpi Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -38,8 +38,6 @@
 /* initialize ipmatch table */
 int init_ipmatch(void)
 {
-	if (!db_handle) return -1;
-
 	if (db_mode != ENABLE_CACHE) {
 		/* not an error, but ipmatch functions will not operate */
 		LOG(L_WARN, "WARNING: ipmatch_init(): Database cache is disabled, thus ipmatch functions cannot be used\n");

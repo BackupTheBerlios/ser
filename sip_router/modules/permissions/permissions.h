@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.h,v 1.9 2006/08/22 08:51:42 tirpi Exp $
+ * $Id: permissions.h,v 1.10 2007/10/19 11:59:24 tirpi Exp $
  *
  * PERMISSIONS module
  *
@@ -70,8 +70,7 @@ extern char* from_col;      /* Name of from pattern column */
 extern char* ipmatch_table; /* Name of trusted table */
 
 /* Database API */
-extern db_func_t	perm_dbf;
-extern db_con_t	*db_handle;
+extern db_ctx_t	*db_conn;
 
 #define DISABLE_CACHE 0
 #define ENABLE_CACHE 1

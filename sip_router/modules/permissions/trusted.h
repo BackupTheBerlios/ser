@@ -1,5 +1,5 @@
 /*
- * $Id: trusted.h,v 1.4 2006/08/22 08:51:43 tirpi Exp $
+ * $Id: trusted.h,v 1.5 2007/10/19 11:59:24 tirpi Exp $
  * 
  * Header file for trusted.c implementing allow_trusted function
  *
@@ -49,6 +49,11 @@ int init_trusted(void);
  */
 void clean_trusted(void);
 
+/* prepare the DB cmds */
+int init_trusted_db(void);
+
+/* destroy the DB cmds */
+void destroy_trusted_db(void);
 
 /*
  * Check if request comes from trusted ip address with matching from URI

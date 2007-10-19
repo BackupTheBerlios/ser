@@ -1,5 +1,5 @@
 /*
- * $Id: im_db.h,v 1.1 2006/08/22 08:51:42 tirpi Exp $
+ * $Id: im_db.h,v 1.2 2007/10/19 11:59:24 tirpi Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -30,6 +30,12 @@
 #define _IM_DB_H
 
 #include "../../db/db.h"
+
+/* prepare the DB cmds */
+int init_im_db(void);
+
+/* destroy the DB cmds */
+void destroy_im_db(void);
 
 /* reload DB cache
  * return value
