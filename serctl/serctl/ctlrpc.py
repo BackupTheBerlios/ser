@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlrpc.py,v 1.15 2006/06/16 12:56:18 hallik Exp $
+# $Id: ctlrpc.py,v 1.16 2007/10/22 22:58:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -16,7 +16,7 @@ _handler_ = 'main'
 from os.path          import join, dirname
 from serctl.error     import Error, ENOSYS, ERPC, warning
 from serctl.utils     import show_opts, tabprint, var2tab
-import os, sys, serctl.ctlhelp, xmlrpclib, serctl.serxmlrpc, version
+import os, sys, serctl.ctlhelp, xmlrpclib, serctl.serxmlrpc, version, serctl.binrpc
 
 serctl.serxmlrpc.Transport.HEADERS['User-Agent'] = 'serctl/' + version.version
 ServerProxy = serctl.serxmlrpc.ServerProxy
@@ -42,6 +42,8 @@ def any_rpc(opts):
 	ssl_cert = opts['SSL_CERT']
 	ser_uri  = opts['SER_URI']
 
+	if ser_uri[:4] == 'unix':
+		return Bin_rpc(ser_uri)
 	return Xml_rpc(ser_uri, (ssl_key, ssl_cert))
 
 def multi_rpc(opts):
@@ -321,4 +323,26 @@ class Fifo_rpc(Xml_rpc):
 			ret = []
 			for r in reply.split('\n'):
 				ret.append(self._unescape(r))
+		return ret
+
+class Bin_rpc(Xml_rpc):
+
+	def __init__(self, uri="unixs:/tmp/ser_ctl"):
+		self.ser = _ser(self.raw_cmd)
+		u = uri.lstrip("unix")
+		dgram = False
+		if u[0] == ':':
+			u = u.lstrip(':')
+		elif u[0] == 's':
+			u = u.lstrip('s:')
+		else:
+			u = u.lstrip('d:')
+			dgram = True
+		if dgram:
+			self.sck = serctl.binrpc.mksockud(u)
+		else:
+			self.sck = serctl.binrpc.mksockus(u)
+
+	def raw_cmd(self, cmdname, params):
+		ret = serctl.binrpc.rpc(self.sck, cmdname, params)
 		return ret

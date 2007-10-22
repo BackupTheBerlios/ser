@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: uri.py,v 1.4 2006/03/08 23:27:52 hallik Exp $
+# $Id: uri.py,v 1.5 2007/10/22 22:58:29 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -78,7 +78,8 @@ def split_sip_uri(uri):
 
 def adjust_ser_uri(uri):
 	uri = uri.strip()
-	if uri[:7] != 'http://' and uri[:8] != 'https://':
+	if uri[:7] != 'http://' and uri[:8] != 'https://' and \
+	   uri[:5] != 'unix:' and uri[:6] != 'unixs:' and uri[:6] != 'unixd:':
 		uri = 'http://' + uri
 	return uri
 
