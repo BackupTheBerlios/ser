@@ -1,3 +1,10 @@
+serctl (0.3.18-1) unstable; urgency=low
+
+  * Binrpc support
+  * Support for comunication through unix socket
+
+ -- Jan Halla <hallik@iptel.org>  Tue, 23 Oct 2007 17:44:44 +0200
+
 serctl (0.3.17-1) unstable; urgency=low
 
   * 'ser_ctl domain show <domain>' raise an error if <domain> does 
