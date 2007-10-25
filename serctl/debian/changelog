@@ -1,3 +1,10 @@
+serctl (0.3.19-1) unstable; urgency=low
+
+  * Fix 'Not a directory' error for userloc when unix socket is used
+  * Unix socket notice in help
+
+ -- Jan Halla <hallik@iptel.org>  Thu, 25 Oct 2007 20:33:53 +0200
+
 serctl (0.3.18-1) unstable; urgency=low
 
   * Binrpc support

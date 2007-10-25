@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlhelp.py,v 1.13 2006/06/16 12:17:16 hallik Exp $
+# $Id: ctlhelp.py,v 1.14 2007/10/25 18:40:33 hallik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -38,7 +38,7 @@ OPT_DESC = {\
 	'PASSWORD' : 'Password',
 	'RAW'      : 'Show raw values instead symbolic',
 	'REC_SEP'  : 'Record separator (show command)',
-	'SER_URI'  : 'Ser URI for XML-RPC operations',
+	'SER_URI'  : 'Ser URI for XML-RPC operations. (unix:/... for unix socket)',
 	'SERVERS'  : 'Servers URI list for multi-rpc call',
 	'SSL_CERT' : 'Path to SSL cert file',
 	'SSL_KEY'  : 'Path to SSL key file',
