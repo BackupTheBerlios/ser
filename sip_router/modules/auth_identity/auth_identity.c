@@ -1,5 +1,5 @@
 /*
- * $Id: auth_identity.c,v 1.3 2007/10/15 14:41:19 gkovacs Exp $
+ * $Id: auth_identity.c,v 1.4 2007/10/25 09:53:53 gkovacs Exp $
  *
  * Copyright (c) 2007 iptelorg GmbH
  *
@@ -585,11 +585,9 @@ static int check_date(struct sip_msg* msg, char* srt1, char* str2)
 	int ires;
 
 	ires=datehdr_proc(NULL, NULL, msg);
-	if (ires) {
-		if (ires==AUTH_NOTFOUND)
-			LOG(L_ERR, "AUTH_INDENTITY:check_date: DATE header field is not found\n");
+	if (ires)
 		return -1;
-	}
+
 
 #ifdef HAVE_TIMEGM
 	tmsg=timegm(&get_date(msg)->date);
@@ -628,8 +626,11 @@ int check_certificate(struct sip_msg* msg, char* srt1, char* str2) {
 		if (identityinfohdr_proc(NULL, &siinfodm, msg))
 			return -2;
 
-		if (verify_x509(glb_pcertx509, glb_cacerts, &siinfodm))
+		if (verify_x509(glb_pcertx509, glb_cacerts))
 			return -3;
+
+		if (check_x509_subj(glb_pcertx509, &siinfodm))
+			return -6;
 
 		/* we retrieve expiration date from the certificate (it needs for
 		   certificate table garbage collector) */
