@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.h,v 1.7 2007/10/10 13:25:52 janakj Exp $ 
+ * $Id: db_cmd.h,v 1.8 2007/10/31 16:10:11 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -95,6 +95,8 @@ struct db_cmd* db_cmd(enum db_cmd_type type, struct db_ctx* ctx, char* table,
 void db_cmd_free(struct db_cmd* cmd);
 
 int db_exec(struct db_res** res, struct db_cmd* cmd);
+
+int db_getopt(db_cmd_t* cmd, char* optname, ...);
 
 int db_setopt(db_cmd_t* cmd, char* optname, ...);
 
