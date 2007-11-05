@@ -1,4 +1,4 @@
-/* $Id: ll_malloc.c,v 1.1 2007/06/12 18:07:12 andrei Exp $
+/* $Id: ll_malloc.c,v 1.2 2007/11/05 10:11:50 tirpi Exp $
  *
  * shared memory, multi-process safe, pool based, mostly lockless version of 
  *  f_malloc
@@ -970,7 +970,7 @@ void sfm_status(struct sfm_block* qm)
 	unsigned long size;
 	int k;
 
-#warning ll_status doesn't work (might crash if used)
+#warning "ll_status doesn't work (might crash if used)"
 
 	LOG(memlog, "sfm_status (%p):\n", qm);
 	if (!qm) return;
