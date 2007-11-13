@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.244 2007/10/18 21:14:43 andrei Exp $
+ * $Id: main.c,v 1.245 2007/11/13 15:56:31 jiri Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -171,7 +171,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.244 2007/10/18 21:14:43 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.245 2007/11/13 15:56:31 jiri Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -631,18 +631,18 @@ void handle_sigs()
 		case SIGCHLD:
 			while ((chld=waitpid( -1, &chld_status, WNOHANG ))>0) {
 				if (WIFEXITED(chld_status))
-					LOG(L_INFO, "child process %d exited normally,"
+					LOG(L_DEFAULT, "child process %d exited normally,"
 							" status=%d\n", chld,
 							WEXITSTATUS(chld_status));
 				else if (WIFSIGNALED(chld_status)) {
-					LOG(L_INFO, "child process %d exited by a signal"
+					LOG(L_DEFAULT, "child process %d exited by a signal"
 							" %d\n", chld, WTERMSIG(chld_status));
 #ifdef WCOREDUMP
-					LOG(L_INFO, "core was %sgenerated\n",
+					LOG(L_ALERT, "core was %sgenerated\n",
 							 WCOREDUMP(chld_status) ?  "" : "not " );
 #endif
 				}else if (WIFSTOPPED(chld_status))
-					LOG(L_INFO, "child process %d stopped by a"
+					LOG(L_DEFAULT, "child process %d stopped by a"
 								" signal %d\n", chld,
 								 WSTOPSIG(chld_status));
 			}
