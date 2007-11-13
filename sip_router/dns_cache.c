@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.c,v 1.17 2007/10/11 06:07:02 vlada Exp $
+ * $Id: dns_cache.c,v 1.18 2007/11/13 16:01:38 jiri Exp $
  *
  * resolver related functions
  *
@@ -141,7 +141,7 @@ static const char* dns_str_errors[]={
 	"bad SRV entry",
 	"unresolvable SRV request",
 	"bad A or AAAA entry",
-	"unresovlable A or AAAA request",
+	"unresolvable A or AAAA request",
 	"invalid ip in A or AAAA record",
 	"blacklisted ip",
 	"name too long ", /* try again with a shorter name */
