@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.95 2007/07/26 11:52:23 tirpi Exp $
+ * $Id: t_fwd.c,v 1.96 2007/11/14 15:30:21 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -690,7 +690,10 @@ int t_send_branch( struct cell *t, int branch, struct sip_msg* p_msg ,
 		return -1; /* drop, try next branch */
 	}
 #ifdef USE_DST_BLACKLIST
-	if (use_dst_blacklist){
+	if (use_dst_blacklist
+		&& p_msg
+		&& (p_msg->REQ_METHOD & tm_blst_methods_lookup)
+	){
 		if (dst_is_blacklisted(&uac->request.dst, p_msg)){
 			su2ip_addr(&ip, &uac->request.dst.to);
 			DBG("t_send_branch: blacklisted destination: %s:%d (%d)\n",

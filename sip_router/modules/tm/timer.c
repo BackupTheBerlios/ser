@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.78 2007/07/26 11:52:23 tirpi Exp $
+ * $Id: timer.c,v 1.79 2007/11/14 15:30:21 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -455,9 +455,13 @@ inline static void final_response_handler(	struct retr_buf* r_buf,
 			(t->uac[r_buf->branch].last_received==0)){
 		/* no reply received */
 #ifdef USE_DST_BLACKLIST
-		if (use_dst_blacklist)
+		if (use_dst_blacklist
+        		&& r_buf->my_T
+			&& r_buf->my_T->uas.request
+			&& (r_buf->my_T->uas.request->REQ_METHOD & tm_blst_methods_add)
+		)
 			dst_blacklist_add( BLST_ERR_TIMEOUT, &r_buf->dst,
-				(r_buf->my_T)?r_buf->my_T->uas.request:NULL);
+						r_buf->my_T->uas.request);
 #endif
 #ifdef USE_DNS_FAILOVER
 		/* if this is an invite, the destination resolves to more ips, and

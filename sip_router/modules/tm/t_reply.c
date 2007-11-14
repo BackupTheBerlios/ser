@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.149 2007/11/12 15:58:49 andrei Exp $
+ * $Id: t_reply.c,v 1.150 2007/11/14 15:30:21 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -145,6 +145,10 @@ int tm_blst_503_min=0; /* in s */
 /* maximum 503 blacklist time */
 int tm_blst_503_max=3600; /* in s */
 
+/* backlist only INVITE timeouts by default */
+unsigned int tm_blst_methods_add=METHOD_INVITE;
+/* look-up the blacklist for every method except BYE by default */
+unsigned int tm_blst_methods_lookup=~METHOD_BYE;
 
 /* are we processing original or shmemed request ? */
 enum route_mode rmode=MODE_REQUEST;

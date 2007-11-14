@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.162 2007/07/30 20:38:44 andrei Exp $
+ * $Id: tm.c,v 1.163 2007/11/14 15:30:21 tirpi Exp $
  *
  * TM module
  *
@@ -364,6 +364,8 @@ static param_export_t params[]={
 	{"blst_503_def_timeout",PARAM_INT, &tm_blst_503_default                  },
 	{"blst_503_min_timeout",PARAM_INT, &tm_blst_503_min                      },
 	{"blst_503_max_timeout",PARAM_INT, &tm_blst_503_max                      },
+	{"blst_methods_add",    PARAM_INT, &tm_blst_methods_add                  },
+	{"blst_methods_lookup", PARAM_INT, &tm_blst_methods_lookup               },
 	{0,0,0}
 };
 
