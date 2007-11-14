@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.c,v 1.52 2007/06/25 17:51:29 liborc Exp $ 
+ * $Id: ucontact.c,v 1.53 2007/11/14 16:27:17 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -442,7 +442,8 @@ int st_expired_ucontact(ucontact_t* _c)
 	case CS_SYNC:
 	case CS_DIRTY:
 		     /* Remove from database here */
-		return 1;
+		if (db_skip_delete) return 0;
+		else return 1;
 	}
 
 	return 0; /* Makes gcc happy */

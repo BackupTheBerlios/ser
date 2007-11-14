@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.25 2007/04/11 09:54:01 janakj Exp $
+ * $Id: ul_mod.h,v 1.26 2007/11/14 16:27:17 janakj Exp $
  *
  * User location module interface
  *
@@ -73,6 +73,7 @@ extern str db_url;
 extern int timer_interval;
 extern int db_mode;
 extern int desc_time_order;
+extern int db_skip_delete;
 
 extern db_ctx_t* db;
 extern db_cmd_t** del_rec;
