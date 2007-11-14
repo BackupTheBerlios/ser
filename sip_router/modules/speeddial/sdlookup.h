@@ -1,5 +1,5 @@
 /*
- * $Id: sdlookup.h,v 1.1 2004/10/27 18:21:22 ramona Exp $
+ * $Id: sdlookup.h,v 1.2 2007/11/14 14:48:20 janakj Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -35,6 +35,6 @@
 
 #include "../../parser/msg_parser.h"
 
-int sd_lookup(struct sip_msg* _msg, char* _table, char* _str2);
+int sd_lookup(struct sip_msg* _msg, char* _index, char* _str2);
 
 #endif /* _SDLOOKUP_H_ */
