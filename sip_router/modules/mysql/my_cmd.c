@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.c,v 1.11 2007/07/13 08:52:29 janakj Exp $
+ * $Id: my_cmd.c,v 1.12 2007/11/15 15:09:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -1078,6 +1078,7 @@ int my_cmd(db_cmd_t* cmd)
 
  error:
 	if (res) {
+		DB_SET_PAYLOAD(cmd, NULL);
 		db_drv_free(&res->gen);
 		if (res->query.s) pkg_free(res->query.s);
 		pkg_free(res);
