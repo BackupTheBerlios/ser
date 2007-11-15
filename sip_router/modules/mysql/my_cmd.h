@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.h,v 1.3 2007/06/25 17:51:28 liborc Exp $
+ * $Id: my_cmd.h,v 1.4 2007/11/15 17:27:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -37,6 +37,7 @@ struct my_cmd {
 	db_drv_t gen;
 
 	str query;
+	int next_flag;
 	MYSQL_STMT* st;
 };
 

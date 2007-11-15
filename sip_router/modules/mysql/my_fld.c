@@ -1,5 +1,5 @@
 /* 
- * $Id: my_fld.c,v 1.3 2007/04/18 13:08:46 janakj Exp $
+ * $Id: my_fld.c,v 1.4 2007/11/15 17:27:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -37,6 +37,7 @@ static void my_fld_free(db_fld_t* fld, struct my_fld* payload)
 {
 	db_drv_free(&payload->gen);
 	if (payload->buf.s) pkg_free(payload->buf.s);
+	if (payload->name) pkg_free(payload->name);
 	pkg_free(payload);
 }
 

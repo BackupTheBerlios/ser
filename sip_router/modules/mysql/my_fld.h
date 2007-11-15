@@ -1,5 +1,5 @@
 /* 
- * $Id: my_fld.h,v 1.3 2007/07/03 15:16:14 liborc Exp $
+ * $Id: my_fld.h,v 1.4 2007/11/15 17:27:06 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -40,6 +40,7 @@
 struct my_fld {
 	db_drv_t gen;
 
+	char* name;
 	my_bool is_null;
 	MYSQL_TIME time;
 	unsigned long length;
