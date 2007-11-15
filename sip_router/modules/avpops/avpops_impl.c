@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.c,v 1.18 2007/06/14 23:14:20 andrei Exp $
+ * $Id: avpops_impl.c,v 1.19 2007/11/15 02:27:07 sobomax Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -1147,3 +1147,12 @@ int ops_print_avp()
 	return 1;
 }
 
+
+int ops_is_avp_set(struct sip_msg* msg, struct fis_param *ap)
+{
+	if(search_first_avp((((ap->flags&AVPOPS_VAL_INT))?0:AVP_NAME_STR),
+				ap->val, NULL, 0)!=0)
+		return 1;
+	
+	return -1;
+}

@@ -1,5 +1,5 @@
 /*
- * $Id: avpops_impl.h,v 1.5 2005/07/04 10:44:38 ramona Exp $
+ * $Id: avpops_impl.h,v 1.6 2007/11/15 02:27:07 sobomax Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -124,6 +124,9 @@ int ops_copy_avp( struct sip_msg* msg, struct fis_param* name1,
 								struct fis_param* name2);
 
 int ops_print_avp();
+
+
+int ops_is_avp_set(struct sip_msg* msg, struct fis_param *ap);
 
 #endif
 
