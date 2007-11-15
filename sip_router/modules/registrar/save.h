@@ -1,5 +1,5 @@
 /*
- * $Id: save.h,v 1.11 2006/09/25 11:44:22 janakj Exp $
+ * $Id: save.h,v 1.12 2007/11/15 12:44:14 janakj Exp $
  *
  * Functions that process REGISTER message 
  * and store data in usrloc
@@ -57,5 +57,9 @@ int save_noreply(struct sip_msg* _m, char* _t, char* aor_filter);
  */
 int save_memory(struct sip_msg* _m, char* _t, char* aor_filter);
 
+/*
+ * Update memory cache only and do not send reply back
+ */
+int save_mem_nr(struct sip_msg* msg, char* table, char* aor_filter);
 
 #endif /* SAVE_H */

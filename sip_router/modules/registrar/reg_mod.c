@@ -1,5 +1,5 @@
 /*
- * $Id: reg_mod.c,v 1.50 2007/05/25 16:08:20 sobomax Exp $
+ * $Id: reg_mod.c,v 1.51 2007/11/15 12:44:14 janakj Exp $
  *
  * Registrar module interface
  *
@@ -104,6 +104,8 @@ static cmd_export_t cmds[] = {
 	{"save_noreply",          save_noreply, 2, domain2_fixup, REQUEST_ROUTE | ONREPLY_ROUTE | FAILURE_ROUTE },
 	{"save_memory",           save_memory,  1, domain_fixup,  REQUEST_ROUTE | FAILURE_ROUTE },
 	{"save_memory",           save_memory,  2, domain2_fixup, REQUEST_ROUTE | FAILURE_ROUTE },
+	{"save_mem_nr",           save_mem_nr,  1, domain_fixup,  REQUEST_ROUTE | FAILURE_ROUTE },
+	{"save_mem_nr",           save_mem_nr,  2, domain2_fixup, REQUEST_ROUTE | FAILURE_ROUTE },
 	{"lookup_contacts",       lookup,       1, domain_fixup,  REQUEST_ROUTE | FAILURE_ROUTE },
 	{"lookup_contacts",       lookup2,      2, domain2_fixup, REQUEST_ROUTE | FAILURE_ROUTE },
 	{"lookup",                lookup,       1, domain_fixup,  REQUEST_ROUTE | FAILURE_ROUTE },

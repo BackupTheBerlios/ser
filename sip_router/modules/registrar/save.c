@@ -1,5 +1,5 @@
 /*
- * $Id: save.c,v 1.54 2007/05/25 16:08:20 sobomax Exp $
+ * $Id: save.c,v 1.55 2007/11/15 12:44:14 janakj Exp $
  *
  * Process REGISTER request and send reply
  *
@@ -711,4 +711,13 @@ int save_memory(struct sip_msg* _m, char* table, char* aor_filter)
 {
 	mem_only = FL_MEM;
 	return save_real(_m, (udomain_t*)table, aor_filter, 1);
+}
+
+/*
+ * Update memory cache only and do not send reply back
+ */
+int save_mem_nr(struct sip_msg* msg, char* table, char* aor_filter)
+{
+	mem_only = FL_MEM;
+	return save_real(msg, (udomain_t*)table, aor_filter, 0);
 }
