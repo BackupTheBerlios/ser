@@ -1,5 +1,5 @@
 /*
- * $Id: auth_identity.h,v 1.4 2007/10/25 09:53:53 gkovacs Exp $
+ * $Id: auth_identity.h,v 1.5 2007/11/16 12:52:43 gkovacs Exp $
  *
  * Copyright (c) 2007 iptelorg GmbH
  *
@@ -226,7 +226,7 @@ size_t curlmem_cb(void *ptr, size_t size, size_t nmemb, void *data);
 int download_cer(str *suri, CURL *hcurl);
 
 /* OpenSSL, Base64 functions */
-int retrieve_x509(X509 **pcert, str *scert);
+int retrieve_x509(X509 **pcert, str *scert, int bacceptpem);
 int check_x509_subj(X509 *pcert, str* sdom);
 int verify_x509(X509 *pcert, X509_STORE *pcacerts);
 int rsa_sha1_dec (char *sencedsha, int iencedshalen,
