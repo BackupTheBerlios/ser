@@ -1,4 +1,4 @@
-.\" $Id: ser.8,v 1.12 2005/12/21 17:27:49 janakj Exp $
+.\" $Id: ser.8,v 1.13 2007/11/19 17:31:24 ondra Exp $
 .TH ser 8 15.07.2002 ser "Sip Express Router" 
 .\" Process with
 .\" groff -man -Tascii ser.8
@@ -31,6 +31,8 @@ ser \- very fast and configurable sip proxy
 .BI \-g " gid"
 ] [
 .BI \-P " pid\-file"
+] [
+.BI \-L " modules-dir"
 ]
 
 .SH DESCRIPTION
@@ -124,14 +126,18 @@ runs.
 .TP
 .BI \-g " gid"
 Changes the group id under which 
-.B ser 
+.B ser
 runs.
 .TP
 .BI \-P " pid\-file"
-Creates a file containing the pid of the main 
-.B ser 
+Creates a file containing the pid of the main
+.B ser
 process.
-
+.TP
+.BI \-L " modules\-dir"
+Specifies the directory where to look for
+.B ser
+modules (default: /usr/lib/ser/modules)
 
 .SH FILES
 .PD 0
