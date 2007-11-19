@@ -1,5 +1,5 @@
 /*
- * $Id: auth_crypt.c,v 1.5 2007/11/16 12:52:43 gkovacs Exp $
+ * $Id: auth_crypt.c,v 1.6 2007/11/19 11:22:42 gkovacs Exp $
  *
  * Copyright (c) 2007 iptelorg GmbH
  *
@@ -63,10 +63,11 @@ int retrieve_x509(X509 **pcert, str *scert, int bacceptpem)
 		/* RFC 4474 only accepts certs in the DER form but it can not harm
 		 * to be a little bit more flexible and accept PEM as well. */
 		if (bacceptpem
-		    && scert->len > strlen("-----BEGIN CERTIFICATE-----")
-			&& !memcmp(scert->s,
-					  "-----BEGIN CERTIFICATE-----",
-					  strlen("-----BEGIN CERTIFICATE-----"))) {
+		  	&& scert->len > strlen(BEGIN_PEM_CERT)
+			&& memmem(scert->s,
+					  scert->len,
+					  BEGIN_PEM_CERT,
+					  strlen(BEGIN_PEM_CERT))) {
 			if (!(*pcert = PEM_read_bio_X509(bcer, NULL, NULL, NULL))) {
 				ERR_error_string_n(ERR_get_error(), serr, sizeof(serr));
 				LOG(L_ERR, "AUTH_IDENTITY:retrieve_x509: PEM Certificate %s\n", serr);
