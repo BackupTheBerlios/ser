@@ -1,5 +1,5 @@
 /*
- * $Id: io_listener.c,v 1.6 2007/07/04 17:27:34 andrei Exp $
+ * $Id: io_listener.c,v 1.7 2007/11/22 17:33:57 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -434,8 +434,8 @@ again:
 	/* add socket to the list */
 	s_conn=s_conn_new(new_sock, cs, &from);
 	if (s_conn){
-		io_watch_add(&io_h, s_conn->fd, F_T_READ_STREAM, s_conn);
 		s_conn_add(s_conn);
+		io_watch_add(&io_h, s_conn->fd, F_T_READ_STREAM, s_conn);
 	}else{
 		LOG(L_ERR, "ERROR: io listen: handle_new_connect:"
 				" s_conn_new failed\n");
