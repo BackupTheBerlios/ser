@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.26 2007/10/12 22:25:40 mma Exp $*/
+/* $Id: resolve.c,v 1.27 2007/11/26 17:28:54 mma Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -663,11 +663,11 @@ again:
 		goto again; /* add also the additional records */
 	}
 
-    /* if the name was expanded using DNS search list
+	/* if the name was expanded using DNS search list
 	 * create fake CNAME record to convert the short name
 	 * (queried) to long name (answered)
 	 */
-    if ((search_list_used==1)&&(fullname_rd!=0)) {
+	if ((search_list_used==1)&&(fullname_rd!=0)) {
 		rd=(struct rdata*) local_malloc(sizeof(struct rdata)+name_len+1-1);
 		if (rd==0){
 			LOG(L_ERR, "ERROR: get_record: out of memory\n");
