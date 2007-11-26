@@ -1,5 +1,5 @@
 /*
- * $Id: auth_identity.h,v 1.6 2007/11/19 11:22:42 gkovacs Exp $
+ * $Id: auth_identity.h,v 1.7 2007/11/26 08:55:05 gkovacs Exp $
  *
  * Copyright (c) 2007 iptelorg GmbH
  *
@@ -74,6 +74,7 @@
 #define AUTH_MSG_TO_AUTH_VALIDITY_TIME 600
 
 #define BEGIN_PEM_CERT "-----BEGIN CERTIFICATE-----"
+#define BEGIN_PEM_CERT_LEN (sizeof(BEGIN_PEM_CERT) - 1)
 
 enum msg_part {
 	DS_FROM = 1,
