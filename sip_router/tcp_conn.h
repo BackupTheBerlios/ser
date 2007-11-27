@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.32 2007/11/27 07:23:27 andrei Exp $
+ * $Id: tcp_conn.h,v 1.33 2007/11/27 21:05:32 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -128,6 +128,7 @@ struct tcp_connection{
 	gen_lock_t write_lock;
 	int id; /* id (unique!) used to retrieve a specific connection when
 	           reply-ing*/
+	int reader_pid; /* pid of the active reader process */
 	struct receive_info rcv; /* src & dst ip, ports, proto a.s.o*/
 	struct tcp_req req; /* request data */
 	atomic_t refcnt;
