@@ -1,5 +1,5 @@
 /*
- * $Id: local_timer.h,v 1.1 2007/11/22 13:43:09 andrei Exp $
+ * $Id: local_timer.h,v 1.2 2007/11/27 07:23:27 andrei Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -36,6 +36,9 @@
 
 #ifndef _local_timer_h
 #define _local_timer_h
+
+#include "timer_ticks.h"
+#include "timer_funcs.h"
 
 
 struct local_timer {
