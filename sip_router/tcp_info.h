@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_info.h,v 1.2 2006/02/10 18:21:52 andrei Exp $
+ * $Id: tcp_info.h,v 1.3 2007/11/28 19:20:47 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -41,6 +41,5 @@ struct tcp_gen_info{
 
 
 void tcp_get_info(struct tcp_gen_info* ti);
-
 
 #endif
