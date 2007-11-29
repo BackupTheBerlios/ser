@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.c,v 1.1 2007/11/28 19:20:47 andrei Exp $
+ * $Id: tcp_options.c,v 1.2 2007/11/29 21:01:45 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -56,6 +56,7 @@ void init_tcp_options()
 	if (tcp_options.option){\
 		WARN("tcp_options: tcp_" ##option \
 				"cannot be enabled (recompile needed)\n"); \
+		tcp_options.option=0; \
 	}
 
 
@@ -64,6 +65,7 @@ void init_tcp_options()
 	if (tcp_options.option){\
 		WARN("tcp_options: tcp_" ##option \
 				"cannot be enabled (no OS support)\n"); \
+		tcp_options.option=0; \
 	}
 
 
