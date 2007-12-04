@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_info.h,v 1.3 2007/11/28 19:20:47 andrei Exp $
+ * $Id: tcp_info.h,v 1.4 2007/12/04 20:25:29 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -35,6 +35,8 @@ struct tcp_gen_info{
 	int tcp_readers;
 	int tcp_max_connections;
 	int tcp_connections_no; /* crt. number */
+	int tcp_write_queued; /* total bytes queued for write, 0 if no
+							 write queued support is enabled */
 };
 
 

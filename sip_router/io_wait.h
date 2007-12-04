@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.18 2007/11/29 21:01:45 andrei Exp $
+ * $Id: io_wait.h,v 1.19 2007/12/04 20:25:29 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -842,7 +842,6 @@ again_devpoll2:
 					h->poll_method);
 			goto error;
 	}
-	h->fd_no--;
 	return 0;
 error:
 	return -1;
