@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.19 2007/12/04 20:25:29 andrei Exp $
+ * $Id: io_wait.h,v 1.20 2007/12/05 23:13:03 calrissian Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -86,6 +86,8 @@
 #ifdef HAVE_SIGIO_RT
 #include "pt.h" /* mypid() */
 #endif
+
+#include "compiler_opt.h"
 
 
 extern int _os_ver; /* os version number, needed to select bugs workarrounds */
@@ -434,7 +436,7 @@ again2:
 #endif
 #ifdef HAVE_KQUEUE
 		case POLL_KQUEUE:
-			if (likely( events & POLLINT)){
+			if (likely( events & POLLIN)){
 				if (unlikely(kq_ev_change(h, fd, EVFILT_READ, EV_ADD, e)==-1))
 				goto error;
 			}
@@ -999,6 +1001,7 @@ inline static int io_wait_loop_kqueue(io_wait_h* h, int t, int repeat)
 	int n, r;
 	struct timespec tspec;
 	struct fd_map* fm;
+	int revents;
 	
 	tspec.tv_sec=t;
 	tspec.tv_nsec=0;
@@ -1044,7 +1047,7 @@ again:
 					while(fm->type && (fm->events & revents) && 
 							(handle_io(fm, revents, -1)>0) && repeat);
 				}
-			}
+			//}
 		}
 error:
 	return n;
