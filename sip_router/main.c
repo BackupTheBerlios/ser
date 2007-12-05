@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.249 2007/12/05 16:21:36 tirpi Exp $
+ * $Id: main.c,v 1.250 2007/12/05 20:26:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.249 2007/12/05 16:21:36 tirpi Exp $";
+static char id[]="@(#) $Id: main.c,v 1.250 2007/12/05 20:26:58 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1160,6 +1160,7 @@ int main_loop()
 	/* main */
 	strncpy(pt[0].desc, "attendant", MAX_PT_DESC );
 #ifdef USE_TCP
+	close_extra_socks(PROC_ATTENDANT, get_proc_no());
 	if(!tcp_disable){
 		/* main's tcp sockets are disabled by default from init_pt() */
 		unix_tcp_sock=-1;

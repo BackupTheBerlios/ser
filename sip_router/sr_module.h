@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.41 2007/06/07 21:40:14 andrei Exp $
+/* $Id: sr_module.h,v 1.42 2007/12/05 20:26:58 andrei Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -91,6 +91,7 @@ typedef int (*param_func_t)( modparam_t type, void* val);
 #define PROC_FIFO      PROC_RPC  /* FIFO attendant process */
 #define PROC_TCP_MAIN -4  /* TCP main process */
 #define PROC_UNIXSOCK -5  /* Unix socket server */
+#define PROC_ATTENDANT -10  /* main "attendant process */
 #define PROC_INIT     -127 /* special rank, the context is the main ser
 							  process, but this is guaranteed to be executed
 							  before any process is forked, so it can be used

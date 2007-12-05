@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.17 2007/07/07 00:33:02 andrei Exp $
+ * $Id: pt.h,v 1.18 2007/12/05 20:26:58 andrei Exp $
  *
  * Process Table
  *
@@ -72,6 +72,11 @@ int get_max_procs();
 int register_procs(int no);
 int get_max_open_fds();
 int register_fds(int no);
+
+
+int close_extra_socks(int proc_id, int proc_no);
+
+#define get_proc_no() ((process_count)?*process_count:0)
 
 /* return processes pid */
 int my_pid();
