@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.h,v 1.2 2007/12/04 20:25:29 andrei Exp $
+ * $Id: tcp_options.h,v 1.3 2007/12/05 22:04:41 calrissian Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -41,7 +41,7 @@
 #ifndef  NO_TCP_DEFER_ACCEPT
 #ifdef __OS_linux
 #define HAVE_TCP_DEFER_ACCEPT
-#elif define __OS_freebsd
+#elif defined __OS_freebsd
 #define HAVE_TCP_ACCEPT_FILTER
 #endif /* __OS_ */
 #endif /* NO_TCP_DEFER_ACCEPT */
