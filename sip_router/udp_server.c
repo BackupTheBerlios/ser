@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.77 2007/08/27 23:05:59 andrei Exp $
+ * $Id: udp_server.c,v 1.78 2007/12/05 15:51:24 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -66,6 +66,7 @@
 #include "receive.h"
 #include "mem/mem.h"
 #include "ip_addr.h"
+#include "cfg/cfg_struct.h"
 
 #ifdef USE_STUN
   #include "ser_stun.h"
@@ -428,6 +429,10 @@ int udp_rcv_loop()
 	ri.dst_ip=bind_address->address;
 	ri.proto=PROTO_UDP;
 	ri.proto_reserved1=ri.proto_reserved2=0;
+
+	/* initialize the config framework */
+	if (cfg_child_init()) goto error;
+
 	for(;;){
 #ifdef DYN_BUF
 		buf=pkg_malloc(BUF_SIZE+1);
@@ -504,6 +509,8 @@ int udp_rcv_loop()
 				}
 			} else
 #endif
+		/* update the local config */
+		cfg_update();
 		/* receive_msg must free buf too!*/
 		receive_msg(buf, len, &ri);
 		

@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.107 2007/12/04 20:25:29 andrei Exp $
+ * $Id: tcp_main.c,v 1.108 2007/12/05 15:51:24 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -147,6 +147,7 @@
 #include "tcp_info.h"
 #include "tcp_options.h"
 #include "ut.h"
+#include "cfg/cfg_struct.h"
 
 #define local_malloc pkg_malloc
 #define local_free   pkg_free
@@ -2573,6 +2574,9 @@ error:
 inline static int handle_io(struct fd_map* fm, short ev, int idx)
 {	
 	int ret;
+
+	/* update the local config */
+	cfg_update();
 	
 	switch(fm->type){
 		case F_SOCKINFO:
@@ -2811,7 +2815,11 @@ void tcp_main_loop()
 				goto error;
 			}
 	}
-	
+
+
+	/* initialize the cfg framework */
+	if (cfg_child_init()) goto error;
+
 	/* main loop */
 	switch(io_h.poll_method){
 		case POLL_POLL:
