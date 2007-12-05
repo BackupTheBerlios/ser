@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.17 2007/06/25 09:41:54 liborc Exp $
+ * $Id: dprint.h,v 1.18 2007/12/05 16:21:36 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -31,6 +31,7 @@
 #define dprint_h
 
 #include <syslog.h>
+#include "cfg_core.h"
 
 
 #define L_ALERT -3
@@ -44,7 +45,6 @@
 
 /* vars:*/
 
-extern int debug;
 extern int log_stderr;
 extern int log_facility;
 extern volatile int dprint_crit; /* protection against "simultaneous"
@@ -98,7 +98,7 @@ int str2facility(char *s);
 	#ifdef __SUNPRO_C
 		#define DPrint( ...) \
 			do{ \
-				if ((debug>=DPRINT_LEV) && DPRINT_NON_CRIT){ \
+				if ((cfg_get(core, core_cfg, debug)>=DPRINT_LEV) && DPRINT_NON_CRIT){ \
 					DPRINT_CRIT_ENTER; \
 					if (log_stderr){ \
 						dprint (__VA_ARGS__); \
@@ -111,7 +111,7 @@ int str2facility(char *s);
 	#else
 			#define DPrint(fmt,args...) \
 			do{ \
-				if ((debug>=DPRINT_LEV) && DPRINT_NON_CRIT){ \
+				if ((cfg_get(core, core_cfg, debug)>=DPRINT_LEV) && DPRINT_NON_CRIT){ \
 					DPRINT_CRIT_ENTER; \
 					if (log_stderr){ \
 						dprint (fmt, ## args); \
@@ -139,7 +139,7 @@ int str2facility(char *s);
 	#ifdef __SUNPRO_C
 		#define LOG(lev, ...) \
 			do { \
-				if ((debug>=(lev)) && DPRINT_NON_CRIT){ \
+				if ((cfg_get(core, core_cfg, debug)>=(lev)) && DPRINT_NON_CRIT){ \
 					DPRINT_CRIT_ENTER; \
 					if (log_stderr) dprint (__VA_ARGS__); \
 					else { \
@@ -173,7 +173,7 @@ int str2facility(char *s);
 	#else
 		#define LOG(lev, fmt, args...) \
 			do { \
-				if ((debug>=(lev)) && DPRINT_NON_CRIT){ \
+				if ((cfg_get(core, core_cfg, debug)>=(lev)) && DPRINT_NON_CRIT){ \
 					DPRINT_CRIT_ENTER; \
 					if (log_stderr) dprint (fmt, ## args); \
 					else { \
