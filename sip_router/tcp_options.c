@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.c,v 1.3 2007/12/04 20:25:29 andrei Exp $
+ * $Id: tcp_options.c,v 1.4 2007/12/06 12:14:47 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -62,7 +62,7 @@ void init_tcp_options()
 #define W_OPT_NC(option) \
 	if (tcp_options.option){\
 		WARN("tcp_options: tcp_" #option \
-				"cannot be enabled (recompile needed)\n"); \
+				" cannot be enabled (recompile needed)\n"); \
 		tcp_options.option=0; \
 	}
 
@@ -71,7 +71,7 @@ void init_tcp_options()
 #define W_OPT_NS(option) \
 	if (tcp_options.option){\
 		WARN("tcp_options: tcp_" #option \
-				"cannot be enabled (no OS support)\n"); \
+				" cannot be enabled (no OS support)\n"); \
 		tcp_options.option=0; \
 	}
 
