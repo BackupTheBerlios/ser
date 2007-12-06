@@ -1,4 +1,4 @@
-/* $Id: udp_flood.c,v 1.8 2005/09/09 23:32:35 andrei Exp $ */
+/* $Id: udp_flood.c,v 1.9 2007/12/06 00:07:57 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -47,7 +47,7 @@
 #include <signal.h>
 
 
-static char *id="$Id: udp_flood.c,v 1.8 2005/09/09 23:32:35 andrei Exp $";
+static char *id="$Id: udp_flood.c,v 1.9 2007/12/06 00:07:57 andrei Exp $";
 static char *version="udp_flood 0.2";
 static char* help_msg="\
 Usage: udp_flood -f file -d address -p port -c count [-v]\n\
@@ -249,7 +249,10 @@ int main (int argc, char** argv)
 	/* open socket*/
 	addr.sin_family=he->h_addrtype;
 	addr.sin_port=htons(port);
+#ifdef HAVE_SOCKADDR_SA_LEN
+	addr.sin_len=sizeof(struct sockaddr_in);
 	memcpy(&addr.sin_addr.s_addr, he->h_addr_list[0], he->h_length);
+#endif
 	
 	for (k=0; k<con_no; k++){
 		sock = socket(he->h_addrtype, (tcp)?SOCK_STREAM:SOCK_DGRAM, 0);
@@ -259,7 +262,7 @@ int main (int argc, char** argv)
 		}
 		if (tcp){
 			t=1;
-			if (setsockopt(sock, SOL_TCP , TCP_NODELAY, &t, sizeof(t))<0){
+			if (setsockopt(sock, IPPROTO_TCP , TCP_NODELAY, &t, sizeof(t))<0){
 				fprintf(stderr, "ERROR: could not disable Nagle: %s\n",
 								strerror(errno));
 			}
