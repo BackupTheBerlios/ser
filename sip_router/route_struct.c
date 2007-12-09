@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.39 2006/05/31 23:02:46 tma0 Exp $
+ * $Id: route_struct.c,v 1.40 2007/12/09 13:15:24 andrei Exp $
  *
  * route structures helping functions
  *
@@ -218,7 +218,7 @@ void print_expr(struct expr* exp)
 					print_actions((struct action*)exp->r.param);
 					break;
 			case NUMBER_ST:
-					DBG("%d",exp->r.intval);
+					DBG("%ld",exp->r.numval);
 					break;
 			case MYSELF_ST:
 					DBG("_myself_");

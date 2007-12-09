@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.40 2006/05/31 23:02:46 tma0 Exp $
+ * $Id: route_struct.h,v 1.41 2007/12/09 13:15:24 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -101,15 +101,15 @@ enum { NOSUBTYPE=0, STRING_ST, NET_ST, NUMBER_ST, IP_ST, RE_ST, PROXY_ST,
 
 /* Expression operand */
 union exp_op {
-	struct expr* expr;
-	struct _str str;
-	char* string;
 	void* param;
-	int intval;
+	long numval; /* must have the same size as a void*/
+	struct expr* expr;
+	char* string;
 	avp_spec_t* attr;
 	select_t* select;
 	regex_t* re;
 	struct net* net;
+	struct _str str;
 };
 
 struct expr{
