@@ -2,7 +2,7 @@
 # Sample debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
 #
-# $Id: rules,v 1.5 2007/11/16 12:57:47 paka Exp $
+# $Id: rules,v 1.6 2007/12/10 13:20:58 paka Exp $
 #
 # History:
 # --------
@@ -186,6 +186,8 @@ install: build
 	# install /etc/default/ser file
 	mkdir -p $(CURDIR)/debian/ser/etc/default
 	cp -f debian/ser.default $(CURDIR)/debian/ser/etc/default/ser
+	# install the *.sql files for ser_mysql.sh script
+	cp -f scripts/mysql/*.sql $(CURDIR)/debian/ser/usr/lib/ser/
 	# install advanced ser config file for ser-oob package
 	mkdir -p $(CURDIR)/debian/ser-oob/etc/ser
 	cp -f etc/ser-oob.cfg $(CURDIR)/debian/ser-oob/etc/ser/
