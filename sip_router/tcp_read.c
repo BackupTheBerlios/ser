@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.43 2007/12/05 15:51:24 tirpi Exp $
+ * $Id: tcp_read.c,v 1.44 2007/12/11 20:11:01 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -779,7 +779,7 @@ again:
 			con->timeout=t+S_TO_TICKS(TCP_CHILD_TIMEOUT);
 			/* re-activate the timer */
 			con->timer.f=tcpconn_read_timeout;
-			timer_reinit(&con->timer);
+			local_timer_reinit(&con->timer);
 			local_timer_add(&tcp_reader_ltimer, &con->timer,
 								S_TO_TICKS(TCP_CHILD_TIMEOUT), t);
 			if (unlikely(io_watch_add(&io_w, s, POLLIN, F_TCPCONN, con))<0){

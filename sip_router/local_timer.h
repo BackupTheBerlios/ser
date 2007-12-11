@@ -1,5 +1,5 @@
 /*
- * $Id: local_timer.h,v 1.2 2007/11/27 07:23:27 andrei Exp $
+ * $Id: local_timer.h,v 1.3 2007/12/11 20:11:01 andrei Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -47,6 +47,10 @@ struct local_timer {
 	struct timer_lists timer_lst; /* actual timer lists */
 };
 
+
+#define local_timer_init(tl, fun, param, flgs) timer_init(tl, fun, param, flgs)
+
+#define local_timer_reinit(tl) timer_reinit((tl))
 
 int init_local_timer(struct local_timer *lt_handle, ticks_t crt_ticks);
 void destroy_local_timer(struct local_timer* lt_handle);
