@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.h,v 1.1 2007/12/05 15:22:01 tirpi Exp $
+ * $Id: cfg_struct.h,v 1.2 2007/12/11 16:15:55 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -122,6 +122,16 @@ void cfg_destroy(void);
 
 /* per-child process init function */
 int cfg_child_init(void);
+
+/* per-child process destroy function
+ * Should be called only when the child process exits,
+ * but SER continues running.
+ *
+ * WARNING: this function call must be the very last action
+ * before the child process exits, because the local config
+ * is not available afterwards.
+ */
+void cfg_child_destroy(void);
 
 /* creates a new cfg group, and adds it to the linked list */
 int cfg_new_group(char *name, int num, cfg_mapping_t *mapping,

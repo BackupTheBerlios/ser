@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.23 2007/10/19 00:34:15 sobomax Exp $
+/* $Id: natping.c,v 1.24 2007/12/11 16:15:56 tirpi Exp $
  *
  * Copyright (C) 2005 Porta Software Ltd
  *
@@ -37,6 +37,7 @@
 #include "../../dprint.h"
 #include "../../parser/parse_hostport.h"
 #include "../../resolve.h"
+#include "../../cfg/cfg_struct.h"
 #include "nathelper.h"
 
 int natping_interval = 0;
@@ -158,6 +159,9 @@ natpinger_child_init(int rank)
 		return -1;
 	}
 	if (aux_process == 0) {
+		/* initialize the config framework */
+		if (cfg_child_init()) return -1;
+
 		natping_cycle();
 		/* UNREACHED */
 		_exit(1);
@@ -181,6 +185,10 @@ natping_cycle(void)
 	signal(SIGTERM, SIG_DFL); /* no special treat */
 	for(;;) {
 		sleep(natping_interval);
+
+		/* update the local config */
+		cfg_update();
+
 		natping(0, NULL);
 	}
 }

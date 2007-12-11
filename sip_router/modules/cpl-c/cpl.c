@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.63 2007/06/07 21:46:57 andrei Exp $
+ * $Id: cpl.c,v 1.64 2007/12/11 16:15:57 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -60,6 +60,7 @@
 #include "../../parser/parse_content.h"
 #include "../../parser/parse_disposition.h"
 #include "../../db/db.h"
+#include "../../cfg/cfg_struct.h"
 #include "cpl_run.h"
 #include "cpl_env.h"
 #include "cpl_db.h"
@@ -401,6 +402,10 @@ static int cpl_child_init(int rank)
 			goto error;
 		} else if (pid==0) {
 			/* I'm the child */
+
+			/* initialize the config framework */
+			if (cfg_child_init()) goto error;
+
 			cpl_aux_process( cpl_env.cmd_pipe[0], cpl_env.log_dir);
 		} else {
 			LOG(L_INFO,"INFO:cpl_child_init(%d): I just gave birth to a child!"

@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_nonsig.c,v 1.8 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_nonsig.c,v 1.9 2007/12/11 16:15:57 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -42,6 +42,7 @@
 #include "../../mem/shm_mem.h"
 #include "../../mem/mem.h"
 #include "../../dprint.h"
+#include "../../cfg/cfg_struct.h"
 #include "cpl_nonsig.h"
 #include "CPL_tree.h"
 
@@ -258,6 +259,9 @@ void cpl_aux_process( int cmd_out, char *log_dir)
 			sleep(1);
 			continue;
 		}
+
+		/* update the local config */
+		cfg_update();
 
 		/* process the command*/
 		switch (cmd.code) {

@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.40 2007/09/14 15:52:07 sambucaro Exp $
+ * $Id: sms.c,v 1.41 2007/12/11 16:15:56 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -51,6 +51,7 @@
 #include "../../mem/mem.h"
 #include "../../mem/shm_mem.h"
 #include "../../socket_info.h"
+#include "../../cfg/cfg_struct.h"
 #include "../tm/tm_load.h"
 #include "sms_funcs.h"
 #include "sms_report.h"
@@ -651,6 +652,9 @@ int sms_child_init(int rank)
 			goto error;
 		}
 		if (!foo) {
+			/* initialize the config framework */
+			if (cfg_child_init()) goto error;
+
 			modem_process(&(modems[i]));
 			goto done;
 		}

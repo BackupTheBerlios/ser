@@ -1,5 +1,5 @@
 /*
- * $Id: sms_funcs.c,v 1.67 2007/09/14 15:52:07 sambucaro Exp $
+ * $Id: sms_funcs.c,v 1.68 2007/12/11 16:15:56 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -49,6 +49,7 @@
 #include "../../parser/parse_content.h"
 #include "../../parser/parse_from.h"
 #include "../../data_lump_rpl.h"
+#include "../../cfg/cfg_struct.h"
 #include "../tm/t_hooks.h"
 #include "../tm/uac.h"
 #include "sms_funcs.h"
@@ -862,6 +863,9 @@ void modem_process(struct modem *mdm)
 
 	while(1)
 	{
+		/* update the local config */
+		cfg_update();
+
 		dont_wait = 0;
 		for (i=0;i<nr_of_networks && mdm->net_list[i]!=-1;i++)
 		{
