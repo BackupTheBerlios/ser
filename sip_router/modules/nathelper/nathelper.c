@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.119 2007/12/11 00:49:26 sobomax Exp $
+/* $Id: nathelper.c,v 1.120 2007/12/11 00:51:22 sobomax Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
