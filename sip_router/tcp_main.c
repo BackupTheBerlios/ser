@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.110 2007/12/06 12:14:47 andrei Exp $
+ * $Id: tcp_main.c,v 1.111 2007/12/11 18:19:58 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -2523,8 +2523,13 @@ inline static int handle_tcpconn_ev(struct tcp_connection* tcpconn, short ev,
 					goto error;
 			}
 		}
+		ev&=~POLLOUT; /* clear POLLOUT */
 	}
-	if (likely((ev & POLLIN) && !(tcpconn->flags & F_CONN_REMOVED))){
+	if (likely(ev && !(tcpconn->flags & F_CONN_REMOVED))){
+		/* if still some other IO event (POLLIN|POLLHUP|POLLERR) and
+		 * connection is still watched in tcp_main for reads, send it to a
+		 * child and stop watching it for input (but continue watching for
+		 *  writes if needed): */
 		if (unlikely(tcpconn->flags & F_CONN_WRITE_W)){
 			if (unlikely(io_watch_chg(&io_h, tcpconn->s, POLLOUT, fd_i)==-1))
 				goto error;
