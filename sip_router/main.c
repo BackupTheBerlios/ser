@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.250 2007/12/05 20:26:58 andrei Exp $
+ * $Id: main.c,v 1.251 2007/12/13 15:29:55 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.250 2007/12/05 20:26:58 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.251 2007/12/13 15:29:55 tirpi Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -374,9 +374,6 @@ int mcast_ttl = -1; /* if -1, don't touch it, use the default (usually 1) */
 #ifdef USE_DNS_CACHE
 int use_dns_cache=1; /* 1 if the cache is enabled, 0 otherwise */
 int use_dns_failover=0; /* 1 if failover is enabled, 0 otherwise */
-#endif
-#ifdef USE_DST_BLACKLIST
-int use_dst_blacklist=0; /* 1 if the blacklist is enabled */
 #endif
 
 int tos = IPTOS_LOWDELAY;

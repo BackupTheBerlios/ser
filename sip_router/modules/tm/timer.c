@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.79 2007/11/14 15:30:21 tirpi Exp $
+ * $Id: timer.c,v 1.80 2007/12/13 15:29:56 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -455,7 +455,7 @@ inline static void final_response_handler(	struct retr_buf* r_buf,
 			(t->uac[r_buf->branch].last_received==0)){
 		/* no reply received */
 #ifdef USE_DST_BLACKLIST
-		if (use_dst_blacklist
+		if (cfg_get(core, core_cfg, use_dst_blacklist)
         		&& r_buf->my_T
 			&& r_buf->my_T->uas.request
 			&& (r_buf->my_T->uas.request->REQ_METHOD & tm_blst_methods_add)

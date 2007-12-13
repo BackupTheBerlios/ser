@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.150 2007/11/14 15:30:21 tirpi Exp $
+ * $Id: t_reply.c,v 1.151 2007/12/13 15:29:56 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1806,7 +1806,7 @@ int reply_received( struct sip_msg  *p_msg )
 	}
 #ifdef USE_DST_BLACKLIST
 		/* add temporary to the blacklist the source of a 503 reply */
-		if (tm_blst_503 && use_dst_blacklist && (msg_status==503)){
+		if (tm_blst_503 && cfg_get(core, core_cfg, use_dst_blacklist) && (msg_status==503)){
 			blst_503_timeout=tm_blst_503_default;
 			if ((parse_headers(p_msg, HDR_RETRY_AFTER_F, 0)==0) && 
 				(p_msg->parsed_flag & HDR_RETRY_AFTER_F)){

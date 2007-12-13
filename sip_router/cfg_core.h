@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.h,v 1.1 2007/12/05 16:21:36 tirpi Exp $
+ * $Id: cfg_core.h,v 1.2 2007/12/13 15:29:55 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -46,6 +46,12 @@ extern void	*core_cfg;
 
 struct cfg_group_core {
 	int	debug;
+#ifdef USE_DST_BLACKLIST
+	int	use_dst_blacklist; /* 1 if blacklist is enabled */
+	unsigned int	blst_timeout; /* blacklist entry ttl */
+	unsigned int	blst_max_mem; /* maximum memory used for the
+					blacklist entries */
+#endif
 };
 
 extern struct cfg_group_core default_core_cfg;
