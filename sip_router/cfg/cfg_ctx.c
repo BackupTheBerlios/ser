@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.3 2007/12/12 16:41:51 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.4 2007/12/13 11:21:05 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -764,7 +764,7 @@ int cfg_get_by_name(cfg_ctx_t *ctx, str *group_name, str *var_name,
 
 /* returns the description of a variable */
 int cfg_help(cfg_ctx_t *ctx, str *group_name, str *var_name,
-			char **ch)
+			char **ch, unsigned int *input_type)
 {
 	cfg_mapping_t	*var;
 
@@ -781,6 +781,8 @@ int cfg_help(cfg_ctx_t *ctx, str *group_name, str *var_name,
 		return -1;
 
 	*ch = var->def->descr;
+	if (input_type)
+		*input_type = CFG_INPUT_TYPE(var);
 	return 0;
 }
 

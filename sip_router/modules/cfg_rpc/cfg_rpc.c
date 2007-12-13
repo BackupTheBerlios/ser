@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_rpc.c,v 1.2 2007/12/12 16:45:20 tirpi Exp $
+ * $Id: cfg_rpc.c,v 1.3 2007/12/13 11:21:05 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -193,17 +193,29 @@ static void rpc_help(rpc_t* rpc, void* c)
 {
 	str	group, var;
 	char	*ch;
+	unsigned int	input_type;
 
 	if (rpc->scan(c, "SS", &group, &var) < 2)
 		return;
 
 	if (cfg_help(ctx, &group, &var,
-			&ch)
+			&ch, &input_type)
 	) {
 		rpc->fault(c, 400, "Failed to get the variable description");
 		return;
 	}
 	rpc->add(c, "s", ch);
+
+	switch (input_type) {
+	case CFG_INPUT_INT:
+		rpc->printf(c, "(parameter type is integer)");
+		break;
+
+	case CFG_INPUT_STRING:
+	case CFG_INPUT_STR:
+		rpc->printf(c, "(parameter type is string)");
+		break;
+	}	
 }
 
 static const char* rpc_list_doc[2] = {
