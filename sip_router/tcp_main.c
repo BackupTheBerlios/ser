@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.114 2007/12/14 01:40:12 andrei Exp $
+ * $Id: tcp_main.c,v 1.115 2007/12/14 01:50:39 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -90,7 +90,7 @@
  *  2007-12-04  support for queueing write requests (andrei)
  *  2007-12-12  destroy connection asap on wbuf. timeout (andrei)
  *  2007-12-13  changed the refcnt and destroy scheme, now refcnt is 1 if
- *                linked into the hash tables (was 0)  (andrei)
+ *                linked into the hash tables (was 0) (andrei)
  */
 
 
@@ -1824,7 +1824,7 @@ static void tcpconn_destroy(struct tcp_connection* tcpconn)
 
 
 /* close tcp_main's fd from a tcpconn
- * call only in tcp_main context */
+ * WARNING: call only in tcp_main context */
 inline static void tcpconn_close_main_fd(struct tcp_connection* tcpconn)
 {
 	int fd;
