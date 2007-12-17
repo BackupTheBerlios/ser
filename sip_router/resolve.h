@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.30 2007/12/06 00:07:56 andrei Exp $
+ * $Id: resolve.h,v 1.31 2007/12/17 17:51:04 andrei Exp $
  *
  * resolver related functions
  *
@@ -167,7 +167,7 @@ extern int dns_tls_pref;  /* tls transport preference (for naptr) */
 
 
 #define rev_resolvehost(ip)\
-					gethostbyaddr((char*)(ip)->u.addr, (ip)->len, (ip)->af);
+					gethostbyaddr((char*)(ip)->u.addr, (ip)->len, (ip)->af)
 
 
 
