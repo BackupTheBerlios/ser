@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.116 2007/12/21 17:58:07 andrei Exp $
+ * $Id: tcp_main.c,v 1.117 2007/12/21 23:27:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1566,6 +1566,7 @@ no_id:
 										c, strerror(errno), errno);
 							goto conn_wait_error;
 						}
+						n=len;
 						goto end;
 					}
 					/* error: destroy it directly */
