@@ -1,5 +1,5 @@
 /*
- * $Id: eval.c,v 1.13 2007/09/10 21:24:43 tma0 Exp $
+ * $Id: eval.c,v 1.14 2007/12/22 15:01:57 tma0 Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -140,6 +140,7 @@ static void get_as_str(struct eval_value *value, str *s) {
 			*s = value->u.s->s;
 			break;
 		default:
+			s->s = 0;
 			s->len = 0;
 			break;
 	}
