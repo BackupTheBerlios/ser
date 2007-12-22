@@ -1,5 +1,5 @@
 /*
- * $Id: tsend.c,v 1.6 2006/02/03 21:56:23 andrei Exp $
+ * $Id: tsend.c,v 1.7 2007/12/22 18:13:29 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -129,7 +129,7 @@ again:
 		);
 	TSEND_ERR_CHECK("tsend_stream");
 	written+=n; 
-	if (n<len){ 
+	if (n<(int)len){ 
 		/* partial write */ 
 		buf+=n; 
 		len-=n; 
