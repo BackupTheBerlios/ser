@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.251 2007/12/13 15:29:55 tirpi Exp $
+ * $Id: main.c,v 1.252 2008/01/03 10:30:55 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.251 2007/12/13 15:29:55 tirpi Exp $";
+static char id[]="@(#) $Id: main.c,v 1.252 2008/01/03 10:30:55 tirpi Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -476,6 +476,10 @@ void cleanup(show_status)
 #ifdef USE_DST_BLACKLIST
 	destroy_dst_blacklist();
 #endif
+	/* restore the original core configuration before the
+	 * config block is freed, otherwise even logging is unusable,
+	 * it can case segfault */
+	core_cfg = &default_core_cfg;
 	cfg_destroy();
 #ifdef USE_TCP
 	destroy_tcp();
