@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.21 2008/01/07 12:14:11 mma Exp $
+ * $Id: select.c,v 1.22 2008/01/07 12:33:52 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -134,12 +134,12 @@ int w_parse_select(char**p, select_t* sel)
 		(*p)++;
 	};
 	if (sel->n==0) {
-		ERR("parse_select: invalid select '%s'\n", select_name);
+		ERR("parse_select: invalid select '%.*s'\n", *p - select_name, select_name);
 		goto error;
 	};
 	DBG("parse_select: end, total elements: %d, calling resolve_select\n", sel->n);
 	if (resolve_select(sel)<0) {
-		ERR("parse_select: error while resolve_select '%s'\n", select_name);
+		ERR("parse_select: error while resolve_select '%.*s'\n", *p - select_name, select_name);
 		goto error;
 	}
 	return 0;
