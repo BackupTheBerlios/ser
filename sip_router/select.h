@@ -1,5 +1,5 @@
 /*
- * $Id: select.h,v 1.9 2007/10/03 14:56:32 tirpi Exp $
+ * $Id: select.h,v 1.10 2008/01/07 12:45:30 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -120,7 +120,9 @@ typedef int (*select_f)(str* res, struct select* s, struct sip_msg* msg);
 typedef struct select {
 	select_f f[MAX_NESTED_CALLS];
 	int param_offset[MAX_NESTED_CALLS+1];
+	/* contains broken down select string (@foo.bar[-2].foo -> 4 entries) */
 	select_param_t params[MAX_SELECT_PARAMS];
+	/* how many elements are used in 'params' */
 	int n;
 } select_t;
 
@@ -175,6 +177,10 @@ int register_select_table(select_row_t *table);
  */
 int parse_select (char** p, select_t** s);
 
+/**
+ * Frees the select obtained with parse_select().
+ */
+void free_select(select_t *s);
 /*
  * Select parser, result is stored in SHARED memory
  * 

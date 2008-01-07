@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.22 2008/01/07 12:33:52 mma Exp $
+ * $Id: select.c,v 1.23 2008/01/07 12:45:30 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -163,6 +163,12 @@ int parse_select (char** p, select_t** s)
 	}
 	*s=sel;
 	return 0;
+}
+
+void free_select(select_t *s)
+{
+	if (s)
+		pkg_free(s);
 }
 
 int shm_parse_select (char** p, select_t** s)

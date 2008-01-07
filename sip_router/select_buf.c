@@ -1,5 +1,5 @@
 /*
- * $Id: select_buf.c,v 1.3 2007/02/18 14:05:44 tma0 Exp $
+ * $Id: select_buf.c,v 1.4 2008/01/07 12:45:30 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -68,7 +68,7 @@ static int active_buffer=-1;
 
 #define ALLOC_SIZE(req_size) (((req_size/BUFFER_GRANULARITY)+1)*BUFFER_GRANULARITY)
 
-int allocate_buffer(int req_size) {
+static int allocate_buffer(int req_size) {
 	void *b;
 	int size=ALLOC_SIZE(req_size);
 	
