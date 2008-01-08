@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.46 2007/12/22 08:11:14 andrei Exp $
+ * $Id: tcp_read.c,v 1.47 2008/01/08 13:11:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -95,6 +95,7 @@ static io_wait_h io_w; /* io_wait handler*/
 static int tcpmain_sock=-1;
 
 static struct local_timer tcp_reader_ltimer;
+static ticks_t tcp_reader_prev_ticks;
 
 
 /* reads next available bytes
@@ -861,11 +862,11 @@ error:
 inline static void tcp_reader_timer_run()
 {
 	ticks_t ticks;
-	static ticks_t prev_ticks=0;
 	
 	ticks=get_ticks_raw();
-	if (unlikely((ticks-prev_ticks)<TCPCONN_TIMEOUT_MIN_RUN)) return;
-	prev_ticks=ticks;
+	if (unlikely((ticks-tcp_reader_prev_ticks)<TCPCONN_TIMEOUT_MIN_RUN))
+		return;
+	tcp_reader_prev_ticks=ticks;
 	local_timer_run(&tcp_reader_ltimer, ticks);
 }
 
@@ -878,6 +879,7 @@ void tcp_receive_loop(int unix_sock)
 	tcpmain_sock=unix_sock; /* init com. socket */
 	if (init_io_wait(&io_w, get_max_open_fds(), tcp_poll_method)<0)
 		goto error;
+	tcp_reader_prev_ticks=get_ticks_raw();
 	if (init_local_timer(&tcp_reader_ltimer, get_ticks_raw())!=0)
 		goto error;
 	/* add the unix socket */
