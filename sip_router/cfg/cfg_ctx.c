@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.4 2007/12/13 11:21:05 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.5 2008/01/11 15:15:19 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -730,6 +730,13 @@ int cfg_get_by_name(cfg_ctx_t *ctx, str *group_name, str *var_name,
 	/* look-up the group and the variable */
 	if (cfg_lookup_var(group_name, var_name, &group, &var))
 		return -1;
+
+	if (var->def->on_change_cb) {
+		/* The variable cannot be retrieved, because the fixup
+		function may have changed it, and it is better to return
+		an error than an incorrect value */
+		return -1;
+	}
 
 	/* use the module's handle to access the variable
 	It means that the variable is read from the local config
