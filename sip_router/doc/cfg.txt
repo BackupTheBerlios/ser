@@ -1,4 +1,4 @@
-# $Id: cfg.txt,v 1.3 2007/12/12 16:41:51 tirpi Exp $
+# $Id: cfg.txt,v 1.4 2008/01/11 16:41:51 tirpi Exp $
 #
 # History:
 # --------
@@ -336,3 +336,11 @@ int new_process(void)
 Note, that the configuration should be refreshed even if the module does not
 declare any config variable, because other modules and the core may need the
 up-to-date config.
+
+
+6. Accessing the configuration values in the script
+===============================================================================
+
+The values can be accessed via select calls:
+
+@cfg_get.<group_name>.<var_name>
