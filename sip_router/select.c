@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.23 2008/01/07 12:45:30 mma Exp $
+ * $Id: select.c,v 1.24 2008/01/11 16:30:30 tirpi Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -299,6 +299,17 @@ int resolve_select(select_t* s)
 		}
 
 		f = t->table[table_idx].new_f;
+
+		if (t->table[table_idx].flags & CONSUME_ALL) {
+			/* sanity checks */
+			if (t->table[table_idx].flags & NESTED)
+				WARN("resolve_select: CONSUME_ALL should not be set "
+					"together with NESTED flag!\n");
+			if ((t->table[table_idx].flags & FIXUP_CALL) == 0)
+				WARN("resolve_select: FIXUP_CALL should be defined "
+					"if CONSUME_ALL flag is set!\n");
+			break;
+		}
 	}
 
 	if (t->table[table_idx].flags & SEL_PARAM_EXPECTED) {
