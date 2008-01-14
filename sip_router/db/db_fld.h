@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.h,v 1.5 2007/04/18 12:53:30 janakj Exp $ 
+ * $Id: db_fld.h,v 1.6 2008/01/14 12:48:00 calrissian Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -58,9 +58,10 @@ extern char* db_fld_str[];
 
 enum db_fld_op {
 	DB_EQ = 0, /* The value of the field must be equal */
+	DB_NE,     /* The value of the filed must be not equal */
 	DB_LT,     /* The value of the field must be less than */
 	DB_GT,     /* The value of the field must be greater than */
-	DB_LEQ,    /* The value of the field must be let than or equal */
+	DB_LEQ,    /* The value of the field must be less than or equal */
 	DB_GEQ     /* The value of the field must be greater than or equal */
 };
 
