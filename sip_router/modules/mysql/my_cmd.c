@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.c,v 1.15 2008/01/16 14:17:28 janakj Exp $
+ * $Id: my_cmd.c,v 1.16 2008/01/16 14:58:46 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -865,6 +865,8 @@ static int check_result_columns(db_cmd_t* cmd, struct my_cmd* payload)
 
 	meta = mysql_stmt_result_metadata(payload->st);
 	if (meta == NULL) {
+		/* No error means no result set to be checked */
+		if (mysql_stmt_errno(payload->st) == 0) return 0;
 		ERR("mysql: Error while getting metadata of SQL command: %d, %s\n",
 			mysql_stmt_errno(payload->st), mysql_stmt_error(payload->st));
 		return -1;
