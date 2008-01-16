@@ -1,5 +1,5 @@
 /* 
- * $Id: my_fld.c,v 1.4 2007/11/15 17:27:06 janakj Exp $
+ * $Id: my_fld.c,v 1.5 2008/01/16 14:17:28 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -26,11 +26,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include <string.h>
+#include "my_fld.h"
+
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 #include "../../db/db_gen.h"
-#include "my_fld.h"
+
+#include <string.h>
 
 
 static void my_fld_free(db_fld_t* fld, struct my_fld* payload)
@@ -48,7 +50,7 @@ int my_fld(db_fld_t* fld, char* table)
 
 	res = (struct my_fld*)pkg_malloc(sizeof(struct my_fld));
 	if (res == NULL) {
-		ERR("No memory left\n");
+		ERR("mysql: No memory left\n");
 		return -1;
 	}
 	memset(res, '\0', sizeof(struct my_fld));

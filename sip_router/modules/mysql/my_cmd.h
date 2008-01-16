@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.h,v 1.4 2007/11/15 17:27:06 janakj Exp $
+ * $Id: my_cmd.h,v 1.5 2008/01/16 14:17:28 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -36,24 +36,24 @@
 struct my_cmd {
 	db_drv_t gen;
 
-	str query;
+	str sql_cmd; /**< Database command represented in SQL language */
 	int next_flag;
-	MYSQL_STMT* st;
+	MYSQL_STMT* st; /**< MySQL pre-compiled statement handle */
+
+	/** This is the sequential number of the last
+	 * connection reset last time the command was
+	 * uploaded to the server. If the reset number
+	 * in the corresponding my_con structure is higher
+	 * than the number in this variable then we need
+	 * to upload the command again, because the
+	 * the connection was reconnected meanwhile.
+	 */
+	unsigned int last_reset;
 };
 
 int my_cmd(db_cmd_t* cmd);
 
-/* Runtime execution function for DB_GET */
-int my_cmd_read(db_res_t* res, db_cmd_t* cmd);
-
-/* Runtime execution function for DB_PUT and DB_DEL */
-int my_cmd_write(db_res_t* res, db_cmd_t* cmd);
-
-/* Runtime execution function for DB_UPD */
-int my_cmd_update(db_res_t* res, db_cmd_t* cmd);
-
-/* Raw SQL query */
-int my_cmd_sql(db_res_t* res, db_cmd_t* cmd);
+int my_cmd_exec(db_res_t* res, db_cmd_t* cmd);
 
 int my_cmd_first(db_res_t* res);
 
