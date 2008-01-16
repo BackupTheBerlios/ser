@@ -1,5 +1,5 @@
 /* 
- * $Id: db_drv.c,v 1.4 2007/06/25 17:54:03 liborc Exp $ 
+ * $Id: db_drv.c,v 1.5 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,13 +30,16 @@
  * @{ 
  */
 
-#include <string.h>
-#include <stdlib.h>
+#include "db_drv.h"
+
+#include "db_gen.h"
+
 #include "../mem/mem.h"
 #include "../sr_module.h"
 #include "../ut.h"
-#include "db_gen.h"
-#include "db_drv.h"
+
+#include <string.h>
+#include <stdlib.h>
 
 
 int db_drv_init(db_drv_t* ptr, void* free_func)

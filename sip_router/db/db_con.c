@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.c,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_con.c,v 1.4 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,11 +30,13 @@
  * @{ 
  */
 
-#include <string.h>
-#include <stdlib.h>
+#include "db_con.h"
+
 #include "../mem/mem.h"
 #include "../dprint.h"
-#include "db_con.h"
+
+#include <string.h>
+#include <stdlib.h>
 
 
 /*

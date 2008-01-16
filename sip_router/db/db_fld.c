@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.c,v 1.8 2007/10/10 13:25:52 janakj Exp $ 
+ * $Id: db_fld.c,v 1.9 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,10 +30,12 @@
  * @{ 
  */
 
-#include <string.h>
+#include "db_fld.h"
+
 #include "../mem/mem.h"
 #include "../dprint.h"
-#include "db_fld.h"
+
+#include <string.h>
 
 
 char* db_fld_str[] = {

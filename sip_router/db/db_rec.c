@@ -1,5 +1,5 @@
 /* 
- * $Id: db_rec.c,v 1.3 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_rec.c,v 1.4 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,11 +30,14 @@
  * @{ 
  */
 
-#include <stdlib.h>
-#include <string.h>
+#include "db_rec.h"
+
 #include "../dprint.h"
 #include "../mem/mem.h"
-#include "db_rec.h"
+
+#include <stdlib.h>
+#include <string.h>
+
 
 
 db_rec_t* db_rec(db_res_t* res, db_fld_t* fld)

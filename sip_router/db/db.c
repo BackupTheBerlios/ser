@@ -1,5 +1,5 @@
 /*
- * $Id: db.c,v 1.23 2007/04/05 11:37:52 janakj Exp $
+ * $Id: db.c,v 1.24 2008/01/16 14:13:54 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -35,14 +35,16 @@
  * @{
  */
 
+#include "db.h"
+
+#include "db_drv.h"
+
 #include "../dprint.h"
 #include "../sr_module.h"
 #include "../mem/mem.h"
 #include "../str.h"
 #include "../ut.h"
 #include "../list.h"
-#include "db_drv.h"
-#include "db.h"
 
 struct _db_root db_root = DBLIST_INITIALIZER(db_root);
 

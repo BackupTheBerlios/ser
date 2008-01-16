@@ -1,5 +1,5 @@
 /* 
- * $Id: db_gen.h,v 1.3 2007/04/18 12:53:30 janakj Exp $ 
+ * $Id: db_gen.h,v 1.4 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -33,9 +33,10 @@
  * @{ 
  */
 
+#include "db_drv.h"
 #include "../str.h"
 #include "../list.h"
-#include "db_drv.h"
+
 
 #ifdef __cplusplus
 extern "C" {

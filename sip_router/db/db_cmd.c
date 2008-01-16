@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.c,v 1.11 2007/10/31 16:10:11 janakj Exp $ 
+ * $Id: db_cmd.c,v 1.12 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,12 +30,14 @@
  * @{ 
  */
 
-#include <string.h>
-#include <stdarg.h>
+#include "db_cmd.h"
+
 #include "../dprint.h"
 #include "../mem/mem.h"
 #include "../ut.h"
-#include "db_cmd.h"
+
+#include <string.h>
+#include <stdarg.h>
 
 
 db_cmd_t* db_cmd(enum db_cmd_type type, db_ctx_t* ctx, char* table, 

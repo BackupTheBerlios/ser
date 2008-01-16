@@ -1,5 +1,5 @@
 /* 
- * $Id: db_pool.h,v 1.3 2007/04/04 09:06:43 janakj Exp $
+ * $Id: db_pool.h,v 1.4 2008/01/16 14:13:54 janakj Exp $
  *
  * Copyright (C) 2001-2005 iptel.org
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -33,10 +33,11 @@
  * @{ 
  */
 
-#include <sys/types.h>
 #include "db_drv.h"
-#include "../list.h"
 #include "db_uri.h"
+#include "../list.h"
+#include <sys/types.h>
+
 
 #ifdef __cplusplus
 extern "C" {

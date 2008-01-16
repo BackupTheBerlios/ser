@@ -1,5 +1,5 @@
 /* 
- * $Id: db_pool.c,v 1.4 2007/04/04 12:24:23 janakj Exp $
+ * $Id: db_pool.c,v 1.5 2008/01/16 14:13:54 janakj Exp $
  *
  * Copyright (C) 2001-2005 iptel.org
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,10 +30,11 @@
  * @{ 
  */
 
+#include "db_pool.h"
+#include "../dprint.h"
 #include <unistd.h>
 #include <string.h>
-#include "../dprint.h"
-#include "db_pool.h"
+
 
 SLIST_HEAD(db_pool_head, db_pool_entry);
 

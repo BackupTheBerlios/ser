@@ -1,5 +1,5 @@
 /* 
- * $Id: db_fld.h,v 1.6 2008/01/14 12:48:00 calrissian Exp $ 
+ * $Id: db_fld.h,v 1.7 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -33,9 +33,9 @@
  * @{ 
  */
 
-#include <time.h>
-#include "../str.h"
 #include "db_gen.h"
+#include "../str.h"
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C" {

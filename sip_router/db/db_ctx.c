@@ -1,5 +1,5 @@
 /* 
- * $Id: db_ctx.c,v 1.6 2007/10/10 13:25:52 janakj Exp $ 
+ * $Id: db_ctx.c,v 1.7 2008/01/16 14:13:54 janakj Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,11 +30,13 @@
  * @{ 
  */
 
-#include <string.h>
+#include "db_ctx.h"
+#include "db.h"
+
 #include "../dprint.h"
 #include "../mem/mem.h"
-#include "db.h"
-#include "db_ctx.h"
+
+#include <string.h>
 
 static struct db_ctx_data* db_ctx_data(str* module, db_drv_t* data)
 {

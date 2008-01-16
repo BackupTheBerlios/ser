@@ -1,5 +1,5 @@
 /* 
- * $Id: db_uri.c,v 1.3 2007/04/04 12:24:23 janakj Exp $
+ * $Id: db_uri.c,v 1.4 2008/01/16 14:13:54 janakj Exp $
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -30,11 +30,11 @@
  * @{ 
  */
 
-#include <string.h>
+#include "db_uri.h"
 #include "../dprint.h"
 #include "../mem/mem.h"
 #include "../ut.h"
-#include "db_uri.h"
+#include <string.h>
 
 
 /* compare s1 & s2  with a function f (which should return 0 if ==);
