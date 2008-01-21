@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.42 2007/06/25 17:51:30 liborc Exp $
+ * $Id: domain_mod.c,v 1.43 2008/01/21 13:00:35 janakj Exp $
  *
  * Domain module
  *
@@ -526,7 +526,7 @@ static int lookup_domain(struct sip_msg* msg, char* flags, char* fp)
     track = 0;
     
     if (get_str_fparam(&domain, msg, (fparam_t*)fp) != 0) {
-		ERR("Cannot get domain name to lookup\n");
+		DBG("Cannot get domain name to lookup\n");
 		return -1;
     }
     
