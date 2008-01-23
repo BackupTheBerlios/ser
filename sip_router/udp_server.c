@@ -1,5 +1,5 @@
 /*
- * $Id: udp_server.c,v 1.78 2007/12/05 15:51:24 tirpi Exp $
+ * $Id: udp_server.c,v 1.79 2008/01/23 21:02:06 jiri Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -477,7 +477,12 @@ int udp_rcv_loop()
 #ifdef USE_STUN
 		}
 #endif
-#ifndef USE_STUN
+/* historically, zero-terminated packets indicated a bug in clients
+ * that calculated wrongly packet length and included string-terminating
+ * zero; today clients exist with legitimate binary payloads and we
+ * shall not check for zero-terminated payloads
+ */
+#ifdef TRASH_ZEROTERMINATED_PACKETS
 		if (buf[len-1]==0) {
 			tmp=ip_addr2a(&ri.src_ip);
 			LOG(L_WARN, "WARNING: udp_rcv_loop: "
