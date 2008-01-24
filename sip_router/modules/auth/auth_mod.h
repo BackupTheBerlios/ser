@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.h,v 1.25 2007/11/28 21:31:41 andrei Exp $
+ * $Id: auth_mod.h,v 1.26 2008/01/24 13:29:03 janakj Exp $
  *
  * Digest Authentication Module
  *
@@ -49,7 +49,6 @@
 extern str secret1;            /* secret phrase used to generate nonce */
 extern str secret2;            /* secret phrase used to generate nonce */
 extern int nonce_expire;      /* nonce expire interval */
-/* auth_extra_checks -> in nonce.h */
 extern int protect_contacts;  /* Enable/disable contact hashing in nonce */
 extern sl_api_t sl;
 extern avp_ident_t challenge_avpid;
