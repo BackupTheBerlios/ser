@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.h,v 1.3 2007/12/13 11:21:05 tirpi Exp $
+ * $Id: cfg_ctx.h,v 1.4 2008/01/24 15:36:56 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -104,7 +104,7 @@ int cfg_help(cfg_ctx_t *ctx, str *group_name, str *var_name,
 			char **ch, unsigned int *input_type);
 
 /* notify the drivers about the new config definition */
-void cfg_notify_drivers(char *group_name, cfg_def_t *def);
+void cfg_notify_drivers(char *group_name, int group_name_len, cfg_def_t *def);
 
 /* initialize the handle for cfg_get_group_next() */
 #define cfg_get_group_init(handle) \
