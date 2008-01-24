@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.146 2008/01/24 15:36:56 tirpi Exp $
+ * $Id: cfg.y,v 1.147 2008/01/24 15:57:31 tirpi Exp $
  *
  *  cfg grammar
  *
@@ -1110,16 +1110,24 @@ assign_stm:
 	;
 cfg_var:
 	ID DOT ID EQUAL NUMBER {
-		cfg_declare_int($1, $3, $5, NULL);
+		if (cfg_declare_int($1, $3, $5, NULL)) {
+			yyerror("variable cannot be declared");
+		}
 	}
 	| ID DOT ID EQUAL STRING {
-		cfg_declare_str($1, $3, $5, NULL);
+		if (cfg_declare_str($1, $3, $5, NULL)) {
+			yyerror("variable cannot be declared");
+		}
 	}
 	| ID DOT ID EQUAL NUMBER CFG_DESCRIPTION STRING {
-		cfg_declare_int($1, $3, $5, $7);
+		if (cfg_declare_int($1, $3, $5, $7)) {
+			yyerror("variable cannot be declared");
+		}
 	}
 	| ID DOT ID EQUAL STRING CFG_DESCRIPTION STRING {
-		cfg_declare_str($1, $3, $5, $7);
+		if (cfg_declare_str($1, $3, $5, $7)) {
+			yyerror("variable cannot be declared");
+		}
 	}
 	| ID DOT ID EQUAL error { yyerror("number or string expected"); }
 	;
