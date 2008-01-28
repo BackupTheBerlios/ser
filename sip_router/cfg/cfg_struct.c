@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.c,v 1.3 2008/01/24 15:36:56 tirpi Exp $
+ * $Id: cfg_struct.c,v 1.4 2008/01/28 12:23:11 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -412,7 +412,7 @@ int cfg_lookup_var(str *gname, str *vname,
 		&& (memcmp(g->name, gname->s, gname->len)==0)) {
 
 			for (	i = 0;
-				i < g->size;
+				i < g->num;
 				i++
 			) {
 				if ((g->mapping[i].name_len == vname->len)

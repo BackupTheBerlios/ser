@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.c,v 1.2 2008/01/24 15:36:56 tirpi Exp $
+ * $Id: cfg.c,v 1.3 2008/01/28 12:23:11 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -95,9 +95,9 @@ int cfg_declare(char *group_name, cfg_def_t *def, void *values, int def_size,
 
 		/* verify the type of the input */
 		if (CFG_INPUT_MASK(def[i].type)==0) {
-			def[i].type |= def[i].type << 3;
+			def[i].type |= def[i].type << CFG_INPUT_SHIFT;
 		} else {
-			if ((CFG_INPUT_MASK(def[i].type) != CFG_VAR_MASK(def[i].type) << 3)
+			if ((CFG_INPUT_MASK(def[i].type) != CFG_VAR_MASK(def[i].type) << CFG_INPUT_SHIFT)
 			&& (def[i].on_change_cb == 0)) {
 				LOG(L_ERR, "ERROR: register_cfg_def(): %s.%s: variable and input types are "
 					"different, but no callback is defined for conversion\n",

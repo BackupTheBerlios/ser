@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.h,v 1.2 2008/01/24 15:36:56 tirpi Exp $
+ * $Id: cfg.h,v 1.3 2008/01/28 12:23:11 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -39,9 +39,11 @@
 #define CFG_VAR_STR		3U
 #define CFG_VAR_POINTER		4U
 
-#define CFG_INPUT_INT		(CFG_VAR_INT << 3)
-#define CFG_INPUT_STRING	(CFG_VAR_STRING << 3)
-#define CFG_INPUT_STR		(CFG_VAR_STR << 3)
+#define CFG_INPUT_SHIFT		3
+
+#define CFG_INPUT_INT		(CFG_VAR_INT << CFG_INPUT_SHIFT)
+#define CFG_INPUT_STRING	(CFG_VAR_STRING << CFG_INPUT_SHIFT)
+#define CFG_INPUT_STR		(CFG_VAR_STR << CFG_INPUT_SHIFT)
 
 #define CFG_VAR_MASK(x)		((x)&(CFG_INPUT_INT-1))
 #define CFG_INPUT_MASK(x)	((x)&(~(CFG_INPUT_INT-1)))
