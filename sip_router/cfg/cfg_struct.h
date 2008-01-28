@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.h,v 1.3 2008/01/24 15:36:56 tirpi Exp $
+ * $Id: cfg_struct.h,v 1.4 2008/01/28 15:35:57 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -248,6 +248,9 @@ static inline void cfg_update_local(void)
 		if (unlikely(cfg_local != *cfg_global)) \
 			cfg_update_local(); \
 	} while(0)
+
+/* searches a group by name */
+cfg_group_t *cfg_lookup_group(char *name, int len);
 	
 /* searches a variable definition by group and variable name */
 int cfg_lookup_var(str *gname, str *vname,

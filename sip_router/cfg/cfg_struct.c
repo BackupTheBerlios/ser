@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.c,v 1.4 2008/01/28 12:23:11 tirpi Exp $
+ * $Id: cfg_struct.c,v 1.5 2008/01/28 15:35:57 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -395,6 +395,22 @@ void cfg_child_destroy(void)
 		}
 	}
 	cfg_child_cb = NULL;
+}
+
+/* searches a group by name */
+cfg_group_t *cfg_lookup_group(char *name, int len)
+{
+	cfg_group_t	*g;
+
+	for (	g = cfg_group;
+		g;
+		g = g->next
+	)
+		if ((g->name_len == len)
+		&& (memcmp(g->name, name, len)==0))
+			return g;
+
+	return NULL;
 }
 
 /* searches a variable definition by group and variable name */

@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_script.h,v 1.1 2008/01/24 15:36:56 tirpi Exp $
+ * $Id: cfg_script.h,v 1.2 2008/01/28 15:35:57 tirpi Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -43,6 +43,8 @@ typedef struct _cfg_script_var {
 		str	s;
 		int	i;
 	} val;
+	int	min;
+	int	max;
 	struct _cfg_script_var	*next;
 	int	name_len;
 	char	*name;
