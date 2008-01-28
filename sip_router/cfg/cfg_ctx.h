@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.h,v 1.5 2008/01/28 12:23:11 tirpi Exp $
+ * $Id: cfg_ctx.h,v 1.6 2008/01/28 12:54:59 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -72,7 +72,7 @@ typedef struct _cfg_ctx {
 
 /* creates a new config context that is an interface to the
  * cfg variables with write permission */
-cfg_ctx_t *cfg_register_ctx(cfg_on_declare on_declare_cb);
+int cfg_register_ctx(cfg_ctx_t **handle, cfg_on_declare on_declare_cb);
 
 /* free the memory allocated for the contexts */
 void cfg_ctx_destroy(void);
