@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.8 2008/01/28 12:54:59 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.9 2008/01/30 09:46:05 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -124,40 +124,6 @@ void cfg_notify_drivers(char *group_name, int group_name_len, cfg_def_t *def)
 		if (ctx->on_declare_cb)
 			ctx->on_declare_cb(&gname, def);
 }
-
-/*
- * Convert an str into signed integer
- * this function should be moved to ../ut.h
- */
-static int str2sint(str* _s, int* _r)
-{
-	int i;
-	int sign;
-
-	if (_s->len == 0) return -1;
-
-	*_r = 0;
-	sign = 1;
-	i = 0;
-	if (_s->s[0] == '+') {
-		i++;
-	} else if (_s->s[0] == '-') {
-		sign = -1;
-		i++;
-	}
-	for(; i < _s->len; i++) {
-		if ((_s->s[i] >= '0') && (_s->s[i] <= '9')) {
-			*_r *= 10;
-			*_r += _s->s[i] - '0';
-		} else {
-			return -1;
-		}
-	}
-	*_r *= sign;
-
-	return 0;
-}
-
 
 /* placeholder for a temporary string */
 static char	*temp_string = NULL;
