@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.h,v 1.4 2008/01/28 15:35:57 tirpi Exp $
+ * $Id: cfg_struct.h,v 1.5 2008/01/30 11:48:39 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -260,7 +260,7 @@ int cfg_lookup_var(str *gname, str *vname,
 cfg_block_t *cfg_clone_global(void);
 
 /* clones a string to shared memory */
-char *cfg_clone_str(str s);
+int cfg_clone_str(str *src, str *dst);
 
 /* installs a new global config
  *

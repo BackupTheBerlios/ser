@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_select.c,v 1.2 2008/01/28 12:23:11 tirpi Exp $
+ * $Id: cfg_select.c,v 1.3 2008/01/30 11:48:39 tirpi Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -96,7 +96,7 @@ int select_cfg_var(str *res, select_t *s, struct sip_msg *msg)
 
 	case CFG_VAR_STRING:
 		memcpy(&res->s, p, sizeof(char *));
-		res->len = strlen(res->s);
+		res->len = (res->s) ? strlen(res->s) : 0;
 		break;
 
 	case CFG_VAR_STR:
