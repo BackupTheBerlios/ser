@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.11 2008/01/31 16:16:54 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.12 2008/01/31 16:22:09 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -508,7 +508,7 @@ int cfg_set_delayed(cfg_ctx_t *ctx, str *group_name, str *var_name,
 		if (((int)(long)v < var->def->min)
 		|| ((int)(long)v > var->def->max)) {
 			LOG(L_ERR, "ERROR: cfg_set_delayed(): integer value is out of range\n");
-			goto error;
+			goto error0;
 		}
 	}
 
