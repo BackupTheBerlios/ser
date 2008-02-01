@@ -1,5 +1,5 @@
 /*
- * $Id: xmlrpc.c,v 1.23 2007/08/14 12:18:00 janakj Exp $
+ * $Id: xmlrpc.c,v 1.24 2008/02/01 18:42:57 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  * Written by Jan Janak <jan@iptel.org>
@@ -2015,7 +2015,7 @@ static int fixup_xmlrpc_reply(void** param, int param_no)
 	if (param_no == 1) {
 		ret = fix_param(FPARAM_AVP, param);
 		if (ret <= 0) return ret;		
-		return fix_param(FPARAM_INT, param);
+	    if (fix_param(FPARAM_INT, param) != 0) return -1;
 	} else if (param_no == 2) {
 	        return fixup_var_str_12(param, 2);
 	}

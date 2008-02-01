@@ -1,4 +1,4 @@
-/* $Id: nathelper.c,v 1.123 2008/02/01 09:31:35 sobomax Exp $
+/* $Id: nathelper.c,v 1.124 2008/02/01 18:42:58 janakj Exp $
  *
  * Copyright (C) 2003 Porta Software Ltd
  *
@@ -2604,7 +2604,7 @@ fixup_ping_contact(void **param, int param_no)
 	if (param_no == 1) {
 		ret = fix_param(FPARAM_AVP, param);
 		if (ret <= 0) return ret;
-		return fix_param(FPARAM_STR, param);
+		if (fix_param(FPARAM_STR, param) != 0) return -1;
 	}
 	return 0;
 }
