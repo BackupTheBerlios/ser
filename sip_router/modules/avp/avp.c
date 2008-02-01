@@ -1,5 +1,5 @@
 /*
- * $Id: avp.c,v 1.33 2007/11/09 16:51:46 tirpi Exp $
+ * $Id: avp.c,v 1.34 2008/02/01 16:46:43 janakj Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -327,7 +327,7 @@ static int del_attr(struct sip_msg* msg, char* p1, char* p2)
 
 static int del_attrs(struct sip_msg* msg, char* p1, char* p2)
 {
-    return reset_avp_list((unsigned long)p1);
+    return (reset_avp_list((unsigned long)p1) == 0) ? 1 : -1;
 }
 			
 
