@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.181 2007/09/10 19:02:58 tma0 Exp $
+# $Id: Makefile,v 1.182 2008/02/02 13:21:09 janakj Exp $
 #
 # sip_router makefile
 #
@@ -218,9 +218,9 @@ modules_full_path=$(join  $(modules), $(addprefix /, $(modules_names)))
 
 # which utils need compilation (directory path) and which to install
 # (full path including file name)
-utils_compile=	utils/gen_ha1 utils/serunix utils/sercmd
-utils_install=	utils/gen_ha1/gen_ha1 utils/serunix/serunix \
-				scripts/sc scripts/mysql/ser_mysql.sh utils/sercmd/sercmd
+utils_compile=	utils/gen_ha1 utils/sercmd
+utils_install=	utils/gen_ha1/gen_ha1 \
+				scripts/mysql/ser_mysql.sh utils/sercmd/sercmd
 
 
 ALLDEP=Makefile Makefile.sources Makefile.defs Makefile.rules
@@ -407,7 +407,6 @@ modules-doc:
 .PHONY: install
 install: install-bin install-modules install-cfg \
 	install-doc install-man install-utils
-		mv -f $(bin_prefix)/$(bin_dir)/sc $(bin_prefix)/$(bin_dir)/serctl #fix
 
 .PHONY: dbinstall
 dbinstall:
