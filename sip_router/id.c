@@ -1,5 +1,5 @@
 /*
- * $Id: id.c,v 1.9 2008/02/02 12:24:41 janakj Exp $
+ * $Id: id.c,v 1.10 2008/02/02 12:26:59 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -140,7 +140,7 @@ int set_to_uid(str* uid)
 }
 
 
-/* Retrieves the UID of the callee. This function retrieves the UID (unique
+/** Retrieves the UID of the callee. This function retrieves the UID (unique
  * identifier) of the party being called. The function first searches the list
  * of available attributes and if it finds an attribute with name "uid" then
  * the value of the attribute is returned.  If no such attribute can be found
