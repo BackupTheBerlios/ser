@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.33 2008/02/02 13:00:37 janakj Exp $
+/* $Id: mediaproxy.c,v 1.34 2008/02/02 14:31:09 janakj Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -466,9 +466,9 @@ getFromDomain(char** type, struct sip_msg* msg)
     static struct sip_uri puri;
     str uri, did;
 
-    if (get_from_did(&did, msg) == 0) {
-	*type = "local";
-	return did;
+    if (get_from_did(&did, msg) == 1) {
+		*type = "local";
+		return did;
     }
 
     *type = "remote";
