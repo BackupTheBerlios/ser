@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.22 2006/12/13 16:49:52 janakj Exp $
+ * $Id: authorize.c,v 1.23 2008/02/02 14:30:23 janakj Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -188,13 +188,13 @@ static inline int authenticate(struct sip_msg* msg, str* realm,
 
 	if (use_did) {
 	    if (msg->REQ_METHOD == METHOD_REGISTER) {
-		ret = get_to_did(&did, msg);
+			ret = get_to_did(&did, msg);
 	    } else {
-		ret = get_from_did(&did, msg);
+			ret = get_from_did(&did, msg);
 	    }
 	    if (ret == 0) {
-		did.s = DEFAULT_DID;
-		did.len = sizeof(DEFAULT_DID) - 1;
+			did.s = DEFAULT_DID;
+			did.len = sizeof(DEFAULT_DID) - 1;
 	    }
 	} else {
 	    did.len = 0;
