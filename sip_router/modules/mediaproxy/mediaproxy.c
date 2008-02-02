@@ -1,4 +1,4 @@
-/* $Id: mediaproxy.c,v 1.32 2006/12/11 16:29:51 janakj Exp $
+/* $Id: mediaproxy.c,v 1.33 2008/02/02 13:00:37 janakj Exp $
  *
  * Copyright (C) 2004 Dan Pascu
  *
@@ -1324,7 +1324,9 @@ ClientNatTest(struct sip_msg* msg, char* str1, char* str2)
 {
     int tests, i;
 
-    tests = (int)(long)str1;
+	if (get_int_fparam(&tests, msg, (fparam_t*) str1) < 0) {
+		return -1;
+	}
 
     for (i=0; natTests[i].test!=NTNone; i++) {
         if ((tests & natTests[i].test)!=0 && natTests[i].proc(msg)) {
