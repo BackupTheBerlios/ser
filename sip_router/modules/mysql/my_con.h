@@ -1,5 +1,5 @@
 /* 
- * $Id: my_con.h,v 1.7 2008/01/16 14:17:28 janakj Exp $
+ * $Id: my_con.h,v 1.8 2008/02/03 19:12:05 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -36,7 +36,7 @@
 #include <time.h>
 #include <mysql/mysql.h>
 
-enum my_flags {
+enum my_con_flags {
 	MY_CONNECTED = 1
 };
 

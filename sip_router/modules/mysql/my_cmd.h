@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.h,v 1.5 2008/01/16 14:17:28 janakj Exp $
+ * $Id: my_cmd.h,v 1.6 2008/02/03 19:12:05 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -32,6 +32,12 @@
 #include "../../db/db_drv.h"
 #include "../../db/db_cmd.h"
 #include <mysql/mysql.h>
+#include <stdarg.h>
+
+typedef enum my_flags {
+	/** Fetch all data from the server to the client at once */
+	MY_FETCH_ALL = (1 << 0),
+} my_flags_t;
 
 struct my_cmd {
 	db_drv_t gen;
@@ -49,6 +55,7 @@ struct my_cmd {
 	 * the connection was reconnected meanwhile.
 	 */
 	unsigned int last_reset;
+	unsigned int flags; /**< Various flags, mainly used by setopt and getopt */
 };
 
 int my_cmd(db_cmd_t* cmd);
@@ -58,5 +65,9 @@ int my_cmd_exec(db_res_t* res, db_cmd_t* cmd);
 int my_cmd_first(db_res_t* res);
 
 int my_cmd_next(db_res_t* res);
+
+int my_getopt(db_cmd_t* cmd, char* optname, va_list ap);
+
+int my_setopt(db_cmd_t* cmd, char* optname, va_list ap);
 
 #endif /* _MY_CMD_H */
