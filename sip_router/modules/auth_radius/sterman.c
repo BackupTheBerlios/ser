@@ -1,5 +1,5 @@
 /* 
- * $Id: sterman.c,v 1.25 2008/02/04 06:03:19 sobomax Exp $
+ * $Id: sterman.c,v 1.26 2008/02/04 21:01:51 sobomax Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -157,7 +157,7 @@ int radius_authorize_sterman(VALUE_PAIR** received, struct sip_msg* _msg, dig_cr
 		goto err;
 	}
 	
-	if (use_ruri_flag < 0 || !isflagset(_msg, use_ruri_flag)) {
+	if (use_ruri_flag < 0 || isflagset(_msg, use_ruri_flag) != 1) {
 		ruri = &_cred->uri;
 	} else {
 		ruri = GET_RURI(_msg);
