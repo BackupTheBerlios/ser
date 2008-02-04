@@ -1,5 +1,5 @@
 /*
- * $Id: id.c,v 1.13 2008/02/04 13:54:47 janakj Exp $
+ * $Id: id.c,v 1.14 2008/02/04 14:11:37 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -132,7 +132,7 @@ int get_to_uid(str* uid, struct sip_msg* msg)
 		*uid = val.s;
 		return 1;
 	} else {
-		if (msg->first_line.type == METHOD_REGISTER) {
+		if (msg->REQ_METHOD == METHOD_REGISTER) {
 			if ((msg->to==0) && 
 				(parse_headers(msg, HDR_TO_F, 0) < 0 || msg->to == 0)) {
 				DBG("get_to_uid: Error while parsing To URI: "
