@@ -1,5 +1,5 @@
 /*
- * $Id: authrad_mod.h,v 1.11 2006/12/09 00:37:08 janakj Exp $
+ * $Id: authrad_mod.h,v 1.12 2008/02/04 06:03:19 sobomax Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -43,6 +43,7 @@ extern struct val vals[];
 extern void *rh;
 
 extern int use_did;
+extern int use_ruri_flag;
 
 extern auth_api_t auth_api;
 
