@@ -1,5 +1,5 @@
 /*
- * $Id: id.c,v 1.12 2008/02/04 10:19:21 janakj Exp $
+ * $Id: id.c,v 1.13 2008/02/04 13:54:47 janakj Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -159,7 +159,7 @@ int get_to_uid(str* uid, struct sip_msg* msg)
 			DBG("get_to_uid: Username too long\n");
 			return -1;
 		}
-		memcpy(buf, puri.user.s, puri.user.len);
+		memcpy(buf, p, uid->len);
 		uid->s = buf;
 		strlower(uid);
 
