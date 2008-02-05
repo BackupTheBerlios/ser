@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.182 2008/02/02 13:21:09 janakj Exp $
+# $Id: Makefile,v 1.183 2008/02/05 06:46:44 janakj Exp $
 #
 # sip_router makefile
 #
@@ -251,7 +251,7 @@ endif
 
 # sanity checks
 ifneq ($(TLS),)
-	$(warning "make TLS option is obsoleted, try TLS_HOOKS or CORE_TLS")
+        $(warning "make TLS option is obsoleted, try TLS_HOOKS or CORE_TLS")
 endif
 
 # include the common rules
