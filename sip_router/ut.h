@@ -1,5 +1,5 @@
 /*
- *$Id: ut.h,v 1.50 2008/01/30 09:46:04 tirpi Exp $
+ *$Id: ut.h,v 1.51 2008/02/08 05:37:44 janakj Exp $
  *
  * - various general purpose functions
  *
@@ -579,5 +579,21 @@ char* as_asciiz(str* s);
  * (if some of them are missing, they are set to 0)
  * if the parameters are not null they are set to the coresp. part */
 unsigned int get_sys_version(int* major, int* minor, int* minor2);
+
+/** Converts relative pathnames to absolute pathnames. This function returns
+ * the full pathname of a file in parameter. If the file pathname does not
+ * start with / then it will be converted into an absolute pathname. The
+ * function gets the absolute directory pathname from \c base and appends \c
+ * file to it. The first parameter can be NULL, in this case the function will
+ * use the location of the main SER configuration file as reference.
+ * @param base filename to be used as reference when \c file is relative. It
+ *             must be absolute. The location of the SER configuration file
+ *             will be used as reference if you set the value of this
+ *             parameter to NULL.
+ * @param file A pathname to be converted to absolute.
+ * @return A string containing absolute pathname, the string must be freed
+ * with free. NULL on error.
+ */
+char* get_abs_pathname(str* base, str* file);
 
 #endif
