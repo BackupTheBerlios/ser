@@ -1,5 +1,5 @@
 /*
- * $Id: tls_util.h,v 1.4 2008/02/05 08:27:42 janakj Exp $
+ * $Id: tls_util.h,v 1.5 2008/02/08 05:38:39 janakj Exp $
  *
  * TLS module - common functions
  *
@@ -80,17 +80,5 @@ int shm_asciiz_dup(char** dest, char* val);
  * Delete old TLS configuration that is not needed anymore
  */
 void collect_garbage(void);
-
-
-/** Get full pathname of file. This function returns the full pathname of a
- * file in parameter. If the parameter does not start with / then the pathname
- * of the file will be relative to the pathname of the main SER configuration
- * file.
- * @param filename A pathname to be converted to absolute.
- * @return A string containing absolute pathname, the string
- *         must be freed with free.
- */
-char* get_pathname(str* filename);
-
 
 #endif /* _TLS_UTIL_H */

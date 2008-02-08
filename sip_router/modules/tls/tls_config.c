@@ -1,5 +1,5 @@
 /*
- * $Id: tls_config.c,v 1.7 2008/02/05 08:27:42 janakj Exp $
+ * $Id: tls_config.c,v 1.8 2008/02/08 05:38:39 janakj Exp $
  *
  * TLS module - Configuration file parser
  *
@@ -41,6 +41,7 @@
 #include "tls_config.h"
 #include "tls_util.h"
 #include "tls_domain.h"
+#include "tls_mod.h"
 
 #define MAX_TOKEN_LEN 256
 
@@ -681,7 +682,7 @@ static char* parse_file_val(token_t* token)
 	char* file, *res;
 	str val;
 	if (parse_string_val(&val, token) < 0) return 0;
-	file = get_pathname(&val);
+	file = get_abs_pathname(&tls_cfg_file, &val);
 	if (!file) return 0;
 	if (shm_asciiz_dup(&res, file) < 0) {
 		free(file);
@@ -995,7 +996,7 @@ tls_cfg_t* tls_load_config(str* filename)
 {
 	char* file;
 
-	file = get_pathname(filename);
+	file = get_abs_pathname(NULL, filename);
 	if (!file) return 0;
 
 	pstate.f = fopen(file, "r");
