@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.h,v 1.5 2008/01/30 11:48:39 tirpi Exp $
+ * $Id: cfg_struct.h,v 1.6 2008/02/08 17:09:45 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -261,6 +261,13 @@ cfg_block_t *cfg_clone_global(void);
 
 /* clones a string to shared memory */
 int cfg_clone_str(str *src, str *dst);
+
+/* append new callbacks to the end of the child callback list
+ *
+ * WARNING: the function is unsafe, either hold CFG_LOCK(),
+ * or call the function before forking
+ */
+void cfg_install_child_cb(cfg_child_cb_t *cb_first, cfg_child_cb_t *cb_last);
 
 /* installs a new global config
  *
