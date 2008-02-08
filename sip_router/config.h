@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.75 2006/12/09 00:35:01 janakj Exp $
+ *  $Id: config.h,v 1.76 2008/02/08 05:36:49 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -46,8 +46,8 @@
 
 #define CFG_FILE CFG_DIR "ser.cfg"
 
-#define TLS_PKEY_FILE CFG_DIR "cert.pem" 
-#define TLS_CERT_FILE CFG_DIR "cert.pem"
+#define TLS_PKEY_FILE "cert.pem" 
+#define TLS_CERT_FILE "cert.pem"
 #define TLS_CA_FILE 0 /* no CA list file by default */
 
 
