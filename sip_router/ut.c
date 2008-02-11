@@ -1,5 +1,5 @@
 /*
- *$Id: ut.c,v 1.6 2008/02/08 05:37:44 janakj Exp $
+ *$Id: ut.c,v 1.7 2008/02/11 10:11:00 tirpi Exp $
  *
  * various general purpose functions
  *
@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sys/utsname.h> /* uname() */
+#include <libgen.h>
 
 
 #include "ut.h"

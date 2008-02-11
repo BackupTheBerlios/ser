@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.254 2008/02/11 09:58:29 tirpi Exp $
+ * $Id: main.c,v 1.255 2008/02/11 10:11:00 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -108,7 +108,6 @@
 #ifdef HAVE_SYS_SOCKIO_H
 #include <sys/sockio.h>
 #endif
-#include <libgen.h>
 
 #include "config.h"
 #include "dprint.h"
@@ -176,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.254 2008/02/11 09:58:29 tirpi Exp $";
+static char id[]="@(#) $Id: main.c,v 1.255 2008/02/11 10:11:00 tirpi Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
