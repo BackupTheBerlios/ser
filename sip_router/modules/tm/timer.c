@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.80 2007/12/13 15:29:56 tirpi Exp $
+ * $Id: timer.c,v 1.81 2008/02/11 09:58:30 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -138,6 +138,7 @@
 #include "t_hooks.h"
 #ifdef USE_DNS_FAILOVER
 #include "t_fwd.h" /* t_send_branch */
+#include "../../cfg_core.h" /* cfg_get(core, core_cfg, use_dns_failover) */
 #endif
 #ifdef USE_DST_BLACKLIST
 #include "../../dst_blacklist.h"
@@ -467,7 +468,7 @@ inline static void final_response_handler(	struct retr_buf* r_buf,
 		/* if this is an invite, the destination resolves to more ips, and
 		 *  it still hasn't passed more than fr_inv_timeout since we
 		 *  started, add another branch/uac */
-		if (use_dns_failover){
+		if (cfg_get(core, core_cfg, use_dns_failover)){
 			now=get_ticks_raw();
 			if ((s_ticks_t)(t->end_of_life-now)>0){
 				branch_ret=add_uac_dns_fallback(t, t->uas.request,

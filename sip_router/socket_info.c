@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.15 2007/08/23 20:43:58 andrei Exp $
+/* $Id: socket_info.c,v 1.16 2008/02/11 09:58:29 tirpi Exp $
  *
  * find & manage listen addresses 
  *
@@ -715,17 +715,14 @@ error:
 	return -1;
 }
 
-
+int socket_types = 0;
 
 /* fix all 3 socket lists, fills socket_types if non-null
  * return 0 on success, -1 on error */
-int fix_all_socket_lists(int* socket_types)
+int fix_all_socket_lists()
 {
 	struct utsname myname;
 	int flags;
-	
-	if (socket_types)
-		*socket_types=0;
 	
 	if ((udp_listen==0)
 #ifdef USE_TCP
@@ -771,8 +768,8 @@ int fix_all_socket_lists(int* socket_types)
 				" udp failed\n");
 		goto error;
 	}
-	if (flags && socket_types){
-		*socket_types|=flags|SOCKET_T_UDP;
+	if (flags){
+		socket_types|=flags|SOCKET_T_UDP;
 	}
 #ifdef USE_TCP
 	if (!tcp_disable && (fix_socket_list(&tcp_listen, &flags)!=0)){
@@ -780,8 +777,8 @@ int fix_all_socket_lists(int* socket_types)
 				" tcp failed\n");
 		goto error;
 	}
-	if (flags && socket_types){
-		*socket_types|=flags|SOCKET_T_TCP;
+	if (flags){
+		socket_types|=flags|SOCKET_T_TCP;
 	}
 #ifdef USE_TLS
 	if (!tls_disable && (fix_socket_list(&tls_listen, &flags)!=0)){
@@ -789,8 +786,8 @@ int fix_all_socket_lists(int* socket_types)
 				" tls failed\n");
 		goto error;
 	}
-	if (flags && socket_types){
-		*socket_types|=flags|SOCKET_T_TLS;
+	if (flags){
+		socket_types|=flags|SOCKET_T_TLS;
 	}
 #endif
 #endif

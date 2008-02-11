@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.48 2007/10/02 20:49:27 andrei Exp $
+ * $Id: t_msgbuilder.c,v 1.49 2008/02/11 09:58:29 tirpi Exp $
  *
  * message printing
  *
@@ -66,6 +66,7 @@
 #include "uac.h"
 #ifdef USE_DNS_FAILOVER
 #include "../../dns_cache.h"
+#include "../../cfg_core.h" /* cfg_get(core, core_cfg, use_dns_failover) */
 #endif
 
 
@@ -598,7 +599,7 @@ char *build_dlg_ack(struct sip_msg* rpl, struct cell *Trans,
 	
 	 /* via */
 #ifdef USE_DNS_FAILOVER
-	if (use_dns_failover){
+	if (cfg_get(core, core_cfg, use_dns_failover)){
 		dns_srv_handle_init(&dns_h);
 		if ((uri2dst(&dns_h , dst, rpl, &next_hop, PROTO_NONE)==0) ||
 				(dst->send_sock==0)){

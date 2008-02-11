@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.21 2007/06/18 21:23:54 andrei Exp $
+ * $Id: ut.h,v 1.22 2008/02/11 09:58:30 tirpi Exp $
  *
  * utilities
  *
@@ -58,6 +58,7 @@
 #include "../../resolve.h"
 #ifdef USE_DNS_FAILOVER
 #include "../../dns_cache.h"
+#include "../../cfg_core.h" /* cfg_get(core, core_cfg, use_dns_failover) */
 #endif
 
 /* a forced_proto takes precedence if != PROTO_NONE */
@@ -270,7 +271,7 @@ inline static struct dest_info *uri2dst(struct dest_info* dst,
 #endif
 		host=&parsed_uri.host;
 #ifdef USE_DNS_FAILOVER
-	if (use_dns_failover && dns_h){
+	if (cfg_get(core, core_cfg, use_dns_failover) && dns_h){
 		ip_found=0;
 		do{
 			/* try all the ips until we find a good send socket */

@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.151 2007/12/13 15:29:56 tirpi Exp $
+ * $Id: t_reply.c,v 1.152 2008/02/11 09:58:30 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -109,6 +109,10 @@
 #include "../../select_buf.h" /* reset_static_buffer() */
 #ifdef USE_DST_BLACKLIST
 #include "../../dst_blacklist.h"
+#endif
+#ifdef USE_DNS_FAILOVER
+#include "../../dns_cache.h"
+#include "../../cfg_core.h" /* cfg_get(core, core_cfg, use_dns_failover) */
 #endif
 
 #include "defs.h"
@@ -415,7 +419,7 @@ static int send_local_ack(struct sip_msg* msg, str* next_hop,
 		return -1;
 	}
 #ifdef USE_DNS_FAILOVER
-	if (use_dns_failover){
+	if (cfg_get(core, core_cfg, use_dns_failover)){
 		dns_srv_handle_init(&dns_h);
 		if ((uri2dst(&dns_h, &dst, msg,  next_hop, PROTO_NONE)==0) || 
 				(dst.send_sock==0)){
@@ -1837,7 +1841,10 @@ int reply_received( struct sip_msg  *p_msg )
 		 *  This code is out of LOCK_REPLIES() to minimize the time the
 		 *  reply lock is held (the lock won't be held while sending the
 		 *   message)*/
-		if (use_dns_failover && (msg_status==503) && uac->request.t_active){
+		if (cfg_get(core, core_cfg, use_dns_failover) && 
+			(msg_status==503) &&
+			uac->request.t_active
+		) {
 			branch_ret=add_uac_dns_fallback(t, t->uas.request, uac, 1);
 			prev_branch=-1;
 			while((branch_ret>=0) &&(branch_ret!=prev_branch)){
