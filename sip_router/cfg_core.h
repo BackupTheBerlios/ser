@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.h,v 1.3 2008/02/11 09:58:29 tirpi Exp $
+ * $Id: cfg_core.h,v 1.4 2008/02/11 17:11:59 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -67,6 +67,7 @@ struct cfg_group_core {
 	int dns_reinit;
 	/* DNS cache */
 #ifdef USE_DNS_CACHE
+	int use_dns_cache;
 	int dns_cache_flags;
 	int use_dns_failover;
 	int dns_srv_lb;

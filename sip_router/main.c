@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.255 2008/02/11 10:11:00 tirpi Exp $
+ * $Id: main.c,v 1.256 2008/02/11 17:11:59 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.255 2008/02/11 10:11:00 tirpi Exp $";
+static char id[]="@(#) $Id: main.c,v 1.256 2008/02/11 17:11:59 tirpi Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -371,9 +371,6 @@ int reply_to_via=0;
 int mcast_loopback = 0;
 int mcast_ttl = -1; /* if -1, don't touch it, use the default (usually 1) */
 #endif /* USE_MCAST */
-#ifdef USE_DNS_CACHE
-int use_dns_cache=1; /* 1 if the cache is enabled, 0 otherwise */
-#endif
 
 int tos = IPTOS_LOWDELAY;
 int pmtu_discovery = 0;
@@ -1652,12 +1649,10 @@ try_again:
 		goto error;
 	}
 #ifdef USE_DNS_CACHE
-	if (use_dns_cache && init_dns_cache()<0){
+	if (init_dns_cache()<0){
 		LOG(L_CRIT, "could not initialize the dns cache, exiting...\n");
 		goto error;
 	}
-	if (use_dns_cache==0)
-		default_core_cfg.use_dns_failover=0; /* cannot work w/o dns_cache support */
 #ifdef USE_DNS_CACHE_STATS
 	/* preinitializing before the nubmer of processes is determined */
 	if (init_dns_cache_stats(1)<0){
