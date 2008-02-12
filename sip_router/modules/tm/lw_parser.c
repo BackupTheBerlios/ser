@@ -1,5 +1,5 @@
 /*
- * $Id: lw_parser.c,v 1.1 2007/05/29 15:52:37 tirpi Exp $
+ * $Id: lw_parser.c,v 1.2 2008/02/12 16:17:58 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -249,7 +249,6 @@ char *lw_next_line(char *buf, char *buf_end)
 	do {
 		while ((c < buf_end) && (*c != '\n')) c++;
 		if (c < buf_end) c++;
-		if ((c < buf_end) && (*c == '\r')) c++;
 
 	} while ((c < buf_end) &&
 		((*c == ' ') || (*c == '\t')));	/* next line begins with whitespace line folding */
