@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.14 2008/02/08 17:09:45 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.15 2008/02/13 16:14:21 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -304,7 +304,11 @@ int cfg_set_now(cfg_ctx_t *ctx, str *group_name, str *var_name,
 	}
 
 	if (var->def->on_set_child_cb) {
-		child_cb = cfg_child_cb_new(var_name,
+		/* get the name of the variable from the internal struct,
+		because var_name may be freed before the callback needs it */
+		s.s = var->def->name;
+		s.len = var->name_len;
+		child_cb = cfg_child_cb_new(&s,
 					var->def->on_set_child_cb);
 		if (!child_cb) {
 			LOG(L_ERR, "ERROR: cfg_set_now(): not enough shm memory\n");
