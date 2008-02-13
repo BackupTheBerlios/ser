@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.29 2008/02/11 09:58:29 tirpi Exp $*/
+/* $Id: resolve.c,v 1.30 2008/02/13 15:17:39 tirpi Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -162,7 +162,7 @@ void resolv_reinit(str *name)
 	_resolv_init();
 
 #ifdef DNS_WATCHDOG_SUPPORT
-	if (on_resolv_reinit_cb) on_resolv_reinit_cb();
+	if (on_resolv_reinit_cb) on_resolv_reinit_cb(name);
 #endif
 	LOG(L_DBG, "DEBUG: resolv_reinit(): "
 		"DNS resolver has been reinitialized\n");

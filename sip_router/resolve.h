@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.32 2008/02/11 09:58:29 tirpi Exp $
+ * $Id: resolve.h,v 1.33 2008/02/13 15:17:39 tirpi Exp $
  *
  * resolver related functions
  *
@@ -417,7 +417,7 @@ void reinit_naptr_proto_prefs(str *name);
  * If the callback is registered after forking, only the child process
  * that installs the hook will call the callback.
  */
-typedef void (*on_resolv_reinit)(void);
+typedef void (*on_resolv_reinit)(str*);
 int register_resolv_reinit_cb(on_resolv_reinit cb);
 #endif
 
