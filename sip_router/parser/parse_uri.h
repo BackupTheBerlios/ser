@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.h,v 1.8 2007/03/01 12:30:28 mma Exp $
+ * $Id: parse_uri.h,v 1.9 2008/02/15 17:37:25 mma Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -48,5 +48,6 @@ int parse_sip_msg_uri(struct sip_msg* msg);
 int parse_orig_ruri(struct sip_msg* msg);
 int normalize_tel_user(char* res, str* src);
 void uri_type_to_str(uri_type type, str *s);
+void proto_type_to_str(unsigned short type, str *s);
 
 #endif /* PARSE_URI_H */

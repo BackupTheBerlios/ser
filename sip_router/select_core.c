@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.28 2008/01/07 12:14:11 mma Exp $
+ * $Id: select_core.c,v 1.29 2008/02/15 17:37:24 mma Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -686,6 +686,30 @@ int select_uri_hostport(str* res, select_t* s, struct sip_msg* msg)
 	}
 	res->s = p;
 	res->len = size;
+	return 0;
+}
+
+int select_uri_proto(str* res, select_t* s, struct sip_msg* msg)
+{
+	if (parse_uri(res->s, res->len, &uri)<0)
+		return -1;
+
+	if (uri.proto != PROTO_NONE) {
+		proto_type_to_str(uri.proto, res);
+	} else {
+		switch (uri.type) {
+			case SIPS_URI_T:
+			case TELS_URI_T:
+				proto_type_to_str(PROTO_TLS, res);
+				break;
+			case SIP_URI_T:
+			case TEL_URI_T:
+				proto_type_to_str(PROTO_UDP, res);
+				break;
+			case ERROR_URI_T:
+				return -1;
+		}
+	}
 	return 0;
 }
 
