@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.22 2008/02/11 09:58:30 tirpi Exp $
+ * $Id: ut.h,v 1.23 2008/02/15 13:58:30 mma Exp $
  *
  * utilities
  *
@@ -190,7 +190,7 @@ inline static int get_uri_send_info(str* uri, str* host, unsigned short* port,
 #endif
 #ifdef HONOR_MADDR
 	if (parsed_uri.maddr_val.s && parsed_uri.maddr_val.len) {
-		*host=parsed_uri.maddr;
+		*host=parsed_uri.maddr_val;
 		DBG("maddr dst: %.*s:%d\n", parsed_uri.maddr_val.len, 
 				parsed_uri.maddr_val.s, parsed_uri.port_no);
 	} else
