@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.c,v 1.7 2008/02/08 17:09:45 tirpi Exp $
+ * $Id: cfg_struct.c,v 1.8 2008/02/15 09:13:39 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -524,19 +524,24 @@ void cfg_install_child_cb(cfg_child_cb_t *cb_first, cfg_child_cb_t *cb_last)
 void cfg_install_global(cfg_block_t *block, char **replaced,
 			cfg_child_cb_t *cb_first, cfg_child_cb_t *cb_last)
 {
+	cfg_block_t* old_cfg;
+	
+	CFG_REF(block);
+
 	CFG_LOCK();
 
-	if (*cfg_global) {
-		if (replaced) (*cfg_global)->replaced = replaced;
-		CFG_UNREF(*cfg_global);
-	}
-	CFG_REF(block);
+	old_cfg = *cfg_global;
 	*cfg_global = block;
 
 	if (cb_first)
 		cfg_install_child_cb(cb_first, cb_last);
 
 	CFG_UNLOCK();
+	
+	if (old_cfg) {
+		if (replaced) (old_cfg)->replaced = replaced;
+		CFG_UNREF(old_cfg);
+	}
 
 }
 
