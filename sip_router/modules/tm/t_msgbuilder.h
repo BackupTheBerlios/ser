@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.18 2007/05/29 15:52:37 tirpi Exp $
+ * $Id: t_msgbuilder.h,v 1.19 2008/02/15 12:11:50 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -65,9 +65,6 @@
 		memcpy((_d),(_s),(_len));\
 		(_d) += (_len);\
 	}while(0);
-
-extern str ac_extra_hdrs;
-extern int reparse_invite;
 
 char *build_local(struct cell *Trans, unsigned int branch,
 	unsigned int *len, char *method, int method_len, str *to);

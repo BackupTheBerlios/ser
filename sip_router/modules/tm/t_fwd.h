@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.h,v 1.15 2007/05/29 15:52:37 tirpi Exp $
+ * $Id: t_fwd.h,v 1.16 2008/02/15 12:11:50 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -43,8 +43,6 @@
 
 enum unmatched_cancel_t { UM_CANCEL_STATEFULL=0, UM_CANCEL_STATELESS,
 							UM_CANCEL_DROP };
-
-extern int unmatched_cancel;
 
 typedef int (*tfwd_f)(struct sip_msg* p_msg , struct proxy_l * proxy );
 typedef int (*taddblind_f)( /*struct cell *t */ );

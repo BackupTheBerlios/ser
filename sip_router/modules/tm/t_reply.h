@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.26 2007/11/14 15:30:21 tirpi Exp $
+ * $Id: t_reply.h,v 1.27 2008/02/15 12:11:50 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -36,16 +36,6 @@
 
 #include "h_table.h"
 
-
-extern int restart_fr_on_each_reply;
-extern int tm_aggregate_auth; /* aggregate authorization header value */
-
-extern int tm_blst_503;
-extern int tm_blst_503_default;  /* in s */
-extern int tm_blst_503_min;      /* in s */
-extern int tm_blst_503_max;      /* in s */
-extern unsigned int tm_blst_methods_add;
-extern unsigned int tm_blst_methods_lookup;
 
 /* reply processing status */
 enum rps {

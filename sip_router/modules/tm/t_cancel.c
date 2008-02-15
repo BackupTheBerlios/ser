@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.26 2007/06/05 15:16:44 andrei Exp $
+ * $Id: t_cancel.c,v 1.27 2008/02/15 12:11:50 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -43,7 +43,7 @@
 #include <stdio.h> /* for FILE* in fifo_uac_cancel */
 
 #include "defs.h"
-
+#include "config.h"
 
 #include "t_funcs.h"
 #include "../../dprint.h"
@@ -199,7 +199,7 @@ int cancel_branch( struct cell *t, int branch, int flags )
 		}
 	}
 
-	if (reparse_invite) {
+	if (cfg_get(tm, tm_cfg, reparse_invite)) {
 		/* build the CANCEL from the INVITE which was sent out */
 		cancel = build_local_reparse(t, branch, &len, CANCEL, CANCEL_LEN, &t->to);
 	} else {

@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.20 2007/06/05 15:16:45 andrei Exp $
+ * $Id: t_lookup.h,v 1.21 2008/02/15 12:11:50 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -48,8 +48,6 @@
 #define T_NULL_CELL       ( (struct cell*) 0 )
 
 extern unsigned int     global_msg_id;
-extern int ruri_matching;
-extern int via1_matching;
 
 
 

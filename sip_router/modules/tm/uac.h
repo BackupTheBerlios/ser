@@ -1,5 +1,5 @@
 /*
- * $Id: uac.h,v 1.26 2007/06/19 13:09:36 tirpi Exp $
+ * $Id: uac.h,v 1.27 2008/02/15 12:11:50 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -40,9 +40,6 @@
 #include "h_table.h"
 
 #define DEFAULT_CSEQ 10 /* Default CSeq number */
-
-extern char *uac_from;  /* UAC From parameter */
-extern int pass_provisional_replies; /* Pass provisional replies to fifo applications */
 
 /* structure for UAC interface
  *

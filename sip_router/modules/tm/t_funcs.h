@@ -1,5 +1,5 @@
 /*
- * $Id: t_funcs.h,v 1.69 2007/06/05 21:25:35 andrei Exp $
+ * $Id: t_funcs.h,v 1.70 2008/02/15 12:11:50 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -74,8 +74,6 @@ struct entry;
 struct cell;
 
 extern int tm_error; /* delayed tm error */
-extern int noisy_ctimer;
-extern int tm_auto_inv_100; /*automatically send 100 to an INVITE, default on*/
 extern struct msgid_var user_auto_inv_100;
 
 /* default names for timer's AVPs  */

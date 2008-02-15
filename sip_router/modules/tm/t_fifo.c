@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.30 2008/02/11 16:07:16 janakj Exp $
+ * $Id: t_fifo.c,v 1.31 2008/02/15 12:11:50 tirpi Exp $
  *
  * transaction maintenance functions
  *
@@ -57,6 +57,7 @@
 #include "../../parser/parse_hname2.h"
 #include "../../parser/contact/parse_contact.h"
 #include "../../tsend.h"
+#include "config.h"
 #include "t_lookup.h"
 #include "t_fwd.h"
 #include "t_fifo.h"
@@ -81,8 +82,6 @@
 
 
 
-
-int tm_unix_tx_timeout = 500; /* Default is 500 ms */
 
 #define TWRITE_PARAMS          20
 #define TWRITE_VERSION_S       "0.3"
@@ -960,7 +959,8 @@ static int write_to_unixsock(char* sockname, int cnt)
 		return -1;
 	}
 
-	if (tsend_dgram_ev(sock, iov_lines_eol, 2 * cnt, tm_unix_tx_timeout) < 0) {
+	if (tsend_dgram_ev(sock, iov_lines_eol, 2 * cnt,
+			cfg_get(tm, tm_cfg, tm_unix_tx_timeout)) < 0) {
 		LOG(L_ERR, "write_to_unixsock: writev failed: %s\n", strerror(errno));
 		return -1;
 	}

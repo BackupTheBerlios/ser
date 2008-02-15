@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.h,v 1.8 2004/12/03 19:09:33 andrei Exp $
+ * $Id: t_fifo.h,v 1.9 2008/02/15 12:11:50 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -37,8 +37,6 @@
 
 #include "../../parser/msg_parser.h"
 #include "../../sr_module.h"
-
-extern int tm_unix_tx_timeout;
 
 int fixup_t_write( void** param, int param_no);
 
