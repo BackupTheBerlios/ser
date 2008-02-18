@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_script.c,v 1.4 2008/01/30 11:48:39 tirpi Exp $
+ * $Id: cfg_script.c,v 1.5 2008/02/18 10:40:21 tirpi Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -185,7 +185,7 @@ int cfg_script_fixup(cfg_group_t *group, unsigned char *block)
 			offset = ROUND_INT(offset);
 			mapping[i].offset = offset;
 
-			memcpy(block + offset, &script_var->val.i, sizeof(int));
+			*(int *)(block + offset) = script_var->val.i;
 
 			offset += sizeof(int);
 			break;

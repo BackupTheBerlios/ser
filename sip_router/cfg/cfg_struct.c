@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.c,v 1.8 2008/02/15 09:13:39 tirpi Exp $
+ * $Id: cfg_struct.c,v 1.9 2008/02/18 10:40:21 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -137,7 +137,7 @@ static int cfg_shmize_strings(cfg_group_t *group)
 		if (mapping[i].flag & cfg_var_shmized) continue;
 
 		if (CFG_VAR_TYPE(&mapping[i]) == CFG_VAR_STRING) {
-			memcpy(&s.s, group->vars + mapping[i].offset, sizeof(char *));
+			s.s = *(char **)(group->vars + mapping[i].offset);
 			if (!s.s) continue;
 			s.len = strlen(s.s);
 
@@ -149,7 +149,7 @@ static int cfg_shmize_strings(cfg_group_t *group)
 			continue;
 		}
 		if (cfg_clone_str(&s, &s)) return -1;
-		memcpy(group->vars + mapping[i].offset, &s.s, sizeof(char *));
+		*(char **)(group->vars + mapping[i].offset) = s.s;
 		mapping[i].flag |= cfg_var_shmized;
 	}
 
@@ -243,9 +243,7 @@ static void cfg_destory_groups(unsigned char *block)
 				(CFG_VAR_TYPE(&mapping[i]) == CFG_VAR_STR)) &&
 					mapping[i].flag & cfg_var_shmized) {
 
-						memcpy(	&old_string,
-							block + group->offset + mapping[i].offset,
-							sizeof(char *));
+						old_string = *(char **)(block + group->offset + mapping[i].offset);
 						if (old_string) shm_free(old_string);
 				}
 
