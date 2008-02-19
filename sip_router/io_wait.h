@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.26 2008/02/05 21:37:28 andrei Exp $
+ * $Id: io_wait.h,v 1.27 2008/02/19 15:42:17 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -329,8 +329,10 @@ inline static int io_watch_add(	io_wait_h* h,
 #ifdef HAVE_DEVPOLL
 	struct pollfd pfd;
 #endif
-#if defined(HAVE_SIGIO_RT)
+#if defined(HAVE_SIGIO_RT) || defined (HAVE_EPOLL)
 	int n;
+#endif
+#if defined(HAVE_SIGIO_RT)
 	int idx;
 	int check_io;
 	struct pollfd pf;
@@ -464,7 +466,6 @@ again2:
 					strerror(errno), errno);
 				goto error;
 			}
-			idx=-1;
 			break;
 #endif
 #ifdef HAVE_KQUEUE
