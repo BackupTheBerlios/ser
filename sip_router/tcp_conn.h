@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.38 2008/02/05 21:47:29 andrei Exp $
+ * $Id: tcp_conn.h,v 1.39 2008/02/20 14:37:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -68,9 +68,9 @@
 
 /* tcp connection flags */
 #define F_CONN_NON_BLOCKING 1
-#define F_CONN_REMOVED      2 /* no longer  in "main" listen fd list */
-#define F_CONN_READER       4 /* handled by a tcp reader */
-#define F_CONN_WRITE_W      8 /* watched for write (main) */
+#define F_CONN_READ_W       2 /* watched for READ ev. in main */
+#define F_CONN_WRITE_W      4 /* watched for WRITE (main) */
+#define F_CONN_READER       8 /* handled by a tcp reader */
 #define F_CONN_HASHED      16 /* in tcp_main hash */
 #define F_CONN_FD_CLOSED   32 /* fd was already closed */
 #define F_CONN_PENDING     64 /* pending connect  (fd not known yet in main) */
