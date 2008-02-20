@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.h,v 1.4 2008/01/28 15:35:57 tirpi Exp $
+ * $Id: cfg.h,v 1.5 2008/02/20 12:37:42 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -81,5 +81,8 @@ int cfg_declare_int(char *group_name, char *var_name,
 
 /* declares a single variable with str type */
 int cfg_declare_str(char *group_name, char *var_name, char *val, char *descr);
+
+/* returns the handle of a cfg group */
+void **cfg_get_handle(char *gname);
 
 #endif /* _CFG_H */

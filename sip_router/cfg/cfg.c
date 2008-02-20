@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.c,v 1.4 2008/01/28 15:35:57 tirpi Exp $
+ * $Id: cfg.c,v 1.5 2008/02/20 12:37:42 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -199,4 +199,15 @@ int cfg_declare_str(char *group_name, char *var_name, char *val, char *descr)
 	}
 
 	return 0;
+}
+
+/* returns the handle of a cfg group */
+void **cfg_get_handle(char *gname)
+{
+	cfg_group_t	*group;
+
+	group = cfg_lookup_group(gname, strlen(gname));
+	if (!group || group->dynamic) return NULL;
+
+	return group->handle;
 }
