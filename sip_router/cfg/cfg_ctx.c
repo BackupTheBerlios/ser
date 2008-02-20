@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.16 2008/02/18 10:40:21 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.17 2008/02/20 14:52:23 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -387,7 +387,8 @@ int cfg_set_now(cfg_ctx_t *ctx, str *group_name, str *var_name,
 		/* the global config does not have to be replaced,
 		but the child callback has to be installed, otherwise the
 		child processes will miss the change */
-		cfg_install_child_cb(child_cb, child_cb);
+		if (child_cb)
+			cfg_install_child_cb(child_cb, child_cb);
 	}
 
 	if (val_type == CFG_VAR_INT)
