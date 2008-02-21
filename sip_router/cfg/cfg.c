@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.c,v 1.5 2008/02/20 12:37:42 tirpi Exp $
+ * $Id: cfg.c,v 1.6 2008/02/21 11:09:24 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -110,6 +110,21 @@ int cfg_declare(char *group_name, cfg_def_t *def, void *values, int def_size,
 			LOG(L_ERR, "ERROR: register_cfg_def(): %s.%s: unsupported input type\n",
 					group_name, def[i].name);
 			goto error;
+		}
+
+		if (def[i].type & CFG_ATOMIC) {
+			if (CFG_VAR_MASK(def[i].type) != CFG_VAR_INT) {
+				LOG(L_ERR, "ERROR: register_cfg_def(): %s.%s: atomic change is allowed "
+						"only for integer types\n",
+						group_name, def[i].name);
+				goto error;
+			}
+			if (def[i].on_set_child_cb) {
+				LOG(L_ERR, "ERROR: register_cfg_def(): %s.%s: per-child process callback "
+						"does not work together with atomic change\n",
+						group_name, def[i].name);
+				goto error;
+			}
 		}
 	}
 

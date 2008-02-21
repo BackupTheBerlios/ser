@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.c,v 1.4 2008/02/11 17:11:59 tirpi Exp $
+ * $Id: cfg_core.c,v 1.5 2008/02/21 11:09:23 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -82,7 +82,7 @@ struct cfg_group_core default_core_cfg = {
 void	*core_cfg = &default_core_cfg;
 
 cfg_def_t core_cfg_def[] = {
-	{"debug",	CFG_VAR_INT,	0, 0, 0, 0, "debug level"},
+	{"debug",	CFG_VAR_INT|CFG_ATOMIC,	0, 0, 0, 0, "debug level"},
 #ifdef USE_DST_BLACKLIST
 	/* blacklist */
 	{"use_dst_blacklist",	CFG_VAR_INT,	0, 1, use_dst_blacklist_fixup, 0,
