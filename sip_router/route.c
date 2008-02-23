@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.70 2007/12/17 17:51:04 andrei Exp $
+ * $Id: route.c,v 1.71 2008/02/23 13:10:19 andrei Exp $
  *
  * SIP routing engine
  *
@@ -630,7 +630,8 @@ inline static int comp_str(int op, str* left, int rtype, union exp_op* r, struct
 			 * $test > 10
 			 * the right operator MUST be number to do the conversion
 			 */
-		str2int(left,&l);
+		if (str2int(left,&l) < 0)
+			goto error;
 		return comp_num(op, l, rtype, r);
 	} else {
 		LOG(L_CRIT, "BUG: comp_str: Bad type %d, "
