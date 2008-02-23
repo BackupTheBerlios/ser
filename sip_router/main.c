@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.256 2008/02/11 17:11:59 tirpi Exp $
+ * $Id: main.c,v 1.257 2008/02/23 13:21:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.256 2008/02/11 17:11:59 tirpi Exp $";
+static char id[]="@(#) $Id: main.c,v 1.257 2008/02/23 13:21:53 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1626,7 +1626,7 @@ try_again:
 	}
 	if (config_check){
 		fprintf(stderr, "config file ok, exiting...\n");
-		goto error;
+		return 0;
 	}
 
 
