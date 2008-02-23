@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.150 2008/02/11 17:11:59 tirpi Exp $
+ * $Id: cfg.y,v 1.151 2008/02/23 13:35:04 andrei Exp $
  *
  *  cfg grammar
  *
@@ -2173,7 +2173,7 @@ static void warn(char* s)
 
 static void yyerror(char* s)
 {
-	LOG(L_CRIT, "parse error (%d,%d-%d): %s\n", line, startcolumn,
+	LOG(L_CRIT, "*** PARSE ERROR *** (%d,%d-%d): %s\n", line, startcolumn,
 			column, s);
 	cfg_errors++;
 }
