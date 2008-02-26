@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.98 2007/06/06 21:54:04 andrei Exp $
+ * $Id: h_table.h,v 1.99 2008/02/26 17:37:59 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -142,6 +142,7 @@ enum kill_reason { REQ_FWDED=1, REQ_RPLD=2, REQ_RLSD=4, REQ_EXIST=8,
 #define F_RB_TIMEOUT	0x10 /* timeout */
 #define F_RB_REPLIED	0x20 /* reply received */
 #define F_RB_CANCELED	0x40 /* rb/branch canceled */
+#define F_RB_DEL_TIMER	0x80 /* timer should be deleted if active */
 
 
 /* if canceled or intended to be canceled, return true */
