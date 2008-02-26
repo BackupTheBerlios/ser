@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_select.h,v 1.1 2008/01/11 16:38:53 tirpi Exp $
+ * $Id: cfg_select.h,v 1.2 2008/02/26 17:07:35 tirpi Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -31,6 +31,14 @@
 
 #ifndef _CFG_SELECT_H
 #define _CFG_SELECT_H
+
+#include "../select.h"
+
+/* free the list of not yet fixed selects */
+void cfg_free_selects();
+
+/* fix-up the select calls */
+int cfg_fixup_selects();
 
 int select_cfg_var(str *res, select_t *s, struct sip_msg *msg);
 
