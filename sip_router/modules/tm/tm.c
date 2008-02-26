@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.166 2008/02/25 08:57:42 tirpi Exp $
+ * $Id: tm.c,v 1.167 2008/02/26 18:12:46 andrei Exp $
  *
  * TM module
  *
@@ -687,6 +687,8 @@ static int t_check_status(struct sip_msg* msg, char *p1, char *foo)
 	regex_t* re = NULL;
 	str tmp;
 	
+	fp = (fparam_t*)p1;
+	
 	/* first get the transaction */
 	if (t_check(msg, 0 ) == -1) return -1;
 	if ((t = get_t()) == 0) {
@@ -695,8 +697,6 @@ static int t_check_status(struct sip_msg* msg, char *p1, char *foo)
 		goto error;
 	}
 	backup = 0;
-	
-	fp = (fparam_t*)p1;
 	
 	switch(fp->type) {
 	case FPARAM_REGEX:
