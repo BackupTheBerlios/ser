@@ -6,12 +6,23 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2005/11/17 12:28:12 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2008/02/26 18:48:28 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
 
     <title>Parameters</title>
 
+    <section id="max_limit">
+        <title><varname>max_limit</varname> (integer)</title>
+	<para>
+	    Max.value of Max-forward, if received value is greater then value is decraesed to <emphasis>max_limit</emphasis>.
+	    Value of 0 disables this functionality.
+	</para>
+	<para>
+	    Default value is 16.
+	</para>
+    </section>
+																		    
 </section>
