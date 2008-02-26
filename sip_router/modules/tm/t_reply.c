@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.153 2008/02/15 12:11:50 tirpi Exp $
+ * $Id: t_reply.c,v 1.154 2008/02/26 08:43:45 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1817,15 +1817,12 @@ int reply_received( struct sip_msg  *p_msg )
 		}
 #endif /* USE_DST_BLACKLIST */
 #ifdef USE_DNS_FAILOVER
-		/* if this is a 503 reply, the destination resolves to more ips, and
-		 *  the branch is still active (no timeout), add another branch/uac.
+		/* if this is a 503 reply, and the destination resolves to more ips,
+		 *  add another branch/uac.
 		 *  This code is out of LOCK_REPLIES() to minimize the time the
 		 *  reply lock is held (the lock won't be held while sending the
 		 *   message)*/
-		if (cfg_get(core, core_cfg, use_dns_failover) && 
-			(msg_status==503) &&
-			uac->request.t_active
-		) {
+		if (cfg_get(core, core_cfg, use_dns_failover) && (msg_status==503)) {
 			branch_ret=add_uac_dns_fallback(t, t->uas.request, uac, 1);
 			prev_branch=-1;
 			while((branch_ret>=0) &&(branch_ret!=prev_branch)){
