@@ -1,5 +1,5 @@
 /*
- * $Id: h_table.h,v 1.99 2008/02/26 17:37:59 andrei Exp $
+ * $Id: h_table.h,v 1.100 2008/02/28 23:07:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -213,7 +213,7 @@ typedef struct ua_client
 struct totag_elem {
 	struct totag_elem *next;
 	str tag;
-	short acked;
+	volatile int acked;
 };
 
 
