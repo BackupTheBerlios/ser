@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.257 2008/02/23 13:21:53 andrei Exp $
+ * $Id: main.c,v 1.258 2008/02/29 10:04:49 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.257 2008/02/23 13:21:53 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.258 2008/02/29 10:04:49 tirpi Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -299,8 +299,6 @@ int dont_fork = 0;
 int dont_daemonize = 0;
 int log_stderr = 0;
 pid_t creator_pid = (pid_t) -1;
-/* log facility (see syslog(3)) */
-int log_facility = LOG_DAEMON;
 int config_check = 0;
 /* check if reply first via host==us */
 int check_via =  0;

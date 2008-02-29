@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.151 2008/02/23 13:35:04 andrei Exp $
+ * $Id: cfg.y,v 1.152 2008/02/29 10:04:49 tirpi Exp $
  *
  *  cfg grammar
  *
@@ -603,7 +603,7 @@ assign_stm:
 		if ( (i_tmp=str2facility($3))==-1)
 			yyerror("bad facility (see syslog(3) man page)");
 		if (!config_check)
-			log_facility=i_tmp;
+			default_core_cfg.log_facility=i_tmp;
 	}
 	| LOGFACILITY EQUAL error { yyerror("ID expected"); }
 	| DNS EQUAL NUMBER   { received_dns|= ($3)?DO_DNS:0; }

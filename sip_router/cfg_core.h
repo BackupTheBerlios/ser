@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.h,v 1.4 2008/02/11 17:11:59 tirpi Exp $
+ * $Id: cfg_core.h,v 1.5 2008/02/29 10:04:49 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -46,6 +46,7 @@ extern void	*core_cfg;
 
 struct cfg_group_core {
 	int	debug;
+	int	log_facility;
 #ifdef USE_DST_BLACKLIST
 	/* blacklist */
 	int	use_dst_blacklist; /* 1 if blacklist is enabled */
