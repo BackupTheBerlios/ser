@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.42 2007/12/05 20:26:58 andrei Exp $
+/* $Id: sr_module.h,v 1.43 2008/02/29 20:21:58 andrei Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -189,7 +189,9 @@ struct sr_module{
 };
 
 
-struct sr_module* modules; /* global module list*/
+extern struct sr_module* modules; /* global module list*/
+extern response_function* mod_response_cbks;/* response callback array */
+extern int mod_response_cbk_no;    /* size of reponse callbacks array */
 
 int register_builtin_modules();
 int register_module(struct module_exports*, char*,  void*);
