@@ -1,5 +1,5 @@
 /*
- * $Id: tls_config.c,v 1.8 2008/02/08 05:38:39 janakj Exp $
+ * $Id: tls_config.c,v 1.9 2008/03/02 16:09:28 andrei Exp $
  *
  * TLS module - Configuration file parser
  *
@@ -32,7 +32,6 @@
 
 #include <stdio.h>
 #include <libgen.h>
-#include <malloc.h>
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 #include "../../trim.h"

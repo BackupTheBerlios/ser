@@ -1,5 +1,5 @@
 /*
- * $Id: tls_util.c,v 1.5 2008/02/11 12:39:49 janakj Exp $
+ * $Id: tls_util.c,v 1.6 2008/03/02 16:09:28 andrei Exp $
  *
  * TLS module - common functions
  *
@@ -33,7 +33,6 @@
 
 #include <string.h>
 #include <libgen.h>
-#include <malloc.h>
 #include "../../mem/shm_mem.h"
 #include "../../globals.h"
 #include "tls_mod.h"
