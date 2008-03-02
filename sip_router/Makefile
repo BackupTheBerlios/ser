@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.183 2008/02/05 06:46:44 janakj Exp $
+# $Id: Makefile,v 1.184 2008/03/02 15:04:16 andrei Exp $
 #
 # sip_router makefile
 #
@@ -438,7 +438,7 @@ $(man_prefix)/$(man_dir)/man8:
 $(man_prefix)/$(man_dir)/man5:
 		mkdir -p $(man_prefix)/$(man_dir)/man5
 		
-# note: on solaris 8 sed: ? or \(...\)* (a.s.o) do not work
+# note: sed with POSIX.1 regex doesn't support |, + or ? (darwin, solaris ...) 
 install-cfg: $(cfg_prefix)/$(cfg_dir)
 		sed -e "s#/usr/.*lib/ser/modules/#$(modules_target)#g" \
 			< etc/ser.cfg > $(cfg_prefix)/$(cfg_dir)ser.cfg.sample
