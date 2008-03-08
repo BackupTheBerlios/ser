@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.156 2008/02/28 23:07:00 andrei Exp $
+ * $Id: t_reply.c,v 1.157 2008/03/08 00:20:36 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1748,7 +1748,7 @@ int reply_received( struct sip_msg  *p_msg )
 				 * if BUSY or set just exit, a cancel will be (or was) sent 
 				 * shortly on this branch */
 				DBG("tm: reply_received: branch CANCEL created\n");
-				cancel_branch(t, branch, F_CANCEL_B_FORCE);
+				cancel_branch(t, branch, F_CANCEL_B_FORCE_C);
 			}
 			goto done; /* nothing to do */
 		}
