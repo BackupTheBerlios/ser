@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.h,v 1.16 2008/02/15 12:11:50 tirpi Exp $
+ * $Id: t_fwd.h,v 1.17 2008/03/10 14:09:01 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -73,6 +73,7 @@ int t_send_branch( struct cell *t, int branch, struct sip_msg* p_msg ,
 					struct proxy_l * proxy, int lock_replies);
 int t_relay_cancel(struct sip_msg* p_msg);
 
+int reparse_on_dns_failover_fixup(void *handle, str *name, void **val);
 
 #endif
 

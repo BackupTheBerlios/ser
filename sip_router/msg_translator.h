@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.30 2007/10/01 12:42:54 andrei Exp $
+/*$Id: msg_translator.h,v 1.31 2008/03/10 14:09:01 tirpi Exp $
  * 
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -105,6 +105,12 @@ char* via_builder( unsigned int *len,
 	struct dest_info* send_info,
 	str *branch, str* extra_params, struct hostport *hp );
 
+/* creates a via header honoring the protocol of the incomming socket
+ * msg is an optional parameter */
+char* create_via_hf( unsigned int *len,
+	struct sip_msg *msg,
+	struct dest_info* send_info /* where to send the reply */,
+	str* branch);
 
 int branch_builder( unsigned int hash_index, 
 	/* only either parameter useful */

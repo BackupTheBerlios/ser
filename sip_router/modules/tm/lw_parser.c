@@ -1,5 +1,5 @@
 /*
- * $Id: lw_parser.c,v 1.2 2008/02/12 16:17:58 tirpi Exp $
+ * $Id: lw_parser.c,v 1.3 2008/03/10 14:09:01 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -255,3 +255,27 @@ char *lw_next_line(char *buf, char *buf_end)
 
 	return c;
 }
+
+#ifdef USE_DNS_FAILOVER
+/* returns the pointer to the first VIA header */
+char *lw_find_via(char *buf, char *buf_end)
+{
+	char		*p;
+	unsigned int	val;
+
+	/* skip the first line */
+	p = eat_line(buf, buf_end - buf);
+
+	while (buf_end - p > 4) {
+		val = LOWER_DWORD(READ(p));
+		if ((val == _via1_) || (val == _via2_)
+		|| ((LOWER_BYTE(*p) == 'v')		/* compact header */
+			&& ((*(p+1) == ' ') || (*(p+1) == ':')) )
+				) return p;
+
+		p = lw_next_line(p, buf_end);
+	}
+	/* not found */
+	return 0;
+}
+#endif
