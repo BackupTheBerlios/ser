@@ -1,5 +1,5 @@
 /*
- * $Id: config.h,v 1.29 2008/03/08 00:20:36 andrei Exp $
+ * $Id: config.h,v 1.30 2008/03/10 14:14:10 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -127,6 +127,7 @@ struct cfg_group_tm {
 	unsigned int	tm_blst_methods_add;
 	unsigned int	tm_blst_methods_lookup;
 	unsigned int	cancel_b_flags;
+	int	reparse_on_dns_failover;
 };
 
 extern struct cfg_group_tm	default_tm_cfg;
