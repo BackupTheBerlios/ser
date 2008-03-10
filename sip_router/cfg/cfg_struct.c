@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.c,v 1.10 2008/02/26 17:07:35 tirpi Exp $
+ * $Id: cfg_struct.c,v 1.11 2008/03/10 10:37:24 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -482,7 +482,7 @@ int cfg_lookup_var(str *gname, str *vname,
 			break;
 		}
 
-	LOG(L_ERR, "ERROR: cfg_lookup_var(): variable not found: %.*s.%.*s\n",
+	LOG(L_DBG, "DEBUG: cfg_lookup_var(): variable not found: %.*s.%.*s\n",
 			gname->len, gname->s,
 			vname->len, vname->s);
 	return -1;
