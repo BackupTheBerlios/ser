@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.28 2008/03/08 00:20:36 andrei Exp $
+ * $Id: t_cancel.c,v 1.29 2008/03/11 23:59:27 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -39,6 +39,9 @@
  * 2007-06-04  cancel_branch() can operate in lockless mode (with a lockless
  *              should_cancel()) (andrei)
  * 2008-03-07  cancel_branch() takes a new flag: F_CANCEL_B_FORCE_RETR (andrei)
+ * 2008-03-08  e2e_cancel handles non replied branches in 3 different ways,
+ *              selectable by the tm cancel_b_method parameter: fake reply,
+ *              retransmit request and send cancel on branch (andrei)
  */
 
 #include <stdio.h> /* for FILE* in fifo_uac_cancel */
