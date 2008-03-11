@@ -6,7 +6,7 @@ Jiri Kuthan
 
    Copyright © 2003 FhG FOKUS
    Revision History
-   Revision $Revision: 1.13 $ $Date: 2008/03/10 09:58:15 $
+   Revision $Revision: 1.14 $ $Date: 2008/03/11 22:05:44 $
      __________________________________________________________________
 
 Overview
@@ -82,7 +82,7 @@ Known Issues
 Parameters
 
    Revision History
-   Revision $Revision: 1.13 $ $Date: 2008/03/10 09:58:15 $
+   Revision $Revision: 1.14 $ $Date: 2008/03/11 22:05:44 $
 
 fr_timer (integer)
 
@@ -368,7 +368,8 @@ cancel_b_method (integer)
    have an UA receiving a 2xx after a 487. Moreover this risk is greatly
    amplified by packet loss (e.g. if an 180 is lost the branch will look
    as unreplied and a CANCEL will silently drop the branch, but a 2xx can
-   still come at a later time).
+   still come at a later time). This is the behaviour for ser versions
+   older then 2.1.
 
    1 will keep retransmitting the request on unreplied branches. If a
    provisional answer is later received a CANCEL will be immediately sent
@@ -384,8 +385,7 @@ cancel_b_method (integer)
    it's not RFC 3261 conforming (the RFC allows sending CANCELs only on
    pending branches).
 
-   The default value is 0 (the same behaviour as ser versions less then
-   2.1).
+   The default value is 1.
 
    Example 18. Set cancel_b_method parameter
 ...
@@ -395,7 +395,7 @@ modparam("tm", "cancel_b_method", 1)
 Functions
 
    Revision History
-   Revision $Revision: 1.13 $ $Date: 2008/03/10 09:58:15 $
+   Revision $Revision: 1.14 $ $Date: 2008/03/11 22:05:44 $
 
 t_relay_to_udp(ip, port), t_relay_to_tcp(ip, port)
 
@@ -806,7 +806,7 @@ if (method == CANCEL) {
 TM Module API
 
    Revision History
-   Revision $Revision: 1.13 $ $Date: 2008/03/10 09:58:15 $
+   Revision $Revision: 1.14 $ $Date: 2008/03/11 22:05:44 $
 
    There are applications which would like to generate SIP transactions
    without too big involvement in SIP stack, transaction management, etc.

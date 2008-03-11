@@ -1,5 +1,5 @@
 /*
- * $Id: config.c,v 1.3 2008/03/10 14:14:10 tirpi Exp $
+ * $Id: config.c,v 1.4 2008/03/11 22:05:44 andrei Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -87,7 +87,7 @@ struct cfg_group_tm	default_tm_cfg = {
 			 * timeouts by default */
 	~METHOD_BYE,	/* tm_blst_methods_lookup -- look-up the blacklist
 			 * for every method except BYE by default */
-	0,	/* cancel_b_method used for e2e and 6xx cancels*/
+	1,	/* cancel_b_method used for e2e and 6xx cancels*/
 	1,	/* reparse_on_dns_failover */
 };
 
