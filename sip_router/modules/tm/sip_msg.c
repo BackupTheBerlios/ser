@@ -1,5 +1,5 @@
 /*
- * $Id: sip_msg.c,v 1.102 2007/07/30 19:49:10 andrei Exp $
+ * $Id: sip_msg.c,v 1.103 2008/03/12 20:42:30 andrei Exp $
  *
  * cloning a message into shared memory (TM keeps a snapshot
  * of messages in memory); note that many operations, which
@@ -487,7 +487,11 @@ do { \
 			translate_pointer( new_msg->buf , org_msg->buf ,
 			org_msg->first_line.u.request.version.s );
 		uri_trans(new_msg->buf, org_msg->buf, &new_msg->parsed_orig_ruri);
-		uri_trans(new_msg->buf, org_msg->buf, &new_msg->parsed_uri);
+		if (org_msg->new_uri.s && org_msg->new_uri.len)
+			uri_trans(new_msg->new_uri.s, org_msg->new_uri.s,
+											&new_msg->parsed_uri);
+		else
+			uri_trans(new_msg->buf, org_msg->buf, &new_msg->parsed_uri);
 	}
 	else if ( org_msg->first_line.type==SIP_REPLY )
 	{
