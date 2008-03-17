@@ -1,5 +1,5 @@
 /*
- * $Id: msg_translator.c,v 1.148 2008/03/10 14:09:01 tirpi Exp $
+ * $Id: msg_translator.c,v 1.149 2008/03/17 09:45:22 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -387,7 +387,7 @@ char* id_builder(struct sip_msg* msg, unsigned int *id_len)
 	buf=pkg_malloc(sizeof(char)*(len+1));/* place for ending \0 */
 	if (buf==0){
 		ser_error=E_OUT_OF_MEM;
-		LOG(L_ERR, "ERROR: rport_builder: out of memory\n");
+		LOG(L_ERR, "ERROR: id_builder: out of memory\n");
 		return 0;
 	}
 	memcpy(buf, ID_PARAM, ID_PARAM_LEN);
