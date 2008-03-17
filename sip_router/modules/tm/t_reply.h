@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.27 2008/02/15 12:11:50 tirpi Exp $
+ * $Id: t_reply.h,v 1.28 2008/03/17 10:39:51 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -145,6 +145,11 @@ void tm_init_tags();
 
 /* selects the branch for fwd-ing the reply */
 int t_pick_branch(int inc_branch, int inc_code, struct cell *t, int *res_code);
+
+/* drops all the replies to make sure
+ * that none of them is picked up again
+ */
+void t_drop_replies(void);
 
 extern const char* rpc_reply_doc[2];
 void rpc_reply(rpc_t* rpc, void* c);

@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.123 2008/02/28 23:23:45 andrei Exp $
+ * $Id: t_lookup.c,v 1.124 2008/03/17 10:39:51 tirpi Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -1444,8 +1444,8 @@ int t_unref( struct sip_msg* p_msg  )
 					" earlier for %p: %d (hex %x)\n",T, kr, kr);
 			t_release_transaction(T);
 		}
-		tm_error=0; /* clear it */
 	}
+	tm_error=0; /* clear it */
 	UNREF( T );
 	set_t(T_UNDEFINED);
 	return 1;
