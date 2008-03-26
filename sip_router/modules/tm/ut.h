@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.23 2008/02/15 13:58:30 mma Exp $
+ * $Id: ut.h,v 1.24 2008/03/26 13:22:36 tirpi Exp $
  *
  * utilities
  *
@@ -279,7 +279,8 @@ inline static struct dest_info *uri2dst(struct dest_info* dst,
 								parsed_uri.port_no, &dst->proto, dns_flags);
 			if (err!=0){
 				if (ip_found==0){
-					LOG(L_ERR, "ERROR: uri2dst: failed to resolve \"%.*s\" :"
+					if (err!=-E_DNS_EOR)
+						LOG(L_ERR, "ERROR: uri2dst: failed to resolve \"%.*s\" :"
 								"%s (%d)\n", host->len, ZSW(host->s),
 									dns_strerror(err), err);
 					return 0; /* error, no ip found */
