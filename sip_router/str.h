@@ -1,5 +1,5 @@
 /*
- * $Id: str.h,v 1.7 2008/01/29 08:14:27 janakj Exp $
+ * $Id: str.h,v 1.8 2008/03/31 18:57:54 bpintea Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -103,7 +103,8 @@ typedef struct _str str;
  * more details.
  */
 #define STR_FMT(_pstr_)	\
-  ((_pstr_) ? (_pstr_)->len : 0), ((_pstr_) ? (_pstr_)->s : "")
+  ((_pstr_ != (str *)0) ? (_pstr_)->len : 0), \
+  ((_pstr_ != (str *)0) ? (_pstr_)->s : "")
 
 
 /** Compares two ::str strings.

@@ -1,5 +1,5 @@
 /*
- * $Id: nonce.c,v 1.15 2008/01/24 13:29:03 janakj Exp $
+ * $Id: nonce.c,v 1.16 2008/03/31 18:57:55 bpintea Exp $
  *
  * Nonce related functions
  *
@@ -288,7 +288,7 @@ int check_nonce(str* nonce, str* secret1, str* secret2, struct sip_msg* msg)
 
 	expires = get_nonce_expires(nonce);
 	if (calc_nonce(non, &non_len, cfg, expires, secret1, secret2, msg) != 0) {
-		ERR("auth: check_nonce: calc_nonce failed (len %d, needed %d)\n",
+		ERR("auth: check_nonce: calc_nonce failed (len %zd, needed %d)\n",
 			sizeof(non), non_len);
 		return -1;
 	}
