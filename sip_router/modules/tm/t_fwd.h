@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.h,v 1.17 2008/03/10 14:09:01 tirpi Exp $
+ * $Id: t_fwd.h,v 1.18 2008/03/31 18:19:50 bpintea Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -40,6 +40,9 @@
 
 #include "../../proxy.h"
 #include "h_table.h"
+
+/* cancel hop by hop */
+#define E2E_CANCEL_HOP_BY_HOP
 
 enum unmatched_cancel_t { UM_CANCEL_STATEFULL=0, UM_CANCEL_STATELESS,
 							UM_CANCEL_DROP };

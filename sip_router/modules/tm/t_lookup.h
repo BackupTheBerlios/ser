@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.h,v 1.22 2008/02/25 08:57:42 tirpi Exp $
+ * $Id: t_lookup.h,v 1.23 2008/03/31 18:19:50 bpintea Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -107,5 +107,15 @@ int t_reset_retr();
 int t_set_max_lifetime(struct sip_msg* msg, unsigned int eol_inv,
 											unsigned int eol_noninv);
 int t_reset_max_lifetime();
+
+#ifdef WITH_AS_SUPPORT
+/**
+ * Returns the hash coordinates of the transaction current CANCEL is targeting.
+ */
+int t_get_canceled_ident(struct sip_msg *msg, unsigned int *hash_index, 
+		unsigned int *label);
+typedef int (*t_get_canceled_ident_f)(struct sip_msg *msg, 
+		unsigned int *hash_index, unsigned int *label);
+#endif /* WITH_AS_SUPPORT */
 
 #endif

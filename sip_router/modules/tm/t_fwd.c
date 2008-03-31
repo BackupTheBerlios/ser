@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.103 2008/03/26 11:06:03 tirpi Exp $
+ * $Id: t_fwd.c,v 1.104 2008/03/31 18:19:50 bpintea Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -118,9 +118,6 @@
 #ifdef POSTPONE_MSG_CLONING
 #include "../../atomic_ops.h" /* membar_depends() */
 #endif
-
-/* cancel hop by hop */
-#define E2E_CANCEL_HOP_BY_HOP
 
 static int goto_on_branch = 0, branch_route = 0;
 
