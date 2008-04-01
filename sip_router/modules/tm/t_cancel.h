@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.h,v 1.13 2008/03/31 18:19:50 bpintea Exp $
+ * $Id: t_cancel.h,v 1.14 2008/04/01 13:05:23 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -42,6 +42,7 @@
 #include "../../rpc.h"
 #include "../../atomic_ops.h"
 #include "defs.h"
+#include "h_table.h"
 
 
 /* a buffer is empty but cannot be used by anyone else;
