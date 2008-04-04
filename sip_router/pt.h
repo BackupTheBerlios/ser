@@ -1,5 +1,5 @@
 /*
- * $Id: pt.h,v 1.18 2007/12/05 20:26:58 andrei Exp $
+ * $Id: pt.h,v 1.19 2008/04/04 08:40:53 tirpi Exp $
  *
  * Process Table
  *
@@ -98,6 +98,14 @@ int fork_process(int child_id,char *desc,int make_sock);
  */
 #ifdef USE_TCP
 int fork_tcp_process(int child_id,char *desc,int r,int *reader_fd_1);
+#endif
+
+#ifdef PKG_MALLOC
+void mem_dump_pkg_cb(str *name);
+#endif
+
+#ifdef SHM_MEM
+int mem_dump_shm_fixup(void *handle, str *name, void **val);
 #endif
 
 #endif

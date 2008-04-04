@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.h,v 1.5 2008/02/29 10:04:49 tirpi Exp $
+ * $Id: cfg_core.h,v 1.6 2008/04/04 08:40:53 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -77,6 +77,12 @@ struct cfg_group_core {
 	unsigned int dns_cache_max_ttl;
 	unsigned int dns_cache_max_mem;
 	int dns_cache_del_nonexp;
+#endif
+#ifdef PKG_MALLOC
+	int mem_dump_pkg;
+#endif
+#ifdef SHM_MEM
+	int mem_dump_shm;
 #endif
 };
 
