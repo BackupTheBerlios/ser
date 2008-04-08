@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.185 2008/04/01 14:20:50 tirpi Exp $
+# $Id: Makefile,v 1.186 2008/04/08 16:26:49 andrei Exp $
 #
 # sip_router makefile
 #
@@ -365,7 +365,7 @@ tar:
 .PHONY: bin
 bin:
 	mkdir -p tmp/ser/usr/local
-	$(MAKE) install basedir=tmp/ser prefix=/usr/local 
+	$(MAKE) install basedir=tmp/ser 
 	$(TAR) -C tmp/ser/ -zcf ../$(NAME)-$(RELEASE)_$(OS)_$(ARCH).tar.gz .
 	rm -rf tmp/ser
 
