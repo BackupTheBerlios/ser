@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.82 2008/02/11 17:11:59 tirpi Exp $
+ * $Id: globals.h,v 1.83 2008/04/14 01:46:03 janakj Exp $
  *
  * global variables
  *
@@ -55,6 +55,8 @@ extern int gid;
 extern char* pid_file;
 extern char* pgid_file;
 extern int own_pgid; /* whether or not we have our own pgid (and it's ok to use kill(0, sig) */
+
+extern int server_id; /* A unique ID of the SIP server */
 
 extern struct socket_info* bind_address; /* pointer to the crt. proc.
 											listening address */

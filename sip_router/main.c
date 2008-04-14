@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.258 2008/02/29 10:04:49 tirpi Exp $
+ * $Id: main.c,v 1.259 2008/04/14 01:46:03 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.258 2008/02/29 10:04:49 tirpi Exp $";
+static char id[]="@(#) $Id: main.c,v 1.259 2008/04/14 01:46:03 janakj Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -338,6 +338,8 @@ char* sock_group=0;
 int sock_uid= -1;
 int sock_gid= -1;
 int sock_mode= S_IRUSR| S_IWUSR| S_IRGRP| S_IWGRP; /* rw-rw---- */
+
+int server_id = 0; /* Configurable unique ID of the server */
 
 /* more config stuff */
 int disable_core_dump=0; /* by default enabled */
