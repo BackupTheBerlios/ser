@@ -1,5 +1,5 @@
 /*
- * $Id: tls_hooks.h,v 1.1 2007/02/10 18:52:48 andrei Exp $
+ * $Id: tls_hooks.h,v 1.2 2008/04/15 17:38:33 andrei Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH 
  *
@@ -66,7 +66,7 @@ struct tls_hooks{
 };
 
 
-struct tls_hooks tls_hook;
+extern struct tls_hooks tls_hook;
 
 #ifdef __SUNPRO_C
 	#define tls_hook_call(name, ret_not_set, ...) \
