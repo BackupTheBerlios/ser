@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.29 2008/02/15 17:37:24 mma Exp $
+ * $Id: select_core.c,v 1.30 2008/04/16 11:19:05 janakj Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -39,6 +39,7 @@
 #include "dprint.h"
 #include "trim.h"
 #include "ut.h"
+#include "globals.h"
 #include "parser/parser_f.h"
 #include "parser/hf.h"
 #include "parser/parse_from.h"
@@ -1287,6 +1288,10 @@ ABSTRACT_F(select_sys)
 
 int select_sys_pid(str* res, select_t* s, struct sip_msg* msg) {
 	return uint_to_static_buffer(res, getpid());
+}
+
+int select_sys_server_id(str* res, select_t* s, struct sip_msg* msg) {
+	return int_to_static_buffer(res, server_id);
 }
 
 int select_sys_unique(str* res, select_t* s, struct sip_msg* msg) {
