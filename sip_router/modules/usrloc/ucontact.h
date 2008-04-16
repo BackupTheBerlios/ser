@@ -1,5 +1,5 @@
 /* 
- * $Id: ucontact.h,v 1.25 2007/04/11 09:09:53 janakj Exp $ 
+ * $Id: ucontact.h,v 1.26 2008/04/16 15:50:39 janakj Exp $ 
  *
  * Usrloc contact structure
  *
@@ -84,6 +84,7 @@ typedef struct ucontact {
 	unsigned int flags;       /* Various flags (NAT, supported methods etc) */
 	str user_agent;	          /* User-Agent header field */
 	str instance;             /* sip.instance parameter */
+	int server_id;            /* ID of the server within a cluster responsible for the contact */
 	struct ucontact* next;    /* Next contact in the linked list */
 	struct ucontact* prev;    /* Previous contact in the linked list */
 	avp_t *avps;
@@ -100,8 +101,8 @@ typedef struct ucontact {
  * Create a new contact structure
  */
 int new_ucontact(str* _dom, str* _uid, str* aor, str* _contact, time_t _e, qvalue_t _q, 
-		 str* _callid, int _cseq, unsigned int _flags, ucontact_t** _c, 
-		 str* _ua, str* _recv, struct socket_info* sock, str* _inst);
+				 str* _callid, int _cseq, unsigned int _flags, ucontact_t** _c, 
+				 str* _ua, str* _recv, struct socket_info* sock, str* _inst, int sid);
 
 
 /*
@@ -183,10 +184,10 @@ int db_delete_ucontact(ucontact_t* _c);
  * Update ucontact with new values without replication
  */
 typedef int (*update_ucontact_t)(ucontact_t* _c, str* _u, str* aor, time_t _e, qvalue_t _q, str* _cid, int _cs, 
-				 unsigned int _set, unsigned int _res, str* _ua, str* _recv,
-				 struct socket_info* sock, str* _inst);
+								 unsigned int _set, unsigned int _res, str* _ua, str* _recv,
+								 struct socket_info* sock, str* _inst, int sid);
 int update_ucontact(ucontact_t* _c, str* _u, str* aor, time_t _e, qvalue_t _q, str* _cid, int _cs,
 					unsigned int _set, unsigned int _res, str* _ua, str* _recv,
-					struct socket_info* sock, str* _inst);
+					struct socket_info* sock, str* _inst, int sid);
 
 #endif /* UCONTACT_H */

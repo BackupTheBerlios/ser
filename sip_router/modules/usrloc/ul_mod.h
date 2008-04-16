@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.h,v 1.26 2007/11/14 16:27:17 janakj Exp $
+ * $Id: ul_mod.h,v 1.27 2008/04/16 15:50:39 janakj Exp $
  *
  * User location module interface
  *
@@ -69,6 +69,7 @@ extern str user_agent_col;
 extern str received_col;
 extern str instance_col;
 extern str aor_col;
+extern str server_id_col;
 extern str db_url;
 extern int timer_interval;
 extern int db_mode;

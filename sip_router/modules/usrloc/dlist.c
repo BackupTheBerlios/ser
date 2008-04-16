@@ -1,5 +1,5 @@
 /*
- * $Id: dlist.c,v 1.24 2007/04/11 09:09:53 janakj Exp $
+ * $Id: dlist.c,v 1.25 2008/04/16 15:50:39 janakj Exp $
  *
  * List of registered domains
  *
@@ -35,6 +35,7 @@
 #include "../../ut.h"
 #include "../../mem/shm_mem.h"
 #include "../../dprint.h"
+#include "../../globals.h"
 #include "udomain.h"           /* new_udomain, free_udomain */
 #include "utime.h"
 #include "ul_mod.h"
@@ -116,6 +117,11 @@ int get_all_ucontacts(void *buf, int len, unsigned int flags)
 				      */
 				if ((c->flags & flags) != flags)
 					continue;
+
+				/* List only contacts with matching server id */
+				if (c->server_id != server_id)
+					continue;
+
 				if (c->received.s) {
 					if (len >= (int)(sizeof(c->received.len) +
 							 c->received.len + sizeof(c->sock))) {
