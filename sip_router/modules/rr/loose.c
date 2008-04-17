@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.50 2007/08/24 08:29:02 kubartv Exp $
+ * $Id: loose.c,v 1.51 2008/04/17 20:55:46 calrissian Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -128,6 +128,11 @@ static inline int is_myself(str* _host, unsigned short _port)
     if (ret == 0 && dm_get_did) {
 	ret = dm_get_did(&did, _host);
 	if (ret < 0) return 0;
+	else if (ret > 0) {
+	    /* as the domain module does not know anything about ports
+	       lets check if the port matches any of our listening ports */
+	    ret = check_self_port(_port ? _port : SIP_PORT, 0);
+	}
     }
 
     return ret;
