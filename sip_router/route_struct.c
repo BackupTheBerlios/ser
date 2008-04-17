@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.40 2007/12/09 13:15:24 andrei Exp $
+ * $Id: route_struct.c,v 1.41 2008/04/17 16:22:18 tirpi Exp $
  *
  * route structures helping functions
  *
@@ -330,6 +330,9 @@ void print_action(struct action* t)
 			break;
 		case SET_HOSTPORT_T:
 			DBG("sethostport(");
+			break;
+		case SET_HOSTPORTTRANS_T:
+			DBG("sethostporttrans(");
 			break;
 		case SET_USER_T:
 			DBG("setuser(");
