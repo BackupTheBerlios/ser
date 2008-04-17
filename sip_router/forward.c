@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.115 2008/02/29 20:21:58 andrei Exp $
+ * $Id: forward.c,v 1.116 2008/04/17 20:52:47 calrissian Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -274,6 +274,19 @@ int check_self(str* host, unsigned short port, unsigned short proto)
 	}
 found:
 	return 1;
+}
+
+/* checks if the proto:port is one of the ports we listen on;
+ * if proto==0 (PROTO_NONE) the protocol is ignored
+ * returns 1 if true, 0 if false, -1 on error
+ */
+int check_self_port(unsigned short port, unsigned short proto)
+{
+	if (grep_sock_info_by_port(port, proto))
+		/* as aliases do not contain different ports we can skip them */
+		return 1;
+	else
+		return 0;
 }
 
 

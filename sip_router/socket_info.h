@@ -1,4 +1,4 @@
-/* $Id: socket_info.h,v 1.9 2008/04/15 17:38:33 andrei Exp $
+/* $Id: socket_info.h,v 1.10 2008/04/17 20:52:47 calrissian Exp $
  *
  * find & manage listen addresses 
  *
@@ -69,6 +69,8 @@ void print_aliases();
 
 struct socket_info* grep_sock_info(str* host, unsigned short port,
 										unsigned short proto);
+struct socket_info* grep_sock_info_by_port(unsigned short port,
+											unsigned short proto);
 struct socket_info* find_si(struct ip_addr* ip, unsigned short port,
 												unsigned short proto);
 
