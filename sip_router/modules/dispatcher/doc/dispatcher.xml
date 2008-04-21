@@ -20,8 +20,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2005/08/24 22:26:17 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2008/04/21 13:15:17 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -40,10 +40,14 @@
 	    The module can be used as a stateless load balancer, having no
 	    guarantee of fair distribution.
 	</para>
+	<para>
+		The dispatcher module offers reloads on the fly using sercmd.
+	</para>
     </section>
 
     <xi:include href="params.xml"/>
     <xi:include href="functions.xml"/>
+	<xi:include href="fifo.xml"/>
 
     <section id="dispatcher.install_run">
 	<title>Installation And Running</title>
