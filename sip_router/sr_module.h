@@ -1,4 +1,4 @@
-/* $Id: sr_module.h,v 1.43 2008/02/29 20:21:58 andrei Exp $
+/* $Id: sr_module.h,v 1.44 2008/04/23 21:20:43 bpintea Exp $
  *
  * modules/plug-in structures declarations
  *
@@ -323,4 +323,10 @@ int get_str_fparam(str* dst, struct sip_msg* msg, fparam_t* param);
  */
 int get_int_fparam(int* dst, struct sip_msg* msg, fparam_t* param);
 
+
+/**
+ * Retrieve the compiled RegExp.
+ * @return: 0 for success, negative on error.
+ */
+int get_regex_fparam(regex_t *dst, struct sip_msg* msg, fparam_t* param);
 #endif /* sr_module_h */

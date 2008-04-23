@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.12 $</revnumber>
-		<date>$Date: 2006/07/03 10:37:49 $</date>
+		<revnumber>$Revision: 1.13 $</revnumber>
+		<date>$Date: 2008/04/23 21:20:44 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -305,6 +305,57 @@ if (method == "REGISTER" ) {
     # internal clock
     apppend_date();
 };
+...
+	    </programlisting>
+	</example>
+    </section>
+
+    <section id="remove_hf">
+	<title>
+	    <function>remove_hf(hf_name)</function>
+	</title>
+	<para>
+		Remove from the message all the headers with the specified name.
+	</para>
+	<para>Meaning of the parameters is as follows:</para>
+	<itemizedlist>
+	    <listitem>
+		<para><emphasis>hf_name</emphasis> - Header field name to be removed.
+		</para>
+	    </listitem>
+	</itemizedlist>
+	<example>
+	    <title><function>remove_hf</function> usage</title>
+	    <programlisting>
+...
+remove_hf("Subject")  # strip all headers whose name is "Subject".
+...
+	    </programlisting>
+	</example>
+    </section>
+
+    <section id="remove_hf_re">
+	<title>
+	    <function>remove_hf_re(reg_exp)</function>
+	</title>
+	<para>
+		Remove from the message all the headers whose names match a given
+		regular expression.
+	</para>
+	<para>Meaning of the parameters is as follows:</para>
+	<itemizedlist>
+	    <listitem>
+		<para><emphasis>reg_exp</emphasis> - Regular expression that is
+		matched against header name fields.
+		</para>
+	    </listitem>
+	</itemizedlist>
+	<example>
+	    <title><function>remove_hf_re</function> usage</title>
+	    <programlisting>
+...
+remove_hf_re("Subject|P-.*|X-.*")  # strip all headers whose names match
+"Subject", contain "P-" or "X-".
 ...
 	    </programlisting>
 	</example>

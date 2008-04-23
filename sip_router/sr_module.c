@@ -1,4 +1,4 @@
-/* $Id: sr_module.c,v 1.53 2008/02/29 20:21:58 andrei Exp $
+/* $Id: sr_module.c,v 1.54 2008/04/23 21:20:43 bpintea Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1087,4 +1087,22 @@ int get_int_fparam(int* dst, struct sip_msg* msg, fparam_t* param)
     }
 
     return 0;
+}
+
+/**
+ * Retrieve the compiled RegExp.
+ * @return: 0 for success, negative on error.
+ */
+int get_regex_fparam(regex_t *dst, struct sip_msg* msg, fparam_t* param)
+{
+	switch (param->type) {
+		case FPARAM_REGEX:
+			*dst = *param->v.regex;
+			return 0;
+
+		default:
+			ERR("unexpected parameter type (%d), instead of regexp.\n", 
+					param->type);
+	}
+	return -1;
 }
