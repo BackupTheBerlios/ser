@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.94 2008/04/17 16:22:18 tirpi Exp $
+ * $Id: action.c,v 1.95 2008/04/23 10:58:37 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -813,6 +813,7 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 						break;
 					} else {
 						LOG(L_WARN,"WARNING: do_action: error in expression\n");
+						v = 0; /* error is treated as false (Miklos) */
 					}
 				}
 
