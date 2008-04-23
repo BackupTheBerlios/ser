@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.73 2008/04/23 09:31:44 tirpi Exp $
+ * $Id: route.c,v 1.74 2008/04/23 12:55:17 tirpi Exp $
  *
  * SIP routing engine
  *
@@ -814,6 +814,8 @@ inline static int comp_avp(int op, avp_spec_t* spec, int rtype, union exp_op* r,
 				}
 				num_val.numval=uval;
 				return comp_num(op, val.n, NUMBER_ST, &num_val);
+			case AVP_ST:
+				return comp_num(op, val.n, rtype, r);
 			default:
 				LOG(L_CRIT, "BUG: comp_avp: invalid type for numeric avp "
 							"comparison (%d)\n", rtype);
