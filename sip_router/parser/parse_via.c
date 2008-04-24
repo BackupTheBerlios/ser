@@ -1,5 +1,5 @@
 /*
- * $Id: parse_via.c,v 1.26 2006/04/21 14:28:37 andrei Exp $ 
+ * $Id: parse_via.c,v 1.27 2008/04/24 11:46:52 andrei Exp $ 
  *
  * via parsing automaton
  * 
@@ -1827,6 +1827,7 @@ parse_again:
 						goto error;
 					case L_PARAM:
 					case F_PARAM:
+					case F_PORT:
 					case P_PARAM:
 						LOG(L_ERR, "ERROR:parse_via:"
 						" bad char <%c> in state %d\n",
