@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.c,v 1.5 2007/12/21 17:58:07 andrei Exp $
+ * $Id: tcp_options.c,v 1.6 2008/04/24 13:51:26 alfredh Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -58,6 +58,7 @@ void init_tcp_options()
 #ifdef HAVE_TCP_QUICKACK
 	tcp_options.delayed_ack=1;
 #endif
+	tcp_options.crlf_ping=1;
 }
 
 

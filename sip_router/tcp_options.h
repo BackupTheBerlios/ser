@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.h,v 1.4 2007/12/21 17:58:07 andrei Exp $
+ * $Id: tcp_options.h,v 1.5 2008/04/24 13:51:26 alfredh Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -126,6 +126,7 @@ struct tcp_cfg_options{
 	int keepidle;   /* idle time (s) before tcp starts sending keepalives */
 	int keepintvl;  /* interval between keep alives */
 	int keepcnt;    /* maximum no. of keepalives before giving up */
+	int crlf_ping;  /* on/off - reply to double CRLF keepalives */
 };
 
 
