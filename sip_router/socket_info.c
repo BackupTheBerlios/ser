@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.17 2008/04/17 20:52:47 calrissian Exp $
+/* $Id: socket_info.c,v 1.18 2008/04/30 19:50:04 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -494,8 +494,12 @@ int add_interfaces(char* if_name, int family, unsigned short port,
 				#else
 					( (ifr.ifr_addr.sa_family==AF_INET)?
 						sizeof(struct sockaddr_in):
+					#ifdef USE_IPV6
 						((ifr.ifr_addr.sa_family==AF_INET6)?
 						sizeof(struct sockaddr_in6):sizeof(struct sockaddr)) )
+					#else /* USE_IPV6 */
+						sizeof(struct sockaddr) )
+					#endif /* USE_IPV6 */
 				#endif
 				)
 			#endif
