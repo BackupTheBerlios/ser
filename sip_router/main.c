@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.259 2008/04/14 01:46:03 janakj Exp $
+ * $Id: main.c,v 1.260 2008/04/30 19:53:04 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.259 2008/04/14 01:46:03 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.260 2008/04/30 19:53:04 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -479,10 +479,10 @@ void cleanup(show_status)
 	cfg_destroy();
 #ifdef USE_TCP
 	destroy_tcp();
-#endif
 #ifdef USE_TLS
 	destroy_tls();
-#endif
+#endif /* USE_TLS */
+#endif /* USE_TCP */
 	destroy_timer();
 	destroy_script_cb();
 	destroy_nonsip_hooks();

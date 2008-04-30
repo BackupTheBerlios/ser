@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.h,v 1.5 2008/04/24 13:51:26 alfredh Exp $
+ * $Id: tcp_options.h,v 1.6 2008/04/30 19:53:04 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -26,6 +26,7 @@
 #ifndef tcp_options_h
 #define tcp_options_h
 
+#ifdef USE_TCP
 
 #ifndef NO_TCP_BUF_WRITE
 #define TCP_BUF_WRITE /* enabled buffered writing */
@@ -106,6 +107,7 @@
 #endif /* __OS_ */
 #endif /* NO_TCP_QUICKACK */
 
+#endif /* USE_TCP */
 
 struct tcp_cfg_options{
 	/* ser tcp options */
