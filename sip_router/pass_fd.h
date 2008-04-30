@@ -1,5 +1,5 @@
 /*
- * $Id: pass_fd.h,v 1.4 2005/06/16 14:05:24 andrei Exp $
+ * $Id: pass_fd.h,v 1.5 2008/04/30 19:54:34 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -28,6 +28,21 @@
 #ifndef _pass_fd_h
 #define _pass_fd_h
 
+#ifdef __OS_cygwin
+/* check if MSG_WAITALL is defined */
+#include <sys/types.h>
+#include <sys/socket.h>
+
+#ifndef MSG_WAITALL
+#define NO_MSG_WAITALL
+#define MSG_WAITALL 0x80000000
+#endif /* MSG_WAITALL */
+
+#ifndef MSG_DONTWAIT
+#define NO_MSG_DONTWAIT
+#endif /* MSG_DONT_WAIT */
+
+#endif /* __OS_cygwin */
 
 int send_fd(int unix_socket, void* data, int data_len, int fd);
 int receive_fd(int unix_socket, void* data, int data_len, int* fd, int flags);
