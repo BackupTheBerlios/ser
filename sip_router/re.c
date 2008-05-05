@@ -1,5 +1,5 @@
 /* 
- * $Id: re.c,v 1.11 2004/11/12 16:58:58 andrei Exp $
+ * $Id: re.c,v 1.12 2008/05/05 18:15:54 andrei Exp $
  *
  * regexp and regexp substitutions implementations
  * 
@@ -231,6 +231,7 @@ found_repl:
 	*re_end=0;
 	if (regcomp(regex, re, cflags)!=0){
 		pkg_free(regex);
+		regex=0;
 		*re_end=c; /* restore */
 		LOG(L_ERR, "ERROR: subst_parser: bad regular expression %.*s in "
 				"%.*s\n", (int)(re_end-re), re, subst->len, subst->s);
