@@ -1,5 +1,5 @@
 /* 
- * $Id: mysql_mod.h,v 1.4 2008/01/16 14:17:28 janakj Exp $ 
+ * $Id: mysql_mod.h,v 1.5 2008/05/06 12:07:48 janakj Exp $ 
  *
  * MySQL module interface
  *
@@ -37,7 +37,7 @@
 #define _MYSQL_MOD_H
 
 /** @defgroup mysql MySQL db driver
- *  @ingroup DB-API
+ *  @ingroup DB_API
  */
 /** @{ */
 extern int my_ping_interval;
