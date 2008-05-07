@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_cmd.h,v 1.1 2008/05/05 15:07:05 janakj Exp $ 
+ * $Id: pg_cmd.h,v 1.2 2008/05/07 17:36:36 janakj Exp $ 
  *
  * PostgreSQL Database Driver for SER
  *
@@ -51,6 +51,7 @@
 #include <libpq-fe.h>
 
 struct pg_params {
+	int n;
 	const char** val;
 	int* len;
 	int* fmt;
