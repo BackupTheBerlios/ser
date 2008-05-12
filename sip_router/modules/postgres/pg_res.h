@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_res.h,v 1.1 2008/05/05 15:07:05 janakj Exp $ 
+ * $Id: pg_res.h,v 1.2 2008/05/12 12:15:36 janakj Exp $ 
  *
  * PostgreSQL Database Driver for SER
  *
@@ -51,7 +51,7 @@ struct pg_res {
     int row, rows;
 };
 
-int pg_res(db_res_t* cmd);
+int pg_res(db_res_t* res);
 
 /** @} */
 
