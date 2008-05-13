@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_fld.h,v 1.2 2008/05/12 15:01:17 janakj Exp $ 
+ * $Id: ld_fld.h,v 1.3 2008/05/13 12:31:10 janakj Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -45,9 +45,11 @@
 
 #include <ldap.h>
 
+
 struct ld_fld {
 	db_drv_t gen;
-	str attr;  /**< Name of corresponding LDAP attribute */
+	str attr;               /**< Name of corresponding LDAP attribute */
+	enum ld_syntax syntax;  /**< LDAP attribute syntax */
 	struct berval** values; /**< Values retrieved from the LDAP result */
 };
 
