@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.30 2008/04/16 11:19:05 janakj Exp $
+ * $Id: select_core.c,v 1.31 2008/05/13 09:07:18 janakj Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -170,7 +170,7 @@ SELECT_uri_header(rpid)
 int parse_contact_header( struct sip_msg *msg)
 {
         if ( !msg->contact && ( parse_headers(msg,HDR_CONTACT_F,0)==-1 || !msg->contact)) {
-                ERR("bad msg or missing CONTACT header\n");
+                DBG("bad msg or missing CONTACT header\n");
                 return -1;
         }
 
