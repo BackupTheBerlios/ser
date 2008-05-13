@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_fld.c,v 1.4 2008/05/13 12:31:10 janakj Exp $ 
+ * $Id: ld_fld.c,v 1.5 2008/05/13 16:40:39 janakj Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -289,6 +289,5 @@ int ld_ldap2fld(db_fld_t* fld, LDAP* ldap, LDAPMessage* msg)
 	}
 	return 0;
 }
-
 
 /** @} */
