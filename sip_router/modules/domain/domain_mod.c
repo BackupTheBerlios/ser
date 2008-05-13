@@ -1,5 +1,5 @@
 /*
- * $Id: domain_mod.c,v 1.43 2008/01/21 13:00:35 janakj Exp $
+ * $Id: domain_mod.c,v 1.44 2008/05/13 09:11:04 janakj Exp $
  *
  * Domain module
  *
@@ -222,11 +222,13 @@ static int init_db(void)
 		return -1;
 	}
 
-	INFO("prepare load_attrs_cmd\n");
-	load_attrs_cmd = db_cmd(DB_GET, db, domattr_table.s, load_attrs_columns, load_attrs_match, NULL);
-	if (load_attrs_cmd == NULL) {
-		ERR("Error while preparing load_attrs database command\n");
-		return -1;
+	if (load_domain_attrs) {
+		INFO("prepare load_attrs_cmd\n");
+		load_attrs_cmd = db_cmd(DB_GET, db, domattr_table.s, load_attrs_columns, load_attrs_match, NULL);
+		if (load_attrs_cmd == NULL) {
+			ERR("Error while preparing load_attrs database command\n");
+			return -1;
+		}
 	}
 
 	return 0;
