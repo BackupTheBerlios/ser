@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: ctlctl.py,v 1.48 2007/10/25 18:40:33 hallik Exp $
+# $Id: ctlctl.py,v 1.49 2008/05/16 13:30:29 kozlik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -120,10 +120,10 @@ def domain(command, *domain, **opts):
 	if cmd == CMD_ADD:
 		if len(domain) < 1:
 			raise Error (ENOARG, 'domain')
-		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
+		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
 		d.add(domain[0], domain[1:], idtype, force)
 	elif cmd == CMD_RM:
-		d = Domain_ctl(opts['DB_URI'], multi_rpc(opts))
+		d = Domain_ctl(opts['DB_URI'], any_rpc(opts))
 		d.rm(domain, force)
 	elif cmd == CMD_SHOW:
 		if not domain:
