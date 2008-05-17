@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_con.c,v 1.1 2008/05/12 12:14:38 janakj Exp $ 
+ * $Id: ld_con.c,v 1.2 2008/05/17 10:03:15 sobomax Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -44,7 +44,7 @@
 #include "../../ut.h"
 
 #include <ldap.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 

@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_con.c,v 1.3 2008/05/05 15:07:05 janakj Exp $ 
+ * $Id: pg_con.c,v 1.4 2008/05/17 10:03:15 sobomax Exp $ 
  *
  * PostgreSQL Database Driver for SER
  *
@@ -44,7 +44,7 @@
 #include "../../dprint.h"
 #include "../../ut.h"
 
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 #include <netinet/in.h>
 #include <time.h>

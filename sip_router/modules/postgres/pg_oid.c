@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_oid.c,v 1.1 2008/05/05 15:07:05 janakj Exp $ 
+ * $Id: pg_oid.c,v 1.2 2008/05/17 10:03:15 sobomax Exp $ 
  *
  * PostgreSQL Database Driver for SER
  *
@@ -41,7 +41,7 @@
 #include "../../dprint.h"
 #include "../../ut.h"
 #include <strings.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 /** An array of supported PostgreSQL field types. */
