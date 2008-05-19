@@ -1,7 +1,7 @@
 /*
  * mangler module
  *
- * $Id: common.h,v 1.6 2008/05/19 11:07:53 andrei Exp $
+ * $Id: common.h,v 1.7 2008/05/19 11:43:44 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -34,7 +34,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#define STRICT_CHECK 1
+/* #define STRICT_CHECK 1 */
 //#define DEBUG 1
 //#define DEMO 1 /* for mangler.c */ 
 
