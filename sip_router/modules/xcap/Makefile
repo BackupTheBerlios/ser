@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2007/05/08 08:35:24 andrei Exp $
+# $Id: Makefile,v 1.3 2008/05/20 23:17:16 sobomax Exp $
 #
 # Registrar Presence User Agent
 #
@@ -14,7 +14,7 @@ NAME = xcap.so
 # and root ser directory must be in include directories
 
 DEFS +=-DSER 
-INCLUDES += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 \ 
+INCLUDES += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 \
 			-I$(LOCALBASE)/include -I../../lib -I../..
 LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2 -lcurl 
 SERLIBPATH=../../lib
