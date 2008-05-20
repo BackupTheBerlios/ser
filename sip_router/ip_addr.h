@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.42 2007/08/23 20:43:58 andrei Exp $
+/* $Id: ip_addr.h,v 1.43 2008/05/20 14:20:39 tirpi Exp $
  *
  * ip address family related structures
  *
@@ -237,9 +237,7 @@ inline static void ip_addr_mk_any(int af, struct ip_addr* ip)
 inline static int matchnet(struct ip_addr* ip, struct net* net)
 {
 	unsigned int r;
-	int ret;
-	
-	ret=-1;
+
 	if (ip->af == net->ip.af){
 		for(r=0; r<ip->len/4; r++){ /* ipv4 & ipv6 addresses are
 									   all multiple of 4*/
