@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: UTF-8 -*-
 #
-# $Id: config.py,v 1.15 2006/03/14 09:11:10 hallik Exp $
+# $Id: config.py,v 1.16 2008/05/20 09:48:33 kozlik Exp $
 #
 # Copyright (C) 2005 iptelorg GmbH
 #
@@ -28,7 +28,7 @@ DB_URI = 'mysql://ser:heslo@localhost/ser'
 #
 # Ser URI, this should be the SER URI for xmlrpc requests.
 #
-SER_URI = 'http://localhost:5060/'
+SER_URI = 'unix:/tmp/ser_ctl'
 
 
 ### --- End of global variable definitions. --- ###

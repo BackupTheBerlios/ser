@@ -255,7 +255,7 @@ not specified by config file or from command line. Default 'I<SERCTL_SER>'.
 =item B<-s>, B<--ser-uri> I<uri>
 
 Server uri for RPC operations in the form: http[s]://user:password@host:port. 
-Default is 'I<http://localhost:5060/>'.
+Default is 'I<unix:/tmp/ser_ctl>'.
 
 B<Note:> For comunication by binrpc protocol through local unix socket use form:
 'I<unix[s]:/socket_path>' for stream type unix socket and 'I<unixd:/socket_path>'
