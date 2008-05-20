@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.34 2008/04/30 19:50:04 andrei Exp $
+ * $Id: resolve.h,v 1.35 2008/05/20 22:46:25 sobomax Exp $
  *
  * resolver related functions
  *
@@ -43,6 +43,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/nameser.h>
 #include <resolv.h>
