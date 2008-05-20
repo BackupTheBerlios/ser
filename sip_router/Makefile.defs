@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.428 2008/04/30 20:12:16 andrei Exp $
+# $Id: Makefile.defs,v 1.429 2008/05/20 22:55:55 sobomax Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -220,6 +220,7 @@ INSTALL_TOUCH = touch          # used to create the file first (good to
                                #  make solaris install work)
 INSTALL_CFG = $(INSTALL) -m 644
 INSTALL_BIN = $(INSTALL) -m 755
+INSTALL_SCRIPT = $(INSTALL) -m 755
 INSTALL_MODULES = $(INSTALL) -m 755
 INSTALL_LIB = $(INSTALL) -m 755
 INSTALL_DOC = $(INSTALL) -m 644
