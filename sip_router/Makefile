@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.189 2008/05/20 22:55:55 sobomax Exp $
+# $Id: Makefile,v 1.190 2008/05/20 23:59:05 sobomax Exp $
 #
 # sip_router makefile
 #
@@ -219,7 +219,7 @@ modules_full_path=$(join  $(modules), $(addprefix /, $(modules_names)))
 # which utils need compilation (directory path) and which to install
 # (full path including file name)
 utils_compile=	utils/gen_ha1 utils/sercmd
-utils_bin_install=	$(utils_compile)
+utils_bin_install=	utils/gen_ha1/gen_ha1 utils/sercmd/sercmd
 utils_script_install=	scripts/mysql/ser_mysql.sh
 
 
