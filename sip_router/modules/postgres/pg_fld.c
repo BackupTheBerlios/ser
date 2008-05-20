@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_fld.c,v 1.1 2008/05/05 15:07:05 janakj Exp $ 
+ * $Id: pg_fld.c,v 1.2 2008/05/20 23:13:20 sobomax Exp $ 
  *
  * PostgreSQL Database Driver for SER
  *
@@ -44,9 +44,11 @@
 #include "../../mem/mem.h"
 #include "../../dprint.h"
 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <stdint.h>
 #include <string.h>
-#include <netinet/in.h>
 
 /**
  * This is the epoch time in time_t format, this value is used to convert
