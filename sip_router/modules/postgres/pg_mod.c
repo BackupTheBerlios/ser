@@ -1,5 +1,5 @@
 /* 
- * $Id: pg_mod.c,v 1.2 2008/05/07 17:36:36 janakj Exp $ 
+ * $Id: pg_mod.c,v 1.3 2008/05/21 12:24:59 janakj Exp $ 
  *
  * PostgreSQL Database Driver for SER
  *
@@ -221,7 +221,7 @@ int pg_test(void)
 		ERR("Error while initializing database layer\n");
 		goto error;
 	}
-	if (db_add_db(db, "postgres://janakj:honzacvut@localhost/ser") < 0) goto error;
+	if (db_add_db(db, "postgres://janakj:heslo@localhost/ser") < 0) goto error;
 	if (db_connect(db) < 0) goto error;
 	
 	del = db_cmd(DB_DEL, db, "test", NULL, NULL, NULL);
