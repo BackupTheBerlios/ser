@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.40 2008/04/24 13:51:26 alfredh Exp $
+ * $Id: tcp_conn.h,v 1.41 2008/05/21 10:16:46 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -79,6 +79,8 @@
 #define F_CONN_FORCE_EOF  512 /* act as if an EOF was received */
 #define F_CONN_OOB_DATA  1024 /* out of band data on the connection */
 #define F_CONN_WR_ERROR  2048 /* write error on the fd */
+#define F_CONN_WANTS_RD  4096  /* conn. should be watched for READ */
+#define F_CONN_WANTS_WR  8192  /* conn. should be watched for WRITE */
 
 
 enum tcp_req_errors {	TCP_REQ_INIT, TCP_REQ_OK, TCP_READ_ERROR,
