@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.190 2008/05/20 23:59:05 sobomax Exp $
+# $Id: Makefile,v 1.191 2008/05/22 07:26:06 andrei Exp $
 #
 # sip_router makefile
 #
@@ -138,7 +138,7 @@ else
 							auth_radius group_radius uri_radius avp_radius \
 							acc_radius dialog pa rls presence_b2b xcap xmlrpc\
 							osp tls oracle \
-							unixsock dbg print_lib auth_identity
+							unixsock dbg print_lib auth_identity ldap
 	# excluded because they do not compile (remove them only after they are
 	#  fixed) -- andrei
 	exclude_modules+= avpops  bdb dbtext flatstore lcr msilo pdt \
