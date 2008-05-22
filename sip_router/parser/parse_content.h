@@ -1,5 +1,5 @@
 /*
- * $Id: parse_content.h,v 1.12 2005/12/13 06:48:18 kubartv Exp $
+ * $Id: parse_content.h,v 1.13 2008/05/22 16:12:16 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -119,5 +119,10 @@ int parse_accept_hdr( struct sip_msg *msg );
  *  Returns the first chr after the end of the header.
  */
 char* parse_content_length( char* buffer, char* end, int* len);
+
+/*
+ * Sets the mime type from the body of a Content-Type header
+ */
+char* decode_mime_type(char *start, char *end, unsigned int *mime_type);
 
 #endif
