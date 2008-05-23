@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_con.c,v 1.2 2008/05/17 10:03:15 sobomax Exp $ 
+ * $Id: ld_con.c,v 1.3 2008/05/23 15:06:45 janakj Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -106,7 +106,7 @@ int ld_con(db_con_t* con)
 
 	DBG("ldap: Preparing new connection to %s\n", luri->uri);
 
-	/* Put the newly created postgres connection into the pool */
+	/* Put the newly created LDAP connection into the pool */
 	db_pool_put((struct db_pool_entry*)lcon);
 	DBG("ldap: Connection stored in connection pool\n");
 
