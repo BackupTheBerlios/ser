@@ -1,5 +1,5 @@
-/**
- * $Id: ms_msg_list.c,v 1.9 2006/04/04 09:45:29 kubartv Exp $
+/*
+ * $Id: ms_msg_list.c,v 1.10 2008/05/27 22:26:24 janakj Exp $
  *
  * MSILO module
  *
