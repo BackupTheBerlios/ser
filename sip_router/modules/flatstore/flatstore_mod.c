@@ -1,5 +1,5 @@
 /*
- * $Id: flatstore_mod.c,v 1.9 2008/05/27 00:22:02 janakj Exp $
+ * $Id: flatstore_mod.c,v 1.10 2008/05/27 11:56:12 janakj Exp $
  *
  * Copyright (C) 2004 FhG FOKUS
  * Copyright (C) 2008 iptelorg GmbH
@@ -105,18 +105,9 @@ time_t flat_local_timestamp;
 
 /* Flatstore database module interface */
 static cmd_export_t cmds[] = {
-	{"db_ctx",    (cmd_function)NULL,     0, 0, 0},
 	{"db_con",    (cmd_function)flat_con, 0, 0, 0},
-	{"db_uri",    (cmd_function)NULL,     0, 0, 0},
 	{"db_cmd",    (cmd_function)flat_cmd, 0, 0, 0},
 	{"db_put",    (cmd_function)flat_put, 0, 0, 0},
-	{"db_del",    (cmd_function)NULL,     0, 0, 0},
-	{"db_get",    (cmd_function)NULL,     0, 0, 0},
-	{"db_upd",    (cmd_function)NULL,     0, 0, 0},
-	{"db_sql",    (cmd_function)NULL,     0, 0, 0},
-	{"db_fld",    (cmd_function)NULL,     0, 0, 0},
-	{"db_setopt", (cmd_function)NULL,     0, 0, 0},
-	{"db_getopt", (cmd_function)NULL,     0, 0, 0},
 	{0, 0, 0, 0, 0}
 };
 
