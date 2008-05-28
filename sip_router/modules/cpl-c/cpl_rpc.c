@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_rpc.c,v 1.2 2006/01/28 13:37:40 janakj Exp $
+ * $Id: cpl_rpc.c,v 1.3 2008/05/28 16:51:35 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -212,7 +212,7 @@ static void cpl_get(rpc_t* rpc, void* c)
 	}
 	
 	     /* get the script for this user */
-	if (get_user_script(&user, &script, "cpl_xml")==-1) {
+	if (get_user_script(&user, &script, 0)==-1) {
 		rpc->fault(c, 500, "Database query failed");
 		return;
 	}

@@ -1,5 +1,5 @@
 /*
- * $Id: cpl_db.h,v 1.9 2004/08/24 08:58:26 janakj Exp $
+ * $Id: cpl_db.h,v 1.10 2008/05/28 16:51:35 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -48,7 +48,7 @@ int write_to_db( char *usr, str *xml, str *bin);
  * Returns:  1 - success
  *          -1 - error
  */
-int get_user_script(str *user, str *script, const char *key);
+int get_user_script(str *user, str *script, int bin);
 
 
 /* delete from database the entire record for a given user - if a user has no
