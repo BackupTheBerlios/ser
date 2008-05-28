@@ -1,6 +1,7 @@
-/**
- * $Id: pdtree.h,v 1.1 2005/01/30 21:17:48 ramona Exp $
+/*
+ * $Id: pdtree.h,v 1.2 2008/05/28 12:39:52 janakj Exp $
  *
+ * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 Voice Sistem SRL (Voice-System.RO)
  *
  * This file is part of SIP Express Router.

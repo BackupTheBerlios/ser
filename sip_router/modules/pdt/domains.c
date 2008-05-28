@@ -1,7 +1,8 @@
 /**
- * $Id: domains.c,v 1.5 2005/01/30 21:17:48 ramona Exp $
+ * $Id: domains.c,v 1.6 2008/05/28 12:39:53 janakj Exp $
  *
- * Copyright (C) 2001-2003 FhG Fokus
+ * Copyright (C) 2001-2003 FhG FOKUS
+ * Copyright (C) 2008 iptelorg GmbH
  *
  * This file is part of ser, a free SIP server.
  *
