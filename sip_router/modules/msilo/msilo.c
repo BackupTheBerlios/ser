@@ -1,5 +1,5 @@
 /*
- * $Id: msilo.c,v 1.58 2008/05/27 22:26:24 janakj Exp $
+ * $Id: msilo.c,v 1.59 2008/05/28 15:44:18 janakj Exp $
  *
  * MSILO module
  *
@@ -27,7 +27,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-/**
+/*
  * History
  * -------
  *
