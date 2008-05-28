@@ -1,5 +1,5 @@
 /*
- * $Id: xjab_worker.h,v 1.18 2004/08/24 08:58:30 janakj Exp $
+ * $Id: xjab_worker.h,v 1.19 2008/05/28 15:43:56 janakj Exp $
  *
  * eXtended JABber module
  *
@@ -92,7 +92,7 @@ int  xj_wlist_set_aliases(xj_wlist, char *, char *, char *);
 int  xj_wlist_check_aliases(xj_wlist, str*);
 int  xj_wlist_clean_jobs(xj_wlist, int, int); 
 
-int xj_worker_process(xj_wlist, char*, int, int, db_con_t*, db_func_t*);
+int xj_worker_process(xj_wlist, char*, int, int, db_cmd_t*);
 
 int xj_address_translation(str *src, str *dst, xj_jalias als, int flag);
 int xj_manage_jab(char *buf, int len, int *pos, xj_jalias als, xj_jcon jbc);
