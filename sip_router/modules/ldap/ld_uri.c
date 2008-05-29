@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_uri.c,v 1.1 2008/05/12 12:14:38 janakj Exp $ 
+ * $Id: ld_uri.c,v 1.2 2008/05/29 15:17:49 gkovacs Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -33,6 +33,8 @@
 /** \file 
  * The implementation of parser parsing ldap:.. URIs.
  */
+
+#include <string.h>
 
 #include "ld_uri.h"
 
