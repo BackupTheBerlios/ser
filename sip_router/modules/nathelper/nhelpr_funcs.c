@@ -1,5 +1,5 @@
 /*
- * $Id: nhelpr_funcs.c,v 1.8 2004/08/24 08:58:32 janakj Exp $
+ * $Id: nhelpr_funcs.c,v 1.9 2008/05/29 02:43:36 sobomax Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -160,7 +160,9 @@ other:
  */
 int extract_body(struct sip_msg *msg, str *body )
 {
-	
+	char c;
+	int skip;
+
 	body->s = get_body(msg);
 	if (body->s==0) {
 		LOG(L_ERR, "ERROR: extract_body: failed to get the message body\n");
@@ -180,7 +182,18 @@ int extract_body(struct sip_msg *msg, str *body )
 		LOG(L_ERR,"ERROR: extract_body: content type mismatching\n");
 		goto error;
 	}
-	
+
+	for (skip = 0; skip < body->len; skip++) {
+		c = body->s[body->len - skip - 1];
+		if (c != '\r' && c != '\n')
+			break;
+	}
+	if (skip == body->len) {
+		LOG(L_ERR, "ERROR: extract_body: empty body\n");
+		goto error;
+	}
+	body->len -= skip;
+
 	/*DBG("DEBUG:extract_body:=|%.*s|\n",body->len,body->s);*/
 
 	return 1;
