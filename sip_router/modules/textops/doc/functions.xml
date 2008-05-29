@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.13 $</revnumber>
-		<date>$Date: 2008/04/23 21:20:44 $</date>
+		<revnumber>$Revision: 1.14 $</revnumber>
+		<date>$Date: 2008/05/29 07:01:39 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -303,7 +303,7 @@ if (method == "REGISTER" ) {
     # Many user agents can use the Date header field
     # in 200 OK replies to REGISTER to synchronize
     # internal clock
-    apppend_date();
+    append_time();
 };
 ...
 	    </programlisting>

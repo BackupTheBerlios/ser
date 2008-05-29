@@ -7,7 +7,7 @@ Andrei Pelinescu-Onciul
 
    Copyright © 2003 FhG FOKUS
    Revision History
-   Revision $Revision: 1.7 $ $Date: 2005/09/02 11:23:45 $
+   Revision $Revision: 1.8 $ $Date: 2008/05/29 07:01:39 $
      _________________________________________________________________
 
    Table of Contents
@@ -31,7 +31,7 @@ From: medabeda
 1.2. Functions
 
    Revision History
-   Revision $Revision: 1.7 $ $Date: 2005/09/02 11:23:45 $
+   Revision $Revision: 1.8 $ $Date: 2008/05/29 07:01:39 $
 
 1.2.1.  search(re)
 
@@ -184,6 +184,6 @@ if (method == "REGISTER" ) {
     # Many user agents can use the Date header field
     # in 200 OK replies to REGISTER to synchronize
     # internal clock
-    apppend_date();
+    append_time();
 };
 ...
