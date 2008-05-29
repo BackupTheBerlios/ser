@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_fld.c,v 1.6 2008/05/14 17:07:44 janakj Exp $ 
+ * $Id: ld_fld.c,v 1.7 2008/05/29 15:21:59 gkovacs Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -627,7 +627,7 @@ int ld_fld2ldap(char** filter, db_fld_t* fld, str* add)
 		rv |= sb_add(&buf, "(", 1);
 		lfld = DB_GET_PAYLOAD(fld + i);	
 
-		if ((fld[i].flags & DB_NULL) == 0) {
+		if (fld[i].flags & DB_NULL) {
 			rv |= sb_add(&buf, lfld->attr.s, lfld->attr.len);
 			rv |= sb_add(&buf, "=", 1);
 			goto skip;
