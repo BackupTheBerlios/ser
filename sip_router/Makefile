@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.191 2008/05/22 07:26:06 andrei Exp $
+# $Id: Makefile,v 1.192 2008/05/29 07:44:11 janakj Exp $
 #
 # sip_router makefile
 #
@@ -141,8 +141,7 @@ else
 							unixsock dbg print_lib auth_identity ldap
 	# excluded because they do not compile (remove them only after they are
 	#  fixed) -- andrei
-	exclude_modules+= avpops  bdb dbtext flatstore lcr msilo pdt \
-					  iptrtpproxy
+	exclude_modules+= avpops  bdb dbtext iptrtpproxy
 endif
 
 # always exclude the CVS dir
