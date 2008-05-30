@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.29 2008/03/17 11:16:19 tirpi Exp $
+ * $Id: t_reply.h,v 1.30 2008/05/30 21:10:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -121,7 +121,7 @@ int t_reply_unsafe( struct cell *t, struct sip_msg * , unsigned int , char * );
 
 
 enum rps relay_reply( struct cell *t, struct sip_msg *p_msg, int branch, 
-	unsigned int msg_status, branch_bm_t *cancel_bitmap );
+	unsigned int msg_status, branch_bm_t *cancel_bitmap, int do_put_on_wait );
 
 enum rps local_reply( struct cell *t, struct sip_msg *p_msg, int branch,
     unsigned int msg_status, branch_bm_t *cancel_bitmap );

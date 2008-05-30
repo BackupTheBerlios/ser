@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.30 2008/03/31 18:19:49 bpintea Exp $
+ * $Id: t_cancel.c,v 1.31 2008/05/30 21:10:53 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -214,7 +214,7 @@ int cancel_branch( struct cell *t, int branch, int flags )
 			atomic_set_long((void*)&crb->buffer, 0);
 			if (flags & F_CANCEL_B_FAKE_REPLY){
 				LOCK_REPLIES(t);
-				if (relay_reply(t, FAKED_REPLY, branch, 487, &tmp_bm) == 
+				if (relay_reply(t, FAKED_REPLY, branch, 487, &tmp_bm, 1) == 
 										RPS_ERROR){
 					return -1;
 				}
@@ -234,7 +234,7 @@ int cancel_branch( struct cell *t, int branch, int flags )
 				if (flags & F_CANCEL_B_FAKE_REPLY){
 					stop_rb_timers( irb ); /* stop even the fr timer */
 					LOCK_REPLIES(t);
-					if (relay_reply(t, FAKED_REPLY, branch, 487, &tmp_bm) == 
+					if (relay_reply(t, FAKED_REPLY, branch, 487, &tmp_bm, 1)== 
 											RPS_ERROR){
 						return -1;
 					}

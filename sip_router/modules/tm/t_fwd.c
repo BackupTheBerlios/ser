@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.104 2008/03/31 18:19:50 bpintea Exp $
+ * $Id: t_fwd.c,v 1.105 2008/05/30 21:10:53 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -774,14 +774,14 @@ void e2e_cancel( struct sip_msg *cancel_msg,
 				if (!(cfg_get(tm, tm_cfg, cancel_b_flags) & 
 							F_CANCEL_B_FORCE_RETR))
 					stop_rb_retr(&t_invite->uac[i].request);
-				/* no need to stop fr, it will be stoped by relay_reply
+				/* no need to stop fr, it will be stopped by relay_reply
 				 * put_on_wait -- andrei */
 				/* Generate faked reply */
 				if (cfg_get(tm, tm_cfg, cancel_b_flags) &
 						F_CANCEL_B_FAKE_REPLY){
 					LOCK_REPLIES(t_invite);
-					if (relay_reply(t_invite, FAKED_REPLY, i, 487, &tmp_bm) == 
-							RPS_ERROR) {
+					if (relay_reply(t_invite, FAKED_REPLY, i,
+									487, &tmp_bm, 1) == RPS_ERROR) {
 						lowest_error = -1;
 					}
 				}
