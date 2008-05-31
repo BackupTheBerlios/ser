@@ -1,5 +1,5 @@
 /*
- *$Id: ut.c,v 1.8 2008/03/02 15:11:59 andrei Exp $
+ *$Id: ut.c,v 1.9 2008/05/31 17:50:34 janakj Exp $
  *
  * various general purpose functions
  *
@@ -88,7 +88,7 @@ int group2gid(int* gid, char* group)
 		}
 		return 0;
 	}
-error:
+ error:
 	return -1;
 }
 
@@ -162,8 +162,8 @@ char* as_asciiz(str* s)
 
     r = (char*)pkg_malloc(s->len + 1);
     if (!r) {
-	ERR("Out of memory\n");
-	return 0;
+		ERR("Out of memory\n");
+		return 0;
     }
     memcpy(r, s->s, s->len);
     r[s->len] = '\0';
