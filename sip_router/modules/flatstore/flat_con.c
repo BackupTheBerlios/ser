@@ -1,5 +1,5 @@
 /*
- * $Id: flat_con.c,v 1.8 2008/05/27 11:56:12 janakj Exp $
+ * $Id: flat_con.c,v 1.9 2008/05/31 17:29:39 janakj Exp $
  *
  * Copyright (C) 2004 FhG FOKUS
  * Copyright (C) 2008 iptelorg GmbH
@@ -274,7 +274,7 @@ int flat_open_table(int* idx, db_con_t* con, str* name)
 				return -1;
 			}			
 		} else {
-			new[fcon->n].f = NULL;
+			new->f = NULL;
 		}
 		
 		*idx = fcon->n - 1;
