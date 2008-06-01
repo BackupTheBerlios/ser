@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: acc_db.c,v 1.17 2008/04/15 21:10:55 janakj Exp $
+ * $Id: acc_db.c,v 1.18 2008/06/01 12:33:12 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -962,22 +962,19 @@ static int child_init(int rank)
 			return -1;
 		}
 
-		if (db_add_db(acc_db, db_url.s) < 0) return -1;
-		if (db_connect(acc_db) < 0) return -1;
+		if (db_add_db(acc_db, db_url.s) < 0) goto error;
+		if (db_connect(acc_db) < 0) goto error;
 
 		write_acc = db_cmd(DB_PUT, acc_db, acc_table.s, NULL, NULL, fld);
 		if (write_acc == NULL) {
 			ERR("Error while compiling database query\n");
-			db_ctx_free(acc_db);
-			return -1;
+			goto error;
 		}
 
 		write_mc = db_cmd(DB_PUT, acc_db, mc_table.s, NULL, NULL, fld);
 		if (write_mc == NULL) {
 			ERR("Error while compiling database query\n");
-			db_cmd_free(write_acc);
-			db_ctx_free(acc_db);
-			return -1;
+			goto error;
 		}
 
 		return 0;
@@ -985,6 +982,14 @@ static int child_init(int rank)
 		LOG(L_CRIT, "BUG:acc:child_init: null db url\n");
 		return -1;
 	}
+ error:
+	if (write_acc) db_cmd_free(write_acc);
+	write_acc = NULL;
+	if (write_mc) db_cmd_free(write_mc);
+	write_mc = NULL;
+	if (acc_db) db_ctx_free(acc_db);
+	acc_db = NULL;
+	return -1;
 }
 
 
