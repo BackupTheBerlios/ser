@@ -1,5 +1,5 @@
 /* 
- * $Id: my_cmd.c,v 1.21 2008/05/22 13:55:24 janakj Exp $
+ * $Id: my_cmd.c,v 1.22 2008/06/01 19:22:15 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -1231,6 +1231,12 @@ int my_cmd_next(db_res_t* res)
 
 	mcmd = DB_GET_PAYLOAD(res->cmd);
 	if (mcmd->next_flag == 2 || mcmd->next_flag == -2) return 1;
+
+	if (mcmd->st == NULL) {
+		ERR("mysql: Prepared statement not found\n");
+		return -1;
+	}
+
 	ret = mysql_stmt_fetch(mcmd->st);
 	
 	if (ret == MYSQL_NO_DATA) {
