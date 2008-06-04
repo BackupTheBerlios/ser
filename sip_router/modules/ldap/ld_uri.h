@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_uri.h,v 1.2 2008/06/01 09:35:48 janakj Exp $ 
+ * $Id: ld_uri.h,v 1.3 2008/06/04 21:43:27 gkovacs Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -26,10 +26,10 @@
 #define _LD_URI_H
 
 /** \addtogroup ldap
- * @{ 
+ * @{
  */
 
-/** \file 
+/** \file
  * The functions parsing and interpreting ldap: URIs.
  */
 
@@ -41,11 +41,13 @@
 
 /** LDAP driver specific payload to attach to db_uri structures.
  * This is the LDAP specific structure that will be attached
- * to generic db_uri structures in the database API in SER. The 
+ * to generic db_uri structures in the database API in SER. The
  * structure contains parsed elements of the ldap: URI.
  */
 struct ld_uri {
 	db_drv_t drv;
+	char* username;
+	char* password;
 	char* uri;             /**< The whole URI, including scheme */
 	LDAPURLDesc* ldap_url; /**< URI parsed by the ldap client library */
 };
