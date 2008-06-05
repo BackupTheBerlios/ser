@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2008/05/20 23:17:16 sobomax Exp $
+# $Id: Makefile,v 1.4 2008/06/05 16:36:03 andrei Exp $
 #
 # Registrar Presence User Agent
 #
@@ -18,7 +18,7 @@ INCLUDES += -I/usr/include/libxml2 -I$(LOCALBASE)/include/libxml2 \
 			-I$(LOCALBASE)/include -I../../lib -I../..
 LIBS += -L$(LOCALBASE)/lib -L/usr/pkg/lib -lxml2 -lcurl 
 SERLIBPATH=../../lib
-SER_LIBS=$(SERLIBPATH)/cds/ser_cds $(SERLIBPATH)/presence/ser_presence \
-			$(SERLIBPATH)/xcap/ser_xcap
+SER_LIBS=$(SERLIBPATH)/cds/ser_cds
+# not used: $(SERLIBPATH)/presence/ser_presence $(SERLIBPATH)/xcap/ser_xcap
 
 include ../../Makefile.modules
