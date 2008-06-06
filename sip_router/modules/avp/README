@@ -12,7 +12,7 @@ Michal Matyska
 
    Copyright © 2004, 2005, 2006 FhG FOKUS, iptelorg GmbH
    Revision History
-   Revision $Revision: 1.4 $ $Date: 2008/06/06 13:25:58 $
+   Revision $Revision: 1.5 $ $Date: 2008/06/06 13:39:26 $
      __________________________________________________________________
 
 Overview
@@ -30,7 +30,7 @@ Overview
 Functions
 
    Revision History
-   Revision $Revision: 1.4 $ $Date: 2008/06/06 13:25:58 $
+   Revision $Revision: 1.5 $ $Date: 2008/06/06 13:39:26 $
 
 set_iattr(attribute,value)
 
@@ -162,6 +162,13 @@ xlset_attr($attribute, xl_format)
 
    Note: You must ensure, that the xlog module is loaded to be able to use
    this function.
+
+xlfix_attr($attribute)
+
+   Fixes an xl formatted attribute value to pure string.
+
+   Meaning of the parameter is as follows:
+     * $attribute - The name of the AVP.
 
 insert_attr_hf(name)
 
@@ -408,7 +415,7 @@ Stat}\n");
 Parameters
 
    Revision History
-   Revision $Revision: 1.4 $ $Date: 2008/06/06 13:25:58 $
+   Revision $Revision: 1.5 $ $Date: 2008/06/06 13:39:26 $
 
 xlbuf_size (integer)
 
