@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_fld.c,v 1.8 2008/06/01 09:35:48 janakj Exp $ 
+ * $Id: ld_fld.c,v 1.9 2008/06/06 00:03:06 janakj Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -179,7 +179,7 @@ int ld_fld(db_fld_t* fld, char* table)
 }
 
 
-int ld_resolve_fld(db_fld_t* fld, struct ld_config* cfg)
+int ld_resolve_fld(db_fld_t* fld, struct ld_cfg* cfg)
 {
 	int i;
 	struct ld_fld* lfld;

@@ -1,5 +1,5 @@
 /*
- * $Id: tls_domain.h,v 1.4 2007/02/10 19:02:04 andrei Exp $
+ * $Id: tls_domain.h,v 1.5 2008/06/06 00:03:30 janakj Exp $
  *
  * TLS module - virtual configuration domain support
  * 
@@ -76,13 +76,13 @@ typedef struct tls_domain {
 	struct ip_addr ip;
 	unsigned short port;
 	SSL_CTX** ctx;
-	char* cert_file;
-	char* pkey_file;
+	str cert_file;
+	str pkey_file;
 	int verify_cert;
 	int verify_depth;
-	char* ca_file;
-        int require_cert;
-	char* cipher_list;
+	str ca_file;
+	int require_cert;
+	str cipher_list;
 	enum tls_method method;
 	struct tls_domain* next;
 } tls_domain_t;

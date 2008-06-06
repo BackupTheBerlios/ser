@@ -1,5 +1,5 @@
 /* 
- * $Id: ld_fld.h,v 1.5 2008/06/01 09:35:48 janakj Exp $ 
+ * $Id: ld_fld.h,v 1.6 2008/06/06 00:03:06 janakj Exp $ 
  *
  * LDAP Database Driver for SER
  *
@@ -34,9 +34,9 @@
  * related functions.
  */
 
-#include "ld_config.h"
+#include "ld_cfg.h"
 
-struct ld_config;
+struct ld_cfg;
 
 #include "../../db/db_gen.h"
 #include "../../db/db_fld.h"
@@ -72,7 +72,7 @@ struct ld_fld {
 int ld_fld(db_fld_t* fld, char* table);
 
 
-int ld_resolve_fld(db_fld_t* fld, struct ld_config* cfg);
+int ld_resolve_fld(db_fld_t* fld, struct ld_cfg* cfg);
 
 int ld_ldap2fld(db_fld_t* fld, LDAP* ldap, LDAPMessage* msg);
 
