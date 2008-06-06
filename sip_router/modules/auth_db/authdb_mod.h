@@ -1,5 +1,5 @@
 /*
- * $Id: authdb_mod.h,v 1.14 2007/04/10 18:22:43 kubartv Exp $
+ * $Id: authdb_mod.h,v 1.15 2008/06/06 17:05:08 liborc Exp $
  *
  * Digest Authentication - Database support
  *
@@ -52,6 +52,7 @@ extern str flags_column;    /* Flags column in credentials table */
 
 extern int calc_ha1;          /* if set to 1, ha1 is calculated by the server */
 extern int use_did;           /* Whether query should also use did in query */
+extern int check_all;         /* if set to 1, multiple db entries are checked */
 
 extern db_ctx_t* auth_db_handle; /* database connection handle */
 
