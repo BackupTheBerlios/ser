@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.52 2008/06/09 15:46:55 liborc Exp $
+ * $Id: authorize.c,v 1.53 2008/06/09 15:48:21 liborc Exp $
  *
  * Digest Authentication - Database support
  *
@@ -354,7 +354,6 @@ static inline int authenticate(struct sip_msg* msg, str* realm, authdb_table_inf
 	case AUTHENTICATED:
 		ret = 1; 
 		goto end;
-	
 	}
     
 	cred = (auth_body_t*)h->parsed;
