@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.51 2008/06/06 17:05:08 liborc Exp $
+ * $Id: authorize.c,v 1.52 2008/06/09 15:46:55 liborc Exp $
  *
  * Digest Authentication - Database support
  *
@@ -335,6 +335,14 @@ static inline int authenticate(struct sip_msg* msg, str* realm, authdb_table_inf
 	case BAD_CREDENTIALS:
 		ret = -3;
 		goto end;
+	case CREATE_CHALLENGE:
+		ERR("auth_db:authenticate: CREATE_CHALLENGE is not a valid state\n");
+		ret = -2;
+		goto end;
+	case DO_RESYNCHRONIZATION:
+		ERR("auth_db:authenticate: DO_RESYNCHRONIZATION is not a valid state\n");
+		ret = -2;
+		goto end;
 		
 	case NOT_AUTHENTICATED: 
 		ret = -1;
@@ -346,6 +354,7 @@ static inline int authenticate(struct sip_msg* msg, str* realm, authdb_table_inf
 	case AUTHENTICATED:
 		ret = 1; 
 		goto end;
+	
 	}
     
 	cred = (auth_body_t*)h->parsed;
