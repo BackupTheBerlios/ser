@@ -1,5 +1,5 @@
 /*
- * $Id: digest_parser.h,v 1.9 2006/07/24 15:55:13 janakj Exp $
+ * $Id: digest_parser.h,v 1.10 2008/06/10 12:30:38 liborc Exp $
  *
  * Digest credentials parser
  *
@@ -87,7 +87,7 @@ typedef struct dig_cred {
 	struct username username;   /* Username */
 	str realm;                  /* Realm */
 	str nonce;                  /* Nonce value */
-	str uri;                    /* URI */
+	str uri;                    /* digest-uri, duplicated Request-URI of the Request-Line */
 	str response;               /* Response string */
 	struct algorithm alg;       /* Type of algorithm used */
 	str cnonce;                 /* Cnonce value */
