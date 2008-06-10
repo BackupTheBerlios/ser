@@ -1,5 +1,5 @@
 /*
- * $Id: challenge.c,v 1.33 2008/06/06 17:05:07 liborc Exp $
+ * $Id: challenge.c,v 1.34 2008/06/10 15:37:53 tma0 Exp $
  *
  * Challenge related functions
  *
@@ -144,7 +144,7 @@ int build_challenge_hf(struct sip_msg* msg, int stale, str* realm, str* nonce, s
     }
     else {
         l=nonce_len;
-        if (calc_nonce(p, &l, cfg, time(0) + nonce_expire, &secret1, &secret2, msg) != 0) {
+        if (calc_nonce(p, &l, cfg, time(0), time(0) + nonce_expire, &secret1, &secret2, msg) != 0) {
             ERR("auth: calc_nonce failed (len %d, needed %d)\n",
                  nonce_len, l);
             pkg_free(hf.s);
