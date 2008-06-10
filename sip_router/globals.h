@@ -1,5 +1,5 @@
 /*
- * $Id: globals.h,v 1.83 2008/04/14 01:46:03 janakj Exp $
+ * $Id: globals.h,v 1.84 2008/06/10 15:03:36 tma0 Exp $
  *
  * global variables
  *
@@ -49,6 +49,7 @@ extern int config_check;
 extern char* stat_file;
 extern unsigned short port_no;
 
+extern time_t up_since;
 extern pid_t creator_pid;  /* pid of first process before daemonization */
 extern int uid;
 extern int gid;

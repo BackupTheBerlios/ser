@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.27 2008/04/30 19:53:04 andrei Exp $
+ * $Id: core_cmd.c,v 1.28 2008/06/10 15:03:35 tma0 Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -177,7 +177,6 @@ static const char* dst_blst_stats_get_doc[] = {
 #define MAX_CTIME_LEN 128
 
 /* up time */
-static time_t up_since;
 static char up_since_ctime[MAX_CTIME_LEN];
 
 
@@ -646,7 +645,6 @@ rpc_export_t core_rpc_methods[] = {
 int rpc_init_time(void)
 {
 	char *t;
-	time(&up_since);
 	t=ctime(&up_since);
 	if (strlen(t)+1>=MAX_CTIME_LEN) {
 		ERR("Too long data %d\n", (int)strlen(t));
