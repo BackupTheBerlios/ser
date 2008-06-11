@@ -1,5 +1,5 @@
 /*
- * $Id: nonce.h,v 1.10 2008/06/10 15:37:53 tma0 Exp $
+ * $Id: nonce.h,v 1.11 2008/06/11 08:55:10 tma0 Exp $
  *
  * Nonce related functions
  *
@@ -45,13 +45,13 @@
 
 /*
  * Maximum length of nonce string in bytes
- * nonce = TIMESTAMP[8 chars] MD5SUM(TIMESTAMP, SECRET1)[32 chars] \
+ * nonce = expires_TIMESTAMP[8 chars] since_TIMESTAMP[8 chars] MD5SUM(expires_TIMESTAMP, since_TIMESTAMP, SECRET1)[32 chars] \
  *          MD5SUM(info(auth_extra_checks), SECRET2)[32 chars]
  */
 #define MAX_NONCE_LEN (8 + 8 + 32 + 32)
 /*
  * Minimum length of the nonce string
- * nonce = TIMESTAMP[8 chars] MD5SUM(TIMESTAMP, SECRET1)[32 chars]
+ * nonce = expires_TIMESTAMP[8 chars] since_TIMESTAMP[8 chars] MD5SUM(expires_TIMESTAMP, since_TIMESTAMP, SECRET1)[32 chars]
  */
 #define MIN_NONCE_LEN (8 + 8 + 32)
 
