@@ -1,5 +1,5 @@
 /*
- * $Id: flat_cmd.h,v 1.1 2008/05/27 00:22:02 janakj Exp $
+ * $Id: flat_cmd.h,v 1.2 2008/06/12 16:05:44 janakj Exp $
  *
  * Copyright (C) 2004 FhG FOKUS
  * Copyright (C) 2008 iptelorg GmbH
@@ -25,9 +25,6 @@
 #ifndef _FLAT_CMD_H
 #define _FLAT_CMD_H
 
-#include "../../db/db_drv.h"
-#include "../../db/db_cmd.h"
-
 /** \addtogroup flatstore
  * @{ 
  */
@@ -35,6 +32,9 @@
 /** \file 
  * Inmplementation of flatstore commands.
  */
+
+#include "../../db/db_drv.h"
+#include "../../db/db_cmd.h"
 
 
 /** Extension structure of db_cmd adding flatstore specific data.
