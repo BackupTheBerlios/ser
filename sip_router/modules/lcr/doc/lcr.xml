@@ -20,8 +20,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2006/12/11 18:52:26 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2008/06/12 15:47:12 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -37,7 +37,7 @@
             and next_gw functions.
             </listitem>
 
-            <listitem> LCR may sequentially forward contacts if they don't share the the same qvalues.
+            <listitem> LCR may sequentially forward contacts if they don't share the same qvalues.
             Use the functions load_contacts and next_contacts to access and select a contact.
             </listitem>
         </itemizedlist>

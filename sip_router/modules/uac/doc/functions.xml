@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.2 $</revnumber>
-		<date>$Date: 2005/08/24 13:24:35 $</date>
+		<revnumber>$Revision: 1.3 $</revnumber>
+		<date>$Date: 2008/06/12 15:47:13 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -39,7 +39,7 @@ uac_replace_from("batman","");
 	    <function>uac_replace_from(uri)</function>
 	</title>
 	<para>
-	    Replace in FROM header the the <emphasis>URI</emphasis> part
+	    Replace in FROM header the <emphasis>URI</emphasis> part
 	    without altering the display name.
 	</para>
 	<example>

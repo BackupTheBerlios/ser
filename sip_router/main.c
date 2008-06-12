@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.261 2008/06/10 15:03:36 tma0 Exp $
+ * $Id: main.c,v 1.262 2008/06/12 15:47:10 alfredh Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -175,7 +175,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.261 2008/06/10 15:03:36 tma0 Exp $";
+static char id[]="@(#) $Id: main.c,v 1.262 2008/06/12 15:47:10 alfredh Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1623,7 +1623,7 @@ try_again:
 		fprintf(stderr, "WARNING: no fork mode %s\n",
 				(udp_listen)?(
 				(udp_listen->next)?"and more than one listen address found "
-				"(will use only the the first one)":""
+				"(will use only the first one)":""
 				):"and no udp listen address found" );
 	}
 	if (config_check){

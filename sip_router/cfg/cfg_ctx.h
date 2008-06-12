@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.h,v 1.6 2008/01/28 12:54:59 tirpi Exp $
+ * $Id: cfg_ctx.h,v 1.7 2008/06/12 15:47:10 alfredh Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -56,7 +56,7 @@ typedef struct _cfg_ctx {
 	but have not been committed yet */
 	cfg_changed_var_t	*changed_first;
 	cfg_changed_var_t	*changed_last;
-	/* lock potecting the the linked-list of
+	/* lock protecting the linked-list of
 	changed variables */
 	gen_lock_t		lock;
 

@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2005/08/24 22:24:59 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2008/06/12 15:47:11 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -58,7 +58,7 @@
 	interface.
 	</para>
 	<para>
-	Also the size (can fit on only one line) and the the content (\n or \r
+	Also the size (can fit on only one line) and the content (\n or \r
 	characters must be escaped) of a BLOB value is restricted.
 	</para>
     </section>

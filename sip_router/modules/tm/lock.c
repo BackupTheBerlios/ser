@@ -1,5 +1,5 @@
 /*
- * $Id: lock.c,v 1.50 2007/06/06 21:54:04 andrei Exp $
+ * $Id: lock.c,v 1.51 2008/06/12 15:47:12 alfredh Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -60,7 +60,7 @@
 
    1) we allocate a semaphore set for hash_entries and
       try to use as many semaphores in it as OS allows;
-      we partition the the hash_entries by available
+      we partition the hash_entries by available
       semaphores which are shared  in each partition
    2) cells get always the same semaphore as its hash
       entry in which they live

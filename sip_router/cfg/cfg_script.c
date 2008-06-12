@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_script.c,v 1.5 2008/02/18 10:40:21 tirpi Exp $
+ * $Id: cfg_script.c,v 1.6 2008/06/12 15:47:10 alfredh Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -254,7 +254,7 @@ void cfg_script_destroy(cfg_group_t *group)
 	if (group->mapping) pkg_free(group->mapping);
 	if (group->handle) pkg_free(group->handle);
 
-	/* it may happen that the the temporary var list
+	/* it may happen that the temporary var list
 	still exists because the fixup failed and did not complete */
 	script_var = (cfg_script_var_t *)group->vars;
 	while (script_var) {

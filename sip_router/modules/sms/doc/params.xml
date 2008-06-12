@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.4 $</revnumber>
-		<date>$Date: 2007/09/24 14:41:45 $</date>
+		<revnumber>$Revision: 1.5 $</revnumber>
+		<date>$Date: 2008/06/12 15:47:12 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -190,7 +190,7 @@ modparam("sms", "links", "NOKIA[D1;d2]")
 	<title><varname>default_net</varname> (string)</title>
 	<para>
 	    The default network to use. If no one specified, the first defined
-	    network is used. This parameter is useful only if the the
+	    network is used. This parameter is useful only if the
 	    "sms_send_msg" exported function is used (see <xref
 	    linkend="sms.functions"/>).
 	</para>
