@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.h,v 1.8 2007/10/31 16:10:11 janakj Exp $ 
+ * $Id: db_cmd.h,v 1.9 2008/06/12 16:11:46 alfredh Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -71,8 +71,8 @@ enum db_cmd_type {
 typedef struct db_cmd {
 	db_gen_t gen;          /**< Generic part of the structure, must be the 1st attribute */
 	enum db_cmd_type type; /**< Type of the command to be executed */
-    struct db_ctx* ctx;    /**< Context containing database connections to be used */
-    str table;             /**< Name of the table to perform the command on */
+	struct db_ctx* ctx;    /**< Context containing database connections to be used */
+	str table;             /**< Name of the table to perform the command on */
 	db_exec_func_t exec[DB_PAYLOAD_MAX]; /**< Array of exec functions provided by modules */
 	db_first_func_t first[DB_PAYLOAD_MAX];
 	db_next_func_t next[DB_PAYLOAD_MAX];

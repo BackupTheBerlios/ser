@@ -1,5 +1,5 @@
 /* 
- * $Id: db_con.h,v 1.13 2007/04/04 12:24:23 janakj Exp $ 
+ * $Id: db_con.h,v 1.14 2008/06/12 16:11:46 alfredh Exp $ 
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -54,7 +54,7 @@ typedef struct db_con {
 	db_con_disconnect_t* disconnect;
 
 	struct db_ctx* ctx;
-    db_uri_t* uri;
+	db_uri_t* uri;
 } db_con_t;
 
 struct db_con* db_con(struct db_ctx* ctx, db_uri_t* uri);

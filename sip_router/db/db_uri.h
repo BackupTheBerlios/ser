@@ -1,5 +1,5 @@
 /* 
- * $Id: db_uri.h,v 1.4 2008/01/16 14:13:54 janakj Exp $
+ * $Id: db_uri.h,v 1.5 2008/06/12 16:11:46 alfredh Exp $
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -47,9 +47,9 @@ typedef unsigned char (db_uri_cmp_t)(struct db_uri* uri1, struct db_uri* uri2);
 
 typedef struct db_uri {
 	db_gen_t gen;      /* Generic part of the structure */
-    str scheme;        /* URI scheme */
-    str body;          /* Entire URI body */
-    db_uri_cmp_t* cmp; /* Comparison function */
+	str scheme;        /* URI scheme */
+	str body;          /* Entire URI body */
+	db_uri_cmp_t* cmp; /* Comparison function */
 } db_uri_t;
 
 
