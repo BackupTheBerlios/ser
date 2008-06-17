@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.c,v 1.14 2008/06/17 12:19:37 janakj Exp $ 
+ * $Id: db_cmd.c,v 1.15 2008/06/17 12:52:25 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -151,7 +151,7 @@ db_cmd_t* db_cmd(enum db_cmd_type type, db_ctx_t* ctx, char* table,
 			}
 		}
 
-		if (type == DB_GET) {
+		if (type == DB_GET || type == DB_SQL) {
 			r = db_drv_func((void*)(&newp->first[i]), &con->uri->scheme, "db_first");
 			if (r < 0) goto err;
 			if (r > 0) {
