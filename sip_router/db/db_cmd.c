@@ -1,5 +1,5 @@
 /* 
- * $Id: db_cmd.c,v 1.13 2008/05/27 11:55:36 janakj Exp $ 
+ * $Id: db_cmd.c,v 1.14 2008/06/17 12:19:37 janakj Exp $ 
  *
  * Copyright (C) 2001-2005 FhG FOKUS
  * Copyright (C) 2006-2007 iptelorg GmbH
@@ -77,6 +77,17 @@ db_cmd_t* db_cmd(enum db_cmd_type type, db_ctx_t* ctx, char* table,
 	if (values) {
 		newp->vals = db_fld_copy(values);
 		if (newp->vals == NULL) goto err;
+	}
+
+	/* FIXME: This should be redesigned so that we do not need to connect
+	 * connections in context before comands are created, this takes splitting
+	 * the command initializatio sequence in two steps, one would be creating
+	 * all the data structures and the second would be checking corresponding
+	 * fields and tables on the server.
+	 */
+	if (ctx->con_n == 0) {
+		ERR("No connections found in context %.*s\n", STR_FMT(&ctx->id));
+		goto err;
 	}
 
 	for(i = 0; i < ctx->con_n; i++) {
