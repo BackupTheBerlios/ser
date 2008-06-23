@@ -1,5 +1,5 @@
 /*
- * $Id: select.c,v 1.25 2008/03/31 18:57:54 bpintea Exp $
+ * $Id: select.c,v 1.26 2008/06/23 17:12:04 janakj Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -351,8 +351,8 @@ int run_select(str* res, select_t* s, struct sip_msg* msg)
 	}
 	DBG("Calling SELECT %p \n", s->f);
 
-	/* save and resore the original select_level
-	 * because of the nested selets */
+	/* save and restore the original select_level
+	 * because of the nested selects */
 	orig_level = select_level;
 	ret = 0;
 	for (	select_level=0;
