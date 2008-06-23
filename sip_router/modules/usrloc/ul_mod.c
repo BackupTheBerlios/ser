@@ -1,5 +1,5 @@
 /*
- * $Id: ul_mod.c,v 1.63 2008/04/16 15:50:39 janakj Exp $
+ * $Id: ul_mod.c,v 1.64 2008/06/23 13:02:20 janakj Exp $
  *
  * Usrloc module interface
  *
@@ -303,8 +303,8 @@ static void destroy(void)
 
 	/* Parent only, synchronize the world
 	* and then nuke it */
-	if (is_main && db) {
-		if (synchronize_all_udomains() != 0) {
+	if (is_main) {
+		if (db && synchronize_all_udomains() != 0) {
 			LOG(L_ERR, "destroy(): Error while flushing cache\n");
 		}
 		free_all_udomains();
