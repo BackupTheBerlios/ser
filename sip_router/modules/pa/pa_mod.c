@@ -1,7 +1,7 @@
 /*
  * Presence Agent, module interface
  *
- * $Id: pa_mod.c,v 1.77 2007/06/07 21:46:58 andrei Exp $
+ * $Id: pa_mod.c,v 1.78 2008/06/23 14:10:01 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -544,9 +544,6 @@ static void pa_destroy(void)
 {
 	DBG("PA module cleanup\n");
 
-	/* FIXME: only for testing */
-	return;
-	
 	DBG("destroying PA module\n");
 	DBG(" ... qsa interface\n");
 	pa_qsa_interface_destroy();
