@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_run.c,v 1.4 2006/11/03 00:43:45 andrei Exp $
+ * $Id: binrpc_run.c,v 1.5 2008/06/23 16:46:09 janakj Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -862,8 +862,8 @@ static int rpc_struct_printf(struct rpc_struct_l *s, char* name,
 	avp.name.s=name;
 	avp.name.len=strlen(name);
 	avp.type=BINRPC_T_STR;
-	avp.u.strval.s=name;
-	avp.u.strval.len=strlen(avp.u.strval.s);
+	avp.u.strval.s=buf;
+	avp.u.strval.len=strlen(buf);
 	
 	if ((err=binrpc_addavp(&s->pkt, &avp))<0){
 		LOG(L_ERR, "ERROR: binrpc: rpc_printf: binrpc_addavp failed:"
