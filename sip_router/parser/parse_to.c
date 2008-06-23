@@ -1,5 +1,5 @@
 /*
- * $Id: parse_to.c,v 1.21 2005/07/06 14:56:05 andrei Exp $
+ * $Id: parse_to.c,v 1.22 2008/06/23 17:09:57 janakj Exp $
  *
  * Copyright (C) 2001-2003 Fhg Fokus
  *
@@ -626,7 +626,8 @@ char* parse_to(char* buffer, char *end, struct to_body *to_b)
 					case URI_OR_TOKEN:
 					case DISPLAY_TOKEN: 
 					case MAYBE_URI_END:
-						to_b->display.len=foo-to_b->display.s;
+						/* deal with the incorrect displayname<uri>.. */
+						to_b->display.len=(foo?foo:tmp)-to_b->display.s;
 						status = S_URI_ENCLOSED;
 						break;
 					case F_CRLF:
