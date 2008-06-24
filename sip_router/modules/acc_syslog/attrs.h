@@ -1,7 +1,7 @@
 /*
  * Accounting module
  *
- * $Id: attrs.h,v 1.2 2008/06/23 14:29:28 janakj Exp $
+ * $Id: attrs.h,v 1.3 2008/06/24 14:52:03 jandres Exp $
  *
  * Copyright (C) 2001-2003 FhG FOKUS
  * Copyright (C) 2005 iptelorg GmbH
@@ -148,9 +148,6 @@ do {                                                        \
 
 
 
-/* 
- * Limitation -- currently supports string avps only 
- */
 #define ATTRS_BUF_LEN 4096
 static str* print_attrs(avp_ident_t* avps, int avps_n, int quote)
 {
