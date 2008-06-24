@@ -1,5 +1,5 @@
 /*
- * $Id: dlg.c,v 1.29 2007/06/09 17:44:18 andrei Exp $
+ * $Id: dlg.c,v 1.30 2008/06/24 16:13:07 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -257,6 +257,13 @@ static inline int calculate_hooks(dlg_t* _d)
 		
 		if (_d->dst_uri.s) _d->hooks.next_hop = &_d->dst_uri;
 		else _d->hooks.next_hop = _d->hooks.request_uri;
+
+		/*
+		 * the routes in the hooks need to be reset because if the route_set was dropped somewhere else
+		 * then these will remain set without the actual routes existing any more
+		 */
+		_d->hooks.first_route = 0;
+		_d->hooks.last_route = 0; 
 	}
 
 	if ((_d->hooks.request_uri) && (_d->hooks.request_uri->s) && (_d->hooks.request_uri->len)) {
