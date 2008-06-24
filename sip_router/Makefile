@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.195 2008/06/24 07:39:21 paka Exp $
+# $Id: Makefile,v 1.196 2008/06/24 14:39:52 andrei Exp $
 #
 # sip_router makefile
 #
@@ -341,6 +341,8 @@ tar:
 		--exclude=.svn* \
 		--exclude=.cvsignore \
 		--exclude=librpath.lst \
+		--exclude=libiname.lst \
+		--exclude=makecfg.lst \
 		--exclude=*.[do] \
 		--exclude=*.so \
 		--exclude=*.il \
