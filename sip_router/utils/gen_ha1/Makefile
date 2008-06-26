@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2004/09/06 14:53:41 andrei Exp $
+# $Id: Makefile,v 1.3 2008/06/26 10:08:03 andrei Exp $
 #
 #  gen_ha1 Makefile
 # 
@@ -11,6 +11,7 @@ LIBS=../../md5.o
 
 
 include ../../Makefile.sources
+include ../../Makefile.targets
 include ../../Makefile.rules
 
 modules:

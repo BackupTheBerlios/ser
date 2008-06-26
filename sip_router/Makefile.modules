@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.modules,v 1.16 2008/06/23 18:35:26 andrei Exp $
+# $Id: Makefile.modules,v 1.17 2008/06/26 10:08:03 andrei Exp $
 #
 # module Makefile
 #(to be included from each module)
@@ -51,6 +51,7 @@ LDFLAGS:=$(MOD_LDFLAGS)
 endif
 
 
+include $(COREPATH)/Makefile.targets
 include $(COREPATH)/Makefile.rules
 
 

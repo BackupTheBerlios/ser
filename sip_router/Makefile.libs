@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.libs,v 1.7 2008/05/21 00:23:41 sobomax Exp $
+# $Id: Makefile.libs,v 1.8 2008/06/26 10:08:03 andrei Exp $
 #
 # module Makefile
 #(to be included from each library makefile)
@@ -88,6 +88,7 @@ LDFLAGS:=$(LIB_LDFLAGS) $(NAME_LD_FLAGS)
 NAME:=$(LIB_NAME)
 
 
+include $(COREPATH)/Makefile.targets
 include $(COREPATH)/Makefile.rules
 
 ifeq	(,$(filter clean %clean clean% proper %proper proper%, $(MAKECMDGOALS)))
