@@ -1,5 +1,5 @@
 /*
- * $Id: ld_uri.c,v 1.5 2008/06/11 15:45:37 gkovacs Exp $
+ * $Id: ld_uri.c,v 1.6 2008/06/26 12:45:50 gkovacs Exp $
  *
  * LDAP Database Driver for SER
  *
@@ -283,6 +283,8 @@ int parse_ldap_uri(struct ld_uri* res, str* scheme, str* uri)
 				goto err;
 			}
 		}
+
+		res->authmech = cfg_conn_info->authmech;
 
 		break;
 	default:
