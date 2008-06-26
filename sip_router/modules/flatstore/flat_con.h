@@ -1,5 +1,5 @@
 /*
- * $Id: flat_con.h,v 1.3 2008/05/27 00:22:02 janakj Exp $
+ * $Id: flat_con.h,v 1.4 2008/06/26 12:15:32 janakj Exp $
  *
  * Copyright (C) 2004 FhG FOKUS
  * Copyright (C) 2008 iptelorg GmbH
@@ -88,5 +88,6 @@ void flat_con_disconnect(db_con_t* con);
 
 int flat_open_table(int *idx, db_con_t* con, str* name);
 
+/** @} */
 
 #endif /* _FLAT_CON_H */
