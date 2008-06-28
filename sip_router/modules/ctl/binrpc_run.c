@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_run.c,v 1.5 2008/06/23 16:46:09 janakj Exp $
+ * $Id: binrpc_run.c,v 1.6 2008/06/28 23:13:04 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -297,6 +297,8 @@ inline static int init_binrpc_ctx(	struct binrpc_ctx* ctx,
 		err=E_BINRPC_MORE_DATA;
 		goto end;
 	}
+	/* fix end value */
+	ctx->in.end=ctx->in.s+ctx->in.ctx.tlen;
 	
 	/* alloc temporary body buffer */
 	send_buf_len=BINRPC_MAX_BODY;
@@ -539,7 +541,7 @@ int process_rpc_req(unsigned char* buf, int size, int* bytes_needed,
 end:
 	*bytes_needed=0; /* full read */
 	destroy_binrpc_ctx(&f_ctx);
-	return (int)(f_ctx.in.s-buf);
+	return (int)(f_ctx.in.end-buf);
 error:
 	if (f_ctx.replied==0){
 			rpc_fault(&f_ctx, 500, "internal server error");
