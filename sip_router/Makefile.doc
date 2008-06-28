@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.doc,v 1.10 2007/01/12 15:36:47 kubartv Exp $
+# $Id: Makefile.doc,v 1.11 2008/06/28 00:35:25 andrei Exp $
 #
 
 #
@@ -142,14 +142,14 @@ check: $(xml_files)
 
 .PHONY: clean
 clean:
-	rm -f $(txt_files)
-	rm -f $(xhtml_files)
-	rm -f $(pdf_files)
-	rm -f $(html_files)
+	@rm -f $(txt_files)
+	@rm -f $(xhtml_files)
+	@rm -f $(pdf_files)
+	@rm -f $(html_files)
 
 .PHONY: proper realclean distclean
 proper realclean distclean: clean
-	rm -f $(dep_files) *~
+	@rm -f $(dep_files) *~
 
 
 ifeq (,$(MAKECMDGOALS))
