@@ -1,6 +1,6 @@
 
 #
-# $Id: Makefile.targets,v 1.2 2008/06/28 00:35:25 andrei Exp $
+# $Id: Makefile.targets,v 1.3 2008/06/28 20:16:36 andrei Exp $
 #
 #
 # Makefile targets that should be treated specially, 
@@ -15,7 +15,8 @@
 
 clean_targets:=	clean proper distclean realclean mantainer-clean clean_libs
 doc_targets:=	modules-doc modules-readme README modules-man man \
-		install-doc install-modules-doc install-man
+		install-doc install-modules-doc install-man install-ser-man \
+		install-modules-man
 # auxiliary: maintance, debugging, etc. (don't affect code/objects)
 aux_targets:=	TAGS tar dist cfg config config.mak print-modules dbg \
 		dbinstall librpath.lst makecfg.lst
