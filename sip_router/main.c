@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.262 2008/06/12 15:47:10 alfredh Exp $
+ * $Id: main.c,v 1.263 2008/07/02 12:07:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -162,6 +162,8 @@
 #include "cfg/cfg.h"
 #include "cfg/cfg_struct.h"
 #include "cfg_core.h"
+#include "endianness.h" /* init */
+#include "basex.h" /* init */
 
 #ifdef DEBUG_DMALLOC
 #include <dmalloc.h>
@@ -175,7 +177,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.262 2008/06/12 15:47:10 alfredh Exp $";
+static char id[]="@(#) $Id: main.c,v 1.263 2008/07/02 12:07:37 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1721,6 +1723,15 @@ try_again:
 			&core_cfg)
 	) {
 		LOG(L_CRIT, "could not declare the core configuration\n");
+		goto error;
+	}
+
+	if (endianness_sanity_check() != 0){
+		LOG(L_CRIT, "BUG: endianness sanity tests failed\n");
+		goto error;
+	}
+	if (init_basex() != 0){
+		LOG(L_CRIT, "could not initialize base* framework\n");
 		goto error;
 	}
 	
