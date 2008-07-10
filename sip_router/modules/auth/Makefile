@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2008/07/09 20:06:32 andrei Exp $
+# $Id: Makefile,v 1.5 2008/07/10 17:10:07 andrei Exp $
 #
 # auth example module makefile
 #
@@ -10,7 +10,8 @@ auto_gen=
 NAME=auth.so
 LIBS=
 # DEFS:
-#       -DUSE_NC  - compile with nounce count support
-DEFS+=-DUSE_NC
+#       -DUSE_NC       - compile with nounce count support
+#       -DUSE_OT_NONCE - compile with one-time nonces support
+DEFS+=-DUSE_NC -DUSE_OT_NONCE
 
 include ../../Makefile.modules

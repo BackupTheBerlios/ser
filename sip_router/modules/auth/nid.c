@@ -1,5 +1,5 @@
 /*
- * $Id: nid.c,v 1.2 2008/07/10 10:11:39 andrei Exp $
+ * $Id: nid.c,v 1.3 2008/07/10 17:10:07 andrei Exp $
  *
  * nonce id and pool management (stuff common to nonce-count and one
  * time nonces)
@@ -24,8 +24,8 @@
  */
 /*
  * Defines: 
- *  USE_NC USE_OT_NONCE  - if neither of them defined no code will be 
- *                         compiled
+ *  USE_NC, USE_OT_NONCE  - if neither of them defined no code will be 
+ *                          compiled
  */
 /*
  * History:
