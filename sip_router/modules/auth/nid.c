@@ -1,7 +1,7 @@
 /*
- * $Id: nid.c,v 1.1 2008/07/09 20:06:32 andrei Exp $
+ * $Id: nid.c,v 1.2 2008/07/10 10:11:39 andrei Exp $
  *
- * nounce id and pool management (stuff common to nonce-count and one
+ * nonce id and pool management (stuff common to nonce-count and one
  * time nonces)
  *
  * Copyright (C) 2008 iptelorg GmbH
