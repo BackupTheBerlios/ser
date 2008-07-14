@@ -1,4 +1,4 @@
-/* $Id: q_malloc.h,v 1.22 2007/02/23 23:20:51 andrei Exp $
+/* $Id: q_malloc.h,v 1.23 2008/07/14 13:37:42 liborc Exp $
  *
  * simple & fast malloc library
  *
@@ -148,6 +148,7 @@ void* qm_realloc(struct qm_block*, void* p, unsigned long size);
 #endif
 
 void  qm_status(struct qm_block*);
+void  qm_check(struct qm_block*);
 void  qm_info(struct qm_block*, struct mem_info*);
 
 unsigned long qm_available(struct qm_block* qm);
