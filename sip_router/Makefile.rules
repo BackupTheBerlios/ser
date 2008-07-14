@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.34 2008/06/28 00:35:25 andrei Exp $
+# $Id: Makefile.rules,v 1.35 2008/07/14 13:14:11 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -32,7 +32,7 @@ ifneq ($(strip $(DEFS)), $(strip $(CFG_DEFS)))
 #$(warning               : <$(strip $(CFG_DEFS))>)
 $(shell rm -f makecfg.lst)
 endif
-ifneq ($(INCLUDES), $(CFG_INCLUDES))
+ifneq ($(strip $(INCLUDES)), $(strip $(CFG_INCLUDES)))
 $(shell rm -f makecfg.lst)
 endif
 endif
