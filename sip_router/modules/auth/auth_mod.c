@@ -1,5 +1,5 @@
 /*
- * $Id: auth_mod.c,v 1.71 2008/07/10 17:10:07 andrei Exp $
+ * $Id: auth_mod.c,v 1.72 2008/07/17 13:33:53 andrei Exp $
  *
  * Digest Authentication Module
  *
@@ -119,6 +119,7 @@ static cmd_export_t cmds[] = {
 static param_export_t params[] = {
     {"secret",                 PARAM_STRING, &sec_param             },
     {"nonce_expire",           PARAM_INT,    &nonce_expire          },
+	{"nonce_auth_max_drift",   PARAM_INT,    &nonce_auth_max_drift  },
     {"protect_contacts",       PARAM_INT,    &protect_contacts      },
     {"challenge_attr",         PARAM_STR,    &challenge_attr        },
     {"proxy_challenge_header", PARAM_STR,    &proxy_challenge_header},
