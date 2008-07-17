@@ -1,5 +1,5 @@
 /* 
- * $Id: bit_scan.h,v 1.2 2007/06/26 13:32:54 andrei Exp $
+ * $Id: bit_scan.h,v 1.3 2008/07/17 10:12:07 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -45,6 +45,11 @@
 #define _bit_scan_h
 
 #include <limits.h>
+
+/* fix __CPU_i386 -> __CPU_x86 */
+#if defined __CPU_i386 && ! defined __CPU_x86
+#define __CPU_x86
+#endif
 
 
 #ifdef CC_GCC_LIKE_ASM

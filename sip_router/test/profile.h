@@ -1,5 +1,5 @@
 /*
- * $Id: profile.h,v 1.1 2007/06/25 17:20:36 andrei Exp $
+ * $Id: profile.h,v 1.2 2008/07/17 10:12:08 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -67,6 +67,10 @@
  *                              respective most significant 32 bit word of
  *                              the cpu cycles counter
  */
+
+#if defined __CPU_i386 && ! defined __CPU_x86
+#define __CPU_x86
+#endif
 
 #ifdef __CPU_x86
 typedef unsigned long long cycles_t;
