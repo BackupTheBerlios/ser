@@ -1,5 +1,5 @@
 /*
- * $Id: regtime.c,v 1.3 2004/08/24 09:00:37 janakj Exp $
+ * $Id: regtime.c,v 1.4 2008/07/17 13:06:30 andrei Exp $
  *
  * Registrar time related functions
  *
@@ -29,6 +29,7 @@
 
 
 #include "regtime.h"
+#include "../../ser_time.h"
 
 
 time_t act_time;
@@ -40,5 +41,5 @@ time_t act_time;
  */
 void get_act_time(void)
 {
-	act_time = time(0);
+	act_time = ser_time(0);
 }

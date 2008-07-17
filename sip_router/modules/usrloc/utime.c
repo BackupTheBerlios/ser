@@ -1,5 +1,5 @@
 /*
- * $Id: utime.c,v 1.5 2004/08/24 09:00:48 janakj Exp $
+ * $Id: utime.c,v 1.6 2008/07/17 13:06:30 andrei Exp $
  *
  * Usrloc time related functions
  *
@@ -29,6 +29,7 @@
 
 
 #include "utime.h"
+#include "../../ser_time.h"
 
 
 time_t act_time;
@@ -37,5 +38,5 @@ time_t act_time;
 void get_act_time(void)
 {
 
-	act_time = time(0);
+	act_time = ser_time(0);
 }
