@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2008/05/19 15:17:03 janakj Exp $
+# $Id: Makefile,v 1.3 2008/07/18 10:02:49 gkovacs Exp $
 #
 # WARNING: do not run this directly, it should be run by the master Makefile
 
@@ -7,6 +7,8 @@ auto_gen=
 NAME=ldap.so
 
 #DEFS += -DLD_TEST
+
+DEFS += -Wall -DOPENLDAP23
 
 # Uncomment this if you have a recent version of libldap with
 # LD_SCOPE_CHILDREN defined

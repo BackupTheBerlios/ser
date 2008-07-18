@@ -1,5 +1,5 @@
 /*
- * $Id: ld_uri.h,v 1.4 2008/06/26 12:45:50 gkovacs Exp $
+ * $Id: ld_uri.h,v 1.5 2008/07/18 10:02:49 gkovacs Exp $
  *
  * LDAP Database Driver for SER
  *
@@ -61,6 +61,9 @@ struct ld_uri {
 	char* password;
 	char* uri;             /**< The whole URI, including scheme */
 	int authmech;
+	int tls;  /**<  TLS encryption enabled */
+	char* ca_list;  /**< Path of the file that contains certificates of the CAs */
+	char* req_cert;  /**< LDAP level of certificate request behaviour */
 	LDAPURLDesc* ldap_url; /**< URI parsed by the ldap client library */
 };
 
