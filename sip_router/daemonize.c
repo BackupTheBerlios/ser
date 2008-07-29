@@ -1,5 +1,5 @@
 /*
- * $Id: daemonize.c,v 1.17 2008/02/29 10:04:49 tirpi Exp $
+ * $Id: daemonize.c,v 1.18 2008/07/29 12:06:50 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -57,6 +57,8 @@
 #include <sys/time.h>    
 #include <sys/resource.h> /* setrlimit */
 #include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
 
 #ifdef HAVE_SCHED_SETSCHEDULER
 #include <sched.h>
@@ -223,6 +225,8 @@ error:
 
 int do_suid()
 {
+	struct passwd *pw;
+	
 	if (gid){
 		if(setgid(gid)<0){
 			LOG(L_CRIT, "cannot change gid to %d: %s\n", gid, strerror(errno));
@@ -231,6 +235,15 @@ int do_suid()
 	}
 	
 	if(uid){
+		if (!(pw = getpwuid(uid))){
+			LOG(L_CRIT, "user lookup failed: %s\n", strerror(errno));
+			goto error;
+		}
+		if(initgroups(pw->pw_name, pw->pw_gid)<0){
+			LOG(L_CRIT, "cannot set supplementary groups: %s\n", 
+							strerror(errno));
+			goto error;
+		}
 		if(setuid(uid)<0){
 			LOG(L_CRIT, "cannot change uid to %d: %s\n", uid, strerror(errno));
 			goto error;
