@@ -1,5 +1,5 @@
 /*
- * $Id: permissions_rpc.h,v 1.2 2006/08/22 08:51:42 tirpi Exp $
+ * $Id: permissions_rpc.h,v 1.3 2008/07/31 00:52:51 tma0 Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -32,11 +32,17 @@
 #include "../../rpc.h"
 #include "trusted_rpc.h"
 #include "im_rpc.h"
+#include "ip_set_rpc.h"
 
 rpc_export_t permissions_rpc[] = {
 	{"trusted.reload", trusted_reload, trusted_reload_doc, 0},
 	{"trusted.dump",   trusted_dump,   trusted_dump_doc,   RET_ARRAY},
 	{"ipmatch.reload", im_reload,      im_reload_doc, 0},
+	{"ipset.clean",    rpc_ip_set_clean, rpc_ip_set_clean_doc, 0},
+	{"ipset.add",      rpc_ip_set_add, rpc_ip_set_add_doc, 0},
+	{"ipset.commit",   rpc_ip_set_commit, rpc_ip_set_commit_doc, 0},
+	{"ipset.list",     rpc_ip_set_list, rpc_ip_set_list_doc, RET_ARRAY},
+	{"ipset.print",    rpc_ip_set_print, rpc_ip_set_print_doc, RET_ARRAY},
 	{0, 0, 0, 0}
 };
 

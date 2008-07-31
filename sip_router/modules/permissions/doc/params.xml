@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.3 $</revnumber>
-		<date>$Date: 2007/01/08 14:58:38 $</date>
+		<revnumber>$Revision: 1.4 $</revnumber>
+		<date>$Date: 2008/07/31 00:52:52 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -184,6 +184,15 @@ modparam("permissions", "deny_suffix", ".deny")
 	</para>
 	<para>
 		Default value is "ipmatch".
+	</para>
+    </section>
+    
+    <section id="declare_ipset">
+	<title><varname>declare_ipset</varname> (string)</title>
+	<para>
+		Declares name of ip set which can be manipulated via RPC commands and 
+		tested using <function>ip_is_trusted</function>.
+		Identifier must start with letter or underscore.
 	</para>
     </section>
 </section>
