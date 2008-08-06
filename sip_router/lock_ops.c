@@ -1,5 +1,5 @@
 /* 
- * $Id: lock_ops.c,v 1.1 2007/05/14 21:29:46 andrei Exp $
+ * $Id: lock_ops.c,v 1.2 2008/08/06 15:24:27 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -24,9 +24,9 @@
  *  2007-05-14  created by andrei
  */
 
-#include "lock_ops.h"
 #include "ut.h"
 #include "dprint.h"
+#include "lock_ops.h"
 
 /* returns 0 on success, -1 on error */
 int init_lock_ops()
