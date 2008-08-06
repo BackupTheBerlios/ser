@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_set_rpc.c,v 1.2 2008/08/06 20:37:42 tma0 Exp $
+ * $Id: ip_set_rpc.c,v 1.3 2008/08/06 20:55:47 tma0 Exp $
  *
  * allow_trusted related functions
  *
@@ -61,8 +61,9 @@ int ip_set_list_malloc(int num, str* names) {
 					s.s = ip_set_list[i].name.s + j + 1;
 					s.len = ip_set_list[i].name.len - j - 1;
 					ip_set_list[i].name.len = j;
-					ip_set_list[i].ip_set =  shm_malloc(sizeof(*ip_set_list[i].ip_set));
+					ip_set_list[i].ip_set = shm_malloc(sizeof(*ip_set_list[i].ip_set));
 					if (!ip_set_list[i].ip_set) return -1;
+					atomic_set(&ip_set_list[i].ip_set->refcnt, 1);
 					ip_set_add_list(&ip_set_list[i].ip_set->ip_set, s); /* allow pass even in case of error */
 				}
 			}
