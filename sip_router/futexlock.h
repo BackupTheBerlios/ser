@@ -1,5 +1,5 @@
 /* 
- * $Id: futexlock.h,v 1.2 2007/06/12 22:43:19 andrei Exp $
+ * $Id: futexlock.h,v 1.3 2008/08/07 13:29:09 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -45,6 +45,10 @@
 
 #ifdef HAVE_ASM_INLINE_ATOMIC_OPS
 #define HAVE_FUTEX
+#include <sys/types.h> /* hack to workaround some type conflicts 
+                          between linux-libc-dev andlibc headers
+                          in recent (6.08.2008) x86_64 debian sid
+                          installations */
 #include <linux/futex.h>
 #include <sys/syscall.h>
 #include <unistd.h>
