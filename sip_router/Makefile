@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.202 2008/07/01 20:31:55 andrei Exp $
+# $Id: Makefile,v 1.203 2008/08/07 13:15:24 andrei Exp $
 #
 # sip_router makefile
 #
@@ -105,7 +105,7 @@ module_group_standard=acc_syslog auth avp avpops ctl dispatcher diversion enum\
 # NOTE! All presence modules (dialog, pa, presence_b2b, rls, xcap) have been
 # included in this group due to interdependencies
 module_group_standard_dep=acc_db acc_radius auth_db auth_radius avp_db \
-				avp_radius \
+				avp_radius auth_identity \
 				db_ops domain lcr msilo mysql dialog pa postgres \
 				presence_b2b rls speeddial uri_db xcap xmlrpc
 
