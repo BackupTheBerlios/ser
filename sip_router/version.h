@@ -1,5 +1,5 @@
 /*
- * $Id: version.h,v 1.15 2007/08/31 08:12:08 tirpi Exp $
+ * $Id: version.h,v 1.16 2008/08/08 20:47:53 andrei Exp $
  *
  * version and compile flags macros 
  *
@@ -55,6 +55,12 @@
 #define USE_TLS_STR ", USE_TLS"
 #else 
 #define USE_TLS_STR ""
+#endif
+
+#ifdef USE_SCTP
+#define USE_SCTP_STR ", USE_SCTP"
+#else
+#define USE_SCTP_STR ""
 #endif
 
 #ifdef CORE_TLS
@@ -334,7 +340,7 @@
 
 #define SER_COMPILE_FLAGS \
 	STATS_STR EXTRA_DEBUG_STR USE_IPV6_STR USE_TCP_STR USE_TLS_STR \
-	CORE_TLS_STR TLS_HOOKS_STR \
+	USE_SCTP_STR CORE_TLS_STR TLS_HOOKS_STR \
 	USE_STUN_STR DISABLE_NAGLE_STR USE_MCAST_STR NO_DEBUG_STR NO_LOG_STR \
 	NO_SIG_DEBUG_STR DNS_IP_HACK_STR  SHM_MEM_STR SHM_MMAP_STR PKG_MALLOC_STR \
 	VQ_MALLOC_STR F_MALLOC_STR DL_MALLOC_STR SF_MALLOC_STR  LL_MALLOC_STR \

@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.95 2008/04/23 10:58:37 tirpi Exp $
+ * $Id: action.c,v 1.96 2008/08/08 20:47:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -71,6 +71,9 @@
 #ifdef USE_TCP
 #include "tcp_server.h"
 #endif
+#ifdef USE_SCTP
+#include "sctp_server.h"
+#endif
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -130,6 +133,9 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 #ifdef USE_TLS
 		case FORWARD_TLS_T:
 #endif
+#ifdef USE_SCTP
+		case FORWARD_SCTP_T:
+#endif
 		case FORWARD_UDP_T:
 			/* init dst */
 			init_dest_info(&dst);
@@ -140,7 +146,10 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 #ifdef USE_TLS
 			else if (a->type==FORWARD_TLS_T) dst.proto= PROTO_TLS;
 #endif
-			else dst.proto= PROTO_NONE;
+#ifdef USE_SCTP
+			else if (a->type==FORWARD_SCTP_T) dst.proto=PROTO_SCTP;
+#endif
+			else dst.proto=PROTO_NONE;
 			if (a->val[0].type==URIHOST_ST){
 				/*parse uri*/
 
@@ -185,6 +194,9 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 #endif
 #ifdef USE_TLS
 						case PROTO_TLS:
+#endif
+#ifdef USE_SCTP
+						case PROTO_SCTP:
 #endif
 							dst.proto=u->proto;
 							break;

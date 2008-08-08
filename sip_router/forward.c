@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.116 2008/04/17 20:52:47 calrissian Exp $
+ * $Id: forward.c,v 1.117 2008/08/08 20:47:53 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -233,9 +233,29 @@ not_forced:
 			}
 			break;
 #endif /* USE_TLS */
+#ifdef USE_SCTP
+		case PROTO_SCTP:
+			if ((bind_address==0) ||
+					(to->s.sa_family!=bind_address->address.af) ||
+					(bind_address->proto!=PROTO_SCTP)){
+				switch(to->s.sa_family){
+					case AF_INET:	send_sock=sendipv4_sctp;
+									break;
+#ifdef USE_IPV6
+					case AF_INET6:	send_sock=sendipv6_sctp;
+									break;
+#endif
+					default:	LOG(L_ERR, "get_send_socket: BUG: don't know"
+										" how to forward to af %d\n",
+										to->s.sa_family);
+				}
+			}else send_sock=bind_address;
+			break;
+#endif /* USE_SCTP */
 		case PROTO_UDP:
-			if ((bind_address==0)||(to->s.sa_family!=bind_address->address.af)||
-				  (bind_address->proto!=PROTO_UDP)){
+			if ((bind_address==0) ||
+					(to->s.sa_family!=bind_address->address.af) ||
+					(bind_address->proto!=PROTO_UDP)){
 				switch(to->s.sa_family){
 					case AF_INET:	send_sock=sendipv4;
 									break;

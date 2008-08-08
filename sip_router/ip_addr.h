@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.44 2008/05/21 21:37:26 andrei Exp $
+/* $Id: ip_addr.h,v 1.45 2008/08/08 20:47:53 andrei Exp $
  *
  * ip address family related structures
  *
@@ -52,6 +52,8 @@
 #include "dprint.h"
 
 enum sip_protos { PROTO_NONE, PROTO_UDP, PROTO_TCP, PROTO_TLS, PROTO_SCTP };
+#define PROTO_LAST PROTO_SCTP
+
 #ifdef USE_COMP
 enum comp_methods { COMP_NONE, COMP_SIGCOMP, COMP_SERGZ };
 #endif
