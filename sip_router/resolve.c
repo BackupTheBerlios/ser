@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.31 2008/02/13 15:25:13 tirpi Exp $*/
+/* $Id: resolve.c,v 1.32 2008/08/08 20:45:41 andrei Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -862,8 +862,10 @@ int naptr_proto_supported(char proto)
 			return !tls_disable;
 #endif /* USE_TLS */
 #endif /* USE_TCP */
+#ifdef USE_SCTP
 		case PROTO_SCTP:
-			return 0; /* not supported */
+			return !sctp_disable;
+#endif
 	}
 	return 0;
 }
