@@ -1,5 +1,5 @@
 /*
- * $Id: ut.h,v 1.25 2008/03/31 18:19:50 bpintea Exp $
+ * $Id: ut.h,v 1.26 2008/08/11 17:41:16 andrei Exp $
  *
  * utilities
  *
@@ -78,6 +78,9 @@ inline static enum sip_protos get_proto(enum sip_protos force_proto,
 #ifdef USE_TLS
 				case PROTO_TLS:
 #endif
+#ifdef USE_SCTP
+				case PROTO_SCTP:
+#endif
 						return proto;
 				default:
 						LOG(L_ERR, "ERROR: get_proto: unsupported transport:"
@@ -90,6 +93,9 @@ inline static enum sip_protos get_proto(enum sip_protos force_proto,
 #endif
 #ifdef USE_TLS
 		case PROTO_TLS:
+#endif
+#ifdef USE_SCTP
+		case PROTO_SCTP:
 #endif
 			return force_proto;
 		default:
