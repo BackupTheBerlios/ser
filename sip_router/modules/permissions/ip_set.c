@@ -1,4 +1,4 @@
-/* $Id: ip_set.c,v 1.2 2008/07/31 00:52:51 tma0 Exp $
+/* $Id: ip_set.c,v 1.3 2008/08/14 20:37:25 tma0 Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -92,6 +92,7 @@ int ip_set_add_list(struct ip_set *ip_set, str ip_set_s){
 			ip_set_s.s++;
 			ip_set_s.len--;
 		}
+		if (!ip_set_s.len) break;
 		ip_s.s = ip_set_s.s;
 		ip_s.len = 0;
 		while (ip_s.len < ip_set_s.len && (ip_s.s[ip_s.len] != ',' && ip_s.s[ip_s.len] != ';' && ip_s.s[ip_s.len] != ' ' && ip_s.s[ip_s.len] != '/')) {
