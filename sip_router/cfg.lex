@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.110 2008/08/12 09:51:32 andrei Exp $
+ * $Id: cfg.lex,v 1.111 2008/08/18 14:47:33 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -367,6 +367,7 @@ NO			"no"|"false"|"off"|"disable"
 UDP			"udp"|"UDP"
 TCP			"tcp"|"TCP"
 TLS			"tls"|"TLS"
+SCTP		"sctp"|"SCTP"
 INET		"inet"|"INET"
 INET6		"inet6"|"INET6"
 SSLv23			"sslv23"|"SSLv23"|"SSLV23"
@@ -758,6 +759,7 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{TCP}			{ count(); return TCP; }
 <INITIAL>{UDP}			{ count(); return UDP; }
 <INITIAL>{TLS}			{ count(); return TLS; }
+<INITIAL>{SCTP}			{ count(); return SCTP; }
 <INITIAL>{INET}			{ count(); yylval.intval=AF_INET; return NUMBER; }
 <INITIAL>{INET6}		{ count();
 						#ifdef USE_IPV6

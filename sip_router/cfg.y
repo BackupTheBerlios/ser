@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.160 2008/08/12 09:51:32 andrei Exp $
+ * $Id: cfg.y,v 1.161 2008/08/18 14:47:33 andrei Exp $
  *
  *  cfg grammar
  *
@@ -274,6 +274,7 @@ static struct socket_id* mk_listen_id(char*, int, int);
 %token UDP
 %token TCP
 %token TLS
+%token SCTP
 
 /* config vars. */
 %token DEBUG_V
@@ -553,6 +554,7 @@ proto:
 	UDP	{ $$=PROTO_UDP; }
 	| TCP	{ $$=PROTO_TCP; }
 	| TLS	{ $$=PROTO_TLS; }
+	| SCTP	{ $$=PROTO_SCTP; }
 	| STAR	{ $$=0; }
 	;
 port:
