@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.33 2008/08/12 09:51:32 andrei Exp $*/
+/* $Id: resolve.c,v 1.34 2008/08/18 14:49:57 andrei Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -74,14 +74,14 @@
 #define local_free   pkg_free
 
 #ifdef USE_NAPTR
-static int naptr_proto_pref[PROTO_LAST];
+static int naptr_proto_pref[PROTO_LAST+1];
 #endif
 
 #ifdef USE_NAPTR
 void init_naptr_proto_prefs()
 {
-	if ((PROTO_UDP >= PROTO_LAST) || (PROTO_TCP >= PROTO_LAST) ||
-		(PROTO_TLS >= PROTO_LAST) || (PROTO_SCTP>=PROTO_LAST)){
+	if ((PROTO_UDP > PROTO_LAST) || (PROTO_TCP > PROTO_LAST) ||
+		(PROTO_TLS > PROTO_LAST) || (PROTO_SCTP > PROTO_LAST)){
 		BUG("init_naptr_proto_prefs: array too small \n");
 		return;
 	}
