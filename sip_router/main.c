@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.264 2008/08/08 20:47:23 andrei Exp $
+ * $Id: main.c,v 1.265 2008/08/18 14:55:13 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -182,7 +182,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.264 2008/08/08 20:47:23 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.265 2008/08/18 14:55:13 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1571,7 +1571,7 @@ try_again:
 					}
 					tmp[tmp_len]=0; /* null terminate the host */
 					/* add a new addr. to our address list */
-					if (add_listen_iface(tmp, port, proto, 0)!=0){
+					if (add_listen_iface(tmp,0,  port, proto, 0)!=0){
 						fprintf(stderr, "failed to add new listen address\n");
 						goto error;
 					}

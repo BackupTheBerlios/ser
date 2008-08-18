@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.c,v 1.41 2008/04/17 16:22:18 tirpi Exp $
+ * $Id: route_struct.c,v 1.42 2008/08/18 14:55:13 andrei Exp $
  *
  * route structures helping functions
  *
@@ -404,7 +404,7 @@ void print_action(struct action* t)
 		case SOCKID_ST:
 			DBG("%d:%s:%d",
 			((struct socket_id*)t->val[0].u.data)->proto,
-			ZSW(((struct socket_id*)t->val[0].u.data)->name),
+			ZSW(((struct socket_id*)t->val[0].u.data)->addr_lst->name),
 			((struct socket_id*)t->val[0].u.data)->port
 			);
 			break;
@@ -438,7 +438,7 @@ void print_action(struct action* t)
 		case SOCKID_ST:
 			DBG("%d:%s:%d",
 			((struct socket_id*)t->val[0].u.data)->proto,
-			ZSW(((struct socket_id*)t->val[0].u.data)->name),
+			ZSW(((struct socket_id*)t->val[0].u.data)->addr_lst->name),
 			((struct socket_id*)t->val[0].u.data)->port
 			);
 			break;
@@ -470,7 +470,7 @@ void print_action(struct action* t)
 		case SOCKID_ST:
 			DBG("%d:%s:%d",
 			((struct socket_id*)t->val[0].u.data)->proto,
-			ZSW(((struct socket_id*)t->val[0].u.data)->name),
+			ZSW(((struct socket_id*)t->val[0].u.data)->addr_lst->name),
 			((struct socket_id*)t->val[0].u.data)->port
 			);
 			break;

@@ -1,4 +1,4 @@
-/* $Id: socket_info.h,v 1.11 2008/08/08 20:47:23 andrei Exp $
+/* $Id: socket_info.h,v 1.12 2008/08/18 14:55:13 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -42,6 +42,9 @@
 #include "ip_addr.h" 
 #include "dprint.h"
 #include "globals.h"
+
+
+
 /* struct socket_info is defined in ip_addr.h */
 
 extern struct socket_info* udp_listen;
@@ -71,8 +74,9 @@ extern int socket_types;
 
 void init_proto_order();
 
-int add_listen_iface(char* name, unsigned short port, unsigned short proto,
-							enum si_flags flags);
+int add_listen_iface(char* name, struct name_lst* nlst,
+						unsigned short port, unsigned short proto,
+						enum si_flags flags);
 int fix_all_socket_lists();
 void print_all_socket_lists();
 void print_aliases();
