@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.117 2008/08/08 20:47:53 andrei Exp $
+ * $Id: forward.c,v 1.118 2008/08/23 22:15:43 calrissian Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -542,7 +542,7 @@ int update_sock_struct_from_via( union sockaddr_union* to,
 			DBG("update_sock_struct_from_via: using 'rport'\n");
 			port=str2s(via->rport->value.s, via->rport->value.len, &err);
 			if (err){
-				LOG(L_NOTICE, "ERROR: forward_reply: bad rport value(%.*s)\n",
+				LOG(L_NOTICE, "ERROR: update_sock_struct_from_via: bad rport value(%.*s)\n",
 						via->rport->value.len, via->rport->value.s);
 				port=0;
 			}
