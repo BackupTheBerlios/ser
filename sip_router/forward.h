@@ -1,5 +1,5 @@
 /*
- *  $Id: forward.h,v 1.33 2008/08/08 20:47:53 andrei Exp $
+ *  $Id: forward.h,v 1.34 2008/08/24 11:49:01 calrissian Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -158,6 +158,15 @@ static inline int msg_send(struct dest_info* dst, char* buf, int len)
 					" support is disabled\n");
 			goto error;
 		}else{
+			if (unlikely(dst->send_sock==0)){
+				new_dst=*dst;
+				new_dst.send_sock=get_send_socket(0, &dst->to, dst->proto);
+				if (unlikely(new_dst.send_sock==0)){
+					LOG(L_ERR, "msg_send: ERROR: no sending SCTP socket found\n");
+					goto error;
+				}
+				dst=&new_dst;
+			}
 			if (unlikely(sctp_msg_send(dst, buf, len)<0)){
 				STATS_TX_DROPS;
 				LOG(L_ERR, "msg_send: ERROR: sctp_msg_send failed\n");
