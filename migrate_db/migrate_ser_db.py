@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: migrate_ser_db.py,v 1.1 2006/11/17 00:20:00 janakj Exp $
+# $Id: migrate_ser_db.py,v 1.2 2008/08/26 07:56:01 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -37,7 +37,7 @@ DEFAULT_INPUT_URI="mysql://ser:heslo@localhost/ser"
 DEFAULT_OUTPUT_URI="mysql://ser:heslo@localhost/ser_new"
 
 
-DEFAULT_TABLES = "domain,subscribers,pending,aliases,uri,location,cpl,msilo,phonebook,admin_privileges,grp,user_preferences,acc,missed_calls";
+DEFAULT_TABLES = "domain,subscriber,pending,aliases,uri,location,cpl,msilo,phonebook,admin_privileges,grp,user_preferences,acc,missed_calls";
 
 
 def printUsage():
