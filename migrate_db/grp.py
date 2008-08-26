@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: grp.py,v 1.1 2006/11/17 00:19:59 janakj Exp $
+# $Id: grp.py,v 1.2 2008/08/26 12:03:56 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -38,7 +38,7 @@ def convert_grp(dst, src):
 
     for group in groups:
         (username, domain, grp) = group
-        domain = extract_domain(username, domain)
+        domain = common.extract_domain(username, domain)
         try:
             uid = get_uid_by_uri(dst, username, domain)
             dst.cursor().execute("insert into user_attrs (uid, name, type, value, flags) values"
