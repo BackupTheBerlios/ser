@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: grp.py,v 1.2 2008/08/26 12:03:56 janakj Exp $
+# $Id: grp.py,v 1.3 2008/08/26 12:24:36 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -47,5 +47,6 @@ def convert_grp(dst, src):
             print "ERROR: Cannot find UID for group entry for '%s@%s'" % (username, domain)
 
         except MySQLdb.IntegrityError:
-            print "Conflicting row found in user_attrs table"
-            sys.exit(1)
+            print "Conflicting row found in user_attrs table (%s, %s, %s, %s, %s)" % (uid, "acl", 2, grp, common.DB_LOAD_SER | common.DB_FOR_SERWEB)
+            pass
+
