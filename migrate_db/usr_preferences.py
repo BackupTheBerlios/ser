@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: usr_preferences.py,v 1.1 2006/11/17 00:19:59 janakj Exp $
+# $Id: usr_preferences.py,v 1.2 2008/08/26 10:58:06 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -37,7 +37,7 @@ def convert_usr_preferences(dst, src):
 
     for up in ups:
         (username, domain, attribute, type, value) = up
-        domain = extract_domain(username, domain)
+        domain = common.extract_domain(username, domain)
         try:
             uid = get_uid_by_uri(dst, username, domain)
             dst.cursor().execute("insert into user_attrs (uid, name, type, value, flags) values "
