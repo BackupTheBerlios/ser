@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: uri.py,v 1.1 2006/11/17 00:20:00 janakj Exp $
+# $Id: uri.py,v 1.2 2008/08/26 07:40:30 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -24,6 +24,7 @@ import common,MySQLdb,sys
 from uid import get_uid_by_uri, UidNotFoundException
 from did import get_did_by_domain, DidNotFoundException
 from parse_uri import *
+from common import *
 
 
 #

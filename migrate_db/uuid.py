@@ -6,8 +6,8 @@ uuid4(), uuid5() for generating version 1, 3, 4, and 5 UUIDs respectively.
 This module works with Python 2.3 or higher."""
 
 __author__ = 'Ka-Ping Yee <ping@zesty.ca>'
-__date__ = '$Date: 2006/11/17 00:20:00 $'.split()[1].replace('/', '-')
-__version__ = '$Revision: 1.1 $'
+__date__ = '$Date'
+__version__ = '$Revision: 1.2 $'
 
 RESERVED_NCS, RFC_4122, RESERVED_MICROSOFT, RESERVED_FUTURE = [
     'reserved for NCS compatibility', 'specified in RFC 4122',
