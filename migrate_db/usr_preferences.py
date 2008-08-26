@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: usr_preferences.py,v 1.3 2008/08/26 12:12:56 janakj Exp $
+# $Id: usr_preferences.py,v 1.4 2008/08/26 12:19:56 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -46,5 +46,6 @@ def convert_usr_preferences(dst, src):
             print "ERROR: Cannot find UID user_preferences entry for '%s@%s'" % (username, domain)
 
         except MySQLdb.IntegrityError:
-            print "Conflicting row found in usr_attrs table"
-            sys.exit(1)
+            print "Conflicting row found in usr_attrs table (%s, %s, %s, %s, %s)" % (uid, attribute, type, value, common.DB_LOAD_SER | common.DB_FOR_SERWEB)
+            pass
+
