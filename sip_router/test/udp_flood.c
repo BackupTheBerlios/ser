@@ -1,4 +1,4 @@
-/* $Id: udp_flood.c,v 1.10 2008/08/27 08:39:12 andrei Exp $ */
+/* $Id: udp_flood.c,v 1.11 2008/08/27 08:39:50 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -50,7 +50,7 @@
 #include <signal.h>
 
 
-static char *id="$Id: udp_flood.c,v 1.10 2008/08/27 08:39:12 andrei Exp $";
+static char *id="$Id: udp_flood.c,v 1.11 2008/08/27 08:39:50 andrei Exp $";
 static char *version="udp_flood 0.2";
 static char* help_msg="\
 Usage: udp_flood -f file -d address -p port -c count [-v]\n\
@@ -237,7 +237,7 @@ int main (int argc, char** argv)
 		fprintf(stderr, "Invalid packet count (-c %d)\n", count);
 		exit(-1);
 	}
-	if (proto!=PROTO_UDP) con_no=1;
+	if (proto==PROTO_UDP || (proto==PROTO_SCTP && !sctp_o2o)) con_no=1;
 	
 	/* ignore sigpipe */
 	if (signal(SIGPIPE, SIG_IGN)==SIG_ERR){
