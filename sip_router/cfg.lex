@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.111 2008/08/18 14:47:33 andrei Exp $
+ * $Id: cfg.lex,v 1.112 2008/09/03 20:13:23 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -325,8 +325,8 @@ TLS_HANDSHAKE_TIMEOUT	"tls_handshake_timeout"
 TLS_SEND_TIMEOUT	"tls_send_timeout"
 DISABLE_SCTP	"disable_sctp"
 SCTP_CHILDREN	"sctp_children"
-SCTP_SOCKET_RCVBUF	"sctp_socket_rcvbuf|sctp_socket_receive_buffer"
-SCTP_SOCKET_SNDBUF	"sctp_socket_sndbuf|sctp_socket_send_buffer"
+SCTP_SOCKET_RCVBUF	"sctp_socket_rcvbuf"|"sctp_socket_receive_buffer"
+SCTP_SOCKET_SNDBUF	"sctp_socket_sndbuf"|"sctp_socket_send_buffer"
 SCTP_AUTOCLOSE	"sctp_autoclose"
 SCTP_SEND_TTL	"sctp_send_ttl"
 ADVERTISED_ADDRESS	"advertised_address"
