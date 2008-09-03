@@ -1,4 +1,4 @@
-/* $Id: udp_flood.c,v 1.11 2008/08/27 08:39:50 andrei Exp $ */
+/* $Id: udp_flood.c,v 1.12 2008/09/03 20:17:04 andrei Exp $ */
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -50,7 +50,7 @@
 #include <signal.h>
 
 
-static char *id="$Id: udp_flood.c,v 1.11 2008/08/27 08:39:50 andrei Exp $";
+static char *id="$Id: udp_flood.c,v 1.12 2008/09/03 20:17:04 andrei Exp $";
 static char *version="udp_flood 0.2";
 static char* help_msg="\
 Usage: udp_flood -f file -d address -p port -c count [-v]\n\
@@ -317,7 +317,7 @@ int main (int argc, char** argv)
 #ifdef USE_SCTP
 		else if (proto==PROTO_SCTP){
 			t=1;
-			if (setsockopt(sock, SOL_SCTP, SCTP_NODELAY, &t, sizeof(t))<0){
+			if (setsockopt(sock, IPPROTO_SCTP, SCTP_NODELAY, &t, sizeof(t))<0){
 				fprintf(stderr, "ERROR: could not disable Nagle: %s\n",
 								strerror(errno));
 			}
