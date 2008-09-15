@@ -2,7 +2,7 @@
 # Sample debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
 #
-# $Id: rules,v 1.14 2008/09/15 13:34:00 paka Exp $
+# $Id: rules,v 1.15 2008/09/15 13:43:57 paka Exp $
 #
 # History:
 # --------
@@ -102,6 +102,9 @@ build-stamp: configure-stamp
 	# Add here commands to compile the package.
 	#$(MAKE) all group_include="standard" skip_modules="$(EXCLUDED_MODULES) $(EXTRA_EXCLUDED_MODULES)" cfg-target=/etc/ser/ prefix=/usr
 	$(MAKE) all \
+		modules="$(INCLUDED_MODULES_ALL)" \
+		cfg-target=/etc/ser/ prefix=/usr
+	$(MAKE) modules \
 		modules="$(INCLUDED_MODULES_ALL)" \
 		cfg-target=/etc/ser/ prefix=/usr
 	##$(MAKE) modules group_include="mysql" cfg-target=/etc/ser/ prefix=/usr skip_modules="$(EXTRA_EXCLUDED_MODULES)"
