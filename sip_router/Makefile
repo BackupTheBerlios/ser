@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.203 2008/08/07 13:15:24 andrei Exp $
+# $Id: Makefile,v 1.204 2008/09/15 09:25:41 paka Exp $
 #
 # sip_router makefile
 #
@@ -85,7 +85,7 @@ doc_format?=html
 # Modules in this group are considered a standard part of SER (due to 
 # widespread usage) and have no external compile or link dependencies (note 
 # that some of these interplay with external systems).
-module_group_standard=acc_syslog auth avp avpops ctl dispatcher diversion enum\
+module_group_standard=acc_syslog auth avp ctl dispatcher diversion enum\
 				eval exec fifo flatstore gflags maxfwd mediaproxy \
 				nathelper options pdt permissions pike print ratelimit \
 				registrar rr sanity sl textops timer tm uac unixsock uri \
