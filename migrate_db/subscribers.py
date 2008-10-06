@@ -1,6 +1,6 @@
 #!/usr/bin/python2.3
 #
-# $Id: subscribers.py,v 1.1 2006/11/17 00:20:00 janakj Exp $
+# $Id: subscribers.py,v 1.2 2008/10/06 12:34:51 janakj Exp $
 #
 # Copyright (C) 2006 iptelorg GmbH
 #
@@ -51,23 +51,23 @@ def convert_subscribers(table, dst, src, flags):
             sys.exit(1)
 
         try:
-            dst.cursor().execute("insert into user_attrs (uid, name, value, flags) values (%s, %s, %s, %s)",
-                                 (uid, 'datetime_created', user[5], common.DB_FOR_SERWEB | flags))
+            dst.cursor().execute("insert into user_attrs (uid, name, value, type, flags) values (%s, %s, %s, %s)",
+                                 (uid, 'datetime_created', user[5], 2, common.DB_FOR_SERWEB | flags))
             if user[2]:
-                dst.cursor().execute("insert into user_attrs (uid, name, value, flags) values (%s, %s, %s, %s)",
-                                     (uid, 'first_name', user[2], common.DB_FOR_SERWEB | flags))
+                dst.cursor().execute("insert into user_attrs (uid, name, value, type, flags) values (%s, %s, %s, %s)",
+                                     (uid, 'first_name', user[2], 2, common.DB_FOR_SERWEB | flags))
             if user[3]:
-                dst.cursor().execute("insert into user_attrs (uid, name, value, flags) values (%s, %s, %s, %s)",
-                                     (uid, 'last_name', user[3], common.DB_FOR_SERWEB | flags))
+                dst.cursor().execute("insert into user_attrs (uid, name, value, type, flags) values (%s, %s, %s, %s)",
+                                     (uid, 'last_name', user[3], 2, common.DB_FOR_SERWEB | flags))
             if user[4]:
-                dst.cursor().execute("insert into user_attrs (uid, name, value, flags) values (%s, %s, %s, %s)",
-                                             (uid, 'email', user[4], common.DB_LOAD_SER | common.DB_FOR_SERWEB | flags))
+                dst.cursor().execute("insert into user_attrs (uid, name, value, type, flags) values (%s, %s, %s, %s)",
+                                             (uid, 'email', user[4], 2, common.DB_LOAD_SER | common.DB_FOR_SERWEB | flags))
             if user[9]:
-                dst.cursor().execute("insert into user_attrs (uid, name, value, flags) values (%s, %s, %s, %s)",
-                                     (uid, 'timezone', user[9], common.DB_FOR_SERWEB | flags))
+                dst.cursor().execute("insert into user_attrs (uid, name, value, type, flags) values (%s, %s, %s, %s)",
+                                     (uid, 'timezone', user[9], 2, common.DB_FOR_SERWEB | flags))
             if user[10]:
-                dst.cursor().execute("insert into user_attrs (uid, name, value, flags) values (%s, %s, %s, %s)",
-                                     (uid, 'asserted_id', user[10], common.DB_LOAD_SER | common.DB_FOR_SERWEB | flags))
+                dst.cursor().execute("insert into user_attrs (uid, name, value, type, flags) values (%s, %s, %s, %s)",
+                                     (uid, 'asserted_id', user[10], 2, common.DB_LOAD_SER | common.DB_FOR_SERWEB | flags))
         except MySQLdb.IntegrityError:
             print "Conflicting row found in target user_attrs table"
             print "Make sure the table is empty and re-run the script"
