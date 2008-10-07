@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.h,v 1.2 2008/10/07 11:22:11 andrei Exp $
+ * $Id: sctp_server.h,v 1.3 2008/10/07 11:22:43 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -29,6 +29,7 @@
 
 #include "ip_addr.h"
 
+int sctp_check_compiled_sockopts(char* buf, int size);
 int sctp_check_support();
 int sctp_init_sock(struct socket_info* sock_info);
 int sctp_rcv_loop();
