@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.268 2008/10/07 11:22:43 andrei Exp $
+ * $Id: main.c,v 1.269 2008/10/07 11:22:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.268 2008/10/07 11:22:43 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.269 2008/10/07 11:22:56 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1579,6 +1579,8 @@ int main(int argc, char** argv)
 			case 'g':
 			case 'P':
 			case 'G':
+			case 'S':
+			case 'O':
 			case 's':
 					break;
 			case '?':
