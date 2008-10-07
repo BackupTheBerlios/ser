@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.c,v 1.9 2008/10/01 17:32:36 andrei Exp $
+ * $Id: sctp_server.c,v 1.10 2008/10/07 11:22:11 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -49,6 +49,21 @@
 #include "mem/mem.h"
 #include "ip_addr.h"
 #include "cfg/cfg_struct.h"
+
+
+
+/* check if the underlying OS supports sctp
+   returns 0 if yes, -1 on error */
+int sctp_check_support()
+{
+	int s;
+	s = socket(PF_INET, SOCK_SEQPACKET, IPPROTO_SCTP);
+	if (s!=-1){
+		close(s);
+		return 0;
+	}
+	return -1;
+}
 
 
 

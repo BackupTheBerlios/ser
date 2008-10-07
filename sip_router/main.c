@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.266 2008/08/19 18:37:52 andrei Exp $
+ * $Id: main.c,v 1.267 2008/10/07 11:22:11 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.266 2008/08/19 18:37:52 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.267 2008/10/07 11:22:11 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -221,7 +221,7 @@ Options:\n\
     -W           poll method\n"
 #endif
 #ifdef USE_SCTP
-"    -S           Disable sctp\n\
+"    -S           disable sctp\n\
     -O            Number of sctp child processes (default: equal to `-n')\n"
 #endif /* USE_SCTP */
 "    -V           Version number\n\
@@ -303,7 +303,7 @@ int tls_disable = 1;  /* tls disabled by default */
 #endif /* USE_TLS */
 #ifdef USE_SCTP
 int sctp_children_no = 0;
-int sctp_disable = 0; /* 1 if sctp is disabled */
+int sctp_disable = 2; /* 1 if sctp is disabled, 2 if auto mode, 0 enabled */
 #endif /* USE_SCTP */
 
 struct process_table *pt=0;		/*array with children pids, 0= main proc,
@@ -1819,6 +1819,21 @@ try_again:
 	}
 #endif
 #ifdef USE_SCTP
+	if (sctp_disable!=1){
+		/* fix it */
+		if (sctp_check_support()==-1){
+			/* check if sctp support is auto, if not warn about disabling it */
+			if (sctp_disable!=2){
+				fprintf(stderr, "ERROR: " "sctp enabled, but not supported by"
+								" the OS\n");
+				goto error;
+			}
+			sctp_disable=1;
+		}else{
+			/* sctp_disable!=1 and sctp supported => enable sctp */
+			sctp_disable=0;
+		}
+	}
 	if (!sctp_disable){
 		if (sctp_children_no<=0) sctp_children_no=children_no;
 	}
