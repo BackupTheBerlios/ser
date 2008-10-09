@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.c,v 1.13 2008/10/07 11:23:49 andrei Exp $
+ * $Id: sctp_server.c,v 1.14 2008/10/09 07:32:59 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -805,7 +805,9 @@ int sctp_rcv_loop()
 						tmp);
 			continue;
 		}
-	
+#ifdef USE_COMP
+		ri.comp=COMP_NONE;
+#endif
 		/* update the local config */
 		cfg_update();
 		receive_msg(buf, len, &ri);
