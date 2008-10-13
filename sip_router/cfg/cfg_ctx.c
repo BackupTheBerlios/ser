@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_ctx.c,v 1.18 2008/02/21 11:09:24 tirpi Exp $
+ * $Id: cfg_ctx.c,v 1.19 2008/10/13 14:09:18 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -274,6 +274,12 @@ int cfg_set_now(cfg_ctx_t *ctx, str *group_name, str *var_name,
 	/* look-up the group and the variable */
 	if (cfg_lookup_var(group_name, var_name, &group, &var))
 		return 1;
+		
+	/* check whether the variable is read-only */
+	if (var->def->type & CFG_READONLY) {
+		LOG(L_ERR, "ERROR: cfg_set_now(): variable is read-only\n");
+		goto error0;
+	}
 
 	/* check whether we have to convert the type */
 	if (convert_val(val_type, val, CFG_INPUT_TYPE(var), &v))
@@ -512,6 +518,12 @@ int cfg_set_delayed(cfg_ctx_t *ctx, str *group_name, str *var_name,
 	/* look-up the group and the variable */
 	if (cfg_lookup_var(group_name, var_name, &group, &var))
 		return 1;
+
+	/* check whether the variable is read-only */
+	if (var->def->type & CFG_READONLY) {
+		LOG(L_ERR, "ERROR: cfg_set_delayed(): variable is read-only\n");
+		goto error0;
+	}
 
 	/* check whether we have to convert the type */
 	if (convert_val(val_type, val, CFG_INPUT_TYPE(var), &v))

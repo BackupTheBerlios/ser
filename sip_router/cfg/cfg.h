@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.h,v 1.6 2008/02/21 11:09:24 tirpi Exp $
+ * $Id: cfg.h,v 1.7 2008/10/13 14:09:18 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -53,6 +53,8 @@
 
 /* atomic change is allowed */
 #define CFG_ATOMIC		(1U<<(2*CFG_INPUT_SHIFT))
+/* variable is read-only */
+#define CFG_READONLY		(1U<<(2*CFG_INPUT_SHIFT+1))
 
 typedef int (*cfg_on_change)(void *, str *, void **);
 typedef void (*cfg_on_set_child)(str *);
