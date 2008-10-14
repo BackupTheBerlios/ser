@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.20 2008/08/18 14:55:13 andrei Exp $
+/* $Id: socket_info.c,v 1.21 2008/10/14 14:13:14 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -1458,11 +1458,11 @@ void init_proto_order()
 		}
 #ifdef USE_SCTP
 	if (sctp_disable)
+#endif
 		for(r=PROTO_NONE; r<=PROTO_LAST; r++){
 			if (nxt_proto[r]==PROTO_SCTP)
 				nxt_proto[r]=nxt_proto[PROTO_SCTP];
 		}
-#endif
 }
 
 
