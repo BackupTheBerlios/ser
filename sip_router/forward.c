@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.118 2008/08/23 22:15:43 calrissian Exp $
+ * $Id: forward.c,v 1.119 2008/10/15 14:13:56 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -174,6 +174,12 @@ struct socket_info* get_send_socket(struct sip_msg *msg,
 						"protocol/port mismatch\n");
 				goto not_forced;
 			}
+		}
+		if (unlikely(msg->force_send_socket->address.af!=to->s.sa_family)){
+			DBG("get_send_socket: force_send_socket of different af (dst %d,"
+					" forced %d)\n",
+					to->s.sa_family, msg->force_send_socket->address.af);
+			goto not_forced;
 		}
 		if (likely((msg->force_send_socket->socket!=-1) &&
 					!(msg->force_send_socket->flags & SI_IS_MCAST)))
