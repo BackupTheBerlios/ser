@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.22 2008/10/15 10:27:47 andrei Exp $
+/* $Id: socket_info.c,v 1.23 2008/10/16 15:17:44 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -849,6 +849,8 @@ static int fix_hostname(str* name, struct ip_addr* address, str* address_str,
 	/* check if INADDR_ANY */
 	if (ip_addr_any(address))
 		*flags|=SI_IS_ANY;
+	else if (ip_addr_loopback(address)) /* check for loopback */
+		*flags|=SI_IS_LO;
 	
 	return 0;
 error:
