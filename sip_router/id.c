@@ -1,5 +1,5 @@
 /*
- * $Id: id.c,v 1.14 2008/02/04 14:11:37 janakj Exp $
+ * $Id: id.c,v 1.15 2008/10/21 03:05:33 sobomax Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -157,6 +157,10 @@ int get_to_uid(str* uid, struct sip_msg* msg)
 			
 		if (uid->len > MAX_URI_SIZE) {
 			DBG("get_to_uid: Username too long\n");
+			return -1;
+		}
+		if (p == NULL || uid->len == 0) {
+			DBG("get_to_uid: Username is empty\n");
 			return -1;
 		}
 		memcpy(buf, p, uid->len);
