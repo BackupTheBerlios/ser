@@ -1,4 +1,4 @@
-/* $Id: ip_addr.h,v 1.47 2008/10/16 15:17:44 andrei Exp $
+/* $Id: ip_addr.h,v 1.48 2008/10/23 11:22:19 andrei Exp $
  *
  * ip address family related structures
  *
@@ -238,10 +238,10 @@ inline static int ip_addr_any(struct ip_addr* ip)
  * 0 otherwise */
 inline static int ip_addr_loopback(struct ip_addr* ip)
 {
-	if (ip->af==AF_INET){
+	if (ip->af==AF_INET)
 		return ip->u.addr32[0]==htonl(INADDR_LOOPBACK);
 #ifdef USE_IPV6
-	} else if (ip->af==AF_INET6)
+	else if (ip->af==AF_INET6)
 		return IN6_IS_ADDR_LOOPBACK((struct in6_addr *)&ip->u.addr32);
 #endif /* USE_IPV6 */
 	return 0;
