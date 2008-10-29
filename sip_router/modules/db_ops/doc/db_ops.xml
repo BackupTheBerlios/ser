@@ -20,8 +20,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2007/11/20 17:33:09 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2008/10/29 13:41:26 $</date>
 	    </revision>
 	</revhistory>
 
@@ -51,7 +51,7 @@
 	database = type "://" user:psw "@" host "/" database_name
 	field = xltext
 	fields = field [ "," field ... ]
-	op = "=" | "&lt;" | ">" | "&lt;=" | ">="  ; note: non-equal not yet supported by db API
+	op = "=" | "&lt;" | ">" | "&lt;=" | ">=" | "&lt;>" | "!=" 
 	where = fields
 	ops = op [ "," op ... ]
 	order = field
