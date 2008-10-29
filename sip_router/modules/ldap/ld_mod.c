@@ -1,5 +1,5 @@
 /*
- * $Id: ld_mod.c,v 1.4 2008/08/07 09:57:05 gkovacs Exp $
+ * $Id: ld_mod.c,v 1.5 2008/10/29 13:43:28 tma0 Exp $
  *
  * LDAP Database Driver for SER
  *
@@ -49,7 +49,7 @@
 #include <ldap.h>
 
 str ld_cfg_file = STR_STATIC_INIT("ldap.cfg");
-int glb_reconn_cnt = 3;
+int ld_reconnect_attempt = 3;
 
 static int ld_mod_init(void);
 static void ld_mod_destroy(void);
@@ -73,7 +73,7 @@ static cmd_export_t cmds[] = {
 	{"db_fld",    (cmd_function)ld_fld, 0, 0, 0},
 	{"db_first",  (cmd_function)ld_cmd_first, 0, 0, 0},
 	{"db_next",   (cmd_function)ld_cmd_next, 0, 0, 0},
-	{"db_setopt", (cmd_function)NULL, 0, 0, 0},
+	{"db_setopt", (cmd_function)ld_cmd_setopt, 0, 0, 0},
 	{"db_getopt", (cmd_function)NULL, 0, 0, 0},
 	{0, 0, 0, 0, 0}
 };
@@ -84,7 +84,7 @@ static cmd_export_t cmds[] = {
  */
 static param_export_t params[] = {
 	{"config", PARAM_STR, &ld_cfg_file},
-	{"reconnect_attempt", PARAM_INT, &glb_reconn_cnt},
+	{"reconnect_attempt", PARAM_INT, &ld_reconnect_attempt},
 	{0, 0, 0}
 };
 

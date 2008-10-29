@@ -1,5 +1,5 @@
 /*
- * $Id: ld_mod.h,v 1.3 2008/08/07 09:57:05 gkovacs Exp $
+ * $Id: ld_mod.h,v 1.4 2008/10/29 13:43:28 tma0 Exp $
  *
  * LDAP Database Driver for SER
  *
@@ -30,12 +30,11 @@
  */
 /** @{ */
 
-extern int glb_reconn_cnt;
-
 /** \file
  * LDAP module interface.
  */
 
+extern int ld_reconnect_attempt;
 /** @} */
 
 #endif /* _LD_MOD_H */

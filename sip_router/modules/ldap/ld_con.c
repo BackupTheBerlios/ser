@@ -1,5 +1,5 @@
 /*
- * $Id: ld_con.c,v 1.7 2008/07/18 10:02:49 gkovacs Exp $
+ * $Id: ld_con.c,v 1.8 2008/10/29 13:43:27 tma0 Exp $
  *
  * LDAP Database Driver for SER
  *
@@ -29,8 +29,6 @@
 /** \file
  * Functions related to connections to LDAP servers.
  */
-
-#define LDAP_DEPRECATED 1
 
 #include "ld_con.h"
 #include "ld_uri.h"
