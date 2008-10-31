@@ -7,7 +7,7 @@ Jan Janak
 
    Copyright © 2008 Iptel.org GmBH
    Revision History
-   Revision $Revision: 1.1 $ $Date: 2008/10/29 13:43:27 $
+   Revision $Revision: 1.2 $ $Date: 2008/10/31 10:52:40 $
      _________________________________________________________________
 
    1.1. Overview
@@ -49,6 +49,11 @@ Jan Janak
    client_side_filtering which forces filtering such fields in the LDAP module,
    i.e.  the  LDAP server returns larger result set because the filtering
    condition is not passed there.
+
+   The syntax of client_side_filtering value is comma delimited of field names
+   which won't be used for server-side filter if such a field appears in a
+   match condition. Instead records will be filtered out in module. It implies
+   such fields MUST exist in result field list.
 
    The necessary condition of successful filtering of particular attribute at
    the LDAP server is correct attribute definition. The "equal"/"non-equal"

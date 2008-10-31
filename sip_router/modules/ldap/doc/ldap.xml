@@ -20,8 +20,8 @@
 	</copyright>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.1 $</revnumber>
-		<date>$Date: 2008/10/29 13:43:28 $</date>
+		<revnumber>$Revision: 1.2 $</revnumber>
+		<date>$Date: 2008/10/31 10:52:41 $</date>
 	    </revision>
 	</revhistory>
 
@@ -66,6 +66,13 @@
 		larger result set because the filtering condition is not passed there.
 		</para>
 
+		<para>
+		The syntax of <emphasis>client_side_filtering</emphasis> value is comma delimited
+		of field names which won't be used for server-side filter if such a field appears in a match
+		condition. Instead records will 
+		be filtered out in module. It implies such fields MUST exist in result field list.
+		</para>
+		
 		<para>
 		The necessary condition of successful filtering of particular
 		attribute at the LDAP server is correct attribute definition.
