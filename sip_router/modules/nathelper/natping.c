@@ -1,6 +1,6 @@
-/* $Id: natping.c,v 1.24 2007/12/11 16:15:56 tirpi Exp $
+/* $Id: natping.c,v 1.25 2008/11/04 22:05:37 sobomax Exp $
  *
- * Copyright (C) 2005 Porta Software Ltd
+ * Copyright (C) 2005-2008 Sippy Software, Inc., http://www.sippysoft.com
  *
  * This file is part of ser, a free SIP server.
  *

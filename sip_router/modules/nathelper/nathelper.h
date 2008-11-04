@@ -1,8 +1,7 @@
 /*
- * $Id: nathelper.h,v 1.7 2008/11/04 21:10:07 sobomax Exp $
+ * $Id: nathelper.h,v 1.8 2008/11/04 22:05:37 sobomax Exp $
  *
- *
- * Copyright (C) 2005 Porta Software Ltd.
+ * Copyright (C) 2005-2008 Sippy Software, Inc., http://www.sippysoft.com
  *
  * This file is part of ser, a free SIP server.
  *
