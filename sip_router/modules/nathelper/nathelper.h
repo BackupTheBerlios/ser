@@ -1,5 +1,5 @@
 /*
- * $Id: nathelper.h,v 1.6 2007/10/09 22:14:13 sobomax Exp $
+ * $Id: nathelper.h,v 1.7 2008/11/04 21:10:07 sobomax Exp $
  *
  *
  * Copyright (C) 2005 Porta Software Ltd.
@@ -35,6 +35,10 @@
 
 /* Parameters from nathelper.c */
 extern struct socket_info* force_socket;
+
+/* Functions from nathelper */
+struct rtpp_node *select_rtpp_node(str, int, int);
+char *send_rtpp_command(struct rtpp_node *, struct iovec *, int);
 
 /* Functions from natping.c */
 int natpinger_init(void);
