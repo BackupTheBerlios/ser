@@ -1,5 +1,5 @@
 /*
- * $Id: avp_db.h,v 1.3 2007/04/05 14:58:42 kubartv Exp $
+ * $Id: avp_db.h,v 1.4 2008/11/07 17:35:03 mma Exp $
  *
  * Copyright (C) 2004 FhG Fokus
  *
@@ -28,3 +28,4 @@
 #include "../../db/db.h"
 
 extern db_ctx_t* ctx;
+extern int auto_unlock;
