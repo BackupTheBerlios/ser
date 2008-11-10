@@ -1,5 +1,5 @@
 /*
- * $Id: tm_load.c,v 1.30 2008/03/31 18:19:50 bpintea Exp $
+ * $Id: tm_load.c,v 1.31 2008/11/10 12:47:02 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -216,5 +216,15 @@ int load_tm( struct tm_binds *tmb)
 		return -1;
 	}
 #endif
+	if (! (tmb->t_suspend=(t_suspend_f)find_export("t_suspend",
+			NO_SCRIPT, 0))) {
+		LOG( L_ERR, LOAD_ERROR "'t_suspend' not found\n");
+		return -1;
+	}
+	if (! (tmb->t_continue=(t_continue_f)find_export("t_continue",
+			NO_SCRIPT, 0))) {
+		LOG( L_ERR, LOAD_ERROR "'t_continue' not found\n");
+		return -1;
+	}
 	return 1;
 }

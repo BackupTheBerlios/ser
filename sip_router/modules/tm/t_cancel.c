@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.31 2008/05/30 21:10:53 andrei Exp $
+ * $Id: t_cancel.c,v 1.32 2008/11/10 12:47:02 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -103,7 +103,12 @@ int cancel_uacs( struct cell *t, branch_bm_t cancel_bm, int flags)
 	/* cancel pending client transactions, if any */
 	for( i=0 ; i<t->nr_of_outgoings ; i++ ) 
 		if (cancel_bm & (1<<i)){
-			r=cancel_branch(t, i, flags);
+			r=cancel_branch(
+				t,
+				i,
+				flags | ((t->uac[i].request.buffer==NULL)?
+					F_CANCEL_B_FAKE_REPLY:0) /* blind UAC? */
+			);
 			ret|=(r!=0)<<i;
 		}
 	return ret;

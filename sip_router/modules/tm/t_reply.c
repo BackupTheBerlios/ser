@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.161 2008/05/30 21:10:53 andrei Exp $
+ * $Id: t_reply.c,v 1.162 2008/11/10 12:47:02 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -626,7 +626,7 @@ static int _reply( struct cell *trans, struct sip_msg* p_msg,
 
 /*if msg is set -> it will fake the env. vars conforming with the msg; if NULL
  * the env. will be restore to original */
-static inline void faked_env( struct cell *t,struct sip_msg *msg)
+void faked_env( struct cell *t,struct sip_msg *msg)
 {
 	static enum route_mode backup_mode;
 	static struct cell *backup_t;
@@ -683,7 +683,7 @@ static inline void faked_env( struct cell *t,struct sip_msg *msg)
 }
 
 
-static inline int fake_req(struct sip_msg *faked_req,
+int fake_req(struct sip_msg *faked_req,
 							struct sip_msg *shmem_msg, int extra_flags)
 {
 	/* on_negative_reply faked msg now copied from shmem msg (as opposed
@@ -731,7 +731,7 @@ error00:
 	return 0;
 }
 
-void inline static free_faked_req(struct sip_msg *faked_req, struct cell *t)
+void free_faked_req(struct sip_msg *faked_req, struct cell *t)
 {
 	struct hdr_field *hdr;
 

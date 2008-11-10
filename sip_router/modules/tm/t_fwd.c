@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.106 2008/06/04 13:13:54 andrei Exp $
+ * $Id: t_fwd.c,v 1.107 2008/11/10 12:47:02 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -733,7 +733,13 @@ void e2e_cancel( struct sip_msg *cancel_msg,
 			 * called with the cancel as the "current" transaction so
 			 * at most t_cancel REPLY_LOCK is held in this process =>
 			 * no deadlock possibility */
-			ret=cancel_branch(t_invite, i, cfg_get(tm,tm_cfg, cancel_b_flags));
+			ret=cancel_branch(
+				t_invite,
+				i,
+				cfg_get(tm,tm_cfg, cancel_b_flags)
+					| ((t_invite->uac[i].request.buffer==NULL)?
+						F_CANCEL_B_FAKE_REPLY:0) /* blind UAC? */
+			);
 			if (ret<0) cancel_bm &= ~(1<<i);
 			if (ret<lowest_error) lowest_error=ret;
 		}
