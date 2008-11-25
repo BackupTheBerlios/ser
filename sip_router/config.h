@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.77 2008/08/08 20:47:53 andrei Exp $
+ *  $Id: config.h,v 1.78 2008/11/25 19:15:05 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -125,6 +125,9 @@
 
 #define SRV_TLS_PREFIX "_sips._tcp."
 #define SRV_TLS_PREFIX_LEN (sizeof(SRV_TLS_PREFIX) - 1)
+
+#define SRV_SCTP_PREFIX "_sip._sctp."
+#define SRV_SCTP_PREFIX_LEN (sizeof(SRV_SCTP_PREFIX) - 1)
 
 #define SRV_MAX_PREFIX_LEN SRV_TLS_PREFIX_LEN
 

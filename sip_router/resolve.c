@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.34 2008/08/18 14:49:57 andrei Exp $*/
+/* $Id: resolve.c,v 1.35 2008/11/25 19:15:05 andrei Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1018,6 +1018,11 @@ struct hostent* srv_sip_resolvehost(str* name, int zt, unsigned short* port,
 					memcpy(tmp, SRV_TLS_PREFIX, SRV_TLS_PREFIX_LEN);
 					memcpy(tmp+SRV_TLS_PREFIX_LEN, name->s, name->len);
 					tmp[SRV_TLS_PREFIX_LEN + name->len] = '\0';
+					break;
+				case PROTO_SCTP:
+					memcpy(tmp, SRV_SCTP_PREFIX, SRV_SCTP_PREFIX_LEN);
+					memcpy(tmp+SRV_SCTP_PREFIX_LEN, name->s, name->len);
+					tmp[SRV_SCTP_PREFIX_LEN + name->len] = '\0';
 					break;
 				default:
 					LOG(L_CRIT, "BUG: sip_resolvehost: unknown proto %d\n",
