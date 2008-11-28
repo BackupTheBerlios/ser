@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.c,v 1.24 2008/10/23 11:21:59 andrei Exp $
+ * $Id: dns_cache.c,v 1.25 2008/11/28 10:41:40 andrei Exp $
  *
  * resolver related functions
  *
@@ -2391,6 +2391,12 @@ struct hostent* dns_srv_sip_resolvehost(str* name, unsigned short* port,
 					memcpy(tmp+SRV_TLS_PREFIX_LEN, name->s, name->len);
 					tmp[SRV_TLS_PREFIX_LEN + name->len] = '\0';
 					len=SRV_TLS_PREFIX_LEN + name->len;
+					break;
+				case PROTO_SCTP:
+					memcpy(tmp, SRV_SCTP_PREFIX, SRV_SCTP_PREFIX_LEN);
+					memcpy(tmp+SRV_SCTP_PREFIX_LEN, name->s, name->len);
+					tmp[SRV_SCTP_PREFIX_LEN + name->len] = '\0';
+					len=SRV_SCTP_PREFIX_LEN + name->len;
 					break;
 				default:
 					LOG(L_CRIT, "BUG: sip_resolvehost: unknown proto %d\n",
