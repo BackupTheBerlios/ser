@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.h,v 1.23 2007/03/16 09:00:52 tma0 Exp $
+ * $Id: usr_avp.h,v 1.24 2008/11/28 15:24:01 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -89,12 +89,18 @@ typedef union {
 #define avp_value_t	int_str
 #define avp_index_t	unsigned short
 
+union usr_avp_data{
+	void *p; /* forces alignment */
+	long l;
+	char data[sizeof(void*)]; /* used to access other types, var length */
+};
+
 typedef struct usr_avp {
 	avp_id_t id;
-	     /* Flags that are kept for the AVP lifetime */
+	/* Flags that are kept for the AVP lifetime */
 	avp_flags_t flags;
 	struct usr_avp *next;
-	void *data;
+	union usr_avp_data d; /* var length */
 } avp_t;
 
 typedef avp_t* avp_list_t;
