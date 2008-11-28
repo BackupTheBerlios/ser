@@ -1,5 +1,5 @@
 /*
- * $Id: init_socks.c,v 1.1 2006/02/23 19:57:31 andrei Exp $
+ * $Id: init_socks.c,v 1.2 2008/11/28 15:24:15 andrei Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -216,7 +216,7 @@ int init_tcpudp_sock(union sockaddr_union* sa_un, char* address, int port,
 		LOG(L_ERR, "ERROR: init_tcpudp_sock: set non blocking failed\n");
 	}
 	
-	if (bind(s, (struct sockaddr *)&su, sockaddru_len(su))==-1){
+	if (bind(s, &su.s, sockaddru_len(su))==-1){
 		LOG(L_ERR, "ERROR: init_tcpudp_sock: bind: %s [%d]\n",
 				strerror(errno), errno);
 		goto error;

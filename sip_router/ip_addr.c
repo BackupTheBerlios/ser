@@ -1,5 +1,5 @@
 /*
- * $Id: ip_addr.c,v 1.11 2008/10/16 15:17:44 andrei Exp $
+ * $Id: ip_addr.c,v 1.12 2008/11/28 15:24:15 andrei Exp $
  *
  *
  * ip address & address family related functions
@@ -190,7 +190,7 @@ int is_mcast(struct ip_addr* ip)
 		return IN_MULTICAST(htonl(ip->u.addr32[0]));
 #ifdef USE_IPV6
 	} else if (ip->af==AF_INET6){
-		return IN6_IS_ADDR_MULTICAST((struct in6_addr *)&ip->u.addr);
+		return IN6_IS_ADDR_MULTICAST(&ip->u.addr32[0]);
 #endif /* USE_IPV6 */
 	} else {
 		LOG(L_ERR, "ERROR: is_mcast: Unsupported protocol family\n");
