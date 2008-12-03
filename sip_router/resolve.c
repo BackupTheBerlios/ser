@@ -1,4 +1,4 @@
-/* $Id: resolve.c,v 1.35 2008/11/25 19:15:05 andrei Exp $*/
+/* $Id: resolve.c,v 1.36 2008/12/03 23:41:13 andrei Exp $*/
 /*
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -896,8 +896,9 @@ int naptr_choose (struct naptr_rdata** crt, char* crt_proto,
 	if ((*crt==0) || ((*crt_proto!=n_proto) && 
 						( naptr_proto_preferred(n_proto, *crt_proto))) )
 			goto change;
-	if ((n->order<(*crt)->order) || ((n->order== (*crt)->order) &&
-									(n->pref < (*crt)->pref))){
+	if (!naptr_proto_preferred(*crt_proto, n_proto) && 
+			((n->order<(*crt)->order) || ((n->order== (*crt)->order) &&
+								(n->pref < (*crt)->pref)))){
 			goto change;
 	}
 #ifdef NAPTR_DBG
