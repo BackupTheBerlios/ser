@@ -1,5 +1,5 @@
 /*
- * $Id: binrpc_api.c,v 1.7 2008/06/12 07:20:37 tma0 Exp $
+ * $Id: binrpc_api.c,v 1.8 2008/12/08 06:11:40 sobomax Exp $
  *
  * Copyright (C) 2006 iptelorg GmbH
  *
@@ -500,7 +500,7 @@ static int get_reply(struct binrpc_handle *handle,
 		/* we must read all datagram in one read call, otherwise unread part is truncated and lost. Read will block execution */
 		if (crt - hdr_end < tl) {
 			snprintf(binrpc_last_errs, sizeof(binrpc_last_errs)-1,
-				"get_reply: datagram truncated. Received: %d, Expected: %d.",
+				"get_reply: datagram truncated. Received: %ld, Expected: %d.",
 				crt-hdr_end, tl);
 			return FATAL_ERROR;		
 		}

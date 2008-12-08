@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.h,v 1.28 2008/11/28 15:24:15 andrei Exp $
+ * $Id: io_wait.h,v 1.29 2008/12/08 06:11:39 sobomax Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -1104,7 +1104,7 @@ again:
 				   adding something to the changes array, close() and
 				   applying the changes */
 				LOG(L_INFO, "INFO: io_wait_loop_kqueue: kevent error on "
-							"fd %d: %s [%ld]\n", h->kq_array[r].ident,
+							"fd %ld: %s [%ld]\n", h->kq_array[r].ident,
 							strerror(h->kq_array[r].data),
 							(long)h->kq_array[r].data);
 			}else{ 
