@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.206 2008/11/13 16:24:41 andrei Exp $
+# $Id: Makefile,v 1.207 2008/12/08 12:26:39 alfredh Exp $
 #
 # sip_router makefile
 #
@@ -577,7 +577,7 @@ $(man_prefix)/$(man_dir)/man7:
 
 $(man_prefix)/$(man_dir)/man5:
 		mkdir -p $(man_prefix)/$(man_dir)/man5
-		
+
 # note: sed with POSIX.1 regex doesn't support |, + or ? (darwin, solaris ...) 
 install-cfg: $(cfg_prefix)/$(cfg_dir)
 		sed -e "s#/usr/.*lib/ser/modules/#$(modules-target)#g" \
@@ -600,7 +600,7 @@ install-cfg: $(cfg_prefix)/$(cfg_dir)
 		# radius dictionary
 		$(INSTALL_TOUCH) $(cfg_prefix)/$(cfg_dir)/dictionary.ser
 		$(INSTALL_CFG) etc/dictionary.ser $(cfg_prefix)/$(cfg_dir)
-		
+
 		# TLS configuration
 		$(INSTALL_TOUCH) $(cfg_prefix)/$(cfg_dir)/tls.cfg
 		$(INSTALL_CFG) modules/tls/tls.cfg $(cfg_prefix)/$(cfg_dir)
