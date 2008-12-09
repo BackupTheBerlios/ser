@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.c,v 1.21 2008/04/30 19:50:04 andrei Exp $
+ * $Id: dst_blacklist.c,v 1.22 2008/12/09 14:09:22 mma Exp $
  *
  * resolver related functions
  *
@@ -879,6 +879,8 @@ static char* get_proto_name(unsigned char proto)
 			return "tcp";
 		case PROTO_TLS:
 			return "tls";
+		case PROTO_SCTP:
+			return "sctp";
 		default:
 			return "unknown";
 	}
