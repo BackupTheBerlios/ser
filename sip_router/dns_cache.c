@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.c,v 1.25 2008/11/28 10:41:40 andrei Exp $
+ * $Id: dns_cache.c,v 1.26 2008/12/11 19:12:41 mma Exp $
  *
  * resolver related functions
  *
@@ -3013,6 +3013,12 @@ inline static int dns_srv_sip_resolve(struct dns_srv_handle* h,  str* name,
 							memcpy(tmp+SRV_TLS_PREFIX_LEN, name->s, name->len);
 							tmp[SRV_TLS_PREFIX_LEN + name->len] = '\0';
 							len=SRV_TLS_PREFIX_LEN + name->len;
+							break;
+						case PROTO_SCTP:
+							memcpy(tmp, SRV_SCTP_PREFIX, SRV_SCTP_PREFIX_LEN);
+							memcpy(tmp+SRV_SCTP_PREFIX_LEN, name->s, name->len);
+							tmp[SRV_SCTP_PREFIX_LEN + name->len] = '\0';
+							len=SRV_SCTP_PREFIX_LEN + name->len;
 							break;
 						default:
 							LOG(L_CRIT, "BUG: sip_resolvehost: "
