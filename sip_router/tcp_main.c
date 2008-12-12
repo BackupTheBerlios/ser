@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.130 2008/05/22 16:08:52 andrei Exp $
+ * $Id: tcp_main.c,v 1.131 2008/12/12 23:02:45 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -648,7 +648,7 @@ inline static int _wbufq_add(struct  tcp_connection* c, char* data,
 			last_free=wb->b_size;
 		}
 		crt_size=MIN_unsigned(last_free, size);
-		memcpy(wb->buf, data, crt_size);
+		memcpy(wb->buf+q->last_used, data, crt_size);
 		q->last_used+=crt_size;
 		size-=crt_size;
 		data+=crt_size;
