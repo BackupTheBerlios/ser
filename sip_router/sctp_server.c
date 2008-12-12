@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.c,v 1.16 2008/11/07 14:53:04 andrei Exp $
+ * $Id: sctp_server.c,v 1.17 2008/12/12 23:25:39 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -215,6 +215,15 @@ static int sctp_init_sock_opt_common(int s)
 			/* continue, non-critical */
 		}
 	}
+	
+	/* set reuseaddr */
+	if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR,
+						(void*)&optval, sizeof(optval))==-1){
+			LOG(L_ERR, "ERROR: sctp_init_sock_opt_common: setsockopt:"
+						" SO_REUSEADDR (%d): %s\n", optval, strerror(errno));
+			/* continue, non-critical */
+	}
+
 	
 	/* disable fragments interleave (SCTP_FRAGMENT_INTERLEAVE) --
 	 * we don't want partial delivery, so fragment interleave must be off too
