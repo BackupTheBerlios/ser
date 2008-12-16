@@ -1,5 +1,5 @@
 /*
- * $Id: resolve.h,v 1.35 2008/05/20 22:46:25 sobomax Exp $
+ * $Id: resolve.h,v 1.36 2008/12/16 14:35:55 andrei Exp $
  *
  * resolver related functions
  *
@@ -337,8 +337,10 @@ static inline struct hostent* _resolvehost(char* name)
 {
 	static struct hostent* he=0;
 #ifdef HAVE_GETIPNODEBYNAME 
+#ifdef USE_IPV6
 	int err;
 	static struct hostent* he2=0;
+#endif
 #endif
 #ifndef DNS_IP_HACK
 #ifdef USE_IPV6
