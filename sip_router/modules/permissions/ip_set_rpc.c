@@ -1,5 +1,5 @@
 /* 
- * $Id: ip_set_rpc.c,v 1.3 2008/08/06 20:55:47 tma0 Exp $
+ * $Id: ip_set_rpc.c,v 1.4 2008/12/16 14:36:15 andrei Exp $
  *
  * allow_trusted related functions
  *
@@ -274,8 +274,10 @@ void rpc_ip_set_print(rpc_t* rpc, void* ctx) {
 	rpc->add(ctx, "{", &c);
 	if (rpc->struct_add(c, "s", "IPv", "6") < 0) 
 		goto err;	
+#ifdef USE_IPV6
 	if (rpc_ip_tree_print(rpc, c, "", ip_set->ipv6_tree, 0) < 0) 
 		goto err;
+#endif
 
 err:		
 	if (pending)
