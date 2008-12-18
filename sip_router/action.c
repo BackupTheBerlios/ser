@@ -1,6 +1,6 @@
 
 /*
- * $Id: action.c,v 1.96 2008/08/08 20:47:53 andrei Exp $
+ * $Id: action.c,v 1.97 2008/12/18 16:09:16 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -46,6 +46,7 @@
  *              (andrei)
  *  2007-06-14  run_actions & do_action need a ctx or handle now, no more 
  *               static vars (andrei)
+ *  2008-12-17  added UDP_MTU_TRY_PROTO_T (andrei)
  */
 
 
@@ -729,6 +730,10 @@ int do_action(struct run_act_ctx* h, struct action* a, struct sip_msg* msg)
 			break;
 		case FORCE_RPORT_T:
 			msg->msg_flags|=FL_FORCE_RPORT;
+			ret=1; /* continue processing */
+			break;
+		case UDP_MTU_TRY_PROTO_T:
+			msg->msg_flags|= (unsigned int)a->val[0].u.number & FL_MTU_FB_MASK;
 			ret=1; /* continue processing */
 			break;
 		case SET_ADV_ADDR_T:

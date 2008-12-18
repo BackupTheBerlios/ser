@@ -1,5 +1,5 @@
 /*
- * $Id: route_struct.h,v 1.43 2008/08/08 20:47:53 andrei Exp $
+ * $Id: route_struct.h,v 1.44 2008/12/18 16:09:16 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -35,6 +35,7 @@
  *  2004-02-24  added LOAD_AVP_T and AVP_TO_URI_T (bogdan)
  *  2005-12-11  added SND{IP,PORT,PROTO,AF}_O & TO{IP,PORT}_O (andrei)
  *  2005-12-19  select framework added SELECT_O and SELECT_ST (mma)
+ *  2008-12-17  added UDP_MTU_TRY_PROTO_T (andrei)
  */
 
 
@@ -89,7 +90,8 @@ enum { FORWARD_T=1, SEND_T, DROP_T, LOG_T, ERROR_T, ROUTE_T, EXEC_T,
 		AVP_TO_URI_T,
 		FORCE_SEND_SOCKET_T,
 		ASSIGN_T,
-		ADD_T
+		ADD_T,
+		UDP_MTU_TRY_PROTO_T
 };
 enum { NOSUBTYPE=0, STRING_ST, NET_ST, NUMBER_ST, IP_ST, RE_ST, PROXY_ST,
 		EXPR_ST, ACTIONS_ST, MODEXP_ST, MODFIXUP_ST, URIHOST_ST, URIPORT_ST,

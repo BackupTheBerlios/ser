@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.lex,v 1.114 2008/11/07 14:53:35 andrei Exp $
+ * $Id: cfg.lex,v 1.115 2008/12/18 16:09:16 andrei Exp $
  *
  * scanner for cfg files
  *
@@ -143,6 +143,8 @@ ROUTE_SEND onsend_route
 EXEC	exec
 FORCE_RPORT		"force_rport"|"add_rport"
 FORCE_TCP_ALIAS		"force_tcp_alias"|"add_tcp_alias"
+UDP_MTU		"udp_mtu"
+UDP_MTU_TRY_PROTO	"udp_mtu_try_proto"
 SETFLAG		setflag
 RESETFLAG	resetflag
 ISFLAGSET	isflagset
@@ -463,6 +465,9 @@ EAT_ABLE	[\ \t\b\r]
 <INITIAL>{FORCE_RPORT}	{ count(); yylval.strval=yytext; return FORCE_RPORT; }
 <INITIAL>{FORCE_TCP_ALIAS}	{ count(); yylval.strval=yytext;
 								return FORCE_TCP_ALIAS; }
+<INITIAL>{UDP_MTU}	{ count(); yylval.strval=yytext; return UDP_MTU; }
+<INITIAL>{UDP_MTU_TRY_PROTO}	{ count(); yylval.strval=yytext;
+									return UDP_MTU_TRY_PROTO; }
 <INITIAL>{IF}	{ count(); yylval.strval=yytext; return IF; }
 <INITIAL>{ELSE}	{ count(); yylval.strval=yytext; return ELSE; }
 
