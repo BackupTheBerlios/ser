@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.h,v 1.7 2008/08/12 09:51:32 andrei Exp $
+ * $Id: cfg_core.h,v 1.8 2008/12/18 16:06:04 andrei Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -85,6 +85,9 @@ struct cfg_group_core {
 #ifdef SHM_MEM
 	int mem_dump_shm;
 #endif
+	int udp_mtu; /**< maximum send size for udp, if > try another protocol*/
+	int udp_mtu_try_proto; /**< if packet> udp_mtu, try proto (e.g. TCP) */
+	int force_rport; /**< if set rport will always be forced*/
 };
 
 extern struct cfg_group_core default_core_cfg;

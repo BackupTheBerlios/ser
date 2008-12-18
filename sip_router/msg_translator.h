@@ -1,4 +1,4 @@
-/*$Id: msg_translator.h,v 1.31 2008/03/10 14:09:01 tirpi Exp $
+/*$Id: msg_translator.h,v 1.32 2008/12/18 16:06:04 andrei Exp $
  * 
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -149,5 +149,7 @@ char * build_all( struct sip_msg* msg, int adjust_clen,
 			int *error,
 			struct dest_info* send_info);
 
+/** cfg framework fixup */
+void fix_global_req_flags( str* name);
 
 #endif
