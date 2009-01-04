@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.50 2008/02/15 12:11:50 tirpi Exp $
+ * $Id: t_msgbuilder.c,v 1.51 2009/01/04 14:52:42 bpintea Exp $
  *
  * message printing
  *
@@ -69,12 +69,6 @@
 #include "../../cfg_core.h" /* cfg_get(core, core_cfg, use_dns_failover) */
 #endif
 
-
-#define ROUTE_PREFIX "Route: "
-#define ROUTE_PREFIX_LEN (sizeof(ROUTE_PREFIX) - 1)
-
-#define ROUTE_SEPARATOR ", "
-#define ROUTE_SEPARATOR_LEN (sizeof(ROUTE_SEPARATOR) - 1)
 
 #define  append_mem_block(_d,_s,_len) \
 		do{\

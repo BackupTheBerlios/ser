@@ -1,5 +1,5 @@
 /*
- *  $Id: config.h,v 1.78 2008/11/25 19:15:05 andrei Exp $
+ *  $Id: config.h,v 1.79 2009/01/04 14:52:42 bpintea Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -72,6 +72,12 @@
 
 #define MY_VIA "Via: SIP/2.0/UDP "
 #define MY_VIA_LEN (sizeof(MY_VIA) - 1)
+
+#define ROUTE_PREFIX "Route: "
+#define ROUTE_PREFIX_LEN (sizeof(ROUTE_PREFIX) - 1)
+
+#define ROUTE_SEPARATOR ", "
+#define ROUTE_SEPARATOR_LEN (sizeof(ROUTE_SEPARATOR) - 1)
 
 #define CONTENT_LENGTH "Content-Length: "
 #define CONTENT_LENGTH_LEN (sizeof(CONTENT_LENGTH)-1)
