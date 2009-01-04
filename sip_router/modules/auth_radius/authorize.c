@@ -1,5 +1,5 @@
 /*
- * $Id: authorize.c,v 1.24 2008/06/06 17:05:09 liborc Exp $
+ * $Id: authorize.c,v 1.25 2009/01/04 15:50:15 bpintea Exp $
  *
  * Digest Authentication - Radius support
  *
@@ -167,6 +167,12 @@ static inline int authenticate(struct sip_msg* msg, str* realm,
 	received = NULL;
 
 	switch(auth_api.pre_auth(msg, realm, hftype, &h, NULL)) {
+	default:
+		BUG("unexpected reply '%d'.\n", auth_api.pre_auth(msg, realm, hftype,
+				&h, NULL));
+#ifdef EXTRA_DEBUG
+		abort();
+#endif
 	case ERROR:
 	case BAD_CREDENTIALS:
 	    ret = -3;

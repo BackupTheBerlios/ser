@@ -1,5 +1,5 @@
 /*
- * $Id: speeddial.c,v 1.8 2007/11/14 14:48:20 janakj Exp $
+ * $Id: speeddial.c,v 1.9 2009/01/04 15:50:16 bpintea Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -223,7 +223,7 @@ static int sd_lookup_fixup(void** param, int param_no)
 		}
 		ptr[tables_no].table = (char*)*param;
 		ptr[tables_no].lookup_num = NULL;
-		*param = (void*)tables_no;
+		*param = (void*)(long)tables_no;
 		tables_no++;
 		tables = ptr;
 	}

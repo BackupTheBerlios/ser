@@ -1,5 +1,5 @@
 /*
- * $Id: sdlookup.c,v 1.9 2007/11/14 14:48:20 janakj Exp $
+ * $Id: sdlookup.c,v 1.10 2009/01/04 15:50:16 bpintea Exp $
  *
  * Copyright (C) 2004 Voice Sistem SRL
  *
@@ -60,7 +60,7 @@ int sd_lookup(struct sip_msg* _msg, char* _index, char* _str2)
 	db_rec_t* rec;
 
 	/* init */
-	i = (int)_index;
+	i = (int)(long)_index;
 
 	     /* Retrieve the owner of the record */
 	if (get_from_uid(&uid, _msg) < 0) {
