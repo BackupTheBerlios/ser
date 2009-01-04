@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.37 2008/11/28 15:24:01 andrei Exp $
+ * $Id: usr_avp.c,v 1.38 2009/01/04 15:34:54 bpintea Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -981,6 +981,20 @@ error:
 	return -1;
 }
 
+void free_avp_ident(avp_ident_t* attr)
+{
+	if (attr->flags & AVP_NAME_RE) {
+		if (! attr->name.re) {
+			BUG("attr ident @%p has the regexp flag set, but no regexp.\n",
+					attr);
+#ifdef EXTRA_DEBUG
+			abort();
+#endif
+		} else {
+			pkg_free(attr->name.re);
+		}
+	}
+}
 
 int parse_avp_spec( str *name, int *type, int_str *avp_name, int *index)
 {
