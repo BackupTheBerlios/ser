@@ -1,5 +1,5 @@
 /**
- * $Id: dispatcher.c,v 1.11 2008/04/21 13:15:16 hscholz Exp $
+ * $Id: dispatcher.c,v 1.12 2009/01/04 15:08:19 bpintea Exp $
  *
  * dispatcher module -- stateless load balancing
  *
@@ -66,12 +66,6 @@ static cmd_export_t cmds[]={
 	{"ds_select_dst", w_ds_select_dst, 2, fixup_var_int_12, REQUEST_ROUTE|FAILURE_ROUTE},
 	{"ds_select_new", w_ds_select_new, 2, fixup_var_int_12, REQUEST_ROUTE|FAILURE_ROUTE},
 	{0,0,0,0,0}
-};
-
-static rpc_export_t rpc_methods[] = {
-    {"dispatcher.dump",     rpc_dump,       rpc_dump_doc,       0},
-    {"dispatcher.reload",   rpc_reload,     rpc_reload_doc,     0},
-    {0, 0, 0, 0}
 };
 
 static param_export_t params[]={

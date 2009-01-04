@@ -1,5 +1,5 @@
 /**
- * $Id: ds_rpc.c,v 1.1 2008/04/21 13:15:16 hscholz Exp $
+ * $Id: ds_rpc.c,v 1.2 2009/01/04 15:08:19 bpintea Exp $
  *
  * dispatcher module -- stateless load balancing
  *
@@ -112,3 +112,20 @@ void rpc_reload(rpc_t *rpc, void *c) {
     }
 	return ;
 }
+
+/* rpc function titles */
+static const char *rpc_dump_doc[2] = {
+	"Dump dispatcher set configuration",
+	0
+};
+static const char *rpc_reload_doc[2] = {
+	"Reload dispatcher list from file",
+	0
+};
+
+rpc_export_t rpc_methods[] = {
+    {"dispatcher.dump",     rpc_dump,       rpc_dump_doc,       0},
+    {"dispatcher.reload",   rpc_reload,     rpc_reload_doc,     0},
+    {0, 0, 0, 0}
+};
+
