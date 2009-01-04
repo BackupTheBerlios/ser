@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.c,v 1.51 2009/01/04 14:52:42 bpintea Exp $
+ * $Id: t_msgbuilder.c,v 1.52 2009/01/04 14:58:36 bpintea Exp $
  *
  * message printing
  *
@@ -69,18 +69,24 @@
 #include "../../cfg_core.h" /* cfg_get(core, core_cfg, use_dns_failover) */
 #endif
 
+/* convenience macros */
+#define memapp(_d,_s,_len) \
+	do{\
+		memcpy((_d),(_s),(_len));\
+		(_d) += (_len);\
+	}while(0)
 
 #define  append_mem_block(_d,_s,_len) \
 		do{\
 			memcpy((_d),(_s),(_len));\
 			(_d) += (_len);\
-		}while(0);
+		}while(0)
 
 #define append_str(_p,_str) \
 	do{  \
 		memcpy((_p), (_str).s, (_str).len); \
 		(_p)+=(_str).len;  \
- 	} while(0);
+ 	} while(0)
 
 
 /* Build a local request based on a previous request; main
