@@ -1,5 +1,5 @@
 /*
- * $Id: t_lookup.c,v 1.126 2009/01/04 15:27:39 bpintea Exp $
+ * $Id: t_lookup.c,v 1.127 2009/01/05 21:26:44 bpintea Exp $
  *
  * This C-file takes care of matching requests and replies with
  * existing transactions. Note that we do not do SIP-compliant
@@ -1500,6 +1500,31 @@ int t_get_trans_ident(struct sip_msg* p_msg, unsigned int* hash_index, unsigned 
     return 1;
 }
 
+#ifdef WITH_AS_SUPPORT
+/**
+ * Returns the hash coordinates of the transaction current CANCEL is targeting.
+ */
+int t_get_canceled_ident(struct sip_msg* msg, unsigned int* hash_index, 
+		unsigned int* label)
+{
+	struct cell *orig;
+	if (msg->REQ_METHOD != METHOD_CANCEL) {
+		WARN("looking up original transaction for non-CANCEL method (%d).\n",
+				msg->REQ_METHOD);
+		return -1;
+	}
+	orig = t_lookupOriginalT(msg);
+	if ((orig == T_NULL_CELL) || (orig == T_UNDEFINED))
+		return -1;
+	*hash_index = orig->hash_index;
+	*label = orig->label;
+	DEBUG("original T found @%p, %d:%d.\n", orig, *hash_index, *label);
+	/* TODO: why's w_t_lookup_cancel setting T to 'undefined'?? */
+	UNREF(orig);
+	return 1;
+}
+#endif /* WITH_AS_SUPPORT */
+
 int t_lookup_ident(struct cell ** trans, unsigned int hash_index, 
 					unsigned int label)
 {
@@ -1512,7 +1537,11 @@ int t_lookup_ident(struct cell ** trans, unsigned int hash_index,
 	}
 	
 	LOCK_HASH(hash_index);
-	
+
+#ifndef E2E_CANCEL_HOP_BY_HOP
+#warning "t_lookup_ident() can only reliably match INVITE transactions in " \
+		"E2E_CANCEL_HOP_BY_HOP mode"
+#endif
 	hash_bucket=&(get_tm_table()->entries[hash_index]);
 	/* all the transactions from the entry are compared */
 	clist_foreach(hash_bucket, p_cell, next_c){

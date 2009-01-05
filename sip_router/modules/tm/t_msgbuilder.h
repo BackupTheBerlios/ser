@@ -1,5 +1,5 @@
 /*
- * $Id: t_msgbuilder.h,v 1.20 2009/01/04 14:58:36 bpintea Exp $
+ * $Id: t_msgbuilder.h,v 1.21 2009/01/05 21:26:44 bpintea Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -72,8 +72,8 @@ char *build_uac_request(  str msg_type, str dst, str from,
  * local ACK to 200 OK (on behalf of applications using uac
  */
 char *build_dlg_ack(struct sip_msg* rpl, struct cell *Trans, 
-					unsigned int branch, str* to, unsigned int *len,
-					struct dest_info *dst);
+					unsigned int branch, str *hdrs, str *body,
+					unsigned int *len, struct dest_info* dst);
 
 
 /*
