@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.437 2009/01/05 21:26:44 bpintea Exp $
+# $Id: Makefile.defs,v 1.438 2009/01/05 21:32:26 bpintea Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -478,7 +478,6 @@ DEFS= $(extra_defs) \
 	 -DUSE_DNS_FAILOVER \
 	 -DUSE_DST_BLACKLIST \
 	 -DUSE_NAPTR \
-	 -DWITH_AS_SUPPORT \
 	 -DDBG_QM_MALLOC \
 	 #-DUSE_DNS_CACHE_STATS \
 	 #-DUSE_DST_BLACKLIST_STATS \
