@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_core.c,v 1.9 2008/12/18 16:06:03 andrei Exp $
+ * $Id: cfg_core.c,v 1.10 2009/01/06 17:14:12 ondra Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -46,7 +46,7 @@
 #include "cfg_core.h"
 
 struct cfg_group_core default_core_cfg = {
-	L_DEFAULT, /*  print only msg. < L_WARN */
+	L_WARN, 	/*  print only msg. < L_WARN */
 	LOG_DAEMON,	/* log_facility -- see syslog(3) */
 #ifdef USE_DST_BLACKLIST
 	/* blacklist */

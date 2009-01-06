@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.c,v 1.26 2008/12/11 19:12:41 mma Exp $
+ * $Id: dns_cache.c,v 1.27 2009/01/06 17:14:12 ondra Exp $
  *
  * resolver related functions
  *
@@ -284,13 +284,13 @@ void fix_dns_flags(str *name)
 #ifdef DNS_SRV_LB
 		dns_flags|=DNS_SRV_RR_LB;
 #else
-		LOG(L_WARN, "WARING: fix_dns_flags: SRV loadbalaning is set, but"
+		LOG(L_WARN, "WARNING: fix_dns_flags: SRV loadbalaning is set, but"
 					" support for it is not compiled -- ignoring\n");
 #endif
 	}
 	if (cfg_get(core, core_cfg, dns_try_naptr)) {
 #ifndef USE_NAPTR
-	LOG(L_WARN, "WARING: fix_dns_flags: NAPTR support is enabled, but"
+	LOG(L_WARN, "WARNING: fix_dns_flags: NAPTR support is enabled, but"
 				" support for it is not compiled -- ignoring\n");
 #endif
 		dns_flags|=DNS_TRY_NAPTR;
