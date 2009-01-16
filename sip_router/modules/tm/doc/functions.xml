@@ -6,8 +6,8 @@
     <sectioninfo>
 	<revhistory>
 	    <revision>
-		<revnumber>$Revision: 1.15 $</revnumber>
-		<date>$Date: 2008/08/11 17:41:17 $</date>
+		<revnumber>$Revision: 1.16 $</revnumber>
+		<date>$Date: 2009/01/16 09:47:59 $</date>
 	    </revision>
 	</revhistory>
     </sectioninfo>
@@ -835,6 +835,29 @@ failure_route[0]{
 	if (t_is_canceled()){
 		log("transaction canceled\n");
 		# ...
+	}
+} 
+	    </programlisting>
+	</example>
+	</section>
+
+	<section id="t_is_expired">
+	<title>
+	    <function>t_is_expired()</function>
+	</title>
+	<para>
+		Returns true if the current transaction has already been expired,
+		i.e. the max_inv_lifetime/max_noninv_lifetime interval has already
+		elapsed.
+	</para>
+	<example>
+	    <title><function>t_is_expired</function> usage</title>
+	    <programlisting>
+...
+failure_route[0]{ 
+	if (t_is_expired()){
+		log("transaction expired\n");
+		# There is no point in adding a new branch.
 	}
 } 
 	    </programlisting>
