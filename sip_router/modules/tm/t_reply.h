@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.h,v 1.31 2008/11/10 12:47:02 tirpi Exp $
+ * $Id: t_reply.h,v 1.32 2009/01/28 14:49:55 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -147,6 +147,8 @@ void tm_init_tags();
 
 /* selects the branch for fwd-ing the reply */
 int t_pick_branch(int inc_branch, int inc_code, struct cell *t, int *res_code);
+/* checks the selected branch from failure_route */
+int t_pick_branch_blind(struct cell *t, int *res_code);
 
 /* drops all the replies to make sure
  * that none of them is picked up again
