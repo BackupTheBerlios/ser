@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.131 2008/12/12 23:02:45 andrei Exp $
+ * $Id: tcp_main.c,v 1.132 2009/02/16 17:20:17 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -115,6 +115,11 @@
 #include <sys/types.h>
 #include <sys/select.h>
 #include <sys/socket.h>
+#ifdef HAVE_FILIO_H
+#include <sys/filio.h> /* needed on solaris 2.x for FIONREAD */
+#elif defined __OS_solaris
+#define BSD_COMP  /* needed on older solaris for FIONREAD */
+#endif /* HAVE_FILIO_H / __OS_solaris */
 #include <sys/ioctl.h>  /* ioctl() used on write error */
 #include <netinet/in.h>
 #include <netinet/in_systm.h>

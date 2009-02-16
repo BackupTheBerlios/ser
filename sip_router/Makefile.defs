@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.438 2009/01/05 21:32:26 bpintea Exp $
+# $Id: Makefile.defs,v 1.439 2009/02/16 17:20:17 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -1439,6 +1439,16 @@ ifeq  ($(OS), solaris)
 	endif
 	ifeq ($(NO_SELECT),)
 		DEFS+=-DHAVE_SELECT
+	endif
+	# check for filio.h
+	filio_h_locations= /usr/include/sys/filio.h \
+						$(LOCALBASE)/include/sys/filio.h
+	has_filio_h=$(shell for r in $(filio_h_locations); do \
+						if  [ -r "$$r" ] ; then echo yes; exit; fi \
+						done;\
+				)
+	ifeq ($(has_filio_h), yes)
+		DEFS+=-DHAVE_FILIO_H
 	endif
 	ifeq ($(mode), release)
 		#use these only if you're using gcc with Solaris ld
