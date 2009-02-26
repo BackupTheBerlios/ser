@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.271 2009/01/06 17:14:12 ondra Exp $
+ * $Id: main.c,v 1.272 2009/02/26 11:39:37 janakj Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.271 2009/01/06 17:14:12 ondra Exp $";
+static char id[]="@(#) $Id: main.c,v 1.272 2009/02/26 11:39:37 janakj Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1988,7 +1988,7 @@ try_again:
 		goto error;
 	}
 	/* declare the core cfg before the module configs */
-	if (cfg_declare("core", core_cfg_def, &default_core_cfg, cfg_size(core),
+	if (cfg_declare("core", core_cfg_def, &default_core_cfg, cfg_sizeof(core),
 			&core_cfg)
 	) {
 		LOG(L_CRIT, "could not declare the core configuration\n");

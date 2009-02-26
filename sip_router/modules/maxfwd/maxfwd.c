@@ -1,5 +1,5 @@
 /*
- * $Id: maxfwd.c,v 1.26 2008/02/26 18:48:28 tma0 Exp $
+ * $Id: maxfwd.c,v 1.27 2009/02/26 11:39:43 janakj Exp $
  *
  * maxfwd module
  *
@@ -105,7 +105,7 @@ struct module_exports exports= {
 static int mod_init(void) {
 	DBG(MODULE_NAME": initializing\n");
 	/* declare the configuration */
-	if (cfg_declare(MODULE_NAME, maxfwd_cfg_def, &default_maxfwd_cfg, cfg_size(maxfwd), &maxfwd_cfg)) {
+	if (cfg_declare(MODULE_NAME, maxfwd_cfg_def, &default_maxfwd_cfg, cfg_sizeof(maxfwd), &maxfwd_cfg)) {
 		ERR(MODULE_NAME": mod_init: failed to declare the configuration\n");
 		return E_UNSPEC;
 	}								 	

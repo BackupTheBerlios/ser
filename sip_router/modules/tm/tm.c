@@ -1,5 +1,5 @@
 /*
- * $Id: tm.c,v 1.180 2009/01/28 14:49:55 tirpi Exp $
+ * $Id: tm.c,v 1.181 2009/02/26 11:39:43 janakj Exp $
  *
  * TM module
  *
@@ -707,7 +707,7 @@ static int mod_init(void)
 #endif
 
 	/* declare the configuration */
-	if (cfg_declare("tm", tm_cfg_def, &default_tm_cfg, cfg_size(tm),
+	if (cfg_declare("tm", tm_cfg_def, &default_tm_cfg, cfg_sizeof(tm),
 			 &tm_cfg)) {
 		LOG(L_ERR, "ERROR: mod_init: failed to declare the configuration\n");
 		return -1;

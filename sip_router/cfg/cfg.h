@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.h,v 1.7 2008/10/13 14:09:18 tirpi Exp $
+ * $Id: cfg.h,v 1.8 2009/02/26 11:39:42 janakj Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -77,7 +77,7 @@ typedef struct _cfg_def {
 int cfg_declare(char *group_name, cfg_def_t *def, void *values, int def_size,
 			void **handler);
 
-#define cfg_size(gname) \
+#define cfg_sizeof(gname) \
 	sizeof(struct cfg_group_##gname)
 
 #define cfg_get(gname, handle, var) \

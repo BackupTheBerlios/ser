@@ -1,4 +1,4 @@
-# $Id: cfg.txt,v 1.9 2008/10/13 14:09:18 tirpi Exp $
+# $Id: cfg.txt,v 1.10 2009/02/26 11:39:42 janakj Exp $
 #
 # History:
 # --------
@@ -147,7 +147,7 @@ Each row consists of the following items:
 
 static int mod_init(void)
 {
-	if (cfg_declare("foo", cfg_def, &default_cfg, cfg_size(foo),
+	if (cfg_declare("foo", cfg_def, &default_cfg, cfg_sizeof(foo),
 			 &cfg_handle)
 	) {
 		/* error */
