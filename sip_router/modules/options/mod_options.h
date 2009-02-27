@@ -1,5 +1,5 @@
 /*
- * $Id: mod_options.h,v 1.5 2007/06/13 11:02:02 calrissian Exp $
+ * $Id: mod_options.h,v 1.6 2009/02/27 10:50:31 tirpi Exp $
  *
  * Options Reply Module
  *
@@ -29,9 +29,6 @@
 
 #ifndef _MOD_OPTIONS_H
 #define _MOD_OPTIONS_H
-
-#define OPTIONS "OPTIONS"
-#define OPTIONS_LEN (sizeof(OPTIONS) - 1)
 
 #define ACPT_STR "Accept: "
 #define ACPT_STR_LEN (sizeof(ACPT_STR) - 1)

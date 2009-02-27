@@ -1,5 +1,5 @@
 /*
- * $Id: mod_options.c,v 1.10 2007/06/13 11:02:02 calrissian Exp $
+ * $Id: mod_options.c,v 1.11 2009/02/27 10:50:31 tirpi Exp $
  *
  * Options Reply Module
  *
@@ -310,9 +310,7 @@ static int opt_reply(struct sip_msg* _msg, char* _foo, char* _bar)
 	int offset = 0;
 	int cont_len = 0;
 
-	if ((_msg->REQ_METHOD != METHOD_OTHER) ||
-	    (_msg->first_line.u.request.method.len != OPTIONS_LEN) ||
-	    (strncasecmp(_msg->first_line.u.request.method.s, OPTIONS, OPTIONS_LEN) != 0)) {
+	if (_msg->REQ_METHOD != METHOD_OPTIONS) {
 		LOG(L_ERR, "options_reply(): called for non-OPTIONS request\n");
 		return 0;
 	}
