@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.h,v 1.12 2007/03/14 17:28:04 andrei Exp $
+ * $Id: parse_fline.h,v 1.13 2009/02/27 09:01:42 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -58,6 +58,8 @@
 #define REGISTER_LEN 8
 #define SUBSCRIBE_LEN 9
 #define NOTIFY_LEN 6
+#define MESSAGE_LEN 7
+#define OPTIONS_LEN 7
 
 struct msg_start {
 	int type;					/* Type of the Message - Request/Response */

@@ -1,5 +1,5 @@
 /*
- * $Id: parse_fline.c,v 1.14 2007/03/14 17:28:04 andrei Exp $
+ * $Id: parse_fline.c,v 1.15 2009/02/27 09:01:42 tirpi Exp $
  * 
  * sip first line parsing automaton
  * 
@@ -123,6 +123,8 @@ char* parse_first_line(char* buffer, unsigned int len, struct msg_start * fl)
 	else IFISMETHOD( REGISTER, 'R')
 	else IFISMETHOD( SUBSCRIBE, 'S')
 	else IFISMETHOD( NOTIFY, 'N')
+	else IFISMETHOD( MESSAGE, 'M')
+	else IFISMETHOD( OPTIONS, 'O')
 	/* if you want to add another method XXX, include METHOD_XXX in
            H-file (this is the value which you will take later in
            processing and define XXX_LEN as length of method name;
