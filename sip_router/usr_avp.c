@@ -1,5 +1,5 @@
 /*
- * $Id: usr_avp.c,v 1.38 2009/01/04 15:34:54 bpintea Exp $
+ * $Id: usr_avp.c,v 1.39 2009/03/03 12:46:40 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -991,6 +991,7 @@ void free_avp_ident(avp_ident_t* attr)
 			abort();
 #endif
 		} else {
+			regfree(attr->name.re);
 			pkg_free(attr->name.re);
 		}
 	}
@@ -1019,8 +1020,10 @@ int parse_avp_spec( str *name, int *type, int_str *avp_name, int *index)
 
 void free_avp_name( int *type, int_str *avp_name)
 {
-	if ((*type & AVP_NAME_RE) && (avp_name->re))
+	if ((*type & AVP_NAME_RE) && (avp_name->re)) {
+		regfree(avp_name->re);
 		pkg_free(avp_name->re);
+	}
 }
 
 int add_avp_galias_str(char *alias_definition)
