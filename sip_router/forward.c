@@ -1,5 +1,5 @@
 /*
- * $Id: forward.c,v 1.120 2008/12/18 16:09:16 andrei Exp $
+ * $Id: forward.c,v 1.121 2009/03/04 20:56:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -641,11 +641,20 @@ int forward_reply(struct sip_msg* msg)
 	dst.comp=msg->via2->comp_no;
 #endif
 
+#if defined USE_TCP || defined USE_SCTP
+	if (
 #ifdef USE_TCP
-	if (dst.proto==PROTO_TCP
+			dst.proto==PROTO_TCP
 #ifdef USE_TLS
 			|| dst.proto==PROTO_TLS
 #endif
+#ifdef USE_SCTP
+			||
+#endif /* USE_SCTP */
+#endif /* USE_TCP */
+#ifdef USE_SCTP
+			dst.proto==PROTO_SCTP
+#endif /* USE_SCTP */
 			){
 		/* find id in i param if it exists */
 		if (msg->via1->i && msg->via1->i->value.s){

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.272 2009/02/26 11:39:37 janakj Exp $
+ * $Id: main.c,v 1.273 2009/03/04 20:56:00 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.272 2009/02/26 11:39:37 janakj Exp $";
+static char id[]="@(#) $Id: main.c,v 1.273 2009/03/04 20:56:00 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1959,6 +1959,14 @@ try_again:
 		}
 	}
 #endif /* USE_TCP */
+#ifdef USE_SCTP
+	if (!sctp_disable){
+		if (init_sctp()<0){
+			LOG(L_CRIT, "Could not initialize sctp, exiting...\n");
+			goto error;
+		}
+	}
+#endif /* USE_SCTP */
 	/* init_daemon? */
 	if (!dont_fork){
 		if ( daemonize(argv[0]) <0 ) goto error;
