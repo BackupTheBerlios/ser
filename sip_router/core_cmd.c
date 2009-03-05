@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.32 2009/03/05 17:20:53 andrei Exp $
+ * $Id: core_cmd.c,v 1.33 2009/03/05 17:21:11 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -571,7 +571,7 @@ static void core_tcp_options(rpc_t* rpc, void* c)
 			"connection_lifetime",  t.con_lifetime_s,
 			"max_connections(soft)", t.max_connections,
 			"fd_cache",		t.fd_cache,
-			"async",		t.tcp_buf_write,
+			"async",		t.async,
 			"connect_wait",	t.tcp_connect_wait,
 			"conn_wq_max",	t.tcpconn_wq_max,
 			"wq_max",		t.tcp_wq_max,

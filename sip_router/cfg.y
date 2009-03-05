@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.168 2009/03/05 17:20:42 andrei Exp $
+ * $Id: cfg.y,v 1.169 2009/03/05 17:21:11 andrei Exp $
  *
  *  cfg grammar
  *
@@ -873,7 +873,7 @@ assign_stm:
 	| TCP_OPT_FD_CACHE EQUAL error { yyerror("boolean value expected"); }
 	| TCP_OPT_BUF_WRITE EQUAL NUMBER {
 		#ifdef USE_TCP
-			tcp_default_cfg.tcp_buf_write=$3;
+			tcp_default_cfg.async=$3;
 		#else
 			warn("tcp support not compiled in");
 		#endif
