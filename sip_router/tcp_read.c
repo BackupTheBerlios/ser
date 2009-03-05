@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.51 2009/02/26 23:13:22 andrei Exp $
+ * $Id: tcp_read.c,v 1.52 2009/03/05 17:20:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -351,7 +351,7 @@ int tcp_read_headers(struct tcp_connection *c, int* read_flags)
 					case '\n':
 						break;
 					case '\r':
-						if (tcp_options.crlf_ping) {
+						if (cfg_get(tcp, tcp_cfg, crlf_ping)) {
 							r->state=H_SKIP_EMPTY_CR_FOUND;
 							r->start=p;
 						}

@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.273 2009/03/04 20:56:00 andrei Exp $
+ * $Id: main.c,v 1.274 2009/03/05 17:20:22 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.273 2009/03/04 20:56:00 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.274 2009/03/05 17:20:22 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1612,6 +1612,10 @@ int main(int argc, char** argv)
 		}
 	}
 
+	if (endianness_sanity_check() != 0){
+		fprintf(stderr, "BUG: endianness sanity tests failed\n");
+		goto error;
+	}
 	if (init_routes()<0) goto error;
 	if (init_nonsip_hooks()<0) goto error;
 
@@ -1916,6 +1920,27 @@ try_again:
 		goto error;
 	if (init_atomic_ops()==-1)
 		goto error;
+	if (init_basex() != 0){
+		LOG(L_CRIT, "could not initialize base* framework\n");
+		goto error;
+	}
+	if (cfg_init() < 0) {
+		LOG(L_CRIT, "could not initialize configuration framework\n");
+		goto error;
+	}
+	/* declare the core cfg before the module configs */
+	if (cfg_declare("core", core_cfg_def, &default_core_cfg, cfg_sizeof(core),
+			&core_cfg)
+	) {
+		LOG(L_CRIT, "could not declare the core configuration\n");
+		goto error;
+	}
+#ifdef USE_TCP
+	if (tcp_register_cfg()){
+		LOG(L_CRIT, "could not register the tcp configuration\n");
+		goto error;
+	}
+#endif /* USE_TCP */
 	/*init timer, before parsing the cfg!*/
 	if (init_timer()<0){
 		LOG(L_CRIT, "could not initialize timer, exiting...\n");
@@ -1990,27 +2015,6 @@ try_again:
 	if (real_time&4)
 			set_rt_prio(rt_prio, rt_policy);
 
-	
-	if (cfg_init() < 0) {
-		LOG(L_CRIT, "could not initialize configuration framework\n");
-		goto error;
-	}
-	/* declare the core cfg before the module configs */
-	if (cfg_declare("core", core_cfg_def, &default_core_cfg, cfg_sizeof(core),
-			&core_cfg)
-	) {
-		LOG(L_CRIT, "could not declare the core configuration\n");
-		goto error;
-	}
-
-	if (endianness_sanity_check() != 0){
-		LOG(L_CRIT, "BUG: endianness sanity tests failed\n");
-		goto error;
-	}
-	if (init_basex() != 0){
-		LOG(L_CRIT, "could not initialize base* framework\n");
-		goto error;
-	}
 	
 	if (init_modules() != 0) {
 		fprintf(stderr, "ERROR: error while initializing modules\n");

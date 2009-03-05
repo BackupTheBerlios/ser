@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.30 2009/03/04 20:56:11 andrei Exp $
+ * $Id: core_cmd.c,v 1.31 2009/03/05 17:20:22 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -560,7 +560,7 @@ static void core_tcp_options(rpc_t* rpc, void* c)
 {
 #ifdef USE_TCP
 	void *handle;
-	struct tcp_cfg_options t;
+	struct cfg_group_tcp t;
 
 	if (!tcp_disable){
 		tcp_options_get(&t);
