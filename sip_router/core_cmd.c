@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.33 2009/03/05 17:21:11 andrei Exp $
+ * $Id: core_cmd.c,v 1.34 2009/03/05 17:21:30 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -565,11 +565,12 @@ static void core_tcp_options(rpc_t* rpc, void* c)
 	if (!tcp_disable){
 		tcp_options_get(&t);
 		rpc->add(c, "{", &handle);
-		rpc->struct_add(handle, "dddddddddddddddddddddd",
+		rpc->struct_add(handle, "ddddddddddddddddddddddd",
 			"connect_timeout", t.connect_timeout_s,
 			"send_timeout",  t.send_timeout_s,
 			"connection_lifetime",  t.con_lifetime_s,
 			"max_connections(soft)", t.max_connections,
+			"no_connect",	t.no_connect,
 			"fd_cache",		t.fd_cache,
 			"async",		t.async,
 			"connect_wait",	t.tcp_connect_wait,

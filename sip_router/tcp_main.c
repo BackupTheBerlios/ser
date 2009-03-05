@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.137 2009/03/05 17:21:11 andrei Exp $
+ * $Id: tcp_main.c,v 1.138 2009/03/05 17:21:30 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -1659,6 +1659,9 @@ int tcp_send(struct dest_info* dst, union sockaddr_union* from,
 	}
 no_id:
 		if (unlikely(c==0)){
+			/* check if connect() is disabled */
+			if (cfg_get(tcp, tcp_cfg, no_connect))
+				return -1;
 			DBG("tcp_send: no open tcp connection found, opening new one\n");
 			/* create tcp connection */
 			if (likely(from==0)){

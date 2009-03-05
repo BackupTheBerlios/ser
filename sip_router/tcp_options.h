@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.h,v 1.9 2009/03/05 17:21:11 andrei Exp $
+ * $Id: tcp_options.h,v 1.10 2009/03/05 17:21:30 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -115,6 +115,7 @@ struct cfg_group_tcp{
 	int send_timeout_s; /* in s */
 	int con_lifetime_s; /* in s */
 	int max_connections;
+	int no_connect; /* do not open any new tcp connection (but accept them) */
 	int fd_cache; /* on /off */
 	/* tcp async options */
 	int async; /* on / off */
