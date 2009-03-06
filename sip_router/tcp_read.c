@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.52 2009/03/05 17:20:22 andrei Exp $
+ * $Id: tcp_read.c,v 1.53 2009/03/06 16:54:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -170,13 +170,13 @@ again:
 			*flags|=RD_CONN_EOF;
 			DBG("tcp_read: EOF on %p, FD %d\n", c, fd);
 		}else{
-			if (unlikely(c->state==S_CONN_CONNECT))
+			if (unlikely(c->state==S_CONN_CONNECT || c->state==S_CONN_ACCEPT))
 				c->state=S_CONN_OK;
 		}
 		/* short read */
 		*flags|=RD_CONN_SHORT_READ;
 	}else{ /* else normal full read */
-		if (unlikely(c->state==S_CONN_CONNECT))
+		if (unlikely(c->state==S_CONN_CONNECT || c->state==S_CONN_ACCEPT))
 			c->state=S_CONN_OK;
 	}
 #ifdef EXTRA_DEBUG
@@ -615,7 +615,8 @@ int tcp_read_req(struct tcp_connection* con, int* bytes_read, int* read_flags)
 				resp=CONN_ERROR;
 				goto end_req;
 			}
-			if(con->state!=S_CONN_OK) goto end_req; /* not enough data */
+			if (unlikely(con->state!=S_CONN_OK && con->state!=S_CONN_ACCEPT))
+				goto end_req; /* not enough data */
 		}
 #endif
 

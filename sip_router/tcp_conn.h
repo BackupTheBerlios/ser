@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_conn.h,v 1.43 2009/03/05 17:21:11 andrei Exp $
+ * $Id: tcp_conn.h,v 1.44 2009/03/06 16:54:10 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -89,9 +89,12 @@ enum tcp_req_states {	H_SKIP_EMPTY, H_SKIP_EMPTY_CR_FOUND, H_SKIP_EMPTY_CRLF_FOU
 		H_STUN_MSG, H_STUN_READ_BODY, H_STUN_FP, H_STUN_END, H_PING_CRLF
 	};
 
-enum tcp_conn_states { S_CONN_ERROR=-2, S_CONN_BAD=-1, S_CONN_OK=0, 
-						S_CONN_INIT, S_CONN_EOF, 
-						S_CONN_ACCEPT, S_CONN_CONNECT, S_CONN_PENDING };
+enum tcp_conn_states { S_CONN_ERROR=-2, S_CONN_BAD=-1,
+						S_CONN_OK=0, /* established (write or read) */
+						S_CONN_INIT, /* initial state (invalid) */
+						S_CONN_EOF,
+						S_CONN_ACCEPT, S_CONN_CONNECT
+					};
 
 
 /* fd communication commands */
