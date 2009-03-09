@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.c,v 1.13 2009/03/09 13:45:28 andrei Exp $
+ * $Id: tcp_options.c,v 1.14 2009/03/09 13:45:49 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -135,6 +135,8 @@ static cfg_def_t tcp_cfg_def[] = {
 		"internal send_timeout value in ticks, used in async. mode"},
 	{ "rd_buf_size", CFG_VAR_INT | CFG_ATOMIC,    512,    65536,  0,         0,
 		"internal read buffer size (should be > max. expected datagram)"},
+	{ "wq_blk_size", CFG_VAR_INT | CFG_ATOMIC,    1,    65535,  0,         0,
+		"internal async write block size (debugging use only for now)"},
 	{0, 0, 0, 0, 0, 0, 0}
 };
 
@@ -178,6 +180,7 @@ void init_tcp_options()
 	/* flags used for adding the default aliases of a new tcp connection */
 	tcp_default_cfg.new_conn_alias_flags=TCP_ALIAS_REPLACE;
 	tcp_default_cfg.rd_buf_size=DEFAULT_TCP_BUF_SIZE;
+	tcp_default_cfg.wq_blk_size=DEFAULT_TCP_WBUF_SIZE;
 }
 
 
@@ -291,6 +294,7 @@ static int tcp_cfg_def_fix(char* name, int* val)
 			return 0;
 		}
 	}
+	WARN("tcp config option \"%s\" not found\n", name);
 	return -1; /* not found */
 }
 
@@ -360,6 +364,7 @@ void tcp_options_check()
 #endif /* TCP_ASYNC */
 	tcp_default_cfg.max_connections=tcp_max_connections;
 	tcp_cfg_def_fix("rd_buf_size", (int*)&tcp_default_cfg.rd_buf_size);
+	tcp_cfg_def_fix("wq_blk_size", (int*)&tcp_default_cfg.wq_blk_size);
 	
 }
 

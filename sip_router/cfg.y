@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.172 2009/03/09 13:45:28 andrei Exp $
+ * $Id: cfg.y,v 1.173 2009/03/09 13:45:49 andrei Exp $
  *
  *  cfg grammar
  *
@@ -360,6 +360,7 @@ static void free_socket_id_lst(struct socket_id* i);
 %token TCP_OPT_CONN_WQ_MAX
 %token TCP_OPT_WQ_MAX
 %token TCP_OPT_RD_BUF
+%token TCP_OPT_WQ_BLK
 %token TCP_OPT_DEFER_ACCEPT
 %token TCP_OPT_DELAYED_ACK
 %token TCP_OPT_SYNCNT
@@ -917,6 +918,14 @@ assign_stm:
 		#endif
 	}
 	| TCP_OPT_RD_BUF error { yyerror("number expected"); }
+	| TCP_OPT_WQ_BLK EQUAL NUMBER {
+		#ifdef USE_TCP
+			tcp_default_cfg.wq_blk_size=$3;
+		#else
+			warn("tcp support not compiled in");
+		#endif
+	}
+	| TCP_OPT_WQ_BLK error { yyerror("number expected"); }
 	| TCP_OPT_DEFER_ACCEPT EQUAL NUMBER {
 		#ifdef USE_TCP
 			tcp_default_cfg.defer_accept=$3;

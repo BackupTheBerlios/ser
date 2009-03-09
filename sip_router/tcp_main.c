@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.140 2009/03/09 13:45:28 andrei Exp $
+ * $Id: tcp_main.c,v 1.141 2009/03/09 13:45:49 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -208,7 +208,6 @@
 #define TCPCONN_WAIT_TIMEOUT 1 /* 1 tick */
 
 #ifdef TCP_ASYNC
-#define TCP_WBUF_SIZE	1024 /* FIXME: after debugging switch to 16-32k */
 static unsigned int* tcp_total_wq=0;
 #endif
 
@@ -642,7 +641,7 @@ inline static int _wbufq_add(struct  tcp_connection* c, char* data,
 	}
 	
 	if (unlikely(q->last==0)){
-		wb_size=MAX_unsigned(TCP_WBUF_SIZE, size);
+		wb_size=MAX_unsigned(cfg_get(tcp, tcp_cfg, wq_blk_size), size);
 		wb=shm_malloc(sizeof(*wb)+wb_size-1);
 		if (unlikely(wb==0))
 			goto error;
@@ -663,7 +662,7 @@ inline static int _wbufq_add(struct  tcp_connection* c, char* data,
 	while(size){
 		last_free=wb->b_size-q->last_used;
 		if (last_free==0){
-			wb_size=MAX_unsigned(TCP_WBUF_SIZE, size);
+			wb_size=MAX_unsigned(cfg_get(tcp, tcp_cfg, wq_blk_size), size);
 			wb=shm_malloc(sizeof(*wb)+wb_size-1);
 			if (unlikely(wb==0))
 				goto error;
