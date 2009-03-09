@@ -1,5 +1,5 @@
 /* 
- * $Id: tcp_options.h,v 1.11 2009/03/09 13:39:10 andrei Exp $
+ * $Id: tcp_options.h,v 1.12 2009/03/09 13:45:28 andrei Exp $
  * 
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -140,6 +140,7 @@ struct cfg_group_tcp{
 	int new_conn_alias_flags;
 	/* internal, "fixed" vars */
 	unsigned int tcp_wq_timeout; /* in ticks, timeout for queued writes */
+	unsigned int rd_buf_size; /* read buffer size (should be > max. datagram)*/
 };
 
 extern struct cfg_group_tcp tcp_default_cfg;

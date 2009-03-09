@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.53 2009/03/06 16:54:10 andrei Exp $
+ * $Id: tcp_read.c,v 1.54 2009/03/09 13:45:28 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -130,7 +130,7 @@ int tcp_read(struct tcp_connection *c, int* flags)
 
 	r=&c->req;
 	fd=c->fd;
-	bytes_free=TCP_BUF_SIZE- (int)(r->pos - r->buf);
+	bytes_free=r->b_size- (int)(r->pos - r->buf);
 	
 	if (bytes_free==0){
 		LOG(L_ERR, "ERROR: tcp_read: buffer overrun, dropping\n");
