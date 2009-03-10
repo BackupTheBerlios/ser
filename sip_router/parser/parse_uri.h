@@ -1,5 +1,5 @@
 /*
- * $Id: parse_uri.h,v 1.9 2008/02/15 17:37:25 mma Exp $
+ * $Id: parse_uri.h,v 1.10 2009/03/10 16:26:36 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -38,6 +38,7 @@
 #include "../parser/msg_parser.h"
 
 
+extern str	s_sip, s_sips, s_tel, s_tels;
 
 /* buf= pointer to begining of uri (sip:x@foo.bar:5060;a=b?h=i)
  * len= len of uri
