@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.h,v 1.11 2009/02/26 23:09:22 andrei Exp $
+ * $Id: dst_blacklist.h,v 1.12 2009/03/13 13:59:28 tirpi Exp $
  *
  * resolver related functions
  *
@@ -116,8 +116,8 @@ int dst_blacklist_del(struct dest_info* si, struct sip_msg* msg);
  */
 void dst_blst_flush(void);
 
-int use_dst_blacklist_fixup(void *handle, str *name, void **val);
+int use_dst_blacklist_fixup(void *handle, str *gname, str *name, void **val);
 /* KByte to Byte conversion */
-int blst_max_mem_fixup(void *handle, str *name, void **val);
+int blst_max_mem_fixup(void *handle, str *gname, str *name, void **val);
 
 #endif

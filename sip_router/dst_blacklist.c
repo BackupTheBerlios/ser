@@ -1,5 +1,5 @@
 /*
- * $Id: dst_blacklist.c,v 1.23 2009/02/26 23:09:22 andrei Exp $
+ * $Id: dst_blacklist.c,v 1.24 2009/03/13 13:59:28 tirpi Exp $
  *
  * resolver related functions
  *
@@ -1176,7 +1176,7 @@ void dst_blst_add(rpc_t* rpc, void* ctx)
 /* fixup function for use_dst_blacklist
  * verifies that dst_blacklist_init is set to 1
  */
-int use_dst_blacklist_fixup(void *handle, str *name, void **val)
+int use_dst_blacklist_fixup(void *handle, str *gname, str *name, void **val)
 {
 	if ((int)(long)(*val) && !dst_blacklist_init) {
 		LOG(L_ERR, "ERROR: use_dst_blacklist_fixup(): "
@@ -1188,7 +1188,7 @@ int use_dst_blacklist_fixup(void *handle, str *name, void **val)
 }
 
 /* KByte to Byte conversion */
-int blst_max_mem_fixup(void *handle, str *name, void **val)
+int blst_max_mem_fixup(void *handle, str *gname, str *name, void **val)
 {
 	unsigned int	u;
 

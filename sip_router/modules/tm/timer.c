@@ -1,5 +1,5 @@
 /*
- * $Id: timer.c,v 1.84 2008/05/30 21:10:53 andrei Exp $
+ * $Id: timer.c,v 1.85 2009/03/13 13:59:29 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -233,7 +233,7 @@ error:
 /* fixup function for the timer values
  * (called by the configuration framework)
  */
-int timer_fixup(void *handle, str *name, void **val)
+int timer_fixup(void *handle, str *gname, str *name, void **val)
 {
 	ticks_t	t;
 

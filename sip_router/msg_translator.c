@@ -1,5 +1,5 @@
 /*
- * $Id: msg_translator.c,v 1.155 2009/03/09 13:47:48 andrei Exp $
+ * $Id: msg_translator.c,v 1.156 2009/03/13 13:59:28 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -162,7 +162,7 @@ static unsigned int global_req_flags=0;
 /** per process fixup function for global_req_flags.
   * It should be called from the configuration framework.
   */
-void fix_global_req_flags( str* name)
+void fix_global_req_flags(str* gname, str* name)
 {
 	global_req_flags=0;
 	switch(cfg_get(core, core_cfg, udp_mtu_try_proto)){

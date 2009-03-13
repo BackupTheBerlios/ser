@@ -1,5 +1,5 @@
 /*
- * $Id: dns_cache.h,v 1.9 2008/02/11 17:11:59 tirpi Exp $
+ * $Id: dns_cache.h,v 1.10 2009/03/13 13:59:28 tirpi Exp $
  *
  * resolver/dns related functions, dns cache and failover
  *
@@ -178,10 +178,10 @@ struct dns_srv_handle{
 
 const char* dns_strerror(int err);
 
-void fix_dns_flags(str *name);
-int use_dns_failover_fixup(void *handle, str *name, void **val);
-int use_dns_cache_fixup(void *handle, str *name, void **val);
-int dns_cache_max_mem_fixup(void *handle, str *name, void **val);
+void fix_dns_flags(str *gname, str *name);
+int use_dns_failover_fixup(void *handle, str *gname, str *name, void **val);
+int use_dns_cache_fixup(void *handle, str *gname, str *name, void **val);
+int dns_cache_max_mem_fixup(void *handle, str *gname, str *name, void **val);
 int init_dns_cache();
 #ifdef USE_DNS_CACHE_STATS
 int init_dns_cache_stats(int iproc_num);

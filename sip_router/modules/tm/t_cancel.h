@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.h,v 1.14 2008/04/01 13:05:23 tirpi Exp $
+ * $Id: t_cancel.h,v 1.15 2009/03/13 13:59:29 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -115,7 +115,7 @@ inline short static should_cancel_branch( struct cell *t, int b, int noreply )
 
 const char* rpc_cancel_doc[2];
 void rpc_cancel(rpc_t* rpc, void* c);
-int cancel_b_flags_fixup(void* handle, str* name, void** val);
+int cancel_b_flags_fixup(void* handle, str* gname, str* name, void** val);
 int cancel_b_flags_get(unsigned int* f, int m);
 
 #endif

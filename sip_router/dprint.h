@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.22 2009/02/26 23:14:12 andrei Exp $
+ * $Id: dprint.h,v 1.23 2009/03/13 13:59:28 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -108,7 +108,7 @@ extern volatile int dprint_crit;
 #endif
 
 int str2facility(char *s);
-int log_facility_fixup(void *handle, str *name, void **val);
+int log_facility_fixup(void *handle, str *gname, str *name, void **val);
 
 
 /*

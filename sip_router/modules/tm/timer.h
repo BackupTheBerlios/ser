@@ -1,5 +1,5 @@
 /*
- * $Id: timer.h,v 1.44 2008/02/26 17:37:59 andrei Exp $
+ * $Id: timer.h,v 1.45 2009/03/13 13:59:29 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -79,7 +79,7 @@ extern struct msgid_var user_noninv_max_lifetime;
 
 
 extern int tm_init_timers();
-int timer_fixup(void *handle, str *name, void **val);
+int timer_fixup(void *handle, str *gname, str *name, void **val);
 
 ticks_t wait_handler(ticks_t t, struct timer_ln *tl, void* data);
 ticks_t retr_buf_handler(ticks_t t, struct timer_ln *tl, void* data);

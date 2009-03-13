@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.c,v 1.13 2009/01/06 17:14:12 ondra Exp $
+ * $Id: dprint.c,v 1.14 2009/03/13 13:59:28 tirpi Exp $
  *
  * debug print 
  *
@@ -83,7 +83,7 @@ int str2facility(char *s)
 }
 
 /* fixup function for log_facility cfg parameter */
-int log_facility_fixup(void *handle, str *name, void **val)
+int log_facility_fixup(void *handle, str *gname, str *name, void **val)
 {
 	int	i;
 

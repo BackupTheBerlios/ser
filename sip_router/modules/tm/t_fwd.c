@@ -1,5 +1,5 @@
 /*
- * $Id: t_fwd.c,v 1.107 2008/11/10 12:47:02 tirpi Exp $
+ * $Id: t_fwd.c,v 1.108 2009/03/13 13:59:29 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -1297,7 +1297,7 @@ int t_replicate(struct sip_msg *p_msg,  struct proxy_l *proxy, int proto )
 }
 
 /* fixup function for reparse_on_dns_failover modparam */
-int reparse_on_dns_failover_fixup(void *handle, str *name, void **val)
+int reparse_on_dns_failover_fixup(void *handle, str *gname, str *name, void **val)
 {
 #ifdef USE_DNS_FAILOVER
 	if ((int)(long)(*val) && mhomed) {

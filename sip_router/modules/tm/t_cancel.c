@@ -1,5 +1,5 @@
 /*
- * $Id: t_cancel.c,v 1.33 2008/11/28 15:24:15 andrei Exp $
+ * $Id: t_cancel.c,v 1.34 2009/03/13 13:59:29 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -392,7 +392,7 @@ int cancel_b_flags_get(unsigned int* f, int m)
 
 /* fixup function for the default cancel branch method/flags
  * (called by the configuration framework) */
-int cancel_b_flags_fixup(void* handle, str* name, void** val)
+int cancel_b_flags_fixup(void* handle, str* gname, str* name, void** val)
 {
 	unsigned int m,f;
 	int ret;
