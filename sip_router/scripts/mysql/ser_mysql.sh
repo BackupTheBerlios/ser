@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: ser_mysql.sh,v 1.8 2008/06/25 23:45:51 janakj Exp $
+# $Id: ser_mysql.sh,v 1.9 2009/03/16 10:35:10 paka Exp $
 #
 # SER MySQL Database Administration Tool
 #
@@ -317,7 +317,7 @@ if [ -z "$SQLUSER" ] ; then SQLUSER="$DEFAULT_SQLUSER"; fi;
 if [ -z "$MYSQL" ] ; then MYSQL="$DEFAULT_MYSQL"; fi
 if [ -z "$MYSQLDUMP" ] ; then MYSQLDUMP="$DEFAULT_MYSQLDUMP"; fi
 if [ -z "$DUMP_OPTS" ] ; then DUMP_OPTS="$DEFAULT_DUMP_OPTS"; fi 
-if [ -z "SCRIPT_DIR" ] ; then SCRIPT_DIR="$DEFAULT_SCRIPT_DIR"; fi
+if [ -z "$SCRIPT_DIR" ] ; then SCRIPT_DIR="$DEFAULT_SCRIPT_DIR"; fi
 if [ -z "$CREATE_SCRIPT" ] ; then CREATE_SCRIPT="$DEFAULT_CREATE_SCRIPT"; fi
 if [ -z "$DATA_SCRIPT" ] ; then DATA_SCRIPT="$DEFAULT_DATA_SCRIPT"; fi
 if [ -z "$DROP_SCRIPT" ] ; then DROP_SCRIPT="$DEFAULT_DROP_SCRIPT"; fi
