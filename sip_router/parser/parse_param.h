@@ -1,5 +1,5 @@
 /* 
- * $Id: parse_param.h,v 1.15 2006/11/22 17:56:15 janakj Exp $
+ * $Id: parse_param.h,v 1.16 2009/03/19 15:15:04 janakj Exp $
  *
  * Generic Parameter Parser
  *
@@ -46,7 +46,7 @@ typedef enum ptype {
 	P_OTHER = 0, /* Unknown parameter */
 	P_Q,         /* Contact: q parameter */
 	P_EXPIRES,   /* Contact: expires parameter */
-	P_METHOD,    /* Contact: method parameter */
+	P_METHODS,   /* Contact: methods parameter */
 	P_RECEIVED,  /* Contact: received parameter */
 	P_TRANSPORT, /* URI: transport parameter */
 	P_LR,        /* URI: lr parameter */
@@ -88,7 +88,7 @@ typedef struct param {
 struct contact_hooks {
 	struct param* expires;  /* expires parameter */
 	struct param* q;        /* q parameter */
-	struct param* method;   /* method parameter */
+	struct param* methods;  /* methods parameter */
 	struct param* received; /* received parameter */
 	struct param* instance; /* sip.instance parameter */
 };
