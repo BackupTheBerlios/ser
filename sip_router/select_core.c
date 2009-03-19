@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.34 2008/05/23 10:13:46 tirpi Exp $
+ * $Id: select_core.c,v 1.35 2009/03/19 15:15:51 janakj Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -236,8 +236,8 @@ int select_contact_params_spec(str* res, select_t* s, struct sip_msg* msg)
 		TEST_RET_res_body(c->q);
 	case SEL_PARAM_EXPIRES:
 		TEST_RET_res_body(c->expires);
-	case SEL_PARAM_METHOD:
-		TEST_RET_res_body(c->method);
+	case SEL_PARAM_METHODS:
+		TEST_RET_res_body(c->methods);
 	case SEL_PARAM_RECEIVED:
 		TEST_RET_res_body(c->received);
 	case SEL_PARAM_INSTANCE:
