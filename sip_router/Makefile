@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.208 2009/03/19 13:42:09 andrei Exp $
+# $Id: Makefile,v 1.209 2009/03/19 14:32:36 andrei Exp $
 #
 # sip_router makefile
 #
@@ -540,7 +540,8 @@ man: modules.lst
 	done; true
 
 .PHONY: install
-install:all install-bin install-modules install-cfg \
+install: export compile_for_install=yes
+install: install-bin install-modules install-cfg \
 	install-doc install-man install-utils install-share
 
 .PHONY: dbinstall
