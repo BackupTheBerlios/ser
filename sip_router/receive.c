@@ -1,5 +1,5 @@
 /* 
- *$Id: receive.c,v 1.62 2009/03/05 17:20:42 andrei Exp $
+ *$Id: receive.c,v 1.63 2009/03/20 16:10:37 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -127,7 +127,7 @@ int receive_msg(char* buf, unsigned int len, struct receive_info* rcv_info)
 
 	if (msg->first_line.type==SIP_REQUEST){
 		if (!IS_SIP(msg)){
-			if (nonsip_msg_run_hooks(msg)!=NONSIP_MSG_ACCEPT);
+			if (nonsip_msg_run_hooks(msg)!=NONSIP_MSG_ACCEPT)
 				goto end; /* drop the message */
 		}
 		/* sanity checks */
