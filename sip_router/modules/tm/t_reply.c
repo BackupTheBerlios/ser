@@ -1,5 +1,5 @@
 /*
- * $Id: t_reply.c,v 1.164 2009/01/28 14:49:55 tirpi Exp $
+ * $Id: t_reply.c,v 1.165 2009/03/29 15:39:27 janakj Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -2070,6 +2070,7 @@ trans_not_found:
 	if (goto_on_sl_reply) {
 		/* the script writer has a chance to decide whether to
 		forward the reply or not */
+		reset_static_buffer();
 		init_run_actions_ctx(&ra_ctx);
 		return run_actions(&ra_ctx, onreply_rt.rlist[goto_on_sl_reply], p_msg);
 	} else {
