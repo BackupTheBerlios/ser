@@ -1,5 +1,5 @@
 /*
- * $Id: t_suspend.c,v 1.2 2008/12/05 13:59:35 tirpi Exp $
+ * $Id: t_suspend.c,v 1.3 2009/03/31 12:33:38 tirpi Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -29,6 +29,8 @@
  *  2008-11-10	Initial version (Miklos)
  *
  */
+
+#include "../../select_buf.h" /* reset_static_buffer() */
 
 #include "sip_msg.h"
 #include "t_reply.h"
@@ -148,6 +150,7 @@ int t_continue(unsigned int hash_index, unsigned int label,
 	}
 	faked_env( t, &faked_req);
 
+	reset_static_buffer();
 	init_run_actions_ctx(&ra_ctx);
 	if (run_actions(&ra_ctx, route, &faked_req)<0)
 		LOG(L_ERR, "ERROR: t_continue: Error in run_action\n");
