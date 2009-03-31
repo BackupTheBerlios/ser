@@ -1,5 +1,5 @@
 /*
- * $Id: select_buf.h,v 1.3 2007/03/01 12:30:27 mma Exp $
+ * $Id: select_buf.h,v 1.4 2009/03/31 12:32:31 tirpi Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -34,6 +34,8 @@
 
 #ifndef SELECT_BUFFER_H
 #define SELECT_BUFFER_H
+
+#include "str.h"
 
 /*
  * Request for space from buffer
