@@ -1,4 +1,4 @@
-#  $Id: Makefile,v 1.4 2007/05/08 08:30:40 andrei Exp $
+#  $Id: Makefile,v 1.5 2009/04/03 13:03:46 tirpi Exp $
 #
 #  libs makefile
 #
@@ -7,7 +7,7 @@
 #
 
 
-SUBDIRS=binrpc cds xcap presence
+SUBDIRS=binrpc cds xcap presence shm_regex
 
 .PHONY: subdirs $(SUBDIRS) 
 
