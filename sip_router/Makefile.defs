@@ -1,4 +1,4 @@
-# $Id: Makefile.defs,v 1.441 2009/04/03 11:38:34 andrei Exp $
+# $Id: Makefile.defs,v 1.442 2009/04/10 12:28:00 andrei Exp $
 #
 # makefile defs (CC, LD,a.s.o)
 #
@@ -1651,7 +1651,7 @@ endif
 
 #add libssl if needed
 ifeq ($(CORE_TLS), 1)
-C_DEFS+= -I$(LOCALBASE)/ssl/include
+C_INCLUDES+= -I$(LOCALBASE)/ssl/include
 LIBS+= -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib -lssl -lcrypto \
 		$(TLS_EXTRA_LIBS)
 # NOTE: depending on the way in which libssl was compiled you might
@@ -1660,7 +1660,7 @@ LIBS+= -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib -lssl -lcrypto \
 endif
 
 ifneq ($(STUN),)
-C_DEFS+= -I$(LOCALBASE)/ssl/include
+C_INCLUDES+= -I$(LOCALBASE)/ssl/include
 LIBS+= -L$(LOCALBASE)/lib -L$(LOCALBASE)/ssl/lib -lcrypto
 endif
 
