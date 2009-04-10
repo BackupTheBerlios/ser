@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.146 2009/04/10 10:24:40 andrei Exp $
+ * $Id: tcp_main.c,v 1.147 2009/04/10 10:26:01 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -520,17 +520,15 @@ again:
 #endif
 	while(1){
 		elapsed=(get_ticks()-ticks)*TIMER_TICK;
-		if (elapsed<to)
-			to-=elapsed;
-		else 
+		if (elapsed>=to)
 			goto error_timeout;
 #if defined(HAVE_SELECT) && defined(BLOCKING_USE_SELECT)
 		sel_set=orig_set;
-		timeout.tv_sec=to;
+		timeout.tv_sec=to-elapsed;
 		timeout.tv_usec=0;
 		n=select(fd+1, 0, &sel_set, 0, &timeout);
 #else
-		n=poll(&pf, 1, to*1000);
+		n=poll(&pf, 1, (to-elapsed)*1000);
 #endif
 		if (n<0){
 			if (errno==EINTR) continue;
