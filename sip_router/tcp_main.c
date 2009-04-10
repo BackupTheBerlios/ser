@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.145 2009/04/10 10:23:14 andrei Exp $
+ * $Id: tcp_main.c,v 1.146 2009/04/10 10:24:40 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -3972,6 +3972,7 @@ void destroy_tcp()
 			shm_free(tcpconn_id_hash);
 			tcpconn_id_hash=0;
 		}
+		DESTROY_TCP_STATS();
 		if (tcp_connections_no){
 			shm_free(tcp_connections_no);
 			tcp_connections_no=0;
@@ -4032,6 +4033,7 @@ int init_tcp()
 		goto error;
 	}
 	*tcp_connections_no=0;
+	if (INIT_TCP_STATS()!=0) goto error;
 	connection_id=shm_malloc(sizeof(int));
 	if (connection_id==0){
 		LOG(L_CRIT, "ERROR: init_tcp: could not alloc globals\n");
