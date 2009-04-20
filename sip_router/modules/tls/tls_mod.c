@@ -1,5 +1,5 @@
 /*
- * $Id: tls_mod.c,v 1.15 2008/06/06 00:03:30 janakj Exp $
+ * $Id: tls_mod.c,v 1.16 2009/04/20 14:22:54 andrei Exp $
  *
  * TLS module - module interface
  *
@@ -300,6 +300,12 @@ static int mod_init(void)
 		LOG(L_WARN, "WARNING: tls: mod_init: tls support is disabled "
 				"(set enable_tls=1 in the config to enable it)\n");
 		return 0;
+	}
+
+	if (cfg_get(tcp, tcp_cfg, async) && !tls_force_run){
+		ERR("tls does not support tcp in async mode, please use"
+				" tcp_async=no in the config file\n");
+		return -1;
 	}
 	     /* Convert tls_method parameter to integer */
 	method = tls_parse_method(&tls_method);
