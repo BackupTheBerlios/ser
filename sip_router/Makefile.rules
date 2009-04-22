@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.38 2009/04/03 10:50:13 andrei Exp $
+# $Id: Makefile.rules,v 1.39 2009/04/22 09:00:37 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -198,12 +198,12 @@ mrproper: clean
 		done \
 	fi
 
-.PHONY: mantainer-cleaan
-mantainer-clean: distclean
+.PHONY: maintainer-clean
+maintainer-clean: distclean
 	-rm -f TAGS tags *.dbg .*.swp
 	-@for r in $(modules) "" ; do \
 		if [ -d "$$r" ]; then \
-			$(MAKE) -C $$r mantainer-clean; \
+			$(MAKE) -C $$r maintainer-clean; \
 		fi ; \
 	 done 
 

@@ -1,6 +1,6 @@
 
 #
-# $Id: Makefile.targets,v 1.5 2008/07/01 20:31:55 andrei Exp $
+# $Id: Makefile.targets,v 1.6 2009/04/22 09:00:37 andrei Exp $
 #
 #
 # Makefile targets that should be treated specially, 
@@ -13,7 +13,7 @@
 #  2008-06-26  initial version (andrei) 
 #
 
-clean_targets:=	clean proper distclean realclean mantainer-clean clean_libs \
+clean_targets:=	clean proper distclean realclean maintainer-clean clean_libs \
 				clean-all proper-all distclean-all realclean-all \
 				clean_cfg clean_modules_cfg clean-modules-cfg
 doc_targets:=	modules-doc modules-readme README modules-man man \
