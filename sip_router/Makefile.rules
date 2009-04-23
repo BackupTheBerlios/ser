@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.rules,v 1.40 2009/04/22 13:46:30 andrei Exp $
+# $Id: Makefile.rules,v 1.41 2009/04/23 07:56:42 andrei Exp $
 #
 #
 # common Makefile rules, included by main Makefile & the  modules
@@ -254,7 +254,7 @@ ifeq (,$(MAKECMDGOALS))
 -include $(depends)
 else
 ifeq (,$(strip $(nodep_targets)))
-include Makefile.targets
+include $(COREPATH)/Makefile.targets
 endif
 ifneq (,$(filter-out $(nodep_targets),$(MAKECMDGOALS)))
 -include $(depends)
