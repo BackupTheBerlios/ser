@@ -1,5 +1,5 @@
 /*
- * $Id: dprint.h,v 1.23 2009/03/13 13:59:28 tirpi Exp $
+ * $Id: dprint.h,v 1.24 2009/05/07 11:50:41 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -72,7 +72,8 @@
 /*
  * Log levels
  */
-#define L_ALERT		-3
+#define L_ALERT		-4
+#define L_BUG		-3
 #define L_CRIT  	-2
 #define L_ERR   	-1
 #define L_WARN   	0
@@ -230,7 +231,7 @@ int log_facility_fixup(void *handle, str *gname, str *name, void **val);
  */
 #ifdef __SUNPRO_C
 #	define ALERT(...)  LOG(L_ALERT,  __VA_ARGS__)
-#	define BUG(...)    LOG(L_CRIT,   __VA_ARGS__)
+#	define BUG(...)    LOG(L_BUG,   __VA_ARGS__)
 #	define ERR(...)    LOG(L_ERR,    __VA_ARGS__)
 #	define WARN(...)   LOG(L_WARN,   __VA_ARGS__)
 #	define NOTICE(...) LOG(L_NOTICE, __VA_ARGS__)
@@ -247,7 +248,7 @@ int log_facility_fixup(void *handle, str *gname, str *name, void **val);
 		
 #else
 #	define ALERT(fmt, args...)  LOG(L_ALERT,  fmt, ## args)
-#	define BUG(fmt, args...)    LOG(L_CRIT,   fmt, ## args)
+#	define BUG(fmt, args...)    LOG(L_BUG,   fmt, ## args)
 #	define ERR(fmt, args...)    LOG(L_ERR,    fmt, ## args)
 #	define WARN(fmt, args...)   LOG(L_WARN,   fmt, ## args)
 #	define NOTICE(fmt, args...) LOG(L_NOTICE, fmt, ## args)
