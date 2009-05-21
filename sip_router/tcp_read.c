@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_read.c,v 1.57 2009/04/10 11:26:11 andrei Exp $
+ * $Id: tcp_read.c,v 1.58 2009/05/21 15:24:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -149,7 +149,7 @@ again:
 				bytes_read=0; /* nothing has been read */
 			}else if (errno == EINTR) goto again;
 			else{
-				if (unlikely(c->state=S_CONN_CONNECT)){
+				if (unlikely(c->state==S_CONN_CONNECT)){
 					switch(errno){
 						case ECONNRESET:
 #ifdef USE_DST_BLACKLIST

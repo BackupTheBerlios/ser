@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.148 2009/04/23 08:56:00 andrei Exp $
+ * $Id: tcp_main.c,v 1.149 2009/05/21 15:24:15 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -3498,7 +3498,7 @@ inline static int handle_tcpconn_ev(struct tcp_connection* tcpconn, short ev,
 							tcpconn);
 			}
 			if (unlikely(ev & POLLERR)){
-				if (unlikely(tcpconn->state=S_CONN_CONNECT)){
+				if (unlikely(tcpconn->state==S_CONN_CONNECT)){
 #ifdef USE_DST_BLACKLIST
 					if (cfg_get(core, core_cfg, use_dst_blacklist))
 						dst_blacklist_su(BLST_ERR_CONNECT, tcpconn->rcv.proto,
