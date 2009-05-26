@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.274 2009/03/05 17:20:22 andrei Exp $
+ * $Id: main.c,v 1.275 2009/05/26 17:20:12 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.274 2009/03/05 17:20:22 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.275 2009/05/26 17:20:12 andrei Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1941,6 +1941,12 @@ try_again:
 		goto error;
 	}
 #endif /* USE_TCP */
+#ifdef USE_SCTP
+	if (sctp_register_cfg()){
+		LOG(L_CRIT, "could not register the sctp configuration\n");
+		goto error;
+	}
+#endif /* USE_SCTP */
 	/*init timer, before parsing the cfg!*/
 	if (init_timer()<0){
 		LOG(L_CRIT, "could not initialize timer, exiting...\n");

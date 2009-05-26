@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_options.h,v 1.2 2008/11/07 14:53:04 andrei Exp $
+ * $Id: sctp_options.h,v 1.3 2009/05/26 17:20:12 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -22,6 +22,7 @@
  * History:
  * --------
  *  2008-08-07  initial version (andrei)
+ *  2009-05-26  runtime cfg support (andrei)
  */
 
 #ifndef _sctp_options_h
@@ -33,18 +34,22 @@
 #define MAX_SCTP_SEND_RETRIES 9
 
 
-struct sctp_cfg_options{
-	int sctp_so_rcvbuf;
-	int sctp_so_sndbuf;
-	unsigned int sctp_autoclose; /* in seconds */
-	unsigned int sctp_send_ttl; /* in milliseconds */
-	unsigned int sctp_send_retries;
+struct cfg_group_sctp{
+	int so_rcvbuf;
+	int so_sndbuf;
+	unsigned int autoclose; /* in seconds */
+	unsigned int send_ttl; /* in milliseconds */
+	unsigned int send_retries;
 };
 
-extern struct sctp_cfg_options sctp_options;
+extern struct cfg_group_sctp sctp_default_cfg;
+
+/* sctp config handle */
+extern void* sctp_cfg;
 
 void init_sctp_options();
 void sctp_options_check();
-void sctp_options_get(struct sctp_cfg_options *s);
+int sctp_register_cfg();
+void sctp_options_get(struct cfg_group_sctp *s);
 
 #endif /* _sctp_options_h */

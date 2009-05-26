@@ -1,5 +1,5 @@
 /*
- * $Id: core_cmd.c,v 1.36 2009/03/20 17:26:51 andrei Exp $
+ * $Id: core_cmd.c,v 1.37 2009/05/26 17:20:12 andrei Exp $
  *
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -608,16 +608,17 @@ static void core_sctp_options(rpc_t* rpc, void* c)
 {
 #ifdef USE_SCTP
 	void *handle;
-	struct sctp_cfg_options t;
+	struct cfg_group_sctp t;
 
 	if (!sctp_disable){
 		sctp_options_get(&t);
 		rpc->add(c, "{", &handle);
-		rpc->struct_add(handle, "dddd",
-			"sctp_autoclose",		t.sctp_autoclose,
-			"sctp_send_ttl",	t.sctp_autoclose,
-			"sctp_socket_rcvbuf",	t.sctp_so_rcvbuf,
-			"sctp_socket_sndbuf",	t.sctp_so_sndbuf
+		rpc->struct_add(handle, "ddddd",
+			"sctp_autoclose",		t.autoclose,
+			"sctp_send_ttl",	t.send_ttl,
+			"sctp_send_retries",	t.send_retries,
+			"sctp_socket_rcvbuf",	t.so_rcvbuf,
+			"sctp_socket_sndbuf",	t.so_sndbuf
 		);
 	}else{
 		rpc->fault(c, 500, "sctp support disabled");
