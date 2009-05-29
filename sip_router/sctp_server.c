@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.c,v 1.25 2009/05/26 17:20:12 andrei Exp $
+ * $Id: sctp_server.c,v 1.26 2009/05/29 08:42:28 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -181,6 +181,23 @@ inline static int sctp_init_su(struct socket_info* sock_info)
 	return 0;
 error:
 	return -1;
+}
+
+
+
+/** set a socket option (wrapper over setsockopt).
+  * @param err_prefix - if 0 no error message is printed on failure, if !=0
+  *                     it will be prepended to the error message.
+  * @return 0 on success, -1 on error */
+int sctp_sockopt(struct socket_info* si, int level, int optname, void* optval,
+					socklen_t optlen, char* err_prefix)
+{
+	if (setsockopt(si->socket, level, optname, optval, optlen) ==-1){
+		if (err_prefix)
+			ERR("%s: %s [%d]\n", err_prefix, strerror(errno), errno);
+		return -1;
+	}
+	return 0;
 }
 
 

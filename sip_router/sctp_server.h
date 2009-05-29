@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.h,v 1.4 2009/03/04 20:56:00 andrei Exp $
+ * $Id: sctp_server.h,v 1.5 2009/05/29 08:42:28 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -48,4 +48,6 @@ void sctp_get_info(struct sctp_gen_info* sinf);
 
 void destroy_sctp();
 
+int sctp_sockopt(struct socket_info* si, int level, int optname, void* optval,
+					socklen_t optlen, char* err_prefix);
 #endif /* _sctp_server_h */
