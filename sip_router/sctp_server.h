@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.h,v 1.6 2009/05/29 12:24:58 andrei Exp $
+ * $Id: sctp_server.h,v 1.7 2009/06/26 17:55:05 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -50,4 +50,6 @@ void destroy_sctp();
 
 int sctp_setsockopt(int s, int level, int optname,
 					void* optval, socklen_t optlen, char* err_prefix);
+
+void sctp_con_tracking_flush();
 #endif /* _sctp_server_h */
