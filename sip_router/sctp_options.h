@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_options.h,v 1.7 2009/06/26 17:55:05 andrei Exp $
+ * $Id: sctp_options.h,v 1.8 2009/06/26 17:56:44 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -48,6 +48,7 @@ struct cfg_group_sctp{
 	int assoc_tracking; /* track associations */
 	int assoc_reuse; /* reuse the request connection for sending the reply,
 					    depends on assoc_tracking */
+	int max_assocs; /* maximum associations, -1 means disabled */
 	unsigned int srto_initial; /** initial retr. timeout */
 	unsigned int srto_max;     /** max retr. timeout */
 	unsigned int srto_min;     /** min retr. timeout */
