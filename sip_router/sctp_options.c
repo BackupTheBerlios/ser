@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_options.c,v 1.12 2009/06/26 17:56:44 andrei Exp $
+ * $Id: sctp_options.c,v 1.13 2009/06/28 09:22:38 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -27,11 +27,13 @@
 
 #include <string.h>
 #include <sys/types.h>
+#ifdef USE_SCTP
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/in_systm.h>
 #include <netinet/ip.h>
 #include <netinet/sctp.h>
+#endif /* USE_SCTP */
 #include <errno.h>
 
 #include "sctp_options.h"
