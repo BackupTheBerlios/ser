@@ -1,5 +1,5 @@
 /* 
- * $Id: io_wait.c,v 1.12 2007/11/29 21:01:45 andrei Exp $
+ * $Id: io_wait.c,v 1.13 2009/06/28 09:23:12 andrei Exp $
  * 
  * Copyright (C) 2005 iptelorg GmbH
  *
@@ -29,7 +29,7 @@
 
 
 
-#ifdef USE_TCP /* for now it make sense only with tcp */
+#ifndef NO_IO_WAIT
 
 #ifdef HAVE_EPOLL
 #include <unistd.h> /* close() */
@@ -631,4 +631,4 @@ void destroy_io_wait(io_wait_h* h)
 
 
 
-#endif
+#endif /*ifndef NO_IO_WAIT */
