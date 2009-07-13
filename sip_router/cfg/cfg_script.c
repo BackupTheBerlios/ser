@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_script.c,v 1.6 2008/06/12 15:47:10 alfredh Exp $
+ * $Id: cfg_script.c,v 1.7 2009/07/13 15:13:12 tirpi Exp $
  *
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -143,7 +143,6 @@ error:
 /* fix-up the dynamically declared group:
  *  - allocate memory for the arrays
  *  - set the values within the memory block
- *  - notify the drivers about the new group
  */
 int cfg_script_fixup(cfg_group_t *group, unsigned char *block)
 {
