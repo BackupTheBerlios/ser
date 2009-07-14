@@ -1,7 +1,7 @@
 /*
  * Route & Record-Route module, loose routing support
  *
- * $Id: loose.c,v 1.52 2009/01/04 14:52:42 bpintea Exp $
+ * $Id: loose.c,v 1.53 2009/07/14 07:36:19 andrei Exp $
  *
  * Copyright (C) 2001-2004 FhG Fokus
  *
@@ -420,8 +420,8 @@ static int get_direction(struct sip_msg* _m, str* _params) {
 		ftag.len = s.s+i - ftag.s;
 
 	if (ftag.len) {
-		parse_from_header(_m);		
-		if (get_from(_m)) {		/* compare if from.tag == ftag */
+		if ((parse_from_header(_m)==0) && get_from(_m)) {
+			/* compare if from.tag == ftag */
 			if (ftag.len!=get_from(_m)->tag_value.len || strncmp(ftag.s, get_from(_m)->tag_value.s, ftag.len)) return 1;
 		}
 	}
