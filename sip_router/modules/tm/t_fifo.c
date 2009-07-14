@@ -1,5 +1,5 @@
 /*
- * $Id: t_fifo.c,v 1.31 2008/02/15 12:11:50 tirpi Exp $
+ * $Id: t_fifo.c,v 1.32 2009/07/14 07:38:32 andrei Exp $
  *
  * transaction maintenance functions
  *
@@ -702,7 +702,7 @@ static int assemble_msg(struct sip_msg* msg, struct tw_info *twi)
 	}
 
 	 /* parse from header */
-	if (msg->from->parsed==0 && parse_from_header(msg)==-1 ) {
+	if (msg->from==0 || (msg->from->parsed==0 && parse_from_header(msg)==-1)) {
 		LOG(L_ERR,"assemble_msg: while parsing <From:> header\n");
 		goto error;
 	}
