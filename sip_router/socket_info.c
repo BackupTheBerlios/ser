@@ -1,4 +1,4 @@
-/* $Id: socket_info.c,v 1.23 2008/10/16 15:17:44 andrei Exp $
+/* $Id: socket_info.c,v 1.24 2009/07/15 00:11:40 andrei Exp $
  *
  * find & manage listen addresses 
  *
@@ -1077,7 +1077,9 @@ static int fix_socket_list(struct socket_info **list, int* type_flags)
 					)
 					add_alias(del_si->name.s, del_si->name.len,
 								l->port_no, l->proto);
-						
+				/* make sure next_si doesn't point to del_si */
+				if (del_si==next_si)
+					next_si=next_si->next;
 				/* remove del_si*/
 				sock_listrm(list, del_si);
 				free_sock_info(del_si);
