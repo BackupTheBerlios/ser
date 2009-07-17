@@ -1,5 +1,5 @@
 /*
- * $Id: cfg.y,v 1.184 2009/07/17 13:37:11 andrei Exp $
+ * $Id: cfg.y,v 1.185 2009/07/17 16:26:23 andrei Exp $
  *
  *  cfg grammar
  *
@@ -1924,13 +1924,19 @@ host:
 			}
 			pkg_free($1);
 		}
+		if ($3) pkg_free($3);
 	}
 	| host DOT error { $$=0; pkg_free($1); yyerror("invalid hostname"); }
 	;
 
 host_if_id: ID
 		| NUM_ID
-		| NUMBER { $$=yy_number_str /* text version */; }
+		| NUMBER {
+			/* get string version */
+			$$=pkg_malloc(strlen(yy_number_str)+1);
+			if ($$)
+				strcpy($$, yy_number_str);
+		}
 		;
 
 host_or_if:
@@ -1949,6 +1955,7 @@ host_or_if:
 			}
 			pkg_free($1);
 		}
+		if ($3) pkg_free($3);
 	}
 	| host_or_if host_sep error { $$=0; pkg_free($1);
 								yyerror("invalid host or interface name"); }
