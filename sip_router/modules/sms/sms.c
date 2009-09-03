@@ -1,5 +1,5 @@
 /*
- * $Id: sms.c,v 1.41 2007/12/11 16:15:56 tirpi Exp $
+ * $Id: sms.c,v 1.42 2009/09/03 09:56:19 tirpi Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -628,6 +628,10 @@ int global_init()
 		goto error;
 	}
 	*queued_msgs = 0;
+	
+	/* register nr_of_modems number of child processes that will
+	 * update their local configuration */
+	cfg_register_child(nr_of_modems);
 
 	return 1;
 error:

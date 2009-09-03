@@ -1,5 +1,5 @@
 /*
- * $Id: cfg_struct.h,v 1.7 2009/03/13 13:59:28 tirpi Exp $
+ * $Id: cfg_struct.h,v 1.8 2009/09/03 09:56:17 tirpi Exp $
  *
  * Copyright (C) 2007 iptelorg GmbH
  *
@@ -124,8 +124,24 @@ int cfg_init(void);
 /* destroy the memory allocated for the cfg framework */
 void cfg_destroy(void);
 
-/* per-child process init function */
+/* Register num number of child processes that will
+ * keep updating their local configuration.
+ * This function needs to be called from mod_init
+ * before any child process is forked.
+ */
+void cfg_register_child(int num);
+
+/* per-child process init function.
+ * It needs to be called from the forked process.
+ * cfg_register_child() must be called before this function!
+ */
 int cfg_child_init(void);
+
+/* Child process init function that can be called
+ * without cfg_register_child().
+ * Note that the child process may miss some configuration changes.
+ */
+int cfg_late_child_init(void);
 
 /* per-child process destroy function
  * Should be called only when the child process exits,

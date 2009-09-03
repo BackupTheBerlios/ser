@@ -1,5 +1,5 @@
 /*
- * $Id: cpl.c,v 1.65 2008/05/28 16:51:35 janakj Exp $
+ * $Id: cpl.c,v 1.66 2009/09/03 09:56:18 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -374,6 +374,10 @@ static int cpl_init(void)
 		/* convert the realm_prefix to lower cases */
 		strlower( &cpl_env.realm_prefix );
 	}
+
+	/* Register a child process that will keep updating
+	 * its local configuration */
+	cfg_register_child(1);
 
 	return 0;
 error:

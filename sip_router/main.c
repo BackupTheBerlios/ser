@@ -1,5 +1,5 @@
 /*
- * $Id: main.c,v 1.275 2009/05/26 17:20:12 andrei Exp $
+ * $Id: main.c,v 1.276 2009/09/03 09:56:17 tirpi Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -184,7 +184,7 @@
 #define SIG_DEBUG
 #endif
 
-static char id[]="@(#) $Id: main.c,v 1.275 2009/05/26 17:20:12 andrei Exp $";
+static char id[]="@(#) $Id: main.c,v 1.276 2009/09/03 09:56:17 tirpi Exp $";
 static char* version=SER_FULL_VERSION;
 static char* flags=SER_COMPILE_FLAGS;
 char compiled[]= __TIME__ " " __DATE__ ;
@@ -1120,6 +1120,16 @@ int main_loop()
 			LOG(L_WARN, "WARNING: using only the first listen address"
 						" (no fork)\n");
 		}
+
+		/* Register the children that will keep updating their
+		 * local configuration */
+		cfg_register_child(
+				1   /* main = udp listener */
+				+ 1 /* timer */
+#ifdef USE_SLOW_TIMER
+				+ 1 /* slow timer */
+#endif
+			);
 		if (do_suid()==-1) goto error; /* try to drop privileges */
 		/* process_no now initialized to zero -- increase from now on
 		   as new processes are forked (while skipping 0 reserved for main
@@ -1202,6 +1212,16 @@ int main_loop()
 		return udp_rcv_loop();
 	}else{ /* fork: */
 
+		/* Register the children that will keep updating their
+		 * local configuration. (udp/tcp/sctp listeneres
+		 * will be added later.) */
+		cfg_register_child(
+				1   /* timer */
+#ifdef USE_SLOW_TIMER
+				+ 1 /* slow timer */
+#endif
+			);
+
 		for(si=udp_listen;si;si=si->next){
 			/* create the listening socket (for each address)*/
 			/* udp */
@@ -1215,6 +1235,8 @@ int main_loop()
 					(si->address.af==AF_INET6))
 				sendipv6=si;
 	#endif
+			/* children_no per each socket */
+			cfg_register_child(children_no);
 		}
 #ifdef USE_SCTP
 		if (!sctp_disable){
@@ -1231,6 +1253,8 @@ int main_loop()
 						(si->address.af==AF_INET6))
 					sendipv6_sctp=si;
 		#endif
+				/* sctp_children_no per each socket */
+				cfg_register_child(sctp_children_no);
 			}
 		}
 #endif /* USE_SCTP */
@@ -1251,6 +1275,8 @@ int main_loop()
 					sendipv6_tcp=si;
 		#endif
 			}
+			/* the number of sockets does not matter */
+			cfg_register_child(tcp_children_no + 1 /* tcp main */);
 		}
 #ifdef USE_TLS
 		if (!tls_disable && tls_has_init_si()){

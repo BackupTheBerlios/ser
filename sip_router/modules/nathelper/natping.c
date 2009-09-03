@@ -1,4 +1,4 @@
-/* $Id: natping.c,v 1.25 2008/11/04 22:05:37 sobomax Exp $
+/* $Id: natping.c,v 1.26 2009/09/03 09:56:19 tirpi Exp $
  *
  * Copyright (C) 2005-2008 Sippy Software, Inc., http://www.sippysoft.com
  *
@@ -109,10 +109,13 @@ natpinger_init(void)
 		 * Use timer only in single process. For forked SER,
 		 * use separate process (see natpinger_child_init())
 		 */
-		if (dont_fork)
+		if (dont_fork) {
 			register_timer(natping, NULL, natping_interval);
-		else
+		} else {
 			register_procs(1); /* register the separate natpinger process */
+			/* The process will keep updating its configuration */
+			cfg_register_child(1);
+		}
 
 		if (natping_method == NULL) {
 			if (natping_crlf == 0)
