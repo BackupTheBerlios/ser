@@ -1,5 +1,5 @@
 /* 
- * $Id: sctp_server.c,v 1.32 2009/06/26 17:56:44 andrei Exp $
+ * $Id: sctp_server.c,v 1.33 2009/10/05 15:28:05 andrei Exp $
  * 
  * Copyright (C) 2008 iptelorg GmbH
  *
@@ -610,6 +610,13 @@ static int sctp_init_sock_opt_common(int s, int af)
 			pp.spp_flags=SPP_HB_DISABLE;
 			pp.spp_hbinterval=0;
 		}
+#ifdef __OS_linux
+		if (pp.spp_pathmaxrxt){
+			/* hack to work on linux, pathmaxrxt is set only if
+			   SPP_PMTUD_ENABLE */
+			pp.spp_flags|=SPP_PMTUD_ENABLE;
+		}
+#endif /*__OS_linux */
 		/* if at least one is non-null => we have to set it */
 		if (sctp_setsockopt(s, IPPROTO_SCTP, SCTP_PEER_ADDR_PARAMS, (void*)&pp,
 						sizeof(pp), "setsockopt: SCTP_PEER_ADDR_PARAMS")!=0){
