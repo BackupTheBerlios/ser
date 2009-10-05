@@ -1,5 +1,5 @@
 /*
- * $Id: tcp_main.c,v 1.151 2009/05/26 15:41:30 andrei Exp $
+ * $Id: tcp_main.c,v 1.152 2009/10/05 15:23:07 andrei Exp $
  *
  * Copyright (C) 2001-2003 FhG Fokus
  *
@@ -2222,6 +2222,9 @@ conn_wait_error:
 	 * last sender releases the connection (tcpconn_chld_put(c))) or when
 	 * tcp_main receives a CONN_ERROR it*/
 	c->state=S_CONN_BAD;
+	/* we are here only if we opened a new fd (and not reused a cached or
+	   a reader one) => if the connect was successful close the fd */
+	if (fd>=0) close(fd);
 	TCPCONN_LOCK;
 		if (c->flags & F_CONN_HASHED){
 			/* if some other parallel tcp_send did send CONN_ERROR to
