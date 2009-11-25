@@ -1,0 +1,419 @@
+--- /usr/local/etc/ser/ser-dlg.cfg	2009-11-25 04:00:03.000000000 +0100
++++ /usr/local/etc/ser/ser-rtp.cfg	2009-11-25 05:23:16.000000000 +0100
+@@ -250,7 +250,7 @@
+ #             and enable the rtp proxy when necessary
+ #
+ #DEBCONF-RTP_ENABLE-START
+-rtp_proxy.enabled = "0" desc "indicates whether the RTP Proxy is enabled or not (0/1/detect)"
++rtp_proxy.enabled = "1" desc "indicates whether the RTP Proxy is enabled or not (0/1/detect)"
+ #DEBCONF-RTP_ENABLE-END
+ 
+ # ------------------ Module Loading -----------------------------------------
+@@ -289,6 +289,7 @@
+ loadmodule "exec"
+ loadmodule "cfg_rpc"
+ loadmodule "eval"
++loadmodule "iptrtpproxy"
+ #loadmodule "tls"
+ 
+ # ----------------- Declaration of Script Flags -----------------------------
+@@ -305,9 +306,12 @@
+   FLAG_SERWEB_RSVD2   : 10, # bit reserved for use with serweb
+   FLAG_SESSIONTIMER   : 11, # indicates that the UAC supports Session Timer
+   FLAG_RR_DONE        : 12, # the request got already one RR header
+-  FLAG_RTP_PROXY      : 13; # the RTP proxy is turned on
++  FLAG_RTP_PROXY      : 13, # the RTP proxy is turned on
++  FLAG_NAT_REG        : 14, # the UAC behind NAT, stored in location record
++  FLAG_INIT_DLG       : 15; # init dialog
+ 
+ avpflags
++  rtpproxy_dlg,
+   dialog_cookie;            # attribute will be stored in Route headers
+ 
+ # ----------------- Module-specific Parameters ------------------------------
+@@ -324,6 +328,7 @@
+ modparam("acc_db", "db_url", "mysql://ser:heslo@127.0.0.1/ser")
+ #DEBCONF-DBURLACC-END
+ 
++modparam("avp_db", "attr_group", "id=rtp_dlg,flag=rtpproxy_dlg,table=rtpproxy_attrs");
+ 
+ # -- usrloc --
+ 
+@@ -352,8 +357,8 @@
+ modparam("registrar", "min_expires", 240)
+ 
+ # Identify natted contacts using a flag.
+-modparam("registrar", "load_nat_flag", "FLAG_NAT")
+-modparam("registrar", "save_nat_flag", "FLAG_NAT")
++modparam("registrar", "load_nat_flag", "FLAG_NAT_REG")
++modparam("registrar", "save_nat_flag", "FLAG_NAT_REG")
+ 
+ # Maximum number of contacts.
+ modparam("registrar", "max_contacts", 10)
+@@ -403,7 +408,7 @@
+ modparam("rr", "enable_full_lr", 1)
+ 
+ # Limit the length of the AVP cookie to necessary attributes only
+-modparam("rr", "cookie_filter", "(account|uac_nat|stimer|dialog_id)")
++modparam("rr", "cookie_filter", "(account|stimer|dialog_id)")
+ 
+ # You probably do not want that someone can simply read and change
+ # the AVP cookie in your Routes, thus should really change this
+@@ -412,7 +417,7 @@
+ 
+ # The ftag Route parameter may be used to easily determine if a BYE
+ # is coming from caller or callee, but we prefer shorter messages
+-modparam("rr", "append_fromtag", 0)
++modparam("rr", "append_fromtag", 1)
+ 
+ 
+ # -- gflags --
+@@ -466,7 +471,13 @@
+ #modparam("xmlrpc", "route", "RPC");
+ 
+ 
+-# -- nathelper --
++# -- nathelper/iptrtpproxy --
++
++modparam("nathelper", "rtpproxy_disable", 1);
++
++modparam("iptrtpproxy", "config", "/etc/iptrtpproxy.cfg");
++modparam("iptrtpproxy", "switchboard", "name=*;learning-timeout-a=10;learning-timeout-b=10;ringing-timeout=90");
++
+ 
+ # RTP Proxy address
+ #DEBCONF-RTTPPROXY-START
+@@ -665,6 +676,7 @@
+ 	if (method == "INVITE" && !@to.tag) {
+ 		$dialog_id = @sys.unique; # make unique dialogid
+ 		setflag(FLAG_ACC);
++		setflag(FLAG_INIT_DLG);
+ 	}
+ 
+ 	# Set flag and use it instead of the attribute.
+@@ -716,8 +728,6 @@
+ 	    || (@hf_value["contact"] && @contact.uri.params.maddr))
+ 	{
+ 		setflag(FLAG_NAT);
+-		$uac_nat = 1;
+-		setavpflag($uac_nat, "dialog_cookie");
+ 		if (method == "REGISTER") {
+ 			# Prepare the Contact so that the registrar module
+ 			# saves the source address and port as well.
+@@ -750,23 +760,158 @@
+ 		break;
+ 	} # else rtp proxy is permanently enabled
+ 
+-	# If the message terminates a dialog turn RTP proxy off.
+-	if (method == "BYE" || method == "CANCEL") {
+-		unforce_rtp_proxy();
+-		append_hf("P-RTP-Proxy: UNFORCED\r\n");
++	if (isflagset(FLAG_RTP_PROXY)) break;
++	xlog("L_DEBUG", "DEBUG_RTPPROXY: routing '%@received.ip'->'%@next_hop.src_ip', src_ip%@src.ip\n");
++	if (@src.ip == @received.ip) {
++		# it's case when ser forwards message to itself, if the second pass would 
++		# have added rtpproxy it'd rtpproxy twice through local chain, there is a problem
++		# in netfilter
++		xlog("L_DEBUG", "DEBUG: do not add RTPPROXY because srcip=receivedip\n");
+ 		break;
+ 	}
+ 
+-	# Turn the RTP proxy on for INVITEs and UPDATEs.
+-	if (((method=="INVITE" || method == "UPDATE") && @msg.body)
+-	    && !isflagset(FLAG_RTP_PROXY))
+-	{
+-		force_rtp_proxy('r');
+-		append_hf("P-RTP-Proxy: YES\r\n");
+-		setflag(FLAG_RTP_PROXY);
++	# Turn the RTP proxy on for INVITEs and UPDATEs, if they 
++	# have a body
++	if (((method=="INVITE" || method == "UPDATE") && @msg.body)) {
++		if ((@cfg_get.rtp_proxy.enabled == "compare")
++		  && (@received.ip == @next_hop.src_ip)
++		) {
++			# Inbound and outbound interfaces are the same,
++			# do not proxy.
++			break;
++		}
++		# if RTP stream uses the same interface as SIP we can find switchboard according received and next hop address
++		eval_push("x:%@received.ip");
++		eval_push("x:%@next_hop.src_ip");
++#DEBCONF-RTP_ADDR-START
++		# otherwise extra logic must be implemented to force correct switchboard
++#DEBCONF-RTP_ADDR-END
++		if (!iptrtpproxy_find("@eval.get[-2]", "@eval.get[-1]")) {
++			xlog("L_ERR", "Cannot find switchboard for routing '%@eval.get[-2]'/'%@eval.get[-1]'\n");  
++			sl_reply("500", "RTP proxy error");
++			drop;
++		}
++		eval_remove(-2, 2);
++		$rtpproxy_switchboard = @iptrtpproxy.switchboard;		
++		$rtpproxy_a_to_b = @iptrtpproxy.direction;
++	} else {
++		break;
+ 	}
++
++	# allow override switchboard by custom tools
++	if (!$rtpproxy_switchboard || $rtpproxy_switchboard == "")   # do not use proxy
++		break;
++
++	eval_push("$rtpproxy_a_to_b");
++	if (isflagset(FLAG_INIT_DLG)) {
++		eval_push("2");
++		eval_oper("|", -2);   # set ringing timeout
++	}
++	xlog("L_DEBUG", "DEBUG_RTPPROXY: INVITE: %$rtpproxy_switchboard(%$rtpproxy_a_to_b), %@eval.get[-1]\n");
++	if (!iptrtpproxy_alloc("@eval.pop[-1]", "$rtpproxy_switchboard")) {
++		sl_reply("500", "RTP proxy error");
++		drop;
++	}	
++	$sess_ids = @iptrtpproxy.session_ids;
++	# session_ids are stored in AVP to let commit (on_reply) or rollback (on_failure) allocated sessions
++	$reply_route_flag = "INVITE";
++	t_on_failure("FAILURE_ROUTE");
++
++	append_hf("P-RTP-Proxy: YES\r\n");
++	
++	setflag("FLAG_RTP_PROXY");
++
+ }
+ 
++route[RTPPROXY_PROCESS_ROUTES] {
++
++	if ((method == "INVITE" || method == "UPDATE") && @msg.body) {
++		if (!$dialog_id) { # AVP loaded from cookie
++			sl_reply("400", "Missing cookie");
++			drop;
++		}
++
++		if ($sess_ids) { # pending non-confirmed sessions?
++			xlog("L_DEBUG", "DEBUG_RTPPROXY: loose re-INVITE iptrtp delete(%$sess_ids)\n");
++			iptrtpproxy_delete("$sess_ids");
++			$sess_ids = "";
++		}		
++	}
++	else if (method == "BYE") {  # CANCEL ???
++		# we must delete rtp session in BYE request, otherwise we risk problem of lost BYE
++		load_extra_attrs("rtp_dlg", "$dialog_id");
++		xlog("L_DEBUG", "DEBUG_RTPPROXY:BYE delete, dlg_sess_ids=%$dlg_sess_ids\n");
++		if ($dlg_sess_ids != "")
++			iptrtpproxy_delete("$dlg_sess_ids");
++		remove_extra_attrs("rtp_dlg", "$dialog_id");
++
++		$reply_route_flag = "BYE";  # dummy
++	}
++}
++
++route[RTPPROXY_REPLY_ROUTE] {
++	xlog("L_DEBUG", "DEBUG_RTPPROXY:%mb\n\nReplyroute: flag=%$reply_route_flag, dialog_id=%$dialog_id, %@method, sessids=%$sess_ids\n");
++
++	if ($reply_route_flag == "INVITE") {
++		# If RTP proxy was activated and this is a 18x or 2xx reply with a
++		# body, inform RTP proxy.
++		if (status=~"18[0-9]" || status=~"2[0-9][0-9]") {
++			if (@msg.body) {
++				eval_push("$rtpproxy_a_to_b");
++				eval_push("1");
++				eval_oper("^");   # change direction, xor bit 0
++				if (isflagset(FLAG_INIT_DLG) && status=~"18[0-9]") {
++					eval_push("2");
++					eval_oper("|", -2);   # set ringing timeout
++				}
++				xlog("L_DEBUG", "DEBUG_RTPPROXY:REPLY: %$rtpproxy_a_to_b, %@eval.get[-1]\n");
++				if (iptrtpproxy_update("@eval.pop[-1]", "$sess_ids")) {
++					if (status=~"2[0-9][0-9]") {
++						if (isflagset(FLAG_INIT_DLG)) {
++							xlog("L_DEBUG", "DEBUG_RTPPROXY:REPLY: adjust timeout: %$rtpproxy_a_to_b, %$sessids\n");
++							iptrtpproxy_adjust_timeout("$rtpproxy_a_to_b", "$sess_ids");  # decrease ringing-timeout
++						}
++						# delete old session, e.g. in case of re-INVITE
++						load_extra_attrs("rtp_dlg", "$dialog_id");
++						xlog("L_DEBUG", "DEBUG_RTPPROXY:INVITE 200 delete old, dialogid=%$dialog_id,dlg_sess_ids=%$dlg_sess_ids\n");
++						if ($dlg_sess_ids != "")
++							iptrtpproxy_delete("$dlg_sess_ids");
++						# save session ids
++						$dlg_sess_ids = @iptrtpproxy.session_ids;
++						xlog("L_DEBUG", "DEBUG_RTPPROXY:INVITE 200, dialogid=%$dialog_id,dlg_sess_ids=%$dlg_sess_ids\n");
++						setavpflag("$f.dlg_sess_ids", "rtpproxy_dlg");
++						save_extra_attrs("rtp_dlg", "$dialog_id");
++					}
++					else {
++						$sess_ids = @iptrtpproxy.session_ids;  # to save it later when 200 OK arrives
++					}
++				}
++			}
++			else if (status=~"2[0-9][0-9]") {
++				# we got SDP ealier, we need only save $dlg_sess_ids
++				# delete old session, e.g. in case of re-INVITE
++				xlog("L_DEBUG", "DEBUG_RTPPROXY:INVITE 200 no body, dialogid=%$dialog_id,dlg_sess_ids=%$dlg_sess_ids\n");
++				load_extra_attrs("rtp_dlg", "$dialog_id");
++				xlog("L_DEBUG", "DEBUG_RTPPROXY:INVITE 200 no body,delete sessions,=%$dialog_id,dlg_sess_ids=%$dlg_sess_ids\n");
++				if ($dlg_sess_ids != "")
++					iptrtpproxy_delete("$dlg_sess_ids");
++				$dlg_sess_ids = $sess_ids;
++				# save session ids
++				setavpflag("$f.dlg_sess_ids", "rtpproxy_dlg");
++				save_extra_attrs("rtp_dlg", "$dialog_id");
++			}
++		}
++	}
++}
++
++route[RTPPROXY_FAILURE_ROUTE] {
++	if ($sess_ids) {
++		# do it if request really failed
++		# if flexroute forwards call in CAPM-PP callback then request is dropped
++		iptrtpproxy_delete("$sess_ids");
++		$sess_ids = "";
++	}
++}
+ 
+ # Handling of loose routed requests
+ #
+@@ -783,6 +928,7 @@
+ 
+ 		# Mark routing logic in request.
+ 		append_hf("P-hint: rr-enforced\r\n");
++		route("RTPPROXY_PROCESS_ROUTES");
+ 
+ 		# If the Route contained the accounting AVP cookie we
+ 		# set the accounting flag for the acc_db module.
+@@ -795,11 +941,6 @@
+ 			setflag(FLAG_ACC);
+ 		}
+ 
+-		# Restore the NAT flag if present
+-		if ($uac_nat == 1) {
+-			setflag(FLAG_NAT);
+-		}
+-
+ 		# Restore Session Timer flag and headers.
+ 		if ($stimer && ($stimer != "0")) {
+ 			route(SESSION_TIMER);
+@@ -907,7 +1048,6 @@
+ 		# Read marker from master
+ 		if (search("^Repl-Marker: nated")) {
+ 			setflag(FLAG_NAT);
+-			$uac_nat = 1;
+ 		}
+ 
+ 		# If the replicating server added its own server id to the
+@@ -991,6 +1131,10 @@
+ 	#	drop;
+ 	#}
+ 
++	if (isflagset(FLAG_NAT)) {
++		setflag(FLAG_NAT_REG);
++	}
++
+ 	# Everything is fine. Store the binding.
+ 	if (!save_contacts("location")) {
+ 		sl_reply("400", "Invalid REGISTER Request");
+@@ -1161,6 +1305,9 @@
+ 	if (lookup_contacts("location")) {
+ 		append_hf("P-hint: usrloc applied\r\n");
+ 
++		if (isflagset(FLAG_NAT_REG))
++			setflag(FLAG_NAT); /* client was behind NAT when made registration */
++
+ 		# We set the tm module timers according to the prefences
+ 		# of the callee (avoid too long ringing of his phones).
+ 		# Note1: Timer values have to be in ms now!
+@@ -1260,6 +1407,7 @@
+ 		# t_relay_cancel() will stop processing if a matching
+ 		# INVITE was found.
+ 		xlog("L_DEBUG", "catching cancel dialogid=%$dialog_id\n");
++		xlog("L_DEBUG", "DEBUG_RTPPROXY: %mb");
+ 		if (!t_relay_cancel()) {
+ 			# An INVITE was found but some error occurred.
+ 			sl_reply("500", "Internal Server Error");
+@@ -1375,37 +1523,43 @@
+ #
+ failure_route[FAILURE_ROUTE]
+ {
+-	# Mark that we are operating from a failure route.
+-	setflag(FLAG_FAILUREROUTE);
++	if (isflagset(FLAG_INIT_DLG)) {
++		# NOTE: reallocation of RTP for next branch (resetflag((FLAG_RTP_PROXY)) will not work because t_newtran is not used, RTPPROXY related LUMPs are already applied. 2nd branch would double LUMPs and corrupt SDP. So next branched will be always RTP proxied
++
++		# Mark that we are operating from a failure route.
++		setflag(FLAG_FAILUREROUTE);
+ 
+-	if (t_check_status("486|600")) {
+-		# If we received a busy and a busy target is set, forward
+-		# it there.
+-		# Note: Again, the forwarding target has to be a routeable
+-		# URI. We redirect using 3xx to avoid possible issues with
+-		# credentials (if we consumed them, they may be missing in
+-		# a loop, if we don't consume them, messages are bigger and
+-		# more vulnerable)
+-		if ($tu.fwd_busy_target) {
+-			#attr2uri("$tu.fwd_busy_target");
+-			#route(FORWARD);
+-			attr_destination("$tu.fwd_busy_target");
+-			t_reply("302", "Redirect On Busy");
+-		}
+-		# Alternatively, you could forward the request to
+-		# SEMS/voicemail here
+-	}
+-	else if (t_check_status("408|480")) {
+-		# If we received no answer and the noanswer target is set,
+-		# forward it there.
+-		# Note: See above.
+-		if ($tu.fwd_noanswer_target) {
+-			#attr2uri("$tu.fwd_noanswer_target");
+-			#route(FORWARD);
+-			attr_destination("$tu.fwd_noanswer_target");
+-			t_reply("302", "Redirect On No Answer");
++		if (t_check_status("486|600")) {
++			# If we received a busy and a busy target is set, forward
++			# it there.
++			# Note: Again, the forwarding target has to be a routeable
++			# URI. We redirect using 3xx to avoid possible issues with
++			# credentials (if we consumed them, they may be missing in
++			# a loop, if we don't consume them, messages are bigger and
++			# more vulnerable)
++			if ($tu.fwd_busy_target) {
++				#attr2uri("$tu.fwd_busy_target");
++				#route(FORWARD);
++				attr_destination("$tu.fwd_busy_target");
++				t_reply("302", "Redirect On Busy");
++			}
++			# Alternatively, you could forward the request to
++			# SEMS/voicemail here
+ 		}
+-	}
++		else if (t_check_status("408|480")) {
++			# If we received no answer and the noanswer target is set,
++			# forward it there.
++			# Note: See above.
++			if ($tu.fwd_noanswer_target) {
++				#attr2uri("$tu.fwd_noanswer_target");
++				#route(FORWARD);
++				attr_destination("$tu.fwd_noanswer_target");
++				t_reply("302", "Redirect On No Answer");
++			}
++		}
++	} # if (isflagset...
++	route("RTPPROXY_FAILURE_ROUTE");
++
+ }
+ 
+ 
+@@ -1422,15 +1576,7 @@
+ 	{
+ 		fix_nated_contact();
+ 	}
+-
+-	# If RTP proxy was activated and this is a 18x or 2xx reply with a
+-	# body, inform RTP proxy.
+-	if (isflagset(FLAG_RTP_PROXY)
+-	    && status=~"(18[03])|(2[0-9][0-9])"
+-	    && @msg.body)
+-	{
+-		force_rtp_proxy('r');
+-	}
++	route("RTPPROXY_REPLY_ROUTE");
+ 
+ 	# Let's check for session timer support.
+ 	if (isflagset(FLAG_SESSIONTIMER) && status =~ "2[0-9][0-9]") {
