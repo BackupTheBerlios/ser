@@ -1,5 +1,5 @@
 /*
- * $Id: permissions.c,v 1.30 2008/08/06 20:37:42 tma0 Exp $
+ * $Id: permissions.c,v 1.31 2010/04/28 09:15:56 tma0 Exp $
  *
  * PERMISSIONS module
  *
@@ -638,6 +638,8 @@ static int w_ip_is_trusted(struct sip_msg* msg, char* _ip_set, char* _ip) {
 	}
 	else {
 		isli = ((struct ip_set_param*)_ip_set)->global.ip_set;
+		ip_set_s.len = isli->name.len;
+		ip_set_s.s = isli->name.s;
 	force_global:
 		if (!isli->ip_set) return -1; /* empty ip set */
 		
