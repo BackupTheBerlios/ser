@@ -1,4 +1,4 @@
-/* $Id: f_malloc.c,v 1.29 2010/03/12 13:50:05 andrei Exp $
+/* $Id: f_malloc.c,v 1.30 2010/09/29 23:56:15 andrei Exp $
  *
  *
  * Copyright (C) 2001-2003 FhG Fokus
@@ -40,6 +40,10 @@
  *  2006-04-07  s/DBG/MDBG (andrei)
  *  2007-02-23  added fm_available() (andrei)
  *  2007-06-23  added hash bitmap (andrei)
+ *  2010-03-11  fix big fragments bug (smaller fragment was wrongly
+ *               returned sometimes) (andrei)
+ *  2010-09-30  fixed search for big fragments using the hash bitmap
+ *               (only the first bucket was tried) (andrei)
  */
 
 
@@ -341,11 +345,23 @@ void* fm_malloc(struct fm_block* qm, unsigned long size)
 #ifdef F_MALLOC_HASH_BITMAP
 	hash=fm_bmp_first_set(qm, GET_HASH(size));
 	if (likely(hash>=0)){
-		f=&(qm->free_hash[hash].first);
-	if (likely(hash<=F_MALLOC_OPTIMIZE/ROUNDTO)) /* return first match */
-			goto found; 
-		for(;(*f); f=&((*f)->u.nxt_free))
-			if ((*f)->size>=size) goto found;
+		if (likely(hash<=F_MALLOC_OPTIMIZE/ROUNDTO)) { /* return first match */
+			f=&(qm->free_hash[hash].first);
+			goto found;
+		}
+		/* if we are here we are searching for a "big" fragment
+		   between F_MALLOC_OPTIMIZE/ROUNDTO+1
+		   and F_MALLOC_OPTIMIZE/ROUNDTO + (32|64) - F_MALLOC_OPTIMIZE_FACTOR
+		   => 18 hash buckets on 32 bits and 50 buckets on 64 bits
+		   The free hash bitmap is used to jump directly to non-empty
+		   hash buckets.
+		*/
+		do {
+			for(f=&(qm->free_hash[hash].first);(*f); f=&((*f)->u.nxt_free))
+				if ((*f)->size>=size) goto found;
+			hash++; /* try in next hash cell */
+		}while((hash < F_HASH_SIZE) &&
+				((hash=fm_bmp_first_set(qm, hash)) >= 0));
 	}
 #else /* F_MALLOC_HASH_BITMAP */
 	for(hash=GET_HASH(size);hash<F_HASH_SIZE;hash++){
