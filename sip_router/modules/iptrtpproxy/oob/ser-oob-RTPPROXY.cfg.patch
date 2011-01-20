@@ -1,0 +1,176 @@
+--- etc/ser-oob.cfg	2011-01-10 22:08:01.000000000 +0100
++++ etc/ser-oob-RTPPROXY.cfg	2011-01-10 22:07:23.000000000 +0100
+@@ -1,5 +1,5 @@
+ #
+-# $Id: ser-oob-RTPPROXY.cfg.patch,v 1.1 2011/01/20 12:02:33 tma0 Exp $
++# $Id: ser-oob-RTPPROXY.cfg.patch,v 1.1 2011/01/20 12:02:33 tma0 Exp $
+ #
+ #
+ # Applicability of this Configuration File
+@@ -240,17 +240,6 @@
+ #
+ session_timer.min_se = "90" desc "minimum session interval (in s)"
+ 
+-# RTP Proxy options
+-#
+-# Whether to enable or disable the rtp proxy. Possible values are:
+-# "0" -- always disable
+-# "1" -- always enable regardless of whether UAC or UAS is behind NAT
+-# "detect" -- detect whether the UAC or the UAS is behind NAT,
+-#             and enable the rtp proxy when necessary
+-#
+-#DEBCONF-RTP_ENABLE-START
+-rtp_proxy.enabled = "detect" desc "indicates whether the RTP Proxy is enabled or not (0/1/detect)"
+-#DEBCONF-RTP_ENABLE-END
+ 
+ # ------------------ Module Loading -----------------------------------------
+ 
+@@ -405,7 +394,7 @@
+ modparam("rr", "enable_full_lr", 1)
+ 
+ # Limit the length of the AVP cookie to necessary attributes only
+-modparam("rr", "cookie_filter", "(account|uac_nat|stimer|dialog_id)")
++modparam("rr", "cookie_filter", "(account|stimer|dialog_id)")
+ 
+ # You probably do not want that someone can simply read and change
+ # the AVP cookie in your Routes, thus should really change this
+@@ -415,7 +404,7 @@
+ # The ftag Route parameter may be used to easily determine if a BYE
+ # is coming from caller or callee, but we prefer shorter messages
+ # Enable when FLAG_REVERSE_DIR is to be used
+-modparam("rr", "append_fromtag", 0)
++modparam("rr", "append_fromtag", 1)
+ 
+ 
+ # -- gflags --
+@@ -471,11 +460,11 @@
+ 
+ # -- nathelper --
+ 
+-modparam("nathelper", "rtpproxy_disable", 0);
++modparam("nathelper", "rtpproxy_disable", 1);
+ 
+ # RTP Proxy address
+ #DEBCONF-RTTPPROXY-START
+-modparam("nathelper", "rtpproxy_sock", "udp:127.0.0.1:22222")
++#modparam("nathelper", "rtpproxy_sock", "udp:127.0.0.1:22222")
+ #DEBCONF-RTTPPROXY-END
+ 
+ # TCP keepalives as simple as CRLF
+@@ -606,7 +595,8 @@
+ 	# If this is an initial INVITE (without a To-tag) we might try
+ 	# another target (call forwarding or voicemail) after receiving
+ 	# an error.
+-	if (isflagset(FLAG_INIT_DLG)) {
++	# and also for RTPPROXY processing 
++	if (method=="INVITE" || method == "UPDATE") {
+ 		t_on_failure("FAILURE_ROUTE");
+ 	}
+ 
+@@ -620,7 +610,7 @@
+ 
+ 	# Activate the RTP proxy as the last step because it modifies the
+ 	# body.
+-	route(RTPPROXY);
++	route("RTPPROXY_PROCESS_REQUEST");
+ 
+ 	# Remove credentials to keep requests shorter
+ 	if (isflagset(FLAG_AUTH_OK) && !isflagset(FLAG_DONT_RM_CRED) ) {
+@@ -731,8 +721,6 @@
+ 	    || (@hf_value["contact"] && @contact.uri.params.maddr))
+ 	{
+ 		setflag(FLAG_NAT);
+-		$uac_nat = 1;
+-		setavpflag($uac_nat, "dialog_cookie");
+ 		if (method == "REGISTER") {
+ 			# Prepare the Contact so that the registrar module
+ 			# saves the source address and port as well.
+@@ -752,43 +740,6 @@
+ 	}
+ }
+ 
+-
+-# Activates RTP proxy if necessary.
+-#
+-route[RTPPROXY]
+-{
+-	if (@cfg_get.rtp_proxy.enabled == "0") {
+-		# RTP Proxy is disabled
+-		break;
+-	} else if (@cfg_get.rtp_proxy.enabled == "detect") {
+-		if (!isflagset(FLAG_NAT)) {
+-			# If no NAT is involved we don't have to do here anything.
+-			break;
+-		}
+-	} else if (@cfg_get.rtp_proxy.enabled != "1") {
+-		# This is not a valid setting
+-		xlog("L_ERR", "Unknown option for rtp_proxy.enabled: %@cfg_get.rtp_proxy.enabled\n");
+-		break;
+-	} # else rtp proxy is permanently enabled
+-
+-	# If the message terminates a dialog turn RTP proxy off.
+-	if (method == "BYE" || method == "CANCEL") {
+-		unforce_rtp_proxy();
+-		append_hf("P-RTP-Proxy: UNFORCED\r\n");
+-		break;
+-	}
+-
+-	# Turn the RTP proxy on for INVITEs and UPDATEs.
+-	if (((method=="INVITE" || method == "UPDATE") && @msg.body)
+-	    && !isflagset(FLAG_RTP_PROXY))
+-	{
+-		force_rtp_proxy('r');
+-		append_hf("P-RTP-Proxy: YES\r\n");
+-		setflag(FLAG_RTP_PROXY);
+-	}
+-}
+-
+-
+ # Handling of loose routed requests
+ #
+ #    XXX Isn't the proper term "record routed"? This route also handles
+@@ -817,11 +768,6 @@
+ 			setflag(FLAG_ACC);
+ 		}
+ 
+-		# Restore the NAT flag if present
+-		if ($uac_nat == 1) {
+-			setflag(FLAG_NAT);
+-		}
+-
+ 		# Restore Session Timer flag and headers.
+ 		if ($stimer && ($stimer != "0")) {
+ 			route(SESSION_TIMER);
+@@ -929,7 +875,6 @@
+ 		# Read marker from master
+ 		if (search("^Repl-Marker: nated")) {
+ 			setflag(FLAG_NAT);
+-			$uac_nat = 1;
+ 		}
+ 
+ 		# If the replicating server added its own server id to the
+@@ -1437,6 +1382,7 @@
+ 			}
+ 		}
+ 	} # if (isflagset...
++	route("RTPPROXY_PROCESS_FAILURE");
+ }
+ 
+ 
+@@ -1456,15 +1402,7 @@
+ 	{
+ 		fix_nated_contact();
+ 	}
+-
+-	# If RTP proxy was activated and this is a 18x or 2xx reply with a
+-	# body, inform RTP proxy.
+-	if (isflagset(FLAG_RTP_PROXY)
+-	    && status=~"(18[03])|(2[0-9][0-9])"
+-	    && @msg.body)
+-	{
+-		force_rtp_proxy('r');
+-	}
++	route("RTPPROXY_PROCESS_REPLY");
+ 
+ 	# Let's check for session timer support.
+ 	if (isflagset(FLAG_SESSIONTIMER) && status =~ "2[0-9][0-9]") {
