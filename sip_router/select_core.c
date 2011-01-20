@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.c,v 1.36 2009/06/02 20:46:05 tma0 Exp $
+ * $Id: select_core.c,v 1.37 2011/01/20 09:45:27 tma0 Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -63,6 +63,7 @@
 #include "sr_module.h"
 #include "resolve.h"
 #include "forward.h"
+#include "dns_cache.h"
 
 #define RETURN0_res(x) {*res=(x);return 0;}
 #define TRIM_RET0_res(x) {*res=(x);trim(res);return 0;} 
@@ -906,6 +907,66 @@ int select_any_params(str* res, select_t* s, struct sip_msg* msg)
 
 	DBG("SELECT ...uri.params.%s NOT FOUND !\n", wanted->s);
 	return -1;
+}
+
+/* resolve first IP */
+int select_uri_resolve(str* res, select_t* s, struct sip_msg* msg)
+{
+	char proto;
+	unsigned short port;
+	struct ip_addr ip;
+	str *dst_host;
+	
+	if (parse_uri(res->s, res->len, &uri)<0) {
+		return -1;
+	}
+
+	if (!uri.host.len)
+		return -1;
+
+#ifdef USE_TLS
+	if (uri.type==SIPS_URI_T || uri.type == TELS_URI_T)
+		proto = PROTO_TLS;
+	else
+#endif
+		proto = uri.proto;
+
+#ifdef HONOR_MADDR
+	if (uri.maddr_val.s && uri.maddr_val.len)
+		dst_host = &uri.maddr_val;
+	else
+#endif
+		dst_host = &uri.host;
+	
+	port = uri.port_no;
+
+#ifdef USE_DNS_FAILOVER
+	if (cfg_get(core, core_cfg, use_dns_failover)){
+		struct dns_srv_handle dns_srv_h;
+		dns_srv_handle_init(&dns_srv_h);
+		if (dns_sip_resolve(&dns_srv_h, dst_host, &ip, &port, &proto, dns_flags) < 0) {
+			dns_srv_handle_put(&dns_srv_h);
+			return -1;
+		}
+		dns_srv_handle_put(&dns_srv_h);
+	} else
+#endif
+	{
+		struct hostent* he;
+		he = sip_resolvehost(dst_host, &port, &proto);
+		if (he == 0) {
+			return -1;
+		}
+		hostent2ip_addr(&ip, he, 0);
+	}
+
+	if (!(res->s = get_static_buffer(SU2A_MAX_STR_SIZE)))
+		return -1;
+	if ((res->len = ip_addr2sbuf(&ip, res->s, SU2A_MAX_STR_SIZE)) < 0) {
+		return -1;
+	}
+			
+	return 0;
 }
 
 int select_event(str* res, select_t* s, struct sip_msg* msg)

@@ -1,5 +1,5 @@
 /*
- * $Id: select_core.h,v 1.28 2009/06/02 20:46:05 tma0 Exp $
+ * $Id: select_core.h,v 1.29 2011/01/20 09:45:27 tma0 Exp $
  *
  * Copyright (C) 2005-2006 iptelorg GmbH
  *
@@ -160,6 +160,7 @@ SELECT_F(select_uri_port)
 SELECT_F(select_uri_hostport)
 SELECT_F(select_uri_params)
 SELECT_F(select_uri_proto)
+SELECT_F(select_uri_resolve)
 
 SELECT_F(select_event)
 
@@ -286,6 +287,7 @@ static select_row_t select_core[] = {
 	{ select_any_uri, SEL_PARAM_STR, STR_STATIC_INIT("params"), select_uri_params, CONSUME_NEXT_STR | OPTIONAL | FIXUP_CALL },
 	{ select_any_uri, SEL_PARAM_STR, STR_STATIC_INIT("hostport"), select_uri_hostport, 0},
 	{ select_any_uri, SEL_PARAM_STR, STR_STATIC_INIT("transport"), select_uri_proto, 0},
+	{ select_any_uri, SEL_PARAM_STR, STR_STATIC_INIT("resolve"), select_uri_resolve, 0},
 
 	{ NULL, SEL_PARAM_STR, STR_STATIC_INIT("event"), select_event, 0},
 
