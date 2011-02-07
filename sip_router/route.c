@@ -1,5 +1,5 @@
 /*
- * $Id: route.c,v 1.77 2008/12/18 16:09:16 andrei Exp $
+ * $Id: route.c,v 1.78 2011/02/07 13:13:37 tma0 Exp $
  *
  * SIP routing engine
  *
@@ -644,7 +644,7 @@ inline static int comp_str(int op, str* left, int rtype, union exp_op* r, struct
 	int ret;
 	char backup;
 	regex_t* re;
-	unsigned int l;
+	int l;
 	
 	right=0; /* warning fix */
 
@@ -665,7 +665,7 @@ inline static int comp_str(int op, str* left, int rtype, union exp_op* r, struct
 			 * $test > 10
 			 * the right operator MUST be number to do the conversion
 			 */
-		if (str2int(left,&l) < 0)
+		if (str2sint(left,&l) < 0)
 			goto error;
 		return comp_num(op, l, rtype, r);
 	} else {
@@ -795,7 +795,7 @@ inline static int comp_avp(int op, avp_spec_t* spec, int rtype, union exp_op* r,
 	int_str val;
 	union exp_op num_val;
 	str tmp;
-	unsigned int uval;
+	int sval;
 
 	if (spec->type & AVP_INDEX_ALL) {
 		avp = search_first_avp(spec->type & ~AVP_INDEX_ALL, spec->name, NULL, NULL);
@@ -831,20 +831,20 @@ inline static int comp_avp(int op, avp_spec_t* spec, int rtype, union exp_op* r,
 			case STRING_ST:
 				tmp.s=r->string;
 				tmp.len=strlen(r->string);
-				if (str2int(&tmp, &uval)<0){
+				if (str2sint(&tmp, &sval)<0){
 					LOG(L_WARN, "WARNING: comp_avp: cannot convert string value"
 								" to int (%s)\n", ZSW(r->string));
 					goto error;
 				}
-				num_val.numval=uval;
+				num_val.numval=sval;
 				return comp_num(op, val.n, NUMBER_ST, &num_val);
 			case STR_ST:
-				if (str2int(&r->str, &uval)<0){
+				if (str2sint(&r->str, &sval)<0){
 					LOG(L_WARN, "WARNING: comp_avp: cannot convert str value"
 								" to int (%.*s)\n", r->str.len, ZSW(r->str.s));
 					goto error;
 				}
-				num_val.numval=uval;
+				num_val.numval=sval;
 				return comp_num(op, val.n, NUMBER_ST, &num_val);
 			case AVP_ST:
 				return comp_num(op, val.n, rtype, r);
